@@ -1,0 +1,29 @@
+Relation control_tank.tank_volume;
+
+Uses control_tank.definitions.*;
+
+Inputs:
+	in_flow_rate : real liters_per_second;
+	out_flow_rate : real liters_per_second;
+
+Outputs:
+	volume : real liters;
+
+Macros:
+
+Requirements:
+	//assumption (imposed by the laws of physics)
+	init = initial :: volume == 0.0 liters;
+	range = global :: always volume >= TANK_EMPTY and volume <= TANK_FULL;
+	
+	change_in_volume = global :: always volume == pre volume + ( in_flow_rate * 0.5 seconds ) - ( out_flow_rate * 0.5 seconds ); 
+										
+Properties:
+	//these shouldn't prove, the tank has no limitations on it, other than the limitations of physics.
+	safe1 = global :: always volume <= MAX_SAFE_VOLUME;
+	safe2 = after (volume > MIN_SAFE_VOLUME) :: always (volume > TANK_EMPTY);
+
+	in_flow_limit = global :: always (in_flow_rate >= 0.0 liters_per_second) and (in_flow_rate <= 5.0 liters_per_second);
+	out_flow_limit = global :: always (out_flow_rate >= 0.0 liters_per_second) and (out_flow_rate <= 6.0 liters_per_second);
+
+	

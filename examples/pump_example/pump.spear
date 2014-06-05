@@ -1,0 +1,20 @@
+Relation control_tank.pump;
+
+Uses control_tank.definitions.*;
+
+Inputs:
+	pump_command : bool;
+
+Outputs:
+	pump_flow_rate : real liters_per_second;
+	
+Requirements:
+	on = while pump_command :: always pump_flow_rate == NOMINAL_PUMP_RATE;
+	off = while not pump_command :: always pump_flow_rate == ZERO_FLOW_RATE;
+	
+Properties:
+	sanity1 = while pump_command :: always pump_flow_rate > 0.0 liters_per_second;
+	sanity2 = global :: always pump_flow_rate >= 0.0 liters_per_second;
+	sanity3 = global :: always pump_flow_rate <= NOMINAL_PUMP_RATE;
+	sanity4 = global :: always pump_flow_rate == NOMINAL_PUMP_RATE or pump_flow_rate == ZERO_FLOW_RATE;
+

@@ -1,0 +1,41 @@
+Relation control_tank.system;
+
+Uses control_tank.definitions.*;
+Uses control_tank.definitions.controller_output_type.*;
+Uses control_tank.low_sensor;
+Uses control_tank.high_sensor;
+Uses control_tank.tank_volume;
+Uses control_tank.controller;
+Uses control_tank.pump;
+Uses control_tank.drain;
+
+State:
+	tank_volume : real liters;
+	pump_flow_rate : real liters_per_second ;
+	drain_flow_rate : real liters_per_second ;
+	low_sensor : bool;
+	high_sensor : bool;
+	controller_out : controller_output_type;
+	
+Macros:
+	tank_too_full : bool = tank_volume > MAX_SAFE_VOLUME;
+	tank_too_empty : bool = tank_volume < MIN_SAFE_VOLUME;
+	tank_completely_full : bool = tank_volume == TANK_FULL;
+	tank_completely_empty : bool = tank_volume == TANK_EMPTY;
+	
+Requirements:
+	low_sensor_value = global :: always low_sensor == low_sensor(tank_volume);
+	high_sensor_value = global :: always high_sensor == high_sensor(tank_volume);
+	
+	r0 = global :: always tank_volume == tank_volume(pump_flow_rate,drain_flow_rate); 
+	r1 = global :: always controller_out == controller(low_sensor,high_sensor);
+	
+	r3 = global :: always pump_flow_rate == pump(controller_out{pump_command});
+	r5 = global :: always drain_flow_rate == drain(controller_out{drain_command});
+	
+Properties:
+	empty_tank_is_managed = global :: always tank_too_empty implies ((pump_flow_rate > 0.0 liters_per_second) and (drain_flow_rate == 0.0 liters_per_second));
+	full_tank_is_managed = global :: always tank_too_full implies ((pump_flow_rate == 0.0 liters_per_second) and (drain_flow_rate > 0.0 liters_per_second));
+	
+	high_safety_margin = after tank_too_full :: always not tank_completely_full;
+	low_safety_margin = after not tank_too_empty :: always not tank_completely_empty;

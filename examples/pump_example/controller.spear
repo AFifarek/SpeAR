@@ -1,0 +1,22 @@
+Relation control_tank.controller;
+
+Uses control_tank.definitions.*;
+Uses control_tank.definitions.controller_output_type.*;
+
+Inputs:
+	low_sensor_in : bool;
+	high_sensor_in : bool;
+
+Outputs:
+
+	output : controller_output_type;
+	
+Requirements:
+	too_low1 = while (not low_sensor_in) :: always (output{pump_command} and not output{drain_command});
+	too_high1 = while (high_sensor_in) :: always (not output{pump_command} and output{drain_command});
+	
+Properties:
+	//why does this prove?
+	fault = global :: always not (high_sensor_in and not low_sensor_in);
+	mutex = global :: always not (output{pump_command} and output{drain_command});
+	

@@ -1,0 +1,32 @@
+== Software Requirements ==
+1) Eclipse - http://www.eclipse.org/downloads/
+2) XText Plug-in for Eclipse - http://www.eclipse.org/Xtext/
+3) jkind - https://github.com/agacek/jkind
+
+== Installation/Use ==
+1) Create or open an already existing workspace in eclipse.
+2) Import the spear project
+3) Add an xtext nature to the spear project ( right click on top-level of the 
+spear project, choose "configure", then choose "Add Xtext Nature" ).
+4) Expand the src directory in the spear project and then expand the spear 
+directory.
+5) Right click on "GenerateLanguage.mwe2" 
+6) Click on "MWE2 Workflow" via the "Debug as ..." option. This will build the 
+artifacts necessary to run the spear workbench.
+7) Now a new debug configuration must be built. Navigate to the "Run" menu and 
+then choose "Debug Configurations...". This will bring up a new window. A new
+eclipse application must be made (this is done on the left portion of the 
+window). The new configuration (displayed on the right portion of the window)
+must be set such that the PATH environment variable includes a valid path to 
+to yices and jkind. This can be done by choosing the "Environment" tab and 
+following system specific details on how to extend environment variables. Save
+this configuration and close it.
+8) Run the newly created debug configuration.
+9) A new eclipse workbench will be brought up, call this the spear workbench. A 
+new workspace will need to be made and a new general project made in that 
+workspace.
+10) Import all examples from the examples directory in the spear project into
+this new project in the spear workbench.
+11) Double click on "microwave.spear" and then click on the "analyze" option in 
+the spear workbench.
+

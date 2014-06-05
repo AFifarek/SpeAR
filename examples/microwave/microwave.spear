@@ -1,0 +1,54 @@
+Relation microwave;
+
+Uses microwave.definitions.*;
+Uses microwave.definitions.user_input_type.*;
+
+Uses microwave.definitions.mode_type;
+Uses microwave.definitions.mode_type.*;
+
+Uses microwave.definitions.display_type;
+
+Uses microwave.keypad_processing;
+Uses microwave.keypad_processing.*;
+Uses microwave.mode_logic;
+Uses microwave.mode_logic.*;
+Uses microwave.compute_time.*;
+Uses microwave.compute_time;
+
+Uses microwave.math.utils.monotonically_decreasing.*;
+
+Uses microwave.seconds_to_display;
+Uses microwave.seconds_to_display.*;
+
+Uses microwave.definitions.modelogic_output_type.*;
+Uses microwave.definitions.modelogic_output_type;
+
+Inputs:
+	user_input : user_input_type;
+	door_closed : bool;
+	
+Outputs:
+	display : display_type;
+
+State:
+	modelogic_out : modelogic_output_type;
+	seconds_to_cook : int;
+
+
+
+	
+Macros:
+	clear : bool = (user_input == CLEAR);
+	start : bool = (user_input == START);
+	mode : mode_type = modelogic_out{mode};
+	seconds_remaining : int = modelogic_out{seconds_remaining};
+	display_computed_time : int = compute_time(display);
+	
+Requirements:
+	r0 = global :: always (modelogic_out == mode_logic(clear,start,door_closed,seconds_to_cook));
+	r1 = while (mode == SETUP) :: always (display == keypad_processing(user_input) and seconds_to_cook == display_computed_time);
+	r2 = while (mode <> SETUP) :: always (display == seconds_to_display(seconds_remaining));
+
+Properties:
+	p0 = while (mode == COOKING) :: always door_closed;
+	p1 = before start :: always modelogic_out{mode} <> COOKING;

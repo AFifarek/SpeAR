@@ -1,0 +1,80 @@
+Relation HanoiN2;
+
+Uses Parameters;
+Uses Parameters.solution;
+Uses Parameters.solution.*;
+
+Constants:
+numplates : int = Parameters.numplates+1;
+numstakes : int = Parameters.numstakes;
+noplate : int = 0;
+
+Types:
+plates : sequence int [noplate ... numplates ];
+plateidx : sequence int [ 0 ... numplates - 1 ];
+stakeidx : sequence int [ 0 ... numstakes - 1 ];
+state : array array plates [numplates] [numstakes];
+move : { src : stakeidx, dst : stakeidx };
+
+State:
+s : state;
+m : move;
+dummy_bool : bool;
+pi : plateidx;
+npi : plateidx;
+half_swap : state;
+t : int;
+
+Outputs:
+progress : solution;
+
+Requirements:
+
+initial_state = initial :: 
+	forall si in type stakeidx,
+		forall pi in type plateidx,
+			if si == 0 then s[si][pi] == numplates-pi else 0 == s[si][pi];
+
+initial_turn = initial :: 
+	t == 0;
+
+increment_turn = global :: always 
+	(pre t) + 1 == t;
+
+reject_pointless_moves = global :: always 
+	m{move.src} <> m{move.dst};
+
+reject_bad_ordings_on_stakes = global :: always
+	// For all stake indexes 
+	forall si in type stakeidx,
+		// For all plate indexes
+		forall pi in type plateidx,
+			// For all plate indexes
+			forall hpi in type plateidx,
+				// higher plate index has smaller plates  
+				pi<hpi implies s[si][pi]>=s[si][hpi];
+		
+valid_move = global :: always 
+	(pre s)[m{move.src}][pi] <> noplate
+	and (pi < numplates -1 implies (pre s)[m{move.src}][if dummy_bool then pi + 1 else pi + 1] == noplate)
+	and (pre s)[m{move.dst}][npi]==noplate
+	and (forall lnpi in type plateidx, lnpi<npi implies (pre s)[m{move.dst}][npi] < (pre s)[m{move.dst}][lnpi]);
+
+first_half_move = global :: always ((pre s)[m{move.src} := ((pre s)[m{move.src}][pi := (pre s)[m{move.dst}][npi]])]) == half_swap;
+
+second_half_move = global :: always half_swap[m{move.dst} := ((pre s)[m{move.dst}][npi := (pre s)[m{move.src}][pi]])] == s;
+
+return_value = global :: always if (forall pi in type plateidx, s[numstakes-1][pi] == numplates-pi) then progress == new solution { found = true , steps = t} else progress == new solution { found = false , steps = t};
+
+Properties:
+plate_conservation = global :: always forall p in type plates, p<>noplate implies (sum si in type stakeidx, sum pi in type plateidx, if s[si][pi] == p then 1 else 0) == 1;
+noplate_conservation = global :: always (sum si in type stakeidx, sum pi in type plateidx, if s[si][pi] == noplate then 1 else 0) == (sum si in type stakeidx, sum pi in type plateidx, if (pre s)[si][pi] == noplate then 1 else 0);
+no_levitating_plates = global :: always 
+	exists si in type stakeidx, 
+		exists pi in type plateidx,
+			s[si][pi] <> noplate
+			and 
+				pi > 0 
+				implies (forall lpi in type plateidx, lpi<pi implies s[si][lpi]>0);
+always_moving_to_empty_spot = global :: always (pre s)[m{move.dst}][npi]==noplate;
+t_is_non_negative = global :: always t>=0;

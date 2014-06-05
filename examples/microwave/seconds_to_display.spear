@@ -1,0 +1,25 @@
+Relation microwave.seconds_to_display;
+
+Uses microwave.definitions.display_type.*;
+Uses microwave.definitions.display_type;
+Uses microwave.compute_time.*;
+
+Inputs:
+	seconds_to_cook : int;
+
+Outputs:
+	display : display_type;
+
+Requirements:
+	
+	a0 = global :: always display{left} >= 0 and display{left} <= 9;
+	a1 = global :: always display{middle} >= 0 and display{middle} <= 5;
+	a2 = global :: always display{right} >= 0 and display{right} <= 9;
+	
+	r0 = global :: always seconds_to_cook == display{left} *60 + display{middle} * 10 + display{right};
+	
+Properties:
+	
+	p0 = global :: always seconds_to_cook == 135 implies display == new display_type {left=2,middle=1,right=5}; 
+	p1 = global :: always seconds_to_cook == 225 implies display == new display_type {left=3,middle=4,right=5};
+	p2 = global :: always seconds_to_cook == 57  implies display == new display_type {left=0,middle=5,right=7};

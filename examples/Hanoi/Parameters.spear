@@ -1,0 +1,8 @@
+Definition Parameters;
+
+Constants:
+numplates : int = 3;
+numstakes : int = 3;
+
+Types:
+solution :  { found : bool, steps : int };

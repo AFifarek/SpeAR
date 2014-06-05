@@ -1,0 +1,44 @@
+/*
+ * This example proves that the number of turns t in a game of TicTacToe is 
+ * bounded by 2*n-1<=t<=n*n. Here, n is the side length of a square TicTacToe
+ * board. 
+ */
+Relation TicTacToe;
+
+Constants:
+n : int = 4;
+
+Types:
+player : [ one, two ];
+value : [ blank, oneowns, twoowns ];
+board_col : array value [ n ];
+board : array board_col [ n ];
+indices: sequence int [ 0 ... (n-1) ];
+move : { x : indices , y : indices };
+
+State:
+b : board;
+p : player;
+m : move;
+game_complete : bool;
+
+Macros:
+row_wins : bool = exists v in type value, v<>value.blank and (exists i in type indices, forall j in type indices, b[j][i]==v);
+col_wins : bool = exists v in type value, v<>value.blank and (exists c in term b,forall e in term c, e == v);
+diaglr_win : bool = exists v in type value, v<>value.blank and (forall m in type move, m{move.x} == m{move.y} implies b[m{move.x}][m{move.y}] == v);
+diagrl_win : bool = exists v in type value, v<>value.blank and (forall m in type move, m{move.x}+m{move.y}==(n-1) implies b[m{move.x}][m{move.y}] == v);
+win : bool = row_wins or col_wins or diaglr_win or diagrl_win;
+draw : bool = forall m in type move,  b[m{move.x}][m{move.y}] <> value.blank;
+turns : int = sum x in term b, sum y in term x, if y <> value.blank then 1 else 0;
+
+Requirements:
+initial_board = initial :: forall m in type move, b[m{move.x}][m{move.y}] == value.blank;
+initial_turn = initial :: p == player.two;
+alternate_turns = global :: always if pre p == player.one then p == player.two else p == player.one;
+mark_blank_squares = global :: always (pre b)[m{move.x}][m{move.y}] == value.blank;
+each_turn_a_player_uses_square = global :: always if p == player.one then (pre b)[m{move.x}:= (pre b)[m{move.x}][m{move.y}:=value.oneowns]] == b else (pre b)[m{move.x}:= (pre b)[m{move.x}][m{move.y}:=value.twoowns]] == b;
+finished = global :: always if draw or win then game_complete else not game_complete;
+
+Properties:
+low_turn_bound = global :: always game_complete implies ((2*n)-1) <= turns;
+high_turn_bound = global :: always game_complete implies turns <= (n*n);

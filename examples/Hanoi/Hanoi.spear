@@ -1,0 +1,19 @@
+Relation Hanoi;
+
+Uses HanoiN1.*;
+Uses HanoiN2.*;
+Uses Parameters.solution;
+Uses Parameters.solution.*;
+
+State:
+N1sol : solution;
+N2sol : solution;
+Requirements: 
+
+hyp = global :: always N1sol == HanoiN1();
+stp = global :: always N2sol == HanoiN2();
+
+Properties:
+hyp_low_bound = global :: always N1sol{found} implies N1sol{steps} >= (2^HanoiN1.numplates-1);
+stp_low_bound = global :: always N2sol{found} implies N2sol{steps} >= (2^HanoiN2.numplates-1);
+stp_recurrence_bound = global :: always (N1sol{found} and N2sol{found}and N1sol{steps} == (2^HanoiN1.numplates-1)) implies N2sol{steps} >= 2*N1sol{steps}+1;

@@ -1,0 +1,39 @@
+Relation microwave.keypad_processing;
+
+Uses microwave.definitions.*;
+Uses microwave.definitions.display_type.*;
+Uses microwave.definitions.user_input_type.*;
+
+
+Inputs:
+	user_input : user_input_type;
+
+Outputs:
+	display : display_type;
+	
+Constants:
+	zeroed_display : display_type = new display_type {left=0, middle=0, right=0};
+	
+Requirements:
+	r_init = initial :: display == zeroed_display;
+	r0 = global :: always ( user_input == KP0 ) implies (display == new display_type {left = pre display{middle}, middle = pre display{right}, right = 0});
+	r1 = global :: always ( user_input == KP1 ) implies (display == new display_type {left = pre display{middle}, middle = pre display{right}, right = 1});
+	r2 = global :: always ( user_input == KP2 ) implies (display == new display_type {left = pre display{middle}, middle = pre display{right}, right = 2});
+	r3 = global :: always ( user_input == KP3 ) implies (display == new display_type {left = pre display{middle}, middle = pre display{right}, right = 3});
+	r4 = global :: always ( user_input == KP4 ) implies (display == new display_type {left = pre display{middle}, middle = pre display{right}, right = 4});
+	r5 = global :: always ( user_input == KP5 ) implies (display == new display_type {left = pre display{middle}, middle = pre display{right}, right = 5});
+	r6 = global :: always ( user_input == KP6 ) implies (display == new display_type {left = pre display{middle}, middle = pre display{right}, right = 6});
+	r7 = global :: always ( user_input == KP7 ) implies (display == new display_type {left = pre display{middle}, middle = pre display{right}, right = 7});
+	r8 = global :: always ( user_input == KP8 ) implies (display == new display_type {left = pre display{middle}, middle = pre display{right}, right = 8});
+	r9 = global :: always ( user_input == KP9 ) implies (display == new display_type {left = pre display{middle}, middle = pre display{right}, right = 9});
+	r_clear = global :: always ( user_input == CLEAR ) implies (display == new display_type {left=0, middle=0, right=0});
+	r_start = global :: always ( user_input == START ) implies ( display == pre display );
+	r_nopress = global :: always ( user_input == NOPRESS ) implies ( display == pre display );
+	
+Properties:
+	p_left_value = global :: always ( display{left} == pre display{left} ) or ( display{left} == pre display{middle} ) or ( display{left} == 0);
+	p_middle_value = global :: always ( display{middle} == pre display{middle} ) or ( display{middle} == pre display{right} ) or ( display{middle} == 0);
+		
+	p_left_range = global :: always display{left} >= 0 and display{left} <= 9;
+	p_middle_range = global :: always display{middle} >= 0 and display{middle} <= 9;
+	p_right_range = global :: always display{right} >= 0 and display{right} <= 9;

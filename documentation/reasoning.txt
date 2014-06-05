@@ -1,0 +1,13 @@
+= Notes =
+* I want to capture the discussion I had with Mike Whalen yesterday.
+  + Discuss the problems with creating contracts due to lack of realization
+  + This can occur because a requirement is broken
+  + If we are building a tool to help requirement generation then this should be avoided.
+  + Initially we require an implementation as a witness for realization
+  + Types of reasoning on the table
+    - Monolithic
+      * not scalable
+    - Monolithic with CEGAR
+      * more scalable
+    - Composable Verification
+      * May cause problems as users try to use components in ways the designer did not intend.

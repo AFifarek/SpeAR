@@ -1,0 +1,379 @@
+grammar spear.Language with org.eclipse.xtext.common.Terminals
+generate language "http://www.rockwellcollins.com/atc/spear"
+
+/* There are two types of spear files; one that specifies relations and one
+ * that gives definitions.
+ */
+Module: 
+	Procedure
+|   Definition
+;
+
+Procedure returns Module: {Procedure} 'Relation' name=QualifiedName ';' (imports+=Imports*) (sections+=ProcedureSections*);
+
+Definition returns Module: {Definition} 'Definition' name=QualifiedName ';' (imports+=Imports*) (sections+=DefinitionSections*); 
+
+/* Different types of sections that can be in a spear file. */
+
+Imports: {Imports} 'Uses' importedNamespace=QualifiedNameWithWildCard ';';
+
+InputSection returns Section: {InputSection} 'Inputs' ':' elements+=VariableSectionElement*;
+
+OutputSection returns Section: {OutputSection} 'Outputs' ':' elements+=VariableSectionElement;
+
+TypeSection returns Section: {TypeSection} 'Types' ':' elements+=TypeDefSectionElement*;
+
+UnitSection returns Section: {UnitSection} 'Units' ':' elements+=UnitDefSectionElement*;
+
+ConstantSection returns Section: {ConstantSection} 'Constants' ':' elements+=ConstantSectionElement*;
+
+FunctionSection returns Section: {FunctionSection} 'Functions' ':' elements+=FunctionSectionElement*;
+
+StateSection returns Section: {StateSection} 'State' ':' elements+=VariableSectionElement*;
+
+MacroSection returns Section: {MacroSection} 'Macros' ':' elements+=MacroSectionElement*;
+
+AssSection returns Section: {AssSection} 'Assumptions' ':' (elements+=ExprSectionElement ';')*;
+
+ReqSection returns Section: {ReqSection} 'Requirements' ':' elements+=NamedFormulaSectionElement*;
+
+PropSection returns Section: {PropSection} 'Properties' ':' elements+=NamedFormulaSectionElement*;
+
+/* An abstract rule that refers generally to any element that can occur at the 
+ * top level of a section.
+ */
+SectionElement:
+	TypeDef
+|	UnitDef
+|   Expr
+|   NamedFormula
+|   VariableRef
+|   Function
+;
+
+/* Because we want to be specific about that type of elements that can appear
+ * in sections but talk about section elements generally, we build the 
+ * following rules. 
+ */
+
+TypeDefSectionElement returns SectionElement: TypeDef;
+
+UnitDefSectionElement returns SectionElement: UnitDef;
+
+ConstantSectionElement returns SectionElement: Constant;
+
+FunctionSectionElement returns SectionElement: Function;
+
+VariableSectionElement returns SectionElement: Variable;
+
+MacroSectionElement returns SectionElement: Macro;
+
+ExprSectionElement returns SectionElement: Expr;
+
+NamedFormulaSectionElement returns SectionElement: NamedFormula;
+
+/* Describe what sections can occur in definition files. */
+
+DefinitionSections returns Section:
+	TypeSection
+|	UnitSection
+|   ConstantSection
+// Uninterpreted functions are not fully supported.
+//|   FunctionSection
+;
+
+/* Describe what sections can occur in module files. */
+
+ProcedureSections returns Section: 
+	TypeSection
+|	UnitSection
+|   ConstantSection
+|   StateSection
+|   MacroSection
+|   AssSection
+|   ReqSection
+|   PropSection
+| 	InputSection
+| 	OutputSection
+// Uninterpreted functions are not fully supported.
+//|   FunctionSection
+;
+
+/* Different types of named references. We add the constant to avoid having
+ * eclipse complain about ambiguity. Ultimately, this does not impact our 
+ * language; this rule is abstract.
+ */
+
+VariableRef:
+	'V' Variable
+| 	'M' Macro
+| 	'C' Constant
+|   'E' Enumerator
+|	'Q' QuantifiedVariable
+;
+
+/* Different types of function calls. */
+
+CallRef:
+	Function
+|   Procedure
+;
+
+
+/* Object definitions. */
+
+TypeDef: name=ID ':' (type=Type) ';' ;
+
+UnitDef: (name=ID) (':' (unit=Unit))? ';' ;
+
+Variable: name=ID ':'  (type=AtomicType) (unit=Unit)? ';';
+
+Function: name=ID  '(' ins+=AtomicType (',' ins+=AtomicType )* ')' ':' '(' outs+=AtomicType (',' outs+=AtomicType)* ')' ';' ;
+
+Macro: name=ID ':' (type=AtomicType) (unit=Unit)? '=' (expr=Expr) ';';
+
+Constant: name=ID ':' (type=AtomicType) (unit=Unit)? ('=' (expr=Expr)?) ';' ;
+
+RecordType: '{' fields+=RecordField (',' fields+=RecordField)* '}' ;
+
+RecordField: (name=ID) ':' (type=AtomicType) (unit=Unit)? ;
+
+EnumerationType:  '[' Enumerators+=Enumerator (',' Enumerators+=Enumerator)* ']' ;
+
+Enumerator: (name=ID) ;
+
+NamedFormula: (name=ID) '=' (spec=PatternSpecification) ';' ;
+
+/* All types. */
+
+Type:
+	RecordType 
+| 	EnumerationType
+| 	AtomicType
+;
+
+FiniteSetType:
+	ArrayType
+| 	EnumerationType
+|	IntegerSubRangeType
+;
+
+ArrayType: 'array' type=AtomicType '[' length=Expr ']';
+
+IntegerSubRangeType: 'sequence' 'int' '[' low=Expr '...' high=Expr ']';
+
+/* Types which may be referred to by objects. Note that this restricts record
+ * types and enumeration types. Thus, these types must be given names in a type
+ * section.
+ */
+
+AtomicType returns Type:
+ 	{RealType} 'real' 
+| 	{IntegerType} 'int' 
+| 	{BooleanType} 'bool'
+|   IntegerSubRangeType
+|   ArrayType
+| 	{NamedType} id=[TypeDef|QualifiedName]
+;
+
+/* Additional productions that must also be treated as types but cannot be
+ * reified.
+ */
+ExtendedType returns Type: {ErrorType} 
+;
+
+
+/* Unit operations. */
+Unit: ProdUnitExpr (=>({QuotUnit.left=current} '/') right=ProdUnitExpr)* ;
+
+ProdUnitExpr returns Unit: AtomicUnit (=>({ProdUnit.left=current} '*') right=AtomicUnit)* ;
+
+/* Types of units. */
+AtomicUnit returns Unit: 
+  	NamedUnit
+| 	'(' Unit ')'
+| 	Scalar
+;
+
+NamedUnit: id=[UnitDef|QualifiedName] ;
+
+/* Additional productions that must also be treated as units but cannot be 
+ * reified.
+ */
+ExtendedUnit returns Unit: {ReciUnit} 'reciprocal' unit=Unit ;
+
+Scalar : {Scalar} 'scalar' ;
+
+/* A unit in normal form. */
+NormUnit:
+  	{NormUnit} 'normalform' (numerators+=NamedUnit+) (denominators+=NamedUnit*)
+| 	Scalar
+| 	{ErrorUnit}
+;
+
+
+/* Operators. */
+UnaryFormulaOps returns FormulaOps: 
+	{Always} string='always'
+|   {Exists} string='exists'
+;
+
+BinaryFormulaOps returns FormulaOps:  
+	{Responds} string='responds'
+|  	{Precedes} string='precedes' ;
+
+FormulaOps:
+	UnaryFormulaOps
+|   BinaryFormulaOps
+;
+
+BinaryOp:
+	Multiply 
+| 	Divide 
+| 	Plus 
+| 	Minus 
+| 	RelationalOp 
+| 	LogicalOp 
+|   Modulus
+| 	Exponentiation
+;
+
+Multiply: {Multiply} '*' ;
+
+Exponentiation: {Exponentiation} '^' ;
+
+Divide: {Divide} '/' ;
+
+Plus: {Plus} '+' ;
+
+Minus: {Minus} '-' ;
+
+Modulus: {Modulus} 'mod';
+
+RelationalOp:
+  	{EqualTo} '==' 
+| 	{NotEqual} '<>' 
+|	{LessThan} '<' 
+| 	{GreaterThan} '>' 
+| 	{LessThanEqual} '<=' 
+| 	{GreaterThanEqual} '>='
+;
+
+LogicalOp:
+  	{And} 'and' 
+| 	{Or} 'or'
+| 	{Xor} 'xor' 
+| 	{Implies} 'implies'
+;
+
+UnaryOp:
+  	{UnaryMinus} '-' 
+| 	{Not} 'not' 
+;
+
+PatternSpecification:
+	{Initial} 'initial' '::' (expr=Expr)
+| 	{KSUPattern} (scope=Scope) '::' (formula=Formula) //(bound=Bound)
+;
+
+Scope:
+	{Global} scope='global' 
+| 	{Before} scope='before' (expr=Expr) 
+| 	{After} scope='after' (expr=Expr) ('until' (untilExpr=Expr))? 
+| 	{Between} scope='between' '[' (start=Expr) ',' (end=Expr) ']' 
+| 	{While} scope='while' (expr=Expr)
+;
+
+
+Formula:
+	{UnaryFormula} op=(UnaryFormulaOps) (expr=Expr) 
+| 	{BinaryFormula} (left=Expr) op=(BinaryFormulaOps) (right=Expr)
+;
+
+QuantificationExpr:
+	ForallExpr
+|   ExistsExpr
+|  	SumExpr
+;
+
+
+Domain:
+	{DomainExpr} 'term' domain=Expr
+|	{DomainType} 'type' domain=Type
+;
+
+QuantifiedVariable: name=ID;
+
+ForallExpr: 'forall' variable=QuantifiedVariable 'in' domain=Domain ',' expr=Expr;
+
+ExistsExpr: 'exists' variable=QuantifiedVariable 'in' domain=Domain ',' expr=Expr;
+
+SumExpr: 'sum' variable=QuantifiedVariable 'in' domain=Domain ',' expr=Expr;
+
+Expr:
+	QuantificationExpr
+|   IfExpr
+;
+
+IfExpr returns Expr:
+	{IfThenElseExpr} 'if' ifExpr=Expr 'then' thenExpr=Expr 'else' elseExpr=Expr
+| 	LogicalExpr
+;
+
+
+LogicalExpr returns Expr: RelationalExpr (=>({BinaryExpr.left=current} op=LogicalOp) right=RelationalExpr)* ;
+
+RelationalExpr returns Expr: AddExpr (=>({BinaryExpr.left=current} op=RelationalOp) right=AddExpr)* ;
+
+AddExpr returns Expr: MultExpr (=>({BinaryExpr.left=current} op=(Plus | Minus)) right=MultExpr)* ;
+
+MultExpr returns Expr: ExpExpr (=>({BinaryExpr.left=current} op=(Multiply | Divide | Modulus)) right=ExpExpr)* ;
+
+ExpExpr returns Expr: UnaryExpr (=>({BinaryExpr.left=current} op=(Exponentiation)) right=UnaryExpr)* ;
+
+UnaryExpr returns Expr:
+	{UnaryExpr} (op=UnaryOp) (expr=UnaryExpr)
+|  	{PreExpr} 'pre' (expr=UnaryExpr)
+| 	RecordAccessExpr
+;
+
+RecordAccessExpr returns Expr: 
+	ArrayAccessExpr (=> ({RecordAccessExpr.record=current} '{' field=[RecordField|QualifiedName]  (':=' expr=Expr)? '}'))*
+;
+
+ArrayAccessExpr returns Expr: QNExpr (=> ({ArrayAccessExpr.array=current} '[' index=Expr (=> ':=' expr=Expr)? ']'))* ;
+
+QNExpr returns Expr:
+	{IdExpr} id=[VariableRef|QualifiedName]
+|	{RecordExpr} 'new' type=[TypeDef|QualifiedName] '{' recordFields+=RecordFieldExpr (',' recordFields+=RecordFieldExpr)* '}'
+|   {ArrayExpr} '[' exprs+=Expr (',' exprs+=Expr)* ']'
+|   {FnCallExpr} id=[CallRef|QualifiedName] '(' ((args+=Expr) (',' args+=Expr)*)? ')'
+|   AtomicExpr
+;
+
+AtomicExpr returns Expr:
+	{BoolExpr} value=(TRUE|FALSE) 
+| 	{IntExpr} value=INT (unit=Unit)?
+| 	{RealExpr} value=REAL (unit=Unit)?
+| 	'(' Expr ')'
+;
+
+/* NB: We will find the biggest QualifiedName as possible.  */
+QualifiedName: ID (=> '.' ID)* ;
+
+QualifiedNameWithWildCard: QualifiedName '.*'?;
+
+RecordFieldExpr: (field=[RecordField|QualifiedName]) '=' (expr=Expr);
+
+REAL: INT '.' INT;
+
+/** Terminals **/
+terminal TRUE: 'true';
+
+terminal FALSE: 'false';
+
+terminal SL_COMMENT: '//'->'\n';
+
+terminal ML_COMMENT: '/*'->'*/';
+
+terminal ID: ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
