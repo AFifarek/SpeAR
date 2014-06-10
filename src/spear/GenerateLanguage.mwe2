@@ -6,7 +6,7 @@ import org.eclipse.xtext.ui.generator.*
 
 var grammarURI = "classpath:/spear/language/language.xtext"
 var file.extensions = "spear"
-var projectName = "spear"
+var projectName = "SpeAR"
 var runtimeProject = "../${projectName}"
 
 Workflow {

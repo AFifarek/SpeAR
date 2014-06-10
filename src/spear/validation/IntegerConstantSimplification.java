@@ -60,7 +60,7 @@ public class IntegerConstantSimplification extends LanguageSwitch<BigInteger> {
 
 	@Override
 	public BigInteger caseIntExpr(IntExpr ie) {
-		return BigInteger.valueOf(((IntExpr)ie).getValue());
+		return BigInteger.valueOf(ie.getValue());
 	}
 
 	@Override
