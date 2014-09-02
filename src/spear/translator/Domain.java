@@ -40,10 +40,10 @@ public class Domain extends LanguageSwitch<List<jkind.lustre.Expr>> {
 	@Override
 	public List<Expr> caseIntegerSubRangeType(IntegerSubRangeType object) {
 		List<jkind.lustre.Expr> rlist = new LinkedList<>();
-		for(BigInteger i = IntegerConstantSimplification.simplify(object.getLow());
-			i.compareTo(IntegerConstantSimplification.simplify(object.getHigh()))<=0;
-			i = i.add(BigInteger.ONE)) {
-			rlist.add(new jkind.lustre.IntExpr(i));
+		BigInteger low = IntegerConstantSimplification.simplify(object.getLow());
+		BigInteger high = IntegerConstantSimplification.simplify(object.getHigh());
+		for(;low.compareTo(high)<=0;low = low.add(BigInteger.ONE)) {
+			rlist.add(new jkind.lustre.IntExpr(low));
 		}
 		return rlist;
 	}

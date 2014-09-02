@@ -135,6 +135,11 @@ public class LanguageJavaValidator extends AbstractLanguageJavaValidator {
 		if(!(TypeChecker.isExprLiteral(isr.getLow()) && TypeChecker.isExprLiteral(isr.getHigh()))) {
 			error("Upper and lower bounds must be assigned a value that statically computes to a literal.", isr);
 		}
+		BigInteger low = IntegerConstantSimplification.simplify(isr.getLow());
+		BigInteger high = IntegerConstantSimplification.simplify(isr.getHigh());
+		if(low.compareTo(high) > 0 ) {
+			error("Lower bound statically computes to a value larger than the statically computed upper bound value.", isr);
+		}
 	}
 	
 	@Check

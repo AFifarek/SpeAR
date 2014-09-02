@@ -1,0 +1,10 @@
+Definition microwave.definitions;
+
+Constants:
+	c1 : array_bug = [1.0,2.0,3.0];
+	c2 : record_bug = new record_bug {record_bug.f1 = 1.0, record_bug.f2 = 2.0, record_bug.f3 = 3.0};
+		
+Types:
+
+	array_bug : array real [3];
+	record_bug : {f1 : real, f2 : real, f3 : real};

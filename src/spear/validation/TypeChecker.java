@@ -7,6 +7,7 @@ import org.eclipse.xtext.EcoreUtil2;
 
 import spear.language.And;
 import spear.language.ArrayAccessExpr;
+import spear.language.ArrayExpr;
 import spear.language.ArrayType;
 import spear.language.BinaryExpr;
 import spear.language.BinaryOp;
@@ -287,6 +288,13 @@ public class TypeChecker extends LanguageSwitch<Type> {
 		} else if (e instanceof BinaryExpr) {
 			BinaryExpr be = (BinaryExpr) e;
 			return isExprLiteral(be.getLeft()) && isExprLiteral(be.getRight());
+		} else if (e instanceof ArrayExpr) {
+			ArrayExpr ae = (ArrayExpr) e;
+			boolean all_literal = true;
+			for(Expr expr : ae.getExprs()) {
+				all_literal = all_literal && isExprLiteral(expr);
+			}
+			return all_literal;
 		} else {
 			return false;
 		}
@@ -561,7 +569,7 @@ public class TypeChecker extends LanguageSwitch<Type> {
 			}
 			if(!found) {
 				error("The record type "+SpecDSLErrorPrinter.toString(rectyp)+" has no field named "
-						+ fe.getField(),fe);
+						+ fe.getField().getName(),fe);
 			}
 		}
 		
@@ -625,5 +633,22 @@ public class TypeChecker extends LanguageSwitch<Type> {
 			}
 		}
 		return errorType();
+	}
+
+
+	@Override
+	public Type caseArrayExpr(ArrayExpr o) {
+		Type first = null;
+		for(Expr e : o.getExprs()) {
+			if(first == null) {
+				first = getType(e);
+			} else if( ! typeAssignable(first,getType(e),e) ) {
+				error("Array elements must be of a uniform type.",e);
+				return errorType();
+			}
+		}
+		ArrayType arraytype = f.createArrayType();
+		arraytype.setType(first);
+		return arraytype;
 	}
 }

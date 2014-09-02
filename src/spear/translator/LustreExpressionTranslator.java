@@ -296,7 +296,7 @@ public class LustreExpressionTranslator extends
 			}
 		} else {
 			Domain de = new Domain();
-			List<jkind.lustre.Expr> values = de.doSwitch(typ); 
+			List<jkind.lustre.Expr> values = de.doSwitch(typ);
 			qvarreplacementexpr = values.get(0);
 			finalexpr = originalbody.accept(new QuantifiedVariableReplacementVisitor(name,qvarreplacementexpr));
 			for(int i = 1; i<values.size(); i++) {

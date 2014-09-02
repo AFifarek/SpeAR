@@ -1,5 +1,6 @@
 package spear.translator;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -81,8 +82,9 @@ public class LustreTypeTranslator extends
 
 	@Override
 	public Type caseIntegerSubRangeType(IntegerSubRangeType object) {
-		return new jkind.lustre.SubrangeIntType(IntegerConstantSimplification.simplify(object.getLow())
-				,IntegerConstantSimplification.simplify(object.getHigh()));
+		BigInteger low = IntegerConstantSimplification.simplify(object.getLow());
+		BigInteger high = IntegerConstantSimplification.simplify(object.getHigh());
+		return new jkind.lustre.SubrangeIntType(low,high);
 	}
 
 }

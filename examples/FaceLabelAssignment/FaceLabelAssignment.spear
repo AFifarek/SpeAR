@@ -1,0 +1,61 @@
+Relation FaceLabelAssignment;
+/* This example encodes the problem 
+ * http://domino.research.ibm.com/Comm/wwwr_ponder.nsf/Challenges/June2014.html
+ * and then tries to prove that no solution exists. If there is a solution it 
+ * will come back in the form of a counter-example. If there is no solution then
+ * the property will be proven as valid. The dimensions of the problem may be 
+ * changed through the constants faces, objects, and labels. The 
+ * fix_certain_cubes requirement safely fixes a certain portion of cubes for any
+ * dimensional of the problem. Faces, objects, and labels all must be greater
+ * than 0. 
+ * 
+ * As of 06/09/2014, yices cannot complete reasoning over this specification.
+ * Z3 does seem to work.
+ */
+
+Constants:
+faces : int = 6;
+objects : int = 25;
+labels : int = 29;
+
+Types:
+label : sequence int [ 0 ... labels - 1];
+object : array label [faces];
+objects : array  object [objects];
+facesidx : sequence int [0 ... faces - 1];
+objectsidx : sequence int [0 ... (objects - 1)];
+
+
+State:
+s : objects;
+dummy: bool;
+
+
+Requirements:
+fix_certain_cubes = global :: always
+	forall o in type sequence int [0 ... labels/faces - 1], 
+		s[o][0] == 0 
+		and (forall f in type sequence int [ 1 ... faces-1], s[o][f]==o*5+f);
+
+set_dummy = initial :: dummy;
+order_face_labels = initial ::
+	forall o in type objectsidx,
+		forall f in type sequence int [0 ... faces - 2],
+			s[o][f] < s[o][if dummy then f+1 else f+1];
+
+one_label_equal = initial :: 
+	(forall o1 in type objectsidx,
+			(forall o2 in type objectsidx,
+				if o1 < o2 
+				then (sum f1 in type facesidx, 
+						sum f2 in type facesidx,
+							if s[o1][f1] == s[o2][f2] then 1 else 0
+					 ) == 1
+				else true						
+		)	
+	);
+
+Properties:
+solution = initial :: false;
+
+
