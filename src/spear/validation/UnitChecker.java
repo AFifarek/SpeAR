@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import spear.language.ArrayAccessExpr;
+import spear.language.ArrayExpr;
+import spear.language.ArrayType;
 import spear.language.BinaryExpr;
 import spear.language.BoolExpr;
 import spear.language.CallRef;
@@ -445,5 +447,8 @@ public class UnitChecker extends LanguageSwitch<NormUnit> {
 	public NormUnit caseSumExpr(SumExpr object) {
 		return scalar;
 	}
-	
+	@Override
+	public NormUnit caseArrayExpr(ArrayExpr o) {
+		return scalar;
+	}
 }
