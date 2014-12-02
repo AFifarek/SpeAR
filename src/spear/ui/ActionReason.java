@@ -22,6 +22,7 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 
 import spear.language.Procedure;
+import spear.views.JKindResultsView;
 import spear.views.SpearLayout;
 
 import com.google.inject.Inject;
@@ -76,7 +77,8 @@ public class ActionReason implements
 				}
 				
 				Layout spearLayout = new SpearLayout(file);
-				ResultsView page = (ResultsView) window.getActivePage().showView(ResultsView.ID);
+				//page showview has to be set before setting the layout, else NPE
+				JKindResultsView page = (JKindResultsView) window.getActivePage().showView(JKindResultsView.ID);
 				page.setLayout(spearLayout);
 				Operations.reason(file, page);
 				return null;

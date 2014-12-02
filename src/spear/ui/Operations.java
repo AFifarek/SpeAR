@@ -28,6 +28,7 @@ import spear.translator.LibraryReader;
 import spear.translator.MonolithicLustreTranslator;
 import spear.translator.NameGenerator;
 import spear.translator.Translator;
+import spear.views.JKindResultsView;
 
 public class Operations {
 	private final static String seperator = System.getProperty("line.separator");
@@ -76,17 +77,25 @@ public class Operations {
 		return library + seperator + translator.toString();
 	}
 	
-	public static void reason(Procedure p, ResultsView page) {
+	public static void reason(Procedure p, JKindResultsView page) {
 		try {
 			final String translation = translate(p);
 			Renaming renaming = new MapRenaming(NameGenerator.getNames(), Mode.IDENTITY);
+			JKindApi api = new JKindApi();
 			final JKindResult result = new JKindResult("result", new LinkedList<String>(),renaming);
 			page.setInput(result);
 			
 			WorkspaceJob job = new WorkspaceJob("Reasoning over Lustre Specification") {
 				@Override
 				public IStatus runInWorkspace(IProgressMonitor monitor) {
-					new JKindApi().execute(translation, result, monitor);
+					
+					try {
+						api.execute(translation, result, monitor);	
+					} catch (Exception e) {
+						System.err.println(result.getText());
+						throw e;
+					}
+					
 					System.out.println(result.getText());
 					return monitor.isCanceled() ? Status.CANCEL_STATUS : Status.OK_STATUS;
 				}
@@ -96,5 +105,4 @@ public class Operations {
 			e.printStackTrace();
 		}
 	}
-
 }

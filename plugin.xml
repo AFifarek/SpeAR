@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 
 <plugin>
@@ -45,12 +44,14 @@
          </action>
       </actionSet>
    </extension>
+
    <extension point="org.eclipse.ui.views">
-        <view id="spear.specifications.resultsView"
+        <view id="spear.views.JKindResultsView"
              name="Analysis Results"
-          class="spear.ui.ResultsView"
- 
-          />
+          class="spear.views.JKindResultsView"/>
+        <view id="spear.views.JKindCounterexampleView"
+             name="Counterexample"
+          class="spear.views.JKindCounterexampleView"/>
    </extension>
    
      <extension
