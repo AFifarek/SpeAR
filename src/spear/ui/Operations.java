@@ -1,15 +1,18 @@
 package spear.ui;
 
 
-import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.NavigableMap;
 import java.util.TreeMap;
+
+import jkind.JKindException;
+import jkind.api.JKindApi;
+import jkind.api.results.JKindResult;
+import jkind.api.results.MapRenaming;
+import jkind.api.results.MapRenaming.Mode;
+import jkind.api.results.Renaming;
 
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -17,16 +20,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.EcoreUtil2;
 
-import jkind.JKindException;
-import jkind.api.JKindApi;
-import jkind.api.results.JKindResult;
-import jkind.api.results.MapRenaming;
-import jkind.api.results.Renaming;
-import jkind.api.results.MapRenaming.Mode;
 import spear.language.CallRef;
 import spear.language.FnCallExpr;
 import spear.language.Procedure;
-
 import spear.language.Utils;
 import spear.translator.LibraryReader;
 import spear.translator.MonolithicLustreTranslator;
