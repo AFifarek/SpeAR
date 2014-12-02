@@ -2,6 +2,8 @@ package spear.ui;
 
 import java.util.List;
 
+import jkind.results.layout.Layout;
+
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -20,6 +22,7 @@ import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
 
 import spear.language.Procedure;
+import spear.views.SpearLayout;
 
 import com.google.inject.Inject;
 
@@ -71,7 +74,10 @@ public class ActionReason implements
 							"Reasoning can only be done on well-formed specifications.");
 					return null;
 				}
+				
+				Layout spearLayout = new SpearLayout(file);
 				ResultsView page = (ResultsView) window.getActivePage().showView(ResultsView.ID);
+				page.setLayout(spearLayout);
 				Operations.reason(file, page);
 				return null;
 			}
