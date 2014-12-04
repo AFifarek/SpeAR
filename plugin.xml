@@ -340,7 +340,7 @@
            name="SpeAR">
         <property
               name="windowImages"
-              value="icons/splitpoint16.png,icons/splitpoint32.png,icons/splitpoint48.png,icons/splitpoint64.png,icons/splitpoint128.png,icons/splitpoint256.png">
+              value="branding/lighthouse16.png,branding/lighthouse32.png,branding/lighthouse48.png,branding/lighthouse64.png,branding/lighthouse128.png,branding/lighthouse256.png">
         </property>
         <property
               name="appName"
@@ -349,6 +349,10 @@
         <property
               name="aboutText"
               value="SpeAR is a simple tool used to formalize and analyze requirements sets using K-inductive model checking.&#x0A;&#x0A;Learn more at http://www.github.com/AFifarek/SpeAR">
+        </property>
+        <property
+              name="aboutImage"
+              value="branding/lighthouse128.png">
         </property>
      </product>
   </extension>
@@ -375,6 +379,17 @@
               value="SpeAR">
         </property>
      </product>
+  </extension>
+  <extension
+        point="org.eclipse.ui.splashHandlers">
+     <splashHandler
+           class="spear.splashHandlers.InteractiveSplashHandler"
+           id="spear.splashHandlers.interactive">
+     </splashHandler>
+     <splashHandlerProductBinding
+           productId="spear.product"
+           splashId="spear.splashHandlers.interactive">
+     </splashHandlerProductBinding>
   </extension>
 
 </plugin>

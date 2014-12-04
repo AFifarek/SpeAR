@@ -4,6 +4,7 @@
 <product name="SpeAR" uid="spear.product" id="spear.product" application="org.eclipse.ui.ide.workbench" version="1.1" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
+      <image path="/SpeAR/branding/lighthouse128.png"/>
       <text>
          SpeAR is a simple tool used to formalize and analyze requirements sets using K-inductive model checking.
 
@@ -23,17 +24,17 @@ Learn more at http://www.github.com/AFifarek/SpeAR
       </vmArgsMac>
    </launcherArgs>
 
-   <windowImages i16="/SpeAR/icons/splitpoint16.png" i32="/SpeAR/icons/splitpoint32.png" i48="/SpeAR/icons/splitpoint48.png" i64="/SpeAR/icons/splitpoint64.png" i128="/SpeAR/icons/splitpoint128.png" i256="/SpeAR/icons/splitpoint256.png"/>
+   <windowImages i16="/SpeAR/branding/lighthouse16.png" i32="/SpeAR/branding/lighthouse32.png" i48="/SpeAR/branding/lighthouse48.png" i64="/SpeAR/branding/lighthouse64.png" i128="/SpeAR/branding/lighthouse128.png" i256="/SpeAR/branding/lighthouse256.png"/>
 
+   <splash
+      handlerType="interactive" />
    <launcher name="spear">
       <solaris/>
-      <win useIco="false">
-         <bmp
-            winSmallLow="/SpeAR/icons/splitpoint16_8.bmp"
-            winMediumLow="/SpeAR/icons/splitpoint32_8.bmp"/>
+      <win useIco="true">
+         <ico path="/SpeAR/icons/Lighthouse (3).ico"/>
+         <bmp/>
       </win>
    </launcher>
-
 
    <vm>
       <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
