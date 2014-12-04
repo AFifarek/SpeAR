@@ -30,9 +30,15 @@ Learn more at http://www.github.com/AFifarek/SpeAR
       handlerType="interactive" />
    <launcher name="spear">
       <solaris/>
-      <win useIco="true">
-         <ico path="/SpeAR/icons/Lighthouse (3).ico"/>
-         <bmp/>
+      <win useIco="false">
+         <bmp
+            winSmallHigh="/SpeAR/icons/lighthouse16_32.bmp"
+            winSmallLow="/SpeAR/icons/lighthouse16_8.bmp"
+            winMediumHigh="/SpeAR/icons/lighthouse32_32.bmp"
+            winMediumLow="/SpeAR/icons/lighthouse32_8.bmp"
+            winLargeHigh="/SpeAR/icons/lighthouse48_32.bmp"
+            winLargeLow="/SpeAR/icons/lighthouse48_8.bmp"
+            winExtraLargeHigh="/SpeAR/icons/lighthouse256_32.bmp"/>
       </win>
    </launcher>
 
