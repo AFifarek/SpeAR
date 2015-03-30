@@ -81,7 +81,7 @@ public class Operations {
 		try {
 			final String translation = translate(p);
 			Renaming renaming = new MapRenaming(NameGenerator.getNames(), Mode.IDENTITY);
-			JKindApi api = new JKindApi();
+			final JKindApi api = new JKindApi();
 			final JKindResult result = new JKindResult("result", new LinkedList<String>(),renaming);
 			page.setInput(result);
 			

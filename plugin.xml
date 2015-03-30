@@ -327,5 +327,69 @@
             extensions="spear">
     </provider>
   </extension>
+  <extension
+        id="spear"
+        name="spear_extension"
+        point="org.eclipse.core.runtime.products">
+  </extension>
+  <extension
+        id="product"
+        point="org.eclipse.core.runtime.products">
+     <product
+           application="org.eclipse.ui.ide.workbench"
+           name="SpeAR">
+        <property
+              name="windowImages"
+              value="branding/lighthouse16.png,branding/lighthouse32.png,branding/lighthouse48.png,branding/lighthouse64.png,branding/lighthouse128.png,branding/lighthouse256.png">
+        </property>
+        <property
+              name="appName"
+              value="SpeAR">
+        </property>
+        <property
+              name="aboutText"
+              value="SpeAR is a simple tool used to formalize and analyze requirements sets using K-inductive model checking.&#x0A;&#x0A;Learn more at http://www.github.com/AFifarek/SpeAR">
+        </property>
+        <property
+              name="aboutImage"
+              value="branding/lighthouse128.png">
+        </property>
+     </product>
+  </extension>
+  <extension
+        id="product1"
+        point="org.eclipse.core.runtime.products">
+     <product
+           application="org.eclipse.ui.ide.workbench"
+           name="SpeAR">
+        <property
+              name="windowImages"
+              value="icons/lighthouse16.png,icons/lighthouse32.png,icons/lighthouse48.png,icons/lighthouse64.png,icons/lighthouse128.png,icons/lighthouse256.png">
+        </property>
+        <property
+              name="aboutImage"
+              value="icons/lighthouse512.png">
+        </property>
+        <property
+              name="startupProgressRect"
+              value="2,290,448,10">
+        </property>
+        <property
+              name="appName"
+              value="SpeAR">
+        </property>
+     </product>
+  </extension>
+  <extension
+        point="org.eclipse.ui.splashHandlers">
+     <splashHandler
+           class="spear.splashHandlers.InteractiveSplashHandler"
+           id="spear.splashHandlers.interactive">
+     </splashHandler>
+     <splashHandlerProductBinding
+           productId="spear.product"
+           splashId="spear.splashHandlers.interactive">
+     </splashHandlerProductBinding>
+  </extension>
 
 </plugin>
