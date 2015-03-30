@@ -34,30 +34,36 @@ public class SpearLayout implements Layout {
 		}
 		
 		this.map = new HashMap<>();
-		InputSection inputs = EcoreUtil2.getAllContentsOfType(p, InputSection.class).get(0);
-		OutputSection outputs = EcoreUtil2.getAllContentsOfType(p, OutputSection.class).get(0);
-		StateSection locals = EcoreUtil2.getAllContentsOfType(p, StateSection.class).get(0);
-		ReqSection requirements = EcoreUtil2.getAllContentsOfType(p, ReqSection.class).get(0);
-		PropSection properties = EcoreUtil2.getAllContentsOfType(p, PropSection.class).get(0);
 		
-		for (Variable v : EcoreUtil2.getAllContentsOfType(inputs, Variable.class)) {
-			map.put(v.getName(), INPUTS);
+		
+		for(InputSection inputs : EcoreUtil2.getAllContentsOfType(p, InputSection.class)) {
+			for (Variable v : EcoreUtil2.getAllContentsOfType(inputs, Variable.class)) {
+				map.put(v.getName(), INPUTS);
+			}
+		}
+
+		for(OutputSection outputs : EcoreUtil2.getAllContentsOfType(p, OutputSection.class)) {
+			for (Variable v : EcoreUtil2.getAllContentsOfType(outputs, Variable.class)) {
+				map.put(v.getName(), OUTPUTS);
+			}
+		}
+
+		for(StateSection locals : EcoreUtil2.getAllContentsOfType(p, StateSection.class)) {
+			for (Variable v : EcoreUtil2.getAllContentsOfType(locals, Variable.class)) {
+				map.put(v.getName(), STATE);
+			}
 		}
 		
-		for (Variable v : EcoreUtil2.getAllContentsOfType(outputs, Variable.class)) {
-			map.put(v.getName(), OUTPUTS);
+		for(ReqSection requirements : EcoreUtil2.getAllContentsOfType(p, ReqSection.class)) {
+			for (NamedFormula req : EcoreUtil2.getAllContentsOfType(requirements, NamedFormula.class)) {
+				map.put(req.getName(), REQUIREMENTS);
+			}
 		}
-		
-		for (Variable v : EcoreUtil2.getAllContentsOfType(locals, Variable.class)) {
-			map.put(v.getName(), STATE);
-		}
-		
-		for (NamedFormula req : EcoreUtil2.getAllContentsOfType(requirements, NamedFormula.class)) {
-			map.put(req.getName(), REQUIREMENTS);
-		}
-		
-		for (NamedFormula prop : EcoreUtil2.getAllContentsOfType(properties, NamedFormula.class)) {
-			map.put(prop.getName(), PROPERTIES);
+
+		for(PropSection properties : EcoreUtil2.getAllContentsOfType(p, PropSection.class)) {
+			for (NamedFormula prop : EcoreUtil2.getAllContentsOfType(properties, NamedFormula.class)) {
+				map.put(prop.getName(), PROPERTIES);
+			}
 		}
 	}
 
