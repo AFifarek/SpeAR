@@ -103,7 +103,7 @@
         <page
             class="spear.ui.LanguageExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="spear.Language"
-            name="Language">
+            name="SpeAR">
             <keywordReference id="spear.ui.keyword_Language"/>
         </page>
         <page
