@@ -28,6 +28,7 @@ import spear.translator.LibraryReader;
 import spear.translator.MonolithicLustreTranslator;
 import spear.translator.NameGenerator;
 import spear.translator.Translator;
+import spear.ui.preferences.PreferencesUtil;
 import spear.views.JKindResultsView;
 
 public class Operations {
@@ -81,7 +82,7 @@ public class Operations {
 		try {
 			final String translation = translate(p);
 			Renaming renaming = new MapRenaming(NameGenerator.getNames(), Mode.IDENTITY);
-			final JKindApi api = new JKindApi();
+			final JKindApi api = PreferencesUtil.getJKindApi();
 			final JKindResult result = new JKindResult("result", new LinkedList<String>(),renaming);
 			page.setInput(result);
 			
