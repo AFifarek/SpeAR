@@ -26,8 +26,7 @@ Learn more at http://www.github.com/AFifarek/SpeAR
 
    <windowImages i16="/SpeAR/branding/1429142139_weapons_spear-16.png" i32="/SpeAR/branding/1429142164_weapons_spear-32.png" i48="/SpeAR/branding/1429142171_weapons_spear-48.png" i64="/SpeAR/branding/1429142412_weapons_spear-64.png" i128="/SpeAR/branding/1429142344_weapons_spear-128.png" i256="/SpeAR/branding/1429142348_weapons_spear-256.png"/>
 
-   <splash
-      handlerType="interactive" />
+
    <launcher name="spear">
       <solaris/>
       <win useIco="true">
@@ -104,6 +103,7 @@ IS APPROVED FOR PUBLIC RELEASE.  CASE NUMBER: 88ABW-2014-2553.
       <plugin id="org.apache.commons.cli"/>
       <plugin id="org.apache.commons.codec"/>
       <plugin id="org.apache.commons.compress"/>
+      <plugin id="org.apache.commons.jxpath"/>
       <plugin id="org.apache.commons.lang"/>
       <plugin id="org.apache.commons.logging"/>
       <plugin id="org.apache.felix.gogo.command"/>
@@ -152,8 +152,10 @@ IS APPROVED FOR PUBLIC RELEASE.  CASE NUMBER: 88ABW-2014-2553.
       <plugin id="org.eclipse.e4.core.commands"/>
       <plugin id="org.eclipse.e4.core.contexts"/>
       <plugin id="org.eclipse.e4.core.di"/>
+      <plugin id="org.eclipse.e4.core.di.annotations"/>
       <plugin id="org.eclipse.e4.core.di.extensions"/>
       <plugin id="org.eclipse.e4.core.services"/>
+      <plugin id="org.eclipse.e4.emf.xpath"/>
       <plugin id="org.eclipse.e4.ui.bindings"/>
       <plugin id="org.eclipse.e4.ui.css.core"/>
       <plugin id="org.eclipse.e4.ui.css.swt"/>
@@ -347,6 +349,7 @@ IS APPROVED FOR PUBLIC RELEASE.  CASE NUMBER: 88ABW-2014-2553.
       <plugin id="org.eclipse.m2e.profiles.ui"/>
       <plugin id="org.eclipse.m2e.refactoring"/>
       <plugin id="org.eclipse.m2e.scm"/>
+      <plugin id="org.eclipse.m2e.workspace.cli"/>
       <plugin id="org.eclipse.osgi"/>
       <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
       <plugin id="org.eclipse.osgi.services"/>
@@ -447,6 +450,7 @@ IS APPROVED FOR PUBLIC RELEASE.  CASE NUMBER: 88ABW-2014-2553.
       <plugin id="org.eclipse.xtend.doc"/>
       <plugin id="org.eclipse.xtend.examples"/>
       <plugin id="org.eclipse.xtend.ide"/>
+      <plugin id="org.eclipse.xtend.ide.common"/>
       <plugin id="org.eclipse.xtend.lib"/>
       <plugin id="org.eclipse.xtend.lib.macro"/>
       <plugin id="org.eclipse.xtend.m2e"/>
@@ -465,6 +469,7 @@ IS APPROVED FOR PUBLIC RELEASE.  CASE NUMBER: 88ABW-2014-2553.
       <plugin id="org.eclipse.xtext.doc"/>
       <plugin id="org.eclipse.xtext.ecore"/>
       <plugin id="org.eclipse.xtext.generator"/>
+      <plugin id="org.eclipse.xtext.ide"/>
       <plugin id="org.eclipse.xtext.junit"/>
       <plugin id="org.eclipse.xtext.junit4"/>
       <plugin id="org.eclipse.xtext.logging" fragment="true"/>
@@ -493,6 +498,8 @@ IS APPROVED FOR PUBLIC RELEASE.  CASE NUMBER: 88ABW-2014-2553.
       <plugin id="org.sat4j.core"/>
       <plugin id="org.sat4j.pb"/>
       <plugin id="org.slf4j.api"/>
+      <plugin id="org.slf4j.impl.log4j12" fragment="true"/>
+      <plugin id="org.tukaani.xz"/>
       <plugin id="org.w3c.css.sac"/>
       <plugin id="org.w3c.dom.events"/>
       <plugin id="org.w3c.dom.smil"/>

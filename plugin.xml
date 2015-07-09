@@ -386,10 +386,6 @@
            class="spear.splashHandlers.InteractiveSplashHandler"
            id="spear.splashHandlers.interactive">
      </splashHandler>
-     <splashHandlerProductBinding
-           productId="spear.product"
-           splashId="spear.splashHandlers.interactive">
-     </splashHandlerProductBinding>
   </extension>
 
    <extension

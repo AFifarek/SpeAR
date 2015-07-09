@@ -74,6 +74,7 @@ public class SpearLayout implements Layout {
 
 	@Override
 	public String getCategory(String signal) {
-		return map.get(signal);
+		String prefix = signal.split("\\.|\\[")[0];
+		return map.get(prefix);
 	}
 }
