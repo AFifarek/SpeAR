@@ -37,7 +37,7 @@ AssSection returns Section: {AssSection} 'Assumptions' ':' (elements+=ExprSectio
 
 DerReqSection returns Section: {DerReqSection} 'DerivedRequirements' ':' elements+=NamedFormulaSectionElement*;
 
-PropSection returns Section: {PropSection} 'Requirements' ':' elements+=NamedFormulaSectionElement*;
+ReqSection returns Section: {ReqSection} 'Requirements' ':' elements+=NamedFormulaSectionElement*;
 
 /* An abstract rule that refers generally to any element that can occur at the 
  * top level of a section.
@@ -92,7 +92,7 @@ ProcedureSections returns Section:
 |   MacroSection
 |   AssSection
 |   DerReqSection
-|   PropSection
+|   ReqSection
 | 	InputSection
 | 	OutputSection
 // Uninterpreted functions are not fully supported.

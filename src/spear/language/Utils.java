@@ -158,7 +158,7 @@ public class Utils {
 	}
 	
 	public static List<NamedFormula> getProperties(Module p) {
-		return (List<NamedFormula>)getSection(p,PropSection.class);
+		return (List<NamedFormula>)getSection(p,ReqSection.class);
 	}
 	
 	public static List<Macro> getMacros(Module p) {
