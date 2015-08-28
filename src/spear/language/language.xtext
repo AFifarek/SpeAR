@@ -35,9 +35,9 @@ MacroSection returns Section: {MacroSection} 'Macros' ':' elements+=MacroSection
 
 AssSection returns Section: {AssSection} 'Assumptions' ':' (elements+=ExprSectionElement ';')*;
 
-ReqSection returns Section: {ReqSection} 'Requirements' ':' elements+=NamedFormulaSectionElement*;
+DerReqSection returns Section: {DerReqSection} 'DerivedRequirements' ':' elements+=NamedFormulaSectionElement*;
 
-PropSection returns Section: {PropSection} 'Properties' ':' elements+=NamedFormulaSectionElement*;
+PropSection returns Section: {PropSection} 'Requirements' ':' elements+=NamedFormulaSectionElement*;
 
 /* An abstract rule that refers generally to any element that can occur at the 
  * top level of a section.
@@ -91,7 +91,7 @@ ProcedureSections returns Section:
 |   StateSection
 |   MacroSection
 |   AssSection
-|   ReqSection
+|   DerReqSection
 |   PropSection
 | 	InputSection
 | 	OutputSection

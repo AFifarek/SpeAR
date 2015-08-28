@@ -5,16 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jkind.results.layout.Layout;
-
 import org.eclipse.xtext.EcoreUtil2;
 
+import jkind.results.layout.Layout;
+import spear.language.DerReqSection;
 import spear.language.InputSection;
 import spear.language.NamedFormula;
 import spear.language.OutputSection;
 import spear.language.Procedure;
 import spear.language.PropSection;
-import spear.language.ReqSection;
 import spear.language.StateSection;
 import spear.language.Variable;
 
@@ -24,9 +23,9 @@ public class SpearLayout implements Layout {
 	private static final String INPUTS = "Inputs";
 	private static final String OUTPUTS = "Outputs";
 	private static final String STATE = "State";
-	private static final String REQUIREMENTS = "Requirements";
+	private static final String DERIVED_REQUIREMENTS = "DerivedRequirements";
 	private static final String PROPERTIES = "Properties";
-	private static final String[] CATEGORIES = { INPUTS, OUTPUTS, STATE, PROPERTIES, REQUIREMENTS};
+	private static final String[] CATEGORIES = { INPUTS, OUTPUTS, STATE, PROPERTIES, DERIVED_REQUIREMENTS};
 
 	public SpearLayout(Procedure p) {
 		if (p == null) {
@@ -54,9 +53,9 @@ public class SpearLayout implements Layout {
 			}
 		}
 		
-		for(ReqSection requirements : EcoreUtil2.getAllContentsOfType(p, ReqSection.class)) {
+		for(DerReqSection requirements : EcoreUtil2.getAllContentsOfType(p, DerReqSection.class)) {
 			for (NamedFormula req : EcoreUtil2.getAllContentsOfType(requirements, NamedFormula.class)) {
-				map.put(req.getName(), REQUIREMENTS);
+				map.put(req.getName(), DERIVED_REQUIREMENTS);
 			}
 		}
 

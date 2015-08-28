@@ -154,7 +154,7 @@ public class Utils {
 	}
 	
 	public static List<NamedFormula> getRequirements(Module p) {
-		return (List<NamedFormula>)getSection(p,ReqSection.class);
+		return (List<NamedFormula>)getSection(p,DerReqSection.class);
 	}
 	
 	public static List<NamedFormula> getProperties(Module p) {
