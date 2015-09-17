@@ -149,8 +149,8 @@ public class Utils {
 		return els;
 	}
 	
-	public static List<Expr> getAssumptions(Module p) {
-		return (List<Expr>)getSection(p,AssSection.class);
+	public static List<NamedFormula> getAssumptions(Module p) {
+		return (List<NamedFormula>)getSection(p,AssumptSection.class);
 	}
 	
 	public static List<NamedFormula> getRequirements(Module p) {

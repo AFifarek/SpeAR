@@ -33,7 +33,8 @@ StateSection returns Section: {StateSection} 'State' ':' elements+=VariableSecti
 
 MacroSection returns Section: {MacroSection} 'Macros' ':' elements+=MacroSectionElement*;
 
-AssSection returns Section: {AssSection} 'Assumptions' ':' (elements+=ExprSectionElement ';')*;
+//AssumptSection returns Section: {AssumptSection} 'Assumptions' ':' (elements+=ExprSectionElement ';')*;
+AssumptSection returns Section: {AssumptSection} 'Assumptions' ':' elements+=NamedFormulaSectionElement*;
 
 DerReqSection returns Section: {DerReqSection} 'DerivedRequirements' ':' elements+=NamedFormulaSectionElement*;
 
@@ -90,7 +91,7 @@ ProcedureSections returns Section:
 |   ConstantSection
 |   StateSection
 |   MacroSection
-|   AssSection
+|   AssumptSection
 |   DerReqSection
 |   ReqSection
 | 	InputSection

@@ -175,6 +175,18 @@ public class MonolithicLustreTranslator extends LanguageSwitch<jkind.lustre.Ast>
 		 */
 		hiddenargs.put(procedure,hiddens);
 		
+		/*
+		 * Convert all assumptions to equations
+		 * TODO - Need to create something similar to the requirements portion here
+		 */
+		for (NamedFormula nf : Utils.getAssumptions(procedure)) {
+			jkind.lustre.IdExpr id = new jkind.lustre.IdExpr(getFormulaName(nf));
+			constraints.add(id.id);
+			jkind.lustre.Equation eq = new jkind.lustre.Equation(id, transexpr.doSwitch(nf));
+			equations.add(eq);
+			locals.add(new jkind.lustre.VarDecl(getFormulaName(nf),
+					jkind.lustre.NamedType.BOOL));			
+		}		
 		
 		/*
 		 * Convert all requirements to equations.
