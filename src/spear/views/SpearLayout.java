@@ -27,7 +27,7 @@ public class SpearLayout implements Layout {
 	private static final String ASSUMPTION_SECTION = "Assumptions";
 	private static final String DERIVED_REQUIREMENTS = "DerivedRequirements";
 	private static final String REQUIREMENTS = "Requirements";
-	private static final String[] CATEGORIES = { INPUTS, OUTPUTS, STATE, REQUIREMENTS, DERIVED_REQUIREMENTS};
+	private static final String[] CATEGORIES = { INPUTS, OUTPUTS, STATE, ASSUMPTION_SECTION, REQUIREMENTS, DERIVED_REQUIREMENTS};
 
 	public SpearLayout(Procedure p) {
 		if (p == null) {
