@@ -8,6 +8,7 @@ import java.util.Map;
 import org.eclipse.xtext.EcoreUtil2;
 
 import jkind.results.layout.Layout;
+import spear.language.AssumptSection;
 import spear.language.DerReqSection;
 import spear.language.InputSection;
 import spear.language.NamedFormula;
@@ -23,6 +24,7 @@ public class SpearLayout implements Layout {
 	private static final String INPUTS = "Inputs";
 	private static final String OUTPUTS = "Outputs";
 	private static final String STATE = "State";
+	private static final String ASSUMPTION_SECTION = "Assumptions";
 	private static final String DERIVED_REQUIREMENTS = "DerivedRequirements";
 	private static final String REQUIREMENTS = "Requirements";
 	private static final String[] CATEGORIES = { INPUTS, OUTPUTS, STATE, REQUIREMENTS, DERIVED_REQUIREMENTS};
@@ -50,6 +52,12 @@ public class SpearLayout implements Layout {
 		for(StateSection locals : EcoreUtil2.getAllContentsOfType(p, StateSection.class)) {
 			for (Variable v : EcoreUtil2.getAllContentsOfType(locals, Variable.class)) {
 				map.put(v.getName(), STATE);
+			}
+		}
+		
+		for(AssumptSection assumptions : EcoreUtil2.getAllContentsOfType(p, AssumptSection.class)) {
+			for (NamedFormula assumpt : EcoreUtil2.getAllContentsOfType(assumptions, NamedFormula.class)) {
+				map.put(assumpt.getName(), ASSUMPTION_SECTION);
 			}
 		}
 		
