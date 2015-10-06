@@ -128,13 +128,17 @@ public class Utils {
 		return (List<Variable>)getSection(p,InputSection.class);		
 	}
 	
-	public static Variable getOutput(Module p) {
-		List<Variable> v = (List<Variable>) Utils.getSection(p,OutputSection.class);
-		if(v.size()!=1) {
-			return null;
-		}
-		return v.get(0);	
+	public static List<Variable> getOutputs(Module p) {
+		return (List<Variable>)getSection(p, OutputSection.class);
 	}
+	
+//	public static Variable getOutput(Module p) {
+//		List<Variable> v = (List<Variable>) Utils.getSection(p,OutputSection.class);
+//		if(v.size()!=1) {
+//			return null;
+//		}
+//		return v.get(0);	
+//	}
 	
 	public static <S extends Section> List<? extends SectionElement> getSection(Module p,Class<S> clazz) {
 		List<SectionElement> els = new BasicEList<SectionElement>();

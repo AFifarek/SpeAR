@@ -175,7 +175,9 @@ public class UnitChecker extends LanguageSwitch<NormUnit> {
 				}
 			}
 		}	
-		return normalize(Utils.getOutput(p).getUnit());
+		// TODO: this needs to be fixed when I make a new type definition
+//		return normalize(Utils.getOutput(p).getUnit());
+		return null;
 	} 
 
 	@Override

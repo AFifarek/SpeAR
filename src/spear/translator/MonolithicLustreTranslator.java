@@ -101,12 +101,17 @@ public class MonolithicLustreTranslator extends LanguageSwitch<jkind.lustre.Ast>
 			CallRef cr = e.getId();
 			if(!(cr instanceof Procedure)) continue;
 			Procedure p = (Procedure)cr;
-			Variable output = Utils.getOutput(p);
-			if(output==null) continue;
-			jkind.lustre.Type t = transtype.doSwitch(output.getType());
-			String freshname = NameGenerator.getVariableName("Storage for return value of "+e.getId().getName());
-			jkind.lustre.VarDecl vd = new jkind.lustre.VarDecl(freshname,t);
-			procreturnvalvar.put(e,vd);
+			List<Variable> output_List = Utils.getOutputs(p);
+			if(output_List.isEmpty()) continue;
+			
+			// if there are outputs in the list, process them
+			for (Variable v : output_List) {
+				jkind.lustre.Type t = transtype.doSwitch(v.getType());
+				String freshname = NameGenerator.getVariableName("Storage for return value of "+e.getId().getName());
+				jkind.lustre.VarDecl vd = new jkind.lustre.VarDecl(freshname,t);
+				procreturnvalvar.put(e,vd);
+			}
+			
 		}
 		/* All procedure invocations will be replaced by variables. These variables
 		 * will store the return value of the original procedure.
@@ -122,10 +127,12 @@ public class MonolithicLustreTranslator extends LanguageSwitch<jkind.lustre.Ast>
 		for(Variable va : Utils.getInputs(procedure)) {
 			inputs.add(new jkind.lustre.VarDecl(va.getName(),transtype.doSwitch(va.getType())));
 		}
-		/* Add the output variable to the inputs. */
-		Variable output = Utils.getOutput(procedure);
-		if (output != null  ) {
-			inputs.add(new jkind.lustre.VarDecl(output.getName(),transtype.doSwitch(output.getType())));
+		/* Add the output variables to the inputs */
+		List<Variable> output_List = Utils.getOutputs(procedure);
+		if (!output_List.isEmpty()) {
+			for (Variable v : output_List) {
+				inputs.add(new jkind.lustre.VarDecl(v.getName(),transtype.doSwitch(v.getType())));
+			}
 		}
 		
 		/* Add state variables and lift those fresh variables to the calling procedure signature. */

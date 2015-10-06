@@ -1,25 +1,26 @@
 grammar spear.Language with org.eclipse.xtext.common.Terminals
 generate language "http://www.rockwellcollins.com/atc/spear"
 
-/* There are two types of spear files; one that specifies relations and one
- * that gives definitions.
+/* There are two types of spear files:
+ * -> Relation file: Defines component derived and high-level requirements. Analysis is done on this file    
+ * -> Definition file: Allows a location to define elements that are included in many Relation files.
  */
 Module: 
 	Procedure
 |   Definition
 ;
 
+/* Definition of the two main types of SpeAR files */ 
 Procedure returns Module: {Procedure} 'Relation' name=QualifiedName ';' (imports+=Imports*) (sections+=ProcedureSections*);
 
 Definition returns Module: {Definition} 'Definition' name=QualifiedName ';' (imports+=Imports*) (sections+=DefinitionSections*); 
 
 /* Different types of sections that can be in a spear file. */
-
 Imports: {Imports} 'Uses' importedNamespace=QualifiedNameWithWildCard ';';
 
 InputSection returns Section: {InputSection} 'Inputs' ':' elements+=VariableSectionElement*;
 
-OutputSection returns Section: {OutputSection} 'Outputs' ':' elements+=VariableSectionElement;
+OutputSection returns Section: {OutputSection} 'Outputs' ':' elements+=VariableSectionElement*;
 
 TypeSection returns Section: {TypeSection} 'Types' ':' elements+=TypeDefSectionElement*;
 
@@ -33,7 +34,6 @@ StateSection returns Section: {StateSection} 'State' ':' elements+=VariableSecti
 
 MacroSection returns Section: {MacroSection} 'Macros' ':' elements+=MacroSectionElement*;
 
-//AssumptSection returns Section: {AssumptSection} 'Assumptions' ':' (elements+=ExprSectionElement ';')*;
 AssumptSection returns Section: {AssumptSection} 'Assumptions' ':' elements+=NamedFormulaSectionElement*;
 
 DerReqSection returns Section: {DerReqSection} 'DerivedRequirements' ':' elements+=NamedFormulaSectionElement*;
@@ -56,7 +56,6 @@ SectionElement:
  * in sections but talk about section elements generally, we build the 
  * following rules. 
  */
-
 TypeDefSectionElement returns SectionElement: TypeDef;
 
 UnitDefSectionElement returns SectionElement: UnitDef;
@@ -74,7 +73,6 @@ ExprSectionElement returns SectionElement: Expr;
 NamedFormulaSectionElement returns SectionElement: NamedFormula;
 
 /* Describe what sections can occur in definition files. */
-
 DefinitionSections returns Section:
 	TypeSection
 |	UnitSection
@@ -83,8 +81,7 @@ DefinitionSections returns Section:
 //|   FunctionSection
 ;
 
-/* Describe what sections can occur in module files. */
-
+/* Describe what sections can occur in relation (procedure) files. */
 ProcedureSections returns Section: 
 	TypeSection
 |	UnitSection
@@ -104,7 +101,6 @@ ProcedureSections returns Section:
  * eclipse complain about ambiguity. Ultimately, this does not impact our 
  * language; this rule is abstract.
  */
-
 VariableRef:
 	'V' Variable
 | 	'M' Macro
@@ -114,7 +110,6 @@ VariableRef:
 ;
 
 /* Different types of function calls. */
-
 CallRef:
 	Function
 |   Procedure
@@ -122,22 +117,35 @@ CallRef:
 
 
 /* Object definitions. */
+TypeDef: 
+	name=ID ':' (type=Type) ';'
+;
 
-TypeDef: name=ID ':' (type=Type) ';' ;
+UnitDef: 
+	(name=ID) (':' (unit=Unit))? ';'
+;
 
-UnitDef: (name=ID) (':' (unit=Unit))? ';' ;
+Variable: 
+	name=ID ':'  (type=AtomicType) (unit=Unit)? ';'
+;
 
-Variable: name=ID ':'  (type=AtomicType) (unit=Unit)? ';';
+Function: 
+	name=ID  '(' ins+=AtomicType (',' ins+=AtomicType )* ')' ':' '(' outs+=AtomicType (',' outs+=AtomicType)* ')' ';'
+;
 
-Function: name=ID  '(' ins+=AtomicType (',' ins+=AtomicType )* ')' ':' '(' outs+=AtomicType (',' outs+=AtomicType)* ')' ';' ;
+Macro: 
+	name=ID ':' (type=AtomicType) (unit=Unit)? '=' (expr=Expr) ';'
+;
 
-Macro: name=ID ':' (type=AtomicType) (unit=Unit)? '=' (expr=Expr) ';';
-
-Constant: name=ID ':' (type=AtomicType) (unit=Unit)? ('=' (expr=Expr)?) ';' ;
+Constant: 
+	name=ID ':' (type=AtomicType) (unit=Unit)? ('=' (expr=Expr)?) ';'
+;
 
 RecordType: '{' fields+=RecordField (',' fields+=RecordField)* '}' ;
 
-RecordField: (name=ID) ':' (type=AtomicType) (unit=Unit)? ;
+RecordField: 
+	(name=ID) ':' (type=AtomicType) (unit=Unit)?
+;
 
 EnumerationType:  '[' Enumerators+=Enumerator (',' Enumerators+=Enumerator)* ']' ;
 
@@ -146,12 +154,13 @@ Enumerator: (name=ID) ;
 NamedFormula: (name=ID) '=' (spec=PatternSpecification) ';' ;
 
 /* All types. */
-
 Type:
 	RecordType 
 | 	EnumerationType
 | 	AtomicType
 ;
+
+
 
 FiniteSetType:
 	ArrayType
@@ -180,7 +189,9 @@ AtomicType returns Type:
 /* Additional productions that must also be treated as types but cannot be
  * reified.
  */
-ExtendedType returns Type: {ErrorType} 
+ExtendedType returns Type: 
+	{ErrorType}
+|	{TupleType} '[#' fields+=Type (',' fields+=Type)* '#]'		// this is for being able to return multiple output for type and unit checking, not for the user
 ;
 
 

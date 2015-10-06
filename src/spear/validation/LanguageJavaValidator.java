@@ -85,7 +85,7 @@ public class LanguageJavaValidator extends AbstractLanguageJavaValidator {
 		names.addAll((Collection<? extends VariableRef>) Utils.getMacros(p));
 		names.addAll((Collection<? extends VariableRef>) Utils.getVariables(p));
 		names.addAll((Collection<? extends VariableRef>) Utils.getInputs(p));
-		names.add((Variable) Utils.getOutput(p));
+		names.addAll((Collection<? extends VariableRef>) Utils.getOutputs(p));
 		for (VariableRef vr : names) {
 			checkAndAddToMap(set, vr.getName(), vr);
 		}
@@ -297,9 +297,11 @@ public class LanguageJavaValidator extends AbstractLanguageJavaValidator {
 			}
 			vars.add(v.getName());
 		}
-		if(vars.contains(Utils.getOutput(p).getName())) {
-			error("Duplicate use of variable "+Utils.getOutput(p).getName()+" in procedure signature.",p);
-		}
+		for (Variable v : Utils.getOutputs(p)) {
+			if(vars.contains(v.getName())) {
+				error("Duplicate use of variable "+v.getName()+" in procedure signature.",p);
+			}
+		}		
 	}
 	
 	

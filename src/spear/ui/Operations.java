@@ -1,18 +1,12 @@
 package spear.ui;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import jkind.JKindException;
-import jkind.api.JKindApi;
-import jkind.api.results.JKindResult;
-import jkind.api.results.MapRenaming;
-import jkind.api.results.MapRenaming.Mode;
-import jkind.api.results.Renaming;
 
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -20,9 +14,19 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.EcoreUtil2;
 
+import jkind.JKindException;
+import jkind.api.JKindApi;
+import jkind.api.results.JKindResult;
+import jkind.api.results.MapRenaming;
+import jkind.api.results.MapRenaming.Mode;
+import jkind.api.results.Renaming;
 import spear.language.CallRef;
 import spear.language.FnCallExpr;
+import spear.language.NamedFormula;
 import spear.language.Procedure;
+import spear.language.ReqSection;
+import spear.language.Section;
+import spear.language.SectionElement;
 import spear.language.Utils;
 import spear.translator.LibraryReader;
 import spear.translator.MonolithicLustreTranslator;
@@ -83,7 +87,20 @@ public class Operations {
 			final String translation = translate(p);
 			Renaming renaming = new MapRenaming(NameGenerator.getNames(), Mode.IDENTITY);
 			final JKindApi api = PreferencesUtil.getJKindApi();
-			final JKindResult result = new JKindResult("result", new LinkedList<String>(),renaming);
+			
+			ArrayList<String> al = new ArrayList<>();
+			for (Section s : p.getSections()) {
+				if (s instanceof ReqSection) {
+					ReqSection rs = (ReqSection) s;
+					for (SectionElement se : rs.getElements()) {
+						if (se instanceof NamedFormula) {
+							NamedFormula nf = (NamedFormula) se;
+							al.add(nf.getName());							
+						}
+					}
+				}
+			}
+			final JKindResult result = new JKindResult("result",al,renaming);
 			page.setInput(result);
 			
 			WorkspaceJob job = new WorkspaceJob("Reasoning over Lustre Specification") {

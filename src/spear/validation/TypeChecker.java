@@ -2,6 +2,7 @@ package spear.validation;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
@@ -19,29 +20,29 @@ import spear.language.Divide;
 import spear.language.Domain;
 import spear.language.DomainExpr;
 import spear.language.DomainType;
-import spear.language.Enumerator;
 import spear.language.EnumerationType;
+import spear.language.Enumerator;
 import spear.language.EqualTo;
 import spear.language.ErrorType;
 import spear.language.ExistsExpr;
 import spear.language.Exponentiation;
 import spear.language.Expr;
-import spear.language.ForallExpr;
-import spear.language.IntegerSubRangeType;
-import spear.language.Modulus;
-import spear.language.Procedure;
 import spear.language.FnCallExpr;
+import spear.language.ForallExpr;
 import spear.language.GreaterThan;
 import spear.language.GreaterThanEqual;
 import spear.language.IdExpr;
 import spear.language.IfThenElseExpr;
 import spear.language.Implies;
 import spear.language.IntExpr;
+import spear.language.IntegerSubRangeType;
 import spear.language.IntegerType;
+import spear.language.LanguageFactory;
 import spear.language.LessThan;
 import spear.language.LessThanEqual;
 import spear.language.Macro;
 import spear.language.Minus;
+import spear.language.Modulus;
 import spear.language.Multiply;
 import spear.language.NamedType;
 import spear.language.Not;
@@ -49,8 +50,9 @@ import spear.language.NotEqual;
 import spear.language.Or;
 import spear.language.Plus;
 import spear.language.PreExpr;
-import spear.language.QuantifiedVariable;
+import spear.language.Procedure;
 import spear.language.QuantificationExpr;
+import spear.language.QuantifiedVariable;
 import spear.language.RealExpr;
 import spear.language.RealType;
 import spear.language.RecordAccessExpr;
@@ -58,8 +60,8 @@ import spear.language.RecordExpr;
 import spear.language.RecordField;
 import spear.language.RecordFieldExpr;
 import spear.language.RecordType;
-import spear.language.LanguageFactory;
 import spear.language.SumExpr;
+import spear.language.TupleType;
 import spear.language.Type;
 import spear.language.TypeDef;
 import spear.language.UnaryExpr;
@@ -101,6 +103,10 @@ public class TypeChecker extends LanguageSwitch<Type> {
 	
 	private Type errorType() {
 		return f.createErrorType();
+	}
+	
+	private Type tupleType() {
+		return f.createTupleType();		
 	}
 	
 	public static Boolean isOpArithmetic(EObject e) {
@@ -387,19 +393,32 @@ public class TypeChecker extends LanguageSwitch<Type> {
 		}
 		
 		Procedure p = (Procedure)fce.getId();	
-		List<Variable> inputs = Utils.getInputs(p);
+		List<Variable> inputs_List = Utils.getInputs(p);
 		
-		if (inputs.size() != fce.getArgs().size()) {
-			error("Function " + p.getName() + " expects " + inputs.size() + " arguments "
+		if (inputs_List.size() != fce.getArgs().size()) {
+			error("Function " + p.getName() + " expects " + inputs_List.size() + " arguments "
 					+ " but "+fce.getArgs().size()+" arguments provided.", fce);
 			return errorType();
 		} else {
-			for (int i = 0; i < inputs.size(); i++) {
-				Type declaredType = inputs.get(i).getType();
-				Type exprType = getType(fce.getArgs().get(i));
-				typeAssignable(declaredType,exprType,fce.getArgs().get(i));
+//			for (int i = 0; i < inputs.size(); i++) {
+			for (Variable v : inputs_List) {
+				Type declaredType = v.getType();				
+//				Type exprType = getType(fce.getArgs().get(i));
+//				typeAssignable(declaredType,exprType,fce.getArgs().get(i));
+				Type exprType = getType(fce);
+				typeAssignable(declaredType,exprType,fce);
 			}
-			return Utils.getOutput(p).getType();
+			// TODO: have to get this working properly
+
+			// Idea: instead of trying to make this a list of output elements I could just create a temporary internal type that would pack all outputs into it
+//			TupleType tmpOutputType = tupleType();
+//			for (Variable v : Utils.getOutputs(p)) {
+//				Type tempType = new Type();
+//				
+//			}
+			
+//			return Utils.getOutput(p).getType();
+			return errorType();
 		}
 	}
 
