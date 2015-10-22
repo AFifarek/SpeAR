@@ -1,8 +1,8 @@
 package spear.validation;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 
@@ -103,10 +103,6 @@ public class TypeChecker extends LanguageSwitch<Type> {
 	
 	private Type errorType() {
 		return f.createErrorType();
-	}
-	
-	private Type tupleType() {
-		return f.createTupleType();		
 	}
 	
 	public static Boolean isOpArithmetic(EObject e) {
@@ -388,37 +384,35 @@ public class TypeChecker extends LanguageSwitch<Type> {
 		// TODO: If spear eventually supports unimplemented functions type 
 		// support will need to be added here.
 		if(!(cr instanceof Procedure)) {
-			error("Only relations may be invocked.",fce);
+			error("Only relations may be invoked.",fce);
 			return errorType();
 		}
 		
 		Procedure p = (Procedure)fce.getId();	
 		List<Variable> inputs_List = Utils.getInputs(p);
+		List<Variable> outputs_List = Utils.getOutputs(p);
 		
 		if (inputs_List.size() != fce.getArgs().size()) {
 			error("Function " + p.getName() + " expects " + inputs_List.size() + " arguments "
 					+ " but "+fce.getArgs().size()+" arguments provided.", fce);
 			return errorType();
 		} else {
-//			for (int i = 0; i < inputs.size(); i++) {
-			for (Variable v : inputs_List) {
-				Type declaredType = v.getType();				
-//				Type exprType = getType(fce.getArgs().get(i));
-//				typeAssignable(declaredType,exprType,fce.getArgs().get(i));
-				Type exprType = getType(fce);
-				typeAssignable(declaredType,exprType,fce);
-			}
-			// TODO: have to get this working properly
 
-			// Idea: instead of trying to make this a list of output elements I could just create a temporary internal type that would pack all outputs into it
-//			TupleType tmpOutputType = tupleType();
-//			for (Variable v : Utils.getOutputs(p)) {
-//				Type tempType = new Type();
-//				
-//			}
+			for (int i = 0; i < inputs_List.size(); i++) {				
+				Type exprType = getType(fce.getArgs().get(i));
+				Type declaredType = inputs_List.get(i).getType();
+				if (!(typeAssignable(declaredType,exprType,fce.getArgs().get(i)))) {
+					return errorType();
+				}
+			}
 			
-//			return Utils.getOutput(p).getType();
-			return errorType();
+			TupleType tt = f.createTupleType();
+			for (Variable v : outputs_List) {
+				tt.getFields().add(v.getType());
+			}
+
+			// TODO : now how do we handle these tuple types
+			return tt;
 		}
 	}
 

@@ -125,6 +125,7 @@ UnitDef:
 	(name=ID) (':' (unit=Unit))? ';'
 ;
 
+// TODO: Investigate why the unit is optional
 Variable: 
 	name=ID ':'  (type=AtomicType) (unit=Unit)? ';'
 ;
@@ -191,7 +192,9 @@ AtomicType returns Type:
  */
 ExtendedType returns Type: 
 	{ErrorType}
-|	{TupleType} '[#' fields+=Type (',' fields+=Type)* '#]'		// this is for being able to return multiple output for type and unit checking, not for the user
+|	{TupleType} '[#' fields+=Type (',' fields+=Type)* '#]'		
+// this is only created when a node requires multiple outputs
+// this is for being able to return multiple output for type and unit checking, not for the user
 ;
 
 

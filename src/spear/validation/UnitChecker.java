@@ -1,5 +1,6 @@
 package spear.validation;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -158,15 +159,19 @@ public class UnitChecker extends LanguageSwitch<NormUnit> {
 		if(!(cr instanceof Procedure)) {
 			return null;
 		}
+		
 		Procedure p = (Procedure)object.getId();
 		List<Variable> formalargs = Utils.getInputs(p);
-		if(formalargs.size()!=object.getArgs().size()) {
+		List<Variable> outputs_List = Utils.getOutputs(p);
+		
+		if(formalargs.size() != object.getArgs().size()) {
 			/* NB: No error will be thrown here. If these
 			 * sizes are not equivalent then the type checker would
 			 * have thrown an error.
 			 */
+			return null;	//added the null here because we want to short-circuit out and not return the tuple
 		} else {
-			for(int i = 0;i< object.getArgs().size() ; i++) {
+			for(int i = 0; i < object.getArgs().size() ; i++) {
 				Expr arg = object.getArgs().get(i);
 				NormUnit fu = normalize(formalargs.get(i).getUnit());
 				NormUnit au = doSwitch(arg);
@@ -174,9 +179,12 @@ public class UnitChecker extends LanguageSwitch<NormUnit> {
 					unitMisMatch(fu,au,arg);
 				}
 			}
+			
+			
 		}	
 		// TODO: this needs to be fixed when I make a new type definition
 //		return normalize(Utils.getOutput(p).getUnit());
+		
 		return null;
 	} 
 
@@ -304,6 +312,7 @@ public class UnitChecker extends LanguageSwitch<NormUnit> {
 		} else if (u instanceof NormUnit) {
 			return copy((NormUnit) u);
 		} else {
+			ArrayList<String> al = new ArrayList<>();
 			List<Unit> nonnormal = new LinkedList<Unit>();
 			nonnormal.add(copy(u));
 			List<Unit> listnormform = normalizeStep1(nonnormal);
