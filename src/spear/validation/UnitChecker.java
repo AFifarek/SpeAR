@@ -48,6 +48,8 @@ import spear.language.RecordType;
 import spear.language.Scalar;
 import spear.language.LanguageFactory;
 import spear.language.SumExpr;
+import spear.language.TupleNormUnit;
+import spear.language.TupleType;
 import spear.language.Type;
 import spear.language.UnaryExpr;
 import spear.language.Unit;
@@ -180,6 +182,10 @@ public class UnitChecker extends LanguageSwitch<NormUnit> {
 				}
 			}
 			
+			TupleNormUnit tnu = f.createTupleNormUnit();
+			for (Variable v : outputs_List) {
+				tnu.getFields().add(v.getUnit());
+			}
 			
 		}	
 		// TODO: this needs to be fixed when I make a new type definition

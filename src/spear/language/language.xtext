@@ -219,10 +219,12 @@ ExtendedUnit returns Unit: {ReciUnit} 'reciprocal' unit=Unit ;
 
 Scalar : {Scalar} 'scalar' ;
 
+
 /* A unit in normal form. */
 NormUnit:
-  	{NormUnit} 'normalform' (numerators+=NamedUnit+) (denominators+=NamedUnit*)
+	{NormUnit} 'normalform' (numerators+=NamedUnit+) '/' (denominators+=NamedUnit*)
 | 	Scalar
+|	{TupleNormUnit} '[@' fields+=NormUnit (',' fields+=NormUnit)* '@]'
 | 	{ErrorUnit}
 ;
 
@@ -248,7 +250,10 @@ BinaryOp:
 | 	Plus 
 | 	Minus 
 | 	RelationalOp 
-| 	LogicalOp 
+| 	And 
+| 	Or
+| 	Xor 
+| 	Implies 
 |   Modulus
 | 	Exponentiation
 ;
@@ -268,18 +273,20 @@ Modulus: {Modulus} 'mod';
 RelationalOp:
   	{EqualTo} '==' 
 | 	{NotEqual} '<>' 
-|	{LessThan} '<' 
+|   {LessThan} '<' 
 | 	{GreaterThan} '>' 
 | 	{LessThanEqual} '<=' 
 | 	{GreaterThanEqual} '>='
 ;
 
-LogicalOp:
-  	{And} 'and' 
-| 	{Or} 'or'
-| 	{Xor} 'xor' 
-| 	{Implies} 'implies'
-;
+// Logical operations
+And: {And} 'and';
+
+Or: {Or} 'or';
+
+Xor: {Xor} 'xor';
+ 
+Implies: {Implies} 'implies';
 
 UnaryOp:
   	{UnaryMinus} '-' 
@@ -332,19 +339,39 @@ Expr:
 
 IfExpr returns Expr:
 	{IfThenElseExpr} 'if' ifExpr=Expr 'then' thenExpr=Expr 'else' elseExpr=Expr
-| 	LogicalExpr
+| 	ImpliesExpr
 ;
 
+// the implies operator will be right associative
+// separate and the AND and OR expressions with AND being of tighter bound (lower in this list)
 
-LogicalExpr returns Expr: RelationalExpr (=>({BinaryExpr.left=current} op=LogicalOp) right=RelationalExpr)* ;
+ImpliesExpr returns Expr: 
+	OrExpr (=>({BinaryExpr.left=current} op=Implies) right=ImpliesExpr)?
+;
 
-RelationalExpr returns Expr: AddExpr (=>({BinaryExpr.left=current} op=RelationalOp) right=AddExpr)* ;
+OrExpr returns Expr:
+	AndExpr (=>({BinaryExpr.left=current} op=(Or | Xor)) right=AndExpr)*
+;
 
-AddExpr returns Expr: MultExpr (=>({BinaryExpr.left=current} op=(Plus | Minus)) right=MultExpr)* ;
+AndExpr returns Expr:
+	RelationalExpr (=>({BinaryExpr.left=current} op=And) right=RelationalExpr)*
+;
 
-MultExpr returns Expr: ExpExpr (=>({BinaryExpr.left=current} op=(Multiply | Divide | Modulus)) right=ExpExpr)* ;
+RelationalExpr returns Expr: 
+	AddExpr (=>({BinaryExpr.left=current} op=RelationalOp) right=AddExpr)?
+;
 
-ExpExpr returns Expr: UnaryExpr (=>({BinaryExpr.left=current} op=(Exponentiation)) right=UnaryExpr)* ;
+AddExpr returns Expr: 
+	MultExpr (=>({BinaryExpr.left=current} op=(Plus | Minus)) right=MultExpr)*
+;
+
+MultExpr returns Expr: 
+	ExpExpr (=>({BinaryExpr.left=current} op=(Multiply | Divide | Modulus)) right=ExpExpr)*
+;
+
+ExpExpr returns Expr: 
+	UnaryExpr (=>({BinaryExpr.left=current} op=(Exponentiation)) right=ExpExpr)?
+;
 
 UnaryExpr returns Expr:
 	{UnaryExpr} (op=UnaryOp) (expr=UnaryExpr)
@@ -356,7 +383,9 @@ RecordAccessExpr returns Expr:
 	ArrayAccessExpr (=> ({RecordAccessExpr.record=current} '{' field=[RecordField|QualifiedName]  (':=' expr=Expr)? '}'))*
 ;
 
-ArrayAccessExpr returns Expr: QNExpr (=> ({ArrayAccessExpr.array=current} '[' index=Expr (=> ':=' expr=Expr)? ']'))* ;
+ArrayAccessExpr returns Expr: 
+	QNExpr (=> ({ArrayAccessExpr.array=current} '[' index=Expr (=> ':=' expr=Expr)? ']'))*
+;
 
 QNExpr returns Expr:
 	{IdExpr} id=[VariableRef|QualifiedName]
