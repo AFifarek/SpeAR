@@ -184,14 +184,11 @@ public class UnitChecker extends LanguageSwitch<NormUnit> {
 			
 			TupleNormUnit tnu = f.createTupleNormUnit();
 			for (Variable v : outputs_List) {
-				tnu.getFields().add(v.getUnit());
+				tnu.getFields().add(normalize(v.getUnit()));
 			}
 			
+			return tnu;
 		}	
-		// TODO: this needs to be fixed when I make a new type definition
-//		return normalize(Utils.getOutput(p).getUnit());
-		
-		return null;
 	} 
 
 	@Override
