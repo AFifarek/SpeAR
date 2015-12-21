@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * An implementation of the model object '<em><b>MId Expr</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>

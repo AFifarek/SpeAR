@@ -136,6 +136,10 @@ LiteralExpr:
 |   {RealLiteral} value=REAL (unit=[UnitDef])?
 ;
 
+//QualifiedID:
+//	(ID '::')* ID
+//;
+
 IdRef:
 	Variable
 |	Macro

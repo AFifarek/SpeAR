@@ -7,11 +7,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.util.SimpleAttributeResolver;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
+import com.rockwellcollins.spear.EnumType;
+import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Macro;
@@ -79,6 +82,8 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 			error("Constant " + c.getName() + " is defined by a non-constant expression.", c.getExpr(), null);
 		}
 	}
+	
+	//TODO: add checking for EnumValues over multiple files 
 	
 	/***********************************************************************************************/
 	//Type Checking
