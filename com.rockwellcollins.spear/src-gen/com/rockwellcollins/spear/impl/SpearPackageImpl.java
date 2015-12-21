@@ -1,0 +1,2273 @@
+/**
+ */
+package com.rockwellcollins.spear.impl;
+
+import com.rockwellcollins.spear.ArrayAccessExpr;
+import com.rockwellcollins.spear.ArrayExpr;
+import com.rockwellcollins.spear.ArrayType;
+import com.rockwellcollins.spear.ArrayUpdateExpr;
+import com.rockwellcollins.spear.BaseUnit;
+import com.rockwellcollins.spear.BinaryExpr;
+import com.rockwellcollins.spear.BinaryUnitExpr;
+import com.rockwellcollins.spear.BoolLiteral;
+import com.rockwellcollins.spear.BoolType;
+import com.rockwellcollins.spear.Constant;
+import com.rockwellcollins.spear.Constraint;
+import com.rockwellcollins.spear.Definitions;
+import com.rockwellcollins.spear.DerivedUnit;
+import com.rockwellcollins.spear.EnglishConstraint;
+import com.rockwellcollins.spear.EnumType;
+import com.rockwellcollins.spear.EnumValue;
+import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.IdRef;
+import com.rockwellcollins.spear.IfThenElseExpr;
+import com.rockwellcollins.spear.Import;
+import com.rockwellcollins.spear.IntLiteral;
+import com.rockwellcollins.spear.IntType;
+import com.rockwellcollins.spear.LiteralExpr;
+import com.rockwellcollins.spear.MIdExpr;
+import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.NamedType;
+import com.rockwellcollins.spear.NamedUnitExpr;
+import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.PatternCall;
+import com.rockwellcollins.spear.Patterns;
+import com.rockwellcollins.spear.PreviousExpr;
+import com.rockwellcollins.spear.RealLiteral;
+import com.rockwellcollins.spear.RealType;
+import com.rockwellcollins.spear.RecordAccessExpr;
+import com.rockwellcollins.spear.RecordExpr;
+import com.rockwellcollins.spear.RecordFieldExpr;
+import com.rockwellcollins.spear.RecordType;
+import com.rockwellcollins.spear.RecordTypeField;
+import com.rockwellcollins.spear.RecordUpdateExpr;
+import com.rockwellcollins.spear.SpearFactory;
+import com.rockwellcollins.spear.SpearPackage;
+import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.SpecificationCall;
+import com.rockwellcollins.spear.Type;
+import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.UnaryExpr;
+import com.rockwellcollins.spear.UnitDef;
+import com.rockwellcollins.spear.UnitExpr;
+import com.rockwellcollins.spear.UserType;
+import com.rockwellcollins.spear.Variable;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class SpearPackageImpl extends EPackageImpl implements SpearPackage
+{
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass fileEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass specificationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass importEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass definitionsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patternsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patternEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unitDefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unitExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeDefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass recordTypeFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass enumValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass constantEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass variableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass macroEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass constraintEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass formalConstraintEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass englishConstraintEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass literalExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass idRefEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass recordFieldExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass baseUnitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass derivedUnitEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass binaryUnitExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass namedUnitExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass namedTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass recordTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass arrayTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass enumTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass intTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass boolTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass realTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass userTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass binaryExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass unaryExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass recordAccessExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass recordUpdateExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass arrayAccessExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass arrayUpdateExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass idExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass mIdExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass previousExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass ifThenElseExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass recordExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass arrayExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass patternCallEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass specificationCallEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass intLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass boolLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass realLiteralEClass = null;
+
+  /**
+   * Creates an instance of the model <b>Package</b>, registered with
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * package URI value.
+   * <p>Note: the correct way to create the package is via the static
+   * factory method {@link #init init()}, which also performs
+   * initialization of the package, or returns the registered package,
+   * if one already exists.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.emf.ecore.EPackage.Registry
+   * @see com.rockwellcollins.spear.SpearPackage#eNS_URI
+   * @see #init()
+   * @generated
+   */
+  private SpearPackageImpl()
+  {
+    super(eNS_URI, SpearFactory.eINSTANCE);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private static boolean isInited = false;
+
+  /**
+   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+   * 
+   * <p>This method is used to initialize {@link SpearPackage#eINSTANCE} when that field is accessed.
+   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #eNS_URI
+   * @see #createPackageContents()
+   * @see #initializePackageContents()
+   * @generated
+   */
+  public static SpearPackage init()
+  {
+    if (isInited) return (SpearPackage)EPackage.Registry.INSTANCE.getEPackage(SpearPackage.eNS_URI);
+
+    // Obtain or create and register package
+    SpearPackageImpl theSpearPackage = (SpearPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof SpearPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new SpearPackageImpl());
+
+    isInited = true;
+
+    // Create package meta-data objects
+    theSpearPackage.createPackageContents();
+
+    // Initialize created meta-data
+    theSpearPackage.initializePackageContents();
+
+    // Mark meta-data to indicate it can't be changed
+    theSpearPackage.freeze();
+
+  
+    // Update the registry and return the package
+    EPackage.Registry.INSTANCE.put(SpearPackage.eNS_URI, theSpearPackage);
+    return theSpearPackage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFile()
+  {
+    return fileEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFile_Name()
+  {
+    return (EAttribute)fileEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSpecification()
+  {
+    return specificationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Imports()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Units()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Typedefs()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Constants()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Inputs()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Outputs()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_State()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Macros()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Assumptions()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Requirements()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Behaviors()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(10);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getImport()
+  {
+    return importEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getImport_ImportURI()
+  {
+    return (EAttribute)importEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDefinitions()
+  {
+    return definitionsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDefinitions_Unitdefs()
+  {
+    return (EReference)definitionsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDefinitions_Typedefs()
+  {
+    return (EReference)definitionsEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDefinitions_Constants()
+  {
+    return (EReference)definitionsEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPatterns()
+  {
+    return patternsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatterns_Patterns()
+  {
+    return (EReference)patternsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPattern()
+  {
+    return patternEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPattern_Name()
+  {
+    return (EAttribute)patternEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUnitDef()
+  {
+    return unitDefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUnitDef_Name()
+  {
+    return (EAttribute)unitDefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUnitDef_Description()
+  {
+    return (EAttribute)unitDefEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUnitExpr()
+  {
+    return unitExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeDef()
+  {
+    return typeDefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTypeDef_Name()
+  {
+    return (EAttribute)typeDefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRecordTypeField()
+  {
+    return recordTypeFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getRecordTypeField_Name()
+  {
+    return (EAttribute)recordTypeFieldEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordTypeField_Type()
+  {
+    return (EReference)recordTypeFieldEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEnumValue()
+  {
+    return enumValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getType()
+  {
+    return typeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getConstant()
+  {
+    return constantEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getConstant_Type()
+  {
+    return (EReference)constantEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getConstant_Expr()
+  {
+    return (EReference)constantEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getVariable()
+  {
+    return variableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getVariable_Type()
+  {
+    return (EReference)variableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMacro()
+  {
+    return macroEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMacro_Type()
+  {
+    return (EReference)macroEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMacro_Expr()
+  {
+    return (EReference)macroEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getConstraint()
+  {
+    return constraintEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getConstraint_Name()
+  {
+    return (EAttribute)constraintEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFormalConstraint()
+  {
+    return formalConstraintEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFormalConstraint_Expr()
+  {
+    return (EReference)formalConstraintEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEnglishConstraint()
+  {
+    return englishConstraintEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEnglishConstraint_Text()
+  {
+    return (EAttribute)englishConstraintEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExpr()
+  {
+    return exprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLiteralExpr()
+  {
+    return literalExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIdRef()
+  {
+    return idRefEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIdRef_Name()
+  {
+    return (EAttribute)idRefEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRecordFieldExpr()
+  {
+    return recordFieldExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getRecordFieldExpr_Name()
+  {
+    return (EAttribute)recordFieldExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordFieldExpr_Expr()
+  {
+    return (EReference)recordFieldExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBaseUnit()
+  {
+    return baseUnitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDerivedUnit()
+  {
+    return derivedUnitEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDerivedUnit_Unit()
+  {
+    return (EReference)derivedUnitEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBinaryUnitExpr()
+  {
+    return binaryUnitExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBinaryUnitExpr_Left()
+  {
+    return (EReference)binaryUnitExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBinaryUnitExpr_Op()
+  {
+    return (EAttribute)binaryUnitExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBinaryUnitExpr_Right()
+  {
+    return (EReference)binaryUnitExprEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNamedUnitExpr()
+  {
+    return namedUnitExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNamedUnitExpr_Unit()
+  {
+    return (EReference)namedUnitExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getNamedType()
+  {
+    return namedTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNamedType_Type()
+  {
+    return (EReference)namedTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getNamedType_Unit()
+  {
+    return (EReference)namedTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRecordType()
+  {
+    return recordTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordType_Fields()
+  {
+    return (EReference)recordTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getArrayType()
+  {
+    return arrayTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getArrayType_Base()
+  {
+    return (EReference)arrayTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getArrayType_Size()
+  {
+    return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEnumType()
+  {
+    return enumTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEnumType_Values()
+  {
+    return (EReference)enumTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIntType()
+  {
+    return intTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBoolType()
+  {
+    return boolTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRealType()
+  {
+    return realTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUserType()
+  {
+    return userTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getUserType_Def()
+  {
+    return (EReference)userTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBinaryExpr()
+  {
+    return binaryExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBinaryExpr_Left()
+  {
+    return (EReference)binaryExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBinaryExpr_Op()
+  {
+    return (EAttribute)binaryExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getBinaryExpr_Right()
+  {
+    return (EReference)binaryExprEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getUnaryExpr()
+  {
+    return unaryExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getUnaryExpr_Op()
+  {
+    return (EAttribute)unaryExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getUnaryExpr_Expr()
+  {
+    return (EReference)unaryExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRecordAccessExpr()
+  {
+    return recordAccessExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordAccessExpr_Record()
+  {
+    return (EReference)recordAccessExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordAccessExpr_Field()
+  {
+    return (EReference)recordAccessExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRecordUpdateExpr()
+  {
+    return recordUpdateExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordUpdateExpr_Record()
+  {
+    return (EReference)recordUpdateExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordUpdateExpr_Field()
+  {
+    return (EReference)recordUpdateExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordUpdateExpr_Value()
+  {
+    return (EReference)recordUpdateExprEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getArrayAccessExpr()
+  {
+    return arrayAccessExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getArrayAccessExpr_Array()
+  {
+    return (EReference)arrayAccessExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getArrayAccessExpr_Index()
+  {
+    return (EReference)arrayAccessExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getArrayUpdateExpr()
+  {
+    return arrayUpdateExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getArrayUpdateExpr_Access()
+  {
+    return (EReference)arrayUpdateExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getArrayUpdateExpr_Value()
+  {
+    return (EReference)arrayUpdateExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIdExpr()
+  {
+    return idExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIdExpr_Id()
+  {
+    return (EReference)idExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getMIdExpr()
+  {
+    return mIdExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getMIdExpr_Ids()
+  {
+    return (EReference)mIdExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPreviousExpr()
+  {
+    return previousExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPreviousExpr_Var()
+  {
+    return (EReference)previousExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPreviousExpr_Init()
+  {
+    return (EReference)previousExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIfThenElseExpr()
+  {
+    return ifThenElseExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfThenElseExpr_Cond()
+  {
+    return (EReference)ifThenElseExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfThenElseExpr_Then()
+  {
+    return (EReference)ifThenElseExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIfThenElseExpr_Else()
+  {
+    return (EReference)ifThenElseExprEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRecordExpr()
+  {
+    return recordExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordExpr_Type()
+  {
+    return (EReference)recordExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRecordExpr_FieldExprs()
+  {
+    return (EReference)recordExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getArrayExpr()
+  {
+    return arrayExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getArrayExpr_Type()
+  {
+    return (EReference)arrayExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getArrayExpr_Exprs()
+  {
+    return (EReference)arrayExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPatternCall()
+  {
+    return patternCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatternCall_Pattern()
+  {
+    return (EReference)patternCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPatternCall_Args()
+  {
+    return (EReference)patternCallEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getSpecificationCall()
+  {
+    return specificationCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecificationCall_Spec()
+  {
+    return (EReference)specificationCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecificationCall_Args()
+  {
+    return (EReference)specificationCallEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getIntLiteral()
+  {
+    return intLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getIntLiteral_Value()
+  {
+    return (EAttribute)intLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getIntLiteral_Unit()
+  {
+    return (EReference)intLiteralEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBoolLiteral()
+  {
+    return boolLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBoolLiteral_Value()
+  {
+    return (EAttribute)boolLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getRealLiteral()
+  {
+    return realLiteralEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getRealLiteral_Value()
+  {
+    return (EAttribute)realLiteralEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getRealLiteral_Unit()
+  {
+    return (EReference)realLiteralEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public SpearFactory getSpearFactory()
+  {
+    return (SpearFactory)getEFactoryInstance();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private boolean isCreated = false;
+
+  /**
+   * Creates the meta-model objects for the package.  This method is
+   * guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void createPackageContents()
+  {
+    if (isCreated) return;
+    isCreated = true;
+
+    // Create classes and their features
+    fileEClass = createEClass(FILE);
+    createEAttribute(fileEClass, FILE__NAME);
+
+    specificationEClass = createEClass(SPECIFICATION);
+    createEReference(specificationEClass, SPECIFICATION__IMPORTS);
+    createEReference(specificationEClass, SPECIFICATION__UNITS);
+    createEReference(specificationEClass, SPECIFICATION__TYPEDEFS);
+    createEReference(specificationEClass, SPECIFICATION__CONSTANTS);
+    createEReference(specificationEClass, SPECIFICATION__INPUTS);
+    createEReference(specificationEClass, SPECIFICATION__OUTPUTS);
+    createEReference(specificationEClass, SPECIFICATION__STATE);
+    createEReference(specificationEClass, SPECIFICATION__MACROS);
+    createEReference(specificationEClass, SPECIFICATION__ASSUMPTIONS);
+    createEReference(specificationEClass, SPECIFICATION__REQUIREMENTS);
+    createEReference(specificationEClass, SPECIFICATION__BEHAVIORS);
+
+    importEClass = createEClass(IMPORT);
+    createEAttribute(importEClass, IMPORT__IMPORT_URI);
+
+    definitionsEClass = createEClass(DEFINITIONS);
+    createEReference(definitionsEClass, DEFINITIONS__UNITDEFS);
+    createEReference(definitionsEClass, DEFINITIONS__TYPEDEFS);
+    createEReference(definitionsEClass, DEFINITIONS__CONSTANTS);
+
+    patternsEClass = createEClass(PATTERNS);
+    createEReference(patternsEClass, PATTERNS__PATTERNS);
+
+    patternEClass = createEClass(PATTERN);
+    createEAttribute(patternEClass, PATTERN__NAME);
+
+    unitDefEClass = createEClass(UNIT_DEF);
+    createEAttribute(unitDefEClass, UNIT_DEF__NAME);
+    createEAttribute(unitDefEClass, UNIT_DEF__DESCRIPTION);
+
+    unitExprEClass = createEClass(UNIT_EXPR);
+
+    typeDefEClass = createEClass(TYPE_DEF);
+    createEAttribute(typeDefEClass, TYPE_DEF__NAME);
+
+    recordTypeFieldEClass = createEClass(RECORD_TYPE_FIELD);
+    createEAttribute(recordTypeFieldEClass, RECORD_TYPE_FIELD__NAME);
+    createEReference(recordTypeFieldEClass, RECORD_TYPE_FIELD__TYPE);
+
+    enumValueEClass = createEClass(ENUM_VALUE);
+
+    typeEClass = createEClass(TYPE);
+
+    constantEClass = createEClass(CONSTANT);
+    createEReference(constantEClass, CONSTANT__TYPE);
+    createEReference(constantEClass, CONSTANT__EXPR);
+
+    variableEClass = createEClass(VARIABLE);
+    createEReference(variableEClass, VARIABLE__TYPE);
+
+    macroEClass = createEClass(MACRO);
+    createEReference(macroEClass, MACRO__TYPE);
+    createEReference(macroEClass, MACRO__EXPR);
+
+    constraintEClass = createEClass(CONSTRAINT);
+    createEAttribute(constraintEClass, CONSTRAINT__NAME);
+
+    formalConstraintEClass = createEClass(FORMAL_CONSTRAINT);
+    createEReference(formalConstraintEClass, FORMAL_CONSTRAINT__EXPR);
+
+    englishConstraintEClass = createEClass(ENGLISH_CONSTRAINT);
+    createEAttribute(englishConstraintEClass, ENGLISH_CONSTRAINT__TEXT);
+
+    exprEClass = createEClass(EXPR);
+
+    literalExprEClass = createEClass(LITERAL_EXPR);
+
+    idRefEClass = createEClass(ID_REF);
+    createEAttribute(idRefEClass, ID_REF__NAME);
+
+    recordFieldExprEClass = createEClass(RECORD_FIELD_EXPR);
+    createEAttribute(recordFieldExprEClass, RECORD_FIELD_EXPR__NAME);
+    createEReference(recordFieldExprEClass, RECORD_FIELD_EXPR__EXPR);
+
+    baseUnitEClass = createEClass(BASE_UNIT);
+
+    derivedUnitEClass = createEClass(DERIVED_UNIT);
+    createEReference(derivedUnitEClass, DERIVED_UNIT__UNIT);
+
+    binaryUnitExprEClass = createEClass(BINARY_UNIT_EXPR);
+    createEReference(binaryUnitExprEClass, BINARY_UNIT_EXPR__LEFT);
+    createEAttribute(binaryUnitExprEClass, BINARY_UNIT_EXPR__OP);
+    createEReference(binaryUnitExprEClass, BINARY_UNIT_EXPR__RIGHT);
+
+    namedUnitExprEClass = createEClass(NAMED_UNIT_EXPR);
+    createEReference(namedUnitExprEClass, NAMED_UNIT_EXPR__UNIT);
+
+    namedTypeEClass = createEClass(NAMED_TYPE);
+    createEReference(namedTypeEClass, NAMED_TYPE__TYPE);
+    createEReference(namedTypeEClass, NAMED_TYPE__UNIT);
+
+    recordTypeEClass = createEClass(RECORD_TYPE);
+    createEReference(recordTypeEClass, RECORD_TYPE__FIELDS);
+
+    arrayTypeEClass = createEClass(ARRAY_TYPE);
+    createEReference(arrayTypeEClass, ARRAY_TYPE__BASE);
+    createEAttribute(arrayTypeEClass, ARRAY_TYPE__SIZE);
+
+    enumTypeEClass = createEClass(ENUM_TYPE);
+    createEReference(enumTypeEClass, ENUM_TYPE__VALUES);
+
+    intTypeEClass = createEClass(INT_TYPE);
+
+    boolTypeEClass = createEClass(BOOL_TYPE);
+
+    realTypeEClass = createEClass(REAL_TYPE);
+
+    userTypeEClass = createEClass(USER_TYPE);
+    createEReference(userTypeEClass, USER_TYPE__DEF);
+
+    binaryExprEClass = createEClass(BINARY_EXPR);
+    createEReference(binaryExprEClass, BINARY_EXPR__LEFT);
+    createEAttribute(binaryExprEClass, BINARY_EXPR__OP);
+    createEReference(binaryExprEClass, BINARY_EXPR__RIGHT);
+
+    unaryExprEClass = createEClass(UNARY_EXPR);
+    createEAttribute(unaryExprEClass, UNARY_EXPR__OP);
+    createEReference(unaryExprEClass, UNARY_EXPR__EXPR);
+
+    recordAccessExprEClass = createEClass(RECORD_ACCESS_EXPR);
+    createEReference(recordAccessExprEClass, RECORD_ACCESS_EXPR__RECORD);
+    createEReference(recordAccessExprEClass, RECORD_ACCESS_EXPR__FIELD);
+
+    recordUpdateExprEClass = createEClass(RECORD_UPDATE_EXPR);
+    createEReference(recordUpdateExprEClass, RECORD_UPDATE_EXPR__RECORD);
+    createEReference(recordUpdateExprEClass, RECORD_UPDATE_EXPR__FIELD);
+    createEReference(recordUpdateExprEClass, RECORD_UPDATE_EXPR__VALUE);
+
+    arrayAccessExprEClass = createEClass(ARRAY_ACCESS_EXPR);
+    createEReference(arrayAccessExprEClass, ARRAY_ACCESS_EXPR__ARRAY);
+    createEReference(arrayAccessExprEClass, ARRAY_ACCESS_EXPR__INDEX);
+
+    arrayUpdateExprEClass = createEClass(ARRAY_UPDATE_EXPR);
+    createEReference(arrayUpdateExprEClass, ARRAY_UPDATE_EXPR__ACCESS);
+    createEReference(arrayUpdateExprEClass, ARRAY_UPDATE_EXPR__VALUE);
+
+    idExprEClass = createEClass(ID_EXPR);
+    createEReference(idExprEClass, ID_EXPR__ID);
+
+    mIdExprEClass = createEClass(MID_EXPR);
+    createEReference(mIdExprEClass, MID_EXPR__IDS);
+
+    previousExprEClass = createEClass(PREVIOUS_EXPR);
+    createEReference(previousExprEClass, PREVIOUS_EXPR__VAR);
+    createEReference(previousExprEClass, PREVIOUS_EXPR__INIT);
+
+    ifThenElseExprEClass = createEClass(IF_THEN_ELSE_EXPR);
+    createEReference(ifThenElseExprEClass, IF_THEN_ELSE_EXPR__COND);
+    createEReference(ifThenElseExprEClass, IF_THEN_ELSE_EXPR__THEN);
+    createEReference(ifThenElseExprEClass, IF_THEN_ELSE_EXPR__ELSE);
+
+    recordExprEClass = createEClass(RECORD_EXPR);
+    createEReference(recordExprEClass, RECORD_EXPR__TYPE);
+    createEReference(recordExprEClass, RECORD_EXPR__FIELD_EXPRS);
+
+    arrayExprEClass = createEClass(ARRAY_EXPR);
+    createEReference(arrayExprEClass, ARRAY_EXPR__TYPE);
+    createEReference(arrayExprEClass, ARRAY_EXPR__EXPRS);
+
+    patternCallEClass = createEClass(PATTERN_CALL);
+    createEReference(patternCallEClass, PATTERN_CALL__PATTERN);
+    createEReference(patternCallEClass, PATTERN_CALL__ARGS);
+
+    specificationCallEClass = createEClass(SPECIFICATION_CALL);
+    createEReference(specificationCallEClass, SPECIFICATION_CALL__SPEC);
+    createEReference(specificationCallEClass, SPECIFICATION_CALL__ARGS);
+
+    intLiteralEClass = createEClass(INT_LITERAL);
+    createEAttribute(intLiteralEClass, INT_LITERAL__VALUE);
+    createEReference(intLiteralEClass, INT_LITERAL__UNIT);
+
+    boolLiteralEClass = createEClass(BOOL_LITERAL);
+    createEAttribute(boolLiteralEClass, BOOL_LITERAL__VALUE);
+
+    realLiteralEClass = createEClass(REAL_LITERAL);
+    createEAttribute(realLiteralEClass, REAL_LITERAL__VALUE);
+    createEReference(realLiteralEClass, REAL_LITERAL__UNIT);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private boolean isInitialized = false;
+
+  /**
+   * Complete the initialization of the package and its meta-model.  This
+   * method is guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void initializePackageContents()
+  {
+    if (isInitialized) return;
+    isInitialized = true;
+
+    // Initialize package
+    setName(eNAME);
+    setNsPrefix(eNS_PREFIX);
+    setNsURI(eNS_URI);
+
+    // Create type parameters
+
+    // Set bounds for type parameters
+
+    // Add supertypes to classes
+    specificationEClass.getESuperTypes().add(this.getFile());
+    definitionsEClass.getESuperTypes().add(this.getFile());
+    patternsEClass.getESuperTypes().add(this.getFile());
+    enumValueEClass.getESuperTypes().add(this.getIdRef());
+    constantEClass.getESuperTypes().add(this.getIdRef());
+    variableEClass.getESuperTypes().add(this.getIdRef());
+    macroEClass.getESuperTypes().add(this.getIdRef());
+    formalConstraintEClass.getESuperTypes().add(this.getConstraint());
+    englishConstraintEClass.getESuperTypes().add(this.getConstraint());
+    literalExprEClass.getESuperTypes().add(this.getExpr());
+    baseUnitEClass.getESuperTypes().add(this.getUnitDef());
+    derivedUnitEClass.getESuperTypes().add(this.getUnitDef());
+    binaryUnitExprEClass.getESuperTypes().add(this.getUnitExpr());
+    namedUnitExprEClass.getESuperTypes().add(this.getUnitExpr());
+    namedTypeEClass.getESuperTypes().add(this.getTypeDef());
+    recordTypeEClass.getESuperTypes().add(this.getTypeDef());
+    arrayTypeEClass.getESuperTypes().add(this.getTypeDef());
+    enumTypeEClass.getESuperTypes().add(this.getTypeDef());
+    intTypeEClass.getESuperTypes().add(this.getType());
+    boolTypeEClass.getESuperTypes().add(this.getType());
+    realTypeEClass.getESuperTypes().add(this.getType());
+    userTypeEClass.getESuperTypes().add(this.getType());
+    binaryExprEClass.getESuperTypes().add(this.getExpr());
+    unaryExprEClass.getESuperTypes().add(this.getExpr());
+    recordAccessExprEClass.getESuperTypes().add(this.getExpr());
+    recordUpdateExprEClass.getESuperTypes().add(this.getExpr());
+    arrayAccessExprEClass.getESuperTypes().add(this.getExpr());
+    arrayUpdateExprEClass.getESuperTypes().add(this.getExpr());
+    idExprEClass.getESuperTypes().add(this.getExpr());
+    mIdExprEClass.getESuperTypes().add(this.getExpr());
+    previousExprEClass.getESuperTypes().add(this.getExpr());
+    ifThenElseExprEClass.getESuperTypes().add(this.getExpr());
+    recordExprEClass.getESuperTypes().add(this.getExpr());
+    arrayExprEClass.getESuperTypes().add(this.getExpr());
+    patternCallEClass.getESuperTypes().add(this.getExpr());
+    specificationCallEClass.getESuperTypes().add(this.getExpr());
+    intLiteralEClass.getESuperTypes().add(this.getLiteralExpr());
+    boolLiteralEClass.getESuperTypes().add(this.getLiteralExpr());
+    realLiteralEClass.getESuperTypes().add(this.getLiteralExpr());
+
+    // Initialize classes and features; add operations and parameters
+    initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFile_Name(), ecorePackage.getEString(), "name", null, 0, 1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(specificationEClass, Specification.class, "Specification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSpecification_Imports(), this.getImport(), null, "imports", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Units(), this.getUnitDef(), null, "units", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Typedefs(), this.getTypeDef(), null, "typedefs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Constants(), this.getConstant(), null, "constants", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Inputs(), this.getVariable(), null, "inputs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Outputs(), this.getVariable(), null, "outputs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_State(), this.getVariable(), null, "state", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Macros(), this.getMacro(), null, "macros", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Assumptions(), this.getConstraint(), null, "assumptions", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Requirements(), this.getConstraint(), null, "requirements", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Behaviors(), this.getConstraint(), null, "behaviors", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getImport_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(definitionsEClass, Definitions.class, "Definitions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDefinitions_Unitdefs(), this.getUnitDef(), null, "unitdefs", null, 0, -1, Definitions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDefinitions_Typedefs(), this.getTypeDef(), null, "typedefs", null, 0, -1, Definitions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDefinitions_Constants(), this.getConstant(), null, "constants", null, 0, -1, Definitions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patternsEClass, Patterns.class, "Patterns", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatterns_Patterns(), this.getPattern(), null, "patterns", null, 0, -1, Patterns.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPattern_Name(), ecorePackage.getEString(), "name", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(unitDefEClass, UnitDef.class, "UnitDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUnitDef_Name(), ecorePackage.getEString(), "name", null, 0, 1, UnitDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getUnitDef_Description(), ecorePackage.getEString(), "description", null, 0, 1, UnitDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(unitExprEClass, UnitExpr.class, "UnitExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(typeDefEClass, TypeDef.class, "TypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTypeDef_Name(), ecorePackage.getEString(), "name", null, 0, 1, TypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(recordTypeFieldEClass, RecordTypeField.class, "RecordTypeField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRecordTypeField_Name(), ecorePackage.getEString(), "name", null, 0, 1, RecordTypeField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordTypeField_Type(), this.getType(), null, "type", null, 0, 1, RecordTypeField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(enumValueEClass, EnumValue.class, "EnumValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(typeEClass, Type.class, "Type", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(constantEClass, Constant.class, "Constant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConstant_Type(), this.getType(), null, "type", null, 0, 1, Constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConstant_Expr(), this.getExpr(), null, "expr", null, 0, 1, Constant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(variableEClass, Variable.class, "Variable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getVariable_Type(), this.getType(), null, "type", null, 0, 1, Variable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(macroEClass, Macro.class, "Macro", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMacro_Type(), this.getType(), null, "type", null, 0, 1, Macro.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMacro_Expr(), this.getExpr(), null, "expr", null, 0, 1, Macro.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getConstraint_Name(), ecorePackage.getEString(), "name", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(formalConstraintEClass, FormalConstraint.class, "FormalConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFormalConstraint_Expr(), this.getExpr(), null, "expr", null, 0, 1, FormalConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(englishConstraintEClass, EnglishConstraint.class, "EnglishConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEnglishConstraint_Text(), ecorePackage.getEString(), "text", null, 0, 1, EnglishConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(exprEClass, Expr.class, "Expr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(literalExprEClass, LiteralExpr.class, "LiteralExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(idRefEClass, IdRef.class, "IdRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIdRef_Name(), ecorePackage.getEString(), "name", null, 0, 1, IdRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(recordFieldExprEClass, RecordFieldExpr.class, "RecordFieldExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRecordFieldExpr_Name(), ecorePackage.getEString(), "name", null, 0, 1, RecordFieldExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordFieldExpr_Expr(), this.getExpr(), null, "expr", null, 0, 1, RecordFieldExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(baseUnitEClass, BaseUnit.class, "BaseUnit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(derivedUnitEClass, DerivedUnit.class, "DerivedUnit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDerivedUnit_Unit(), this.getUnitExpr(), null, "unit", null, 0, 1, DerivedUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(binaryUnitExprEClass, BinaryUnitExpr.class, "BinaryUnitExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBinaryUnitExpr_Left(), this.getUnitExpr(), null, "left", null, 0, 1, BinaryUnitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBinaryUnitExpr_Op(), ecorePackage.getEString(), "op", null, 0, 1, BinaryUnitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBinaryUnitExpr_Right(), this.getUnitExpr(), null, "right", null, 0, 1, BinaryUnitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(namedUnitExprEClass, NamedUnitExpr.class, "NamedUnitExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNamedUnitExpr_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, NamedUnitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(namedTypeEClass, NamedType.class, "NamedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNamedType_Type(), this.getType(), null, "type", null, 0, 1, NamedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNamedType_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, NamedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(recordTypeEClass, RecordType.class, "RecordType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRecordType_Fields(), this.getRecordTypeField(), null, "fields", null, 0, -1, RecordType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(arrayTypeEClass, ArrayType.class, "ArrayType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getArrayType_Base(), this.getType(), null, "base", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getArrayType_Size(), ecorePackage.getEInt(), "size", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(enumTypeEClass, EnumType.class, "EnumType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEnumType_Values(), this.getEnumValue(), null, "values", null, 0, -1, EnumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(intTypeEClass, IntType.class, "IntType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(boolTypeEClass, BoolType.class, "BoolType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(realTypeEClass, RealType.class, "RealType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(userTypeEClass, UserType.class, "UserType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getUserType_Def(), this.getTypeDef(), null, "def", null, 0, 1, UserType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(binaryExprEClass, BinaryExpr.class, "BinaryExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBinaryExpr_Left(), this.getExpr(), null, "left", null, 0, 1, BinaryExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBinaryExpr_Op(), ecorePackage.getEString(), "op", null, 0, 1, BinaryExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBinaryExpr_Right(), this.getExpr(), null, "right", null, 0, 1, BinaryExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(unaryExprEClass, UnaryExpr.class, "UnaryExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getUnaryExpr_Op(), ecorePackage.getEString(), "op", null, 0, 1, UnaryExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getUnaryExpr_Expr(), this.getExpr(), null, "expr", null, 0, 1, UnaryExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(recordAccessExprEClass, RecordAccessExpr.class, "RecordAccessExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRecordAccessExpr_Record(), this.getExpr(), null, "record", null, 0, 1, RecordAccessExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordAccessExpr_Field(), this.getRecordFieldExpr(), null, "field", null, 0, 1, RecordAccessExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(recordUpdateExprEClass, RecordUpdateExpr.class, "RecordUpdateExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRecordUpdateExpr_Record(), this.getExpr(), null, "record", null, 0, 1, RecordUpdateExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordUpdateExpr_Field(), this.getRecordFieldExpr(), null, "field", null, 0, 1, RecordUpdateExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordUpdateExpr_Value(), this.getExpr(), null, "value", null, 0, 1, RecordUpdateExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(arrayAccessExprEClass, ArrayAccessExpr.class, "ArrayAccessExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getArrayAccessExpr_Array(), this.getExpr(), null, "array", null, 0, 1, ArrayAccessExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArrayAccessExpr_Index(), this.getExpr(), null, "index", null, 0, 1, ArrayAccessExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(arrayUpdateExprEClass, ArrayUpdateExpr.class, "ArrayUpdateExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getArrayUpdateExpr_Access(), this.getArrayAccessExpr(), null, "access", null, 0, 1, ArrayUpdateExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArrayUpdateExpr_Value(), this.getExpr(), null, "value", null, 0, 1, ArrayUpdateExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(idExprEClass, IdExpr.class, "IdExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getIdExpr_Id(), this.getIdRef(), null, "id", null, 0, 1, IdExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(mIdExprEClass, MIdExpr.class, "MIdExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getMIdExpr_Ids(), this.getIdRef(), null, "ids", null, 0, -1, MIdExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(previousExprEClass, PreviousExpr.class, "PreviousExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPreviousExpr_Var(), this.getExpr(), null, "var", null, 0, 1, PreviousExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPreviousExpr_Init(), this.getExpr(), null, "init", null, 0, 1, PreviousExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(ifThenElseExprEClass, IfThenElseExpr.class, "IfThenElseExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getIfThenElseExpr_Cond(), this.getExpr(), null, "cond", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfThenElseExpr_Then(), this.getExpr(), null, "then", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIfThenElseExpr_Else(), this.getExpr(), null, "else", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(recordExprEClass, RecordExpr.class, "RecordExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRecordExpr_Type(), this.getRecordType(), null, "type", null, 0, 1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordExpr_FieldExprs(), this.getRecordFieldExpr(), null, "fieldExprs", null, 0, -1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(arrayExprEClass, ArrayExpr.class, "ArrayExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getArrayExpr_Type(), this.getArrayType(), null, "type", null, 0, 1, ArrayExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArrayExpr_Exprs(), this.getExpr(), null, "exprs", null, 0, -1, ArrayExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(patternCallEClass, PatternCall.class, "PatternCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPatternCall_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, PatternCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPatternCall_Args(), this.getExpr(), null, "args", null, 0, -1, PatternCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(specificationCallEClass, SpecificationCall.class, "SpecificationCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSpecificationCall_Spec(), this.getSpecification(), null, "spec", null, 0, 1, SpecificationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecificationCall_Args(), this.getExpr(), null, "args", null, 0, -1, SpecificationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(intLiteralEClass, IntLiteral.class, "IntLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIntLiteral_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIntLiteral_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, IntLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(boolLiteralEClass, BoolLiteral.class, "BoolLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBoolLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, BoolLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(realLiteralEClass, RealLiteral.class, "RealLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRealLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, RealLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRealLiteral_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, RealLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Create resource
+    createResource(eNS_URI);
+  }
+
+} //SpearPackageImpl

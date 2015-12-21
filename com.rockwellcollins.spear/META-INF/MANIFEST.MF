@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: com.rockwellcollins.spear
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: com.rockwellcollins.spear; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types,
+ org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.rockwellcollins,
+ com.rockwellcollins.services,
+ com.rockwellcollins.spear,
+ com.rockwellcollins.spear.impl,
+ com.rockwellcollins.spear.util,
+ com.rockwellcollins.serializer,
+ com.rockwellcollins.parser.antlr,
+ com.rockwellcollins.parser.antlr.internal,
+ com.rockwellcollins.validation,
+ com.rockwellcollins.scoping,
+ com.rockwellcollins.generator,
+ com.rockwellcollins.formatting
+Bundle-ClassPath: .,
+ dependencies/jkind-api.jar
