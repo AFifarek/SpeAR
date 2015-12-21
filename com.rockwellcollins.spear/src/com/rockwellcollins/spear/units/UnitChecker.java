@@ -19,6 +19,7 @@ import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.DerivedUnit;
 import com.rockwellcollins.spear.EnumType;
+import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
@@ -201,7 +202,7 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 
 	@Override
 	public SpearUnit caseEnumType(EnumType enumtype) {
-		return new EnumUnit();
+		return new EnumUnit(enumtype.getName());
 	}
 
 	/***************************************************************************************************/
@@ -548,6 +549,11 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 		}
 	}
 
+	@Override
+	public SpearUnit caseEnumValue(EnumValue ev) {
+		return doSwitch(ev.eContainer());
+	}
+	
 	// TODO: remove this.
 	@Override
 	public SpearUnit caseExpr(Expr e) {
