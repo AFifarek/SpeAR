@@ -351,13 +351,49 @@ public interface SpearPackage extends EPackage
   int PATTERN__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN__INPUTS = 1;
+
+  /**
+   * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN__OUTPUTS = 2;
+
+  /**
+   * The feature id for the '<em><b>Node</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN__NODE = 3;
+
+  /**
+   * The feature id for the '<em><b>English</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN__ENGLISH = 4;
+
+  /**
    * The number of structural features of the '<em>Pattern</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PATTERN_FEATURE_COUNT = 1;
+  int PATTERN_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.UnitDefImpl <em>Unit Def</em>}' class.
@@ -2158,6 +2194,50 @@ public interface SpearPackage extends EPackage
   EAttribute getPattern_Name();
 
   /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Pattern#getInputs <em>Inputs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Inputs</em>'.
+   * @see com.rockwellcollins.spear.Pattern#getInputs()
+   * @see #getPattern()
+   * @generated
+   */
+  EReference getPattern_Inputs();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Pattern#getOutputs <em>Outputs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Outputs</em>'.
+   * @see com.rockwellcollins.spear.Pattern#getOutputs()
+   * @see #getPattern()
+   * @generated
+   */
+  EReference getPattern_Outputs();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Pattern#getNode <em>Node</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Node</em>'.
+   * @see com.rockwellcollins.spear.Pattern#getNode()
+   * @see #getPattern()
+   * @generated
+   */
+  EAttribute getPattern_Node();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Pattern#getEnglish <em>English</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>English</em>'.
+   * @see com.rockwellcollins.spear.Pattern#getEnglish()
+   * @see #getPattern()
+   * @generated
+   */
+  EAttribute getPattern_English();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.UnitDef <em>Unit Def</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3515,6 +3595,38 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EAttribute PATTERN__NAME = eINSTANCE.getPattern_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Inputs</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN__INPUTS = eINSTANCE.getPattern_Inputs();
+
+    /**
+     * The meta object literal for the '<em><b>Outputs</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN__OUTPUTS = eINSTANCE.getPattern_Outputs();
+
+    /**
+     * The meta object literal for the '<em><b>Node</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PATTERN__NODE = eINSTANCE.getPattern_Node();
+
+    /**
+     * The meta object literal for the '<em><b>English</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PATTERN__ENGLISH = eINSTANCE.getPattern_English();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.UnitDefImpl <em>Unit Def</em>}' class.

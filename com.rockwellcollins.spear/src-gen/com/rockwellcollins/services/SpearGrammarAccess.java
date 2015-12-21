@@ -371,13 +371,35 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPatternKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cInputsKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cInputsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cInputsVariableParserRuleCall_3_0 = (RuleCall)cInputsAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cInputsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cInputsVariableParserRuleCall_4_1_0 = (RuleCall)cInputsAssignment_4_1.eContents().get(0);
+		private final Keyword cOutputsKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cOutputsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cOutputsVariableParserRuleCall_6_0 = (RuleCall)cOutputsAssignment_6.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cCommaKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cOutputsAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cOutputsVariableParserRuleCall_7_1_0 = (RuleCall)cOutputsAssignment_7_1.eContents().get(0);
+		private final Keyword cLustreKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cNodeAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cNodeSTRINGTerminalRuleCall_9_0 = (RuleCall)cNodeAssignment_9.eContents().get(0);
+		private final Keyword cEnglishKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Assignment cEnglishAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final RuleCall cEnglishSTRINGTerminalRuleCall_11_0 = (RuleCall)cEnglishAssignment_11.eContents().get(0);
 		
 		////This is intentionally stubbed out for now pending discussions with AFRL
 		//Pattern:
-		//	"Pattern" name=ID;
+		//	"Pattern" name=ID "Inputs:" inputs+=Variable ("," inputs+=Variable)* "Outputs:" outputs+=Variable (","
+		//	outputs+=Variable)* "Lustre:" node=STRING "English:" english=STRING;
 		@Override public ParserRule getRule() { return rule; }
 
-		//"Pattern" name=ID
+		//"Pattern" name=ID "Inputs:" inputs+=Variable ("," inputs+=Variable)* "Outputs:" outputs+=Variable (","
+		//outputs+=Variable)* "Lustre:" node=STRING "English:" english=STRING
 		public Group getGroup() { return cGroup; }
 
 		//"Pattern"
@@ -388,6 +410,66 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+
+		//"Inputs:"
+		public Keyword getInputsKeyword_2() { return cInputsKeyword_2; }
+
+		//inputs+=Variable
+		public Assignment getInputsAssignment_3() { return cInputsAssignment_3; }
+
+		//Variable
+		public RuleCall getInputsVariableParserRuleCall_3_0() { return cInputsVariableParserRuleCall_3_0; }
+
+		//("," inputs+=Variable)*
+		public Group getGroup_4() { return cGroup_4; }
+
+		//","
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+
+		//inputs+=Variable
+		public Assignment getInputsAssignment_4_1() { return cInputsAssignment_4_1; }
+
+		//Variable
+		public RuleCall getInputsVariableParserRuleCall_4_1_0() { return cInputsVariableParserRuleCall_4_1_0; }
+
+		//"Outputs:"
+		public Keyword getOutputsKeyword_5() { return cOutputsKeyword_5; }
+
+		//outputs+=Variable
+		public Assignment getOutputsAssignment_6() { return cOutputsAssignment_6; }
+
+		//Variable
+		public RuleCall getOutputsVariableParserRuleCall_6_0() { return cOutputsVariableParserRuleCall_6_0; }
+
+		//("," outputs+=Variable)*
+		public Group getGroup_7() { return cGroup_7; }
+
+		//","
+		public Keyword getCommaKeyword_7_0() { return cCommaKeyword_7_0; }
+
+		//outputs+=Variable
+		public Assignment getOutputsAssignment_7_1() { return cOutputsAssignment_7_1; }
+
+		//Variable
+		public RuleCall getOutputsVariableParserRuleCall_7_1_0() { return cOutputsVariableParserRuleCall_7_1_0; }
+
+		//"Lustre:"
+		public Keyword getLustreKeyword_8() { return cLustreKeyword_8; }
+
+		//node=STRING
+		public Assignment getNodeAssignment_9() { return cNodeAssignment_9; }
+
+		//STRING
+		public RuleCall getNodeSTRINGTerminalRuleCall_9_0() { return cNodeSTRINGTerminalRuleCall_9_0; }
+
+		//"English:"
+		public Keyword getEnglishKeyword_10() { return cEnglishKeyword_10; }
+
+		//english=STRING
+		public Assignment getEnglishAssignment_11() { return cEnglishAssignment_11; }
+
+		//STRING
+		public RuleCall getEnglishSTRINGTerminalRuleCall_11_0() { return cEnglishSTRINGTerminalRuleCall_11_0; }
 	}
 
 	public class UnitDefElements extends AbstractParserRuleElementFinder {
@@ -2695,7 +2777,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 	////This is intentionally stubbed out for now pending discussions with AFRL
 	//Pattern:
-	//	"Pattern" name=ID;
+	//	"Pattern" name=ID "Inputs:" inputs+=Variable ("," inputs+=Variable)* "Outputs:" outputs+=Variable (","
+	//	outputs+=Variable)* "Lustre:" node=STRING "English:" english=STRING;
 	public PatternElements getPatternAccess() {
 		return pPattern;
 	}

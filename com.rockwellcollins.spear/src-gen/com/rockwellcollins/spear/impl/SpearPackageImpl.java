@@ -736,6 +736,46 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getPattern_Inputs()
+  {
+    return (EReference)patternEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPattern_Outputs()
+  {
+    return (EReference)patternEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPattern_Node()
+  {
+    return (EAttribute)patternEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPattern_English()
+  {
+    return (EAttribute)patternEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getUnitDef()
   {
     return unitDefEClass;
@@ -1860,6 +1900,10 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     patternEClass = createEClass(PATTERN);
     createEAttribute(patternEClass, PATTERN__NAME);
+    createEReference(patternEClass, PATTERN__INPUTS);
+    createEReference(patternEClass, PATTERN__OUTPUTS);
+    createEAttribute(patternEClass, PATTERN__NODE);
+    createEAttribute(patternEClass, PATTERN__ENGLISH);
 
     unitDefEClass = createEClass(UNIT_DEF);
     createEAttribute(unitDefEClass, UNIT_DEF__NAME);
@@ -2113,6 +2157,10 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPattern_Name(), ecorePackage.getEString(), "name", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPattern_Inputs(), this.getVariable(), null, "inputs", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPattern_Outputs(), this.getVariable(), null, "outputs", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPattern_Node(), ecorePackage.getEString(), "node", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPattern_English(), ecorePackage.getEString(), "english", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unitDefEClass, UnitDef.class, "UnitDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnitDef_Name(), ecorePackage.getEString(), "name", null, 0, 1, UnitDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

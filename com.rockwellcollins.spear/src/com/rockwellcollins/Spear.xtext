@@ -31,7 +31,13 @@ Definitions:
 Patterns: 'Patterns' name=ID patterns+=Pattern* ;
 
 //This is intentionally stubbed out for now pending discussions with AFRL
-Pattern: 'Pattern' (name=ID) ;
+Pattern: 
+	'Pattern' (name=ID)
+	'Inputs:' (inputs+=Variable) (',' inputs+=Variable)*
+	'Outputs:' (outputs+=Variable) (',' outputs+=Variable)*
+	'Lustre:' node=STRING
+	'English:' english=STRING
+;
 
 UnitDef:
 	{BaseUnit} name=ID (description=STRING)?

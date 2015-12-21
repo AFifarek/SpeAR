@@ -586,17 +586,18 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Constraint:
-	 *     name=ID
+	 *     (
+	 *         name=ID 
+	 *         inputs+=Variable 
+	 *         inputs+=Variable* 
+	 *         outputs+=Variable 
+	 *         outputs+=Variable* 
+	 *         node=STRING 
+	 *         english=STRING
+	 *     )
 	 */
 	protected void sequence_Pattern(EObject context, Pattern semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.PATTERN__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.PATTERN__NAME));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getPatternAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

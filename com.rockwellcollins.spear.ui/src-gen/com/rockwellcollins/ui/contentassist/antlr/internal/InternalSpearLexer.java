@@ -77,6 +77,8 @@ public class InternalSpearLexer extends Lexer {
     public static final int T__75=75;
     public static final int T__32=32;
     public static final int T__76=76;
+    public static final int T__80=80;
+    public static final int T__81=81;
     public static final int RULE_WS=9;
     public static final int RULE_ANY_OTHER=10;
     public static final int T__48=48;
@@ -1042,10 +1044,11 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:56:7: ( '(' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:56:9: '('
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:56:7: ( 'Lustre:' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:56:9: 'Lustre:'
             {
-            match('('); 
+            match("Lustre:"); 
+
 
             }
 
@@ -1062,10 +1065,11 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:57:7: ( ')' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:57:9: ')'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:57:7: ( 'English:' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:57:9: 'English:'
             {
-            match(')'); 
+            match("English:"); 
+
 
             }
 
@@ -1082,10 +1086,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:58:7: ( '=' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:58:9: '='
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:58:7: ( ',' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:58:9: ','
             {
-            match('='); 
+            match(','); 
 
             }
 
@@ -1102,11 +1106,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:59:7: ( 'record' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:59:9: 'record'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:59:7: ( '(' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:59:9: '('
             {
-            match("record"); 
-
+            match('('); 
 
             }
 
@@ -1123,10 +1126,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:60:7: ( '{' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:60:9: '{'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:60:7: ( ')' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:60:9: ')'
             {
-            match('{'); 
+            match(')'); 
 
             }
 
@@ -1143,10 +1146,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:61:7: ( '}' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:61:9: '}'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:61:7: ( '=' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:61:9: '='
             {
-            match('}'); 
+            match('='); 
 
             }
 
@@ -1163,10 +1166,11 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:62:7: ( ',' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:62:9: ','
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:62:7: ( 'record' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:62:9: 'record'
             {
-            match(','); 
+            match("record"); 
+
 
             }
 
@@ -1183,10 +1187,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:63:7: ( '[' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:63:9: '['
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:63:7: ( '{' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:63:9: '{'
             {
-            match('['); 
+            match('{'); 
 
             }
 
@@ -1203,10 +1207,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:64:7: ( ']' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:64:9: ']'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:64:7: ( '}' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:64:9: '}'
             {
-            match(']'); 
+            match('}'); 
 
             }
 
@@ -1223,11 +1227,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:65:7: ( 'enum' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:65:9: 'enum'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:65:7: ( '[' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:65:9: '['
             {
-            match("enum"); 
-
+            match('['); 
 
             }
 
@@ -1244,11 +1247,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:66:7: ( 'int' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:66:9: 'int'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:66:7: ( ']' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:66:9: ']'
             {
-            match("int"); 
-
+            match(']'); 
 
             }
 
@@ -1265,10 +1267,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:67:7: ( 'bool' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:67:9: 'bool'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:67:7: ( 'enum' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:67:9: 'enum'
             {
-            match("bool"); 
+            match("enum"); 
 
 
             }
@@ -1286,10 +1288,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:68:7: ( 'real' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:68:9: 'real'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:68:7: ( 'int' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:68:9: 'int'
             {
-            match("real"); 
+            match("int"); 
 
 
             }
@@ -1307,10 +1309,11 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:69:7: ( '.' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:69:9: '.'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:69:7: ( 'bool' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:69:9: 'bool'
             {
-            match('.'); 
+            match("bool"); 
+
 
             }
 
@@ -1327,10 +1330,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:70:7: ( ':=' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:70:9: ':='
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:70:7: ( 'real' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:70:9: 'real'
             {
-            match(":="); 
+            match("real"); 
 
 
             }
@@ -1348,10 +1351,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:71:7: ( '|' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:71:9: '|'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:71:7: ( '.' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:71:9: '.'
             {
-            match('|'); 
+            match('.'); 
 
             }
 
@@ -1368,10 +1371,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:72:7: ( 'prev' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:72:9: 'prev'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:72:7: ( ':=' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:72:9: ':='
             {
-            match("prev"); 
+            match(":="); 
 
 
             }
@@ -1389,11 +1392,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:73:7: ( 'if' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:73:9: 'if'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:73:7: ( '|' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:73:9: '|'
             {
-            match("if"); 
-
+            match('|'); 
 
             }
 
@@ -1410,10 +1412,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:74:7: ( 'then' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:74:9: 'then'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:74:7: ( 'prev' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:74:9: 'prev'
             {
-            match("then"); 
+            match("prev"); 
 
 
             }
@@ -1431,10 +1433,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:75:7: ( 'else' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:75:9: 'else'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:75:7: ( 'if' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:75:9: 'if'
             {
-            match("else"); 
+            match("if"); 
 
 
             }
@@ -1452,10 +1454,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:76:7: ( 'new' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:76:9: 'new'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:76:7: ( 'then' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:76:9: 'then'
             {
-            match("new"); 
+            match("then"); 
 
 
             }
@@ -1473,10 +1475,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:77:7: ( 'pattern' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:77:9: 'pattern'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:77:7: ( 'else' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:77:9: 'else'
             {
-            match("pattern"); 
+            match("else"); 
 
 
             }
@@ -1494,10 +1496,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:78:7: ( 'spec' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:78:9: 'spec'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:78:7: ( 'new' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:78:9: 'new'
             {
-            match("spec"); 
+            match("new"); 
 
 
             }
@@ -1515,10 +1517,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:79:7: ( 'and' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:79:9: 'and'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:79:7: ( 'pattern' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:79:9: 'pattern'
             {
-            match("and"); 
+            match("pattern"); 
 
 
             }
@@ -1531,15 +1533,57 @@ public class InternalSpearLexer extends Lexer {
     }
     // $ANTLR end "T__79"
 
+    // $ANTLR start "T__80"
+    public final void mT__80() throws RecognitionException {
+        try {
+            int _type = T__80;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:80:7: ( 'spec' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:80:9: 'spec'
+            {
+            match("spec"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__80"
+
+    // $ANTLR start "T__81"
+    public final void mT__81() throws RecognitionException {
+        try {
+            int _type = T__81;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:81:7: ( 'and' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:81:9: 'and'
+            {
+            match("and"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__81"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13039:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13039:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13573:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13573:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13039:11: ( '^' )?
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13573:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -1548,7 +1592,7 @@ public class InternalSpearLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13039:11: '^'
+                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13573:11: '^'
                     {
                     match('^'); 
 
@@ -1566,7 +1610,7 @@ public class InternalSpearLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13039:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13573:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -1615,10 +1659,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13041:10: ( ( '0' .. '9' )+ )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13041:12: ( '0' .. '9' )+
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13575:10: ( ( '0' .. '9' )+ )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13575:12: ( '0' .. '9' )+
             {
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13041:12: ( '0' .. '9' )+
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13575:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -1632,7 +1676,7 @@ public class InternalSpearLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13041:13: '0' .. '9'
+            	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13575:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1664,10 +1708,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1685,10 +1729,10 @@ public class InternalSpearLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -1704,7 +1748,7 @@ public class InternalSpearLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:21: '\\\\' .
+                    	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1712,7 +1756,7 @@ public class InternalSpearLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1737,10 +1781,10 @@ public class InternalSpearLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -1756,7 +1800,7 @@ public class InternalSpearLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:54: '\\\\' .
+                    	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1764,7 +1808,7 @@ public class InternalSpearLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13043:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13577:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1807,12 +1851,12 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13045:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13045:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13579:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13579:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13045:24: ( options {greedy=false; } : . )*
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13579:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -1837,7 +1881,7 @@ public class InternalSpearLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13045:52: .
+            	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13579:52: .
             	    {
             	    matchAny(); 
 
@@ -1867,12 +1911,12 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13047:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13047:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13581:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13581:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13047:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13581:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -1885,7 +1929,7 @@ public class InternalSpearLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13047:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13581:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1905,7 +1949,7 @@ public class InternalSpearLexer extends Lexer {
                 }
             } while (true);
 
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13047:40: ( ( '\\r' )? '\\n' )?
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13581:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1914,9 +1958,9 @@ public class InternalSpearLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13047:41: ( '\\r' )? '\\n'
+                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13581:41: ( '\\r' )? '\\n'
                     {
-                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13047:41: ( '\\r' )?
+                    // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13581:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1925,7 +1969,7 @@ public class InternalSpearLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13047:41: '\\r'
+                            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13581:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1957,10 +2001,10 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13049:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13049:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13583:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13583:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13049:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13583:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -2014,8 +2058,8 @@ public class InternalSpearLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13051:16: ( . )
-            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13051:18: .
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13585:16: ( . )
+            // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:13585:18: .
             {
             matchAny(); 
 
@@ -2030,8 +2074,8 @@ public class InternalSpearLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt12=76;
+        // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:8: ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt12=78;
         alt12 = dfa12.predict(input);
         switch (alt12) {
             case 1 :
@@ -2518,49 +2562,63 @@ public class InternalSpearLexer extends Lexer {
                 }
                 break;
             case 70 :
-                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:424: RULE_ID
+                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:424: T__80
+                {
+                mT__80(); 
+
+                }
+                break;
+            case 71 :
+                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:430: T__81
+                {
+                mT__81(); 
+
+                }
+                break;
+            case 72 :
+                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:436: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 71 :
-                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:432: RULE_INT
+            case 73 :
+                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:444: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 72 :
-                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:441: RULE_STRING
+            case 74 :
+                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:453: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 73 :
-                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:453: RULE_ML_COMMENT
+            case 75 :
+                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:465: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 74 :
-                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:469: RULE_SL_COMMENT
+            case 76 :
+                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:481: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 75 :
-                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:485: RULE_WS
+            case 77 :
+                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:497: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 76 :
-                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:493: RULE_ANY_OTHER
+            case 78 :
+                // ../com.rockwellcollins.spear.ui/src-gen/com/rockwellcollins/ui/contentassist/antlr/internal/InternalSpear.g:1:505: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -2574,245 +2632,246 @@ public class InternalSpearLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\1\uffff\1\64\1\71\1\74\2\71\1\102\1\71\1\107\1\71\1\114\1\116"+
-        "\3\uffff\1\124\1\71\1\130\1\131\13\71\2\uffff\1\71\5\uffff\2\71"+
-        "\2\uffff\2\71\1\62\2\uffff\2\62\4\uffff\3\71\1\174\4\uffff\1\175"+
-        "\4\71\1\uffff\4\71\1\uffff\2\71\13\uffff\3\71\2\uffff\14\71\2\uffff"+
-        "\1\71\5\uffff\3\71\2\uffff\3\71\4\uffff\1\71\1\u00a3\2\uffff\1\71"+
-        "\1\u00a5\11\71\1\u00af\1\u00b0\25\71\1\u00c6\2\71\1\uffff\1\u00c9"+
-        "\1\uffff\1\u00ca\2\71\1\u00cd\1\u00ce\3\71\1\u00d2\2\uffff\17\71"+
-        "\1\u00e2\1\u00e3\1\u00e4\1\u00e5\1\u00e6\1\71\1\uffff\2\71\2\uffff"+
-        "\2\71\2\uffff\2\71\1\u00ee\1\uffff\2\71\1\u00f1\1\u00f2\13\71\5"+
-        "\uffff\2\71\1\u0100\1\uffff\2\71\2\uffff\2\71\2\uffff\4\71\1\uffff"+
-        "\5\71\1\u010e\1\71\1\u0110\1\uffff\4\71\1\uffff\4\71\1\uffff\2\71"+
-        "\1\u011c\1\uffff\1\u011d\1\uffff\1\u011e\1\71\1\uffff\1\71\1\uffff"+
-        "\5\71\1\u0126\3\uffff\7\71\1\uffff\4\71\1\uffff\5\71\1\u0137\3\71"+
-        "\1\u013b\1\71\2\uffff\1\71\1\u013e\1\uffff\1\71\2\uffff\6\71\1\uffff";
+        "\1\uffff\1\66\1\73\1\76\2\73\1\104\1\73\1\111\1\73\1\116\1\120"+
+        "\3\uffff\1\126\1\73\1\132\1\133\15\73\3\uffff\1\73\4\uffff\2\73"+
+        "\2\uffff\2\73\1\64\2\uffff\2\64\4\uffff\3\73\1\u0080\4\uffff\1\u0081"+
+        "\4\73\1\uffff\4\73\1\uffff\2\73\13\uffff\3\73\2\uffff\16\73\3\uffff"+
+        "\1\73\4\uffff\3\73\2\uffff\3\73\4\uffff\1\73\1\u00a9\2\uffff\1\73"+
+        "\1\u00ab\11\73\1\u00b5\1\u00b6\27\73\1\u00ce\2\73\1\uffff\1\u00d1"+
+        "\1\uffff\1\u00d2\2\73\1\u00d5\1\u00d6\3\73\1\u00da\2\uffff\21\73"+
+        "\1\u00ec\1\u00ed\1\u00ee\1\u00ef\1\u00f0\1\73\1\uffff\2\73\2\uffff"+
+        "\2\73\2\uffff\2\73\1\u00f8\1\uffff\2\73\1\u00fb\1\u00fc\15\73\5"+
+        "\uffff\2\73\1\u010c\1\uffff\2\73\2\uffff\2\73\2\uffff\4\73\1\uffff"+
+        "\7\73\1\u011c\1\73\1\u011e\1\uffff\4\73\1\uffff\4\73\1\uffff\2\73"+
+        "\1\u012a\1\uffff\1\73\1\uffff\1\u012c\1\uffff\1\u012d\1\73\1\uffff"+
+        "\1\73\1\uffff\5\73\1\u0135\4\uffff\7\73\1\uffff\4\73\1\uffff\5\73"+
+        "\1\u0146\3\73\1\u014a\1\73\2\uffff\1\73\1\u014d\1\uffff\1\73\2\uffff"+
+        "\6\73\1\uffff";
     static final String DFA12_eofS =
-        "\u0146\uffff";
+        "\u0155\uffff";
     static final String DFA12_minS =
         "\1\0\1\75\1\146\1\75\1\156\1\157\1\60\1\150\1\60\1\151\2\75\3\uffff"+
         "\1\52\1\145\2\60\1\151\1\101\1\141\1\155\1\145\1\156\1\157\1\141"+
-        "\1\163\1\145\1\141\2\uffff\1\145\5\uffff\1\154\1\157\2\uffff\1\141"+
-        "\1\156\1\101\2\uffff\2\0\4\uffff\1\40\1\160\1\164\1\60\4\uffff\1"+
-        "\60\1\143\1\162\1\125\1\160\1\uffff\1\151\2\145\1\141\1\uffff\1"+
-        "\156\1\145\13\uffff\1\164\1\167\1\164\2\uffff\1\163\1\114\1\154"+
-        "\2\160\1\146\1\151\1\156\1\143\1\163\1\161\1\164\2\uffff\1\141\5"+
-        "\uffff\1\165\1\163\1\157\2\uffff\1\145\1\164\1\144\4\uffff\1\154"+
-        "\1\60\2\uffff\1\145\1\60\1\105\1\145\1\147\1\145\1\156\1\143\1\164"+
-        "\2\143\2\60\1\160\1\164\1\123\1\163\1\165\1\157\2\151\1\164\1\163"+
-        "\1\162\2\165\1\164\1\157\1\154\1\155\1\145\1\154\1\166\1\164\1\60"+
-        "\1\151\1\162\1\uffff\1\60\1\uffff\1\60\1\163\1\147\2\60\1\151\2"+
-        "\145\1\60\2\uffff\1\165\1\157\1\105\1\145\1\164\1\162\1\166\1\156"+
-        "\1\163\1\164\1\157\1\155\1\151\1\145\1\162\5\60\1\145\1\uffff\1"+
-        "\145\1\164\2\uffff\1\72\1\145\2\uffff\1\146\1\72\1\60\1\uffff\1"+
-        "\164\1\162\2\60\1\163\1\164\1\145\1\151\1\72\1\141\1\163\1\160\2"+
-        "\162\1\144\5\uffff\1\162\1\163\1\60\1\uffff\1\162\1\151\2\uffff"+
-        "\1\163\1\151\2\uffff\1\72\1\163\1\144\1\164\1\uffff\1\156\1\72\1"+
-        "\164\1\145\1\156\1\60\1\156\1\60\1\uffff\1\163\1\143\1\72\1\143"+
-        "\1\uffff\1\72\1\122\1\151\1\164\1\uffff\1\151\1\155\1\60\1\uffff"+
+        "\1\163\1\145\1\141\1\165\1\156\3\uffff\1\145\4\uffff\1\154\1\157"+
+        "\2\uffff\1\141\1\156\1\101\2\uffff\2\0\4\uffff\1\40\1\160\1\164"+
+        "\1\60\4\uffff\1\60\1\143\1\162\1\125\1\160\1\uffff\1\151\2\145\1"+
+        "\141\1\uffff\1\156\1\145\13\uffff\1\164\1\167\1\164\2\uffff\1\163"+
+        "\1\114\1\154\2\160\1\146\1\151\1\156\1\143\1\163\1\161\1\164\1\163"+
+        "\1\147\3\uffff\1\141\4\uffff\1\165\1\163\1\157\2\uffff\1\145\1\164"+
+        "\1\144\4\uffff\1\154\1\60\2\uffff\1\145\1\60\1\105\1\145\1\147\1"+
+        "\145\1\156\1\143\1\164\2\143\2\60\1\160\1\164\1\123\1\163\1\165"+
+        "\1\157\2\151\1\164\1\163\1\162\2\165\2\164\1\154\1\157\1\154\1\155"+
+        "\1\145\1\154\1\166\1\164\1\60\1\151\1\162\1\uffff\1\60\1\uffff\1"+
+        "\60\1\163\1\147\2\60\1\151\2\145\1\60\2\uffff\1\165\1\157\1\105"+
+        "\1\145\1\164\1\162\1\166\1\156\1\163\1\164\1\157\1\155\1\151\1\145"+
+        "\1\162\1\151\1\162\5\60\1\145\1\uffff\1\145\1\164\2\uffff\1\72\1"+
+        "\145\2\uffff\1\146\1\72\1\60\1\uffff\1\164\1\162\2\60\1\163\1\164"+
+        "\1\145\1\151\1\72\1\141\1\163\1\160\2\162\1\145\1\163\1\144\5\uffff"+
+        "\1\162\1\163\1\60\1\uffff\1\162\1\151\2\uffff\1\163\1\151\2\uffff"+
+        "\1\72\1\163\1\144\1\164\1\uffff\1\156\1\72\1\164\1\145\1\156\1\72"+
+        "\1\150\1\60\1\156\1\60\1\uffff\1\163\1\143\1\72\1\143\1\uffff\1"+
+        "\72\1\122\1\151\1\164\1\uffff\1\151\1\155\1\60\1\uffff\1\72\1\uffff"+
         "\1\60\1\uffff\1\60\1\141\1\uffff\1\141\1\uffff\1\145\1\157\1\163"+
-        "\1\157\1\145\1\60\3\uffff\1\164\1\154\1\161\1\156\1\72\2\156\1\uffff"+
+        "\1\157\1\145\1\60\4\uffff\1\164\1\154\1\161\1\156\1\72\2\156\1\uffff"+
         "\1\151\1\154\1\165\1\163\1\uffff\1\163\1\164\1\157\1\171\1\151\1"+
         "\60\1\72\1\163\1\156\1\60\1\162\2\uffff\1\72\1\60\1\uffff\1\145"+
         "\2\uffff\1\155\1\145\1\156\1\164\1\163\1\72\1\uffff";
     static final String DFA12_maxS =
         "\1\uffff\1\75\1\163\1\76\1\162\1\157\1\172\1\162\1\172\1\160\1"+
         "\76\1\75\3\uffff\1\57\1\157\2\172\1\151\1\101\1\141\1\156\1\145"+
-        "\1\156\1\157\1\141\1\163\1\145\1\141\2\uffff\1\145\5\uffff\1\156"+
-        "\1\157\2\uffff\1\162\1\156\1\172\2\uffff\2\uffff\4\uffff\1\40\1"+
-        "\160\1\164\1\172\4\uffff\1\172\1\143\1\162\1\125\1\160\1\uffff\1"+
-        "\165\2\145\1\141\1\uffff\1\156\1\145\13\uffff\1\164\1\167\1\164"+
-        "\2\uffff\1\163\1\114\1\154\2\160\1\162\1\151\1\156\1\143\1\163\1"+
-        "\161\1\164\2\uffff\1\143\5\uffff\1\165\1\163\1\157\2\uffff\1\145"+
-        "\1\164\1\144\4\uffff\1\157\1\172\2\uffff\1\145\1\172\1\105\1\145"+
-        "\1\147\1\145\1\156\1\143\1\164\2\143\2\172\1\160\1\164\1\123\1\163"+
-        "\1\165\1\157\2\151\1\164\1\163\1\162\2\165\1\164\1\157\1\154\1\155"+
-        "\1\145\1\154\1\166\1\164\1\172\1\151\1\162\1\uffff\1\172\1\uffff"+
-        "\1\172\1\163\1\147\2\172\1\151\2\145\1\172\2\uffff\1\165\1\157\1"+
-        "\105\1\145\1\164\1\162\1\166\1\156\1\163\1\164\1\157\1\155\1\151"+
-        "\1\145\1\162\5\172\1\145\1\uffff\1\145\1\164\2\uffff\1\72\1\145"+
-        "\2\uffff\1\146\1\72\1\172\1\uffff\1\164\1\162\2\172\1\163\1\164"+
-        "\1\145\1\151\1\72\1\141\1\163\1\160\2\162\1\144\5\uffff\1\162\1"+
-        "\163\1\172\1\uffff\1\162\1\151\2\uffff\1\163\1\151\2\uffff\1\72"+
-        "\1\163\1\144\1\164\1\uffff\1\156\1\72\1\164\1\145\1\156\1\172\1"+
-        "\156\1\172\1\uffff\1\163\1\143\1\72\1\143\1\uffff\1\72\1\122\1\151"+
-        "\1\164\1\uffff\1\151\1\155\1\172\1\uffff\1\172\1\uffff\1\172\1\141"+
-        "\1\uffff\1\141\1\uffff\1\145\1\157\1\163\1\157\1\145\1\172\3\uffff"+
+        "\1\156\1\157\1\141\1\163\1\145\1\141\1\165\1\156\3\uffff\1\145\4"+
+        "\uffff\1\156\1\157\2\uffff\1\162\1\156\1\172\2\uffff\2\uffff\4\uffff"+
+        "\1\40\1\160\1\164\1\172\4\uffff\1\172\1\143\1\162\1\125\1\160\1"+
+        "\uffff\1\165\2\145\1\141\1\uffff\1\156\1\145\13\uffff\1\164\1\167"+
+        "\1\164\2\uffff\1\163\1\114\1\154\2\160\1\162\1\151\1\156\1\143\1"+
+        "\163\1\161\1\164\1\163\1\147\3\uffff\1\143\4\uffff\1\165\1\163\1"+
+        "\157\2\uffff\1\145\1\164\1\144\4\uffff\1\157\1\172\2\uffff\1\145"+
+        "\1\172\1\105\1\145\1\147\1\145\1\156\1\143\1\164\2\143\2\172\1\160"+
+        "\1\164\1\123\1\163\1\165\1\157\2\151\1\164\1\163\1\162\2\165\2\164"+
+        "\1\154\1\157\1\154\1\155\1\145\1\154\1\166\1\164\1\172\1\151\1\162"+
+        "\1\uffff\1\172\1\uffff\1\172\1\163\1\147\2\172\1\151\2\145\1\172"+
+        "\2\uffff\1\165\1\157\1\105\1\145\1\164\1\162\1\166\1\156\1\163\1"+
+        "\164\1\157\1\155\1\151\1\145\1\162\1\151\1\162\5\172\1\145\1\uffff"+
+        "\1\145\1\164\2\uffff\1\72\1\145\2\uffff\1\146\1\72\1\172\1\uffff"+
+        "\1\164\1\162\2\172\1\163\1\164\1\145\1\151\1\72\1\141\1\163\1\160"+
+        "\2\162\1\145\1\163\1\144\5\uffff\1\162\1\163\1\172\1\uffff\1\162"+
+        "\1\151\2\uffff\1\163\1\151\2\uffff\1\72\1\163\1\144\1\164\1\uffff"+
+        "\1\156\1\72\1\164\1\145\1\156\1\72\1\150\1\172\1\156\1\172\1\uffff"+
+        "\1\163\1\143\1\72\1\143\1\uffff\1\72\1\122\1\151\1\164\1\uffff\1"+
+        "\151\1\155\1\172\1\uffff\1\72\1\uffff\1\172\1\uffff\1\172\1\141"+
+        "\1\uffff\1\141\1\uffff\1\145\1\157\1\163\1\157\1\145\1\172\4\uffff"+
         "\1\164\1\154\1\161\1\156\1\72\2\156\1\uffff\1\151\1\154\1\165\1"+
         "\163\1\uffff\1\163\1\164\1\157\1\171\1\151\1\172\1\72\1\163\1\156"+
         "\1\172\1\162\2\uffff\1\72\1\172\1\uffff\1\145\2\uffff\1\155\1\145"+
         "\1\156\1\164\1\163\1\72\1\uffff";
     static final String DFA12_acceptS =
-        "\14\uffff\1\21\1\22\1\23\17\uffff\1\56\1\57\1\uffff\1\62\1\63\1"+
-        "\64\1\65\1\66\2\uffff\1\73\1\75\3\uffff\1\106\1\107\2\uffff\1\113"+
-        "\1\114\1\74\1\1\4\uffff\1\106\1\3\1\17\1\60\5\uffff\1\7\4\uffff"+
-        "\1\11\2\uffff\1\14\1\20\1\13\1\16\1\15\1\21\1\22\1\23\1\111\1\112"+
-        "\1\24\3\uffff\1\26\1\30\14\uffff\1\56\1\57\1\uffff\1\62\1\63\1\64"+
-        "\1\65\1\66\3\uffff\1\73\1\75\3\uffff\1\107\1\110\1\113\1\2\2\uffff"+
-        "\1\77\1\5\45\uffff\1\70\1\uffff\1\6\11\uffff\1\25\1\102\25\uffff"+
-        "\1\105\2\uffff\1\27\1\32\2\uffff\1\33\1\100\3\uffff\1\104\17\uffff"+
-        "\1\72\1\67\1\101\1\71\1\76\3\uffff\1\44\2\uffff\1\46\1\12\2\uffff"+
-        "\1\34\1\35\4\uffff\1\43\10\uffff\1\52\4\uffff\1\37\4\uffff\1\47"+
-        "\3\uffff\1\61\1\uffff\1\4\2\uffff\1\40\1\uffff\1\42\6\uffff\1\55"+
-        "\1\103\1\10\7\uffff\1\54\4\uffff\1\45\13\uffff\1\53\1\50\2\uffff"+
-        "\1\31\1\uffff\1\51\1\36\6\uffff\1\41";
+        "\14\uffff\1\21\1\22\1\23\21\uffff\1\60\1\61\1\62\1\uffff\1\65\1"+
+        "\66\1\67\1\70\2\uffff\1\75\1\77\3\uffff\1\110\1\111\2\uffff\1\115"+
+        "\1\116\1\76\1\1\4\uffff\1\110\1\3\1\17\1\63\5\uffff\1\7\4\uffff"+
+        "\1\11\2\uffff\1\14\1\20\1\13\1\16\1\15\1\21\1\22\1\23\1\113\1\114"+
+        "\1\24\3\uffff\1\26\1\30\16\uffff\1\60\1\61\1\62\1\uffff\1\65\1\66"+
+        "\1\67\1\70\3\uffff\1\75\1\77\3\uffff\1\111\1\112\1\115\1\2\2\uffff"+
+        "\1\101\1\5\47\uffff\1\72\1\uffff\1\6\11\uffff\1\25\1\104\27\uffff"+
+        "\1\107\2\uffff\1\27\1\32\2\uffff\1\33\1\102\3\uffff\1\106\21\uffff"+
+        "\1\74\1\71\1\103\1\73\1\100\3\uffff\1\44\2\uffff\1\46\1\12\2\uffff"+
+        "\1\34\1\35\4\uffff\1\43\12\uffff\1\52\4\uffff\1\37\4\uffff\1\47"+
+        "\3\uffff\1\56\1\uffff\1\64\1\uffff\1\4\2\uffff\1\40\1\uffff\1\42"+
+        "\6\uffff\1\55\1\57\1\105\1\10\7\uffff\1\54\4\uffff\1\45\13\uffff"+
+        "\1\53\1\50\2\uffff\1\31\1\uffff\1\51\1\36\6\uffff\1\41";
     static final String DFA12_specialS =
-        "\1\0\56\uffff\1\2\1\1\u0115\uffff}>";
+        "\1\1\60\uffff\1\0\1\2\u0122\uffff}>";
     static final String[] DFA12_transitionS = {
-            "\11\62\2\61\2\62\1\61\22\62\1\61\1\62\1\57\4\62\1\60\1\36\1"+
-            "\37\1\16\1\14\1\43\1\15\1\50\1\17\12\56\1\1\1\62\1\12\1\3\1"+
-            "\13\2\62\1\33\1\55\1\31\1\27\1\55\1\24\1\55\1\22\1\26\3\55\1"+
-            "\32\1\55\1\21\1\35\1\55\1\34\1\10\1\6\1\30\5\55\1\44\1\62\1"+
-            "\45\1\54\1\55\1\62\1\53\1\47\2\55\1\46\1\25\1\55\1\23\1\2\4"+
-            "\55\1\20\1\4\1\52\1\55\1\40\1\11\1\7\3\55\1\5\2\55\1\41\1\51"+
-            "\1\42\uff82\62",
-            "\1\63",
-            "\1\70\6\uffff\1\66\1\67\4\uffff\1\65",
-            "\1\73\1\72",
-            "\1\76\3\uffff\1\75",
-            "\1\77",
-            "\12\71\7\uffff\21\71\1\100\10\71\4\uffff\1\71\1\uffff\30\71"+
-            "\1\101\1\71",
-            "\1\104\11\uffff\1\103",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\17\71\1\105\3\71"+
-            "\1\106\6\71",
-            "\1\110\6\uffff\1\111",
-            "\1\112\1\113",
-            "\1\115",
+            "\11\64\2\63\2\64\1\63\22\64\1\63\1\64\1\61\4\64\1\62\1\41\1"+
+            "\42\1\16\1\14\1\40\1\15\1\52\1\17\12\60\1\1\1\64\1\12\1\3\1"+
+            "\13\2\64\1\33\1\57\1\31\1\27\1\37\1\24\1\57\1\22\1\26\2\57\1"+
+            "\36\1\32\1\57\1\21\1\35\1\57\1\34\1\10\1\6\1\30\5\57\1\46\1"+
+            "\64\1\47\1\56\1\57\1\64\1\55\1\51\2\57\1\50\1\25\1\57\1\23\1"+
+            "\2\4\57\1\20\1\4\1\54\1\57\1\43\1\11\1\7\3\57\1\5\2\57\1\44"+
+            "\1\53\1\45\uff82\64",
+            "\1\65",
+            "\1\72\6\uffff\1\70\1\71\4\uffff\1\67",
+            "\1\75\1\74",
+            "\1\100\3\uffff\1\77",
+            "\1\101",
+            "\12\73\7\uffff\21\73\1\102\10\73\4\uffff\1\73\1\uffff\30\73"+
+            "\1\103\1\73",
+            "\1\106\11\uffff\1\105",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\17\73\1\107\3\73"+
+            "\1\110\6\73",
+            "\1\112\6\uffff\1\113",
+            "\1\114\1\115",
+            "\1\117",
             "",
             "",
             "",
-            "\1\122\4\uffff\1\123",
-            "\1\126\11\uffff\1\125",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\24\71\1\127\5\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\1\132",
-            "\1\133",
+            "\1\124\4\uffff\1\125",
+            "\1\130\11\uffff\1\127",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\24\73\1\131\5\73",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "\1\134",
-            "\1\136\1\135",
-            "\1\137",
-            "\1\140",
+            "\1\135",
+            "\1\136",
+            "\1\140\1\137",
             "\1\141",
             "\1\142",
             "\1\143",
             "\1\144",
             "\1\145",
-            "",
-            "",
+            "\1\146",
+            "\1\147",
             "\1\150",
+            "\1\151",
+            "",
+            "",
+            "",
+            "\1\155",
             "",
             "",
             "",
             "",
-            "",
-            "\1\157\1\uffff\1\156",
-            "\1\160",
-            "",
-            "",
-            "\1\164\20\uffff\1\163",
-            "\1\165",
-            "\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\163\1\uffff\1\162",
+            "\1\164",
             "",
             "",
-            "\0\167",
-            "\0\167",
-            "",
-            "",
-            "",
-            "",
+            "\1\170\20\uffff\1\167",
             "\1\171",
-            "\1\172",
-            "\1\173",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\32\73\4\uffff\1\73\1\uffff\32\73",
+            "",
+            "",
+            "\0\173",
+            "\0\173",
             "",
             "",
             "",
             "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\175",
             "\1\176",
             "\1\177",
-            "\1\u0080",
-            "\1\u0081",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "",
-            "\1\u0082\13\uffff\1\u0083",
+            "",
+            "",
+            "",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\1\u0082",
+            "\1\u0083",
             "\1\u0084",
             "\1\u0085",
-            "\1\u0086",
             "",
-            "\1\u0087",
+            "\1\u0086\13\uffff\1\u0087",
             "\1\u0088",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\u0089",
             "\1\u008a",
+            "",
             "\1\u008b",
-            "",
-            "",
             "\1\u008c",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\u008d",
             "\1\u008e",
             "\1\u008f",
+            "",
+            "",
             "\1\u0090",
-            "\1\u0092\13\uffff\1\u0091",
+            "\1\u0091",
+            "\1\u0092",
             "\1\u0093",
             "\1\u0094",
-            "\1\u0095",
-            "\1\u0096",
+            "\1\u0096\13\uffff\1\u0095",
             "\1\u0097",
             "\1\u0098",
-            "",
-            "",
-            "\1\u009a\1\uffff\1\u0099",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\u0099",
+            "\1\u009a",
             "\1\u009b",
             "\1\u009c",
             "\1\u009d",
-            "",
-            "",
             "\1\u009e",
-            "\1\u009f",
-            "\1\u00a0",
+            "",
+            "",
+            "",
+            "\1\u00a0\1\uffff\1\u009f",
             "",
             "",
             "",
             "",
-            "\1\u00a1\2\uffff\1\u00a2",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00a1",
+            "\1\u00a2",
+            "\1\u00a3",
             "",
             "",
             "\1\u00a4",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00a5",
             "\1\u00a6",
-            "\1\u00a7",
-            "\1\u00a8",
-            "\1\u00a9",
+            "",
+            "",
+            "",
+            "",
+            "\1\u00a7\2\uffff\1\u00a8",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "",
+            "",
             "\1\u00aa",
-            "\1\u00ab",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "\1\u00ac",
             "\1\u00ad",
             "\1\u00ae",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00af",
+            "\1\u00b0",
             "\1\u00b1",
             "\1\u00b2",
             "\1\u00b3",
             "\1\u00b4",
-            "\1\u00b5",
-            "\1\u00b6",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "\1\u00b7",
             "\1\u00b8",
             "\1\u00b9",
@@ -2828,31 +2887,31 @@ public class InternalSpearLexer extends Lexer {
             "\1\u00c3",
             "\1\u00c4",
             "\1\u00c5",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00c6",
             "\1\u00c7",
             "\1\u00c8",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00c9",
+            "\1\u00ca",
             "\1\u00cb",
             "\1\u00cc",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00cd",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "\1\u00cf",
             "\1\u00d0",
-            "\1\u00d1",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
             "",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "\1\u00d3",
             "\1\u00d4",
-            "\1\u00d5",
-            "\1\u00d6",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "\1\u00d7",
             "\1\u00d8",
             "\1\u00d9",
-            "\1\u00da",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "",
+            "",
             "\1\u00db",
             "\1\u00dc",
             "\1\u00dd",
@@ -2860,70 +2919,68 @@ public class InternalSpearLexer extends Lexer {
             "\1\u00df",
             "\1\u00e0",
             "\1\u00e1",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00e2",
+            "\1\u00e3",
+            "\1\u00e4",
+            "\1\u00e5",
+            "\1\u00e6",
             "\1\u00e7",
-            "",
             "\1\u00e8",
             "\1\u00e9",
-            "",
-            "",
             "\1\u00ea",
             "\1\u00eb",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\1\u00f1",
             "",
-            "",
-            "\1\u00ec",
-            "\1\u00ed",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "\1\u00ef",
-            "\1\u00f0",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u00f2",
             "\1\u00f3",
+            "",
+            "",
             "\1\u00f4",
             "\1\u00f5",
+            "",
+            "",
             "\1\u00f6",
             "\1\u00f7",
-            "\1\u00f8",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "",
             "\1\u00f9",
             "\1\u00fa",
-            "\1\u00fb",
-            "\1\u00fc",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "\1\u00fd",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\u00fe",
             "\1\u00ff",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
+            "\1\u0100",
             "\1\u0101",
             "\1\u0102",
-            "",
-            "",
             "\1\u0103",
             "\1\u0104",
-            "",
-            "",
             "\1\u0105",
             "\1\u0106",
             "\1\u0107",
             "\1\u0108",
-            "",
             "\1\u0109",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\u010a",
             "\1\u010b",
-            "\1\u010c",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "",
             "\1\u010d",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u010e",
+            "",
+            "",
             "\1\u010f",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u0110",
+            "",
             "",
             "\1\u0111",
             "\1\u0112",
@@ -2934,66 +2991,85 @@ public class InternalSpearLexer extends Lexer {
             "\1\u0116",
             "\1\u0117",
             "\1\u0118",
-            "",
             "\1\u0119",
             "\1\u011a",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\22\71\1\u011b\7"+
-            "\71",
+            "\1\u011b",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\1\u011d",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
             "\1\u011f",
-            "",
             "\1\u0120",
-            "",
             "\1\u0121",
             "\1\u0122",
+            "",
             "\1\u0123",
             "\1\u0124",
             "\1\u0125",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
-            "",
+            "\1\u0126",
             "",
             "\1\u0127",
             "\1\u0128",
-            "\1\u0129",
-            "\1\u012a",
-            "\1\u012b",
-            "\1\u012c",
-            "\1\u012d",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\22\73\1\u0129\7"+
+            "\73",
             "",
+            "\1\u012b",
+            "",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
             "\1\u012e",
+            "",
             "\1\u012f",
+            "",
             "\1\u0130",
             "\1\u0131",
-            "",
             "\1\u0132",
             "\1\u0133",
             "\1\u0134",
-            "\1\u0135",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "",
+            "",
+            "",
+            "",
             "\1\u0136",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u0137",
             "\1\u0138",
             "\1\u0139",
             "\1\u013a",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
+            "\1\u013b",
             "\1\u013c",
             "",
-            "",
             "\1\u013d",
-            "\12\71\7\uffff\32\71\4\uffff\1\71\1\uffff\32\71",
-            "",
+            "\1\u013e",
             "\1\u013f",
-            "",
-            "",
             "\1\u0140",
+            "",
             "\1\u0141",
             "\1\u0142",
             "\1\u0143",
             "\1\u0144",
             "\1\u0145",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\1\u0147",
+            "\1\u0148",
+            "\1\u0149",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "\1\u014b",
+            "",
+            "",
+            "\1\u014c",
+            "\12\73\7\uffff\32\73\4\uffff\1\73\1\uffff\32\73",
+            "",
+            "\1\u014e",
+            "",
+            "",
+            "\1\u014f",
+            "\1\u0150",
+            "\1\u0151",
+            "\1\u0152",
+            "\1\u0153",
+            "\1\u0154",
             ""
     };
 
@@ -3027,13 +3103,23 @@ public class InternalSpearLexer extends Lexer {
             this.transition = DFA12_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA12_49 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_49>='\u0000' && LA12_49<='\uFFFF')) ) {s = 123;}
+
+                        else s = 52;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -3095,67 +3181,61 @@ public class InternalSpearLexer extends Lexer {
 
                         else if ( (LA12_0=='P') ) {s = 29;}
 
-                        else if ( (LA12_0=='(') ) {s = 30;}
+                        else if ( (LA12_0=='L') ) {s = 30;}
 
-                        else if ( (LA12_0==')') ) {s = 31;}
+                        else if ( (LA12_0=='E') ) {s = 31;}
 
-                        else if ( (LA12_0=='r') ) {s = 32;}
+                        else if ( (LA12_0==',') ) {s = 32;}
 
-                        else if ( (LA12_0=='{') ) {s = 33;}
+                        else if ( (LA12_0=='(') ) {s = 33;}
 
-                        else if ( (LA12_0=='}') ) {s = 34;}
+                        else if ( (LA12_0==')') ) {s = 34;}
 
-                        else if ( (LA12_0==',') ) {s = 35;}
+                        else if ( (LA12_0=='r') ) {s = 35;}
 
-                        else if ( (LA12_0=='[') ) {s = 36;}
+                        else if ( (LA12_0=='{') ) {s = 36;}
 
-                        else if ( (LA12_0==']') ) {s = 37;}
+                        else if ( (LA12_0=='}') ) {s = 37;}
 
-                        else if ( (LA12_0=='e') ) {s = 38;}
+                        else if ( (LA12_0=='[') ) {s = 38;}
 
-                        else if ( (LA12_0=='b') ) {s = 39;}
+                        else if ( (LA12_0==']') ) {s = 39;}
 
-                        else if ( (LA12_0=='.') ) {s = 40;}
+                        else if ( (LA12_0=='e') ) {s = 40;}
 
-                        else if ( (LA12_0=='|') ) {s = 41;}
+                        else if ( (LA12_0=='b') ) {s = 41;}
 
-                        else if ( (LA12_0=='p') ) {s = 42;}
+                        else if ( (LA12_0=='.') ) {s = 42;}
 
-                        else if ( (LA12_0=='a') ) {s = 43;}
+                        else if ( (LA12_0=='|') ) {s = 43;}
 
-                        else if ( (LA12_0=='^') ) {s = 44;}
+                        else if ( (LA12_0=='p') ) {s = 44;}
 
-                        else if ( (LA12_0=='B'||LA12_0=='E'||LA12_0=='G'||(LA12_0>='J' && LA12_0<='L')||LA12_0=='N'||LA12_0=='Q'||(LA12_0>='V' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='c' && LA12_0<='d')||LA12_0=='g'||(LA12_0>='j' && LA12_0<='m')||LA12_0=='q'||(LA12_0>='u' && LA12_0<='w')||(LA12_0>='y' && LA12_0<='z')) ) {s = 45;}
+                        else if ( (LA12_0=='a') ) {s = 45;}
 
-                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 46;}
+                        else if ( (LA12_0=='^') ) {s = 46;}
 
-                        else if ( (LA12_0=='\"') ) {s = 47;}
+                        else if ( (LA12_0=='B'||LA12_0=='G'||(LA12_0>='J' && LA12_0<='K')||LA12_0=='N'||LA12_0=='Q'||(LA12_0>='V' && LA12_0<='Z')||LA12_0=='_'||(LA12_0>='c' && LA12_0<='d')||LA12_0=='g'||(LA12_0>='j' && LA12_0<='m')||LA12_0=='q'||(LA12_0>='u' && LA12_0<='w')||(LA12_0>='y' && LA12_0<='z')) ) {s = 47;}
 
-                        else if ( (LA12_0=='\'') ) {s = 48;}
+                        else if ( ((LA12_0>='0' && LA12_0<='9')) ) {s = 48;}
 
-                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 49;}
+                        else if ( (LA12_0=='\"') ) {s = 49;}
 
-                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||LA12_0==';'||(LA12_0>='?' && LA12_0<='@')||LA12_0=='\\'||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 50;}
+                        else if ( (LA12_0=='\'') ) {s = 50;}
 
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA12_48 = input.LA(1);
+                        else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 51;}
 
-                        s = -1;
-                        if ( ((LA12_48>='\u0000' && LA12_48<='\uFFFF')) ) {s = 119;}
-
-                        else s = 50;
+                        else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='!'||(LA12_0>='#' && LA12_0<='&')||LA12_0==';'||(LA12_0>='?' && LA12_0<='@')||LA12_0=='\\'||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 52;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA12_47 = input.LA(1);
+                        int LA12_50 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA12_47>='\u0000' && LA12_47<='\uFFFF')) ) {s = 119;}
+                        if ( ((LA12_50>='\u0000' && LA12_50<='\uFFFF')) ) {s = 123;}
 
-                        else s = 50;
+                        else s = 52;
 
                         if ( s>=0 ) return s;
                         break;
