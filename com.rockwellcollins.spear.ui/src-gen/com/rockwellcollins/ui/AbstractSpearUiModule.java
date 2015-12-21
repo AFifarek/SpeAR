@@ -4,13 +4,14 @@
  */
 package com.rockwellcollins.ui;
 
+import org.eclipse.xtext.ui.DefaultUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * Manual modifications go to {com.rockwellcollins.ui.SpearUiModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractSpearUiModule extends org.eclipse.xtext.ui.DefaultUiModule {
+public abstract class AbstractSpearUiModule extends DefaultUiModule {
 	
 	public AbstractSpearUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
@@ -50,11 +51,6 @@ public abstract class AbstractSpearUiModule extends org.eclipse.xtext.ui.Default
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.IXtextEditorCallback> bindIXtextEditorCallback() {
 		return org.eclipse.xtext.builder.nature.NatureAddingEditorCallback.class;
-	}
-
-	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
-	public Class<? extends org.eclipse.xtext.generator.IContextualOutputConfigurationProvider> bindIContextualOutputConfigurationProvider() {
-		return org.eclipse.xtext.builder.EclipseOutputConfigurationProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment

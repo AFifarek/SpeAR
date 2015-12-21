@@ -122,7 +122,7 @@ AtomicExpr returns Expr:
 |	{IdExpr} id=[IdRef]
 |	{MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 |	{PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
-|	{IfThenElseExpr} 'if' cond=Expr 'then' then=Expr ('else' else=Expr)?
+|	{IfThenElseExpr} 'if' cond=Expr 'then' then=Expr 'else' else=Expr
 |	{RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
 |	{ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 |	{PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
