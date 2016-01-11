@@ -2327,11 +2327,11 @@ ruleSinceExpr returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getSinceExprAccess().getRelationalExprParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getSinceExprAccess().getTemporalPrefixExprParserRuleCall_0()); 
     }
-    this_RelationalExpr_0=ruleRelationalExpr
+    this_TemporalPrefixExpr_0=ruleTemporalPrefixExpr
     { 
-        $current = $this_RelationalExpr_0.current; 
+        $current = $this_TemporalPrefixExpr_0.current; 
         afterParserOrEnumRuleCall();
     }
 (((((
@@ -2402,6 +2402,151 @@ ruleSinceExpr returns [EObject current=null]
 
 )
 ))?)
+;
+
+
+
+
+
+// Entry rule entryRuleTemporalPrefixExpr
+entryRuleTemporalPrefixExpr returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getTemporalPrefixExprRule()); }
+	 iv_ruleTemporalPrefixExpr=ruleTemporalPrefixExpr 
+	 { $current=$iv_ruleTemporalPrefixExpr.current; } 
+	 EOF 
+;
+
+// Rule TemporalPrefixExpr
+ruleTemporalPrefixExpr returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getTemporalPrefixExprAccess().getUnaryExprAction_0_0(),
+            $current);
+    }
+)(
+(
+(
+		lv_op_1_1=	'O' 
+    {
+        newLeafNode(lv_op_1_1, grammarAccess.getTemporalPrefixExprAccess().getOpOKeyword_0_1_0_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTemporalPrefixExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_1_1, null);
+	    }
+
+    |		lv_op_1_2=	'once' 
+    {
+        newLeafNode(lv_op_1_2, grammarAccess.getTemporalPrefixExprAccess().getOpOnceKeyword_0_1_0_1());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTemporalPrefixExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_1_2, null);
+	    }
+
+    |		lv_op_1_3=	'H' 
+    {
+        newLeafNode(lv_op_1_3, grammarAccess.getTemporalPrefixExprAccess().getOpHKeyword_0_1_0_2());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTemporalPrefixExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_1_3, null);
+	    }
+
+    |		lv_op_1_4=	'historically' 
+    {
+        newLeafNode(lv_op_1_4, grammarAccess.getTemporalPrefixExprAccess().getOpHistoricallyKeyword_0_1_0_3());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTemporalPrefixExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_1_4, null);
+	    }
+
+    |		lv_op_1_5=	'never' 
+    {
+        newLeafNode(lv_op_1_5, grammarAccess.getTemporalPrefixExprAccess().getOpNeverKeyword_0_1_0_4());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTemporalPrefixExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_1_5, null);
+	    }
+
+    |		lv_op_1_6=	'before' 
+    {
+        newLeafNode(lv_op_1_6, grammarAccess.getTemporalPrefixExprAccess().getOpBeforeKeyword_0_1_0_5());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTemporalPrefixExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_1_6, null);
+	    }
+
+    |		lv_op_1_7=	'after' 
+    {
+        newLeafNode(lv_op_1_7, grammarAccess.getTemporalPrefixExprAccess().getOpAfterKeyword_0_1_0_6());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getTemporalPrefixExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_1_7, null);
+	    }
+
+)
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getTemporalPrefixExprAccess().getExprTemporalPrefixExprParserRuleCall_0_2_0()); 
+	    }
+		lv_expr_2_0=ruleTemporalPrefixExpr		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getTemporalPrefixExprRule());
+	        }
+       		set(
+       			$current, 
+       			"expr",
+        		lv_expr_2_0, 
+        		"com.rockwellcollins.Spear.TemporalPrefixExpr");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
+    |
+    { 
+        newCompositeNode(grammarAccess.getTemporalPrefixExprAccess().getRelationalExprParserRuleCall_1()); 
+    }
+    this_RelationalExpr_3=ruleRelationalExpr
+    { 
+        $current = $this_RelationalExpr_3.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
 ;
 
 
@@ -2828,90 +2973,6 @@ rulePrefixExpr returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getPrefixExprRule());
 	        }
        		setWithLastConsumed($current, "op", lv_op_1_2, null);
-	    }
-
-    |		lv_op_1_3=	'O' 
-    {
-        newLeafNode(lv_op_1_3, grammarAccess.getPrefixExprAccess().getOpOKeyword_0_1_0_2());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixExprRule());
-	        }
-       		setWithLastConsumed($current, "op", lv_op_1_3, null);
-	    }
-
-    |		lv_op_1_4=	'once' 
-    {
-        newLeafNode(lv_op_1_4, grammarAccess.getPrefixExprAccess().getOpOnceKeyword_0_1_0_3());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixExprRule());
-	        }
-       		setWithLastConsumed($current, "op", lv_op_1_4, null);
-	    }
-
-    |		lv_op_1_5=	'H' 
-    {
-        newLeafNode(lv_op_1_5, grammarAccess.getPrefixExprAccess().getOpHKeyword_0_1_0_4());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixExprRule());
-	        }
-       		setWithLastConsumed($current, "op", lv_op_1_5, null);
-	    }
-
-    |		lv_op_1_6=	'historically' 
-    {
-        newLeafNode(lv_op_1_6, grammarAccess.getPrefixExprAccess().getOpHistoricallyKeyword_0_1_0_5());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixExprRule());
-	        }
-       		setWithLastConsumed($current, "op", lv_op_1_6, null);
-	    }
-
-    |		lv_op_1_7=	'never' 
-    {
-        newLeafNode(lv_op_1_7, grammarAccess.getPrefixExprAccess().getOpNeverKeyword_0_1_0_6());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixExprRule());
-	        }
-       		setWithLastConsumed($current, "op", lv_op_1_7, null);
-	    }
-
-    |		lv_op_1_8=	'before' 
-    {
-        newLeafNode(lv_op_1_8, grammarAccess.getPrefixExprAccess().getOpBeforeKeyword_0_1_0_7());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixExprRule());
-	        }
-       		setWithLastConsumed($current, "op", lv_op_1_8, null);
-	    }
-
-    |		lv_op_1_9=	'after' 
-    {
-        newLeafNode(lv_op_1_9, grammarAccess.getPrefixExprAccess().getOpAfterKeyword_0_1_0_8());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPrefixExprRule());
-	        }
-       		setWithLastConsumed($current, "op", lv_op_1_9, null);
 	    }
 
 )

@@ -9,6 +9,11 @@ public class EnumUnit extends SpearUnit {
 	}
 	
 	@Override
+	public String toString() {
+		return "enumeration";
+	}
+	
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof EnumUnit) {
 			EnumUnit other = (EnumUnit) obj;

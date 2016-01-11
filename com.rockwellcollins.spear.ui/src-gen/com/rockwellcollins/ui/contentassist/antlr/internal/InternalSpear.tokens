@@ -1,31 +1,31 @@
 '('=65
 ')'=66
-'*'=35
-'+'=33
+'*'=42
+'+'=40
 ','=71
-'-'=34
+'-'=41
 '.'=78
-'/'=36
+'/'=43
 ':'=11
 ':='=79
-'<'=21
-'<='=23
-'<>'=31
+'<'=28
+'<='=30
+'<>'=38
 '='=67
-'=='=29
+'=='=36
 '=>'=13
-'>'=25
-'>='=27
+'>'=32
+'>='=34
 'Assumptions:'=59
 'Constants:'=56
 'Definitions'=62
 'DerivedRequirements:'=52
 'FALSE'=47
-'H'=40
+'H'=23
 'Imports:'=53
 'Inputs:'=50
 'Macros:'=58
-'O'=38
+'O'=21
 'Outputs:'=51
 'Pattern'=64
 'Patterns'=63
@@ -39,29 +39,29 @@
 'Units:'=54
 '['=72
 ']'=73
-'after'=44
+'after'=27
 'and'=88
-'before'=43
+'before'=26
 'bool'=76
 'else'=84
 'enum'=74
-'equal to'=30
+'equal to'=37
 'false'=48
-'greater than or equal to'=28
-'greater than'=26
-'historically'=41
+'greater than or equal to'=35
+'greater than'=33
+'historically'=24
 'if'=82
 'implies'=14
 'import'=61
 'int'=75
 'is a'=12
-'less than or equal to'=24
-'less than'=22
-'never'=42
+'less than or equal to'=31
+'less than'=29
+'never'=25
 'new'=85
-'not equal to'=32
-'not'=37
-'once'=39
+'not equal to'=39
+'not'=44
+'once'=22
 'or'=15
 'pattern'=86
 'prev'=81

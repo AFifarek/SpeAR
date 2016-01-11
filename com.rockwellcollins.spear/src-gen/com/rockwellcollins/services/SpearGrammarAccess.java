@@ -1411,7 +1411,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	public class SinceExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.SinceExpr");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cRelationalExprParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cTemporalPrefixExprParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Group cGroup_1_0 = (Group)cGroup_1.eContents().get(0);
 		private final Group cGroup_1_0_0 = (Group)cGroup_1_0.eContents().get(0);
@@ -1424,14 +1424,14 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRightSinceExprParserRuleCall_1_1_0 = (RuleCall)cRightAssignment_1_1.eContents().get(0);
 		
 		//SinceExpr Expr:
-		//	RelationalExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?
+		//	TemporalPrefixExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?
 		@Override public ParserRule getRule() { return rule; }
 
-		//RelationalExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?
+		//TemporalPrefixExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?
 		public Group getGroup() { return cGroup; }
 
-		//RelationalExpr
-		public RuleCall getRelationalExprParserRuleCall_0() { return cRelationalExprParserRuleCall_0; }
+		//TemporalPrefixExpr
+		public RuleCall getTemporalPrefixExprParserRuleCall_0() { return cTemporalPrefixExprParserRuleCall_0; }
 
 		//(=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?
 		public Group getGroup_1() { return cGroup_1; }
@@ -1462,6 +1462,76 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//SinceExpr
 		public RuleCall getRightSinceExprParserRuleCall_1_1_0() { return cRightSinceExprParserRuleCall_1_1_0; }
+	}
+
+	public class TemporalPrefixExprElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.TemporalPrefixExpr");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Action cUnaryExprAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Assignment cOpAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final Alternatives cOpAlternatives_0_1_0 = (Alternatives)cOpAssignment_0_1.eContents().get(0);
+		private final Keyword cOpOKeyword_0_1_0_0 = (Keyword)cOpAlternatives_0_1_0.eContents().get(0);
+		private final Keyword cOpOnceKeyword_0_1_0_1 = (Keyword)cOpAlternatives_0_1_0.eContents().get(1);
+		private final Keyword cOpHKeyword_0_1_0_2 = (Keyword)cOpAlternatives_0_1_0.eContents().get(2);
+		private final Keyword cOpHistoricallyKeyword_0_1_0_3 = (Keyword)cOpAlternatives_0_1_0.eContents().get(3);
+		private final Keyword cOpNeverKeyword_0_1_0_4 = (Keyword)cOpAlternatives_0_1_0.eContents().get(4);
+		private final Keyword cOpBeforeKeyword_0_1_0_5 = (Keyword)cOpAlternatives_0_1_0.eContents().get(5);
+		private final Keyword cOpAfterKeyword_0_1_0_6 = (Keyword)cOpAlternatives_0_1_0.eContents().get(6);
+		private final Assignment cExprAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
+		private final RuleCall cExprTemporalPrefixExprParserRuleCall_0_2_0 = (RuleCall)cExprAssignment_0_2.eContents().get(0);
+		private final RuleCall cRelationalExprParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//TemporalPrefixExpr Expr:
+		//	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after') expr=TemporalPrefixExpr
+		//	| RelationalExpr
+		@Override public ParserRule getRule() { return rule; }
+
+		//{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after') expr=TemporalPrefixExpr |
+		//RelationalExpr
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after') expr=TemporalPrefixExpr
+		public Group getGroup_0() { return cGroup_0; }
+
+		//{UnaryExpr}
+		public Action getUnaryExprAction_0_0() { return cUnaryExprAction_0_0; }
+
+		//op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after')
+		public Assignment getOpAssignment_0_1() { return cOpAssignment_0_1; }
+
+		//('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after')
+		public Alternatives getOpAlternatives_0_1_0() { return cOpAlternatives_0_1_0; }
+
+		//'O'
+		public Keyword getOpOKeyword_0_1_0_0() { return cOpOKeyword_0_1_0_0; }
+
+		//'once'
+		public Keyword getOpOnceKeyword_0_1_0_1() { return cOpOnceKeyword_0_1_0_1; }
+
+		//'H'
+		public Keyword getOpHKeyword_0_1_0_2() { return cOpHKeyword_0_1_0_2; }
+
+		//'historically'
+		public Keyword getOpHistoricallyKeyword_0_1_0_3() { return cOpHistoricallyKeyword_0_1_0_3; }
+
+		//'never'
+		public Keyword getOpNeverKeyword_0_1_0_4() { return cOpNeverKeyword_0_1_0_4; }
+
+		//'before'
+		public Keyword getOpBeforeKeyword_0_1_0_5() { return cOpBeforeKeyword_0_1_0_5; }
+
+		//'after'
+		public Keyword getOpAfterKeyword_0_1_0_6() { return cOpAfterKeyword_0_1_0_6; }
+
+		//expr=TemporalPrefixExpr
+		public Assignment getExprAssignment_0_2() { return cExprAssignment_0_2; }
+
+		//TemporalPrefixExpr
+		public RuleCall getExprTemporalPrefixExprParserRuleCall_0_2_0() { return cExprTemporalPrefixExprParserRuleCall_0_2_0; }
+
+		//RelationalExpr
+		public RuleCall getRelationalExprParserRuleCall_1() { return cRelationalExprParserRuleCall_1; }
 	}
 
 	public class RelationalExprElements extends AbstractParserRuleElementFinder {
@@ -1701,38 +1771,30 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cOpAlternatives_0_1_0 = (Alternatives)cOpAssignment_0_1.eContents().get(0);
 		private final Keyword cOpHyphenMinusKeyword_0_1_0_0 = (Keyword)cOpAlternatives_0_1_0.eContents().get(0);
 		private final Keyword cOpNotKeyword_0_1_0_1 = (Keyword)cOpAlternatives_0_1_0.eContents().get(1);
-		private final Keyword cOpOKeyword_0_1_0_2 = (Keyword)cOpAlternatives_0_1_0.eContents().get(2);
-		private final Keyword cOpOnceKeyword_0_1_0_3 = (Keyword)cOpAlternatives_0_1_0.eContents().get(3);
-		private final Keyword cOpHKeyword_0_1_0_4 = (Keyword)cOpAlternatives_0_1_0.eContents().get(4);
-		private final Keyword cOpHistoricallyKeyword_0_1_0_5 = (Keyword)cOpAlternatives_0_1_0.eContents().get(5);
-		private final Keyword cOpNeverKeyword_0_1_0_6 = (Keyword)cOpAlternatives_0_1_0.eContents().get(6);
-		private final Keyword cOpBeforeKeyword_0_1_0_7 = (Keyword)cOpAlternatives_0_1_0.eContents().get(7);
-		private final Keyword cOpAfterKeyword_0_1_0_8 = (Keyword)cOpAlternatives_0_1_0.eContents().get(8);
 		private final Assignment cExprAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
 		private final RuleCall cExprPrefixExprParserRuleCall_0_2_0 = (RuleCall)cExprAssignment_0_2.eContents().get(0);
 		private final RuleCall cAccessExprParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		/// *
-		// * The sugary Unary operators are never, before, after (the last three)
-		// * / PrefixExpr Expr:
-		//	{UnaryExpr} op=('-' | 'not' | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after') expr=PrefixExpr
+		////the sugary Unary operators are never, before, after (the last three)
+		//// | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after'
+		//PrefixExpr Expr:
+		//	{UnaryExpr} op=('-' | 'not') expr=PrefixExpr
 		//	| AccessExpr
 		@Override public ParserRule getRule() { return rule; }
 
-		//{UnaryExpr} op=('-' | 'not' | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after') expr=PrefixExpr |
-		//AccessExpr
+		//{UnaryExpr} op=('-' | 'not') expr=PrefixExpr | AccessExpr
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{UnaryExpr} op=('-' | 'not' | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after') expr=PrefixExpr
+		//{UnaryExpr} op=('-' | 'not') expr=PrefixExpr
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{UnaryExpr}
 		public Action getUnaryExprAction_0_0() { return cUnaryExprAction_0_0; }
 
-		//op=('-' | 'not' | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after')
+		//op=('-' | 'not')
 		public Assignment getOpAssignment_0_1() { return cOpAssignment_0_1; }
 
-		//('-' | 'not' | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after')
+		//('-' | 'not')
 		public Alternatives getOpAlternatives_0_1_0() { return cOpAlternatives_0_1_0; }
 
 		//'-'
@@ -1740,27 +1802,6 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'not'
 		public Keyword getOpNotKeyword_0_1_0_1() { return cOpNotKeyword_0_1_0_1; }
-
-		//'O'
-		public Keyword getOpOKeyword_0_1_0_2() { return cOpOKeyword_0_1_0_2; }
-
-		//'once'
-		public Keyword getOpOnceKeyword_0_1_0_3() { return cOpOnceKeyword_0_1_0_3; }
-
-		//'H'
-		public Keyword getOpHKeyword_0_1_0_4() { return cOpHKeyword_0_1_0_4; }
-
-		//'historically'
-		public Keyword getOpHistoricallyKeyword_0_1_0_5() { return cOpHistoricallyKeyword_0_1_0_5; }
-
-		//'never'
-		public Keyword getOpNeverKeyword_0_1_0_6() { return cOpNeverKeyword_0_1_0_6; }
-
-		//'before'
-		public Keyword getOpBeforeKeyword_0_1_0_7() { return cOpBeforeKeyword_0_1_0_7; }
-
-		//'after'
-		public Keyword getOpAfterKeyword_0_1_0_8() { return cOpAfterKeyword_0_1_0_8; }
 
 		//expr=PrefixExpr
 		public Assignment getExprAssignment_0_2() { return cExprAssignment_0_2; }
@@ -2620,6 +2661,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	private final AndExprElements pAndExpr;
 	private final TriggersExprElements pTriggersExpr;
 	private final SinceExprElements pSinceExpr;
+	private final TemporalPrefixExprElements pTemporalPrefixExpr;
 	private final RelationalExprElements pRelationalExpr;
 	private final RelationalOpElements pRelationalOp;
 	private final PlusExprElements pPlusExpr;
@@ -2671,6 +2713,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAndExpr = new AndExprElements();
 		this.pTriggersExpr = new TriggersExprElements();
 		this.pSinceExpr = new SinceExprElements();
+		this.pTemporalPrefixExpr = new TemporalPrefixExprElements();
 		this.pRelationalExpr = new RelationalExprElements();
 		this.pRelationalOp = new RelationalOpElements();
 		this.pPlusExpr = new PlusExprElements();
@@ -2988,13 +3031,24 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SinceExpr Expr:
-	//	RelationalExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?
+	//	TemporalPrefixExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?
 	public SinceExprElements getSinceExprAccess() {
 		return pSinceExpr;
 	}
 	
 	public ParserRule getSinceExprRule() {
 		return getSinceExprAccess().getRule();
+	}
+
+	//TemporalPrefixExpr Expr:
+	//	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after') expr=TemporalPrefixExpr
+	//	| RelationalExpr
+	public TemporalPrefixExprElements getTemporalPrefixExprAccess() {
+		return pTemporalPrefixExpr;
+	}
+	
+	public ParserRule getTemporalPrefixExprRule() {
+		return getTemporalPrefixExprAccess().getRule();
 	}
 
 	//RelationalExpr Expr:
@@ -3044,10 +3098,10 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		return getMultiplyExprAccess().getRule();
 	}
 
-	/// *
-	// * The sugary Unary operators are never, before, after (the last three)
-	// * / PrefixExpr Expr:
-	//	{UnaryExpr} op=('-' | 'not' | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after') expr=PrefixExpr
+	////the sugary Unary operators are never, before, after (the last three)
+	//// | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after'
+	//PrefixExpr Expr:
+	//	{UnaryExpr} op=('-' | 'not') expr=PrefixExpr
 	//	| AccessExpr
 	public PrefixExprElements getPrefixExprAccess() {
 		return pPrefixExpr;

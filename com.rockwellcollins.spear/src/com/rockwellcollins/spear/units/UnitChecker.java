@@ -270,11 +270,17 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 			break;
 
 		case "==":
+		case "equal to":
 		case "<>":
+		case "not equal to":
 		case ">":
+		case "greater than":
 		case ">=":
+		case "greater than or equal to":
 		case "<":
+		case "less than":
 		case "<=":
+		case "less than or equal to":
 			if (left.equals(right)) {
 				return SCALAR;
 			}
@@ -317,6 +323,10 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 		case "O":
 		case "historically":
 		case "H":
+		//the following ops are syntactic sugar
+		case "never":
+		case "before":
+		case "after":
 			if (unit == SCALAR) {
 				return SCALAR;
 			}

@@ -201,16 +201,22 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 			break;
 
 		case "==":
+		case "equal to":
 		case "<>":
+		case "not equal to":
 			if (left.equals(right)) {
 				return BOOL;
 			}
 			break;
 
 		case ">":
+		case "greater than":
 		case "<":
+		case "less than":
 		case ">=":
+		case "greater than or equal to":
 		case "<=":
+		case "less than or equal to":
 			if (left == REAL && right == REAL) {
 				return BOOL;
 			}
@@ -262,6 +268,10 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		case "O":
 		case "historically":
 		case "H":
+		// the following ops are syntactic sugar
+		case "never":
+		case "before":
+		case "after":
 			if (type == BOOL) {
 				return BOOL;
 			}

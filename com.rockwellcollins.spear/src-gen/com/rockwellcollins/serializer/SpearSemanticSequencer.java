@@ -191,7 +191,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_AtomicExpr(context, (SpecificationCall) semanticObject); 
 				return; 
 			case SpearPackage.UNARY_EXPR:
-				sequence_PrefixExpr(context, (UnaryExpr) semanticObject); 
+				sequence_PrefixExpr_TemporalPrefixExpr(context, (UnaryExpr) semanticObject); 
 				return; 
 			case SpearPackage.USER_TYPE:
 				sequence_Type(context, (UserType) semanticObject); 
@@ -217,6 +217,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
 	 *     SinceExpr returns ArrayAccessExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     TemporalPrefixExpr returns ArrayAccessExpr
 	 *     RelationalExpr returns ArrayAccessExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
 	 *     PlusExpr returns ArrayAccessExpr
@@ -261,6 +262,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
 	 *     SinceExpr returns ArrayUpdateExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     TemporalPrefixExpr returns ArrayUpdateExpr
 	 *     RelationalExpr returns ArrayUpdateExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
 	 *     PlusExpr returns ArrayUpdateExpr
@@ -304,6 +306,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
 	 *     SinceExpr returns RecordAccessExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     TemporalPrefixExpr returns RecordAccessExpr
 	 *     RelationalExpr returns RecordAccessExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
 	 *     PlusExpr returns RecordAccessExpr
@@ -347,6 +350,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
 	 *     SinceExpr returns RecordUpdateExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     TemporalPrefixExpr returns RecordUpdateExpr
 	 *     RelationalExpr returns RecordUpdateExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
 	 *     PlusExpr returns RecordUpdateExpr
@@ -393,6 +397,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
 	 *     SinceExpr returns BinaryExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     TemporalPrefixExpr returns BinaryExpr
 	 *     RelationalExpr returns BinaryExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
 	 *     PlusExpr returns BinaryExpr
@@ -436,6 +441,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
 	 *     SinceExpr returns ArrayExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     TemporalPrefixExpr returns ArrayExpr
 	 *     RelationalExpr returns ArrayExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
 	 *     PlusExpr returns ArrayExpr
@@ -470,6 +476,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns IdExpr
 	 *     SinceExpr returns IdExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     TemporalPrefixExpr returns IdExpr
 	 *     RelationalExpr returns IdExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns IdExpr
 	 *     PlusExpr returns IdExpr
@@ -510,6 +517,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
 	 *     SinceExpr returns IfThenElseExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     TemporalPrefixExpr returns IfThenElseExpr
 	 *     RelationalExpr returns IfThenElseExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
 	 *     PlusExpr returns IfThenElseExpr
@@ -556,6 +564,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns MIdExpr
 	 *     SinceExpr returns MIdExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns MIdExpr
+	 *     TemporalPrefixExpr returns MIdExpr
 	 *     RelationalExpr returns MIdExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns MIdExpr
 	 *     PlusExpr returns MIdExpr
@@ -590,6 +599,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns PatternCall
 	 *     SinceExpr returns PatternCall
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     TemporalPrefixExpr returns PatternCall
 	 *     RelationalExpr returns PatternCall
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns PatternCall
 	 *     PlusExpr returns PatternCall
@@ -624,6 +634,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
 	 *     SinceExpr returns PreviousExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     TemporalPrefixExpr returns PreviousExpr
 	 *     RelationalExpr returns PreviousExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
 	 *     PlusExpr returns PreviousExpr
@@ -667,6 +678,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RecordExpr
 	 *     SinceExpr returns RecordExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     TemporalPrefixExpr returns RecordExpr
 	 *     RelationalExpr returns RecordExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns RecordExpr
 	 *     PlusExpr returns RecordExpr
@@ -701,6 +713,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
 	 *     SinceExpr returns SpecificationCall
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     TemporalPrefixExpr returns SpecificationCall
 	 *     RelationalExpr returns SpecificationCall
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
 	 *     PlusExpr returns SpecificationCall
@@ -897,6 +910,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
 	 *     SinceExpr returns BoolLiteral
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     TemporalPrefixExpr returns BoolLiteral
 	 *     RelationalExpr returns BoolLiteral
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
 	 *     PlusExpr returns BoolLiteral
@@ -938,6 +952,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns IntLiteral
 	 *     SinceExpr returns IntLiteral
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     TemporalPrefixExpr returns IntLiteral
 	 *     RelationalExpr returns IntLiteral
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns IntLiteral
 	 *     PlusExpr returns IntLiteral
@@ -973,6 +988,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RealLiteral
 	 *     SinceExpr returns RealLiteral
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     TemporalPrefixExpr returns RealLiteral
 	 *     RelationalExpr returns RealLiteral
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns RealLiteral
 	 *     PlusExpr returns RealLiteral
@@ -1064,6 +1080,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
 	 *     SinceExpr returns UnaryExpr
 	 *     SinceExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     TemporalPrefixExpr returns UnaryExpr
 	 *     RelationalExpr returns UnaryExpr
 	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
 	 *     PlusExpr returns UnaryExpr
@@ -1080,20 +1097,21 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 * Constraint:
 	 *     (
 	 *         (
-	 *             op='-' | 
-	 *             op='not' | 
-	 *             op='O' | 
-	 *             op='once' | 
-	 *             op='H' | 
-	 *             op='historically' | 
-	 *             op='never' | 
-	 *             op='before' | 
-	 *             op='after'
-	 *         ) 
-	 *         expr=PrefixExpr
+	 *             (
+	 *                 op='O' | 
+	 *                 op='once' | 
+	 *                 op='H' | 
+	 *                 op='historically' | 
+	 *                 op='never' | 
+	 *                 op='before' | 
+	 *                 op='after'
+	 *             ) 
+	 *             expr=TemporalPrefixExpr
+	 *         ) | 
+	 *         ((op='-' | op='not') expr=PrefixExpr)
 	 *     )
 	 */
-	protected void sequence_PrefixExpr(ISerializationContext context, UnaryExpr semanticObject) {
+	protected void sequence_PrefixExpr_TemporalPrefixExpr(ISerializationContext context, UnaryExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

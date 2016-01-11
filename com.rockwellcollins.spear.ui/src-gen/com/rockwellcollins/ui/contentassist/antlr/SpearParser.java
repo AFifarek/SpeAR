@@ -50,6 +50,8 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOrExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__OrExpr__OpAlternatives_1_0_0_1_0");
 					put(grammarAccess.getTriggersExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__TriggersExpr__OpAlternatives_1_0_0_1_0");
 					put(grammarAccess.getSinceExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__SinceExpr__OpAlternatives_1_0_0_1_0");
+					put(grammarAccess.getTemporalPrefixExprAccess().getAlternatives(), "rule__TemporalPrefixExpr__Alternatives");
+					put(grammarAccess.getTemporalPrefixExprAccess().getOpAlternatives_0_1_0(), "rule__TemporalPrefixExpr__OpAlternatives_0_1_0");
 					put(grammarAccess.getRelationalOpAccess().getAlternatives(), "rule__RelationalOp__Alternatives");
 					put(grammarAccess.getPlusExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__PlusExpr__OpAlternatives_1_0_0_1_0");
 					put(grammarAccess.getMultiplyExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__MultiplyExpr__OpAlternatives_1_0_0_1_0");
@@ -126,6 +128,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSinceExprAccess().getGroup_1(), "rule__SinceExpr__Group_1__0");
 					put(grammarAccess.getSinceExprAccess().getGroup_1_0(), "rule__SinceExpr__Group_1_0__0");
 					put(grammarAccess.getSinceExprAccess().getGroup_1_0_0(), "rule__SinceExpr__Group_1_0_0__0");
+					put(grammarAccess.getTemporalPrefixExprAccess().getGroup_0(), "rule__TemporalPrefixExpr__Group_0__0");
 					put(grammarAccess.getRelationalExprAccess().getGroup(), "rule__RelationalExpr__Group__0");
 					put(grammarAccess.getRelationalExprAccess().getGroup_1(), "rule__RelationalExpr__Group_1__0");
 					put(grammarAccess.getRelationalExprAccess().getGroup_1_0(), "rule__RelationalExpr__Group_1_0__0");
@@ -239,6 +242,8 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTriggersExprAccess().getRightAssignment_1_1(), "rule__TriggersExpr__RightAssignment_1_1");
 					put(grammarAccess.getSinceExprAccess().getOpAssignment_1_0_0_1(), "rule__SinceExpr__OpAssignment_1_0_0_1");
 					put(grammarAccess.getSinceExprAccess().getRightAssignment_1_1(), "rule__SinceExpr__RightAssignment_1_1");
+					put(grammarAccess.getTemporalPrefixExprAccess().getOpAssignment_0_1(), "rule__TemporalPrefixExpr__OpAssignment_0_1");
+					put(grammarAccess.getTemporalPrefixExprAccess().getExprAssignment_0_2(), "rule__TemporalPrefixExpr__ExprAssignment_0_2");
 					put(grammarAccess.getRelationalExprAccess().getOpAssignment_1_0_0_1(), "rule__RelationalExpr__OpAssignment_1_0_0_1");
 					put(grammarAccess.getRelationalExprAccess().getRightAssignment_1_1(), "rule__RelationalExpr__RightAssignment_1_1");
 					put(grammarAccess.getPlusExprAccess().getOpAssignment_1_0_0_1(), "rule__PlusExpr__OpAssignment_1_0_0_1");
