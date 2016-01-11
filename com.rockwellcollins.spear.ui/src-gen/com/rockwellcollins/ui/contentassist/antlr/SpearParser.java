@@ -42,7 +42,9 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAtomicUnitExprAccess().getAlternatives(), "rule__AtomicUnitExpr__Alternatives");
 					put(grammarAccess.getTypeDefAccess().getAlternatives(), "rule__TypeDef__Alternatives");
 					put(grammarAccess.getTypeAccess().getAlternatives(), "rule__Type__Alternatives");
+					put(grammarAccess.getConstantAccess().getAlternatives_1(), "rule__Constant__Alternatives_1");
 					put(grammarAccess.getVariableAccess().getAlternatives_1(), "rule__Variable__Alternatives_1");
+					put(grammarAccess.getMacroAccess().getAlternatives_1(), "rule__Macro__Alternatives_1");
 					put(grammarAccess.getConstraintAccess().getAlternatives(), "rule__Constraint__Alternatives");
 					put(grammarAccess.getImpliesExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__ImpliesExpr__OpAlternatives_1_0_0_1_0");
 					put(grammarAccess.getOrExprAccess().getOpAlternatives_1_0_0_1_0(), "rule__OrExpr__OpAlternatives_1_0_0_1_0");
@@ -76,8 +78,6 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDefinitionsAccess().getGroup_4(), "rule__Definitions__Group_4__0");
 					put(grammarAccess.getPatternsAccess().getGroup(), "rule__Patterns__Group__0");
 					put(grammarAccess.getPatternAccess().getGroup(), "rule__Pattern__Group__0");
-					put(grammarAccess.getPatternAccess().getGroup_4(), "rule__Pattern__Group_4__0");
-					put(grammarAccess.getPatternAccess().getGroup_7(), "rule__Pattern__Group_7__0");
 					put(grammarAccess.getUnitDefAccess().getGroup_0(), "rule__UnitDef__Group_0__0");
 					put(grammarAccess.getUnitDefAccess().getGroup_1(), "rule__UnitDef__Group_1__0");
 					put(grammarAccess.getProductUnitExprAccess().getGroup(), "rule__ProductUnitExpr__Group__0");
@@ -191,12 +191,6 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPatternsAccess().getNameAssignment_1(), "rule__Patterns__NameAssignment_1");
 					put(grammarAccess.getPatternsAccess().getPatternsAssignment_2(), "rule__Patterns__PatternsAssignment_2");
 					put(grammarAccess.getPatternAccess().getNameAssignment_1(), "rule__Pattern__NameAssignment_1");
-					put(grammarAccess.getPatternAccess().getInputsAssignment_3(), "rule__Pattern__InputsAssignment_3");
-					put(grammarAccess.getPatternAccess().getInputsAssignment_4_1(), "rule__Pattern__InputsAssignment_4_1");
-					put(grammarAccess.getPatternAccess().getOutputsAssignment_6(), "rule__Pattern__OutputsAssignment_6");
-					put(grammarAccess.getPatternAccess().getOutputsAssignment_7_1(), "rule__Pattern__OutputsAssignment_7_1");
-					put(grammarAccess.getPatternAccess().getNodeAssignment_9(), "rule__Pattern__NodeAssignment_9");
-					put(grammarAccess.getPatternAccess().getEnglishAssignment_11(), "rule__Pattern__EnglishAssignment_11");
 					put(grammarAccess.getUnitDefAccess().getNameAssignment_0_1(), "rule__UnitDef__NameAssignment_0_1");
 					put(grammarAccess.getUnitDefAccess().getDescriptionAssignment_0_2(), "rule__UnitDef__DescriptionAssignment_0_2");
 					put(grammarAccess.getUnitDefAccess().getNameAssignment_1_1(), "rule__UnitDef__NameAssignment_1_1");

@@ -36,10 +36,6 @@
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Pattern">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Pattern/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Pattern/inputs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Pattern/outputs"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Pattern/node"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Pattern/english"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//UnitDef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//UnitDef/name"/>

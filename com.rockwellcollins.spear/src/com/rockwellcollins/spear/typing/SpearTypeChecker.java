@@ -233,7 +233,6 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 				return BOOL;
 			}
 			break;
-
 		}
 
 		error("Operator '" + be.getOp() + "' not defined on types " + left + ", " + right, be);

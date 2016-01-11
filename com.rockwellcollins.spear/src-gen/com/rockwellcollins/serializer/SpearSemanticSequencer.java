@@ -4,7 +4,6 @@
 package com.rockwellcollins.serializer;
 
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 import com.rockwellcollins.services.SpearGrammarAccess;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
@@ -49,16 +48,15 @@ import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
+import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.serializer.acceptor.ISemanticSequenceAcceptor;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.xtext.Action;
+import org.eclipse.xtext.Parameter;
+import org.eclipse.xtext.ParserRule;
+import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
-import org.eclipse.xtext.serializer.diagnostic.ISemanticSequencerDiagnosticProvider;
-import org.eclipse.xtext.serializer.diagnostic.ISerializationDiagnostic.Acceptor;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
-import org.eclipse.xtext.serializer.sequencer.GenericSequencer;
-import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
-import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
-import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 
 @SuppressWarnings("all")
@@ -68,8 +66,13 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	private SpearGrammarAccess grammarAccess;
 	
 	@Override
-	public void createSequence(EObject context, EObject semanticObject) {
-		if(semanticObject.eClass().getEPackage() == SpearPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
+	public void sequence(ISerializationContext context, EObject semanticObject) {
+		EPackage epackage = semanticObject.eClass().getEPackage();
+		ParserRule rule = context.getParserRule();
+		Action action = context.getAssignedAction();
+		Set<Parameter> parameters = context.getEnabledBooleanParameters();
+		if (epackage == SpearPackage.eINSTANCE)
+			switch (semanticObject.eClass().getClassifierID()) {
 			case SpearPackage.ARRAY_ACCESS_EXPR:
 				sequence_AccessExpr(context, (ArrayAccessExpr) semanticObject); 
 				return; 
@@ -197,22 +200,48 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_Variable(context, (Variable) semanticObject); 
 				return; 
 			}
-		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
+		if (errorAcceptor != null)
+			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
 	
 	/**
+	 * Contexts:
+	 *     Expr returns ArrayAccessExpr
+	 *     ImpliesExpr returns ArrayAccessExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     OrExpr returns ArrayAccessExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     AndExpr returns ArrayAccessExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     TriggersExpr returns ArrayAccessExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     SinceExpr returns ArrayAccessExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     RelationalExpr returns ArrayAccessExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     PlusExpr returns ArrayAccessExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     MultiplyExpr returns ArrayAccessExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     PrefixExpr returns ArrayAccessExpr
+	 *     AccessExpr returns ArrayAccessExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns ArrayAccessExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns ArrayAccessExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns ArrayAccessExpr
+	 *     AccessExpr.ArrayUpdateExpr_1_2_2_0_0_0 returns ArrayAccessExpr
+	 *     AtomicExpr returns ArrayAccessExpr
+	 *
 	 * Constraint:
 	 *     (array=AccessExpr_ArrayAccessExpr_1_2_0_0_0 index=Expr)
 	 */
-	protected void sequence_AccessExpr(EObject context, ArrayAccessExpr semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_ACCESS_EXPR__ARRAY) == ValueTransient.YES)
+	protected void sequence_AccessExpr(ISerializationContext context, ArrayAccessExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_ACCESS_EXPR__ARRAY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_ACCESS_EXPR__ARRAY));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_ACCESS_EXPR__INDEX) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_ACCESS_EXPR__INDEX) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_ACCESS_EXPR__INDEX));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAccessExprAccess().getArrayAccessExprArrayAction_1_2_0_0_0(), semanticObject.getArray());
 		feeder.accept(grammarAccess.getAccessExprAccess().getIndexExprParserRuleCall_1_2_1_0(), semanticObject.getIndex());
 		feeder.finish();
@@ -220,18 +249,42 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns ArrayUpdateExpr
+	 *     ImpliesExpr returns ArrayUpdateExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     OrExpr returns ArrayUpdateExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     AndExpr returns ArrayUpdateExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     TriggersExpr returns ArrayUpdateExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     SinceExpr returns ArrayUpdateExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     RelationalExpr returns ArrayUpdateExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     PlusExpr returns ArrayUpdateExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     MultiplyExpr returns ArrayUpdateExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     PrefixExpr returns ArrayUpdateExpr
+	 *     AccessExpr returns ArrayUpdateExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns ArrayUpdateExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns ArrayUpdateExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns ArrayUpdateExpr
+	 *     AtomicExpr returns ArrayUpdateExpr
+	 *
 	 * Constraint:
 	 *     (access=AccessExpr_ArrayUpdateExpr_1_2_2_0_0_0 value=Expr)
 	 */
-	protected void sequence_AccessExpr(EObject context, ArrayUpdateExpr semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_UPDATE_EXPR__ACCESS) == ValueTransient.YES)
+	protected void sequence_AccessExpr(ISerializationContext context, ArrayUpdateExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_UPDATE_EXPR__ACCESS) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_UPDATE_EXPR__ACCESS));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_UPDATE_EXPR__VALUE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_UPDATE_EXPR__VALUE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_UPDATE_EXPR__VALUE));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAccessExprAccess().getArrayUpdateExprAccessAction_1_2_2_0_0_0(), semanticObject.getAccess());
 		feeder.accept(grammarAccess.getAccessExprAccess().getValueExprParserRuleCall_1_2_2_1_0(), semanticObject.getValue());
 		feeder.finish();
@@ -239,18 +292,42 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns RecordAccessExpr
+	 *     ImpliesExpr returns RecordAccessExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     OrExpr returns RecordAccessExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     AndExpr returns RecordAccessExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     TriggersExpr returns RecordAccessExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     SinceExpr returns RecordAccessExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     RelationalExpr returns RecordAccessExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     PlusExpr returns RecordAccessExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     MultiplyExpr returns RecordAccessExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     PrefixExpr returns RecordAccessExpr
+	 *     AccessExpr returns RecordAccessExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns RecordAccessExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns RecordAccessExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns RecordAccessExpr
+	 *     AtomicExpr returns RecordAccessExpr
+	 *
 	 * Constraint:
 	 *     (record=AccessExpr_RecordAccessExpr_1_0_0_0_0 field=[RecordFieldExpr|ID])
 	 */
-	protected void sequence_AccessExpr(EObject context, RecordAccessExpr semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_ACCESS_EXPR__RECORD) == ValueTransient.YES)
+	protected void sequence_AccessExpr(ISerializationContext context, RecordAccessExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_ACCESS_EXPR__RECORD) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_ACCESS_EXPR__RECORD));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_ACCESS_EXPR__FIELD) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_ACCESS_EXPR__FIELD) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_ACCESS_EXPR__FIELD));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAccessExprAccess().getRecordAccessExprRecordAction_1_0_0_0_0(), semanticObject.getRecord());
 		feeder.accept(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_0_1_0_1(), semanticObject.getField());
 		feeder.finish();
@@ -258,20 +335,44 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns RecordUpdateExpr
+	 *     ImpliesExpr returns RecordUpdateExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     OrExpr returns RecordUpdateExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     AndExpr returns RecordUpdateExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     TriggersExpr returns RecordUpdateExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     SinceExpr returns RecordUpdateExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     RelationalExpr returns RecordUpdateExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     PlusExpr returns RecordUpdateExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     MultiplyExpr returns RecordUpdateExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     PrefixExpr returns RecordUpdateExpr
+	 *     AccessExpr returns RecordUpdateExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns RecordUpdateExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns RecordUpdateExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns RecordUpdateExpr
+	 *     AtomicExpr returns RecordUpdateExpr
+	 *
 	 * Constraint:
 	 *     (record=AccessExpr_RecordUpdateExpr_1_1_0_0_0 field=[RecordFieldExpr|ID] value=Expr)
 	 */
-	protected void sequence_AccessExpr(EObject context, RecordUpdateExpr semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_UPDATE_EXPR__RECORD) == ValueTransient.YES)
+	protected void sequence_AccessExpr(ISerializationContext context, RecordUpdateExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_UPDATE_EXPR__RECORD) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_UPDATE_EXPR__RECORD));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_UPDATE_EXPR__FIELD) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_UPDATE_EXPR__FIELD) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_UPDATE_EXPR__FIELD));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_UPDATE_EXPR__VALUE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_UPDATE_EXPR__VALUE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_UPDATE_EXPR__VALUE));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAccessExprAccess().getRecordUpdateExprRecordAction_1_1_0_0_0(), semanticObject.getRecord());
 		feeder.accept(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1(), semanticObject.getField());
 		feeder.accept(grammarAccess.getAccessExprAccess().getValueExprParserRuleCall_1_1_1_0(), semanticObject.getValue());
@@ -280,63 +381,161 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns BinaryExpr
+	 *     ImpliesExpr returns BinaryExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     OrExpr returns BinaryExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     AndExpr returns BinaryExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     TriggersExpr returns BinaryExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     SinceExpr returns BinaryExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     RelationalExpr returns BinaryExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     PlusExpr returns BinaryExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     MultiplyExpr returns BinaryExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     PrefixExpr returns BinaryExpr
+	 *     AccessExpr returns BinaryExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns BinaryExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns BinaryExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns BinaryExpr
+	 *     AtomicExpr returns BinaryExpr
+	 *
 	 * Constraint:
 	 *     (
-	 *         (left=PlusExpr_BinaryExpr_1_0_0_0 (op='+' | op='-') right=PlusExpr) | 
-	 *         (left=MultiplyExpr_BinaryExpr_1_0_0_0 (op='*' | op='/') right=MultiplyExpr) | 
-	 *         (left=RelationalExpr_BinaryExpr_1_0_0_0 op=RelationalOp right=RelationalExpr) | 
-	 *         (left=SinceExpr_BinaryExpr_1_0_0_0 (op='S' | op='since') right=SinceExpr) | 
-	 *         (left=TriggersExpr_BinaryExpr_1_0_0_0 (op='T' | op='triggers') right=TriggersExpr) | 
-	 *         (left=AndExpr_BinaryExpr_1_0_0_0 op='and' right=AndExpr) | 
+	 *         (left=ImpliesExpr_BinaryExpr_1_0_0_0 (op='=>' | op='implies') right=ImpliesExpr) | 
 	 *         (left=OrExpr_BinaryExpr_1_0_0_0 (op='or' | op='xor') right=ImpliesExpr) | 
-	 *         (left=ImpliesExpr_BinaryExpr_1_0_0_0 (op='=>' | op='implies') right=ImpliesExpr)
+	 *         (left=AndExpr_BinaryExpr_1_0_0_0 op='and' right=AndExpr) | 
+	 *         (left=TriggersExpr_BinaryExpr_1_0_0_0 (op='T' | op='triggers') right=TriggersExpr) | 
+	 *         (left=SinceExpr_BinaryExpr_1_0_0_0 (op='S' | op='since') right=SinceExpr) | 
+	 *         (left=RelationalExpr_BinaryExpr_1_0_0_0 op=RelationalOp right=RelationalExpr) | 
+	 *         (left=PlusExpr_BinaryExpr_1_0_0_0 (op='+' | op='-') right=PlusExpr) | 
+	 *         (left=MultiplyExpr_BinaryExpr_1_0_0_0 (op='*' | op='/') right=MultiplyExpr)
 	 *     )
 	 */
-	protected void sequence_AndExpr_ImpliesExpr_MultiplyExpr_OrExpr_PlusExpr_RelationalExpr_SinceExpr_TriggersExpr(EObject context, BinaryExpr semanticObject) {
+	protected void sequence_AndExpr_ImpliesExpr_MultiplyExpr_OrExpr_PlusExpr_RelationalExpr_SinceExpr_TriggersExpr(ISerializationContext context, BinaryExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns ArrayExpr
+	 *     ImpliesExpr returns ArrayExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     OrExpr returns ArrayExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     AndExpr returns ArrayExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     TriggersExpr returns ArrayExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     SinceExpr returns ArrayExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     RelationalExpr returns ArrayExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     PlusExpr returns ArrayExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     MultiplyExpr returns ArrayExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     PrefixExpr returns ArrayExpr
+	 *     AccessExpr returns ArrayExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns ArrayExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns ArrayExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns ArrayExpr
+	 *     AtomicExpr returns ArrayExpr
+	 *
 	 * Constraint:
 	 *     (type=[ArrayType|ID] exprs+=Expr exprs+=Expr*)
 	 */
-	protected void sequence_AtomicExpr(EObject context, ArrayExpr semanticObject) {
+	protected void sequence_AtomicExpr(ISerializationContext context, ArrayExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns IdExpr
+	 *     ImpliesExpr returns IdExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     OrExpr returns IdExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     AndExpr returns IdExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     TriggersExpr returns IdExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     SinceExpr returns IdExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     RelationalExpr returns IdExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     PlusExpr returns IdExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     MultiplyExpr returns IdExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     PrefixExpr returns IdExpr
+	 *     AccessExpr returns IdExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns IdExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns IdExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns IdExpr
+	 *     AtomicExpr returns IdExpr
+	 *
 	 * Constraint:
 	 *     id=[IdRef|ID]
 	 */
-	protected void sequence_AtomicExpr(EObject context, IdExpr semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_EXPR__ID) == ValueTransient.YES)
+	protected void sequence_AtomicExpr(ISerializationContext context, IdExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_EXPR__ID) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ID_EXPR__ID));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAtomicExprAccess().getIdIdRefIDTerminalRuleCall_1_1_0_1(), semanticObject.getId());
 		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns IfThenElseExpr
+	 *     ImpliesExpr returns IfThenElseExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     OrExpr returns IfThenElseExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     AndExpr returns IfThenElseExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     TriggersExpr returns IfThenElseExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     SinceExpr returns IfThenElseExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     RelationalExpr returns IfThenElseExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     PlusExpr returns IfThenElseExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     MultiplyExpr returns IfThenElseExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     PrefixExpr returns IfThenElseExpr
+	 *     AccessExpr returns IfThenElseExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns IfThenElseExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns IfThenElseExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns IfThenElseExpr
+	 *     AtomicExpr returns IfThenElseExpr
+	 *
 	 * Constraint:
 	 *     (cond=Expr then=Expr else=Expr)
 	 */
-	protected void sequence_AtomicExpr(EObject context, IfThenElseExpr semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND) == ValueTransient.YES)
+	protected void sequence_AtomicExpr(ISerializationContext context, IfThenElseExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__THEN) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__THEN) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__THEN));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__ELSE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__ELSE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__ELSE));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAtomicExprAccess().getCondExprParserRuleCall_4_2_0(), semanticObject.getCond());
 		feeder.accept(grammarAccess.getAtomicExprAccess().getThenExprParserRuleCall_4_4_0(), semanticObject.getThen());
 		feeder.accept(grammarAccess.getAtomicExprAccess().getElseExprParserRuleCall_4_6_0(), semanticObject.getElse());
@@ -345,36 +544,110 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns MIdExpr
+	 *     ImpliesExpr returns MIdExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns MIdExpr
+	 *     OrExpr returns MIdExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns MIdExpr
+	 *     AndExpr returns MIdExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns MIdExpr
+	 *     TriggersExpr returns MIdExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns MIdExpr
+	 *     SinceExpr returns MIdExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns MIdExpr
+	 *     RelationalExpr returns MIdExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns MIdExpr
+	 *     PlusExpr returns MIdExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns MIdExpr
+	 *     MultiplyExpr returns MIdExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns MIdExpr
+	 *     PrefixExpr returns MIdExpr
+	 *     AccessExpr returns MIdExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns MIdExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns MIdExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns MIdExpr
+	 *     AtomicExpr returns MIdExpr
+	 *
 	 * Constraint:
 	 *     (ids+=[IdRef|ID] ids+=[IdRef|ID]*)
 	 */
-	protected void sequence_AtomicExpr(EObject context, MIdExpr semanticObject) {
+	protected void sequence_AtomicExpr(ISerializationContext context, MIdExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns PatternCall
+	 *     ImpliesExpr returns PatternCall
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     OrExpr returns PatternCall
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     AndExpr returns PatternCall
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     TriggersExpr returns PatternCall
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     SinceExpr returns PatternCall
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     RelationalExpr returns PatternCall
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     PlusExpr returns PatternCall
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     MultiplyExpr returns PatternCall
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     PrefixExpr returns PatternCall
+	 *     AccessExpr returns PatternCall
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns PatternCall
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns PatternCall
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns PatternCall
+	 *     AtomicExpr returns PatternCall
+	 *
 	 * Constraint:
 	 *     (pattern=[Pattern|ID] args+=Expr args+=Expr*)
 	 */
-	protected void sequence_AtomicExpr(EObject context, PatternCall semanticObject) {
+	protected void sequence_AtomicExpr(ISerializationContext context, PatternCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns PreviousExpr
+	 *     ImpliesExpr returns PreviousExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     OrExpr returns PreviousExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     AndExpr returns PreviousExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     TriggersExpr returns PreviousExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     SinceExpr returns PreviousExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     RelationalExpr returns PreviousExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     PlusExpr returns PreviousExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     MultiplyExpr returns PreviousExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     PrefixExpr returns PreviousExpr
+	 *     AccessExpr returns PreviousExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns PreviousExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns PreviousExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns PreviousExpr
+	 *     AtomicExpr returns PreviousExpr
+	 *
 	 * Constraint:
 	 *     (var=Expr init=Expr)
 	 */
-	protected void sequence_AtomicExpr(EObject context, PreviousExpr semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.PREVIOUS_EXPR__VAR) == ValueTransient.YES)
+	protected void sequence_AtomicExpr(ISerializationContext context, PreviousExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.PREVIOUS_EXPR__VAR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.PREVIOUS_EXPR__VAR));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.PREVIOUS_EXPR__INIT) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.PREVIOUS_EXPR__INIT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.PREVIOUS_EXPR__INIT));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAtomicExprAccess().getVarExprParserRuleCall_3_3_0(), semanticObject.getVar());
 		feeder.accept(grammarAccess.getAtomicExprAccess().getInitExprParserRuleCall_3_5_0(), semanticObject.getInit());
 		feeder.finish();
@@ -382,54 +655,114 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns RecordExpr
+	 *     ImpliesExpr returns RecordExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     OrExpr returns RecordExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     AndExpr returns RecordExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     TriggersExpr returns RecordExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     SinceExpr returns RecordExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     RelationalExpr returns RecordExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     PlusExpr returns RecordExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     MultiplyExpr returns RecordExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     PrefixExpr returns RecordExpr
+	 *     AccessExpr returns RecordExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns RecordExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns RecordExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns RecordExpr
+	 *     AtomicExpr returns RecordExpr
+	 *
 	 * Constraint:
 	 *     (type=[RecordType|ID] fieldExprs+=RecordFieldExpr fieldExprs+=RecordFieldExpr*)
 	 */
-	protected void sequence_AtomicExpr(EObject context, RecordExpr semanticObject) {
+	protected void sequence_AtomicExpr(ISerializationContext context, RecordExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns SpecificationCall
+	 *     ImpliesExpr returns SpecificationCall
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     OrExpr returns SpecificationCall
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     AndExpr returns SpecificationCall
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     TriggersExpr returns SpecificationCall
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     SinceExpr returns SpecificationCall
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     RelationalExpr returns SpecificationCall
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     PlusExpr returns SpecificationCall
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     MultiplyExpr returns SpecificationCall
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     PrefixExpr returns SpecificationCall
+	 *     AccessExpr returns SpecificationCall
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns SpecificationCall
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns SpecificationCall
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns SpecificationCall
+	 *     AtomicExpr returns SpecificationCall
+	 *
 	 * Constraint:
 	 *     (spec=[Specification|ID] args+=Expr args+=Expr*)
 	 */
-	protected void sequence_AtomicExpr(EObject context, SpecificationCall semanticObject) {
+	protected void sequence_AtomicExpr(ISerializationContext context, SpecificationCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     UnitExpr returns NamedUnitExpr
+	 *     ProductUnitExpr returns NamedUnitExpr
+	 *     ProductUnitExpr.BinaryUnitExpr_1_0_0_0 returns NamedUnitExpr
+	 *     DivisionUnitExpr returns NamedUnitExpr
+	 *     DivisionUnitExpr.BinaryUnitExpr_1_0_0_0 returns NamedUnitExpr
+	 *     AtomicUnitExpr returns NamedUnitExpr
+	 *
 	 * Constraint:
 	 *     unit=[UnitDef|ID]
 	 */
-	protected void sequence_AtomicUnitExpr(EObject context, NamedUnitExpr semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.NAMED_UNIT_EXPR__UNIT) == ValueTransient.YES)
+	protected void sequence_AtomicUnitExpr(ISerializationContext context, NamedUnitExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.NAMED_UNIT_EXPR__UNIT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.NAMED_UNIT_EXPR__UNIT));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAtomicUnitExprAccess().getUnitUnitDefIDTerminalRuleCall_0_1_0_1(), semanticObject.getUnit());
 		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Constant returns Constant
+	 *     IdRef returns Constant
+	 *
 	 * Constraint:
 	 *     (name=ID type=Type expr=Expr)
 	 */
-	protected void sequence_Constant(EObject context, Constant semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
+	protected void sequence_Constant(ISerializationContext context, Constant semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ID_REF__NAME));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTANT__TYPE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTANT__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONSTANT__TYPE));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTANT__EXPR) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTANT__EXPR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONSTANT__EXPR));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getConstantAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getConstantAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getConstantAccess().getExprExprParserRuleCall_4_0(), semanticObject.getExpr());
@@ -438,39 +771,54 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     File returns Definitions
+	 *     Definitions returns Definitions
+	 *
 	 * Constraint:
 	 *     (name=ID unitdefs+=UnitDef* typedefs+=TypeDef* constants+=Constant*)
 	 */
-	protected void sequence_Definitions(EObject context, Definitions semanticObject) {
+	protected void sequence_Definitions(ISerializationContext context, Definitions semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     UnitExpr returns BinaryUnitExpr
+	 *     ProductUnitExpr returns BinaryUnitExpr
+	 *     ProductUnitExpr.BinaryUnitExpr_1_0_0_0 returns BinaryUnitExpr
+	 *     DivisionUnitExpr returns BinaryUnitExpr
+	 *     DivisionUnitExpr.BinaryUnitExpr_1_0_0_0 returns BinaryUnitExpr
+	 *     AtomicUnitExpr returns BinaryUnitExpr
+	 *
 	 * Constraint:
 	 *     (
 	 *         (left=ProductUnitExpr_BinaryUnitExpr_1_0_0_0 op='*' right=ProductUnitExpr) | 
 	 *         (left=DivisionUnitExpr_BinaryUnitExpr_1_0_0_0 op='/' right=AtomicUnitExpr)
 	 *     )
 	 */
-	protected void sequence_DivisionUnitExpr_ProductUnitExpr(EObject context, BinaryUnitExpr semanticObject) {
+	protected void sequence_DivisionUnitExpr_ProductUnitExpr(ISerializationContext context, BinaryUnitExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Constraint returns EnglishConstraint
+	 *     EnglishConstraint returns EnglishConstraint
+	 *
 	 * Constraint:
 	 *     (name=ID text=STRING)
 	 */
-	protected void sequence_EnglishConstraint(EObject context, EnglishConstraint semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTRAINT__NAME) == ValueTransient.YES)
+	protected void sequence_EnglishConstraint(ISerializationContext context, EnglishConstraint semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTRAINT__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONSTRAINT__NAME));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ENGLISH_CONSTRAINT__TEXT) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ENGLISH_CONSTRAINT__TEXT) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ENGLISH_CONSTRAINT__TEXT));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getEnglishConstraintAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getEnglishConstraintAccess().getTextSTRINGTerminalRuleCall_2_0(), semanticObject.getText());
 		feeder.finish();
@@ -478,34 +826,40 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     EnumValue returns EnumValue
+	 *     IdRef returns EnumValue
+	 *
 	 * Constraint:
 	 *     name=ID
 	 */
-	protected void sequence_EnumValue(EObject context, EnumValue semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
+	protected void sequence_EnumValue(ISerializationContext context, EnumValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ID_REF__NAME));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getEnumValueAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Constraint returns FormalConstraint
+	 *     FormalConstraint returns FormalConstraint
+	 *
 	 * Constraint:
 	 *     (name=ID expr=Expr)
 	 */
-	protected void sequence_FormalConstraint(EObject context, FormalConstraint semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTRAINT__NAME) == ValueTransient.YES)
+	protected void sequence_FormalConstraint(ISerializationContext context, FormalConstraint semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTRAINT__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONSTRAINT__NAME));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.FORMAL_CONSTRAINT__EXPR) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.FORMAL_CONSTRAINT__EXPR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.FORMAL_CONSTRAINT__EXPR));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getFormalConstraintAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getFormalConstraintAccess().getExprExprParserRuleCall_2_0(), semanticObject.getExpr());
 		feeder.finish();
@@ -513,70 +867,152 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     Import returns Import
+	 *
 	 * Constraint:
 	 *     importURI=STRING
 	 */
-	protected void sequence_Import(EObject context, Import semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IMPORT__IMPORT_URI) == ValueTransient.YES)
+	protected void sequence_Import(ISerializationContext context, Import semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IMPORT__IMPORT_URI) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.IMPORT__IMPORT_URI));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_1_0(), semanticObject.getImportURI());
 		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns BoolLiteral
+	 *     ImpliesExpr returns BoolLiteral
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     OrExpr returns BoolLiteral
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     AndExpr returns BoolLiteral
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     TriggersExpr returns BoolLiteral
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     SinceExpr returns BoolLiteral
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     RelationalExpr returns BoolLiteral
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     PlusExpr returns BoolLiteral
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     MultiplyExpr returns BoolLiteral
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     PrefixExpr returns BoolLiteral
+	 *     AccessExpr returns BoolLiteral
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns BoolLiteral
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns BoolLiteral
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns BoolLiteral
+	 *     AtomicExpr returns BoolLiteral
+	 *     LiteralExpr returns BoolLiteral
+	 *
 	 * Constraint:
 	 *     value=BOOL
 	 */
-	protected void sequence_LiteralExpr(EObject context, BoolLiteral semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.BOOL_LITERAL__VALUE) == ValueTransient.YES)
+	protected void sequence_LiteralExpr(ISerializationContext context, BoolLiteral semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.BOOL_LITERAL__VALUE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.BOOL_LITERAL__VALUE));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLiteralExprAccess().getValueBOOLParserRuleCall_1_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns IntLiteral
+	 *     ImpliesExpr returns IntLiteral
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     OrExpr returns IntLiteral
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     AndExpr returns IntLiteral
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     TriggersExpr returns IntLiteral
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     SinceExpr returns IntLiteral
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     RelationalExpr returns IntLiteral
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     PlusExpr returns IntLiteral
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     MultiplyExpr returns IntLiteral
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     PrefixExpr returns IntLiteral
+	 *     AccessExpr returns IntLiteral
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns IntLiteral
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns IntLiteral
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns IntLiteral
+	 *     AtomicExpr returns IntLiteral
+	 *     LiteralExpr returns IntLiteral
+	 *
 	 * Constraint:
 	 *     (value=INT unit=[UnitDef|ID]?)
 	 */
-	protected void sequence_LiteralExpr(EObject context, IntLiteral semanticObject) {
+	protected void sequence_LiteralExpr(ISerializationContext context, IntLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns RealLiteral
+	 *     ImpliesExpr returns RealLiteral
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     OrExpr returns RealLiteral
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     AndExpr returns RealLiteral
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     TriggersExpr returns RealLiteral
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     SinceExpr returns RealLiteral
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     RelationalExpr returns RealLiteral
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     PlusExpr returns RealLiteral
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     MultiplyExpr returns RealLiteral
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     PrefixExpr returns RealLiteral
+	 *     AccessExpr returns RealLiteral
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns RealLiteral
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns RealLiteral
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns RealLiteral
+	 *     AtomicExpr returns RealLiteral
+	 *     LiteralExpr returns RealLiteral
+	 *
 	 * Constraint:
 	 *     (value=REAL unit=[UnitDef|ID]?)
 	 */
-	protected void sequence_LiteralExpr(EObject context, RealLiteral semanticObject) {
+	protected void sequence_LiteralExpr(ISerializationContext context, RealLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Macro returns Macro
+	 *     IdRef returns Macro
+	 *
 	 * Constraint:
 	 *     (name=ID type=Type expr=Expr)
 	 */
-	protected void sequence_Macro(EObject context, Macro semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
+	protected void sequence_Macro(ISerializationContext context, Macro semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ID_REF__NAME));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.MACRO__TYPE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.MACRO__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.MACRO__TYPE));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.MACRO__EXPR) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.MACRO__EXPR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.MACRO__EXPR));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMacroAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getMacroAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getMacroAccess().getExprExprParserRuleCall_4_0(), semanticObject.getExpr());
@@ -585,32 +1021,62 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     Pattern returns Pattern
+	 *
 	 * Constraint:
-	 *     (
-	 *         name=ID 
-	 *         inputs+=Variable 
-	 *         inputs+=Variable* 
-	 *         outputs+=Variable 
-	 *         outputs+=Variable* 
-	 *         node=STRING 
-	 *         english=STRING
-	 *     )
+	 *     name=ID
 	 */
-	protected void sequence_Pattern(EObject context, Pattern semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_Pattern(ISerializationContext context, Pattern semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.PATTERN__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.PATTERN__NAME));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPatternAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     File returns Patterns
+	 *     Patterns returns Patterns
+	 *
 	 * Constraint:
 	 *     (name=ID patterns+=Pattern*)
 	 */
-	protected void sequence_Patterns(EObject context, Patterns semanticObject) {
+	protected void sequence_Patterns(ISerializationContext context, Patterns semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Expr returns UnaryExpr
+	 *     ImpliesExpr returns UnaryExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     OrExpr returns UnaryExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     AndExpr returns UnaryExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     TriggersExpr returns UnaryExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     SinceExpr returns UnaryExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     RelationalExpr returns UnaryExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     PlusExpr returns UnaryExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     MultiplyExpr returns UnaryExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     PrefixExpr returns UnaryExpr
+	 *     AccessExpr returns UnaryExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns UnaryExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns UnaryExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns UnaryExpr
+	 *     AtomicExpr returns UnaryExpr
+	 *
 	 * Constraint:
 	 *     (
 	 *         (
@@ -619,29 +1085,34 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *             op='O' | 
 	 *             op='once' | 
 	 *             op='H' | 
-	 *             op='historically'
+	 *             op='historically' | 
+	 *             op='never' | 
+	 *             op='before' | 
+	 *             op='after'
 	 *         ) 
 	 *         expr=PrefixExpr
 	 *     )
 	 */
-	protected void sequence_PrefixExpr(EObject context, UnaryExpr semanticObject) {
+	protected void sequence_PrefixExpr(ISerializationContext context, UnaryExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     RecordFieldExpr returns RecordFieldExpr
+	 *
 	 * Constraint:
 	 *     (name=ID expr=Expr)
 	 */
-	protected void sequence_RecordFieldExpr(EObject context, RecordFieldExpr semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_FIELD_EXPR__NAME) == ValueTransient.YES)
+	protected void sequence_RecordFieldExpr(ISerializationContext context, RecordFieldExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_FIELD_EXPR__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_FIELD_EXPR__NAME));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_FIELD_EXPR__EXPR) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_FIELD_EXPR__EXPR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_FIELD_EXPR__EXPR));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getRecordFieldExprAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getRecordFieldExprAccess().getExprExprParserRuleCall_2_0(), semanticObject.getExpr());
 		feeder.finish();
@@ -649,18 +1120,20 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     RecordTypeField returns RecordTypeField
+	 *
 	 * Constraint:
 	 *     (name=ID type=Type)
 	 */
-	protected void sequence_RecordTypeField(EObject context, RecordTypeField semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_TYPE_FIELD__NAME) == ValueTransient.YES)
+	protected void sequence_RecordTypeField(ISerializationContext context, RecordTypeField semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_TYPE_FIELD__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_TYPE_FIELD__NAME));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_TYPE_FIELD__TYPE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_TYPE_FIELD__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_TYPE_FIELD__TYPE));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getRecordTypeFieldAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getRecordTypeFieldAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
@@ -668,6 +1141,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     File returns Specification
+	 *     Specification returns Specification
+	 *
 	 * Constraint:
 	 *     (
 	 *         name=ID 
@@ -684,26 +1161,28 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         behaviors+=Constraint*
 	 *     )
 	 */
-	protected void sequence_Specification(EObject context, Specification semanticObject) {
+	protected void sequence_Specification(ISerializationContext context, Specification semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     TypeDef returns ArrayType
+	 *
 	 * Constraint:
 	 *     (name=ID base=Type size=INT)
 	 */
-	protected void sequence_TypeDef(EObject context, ArrayType semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME) == ValueTransient.YES)
+	protected void sequence_TypeDef(ISerializationContext context, ArrayType semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_TYPE__BASE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_TYPE__BASE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_TYPE__BASE));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_TYPE__SIZE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_TYPE__SIZE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_TYPE__SIZE));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_2_1_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getTypeDefAccess().getBaseTypeParserRuleCall_2_3_0(), semanticObject.getBase());
 		feeder.accept(grammarAccess.getTypeDefAccess().getSizeINTTerminalRuleCall_2_5_0(), semanticObject.getSize());
@@ -712,108 +1191,139 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	
 	/**
+	 * Contexts:
+	 *     TypeDef returns EnumType
+	 *
 	 * Constraint:
 	 *     (name=ID values+=EnumValue values+=EnumValue*)
 	 */
-	protected void sequence_TypeDef(EObject context, EnumType semanticObject) {
+	protected void sequence_TypeDef(ISerializationContext context, EnumType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     TypeDef returns NamedType
+	 *
 	 * Constraint:
 	 *     (name=ID type=Type unit=[UnitDef|ID]?)
 	 */
-	protected void sequence_TypeDef(EObject context, NamedType semanticObject) {
+	protected void sequence_TypeDef(ISerializationContext context, NamedType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     TypeDef returns RecordType
+	 *
 	 * Constraint:
 	 *     (name=ID fields+=RecordTypeField fields+=RecordTypeField*)
 	 */
-	protected void sequence_TypeDef(EObject context, RecordType semanticObject) {
+	protected void sequence_TypeDef(ISerializationContext context, RecordType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Type returns BoolType
+	 *
 	 * Constraint:
 	 *     {BoolType}
 	 */
-	protected void sequence_Type(EObject context, BoolType semanticObject) {
+	protected void sequence_Type(ISerializationContext context, BoolType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Type returns IntType
+	 *
 	 * Constraint:
 	 *     {IntType}
 	 */
-	protected void sequence_Type(EObject context, IntType semanticObject) {
+	protected void sequence_Type(ISerializationContext context, IntType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Type returns RealType
+	 *
 	 * Constraint:
 	 *     {RealType}
 	 */
-	protected void sequence_Type(EObject context, RealType semanticObject) {
+	protected void sequence_Type(ISerializationContext context, RealType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Type returns UserType
+	 *
 	 * Constraint:
 	 *     def=[TypeDef|ID]
 	 */
-	protected void sequence_Type(EObject context, UserType semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.USER_TYPE__DEF) == ValueTransient.YES)
+	protected void sequence_Type(ISerializationContext context, UserType semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.USER_TYPE__DEF) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.USER_TYPE__DEF));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTypeAccess().getDefTypeDefIDTerminalRuleCall_3_1_0_1(), semanticObject.getDef());
 		feeder.finish();
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     UnitDef returns BaseUnit
+	 *
 	 * Constraint:
 	 *     (name=ID description=STRING?)
 	 */
-	protected void sequence_UnitDef(EObject context, BaseUnit semanticObject) {
+	protected void sequence_UnitDef(ISerializationContext context, BaseUnit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     UnitDef returns DerivedUnit
+	 *
 	 * Constraint:
 	 *     (name=ID unit=UnitExpr description=STRING?)
 	 */
-	protected void sequence_UnitDef(EObject context, DerivedUnit semanticObject) {
+	protected void sequence_UnitDef(ISerializationContext context, DerivedUnit semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
+	 * Contexts:
+	 *     Variable returns Variable
+	 *     IdRef returns Variable
+	 *
 	 * Constraint:
 	 *     (name=ID type=Type)
 	 */
-	protected void sequence_Variable(EObject context, Variable semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
+	protected void sequence_Variable(ISerializationContext context, Variable semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ID_REF__NAME));
-			if(transientValues.isValueTransient(semanticObject, SpearPackage.Literals.VARIABLE__TYPE) == ValueTransient.YES)
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.VARIABLE__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.VARIABLE__TYPE));
 		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getVariableAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getVariableAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
+	
+	
 }

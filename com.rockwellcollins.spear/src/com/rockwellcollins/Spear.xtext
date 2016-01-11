@@ -30,13 +30,14 @@ Definitions:
 
 Patterns: 'Patterns' name=ID patterns+=Pattern* ;
 
-//This is intentionally stubbed out for now pending discussions with AFRL
 Pattern: 
 	'Pattern' (name=ID)
-	'Inputs:' (inputs+=Variable) (',' inputs+=Variable)*
+/*	
+ *  'Inputs:' (inputs+=Variable) (',' inputs+=Variable)*
 	'Outputs:' (outputs+=Variable) (',' outputs+=Variable)*
 	'Lustre:' node=STRING
 	'English:' english=STRING
+ */
 ;
 
 UnitDef:
@@ -79,11 +80,11 @@ Type:
 |	{UserType} def=[TypeDef]
 ;
 
-Constant: name=ID ':' type=Type '=' expr=Expr;
+Constant: name=ID (':' | 'is a') type=Type '=' expr=Expr;
 
 Variable: name=ID (':' | 'is a') type=Type;
 
-Macro: name=ID ':' type=Type '=' expr=Expr;
+Macro: name=ID (':' | 'is a') type=Type '=' expr=Expr;
 
 Constraint: FormalConstraint | EnglishConstraint;
 
@@ -105,14 +106,27 @@ SinceExpr returns Expr: RelationalExpr (=>({BinaryExpr.left=current} op=('S' | '
 
 RelationalExpr returns Expr: PlusExpr (=>({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)? ;
 
-RelationalOp: '<' | '<=' | '>' | '>=' | '==' | '<>';
+/*
+ * This adds some english equivalents to the Relational Operators for a more english look and feel
+ */
+RelationalOp: 
+  '<'  | 'less than' 
+| '<=' | 'less than or equal to' 
+| '>'  | 'greater than' 
+| '>=' | 'greater than or equal to'
+| '==' | 'equal to'
+| '<>' | 'not equal to'
+;
 
 PlusExpr returns Expr: MultiplyExpr (=>({BinaryExpr.left=current} op=('+' | '-')) right=PlusExpr)? ;
 
 MultiplyExpr returns Expr: PrefixExpr (=>({BinaryExpr.left=current} op=('*' | '/')) right=MultiplyExpr)? ;
 
+/*
+ * The sugary Unary operators are never, before, after (the last three)
+ */
 PrefixExpr returns Expr: 
-	{UnaryExpr} op=('-' | 'not' | 'O' | 'once' | 'H' | 'historically') expr=PrefixExpr
+	{UnaryExpr} op=('-' | 'not' | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after') expr=PrefixExpr
 |	AccessExpr
 ;
 
@@ -142,10 +156,6 @@ LiteralExpr:
 |   {RealLiteral} value=REAL (unit=[UnitDef])?
 ;
 
-//QualifiedID:
-//	(ID '::')* ID
-//;
-
 IdRef:
 	Variable
 |	Macro
@@ -159,6 +169,4 @@ BOOL: BOOLEAN_TRUE | BOOLEAN_FALSE ;
 BOOLEAN_TRUE: 'TRUE' | 'true';
 BOOLEAN_FALSE: 'FALSE' | 'false';
 REAL: INT '.' INT;
-
-
 

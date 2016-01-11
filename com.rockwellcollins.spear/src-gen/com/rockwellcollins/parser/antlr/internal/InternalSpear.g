@@ -145,7 +145,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -166,7 +166,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"imports",
         		lv_imports_3_0, 
-        		"Import");
+        		"com.rockwellcollins.Spear.Import");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -188,7 +188,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"units",
         		lv_units_5_0, 
-        		"UnitDef");
+        		"com.rockwellcollins.Spear.UnitDef");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -210,7 +210,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"typedefs",
         		lv_typedefs_7_0, 
-        		"TypeDef");
+        		"com.rockwellcollins.Spear.TypeDef");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -232,7 +232,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"constants",
         		lv_constants_9_0, 
-        		"Constant");
+        		"com.rockwellcollins.Spear.Constant");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -254,7 +254,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"inputs",
         		lv_inputs_11_0, 
-        		"Variable");
+        		"com.rockwellcollins.Spear.Variable");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -276,7 +276,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"outputs",
         		lv_outputs_13_0, 
-        		"Variable");
+        		"com.rockwellcollins.Spear.Variable");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -298,7 +298,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"state",
         		lv_state_15_0, 
-        		"Variable");
+        		"com.rockwellcollins.Spear.Variable");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -320,7 +320,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"macros",
         		lv_macros_17_0, 
-        		"Macro");
+        		"com.rockwellcollins.Spear.Macro");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -342,7 +342,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"assumptions",
         		lv_assumptions_19_0, 
-        		"Constraint");
+        		"com.rockwellcollins.Spear.Constraint");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -364,7 +364,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"requirements",
         		lv_requirements_21_0, 
-        		"Constraint");
+        		"com.rockwellcollins.Spear.Constraint");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -386,7 +386,7 @@ ruleSpecification returns [EObject current=null]
        			$current, 
        			"behaviors",
         		lv_behaviors_23_0, 
-        		"Constraint");
+        		"com.rockwellcollins.Spear.Constraint");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -430,7 +430,7 @@ ruleImport returns [EObject current=null]
        			$current, 
        			"importURI",
         		lv_importURI_1_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -473,7 +473,7 @@ ruleDefinitions returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -494,7 +494,7 @@ ruleDefinitions returns [EObject current=null]
        			$current, 
        			"unitdefs",
         		lv_unitdefs_3_0, 
-        		"UnitDef");
+        		"com.rockwellcollins.Spear.UnitDef");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -516,7 +516,7 @@ ruleDefinitions returns [EObject current=null]
        			$current, 
        			"typedefs",
         		lv_typedefs_5_0, 
-        		"TypeDef");
+        		"com.rockwellcollins.Spear.TypeDef");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -538,7 +538,7 @@ ruleDefinitions returns [EObject current=null]
        			$current, 
        			"constants",
         		lv_constants_7_0, 
-        		"Constant");
+        		"com.rockwellcollins.Spear.Constant");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -582,7 +582,7 @@ rulePatterns returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -599,7 +599,7 @@ rulePatterns returns [EObject current=null]
        			$current, 
        			"patterns",
         		lv_patterns_2_0, 
-        		"Pattern");
+        		"com.rockwellcollins.Spear.Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -643,139 +643,7 @@ rulePattern returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
-	    }
-
-)
-)	otherlv_2='Inputs:' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getPatternAccess().getInputsKeyword_2());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPatternAccess().getInputsVariableParserRuleCall_3_0()); 
-	    }
-		lv_inputs_3_0=ruleVariable		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPatternRule());
-	        }
-       		add(
-       			$current, 
-       			"inputs",
-        		lv_inputs_3_0, 
-        		"Variable");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_4=',' 
-    {
-    	newLeafNode(otherlv_4, grammarAccess.getPatternAccess().getCommaKeyword_4_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPatternAccess().getInputsVariableParserRuleCall_4_1_0()); 
-	    }
-		lv_inputs_5_0=ruleVariable		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPatternRule());
-	        }
-       		add(
-       			$current, 
-       			"inputs",
-        		lv_inputs_5_0, 
-        		"Variable");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*	otherlv_6='Outputs:' 
-    {
-    	newLeafNode(otherlv_6, grammarAccess.getPatternAccess().getOutputsKeyword_5());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPatternAccess().getOutputsVariableParserRuleCall_6_0()); 
-	    }
-		lv_outputs_7_0=ruleVariable		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPatternRule());
-	        }
-       		add(
-       			$current, 
-       			"outputs",
-        		lv_outputs_7_0, 
-        		"Variable");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(	otherlv_8=',' 
-    {
-    	newLeafNode(otherlv_8, grammarAccess.getPatternAccess().getCommaKeyword_7_0());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getPatternAccess().getOutputsVariableParserRuleCall_7_1_0()); 
-	    }
-		lv_outputs_9_0=ruleVariable		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPatternRule());
-	        }
-       		add(
-       			$current, 
-       			"outputs",
-        		lv_outputs_9_0, 
-        		"Variable");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))*	otherlv_10='Lustre:' 
-    {
-    	newLeafNode(otherlv_10, grammarAccess.getPatternAccess().getLustreKeyword_8());
-    }
-(
-(
-		lv_node_11_0=RULE_STRING
-		{
-			newLeafNode(lv_node_11_0, grammarAccess.getPatternAccess().getNodeSTRINGTerminalRuleCall_9_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPatternRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"node",
-        		lv_node_11_0, 
-        		"STRING");
-	    }
-
-)
-)	otherlv_12='English:' 
-    {
-    	newLeafNode(otherlv_12, grammarAccess.getPatternAccess().getEnglishKeyword_10());
-    }
-(
-(
-		lv_english_13_0=RULE_STRING
-		{
-			newLeafNode(lv_english_13_0, grammarAccess.getPatternAccess().getEnglishSTRINGTerminalRuleCall_11_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPatternRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"english",
-        		lv_english_13_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -820,7 +688,7 @@ ruleUnitDef returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -838,7 +706,7 @@ ruleUnitDef returns [EObject current=null]
        			$current, 
        			"description",
         		lv_description_2_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -863,7 +731,7 @@ ruleUnitDef returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_4_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -884,7 +752,7 @@ ruleUnitDef returns [EObject current=null]
        			$current, 
        			"unit",
         		lv_unit_6_0, 
-        		"UnitExpr");
+        		"com.rockwellcollins.Spear.UnitExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -903,7 +771,7 @@ ruleUnitDef returns [EObject current=null]
        			$current, 
        			"description",
         		lv_description_7_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -1008,7 +876,7 @@ ruleProductUnitExpr returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_3_0, 
-        		"ProductUnitExpr");
+        		"com.rockwellcollins.Spear.ProductUnitExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1084,7 +952,7 @@ ruleDivisionUnitExpr returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_3_0, 
-        		"AtomicUnitExpr");
+        		"com.rockwellcollins.Spear.AtomicUnitExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1188,7 +1056,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_1_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -1209,7 +1077,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_3_0, 
-        		"Type");
+        		"com.rockwellcollins.Spear.Type");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1248,7 +1116,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_6_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -1277,7 +1145,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"fields",
         		lv_fields_10_0, 
-        		"RecordTypeField");
+        		"com.rockwellcollins.Spear.RecordTypeField");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1299,7 +1167,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"fields",
         		lv_fields_12_0, 
-        		"RecordTypeField");
+        		"com.rockwellcollins.Spear.RecordTypeField");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1329,7 +1197,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_15_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -1350,7 +1218,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"base",
         		lv_base_17_0, 
-        		"Type");
+        		"com.rockwellcollins.Spear.Type");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1373,7 +1241,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"size",
         		lv_size_19_0, 
-        		"INT");
+        		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
 )
@@ -1402,7 +1270,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_22_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -1431,7 +1299,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"values",
         		lv_values_26_0, 
-        		"EnumValue");
+        		"com.rockwellcollins.Spear.EnumValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1453,7 +1321,7 @@ ruleTypeDef returns [EObject current=null]
        			$current, 
        			"values",
         		lv_values_28_0, 
-        		"EnumValue");
+        		"com.rockwellcollins.Spear.EnumValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1497,7 +1365,7 @@ ruleRecordTypeField returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -1518,7 +1386,7 @@ ruleRecordTypeField returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_2_0, 
-        		"Type");
+        		"com.rockwellcollins.Spear.Type");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1558,7 +1426,7 @@ ruleEnumValue returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -1670,50 +1538,55 @@ ruleConstant returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
-)	otherlv_1=':' 
+)(	otherlv_1=':' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getConstantAccess().getColonKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getConstantAccess().getColonKeyword_1_0());
     }
-(
+
+    |	otherlv_2='is a' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getConstantAccess().getIsAKeyword_1_1());
+    }
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getConstantAccess().getTypeTypeParserRuleCall_2_0()); 
 	    }
-		lv_type_2_0=ruleType		{
+		lv_type_3_0=ruleType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConstantRule());
 	        }
        		set(
        			$current, 
        			"type",
-        		lv_type_2_0, 
-        		"Type");
+        		lv_type_3_0, 
+        		"com.rockwellcollins.Spear.Type");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_3='=' 
+)	otherlv_4='=' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getConstantAccess().getEqualsSignKeyword_3());
+    	newLeafNode(otherlv_4, grammarAccess.getConstantAccess().getEqualsSignKeyword_3());
     }
 (
 (
 		{ 
 	        newCompositeNode(grammarAccess.getConstantAccess().getExprExprParserRuleCall_4_0()); 
 	    }
-		lv_expr_4_0=ruleExpr		{
+		lv_expr_5_0=ruleExpr		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConstantRule());
 	        }
        		set(
        			$current, 
        			"expr",
-        		lv_expr_4_0, 
-        		"Expr");
+        		lv_expr_5_0, 
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1753,7 +1626,7 @@ ruleVariable returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -1779,7 +1652,7 @@ ruleVariable returns [EObject current=null]
        			$current, 
        			"type",
         		lv_type_3_0, 
-        		"Type");
+        		"com.rockwellcollins.Spear.Type");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1819,50 +1692,55 @@ ruleMacro returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
-)	otherlv_1=':' 
+)(	otherlv_1=':' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getMacroAccess().getColonKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getMacroAccess().getColonKeyword_1_0());
     }
-(
+
+    |	otherlv_2='is a' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getMacroAccess().getIsAKeyword_1_1());
+    }
+)(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getMacroAccess().getTypeTypeParserRuleCall_2_0()); 
 	    }
-		lv_type_2_0=ruleType		{
+		lv_type_3_0=ruleType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMacroRule());
 	        }
        		set(
        			$current, 
        			"type",
-        		lv_type_2_0, 
-        		"Type");
+        		lv_type_3_0, 
+        		"com.rockwellcollins.Spear.Type");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_3='=' 
+)	otherlv_4='=' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getMacroAccess().getEqualsSignKeyword_3());
+    	newLeafNode(otherlv_4, grammarAccess.getMacroAccess().getEqualsSignKeyword_3());
     }
 (
 (
 		{ 
 	        newCompositeNode(grammarAccess.getMacroAccess().getExprExprParserRuleCall_4_0()); 
 	    }
-		lv_expr_4_0=ruleExpr		{
+		lv_expr_5_0=ruleExpr		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMacroRule());
 	        }
        		set(
        			$current, 
        			"expr",
-        		lv_expr_4_0, 
-        		"Expr");
+        		lv_expr_5_0, 
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1942,7 +1820,7 @@ ruleFormalConstraint returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -1963,7 +1841,7 @@ ruleFormalConstraint returns [EObject current=null]
        			$current, 
        			"expr",
         		lv_expr_2_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2003,7 +1881,7 @@ ruleEnglishConstraint returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -2025,7 +1903,7 @@ ruleEnglishConstraint returns [EObject current=null]
        			$current, 
        			"text",
         		lv_text_2_0, 
-        		"STRING");
+        		"org.eclipse.xtext.common.Terminals.STRING");
 	    }
 
 )
@@ -2151,7 +2029,7 @@ ruleImpliesExpr returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_3_0, 
-        		"ImpliesExpr");
+        		"com.rockwellcollins.Spear.ImpliesExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2248,7 +2126,7 @@ ruleOrExpr returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_3_0, 
-        		"ImpliesExpr");
+        		"com.rockwellcollins.Spear.ImpliesExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2324,7 +2202,7 @@ ruleAndExpr returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_3_0, 
-        		"AndExpr");
+        		"com.rockwellcollins.Spear.AndExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2421,7 +2299,7 @@ ruleTriggersExpr returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_3_0, 
-        		"TriggersExpr");
+        		"com.rockwellcollins.Spear.TriggersExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2518,7 +2396,7 @@ ruleSinceExpr returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_3_0, 
-        		"SinceExpr");
+        		"com.rockwellcollins.Spear.SinceExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2577,7 +2455,7 @@ ruleRelationalOp
        			$current, 
        			"op",
         		lv_op_2_0, 
-        		"RelationalOp");
+        		"com.rockwellcollins.Spear.RelationalOp");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2595,7 +2473,7 @@ ruleRelationalOp
        			$current, 
        			"right",
         		lv_right_3_0, 
-        		"RelationalExpr");
+        		"com.rockwellcollins.Spear.RelationalExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2629,38 +2507,80 @@ ruleRelationalOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
     }
 
     |
+	kw='less than' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanKeyword_1()); 
+    }
+
+    |
 	kw='<=' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanSignEqualsSignKeyword_1()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanSignEqualsSignKeyword_2()); 
+    }
+
+    |
+	kw='less than or equal to' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanOrEqualToKeyword_3()); 
     }
 
     |
 	kw='>' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterThanSignKeyword_2()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterThanSignKeyword_4()); 
+    }
+
+    |
+	kw='greater than' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterThanKeyword_5()); 
     }
 
     |
 	kw='>=' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterThanSignEqualsSignKeyword_3()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterThanSignEqualsSignKeyword_6()); 
+    }
+
+    |
+	kw='greater than or equal to' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterThanOrEqualToKeyword_7()); 
     }
 
     |
 	kw='==' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getEqualsSignEqualsSignKeyword_4()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getEqualsSignEqualsSignKeyword_8()); 
+    }
+
+    |
+	kw='equal to' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getEqualToKeyword_9()); 
     }
 
     |
 	kw='<>' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanSignGreaterThanSignKeyword_5()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanSignGreaterThanSignKeyword_10()); 
+    }
+
+    |
+	kw='not equal to' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getNotEqualToKeyword_11()); 
     }
 )
     ;
@@ -2754,7 +2674,7 @@ rulePlusExpr returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_3_0, 
-        		"PlusExpr");
+        		"com.rockwellcollins.Spear.PlusExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2851,7 +2771,7 @@ ruleMultiplyExpr returns [EObject current=null]
        			$current, 
        			"right",
         		lv_right_3_0, 
-        		"MultiplyExpr");
+        		"com.rockwellcollins.Spear.MultiplyExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -2958,6 +2878,42 @@ rulePrefixExpr returns [EObject current=null]
        		setWithLastConsumed($current, "op", lv_op_1_6, null);
 	    }
 
+    |		lv_op_1_7=	'never' 
+    {
+        newLeafNode(lv_op_1_7, grammarAccess.getPrefixExprAccess().getOpNeverKeyword_0_1_0_6());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPrefixExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_1_7, null);
+	    }
+
+    |		lv_op_1_8=	'before' 
+    {
+        newLeafNode(lv_op_1_8, grammarAccess.getPrefixExprAccess().getOpBeforeKeyword_0_1_0_7());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPrefixExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_1_8, null);
+	    }
+
+    |		lv_op_1_9=	'after' 
+    {
+        newLeafNode(lv_op_1_9, grammarAccess.getPrefixExprAccess().getOpAfterKeyword_0_1_0_8());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getPrefixExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_1_9, null);
+	    }
+
 )
 
 )
@@ -2974,7 +2930,7 @@ rulePrefixExpr returns [EObject current=null]
        			$current, 
        			"expr",
         		lv_expr_2_0, 
-        		"PrefixExpr");
+        		"com.rockwellcollins.Spear.PrefixExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3093,7 +3049,7 @@ ruleAccessExpr returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_8_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3128,7 +3084,7 @@ ruleAccessExpr returns [EObject current=null]
        			$current, 
        			"index",
         		lv_index_12_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3158,7 +3114,7 @@ ruleAccessExpr returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_15_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3290,7 +3246,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"var",
         		lv_var_12_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3312,7 +3268,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"init",
         		lv_init_14_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3345,7 +3301,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"cond",
         		lv_cond_18_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3367,7 +3323,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"then",
         		lv_then_20_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3389,7 +3345,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"else",
         		lv_else_22_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3435,7 +3391,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"fieldExprs",
         		lv_fieldExprs_27_0, 
-        		"RecordFieldExpr");
+        		"com.rockwellcollins.Spear.RecordFieldExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3457,7 +3413,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"fieldExprs",
         		lv_fieldExprs_29_0, 
-        		"RecordFieldExpr");
+        		"com.rockwellcollins.Spear.RecordFieldExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3507,7 +3463,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"exprs",
         		lv_exprs_35_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3529,7 +3485,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"exprs",
         		lv_exprs_37_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3579,7 +3535,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"args",
         		lv_args_43_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3601,7 +3557,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"args",
         		lv_args_45_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3651,7 +3607,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"args",
         		lv_args_51_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3673,7 +3629,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"args",
         		lv_args_53_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3741,7 +3697,7 @@ ruleLiteralExpr returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_1_0, 
-        		"INT");
+        		"org.eclipse.xtext.common.Terminals.INT");
 	    }
 
 )
@@ -3778,7 +3734,7 @@ ruleLiteralExpr returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_4_0, 
-        		"BOOL");
+        		"com.rockwellcollins.Spear.BOOL");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3803,7 +3759,7 @@ ruleLiteralExpr returns [EObject current=null]
        			$current, 
        			"value",
         		lv_value_6_0, 
-        		"REAL");
+        		"com.rockwellcollins.Spear.REAL");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3858,7 +3814,7 @@ ruleRecordFieldExpr returns [EObject current=null]
        			$current, 
        			"name",
         		lv_name_0_0, 
-        		"ID");
+        		"org.eclipse.xtext.common.Terminals.ID");
 	    }
 
 )
@@ -3879,7 +3835,7 @@ ruleRecordFieldExpr returns [EObject current=null]
        			$current, 
        			"expr",
         		lv_expr_2_0, 
-        		"Expr");
+        		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 

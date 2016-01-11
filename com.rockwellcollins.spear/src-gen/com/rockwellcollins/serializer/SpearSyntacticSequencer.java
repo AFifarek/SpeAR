@@ -25,9 +25,11 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_AtomicExpr_LeftParenthesisKeyword_9_0_p;
 	protected AbstractElementAlias match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a;
 	protected AbstractElementAlias match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p;
+	protected AbstractElementAlias match_Constant_ColonKeyword_1_0_or_IsAKeyword_1_1;
 	protected AbstractElementAlias match_Definitions_ConstantsKeyword_4_0_q;
 	protected AbstractElementAlias match_Definitions_TypesKeyword_3_0_q;
 	protected AbstractElementAlias match_Definitions_UnitsKeyword_2_0_q;
+	protected AbstractElementAlias match_Macro_ColonKeyword_1_0_or_IsAKeyword_1_1;
 	protected AbstractElementAlias match_Specification_AssumptionsKeyword_12_0_q;
 	protected AbstractElementAlias match_Specification_ConstantsKeyword_5_0_q;
 	protected AbstractElementAlias match_Specification_ImportsKeyword_2_0_q;
@@ -45,9 +47,11 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_AtomicExpr_LeftParenthesisKeyword_9_0_p = new TokenAlias(true, false, grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_9_0());
 		match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a = new TokenAlias(true, true, grammarAccess.getAtomicUnitExprAccess().getLeftParenthesisKeyword_1_0());
 		match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getAtomicUnitExprAccess().getLeftParenthesisKeyword_1_0());
+		match_Constant_ColonKeyword_1_0_or_IsAKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getConstantAccess().getColonKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getConstantAccess().getIsAKeyword_1_1()));
 		match_Definitions_ConstantsKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getConstantsKeyword_4_0());
 		match_Definitions_TypesKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getTypesKeyword_3_0());
 		match_Definitions_UnitsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getUnitsKeyword_2_0());
+		match_Macro_ColonKeyword_1_0_or_IsAKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getMacroAccess().getColonKeyword_1_0()), new TokenAlias(false, false, grammarAccess.getMacroAccess().getIsAKeyword_1_1()));
 		match_Specification_AssumptionsKeyword_12_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getAssumptionsKeyword_12_0());
 		match_Specification_ConstantsKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getConstantsKeyword_5_0());
 		match_Specification_ImportsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getImportsKeyword_2_0());
@@ -71,37 +75,41 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_AtomicExpr_LeftParenthesisKeyword_9_0_a.equals(syntax))
+			if (match_AtomicExpr_LeftParenthesisKeyword_9_0_a.equals(syntax))
 				emit_AtomicExpr_LeftParenthesisKeyword_9_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_AtomicExpr_LeftParenthesisKeyword_9_0_p.equals(syntax))
+			else if (match_AtomicExpr_LeftParenthesisKeyword_9_0_p.equals(syntax))
 				emit_AtomicExpr_LeftParenthesisKeyword_9_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a.equals(syntax))
+			else if (match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a.equals(syntax))
 				emit_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p.equals(syntax))
+			else if (match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p.equals(syntax))
 				emit_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Definitions_ConstantsKeyword_4_0_q.equals(syntax))
+			else if (match_Constant_ColonKeyword_1_0_or_IsAKeyword_1_1.equals(syntax))
+				emit_Constant_ColonKeyword_1_0_or_IsAKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Definitions_ConstantsKeyword_4_0_q.equals(syntax))
 				emit_Definitions_ConstantsKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Definitions_TypesKeyword_3_0_q.equals(syntax))
+			else if (match_Definitions_TypesKeyword_3_0_q.equals(syntax))
 				emit_Definitions_TypesKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Definitions_UnitsKeyword_2_0_q.equals(syntax))
+			else if (match_Definitions_UnitsKeyword_2_0_q.equals(syntax))
 				emit_Definitions_UnitsKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Specification_AssumptionsKeyword_12_0_q.equals(syntax))
+			else if (match_Macro_ColonKeyword_1_0_or_IsAKeyword_1_1.equals(syntax))
+				emit_Macro_ColonKeyword_1_0_or_IsAKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Specification_AssumptionsKeyword_12_0_q.equals(syntax))
 				emit_Specification_AssumptionsKeyword_12_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Specification_ConstantsKeyword_5_0_q.equals(syntax))
+			else if (match_Specification_ConstantsKeyword_5_0_q.equals(syntax))
 				emit_Specification_ConstantsKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Specification_ImportsKeyword_2_0_q.equals(syntax))
+			else if (match_Specification_ImportsKeyword_2_0_q.equals(syntax))
 				emit_Specification_ImportsKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Specification_MacrosKeyword_11_0_q.equals(syntax))
+			else if (match_Specification_MacrosKeyword_11_0_q.equals(syntax))
 				emit_Specification_MacrosKeyword_11_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Specification_RequirementsKeyword_15_0_q.equals(syntax))
+			else if (match_Specification_RequirementsKeyword_15_0_q.equals(syntax))
 				emit_Specification_RequirementsKeyword_15_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Specification_StateKeyword_10_0_q.equals(syntax))
+			else if (match_Specification_StateKeyword_10_0_q.equals(syntax))
 				emit_Specification_StateKeyword_10_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Specification_TypesKeyword_4_0_q.equals(syntax))
+			else if (match_Specification_TypesKeyword_4_0_q.equals(syntax))
 				emit_Specification_TypesKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Specification_UnitsKeyword_3_0_q.equals(syntax))
+			else if (match_Specification_UnitsKeyword_3_0_q.equals(syntax))
 				emit_Specification_UnitsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if(match_Variable_ColonKeyword_1_0_or_IsAKeyword_1_1.equals(syntax))
+			else if (match_Variable_ColonKeyword_1_0_or_IsAKeyword_1_1.equals(syntax))
 				emit_Variable_ColonKeyword_1_0_or_IsAKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
@@ -123,7 +131,10 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) op='-'
 	 *     (rule start) (ambiguity) op='H'
 	 *     (rule start) (ambiguity) op='O'
+	 *     (rule start) (ambiguity) op='after'
+	 *     (rule start) (ambiguity) op='before'
 	 *     (rule start) (ambiguity) op='historically'
+	 *     (rule start) (ambiguity) op='never'
 	 *     (rule start) (ambiguity) op='not'
 	 *     (rule start) (ambiguity) op='once'
 	 *     (rule start) (ambiguity) value=BOOL
@@ -147,7 +158,10 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) op='-'
 	 *     (rule start) (ambiguity) op='H'
 	 *     (rule start) (ambiguity) op='O'
+	 *     (rule start) (ambiguity) op='after'
+	 *     (rule start) (ambiguity) op='before'
 	 *     (rule start) (ambiguity) op='historically'
+	 *     (rule start) (ambiguity) op='never'
 	 *     (rule start) (ambiguity) op='not'
 	 *     (rule start) (ambiguity) op='once'
 	 *     (rule start) (ambiguity) {ArrayAccessExpr.array=}
@@ -180,6 +194,17 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {BinaryUnitExpr.left=}
 	 */
 	protected void emit_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ':' | 'is a'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     name=ID (ambiguity) type=Type
+	 */
+	protected void emit_Constant_ColonKeyword_1_0_or_IsAKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -220,6 +245,17 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ID (ambiguity) 'Types:'? 'Constants:'? (rule end)
 	 */
 	protected void emit_Definitions_UnitsKeyword_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ':' | 'is a'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     name=ID (ambiguity) type=Type
+	 */
+	protected void emit_Macro_ColonKeyword_1_0_or_IsAKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
