@@ -16,6 +16,7 @@ import com.rockwellcollins.spear.ArrayUpdateExpr;
 import com.rockwellcollins.spear.BaseUnit;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BinaryUnitExpr;
+import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.DerivedUnit;
 import com.rockwellcollins.spear.EnumType;
@@ -557,6 +558,11 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 		} else {
 			return SCALAR;
 		}
+	}
+	
+	@Override
+	public SpearUnit caseBoolLiteral(BoolLiteral ble) {
+		return SCALAR;
 	}
 
 	@Override

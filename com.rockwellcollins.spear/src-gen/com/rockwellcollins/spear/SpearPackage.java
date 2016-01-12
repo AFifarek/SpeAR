@@ -741,13 +741,22 @@ public interface SpearPackage extends EPackage
   int FORMAL_CONSTRAINT__EXPR = CONSTRAINT_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Descriptor</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FORMAL_CONSTRAINT__DESCRIPTOR = CONSTRAINT_FEATURE_COUNT + 1;
+
+  /**
    * The number of structural features of the '<em>Formal Constraint</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FORMAL_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 1;
+  int FORMAL_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.EnglishConstraintImpl <em>English Constraint</em>}' class.
@@ -2400,6 +2409,17 @@ public interface SpearPackage extends EPackage
   EReference getFormalConstraint_Expr();
 
   /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.FormalConstraint#getDescriptor <em>Descriptor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Descriptor</em>'.
+   * @see com.rockwellcollins.spear.FormalConstraint#getDescriptor()
+   * @see #getFormalConstraint()
+   * @generated
+   */
+  EAttribute getFormalConstraint_Descriptor();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.EnglishConstraint <em>English Constraint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3721,6 +3741,14 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference FORMAL_CONSTRAINT__EXPR = eINSTANCE.getFormalConstraint_Expr();
+
+    /**
+     * The meta object literal for the '<em><b>Descriptor</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FORMAL_CONSTRAINT__DESCRIPTOR = eINSTANCE.getFormalConstraint_Descriptor();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.EnglishConstraintImpl <em>English Constraint</em>}' class.

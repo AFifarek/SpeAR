@@ -10,7 +10,7 @@ public class EnumUnit extends SpearUnit {
 	
 	@Override
 	public String toString() {
-		return "enumeration";
+		return id + " enum";
 	}
 	
 	@Override

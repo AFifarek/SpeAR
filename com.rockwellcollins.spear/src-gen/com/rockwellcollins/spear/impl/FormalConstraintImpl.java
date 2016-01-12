@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.FormalConstraintImpl#getExpr <em>Expr</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.FormalConstraintImpl#getDescriptor <em>Descriptor</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,6 +39,26 @@ public class FormalConstraintImpl extends ConstraintImpl implements FormalConstr
    * @ordered
    */
   protected Expr expr;
+
+  /**
+   * The default value of the '{@link #getDescriptor() <em>Descriptor</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescriptor()
+   * @generated
+   * @ordered
+   */
+  protected static final String DESCRIPTOR_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDescriptor() <em>Descriptor</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescriptor()
+   * @generated
+   * @ordered
+   */
+  protected String descriptor = DESCRIPTOR_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,6 +134,29 @@ public class FormalConstraintImpl extends ConstraintImpl implements FormalConstr
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getDescriptor()
+  {
+    return descriptor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDescriptor(String newDescriptor)
+  {
+    String oldDescriptor = descriptor;
+    descriptor = newDescriptor;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.FORMAL_CONSTRAINT__DESCRIPTOR, oldDescriptor, descriptor));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -136,6 +180,8 @@ public class FormalConstraintImpl extends ConstraintImpl implements FormalConstr
     {
       case SpearPackage.FORMAL_CONSTRAINT__EXPR:
         return getExpr();
+      case SpearPackage.FORMAL_CONSTRAINT__DESCRIPTOR:
+        return getDescriptor();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -152,6 +198,9 @@ public class FormalConstraintImpl extends ConstraintImpl implements FormalConstr
     {
       case SpearPackage.FORMAL_CONSTRAINT__EXPR:
         setExpr((Expr)newValue);
+        return;
+      case SpearPackage.FORMAL_CONSTRAINT__DESCRIPTOR:
+        setDescriptor((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -170,6 +219,9 @@ public class FormalConstraintImpl extends ConstraintImpl implements FormalConstr
       case SpearPackage.FORMAL_CONSTRAINT__EXPR:
         setExpr((Expr)null);
         return;
+      case SpearPackage.FORMAL_CONSTRAINT__DESCRIPTOR:
+        setDescriptor(DESCRIPTOR_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -186,8 +238,27 @@ public class FormalConstraintImpl extends ConstraintImpl implements FormalConstr
     {
       case SpearPackage.FORMAL_CONSTRAINT__EXPR:
         return expr != null;
+      case SpearPackage.FORMAL_CONSTRAINT__DESCRIPTOR:
+        return DESCRIPTOR_EDEFAULT == null ? descriptor != null : !DESCRIPTOR_EDEFAULT.equals(descriptor);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (descriptor: ");
+    result.append(descriptor);
+    result.append(')');
+    return result.toString();
   }
 
 } //FormalConstraintImpl

@@ -58,7 +58,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		this.messageAcceptor = messageAcceptor;
 	}
 
-	private static final SpearType ERROR = SpearBuiltinType.ERROR;
+	public static final SpearType ERROR = SpearBuiltinType.ERROR;
 	private static final SpearType BOOL = SpearBuiltinType.BOOL;
 	private static final SpearType INT = SpearBuiltinType.INT;
 	private static final SpearType REAL = SpearBuiltinType.REAL;
@@ -66,20 +66,20 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	/***************************************************************************************************/
 	// Checks
 	/***************************************************************************************************/
-	public void checkNamedType(NamedType nt) {
-		doSwitch(nt);
+	public SpearType checkNamedType(NamedType nt) {
+		return doSwitch(nt);
 	}
 	
-	public void checkConstant(Constant c) {
-		expectAssignableType(doSwitch(c.getType()),c.getExpr());
+	public boolean checkConstant(Constant c) {
+		return expectAssignableType(doSwitch(c.getType()),c.getExpr());
 	}
 	
-	public void checkMacro(Macro m) {
-		expectAssignableType(doSwitch(m.getType()),m.getExpr());
+	public boolean checkMacro(Macro m) {
+		return expectAssignableType(doSwitch(m.getType()),m.getExpr());
 	}
 	
-	public void checkFormalConstraint(FormalConstraint fc) {
-		expectAssignableType(BOOL,fc.getExpr());
+	public boolean checkFormalConstraint(FormalConstraint fc) {
+		return expectAssignableType(BOOL,fc.getExpr());
 	}
 	
 	/***************************************************************************************************/
@@ -517,13 +517,16 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	/***************************************************************************************************/
 	// HELPER FUNCTIONS
 	/***************************************************************************************************/
-	private void expectAssignableType(SpearType expected, EObject actual) {
-		expectAssignableType(expected, doSwitch(actual), actual);
+	private boolean expectAssignableType(SpearType expected, EObject actual) {
+		return expectAssignableType(expected, doSwitch(actual), actual);
 	}
 
-	private void expectAssignableType(SpearType expected, SpearType actual, EObject source) {
+	private boolean expectAssignableType(SpearType expected, SpearType actual, EObject source) {
 		if (!isAssignable(expected, actual)) {
 			error("Expected type " + expected.toString() + ", but found type " + actual, source);
+			return false;
+		} else {
+			return true;
 		}
 	}
 

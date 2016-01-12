@@ -67,6 +67,7 @@
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//FormalConstraint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//FormalConstraint/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//FormalConstraint/descriptor"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//EnglishConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//EnglishConstraint/text"/>

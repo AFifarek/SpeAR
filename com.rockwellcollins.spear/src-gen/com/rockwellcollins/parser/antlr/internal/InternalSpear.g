@@ -1551,41 +1551,46 @@ ruleConstant returns [EObject current=null]
     {
     	newLeafNode(otherlv_2, grammarAccess.getConstantAccess().getIsAKeyword_1_1());
     }
+
+    |	otherlv_3='is an' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getConstantAccess().getIsAnKeyword_1_2());
+    }
 )(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getConstantAccess().getTypeTypeParserRuleCall_2_0()); 
 	    }
-		lv_type_3_0=ruleType		{
+		lv_type_4_0=ruleType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConstantRule());
 	        }
        		set(
        			$current, 
        			"type",
-        		lv_type_3_0, 
+        		lv_type_4_0, 
         		"com.rockwellcollins.Spear.Type");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_4='=' 
+)	otherlv_5='=' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getConstantAccess().getEqualsSignKeyword_3());
+    	newLeafNode(otherlv_5, grammarAccess.getConstantAccess().getEqualsSignKeyword_3());
     }
 (
 (
 		{ 
 	        newCompositeNode(grammarAccess.getConstantAccess().getExprExprParserRuleCall_4_0()); 
 	    }
-		lv_expr_5_0=ruleExpr		{
+		lv_expr_6_0=ruleExpr		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConstantRule());
 	        }
        		set(
        			$current, 
        			"expr",
-        		lv_expr_5_0, 
+        		lv_expr_6_0, 
         		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1639,19 +1644,24 @@ ruleVariable returns [EObject current=null]
     {
     	newLeafNode(otherlv_2, grammarAccess.getVariableAccess().getIsAKeyword_1_1());
     }
+
+    |	otherlv_3='is an' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getVariableAccess().getIsAnKeyword_1_2());
+    }
 )(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getVariableAccess().getTypeTypeParserRuleCall_2_0()); 
 	    }
-		lv_type_3_0=ruleType		{
+		lv_type_4_0=ruleType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getVariableRule());
 	        }
        		set(
        			$current, 
        			"type",
-        		lv_type_3_0, 
+        		lv_type_4_0, 
         		"com.rockwellcollins.Spear.Type");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1705,41 +1715,46 @@ ruleMacro returns [EObject current=null]
     {
     	newLeafNode(otherlv_2, grammarAccess.getMacroAccess().getIsAKeyword_1_1());
     }
+
+    |	otherlv_3='is an' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getMacroAccess().getIsAnKeyword_1_2());
+    }
 )(
 (
 		{ 
 	        newCompositeNode(grammarAccess.getMacroAccess().getTypeTypeParserRuleCall_2_0()); 
 	    }
-		lv_type_3_0=ruleType		{
+		lv_type_4_0=ruleType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMacroRule());
 	        }
        		set(
        			$current, 
        			"type",
-        		lv_type_3_0, 
+        		lv_type_4_0, 
         		"com.rockwellcollins.Spear.Type");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_4='=' 
+)	otherlv_5='=' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getMacroAccess().getEqualsSignKeyword_3());
+    	newLeafNode(otherlv_5, grammarAccess.getMacroAccess().getEqualsSignKeyword_3());
     }
 (
 (
 		{ 
 	        newCompositeNode(grammarAccess.getMacroAccess().getExprExprParserRuleCall_4_0()); 
 	    }
-		lv_expr_5_0=ruleExpr		{
+		lv_expr_6_0=ruleExpr		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getMacroRule());
 	        }
        		set(
        			$current, 
        			"expr",
-        		lv_expr_5_0, 
+        		lv_expr_6_0, 
         		"com.rockwellcollins.Spear.Expr");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -1846,7 +1861,33 @@ ruleFormalConstraint returns [EObject current=null]
 	    }
 
 )
-))
+)(	otherlv_3='text' 
+    {
+    	newLeafNode(otherlv_3, grammarAccess.getFormalConstraintAccess().getTextKeyword_3_0());
+    }
+	otherlv_4='=' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_3_1());
+    }
+(
+(
+		lv_descriptor_5_0=RULE_STRING
+		{
+			newLeafNode(lv_descriptor_5_0, grammarAccess.getFormalConstraintAccess().getDescriptorSTRINGTerminalRuleCall_3_2_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getFormalConstraintRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"descriptor",
+        		lv_descriptor_5_0, 
+        		"org.eclipse.xtext.common.Terminals.STRING");
+	    }
+
+)
+))?)
 ;
 
 

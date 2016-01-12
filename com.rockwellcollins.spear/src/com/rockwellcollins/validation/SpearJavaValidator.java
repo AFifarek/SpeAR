@@ -7,14 +7,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.util.SimpleAttributeResolver;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
-import com.rockwellcollins.spear.EnumType;
-import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Macro;
@@ -22,6 +19,7 @@ import com.rockwellcollins.spear.NamedType;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.typing.TypesAcyclicValidator;
 import com.rockwellcollins.spear.units.UnitChecker;
@@ -83,34 +81,39 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 	}
 	
-	//TODO: add checking for EnumValues over multiple files 
-	
 	/***********************************************************************************************/
 	//Type Checking
 	/***********************************************************************************************/
 	@Check
 	public void typeCheckNamedType(NamedType nt) {
-		new SpearTypeChecker(getMessageAcceptor()).checkNamedType(nt);
-		new UnitChecker(getMessageAcceptor()).checkNamedType(nt);
+		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
+		SpearType type = tc.checkNamedType(nt);
+		if(type == SpearTypeChecker.ERROR) {
+			new UnitChecker(getMessageAcceptor()).checkNamedType(nt);			
+		}
 	}
 	
 	@Check
 	public void typeCheckConstant(Constant c) {
-		new SpearTypeChecker(getMessageAcceptor()).checkConstant(c);
-		new UnitChecker(getMessageAcceptor()).checkConstant(c);
+		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
+		if(tc.checkConstant(c)) {
+			new UnitChecker(getMessageAcceptor()).checkConstant(c);	
+		}
 	}
 	
 	@Check
 	public void typeCheckMacro(Macro m) {
-		new SpearTypeChecker(getMessageAcceptor()).checkMacro(m);
-		new UnitChecker(getMessageAcceptor()).checkMacro(m);
+		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
+		if(tc.checkMacro(m)) {
+			new UnitChecker(getMessageAcceptor()).checkMacro(m);	
+		}
 	}
 	
 	@Check
 	public void typeCheckFormalConstraint(FormalConstraint fc) {
-		new SpearTypeChecker(getMessageAcceptor()).checkFormalConstraint(fc);
-		new UnitChecker(getMessageAcceptor()).checkFormalConstraint(fc);
+		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
+		if(tc.checkFormalConstraint(fc)) {
+			new UnitChecker(getMessageAcceptor()).checkFormalConstraint(fc);			
+		}
 	}
-
-
 }

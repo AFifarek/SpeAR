@@ -966,6 +966,16 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getFormalConstraint_Descriptor()
+  {
+    return (EAttribute)formalConstraintEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getEnglishConstraint()
   {
     return englishConstraintEClass;
@@ -1894,6 +1904,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     formalConstraintEClass = createEClass(FORMAL_CONSTRAINT);
     createEReference(formalConstraintEClass, FORMAL_CONSTRAINT__EXPR);
+    createEAttribute(formalConstraintEClass, FORMAL_CONSTRAINT__DESCRIPTOR);
 
     englishConstraintEClass = createEClass(ENGLISH_CONSTRAINT);
     createEAttribute(englishConstraintEClass, ENGLISH_CONSTRAINT__TEXT);
@@ -2147,6 +2158,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     initEClass(formalConstraintEClass, FormalConstraint.class, "FormalConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getFormalConstraint_Expr(), this.getExpr(), null, "expr", null, 0, 1, FormalConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFormalConstraint_Descriptor(), ecorePackage.getEString(), "descriptor", null, 0, 1, FormalConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(englishConstraintEClass, EnglishConstraint.class, "EnglishConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEnglishConstraint_Text(), ecorePackage.getEString(), "text", null, 0, 1, EnglishConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -1369,6 +1369,14 @@ rule__Constant__Alternatives_1
 { after(grammarAccess.getConstantAccess().getIsAKeyword_1_1()); }
 )
 
+    |(
+{ before(grammarAccess.getConstantAccess().getIsAnKeyword_1_2()); }
+
+	'is an' 
+
+{ after(grammarAccess.getConstantAccess().getIsAnKeyword_1_2()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -1395,6 +1403,14 @@ rule__Variable__Alternatives_1
 { after(grammarAccess.getVariableAccess().getIsAKeyword_1_1()); }
 )
 
+    |(
+{ before(grammarAccess.getVariableAccess().getIsAnKeyword_1_2()); }
+
+	'is an' 
+
+{ after(grammarAccess.getVariableAccess().getIsAnKeyword_1_2()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -1419,6 +1435,14 @@ rule__Macro__Alternatives_1
 	'is a' 
 
 { after(grammarAccess.getMacroAccess().getIsAKeyword_1_1()); }
+)
+
+    |(
+{ before(grammarAccess.getMacroAccess().getIsAnKeyword_1_2()); }
+
+	'is an' 
+
+{ after(grammarAccess.getMacroAccess().getIsAnKeyword_1_2()); }
 )
 
 ;
@@ -6306,6 +6330,7 @@ rule__FormalConstraint__Group__2
     }
 :
 	rule__FormalConstraint__Group__2__Impl
+	rule__FormalConstraint__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -6320,6 +6345,132 @@ rule__FormalConstraint__Group__2__Impl
 { before(grammarAccess.getFormalConstraintAccess().getExprAssignment_2()); }
 (rule__FormalConstraint__ExprAssignment_2)
 { after(grammarAccess.getFormalConstraintAccess().getExprAssignment_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__FormalConstraint__Group__3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__FormalConstraint__Group__3__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__FormalConstraint__Group__3__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getFormalConstraintAccess().getGroup_3()); }
+(rule__FormalConstraint__Group_3__0)?
+{ after(grammarAccess.getFormalConstraintAccess().getGroup_3()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
+
+
+
+
+
+
+
+rule__FormalConstraint__Group_3__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__FormalConstraint__Group_3__0__Impl
+	rule__FormalConstraint__Group_3__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__FormalConstraint__Group_3__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getFormalConstraintAccess().getTextKeyword_3_0()); }
+
+	'text' 
+
+{ after(grammarAccess.getFormalConstraintAccess().getTextKeyword_3_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__FormalConstraint__Group_3__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__FormalConstraint__Group_3__1__Impl
+	rule__FormalConstraint__Group_3__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__FormalConstraint__Group_3__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_3_1()); }
+
+	'=' 
+
+{ after(grammarAccess.getFormalConstraintAccess().getEqualsSignKeyword_3_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__FormalConstraint__Group_3__2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__FormalConstraint__Group_3__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__FormalConstraint__Group_3__2__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getFormalConstraintAccess().getDescriptorAssignment_3_2()); }
+(rule__FormalConstraint__DescriptorAssignment_3_2)
+{ after(grammarAccess.getFormalConstraintAccess().getDescriptorAssignment_3_2()); }
 )
 
 ;
@@ -12463,6 +12614,21 @@ rule__FormalConstraint__ExprAssignment_2
 (
 { before(grammarAccess.getFormalConstraintAccess().getExprExprParserRuleCall_2_0()); }
 	ruleExpr{ after(grammarAccess.getFormalConstraintAccess().getExprExprParserRuleCall_2_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__FormalConstraint__DescriptorAssignment_3_2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getFormalConstraintAccess().getDescriptorSTRINGTerminalRuleCall_3_2_0()); }
+	RULE_STRING{ after(grammarAccess.getFormalConstraintAccess().getDescriptorSTRINGTerminalRuleCall_3_2_0()); }
 )
 
 ;

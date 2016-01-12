@@ -80,15 +80,16 @@ Type:
 |	{UserType} def=[TypeDef]
 ;
 
-Constant: name=ID (':' | 'is a') type=Type '=' expr=Expr;
+Constant: name=ID (':' | 'is a' | 'is an') type=Type '=' expr=Expr;
 
-Variable: name=ID (':' | 'is a') type=Type;
+Variable: name=ID (':' | 'is a' | 'is an') type=Type;
 
-Macro: name=ID (':' | 'is a') type=Type '=' expr=Expr;
+Macro: name=ID (':' | 'is a' | 'is an') type=Type '=' expr=Expr;
 
 Constraint: FormalConstraint | EnglishConstraint;
 
-FormalConstraint: name=ID '=' expr=Expr;
+FormalConstraint: name=ID '=' expr=Expr ('text' '=' descriptor=STRING)?;
+
 EnglishConstraint: name=ID '=' text=STRING;
 
 /* Begin Expr Language */
@@ -111,10 +112,8 @@ TemporalPrefixExpr returns Expr:
 
 RelationalExpr returns Expr: PlusExpr (=>({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)? ;
 
-/*
- * This adds some english equivalents to the Relational Operators for a more english look and feel
- */
-RelationalOp: 
+//This adds some english equivalents to the Relational Operators for a more english look and feel
+ RelationalOp: 
   '<'  | 'less than' 
 | '<=' | 'less than or equal to' 
 | '>'  | 'greater than' 

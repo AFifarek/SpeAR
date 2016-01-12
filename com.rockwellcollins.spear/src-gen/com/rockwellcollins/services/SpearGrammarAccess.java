@@ -960,6 +960,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final Keyword cColonKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
 		private final Keyword cIsAKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
+		private final Keyword cIsAnKeyword_1_2 = (Keyword)cAlternatives_1.eContents().get(2);
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -967,10 +968,10 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprExprParserRuleCall_4_0 = (RuleCall)cExprAssignment_4.eContents().get(0);
 		
 		//Constant:
-		//	name=ID (':' | 'is a') type=Type '=' expr=Expr;
+		//	name=ID (':' | 'is a' | 'is an') type=Type '=' expr=Expr;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ID (':' | 'is a') type=Type '=' expr=Expr
+		//name=ID (':' | 'is a' | 'is an') type=Type '=' expr=Expr
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -979,7 +980,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 
-		//(':' | 'is a')
+		//(':' | 'is a' | 'is an')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//':'
@@ -987,6 +988,9 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'is a'
 		public Keyword getIsAKeyword_1_1() { return cIsAKeyword_1_1; }
+
+		//'is an'
+		public Keyword getIsAnKeyword_1_2() { return cIsAnKeyword_1_2; }
 
 		//type=Type
 		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
@@ -1012,14 +1016,15 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final Keyword cColonKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
 		private final Keyword cIsAKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
+		private final Keyword cIsAnKeyword_1_2 = (Keyword)cAlternatives_1.eContents().get(2);
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		
 		//Variable:
-		//	name=ID (':' | 'is a') type=Type;
+		//	name=ID (':' | 'is a' | 'is an') type=Type;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ID (':' | 'is a') type=Type
+		//name=ID (':' | 'is a' | 'is an') type=Type
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -1028,7 +1033,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 
-		//(':' | 'is a')
+		//(':' | 'is a' | 'is an')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//':'
@@ -1036,6 +1041,9 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'is a'
 		public Keyword getIsAKeyword_1_1() { return cIsAKeyword_1_1; }
+
+		//'is an'
+		public Keyword getIsAnKeyword_1_2() { return cIsAnKeyword_1_2; }
 
 		//type=Type
 		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
@@ -1052,6 +1060,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final Keyword cColonKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
 		private final Keyword cIsAKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
+		private final Keyword cIsAnKeyword_1_2 = (Keyword)cAlternatives_1.eContents().get(2);
 		private final Assignment cTypeAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTypeTypeParserRuleCall_2_0 = (RuleCall)cTypeAssignment_2.eContents().get(0);
 		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -1059,10 +1068,10 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cExprExprParserRuleCall_4_0 = (RuleCall)cExprAssignment_4.eContents().get(0);
 		
 		//Macro:
-		//	name=ID (':' | 'is a') type=Type '=' expr=Expr;
+		//	name=ID (':' | 'is a' | 'is an') type=Type '=' expr=Expr;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ID (':' | 'is a') type=Type '=' expr=Expr
+		//name=ID (':' | 'is a' | 'is an') type=Type '=' expr=Expr
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -1071,7 +1080,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_0_0() { return cNameIDTerminalRuleCall_0_0; }
 
-		//(':' | 'is a')
+		//(':' | 'is a' | 'is an')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//':'
@@ -1079,6 +1088,9 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'is a'
 		public Keyword getIsAKeyword_1_1() { return cIsAKeyword_1_1; }
+
+		//'is an'
+		public Keyword getIsAnKeyword_1_2() { return cIsAnKeyword_1_2; }
 
 		//type=Type
 		public Assignment getTypeAssignment_2() { return cTypeAssignment_2; }
@@ -1124,12 +1136,17 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cExprAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cExprExprParserRuleCall_2_0 = (RuleCall)cExprAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cTextKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cDescriptorAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cDescriptorSTRINGTerminalRuleCall_3_2_0 = (RuleCall)cDescriptorAssignment_3_2.eContents().get(0);
 		
 		//FormalConstraint:
-		//	name=ID '=' expr=Expr;
+		//	name=ID '=' expr=Expr ('text' '=' descriptor=STRING)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ID '=' expr=Expr
+		//name=ID '=' expr=Expr ('text' '=' descriptor=STRING)?
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -1146,6 +1163,21 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Expr
 		public RuleCall getExprExprParserRuleCall_2_0() { return cExprExprParserRuleCall_2_0; }
+
+		//('text' '=' descriptor=STRING)?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//'text'
+		public Keyword getTextKeyword_3_0() { return cTextKeyword_3_0; }
+
+		//'='
+		public Keyword getEqualsSignKeyword_3_1() { return cEqualsSignKeyword_3_1; }
+
+		//descriptor=STRING
+		public Assignment getDescriptorAssignment_3_2() { return cDescriptorAssignment_3_2; }
+
+		//STRING
+		public RuleCall getDescriptorSTRINGTerminalRuleCall_3_2_0() { return cDescriptorSTRINGTerminalRuleCall_3_2_0; }
 	}
 
 	public class EnglishConstraintElements extends AbstractParserRuleElementFinder {
@@ -1598,9 +1630,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLessThanSignGreaterThanSignKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
 		private final Keyword cNotEqualToKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
 		
-		/// *
-		// * This adds some english equivalents to the Relational Operators for a more english look and feel
-		// * / RelationalOp:
+		////This adds some english equivalents to the Relational Operators for a more english look and feel
+		//RelationalOp:
 		//	'<' | 'less than'
 		//	| '<=' | 'less than or equal to'
 		//	| '>' | 'greater than'
@@ -2921,7 +2952,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Constant:
-	//	name=ID (':' | 'is a') type=Type '=' expr=Expr;
+	//	name=ID (':' | 'is a' | 'is an') type=Type '=' expr=Expr;
 	public ConstantElements getConstantAccess() {
 		return pConstant;
 	}
@@ -2931,7 +2962,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Variable:
-	//	name=ID (':' | 'is a') type=Type;
+	//	name=ID (':' | 'is a' | 'is an') type=Type;
 	public VariableElements getVariableAccess() {
 		return pVariable;
 	}
@@ -2941,7 +2972,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Macro:
-	//	name=ID (':' | 'is a') type=Type '=' expr=Expr;
+	//	name=ID (':' | 'is a' | 'is an') type=Type '=' expr=Expr;
 	public MacroElements getMacroAccess() {
 		return pMacro;
 	}
@@ -2961,7 +2992,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FormalConstraint:
-	//	name=ID '=' expr=Expr;
+	//	name=ID '=' expr=Expr ('text' '=' descriptor=STRING)?;
 	public FormalConstraintElements getFormalConstraintAccess() {
 		return pFormalConstraint;
 	}
@@ -3061,9 +3092,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		return getRelationalExprAccess().getRule();
 	}
 
-	/// *
-	// * This adds some english equivalents to the Relational Operators for a more english look and feel
-	// * / RelationalOp:
+	////This adds some english equivalents to the Relational Operators for a more english look and feel
+	//RelationalOp:
 	//	'<' | 'less than'
 	//	| '<=' | 'less than or equal to'
 	//	| '>' | 'greater than'
