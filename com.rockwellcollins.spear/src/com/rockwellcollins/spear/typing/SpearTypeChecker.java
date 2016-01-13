@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
+import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
 import com.rockwellcollins.spear.ArrayType;
@@ -231,6 +232,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		case "and":
 		case "implies":
 		case "=>":
+		case "requires":
 		case "triggers":
 		case "T":
 		case "since":
@@ -272,7 +274,6 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		// the following ops are syntactic sugar
 		case "never":
 		case "before":
-		case "after":
 			if (type == BOOL) {
 				return BOOL;
 			}
@@ -486,6 +487,37 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 			return ERROR;
 		} else {
 			return thenType;
+		}
+	}
+	
+	@Override
+	public SpearType caseAfterUntilExpr(AfterUntilExpr afe) {
+		SpearType afterType = doSwitch(afe.getAfter());
+		
+		if(afe.getUntil() == null) {
+			if(afterType != BOOL) {
+				error("After expressions must be of type boolean.", afe.getAfter());
+				return ERROR;
+			}
+			return BOOL;
+		}
+		
+		SpearType untilType = doSwitch(afe.getUntil());
+		boolean error = false;
+		if(afterType != BOOL) {
+			error("After expressions must be of type boolean.", afe.getAfter());
+			error=true;
+		}
+		
+		if(untilType != BOOL) {
+			error("Until expressions must be of type boolean.", afe.getUntil());
+			error=true;
+		}
+		
+		if(error) {
+			return ERROR;
+		} else {
+			return BOOL;
 		}
 	}
 	

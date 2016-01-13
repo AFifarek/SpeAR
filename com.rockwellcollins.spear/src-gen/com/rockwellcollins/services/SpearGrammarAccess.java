@@ -1226,35 +1226,36 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cOpAlternatives_1_0_0_1_0 = (Alternatives)cOpAssignment_1_0_0_1.eContents().get(0);
 		private final Keyword cOpEqualsSignGreaterThanSignKeyword_1_0_0_1_0_0 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(0);
 		private final Keyword cOpImpliesKeyword_1_0_0_1_0_1 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(1);
+		private final Keyword cOpRequiresKeyword_1_0_0_1_0_2 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(2);
 		private final Assignment cRightAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cRightImpliesExprParserRuleCall_1_1_0 = (RuleCall)cRightAssignment_1_1.eContents().get(0);
 		
 		//ImpliesExpr Expr:
-		//	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?
+		//	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires')) right=ImpliesExpr)?
 		@Override public ParserRule getRule() { return rule; }
 
-		//OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?
+		//OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires')) right=ImpliesExpr)?
 		public Group getGroup() { return cGroup; }
 
 		//OrExpr
 		public RuleCall getOrExprParserRuleCall_0() { return cOrExprParserRuleCall_0; }
 
-		//(=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?
+		//(=> ({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires')) right=ImpliesExpr)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//=> ({BinaryExpr.left=current} op=('=>' | 'implies'))
+		//=> ({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires'))
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//({BinaryExpr.left=current} op=('=>' | 'implies'))
+		//({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires'))
 		public Group getGroup_1_0_0() { return cGroup_1_0_0; }
 
 		//{BinaryExpr.left=current}
 		public Action getBinaryExprLeftAction_1_0_0_0() { return cBinaryExprLeftAction_1_0_0_0; }
 
-		//op=('=>' | 'implies')
+		//op=('=>' | 'implies' | 'requires')
 		public Assignment getOpAssignment_1_0_0_1() { return cOpAssignment_1_0_0_1; }
 
-		//('=>' | 'implies')
+		//('=>' | 'implies' | 'requires')
 		public Alternatives getOpAlternatives_1_0_0_1_0() { return cOpAlternatives_1_0_0_1_0; }
 
 		//'=>'
@@ -1262,6 +1263,9 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'implies'
 		public Keyword getOpImpliesKeyword_1_0_0_1_0_1() { return cOpImpliesKeyword_1_0_0_1_0_1; }
+
+		//'requires'
+		public Keyword getOpRequiresKeyword_1_0_0_1_0_2() { return cOpRequiresKeyword_1_0_0_1_0_2; }
 
 		//right=ImpliesExpr
 		public Assignment getRightAssignment_1_1() { return cRightAssignment_1_1; }
@@ -1499,33 +1503,30 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cOpHistoricallyKeyword_0_1_0_3 = (Keyword)cOpAlternatives_0_1_0.eContents().get(3);
 		private final Keyword cOpNeverKeyword_0_1_0_4 = (Keyword)cOpAlternatives_0_1_0.eContents().get(4);
 		private final Keyword cOpBeforeKeyword_0_1_0_5 = (Keyword)cOpAlternatives_0_1_0.eContents().get(5);
-		private final Keyword cOpAfterKeyword_0_1_0_6 = (Keyword)cOpAlternatives_0_1_0.eContents().get(6);
-		private final Keyword cOpInitiallyKeyword_0_1_0_7 = (Keyword)cOpAlternatives_0_1_0.eContents().get(7);
+		private final Keyword cOpInitiallyKeyword_0_1_0_6 = (Keyword)cOpAlternatives_0_1_0.eContents().get(6);
 		private final Assignment cExprAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
 		private final RuleCall cExprTemporalPrefixExprParserRuleCall_0_2_0 = (RuleCall)cExprAssignment_0_2.eContents().get(0);
 		private final RuleCall cRelationalExprParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//TemporalPrefixExpr Expr:
-		//	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after' | 'initially')
-		//	expr=TemporalPrefixExpr
+		//	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially') expr=TemporalPrefixExpr
 		//	| RelationalExpr
 		@Override public ParserRule getRule() { return rule; }
 
-		//{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after' | 'initially')
-		//expr=TemporalPrefixExpr | RelationalExpr
+		//{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially') expr=TemporalPrefixExpr |
+		//RelationalExpr
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after' | 'initially')
-		//expr=TemporalPrefixExpr
+		//{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially') expr=TemporalPrefixExpr
 		public Group getGroup_0() { return cGroup_0; }
 
 		//{UnaryExpr}
 		public Action getUnaryExprAction_0_0() { return cUnaryExprAction_0_0; }
 
-		//op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after' | 'initially')
+		//op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially')
 		public Assignment getOpAssignment_0_1() { return cOpAssignment_0_1; }
 
-		//('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after' | 'initially')
+		//('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially')
 		public Alternatives getOpAlternatives_0_1_0() { return cOpAlternatives_0_1_0; }
 
 		//'O'
@@ -1546,11 +1547,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'before'
 		public Keyword getOpBeforeKeyword_0_1_0_5() { return cOpBeforeKeyword_0_1_0_5; }
 
-		//'after'
-		public Keyword getOpAfterKeyword_0_1_0_6() { return cOpAfterKeyword_0_1_0_6; }
-
 		//'initially'
-		public Keyword getOpInitiallyKeyword_0_1_0_7() { return cOpInitiallyKeyword_0_1_0_7; }
+		public Keyword getOpInitiallyKeyword_0_1_0_6() { return cOpInitiallyKeyword_0_1_0_6; }
 
 		//expr=TemporalPrefixExpr
 		public Assignment getExprAssignment_0_2() { return cExprAssignment_0_2; }
@@ -2050,53 +2048,48 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cElseAssignment_4_5_1 = (Assignment)cGroup_4_5.eContents().get(1);
 		private final RuleCall cElseExprParserRuleCall_4_5_1_0 = (RuleCall)cElseAssignment_4_5_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final Action cRecordExprAction_5_0 = (Action)cGroup_5.eContents().get(0);
-		private final Keyword cNewKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
-		private final Assignment cTypeAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
-		private final CrossReference cTypeRecordTypeCrossReference_5_2_0 = (CrossReference)cTypeAssignment_5_2.eContents().get(0);
-		private final RuleCall cTypeRecordTypeIDTerminalRuleCall_5_2_0_1 = (RuleCall)cTypeRecordTypeCrossReference_5_2_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_5_3 = (Keyword)cGroup_5.eContents().get(3);
-		private final Assignment cFieldExprsAssignment_5_4 = (Assignment)cGroup_5.eContents().get(4);
-		private final RuleCall cFieldExprsRecordFieldExprParserRuleCall_5_4_0 = (RuleCall)cFieldExprsAssignment_5_4.eContents().get(0);
-		private final Group cGroup_5_5 = (Group)cGroup_5.eContents().get(5);
-		private final Keyword cCommaKeyword_5_5_0 = (Keyword)cGroup_5_5.eContents().get(0);
-		private final Assignment cFieldExprsAssignment_5_5_1 = (Assignment)cGroup_5_5.eContents().get(1);
-		private final RuleCall cFieldExprsRecordFieldExprParserRuleCall_5_5_1_0 = (RuleCall)cFieldExprsAssignment_5_5_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5_6 = (Keyword)cGroup_5.eContents().get(6);
+		private final Action cAfterUntilExprAction_5_0 = (Action)cGroup_5.eContents().get(0);
+		private final Keyword cAfterKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cAfterAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cAfterExprParserRuleCall_5_2_0 = (RuleCall)cAfterAssignment_5_2.eContents().get(0);
+		private final Group cGroup_5_3 = (Group)cGroup_5.eContents().get(3);
+		private final Keyword cUntilKeyword_5_3_0 = (Keyword)cGroup_5_3.eContents().get(0);
+		private final Assignment cUntilAssignment_5_3_1 = (Assignment)cGroup_5_3.eContents().get(1);
+		private final RuleCall cUntilExprParserRuleCall_5_3_1_0 = (RuleCall)cUntilAssignment_5_3_1.eContents().get(0);
 		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
-		private final Action cArrayExprAction_6_0 = (Action)cGroup_6.eContents().get(0);
+		private final Action cRecordExprAction_6_0 = (Action)cGroup_6.eContents().get(0);
 		private final Keyword cNewKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
 		private final Assignment cTypeAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
-		private final CrossReference cTypeArrayTypeCrossReference_6_2_0 = (CrossReference)cTypeAssignment_6_2.eContents().get(0);
-		private final RuleCall cTypeArrayTypeIDTerminalRuleCall_6_2_0_1 = (RuleCall)cTypeArrayTypeCrossReference_6_2_0.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_6_3 = (Keyword)cGroup_6.eContents().get(3);
-		private final Assignment cExprsAssignment_6_4 = (Assignment)cGroup_6.eContents().get(4);
-		private final RuleCall cExprsExprParserRuleCall_6_4_0 = (RuleCall)cExprsAssignment_6_4.eContents().get(0);
+		private final CrossReference cTypeRecordTypeCrossReference_6_2_0 = (CrossReference)cTypeAssignment_6_2.eContents().get(0);
+		private final RuleCall cTypeRecordTypeIDTerminalRuleCall_6_2_0_1 = (RuleCall)cTypeRecordTypeCrossReference_6_2_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_6_3 = (Keyword)cGroup_6.eContents().get(3);
+		private final Assignment cFieldExprsAssignment_6_4 = (Assignment)cGroup_6.eContents().get(4);
+		private final RuleCall cFieldExprsRecordFieldExprParserRuleCall_6_4_0 = (RuleCall)cFieldExprsAssignment_6_4.eContents().get(0);
 		private final Group cGroup_6_5 = (Group)cGroup_6.eContents().get(5);
 		private final Keyword cCommaKeyword_6_5_0 = (Keyword)cGroup_6_5.eContents().get(0);
-		private final Assignment cExprsAssignment_6_5_1 = (Assignment)cGroup_6_5.eContents().get(1);
-		private final RuleCall cExprsExprParserRuleCall_6_5_1_0 = (RuleCall)cExprsAssignment_6_5_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_6_6 = (Keyword)cGroup_6.eContents().get(6);
+		private final Assignment cFieldExprsAssignment_6_5_1 = (Assignment)cGroup_6_5.eContents().get(1);
+		private final RuleCall cFieldExprsRecordFieldExprParserRuleCall_6_5_1_0 = (RuleCall)cFieldExprsAssignment_6_5_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6_6 = (Keyword)cGroup_6.eContents().get(6);
 		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
-		private final Action cPatternCallAction_7_0 = (Action)cGroup_7.eContents().get(0);
-		private final Keyword cPatternKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
-		private final Assignment cPatternAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
-		private final CrossReference cPatternPatternCrossReference_7_2_0 = (CrossReference)cPatternAssignment_7_2.eContents().get(0);
-		private final RuleCall cPatternPatternIDTerminalRuleCall_7_2_0_1 = (RuleCall)cPatternPatternCrossReference_7_2_0.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
-		private final Assignment cArgsAssignment_7_4 = (Assignment)cGroup_7.eContents().get(4);
-		private final RuleCall cArgsExprParserRuleCall_7_4_0 = (RuleCall)cArgsAssignment_7_4.eContents().get(0);
+		private final Action cArrayExprAction_7_0 = (Action)cGroup_7.eContents().get(0);
+		private final Keyword cNewKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
+		private final Assignment cTypeAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
+		private final CrossReference cTypeArrayTypeCrossReference_7_2_0 = (CrossReference)cTypeAssignment_7_2.eContents().get(0);
+		private final RuleCall cTypeArrayTypeIDTerminalRuleCall_7_2_0_1 = (RuleCall)cTypeArrayTypeCrossReference_7_2_0.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
+		private final Assignment cExprsAssignment_7_4 = (Assignment)cGroup_7.eContents().get(4);
+		private final RuleCall cExprsExprParserRuleCall_7_4_0 = (RuleCall)cExprsAssignment_7_4.eContents().get(0);
 		private final Group cGroup_7_5 = (Group)cGroup_7.eContents().get(5);
 		private final Keyword cCommaKeyword_7_5_0 = (Keyword)cGroup_7_5.eContents().get(0);
-		private final Assignment cArgsAssignment_7_5_1 = (Assignment)cGroup_7_5.eContents().get(1);
-		private final RuleCall cArgsExprParserRuleCall_7_5_1_0 = (RuleCall)cArgsAssignment_7_5_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_7_6 = (Keyword)cGroup_7.eContents().get(6);
+		private final Assignment cExprsAssignment_7_5_1 = (Assignment)cGroup_7_5.eContents().get(1);
+		private final RuleCall cExprsExprParserRuleCall_7_5_1_0 = (RuleCall)cExprsAssignment_7_5_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_7_6 = (Keyword)cGroup_7.eContents().get(6);
 		private final Group cGroup_8 = (Group)cAlternatives.eContents().get(8);
-		private final Action cSpecificationCallAction_8_0 = (Action)cGroup_8.eContents().get(0);
-		private final Keyword cSpecKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
-		private final Assignment cSpecAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
-		private final CrossReference cSpecSpecificationCrossReference_8_2_0 = (CrossReference)cSpecAssignment_8_2.eContents().get(0);
-		private final RuleCall cSpecSpecificationIDTerminalRuleCall_8_2_0_1 = (RuleCall)cSpecSpecificationCrossReference_8_2_0.eContents().get(1);
+		private final Action cPatternCallAction_8_0 = (Action)cGroup_8.eContents().get(0);
+		private final Keyword cPatternKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
+		private final Assignment cPatternAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
+		private final CrossReference cPatternPatternCrossReference_8_2_0 = (CrossReference)cPatternAssignment_8_2.eContents().get(0);
+		private final RuleCall cPatternPatternIDTerminalRuleCall_8_2_0_1 = (RuleCall)cPatternPatternCrossReference_8_2_0.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_8_3 = (Keyword)cGroup_8.eContents().get(3);
 		private final Assignment cArgsAssignment_8_4 = (Assignment)cGroup_8.eContents().get(4);
 		private final RuleCall cArgsExprParserRuleCall_8_4_0 = (RuleCall)cArgsAssignment_8_4.eContents().get(0);
@@ -2106,15 +2099,30 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgsExprParserRuleCall_8_5_1_0 = (RuleCall)cArgsAssignment_8_5_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_8_6 = (Keyword)cGroup_8.eContents().get(6);
 		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
-		private final Keyword cLeftParenthesisKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
-		private final RuleCall cExprParserRuleCall_9_1 = (RuleCall)cGroup_9.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_9_2 = (Keyword)cGroup_9.eContents().get(2);
+		private final Action cSpecificationCallAction_9_0 = (Action)cGroup_9.eContents().get(0);
+		private final Keyword cSpecKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
+		private final Assignment cSpecAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
+		private final CrossReference cSpecSpecificationCrossReference_9_2_0 = (CrossReference)cSpecAssignment_9_2.eContents().get(0);
+		private final RuleCall cSpecSpecificationIDTerminalRuleCall_9_2_0_1 = (RuleCall)cSpecSpecificationCrossReference_9_2_0.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_9_3 = (Keyword)cGroup_9.eContents().get(3);
+		private final Assignment cArgsAssignment_9_4 = (Assignment)cGroup_9.eContents().get(4);
+		private final RuleCall cArgsExprParserRuleCall_9_4_0 = (RuleCall)cArgsAssignment_9_4.eContents().get(0);
+		private final Group cGroup_9_5 = (Group)cGroup_9.eContents().get(5);
+		private final Keyword cCommaKeyword_9_5_0 = (Keyword)cGroup_9_5.eContents().get(0);
+		private final Assignment cArgsAssignment_9_5_1 = (Assignment)cGroup_9_5.eContents().get(1);
+		private final RuleCall cArgsExprParserRuleCall_9_5_1_0 = (RuleCall)cArgsAssignment_9_5_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_9_6 = (Keyword)cGroup_9.eContents().get(6);
+		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
+		private final Keyword cLeftParenthesisKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final RuleCall cExprParserRuleCall_10_1 = (RuleCall)cGroup_10.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_10_2 = (Keyword)cGroup_10.eContents().get(2);
 		
 		//AtomicExpr Expr:
 		//	LiteralExpr
 		//	| {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 		//	| {PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
 		//	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
+		//	| {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)?
 		//	| {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
 		//	| {ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 		//	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
@@ -2123,11 +2131,11 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		@Override public ParserRule getRule() { return rule; }
 
 		//LiteralExpr | {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' | {PreviousExpr} 'prev' '('
-		//var=Expr ',' init=Expr ')' | {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)? | {RecordExpr}
-		//'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}' | {ArrayExpr} 'new'
-		//type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr
-		//(',' args+=Expr)* ')' | {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')' | '('
-		//Expr ')'
+		//var=Expr ',' init=Expr ')' | {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)? |
+		//{AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)? | {RecordExpr} 'new' type=[RecordType] '{'
+		//fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}' | {ArrayExpr} 'new' type=[ArrayType] '['
+		//exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' |
+		//{SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')' | '(' Expr ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LiteralExpr
@@ -2250,149 +2258,134 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//Expr
 		public RuleCall getElseExprParserRuleCall_4_5_1_0() { return cElseExprParserRuleCall_4_5_1_0; }
 
-		//{RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
+		//{AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)?
 		public Group getGroup_5() { return cGroup_5; }
 
-		//{RecordExpr}
-		public Action getRecordExprAction_5_0() { return cRecordExprAction_5_0; }
+		//{AfterUntilExpr}
+		public Action getAfterUntilExprAction_5_0() { return cAfterUntilExprAction_5_0; }
 
-		//'new'
-		public Keyword getNewKeyword_5_1() { return cNewKeyword_5_1; }
+		//'after'
+		public Keyword getAfterKeyword_5_1() { return cAfterKeyword_5_1; }
 
-		//type=[RecordType]
-		public Assignment getTypeAssignment_5_2() { return cTypeAssignment_5_2; }
+		//after=Expr
+		public Assignment getAfterAssignment_5_2() { return cAfterAssignment_5_2; }
 
-		//[RecordType]
-		public CrossReference getTypeRecordTypeCrossReference_5_2_0() { return cTypeRecordTypeCrossReference_5_2_0; }
+		//Expr
+		public RuleCall getAfterExprParserRuleCall_5_2_0() { return cAfterExprParserRuleCall_5_2_0; }
 
-		//ID
-		public RuleCall getTypeRecordTypeIDTerminalRuleCall_5_2_0_1() { return cTypeRecordTypeIDTerminalRuleCall_5_2_0_1; }
+		//(=> 'until' until=Expr)?
+		public Group getGroup_5_3() { return cGroup_5_3; }
 
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_5_3() { return cLeftCurlyBracketKeyword_5_3; }
+		//=> 'until'
+		public Keyword getUntilKeyword_5_3_0() { return cUntilKeyword_5_3_0; }
 
-		//fieldExprs+=RecordFieldExpr
-		public Assignment getFieldExprsAssignment_5_4() { return cFieldExprsAssignment_5_4; }
+		//until=Expr
+		public Assignment getUntilAssignment_5_3_1() { return cUntilAssignment_5_3_1; }
 
-		//RecordFieldExpr
-		public RuleCall getFieldExprsRecordFieldExprParserRuleCall_5_4_0() { return cFieldExprsRecordFieldExprParserRuleCall_5_4_0; }
+		//Expr
+		public RuleCall getUntilExprParserRuleCall_5_3_1_0() { return cUntilExprParserRuleCall_5_3_1_0; }
 
-		//(',' fieldExprs+=RecordFieldExpr)*
-		public Group getGroup_5_5() { return cGroup_5_5; }
-
-		//','
-		public Keyword getCommaKeyword_5_5_0() { return cCommaKeyword_5_5_0; }
-
-		//fieldExprs+=RecordFieldExpr
-		public Assignment getFieldExprsAssignment_5_5_1() { return cFieldExprsAssignment_5_5_1; }
-
-		//RecordFieldExpr
-		public RuleCall getFieldExprsRecordFieldExprParserRuleCall_5_5_1_0() { return cFieldExprsRecordFieldExprParserRuleCall_5_5_1_0; }
-
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_5_6() { return cRightCurlyBracketKeyword_5_6; }
-
-		//{ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
+		//{RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
 		public Group getGroup_6() { return cGroup_6; }
 
-		//{ArrayExpr}
-		public Action getArrayExprAction_6_0() { return cArrayExprAction_6_0; }
+		//{RecordExpr}
+		public Action getRecordExprAction_6_0() { return cRecordExprAction_6_0; }
 
 		//'new'
 		public Keyword getNewKeyword_6_1() { return cNewKeyword_6_1; }
 
-		//type=[ArrayType]
+		//type=[RecordType]
 		public Assignment getTypeAssignment_6_2() { return cTypeAssignment_6_2; }
 
-		//[ArrayType]
-		public CrossReference getTypeArrayTypeCrossReference_6_2_0() { return cTypeArrayTypeCrossReference_6_2_0; }
+		//[RecordType]
+		public CrossReference getTypeRecordTypeCrossReference_6_2_0() { return cTypeRecordTypeCrossReference_6_2_0; }
 
 		//ID
-		public RuleCall getTypeArrayTypeIDTerminalRuleCall_6_2_0_1() { return cTypeArrayTypeIDTerminalRuleCall_6_2_0_1; }
+		public RuleCall getTypeRecordTypeIDTerminalRuleCall_6_2_0_1() { return cTypeRecordTypeIDTerminalRuleCall_6_2_0_1; }
 
-		//'['
-		public Keyword getLeftSquareBracketKeyword_6_3() { return cLeftSquareBracketKeyword_6_3; }
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_6_3() { return cLeftCurlyBracketKeyword_6_3; }
 
-		//exprs+=Expr
-		public Assignment getExprsAssignment_6_4() { return cExprsAssignment_6_4; }
+		//fieldExprs+=RecordFieldExpr
+		public Assignment getFieldExprsAssignment_6_4() { return cFieldExprsAssignment_6_4; }
 
-		//Expr
-		public RuleCall getExprsExprParserRuleCall_6_4_0() { return cExprsExprParserRuleCall_6_4_0; }
+		//RecordFieldExpr
+		public RuleCall getFieldExprsRecordFieldExprParserRuleCall_6_4_0() { return cFieldExprsRecordFieldExprParserRuleCall_6_4_0; }
 
-		//(',' exprs+=Expr)*
+		//(',' fieldExprs+=RecordFieldExpr)*
 		public Group getGroup_6_5() { return cGroup_6_5; }
 
 		//','
 		public Keyword getCommaKeyword_6_5_0() { return cCommaKeyword_6_5_0; }
 
-		//exprs+=Expr
-		public Assignment getExprsAssignment_6_5_1() { return cExprsAssignment_6_5_1; }
+		//fieldExprs+=RecordFieldExpr
+		public Assignment getFieldExprsAssignment_6_5_1() { return cFieldExprsAssignment_6_5_1; }
 
-		//Expr
-		public RuleCall getExprsExprParserRuleCall_6_5_1_0() { return cExprsExprParserRuleCall_6_5_1_0; }
+		//RecordFieldExpr
+		public RuleCall getFieldExprsRecordFieldExprParserRuleCall_6_5_1_0() { return cFieldExprsRecordFieldExprParserRuleCall_6_5_1_0; }
 
-		//']'
-		public Keyword getRightSquareBracketKeyword_6_6() { return cRightSquareBracketKeyword_6_6; }
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_6_6() { return cRightCurlyBracketKeyword_6_6; }
 
-		//{PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
+		//{ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 		public Group getGroup_7() { return cGroup_7; }
 
-		//{PatternCall}
-		public Action getPatternCallAction_7_0() { return cPatternCallAction_7_0; }
+		//{ArrayExpr}
+		public Action getArrayExprAction_7_0() { return cArrayExprAction_7_0; }
 
-		//'pattern'
-		public Keyword getPatternKeyword_7_1() { return cPatternKeyword_7_1; }
+		//'new'
+		public Keyword getNewKeyword_7_1() { return cNewKeyword_7_1; }
 
-		//pattern=[Pattern]
-		public Assignment getPatternAssignment_7_2() { return cPatternAssignment_7_2; }
+		//type=[ArrayType]
+		public Assignment getTypeAssignment_7_2() { return cTypeAssignment_7_2; }
 
-		//[Pattern]
-		public CrossReference getPatternPatternCrossReference_7_2_0() { return cPatternPatternCrossReference_7_2_0; }
+		//[ArrayType]
+		public CrossReference getTypeArrayTypeCrossReference_7_2_0() { return cTypeArrayTypeCrossReference_7_2_0; }
 
 		//ID
-		public RuleCall getPatternPatternIDTerminalRuleCall_7_2_0_1() { return cPatternPatternIDTerminalRuleCall_7_2_0_1; }
+		public RuleCall getTypeArrayTypeIDTerminalRuleCall_7_2_0_1() { return cTypeArrayTypeIDTerminalRuleCall_7_2_0_1; }
 
-		//'('
-		public Keyword getLeftParenthesisKeyword_7_3() { return cLeftParenthesisKeyword_7_3; }
+		//'['
+		public Keyword getLeftSquareBracketKeyword_7_3() { return cLeftSquareBracketKeyword_7_3; }
 
-		//args+=Expr
-		public Assignment getArgsAssignment_7_4() { return cArgsAssignment_7_4; }
+		//exprs+=Expr
+		public Assignment getExprsAssignment_7_4() { return cExprsAssignment_7_4; }
 
 		//Expr
-		public RuleCall getArgsExprParserRuleCall_7_4_0() { return cArgsExprParserRuleCall_7_4_0; }
+		public RuleCall getExprsExprParserRuleCall_7_4_0() { return cExprsExprParserRuleCall_7_4_0; }
 
-		//(',' args+=Expr)*
+		//(',' exprs+=Expr)*
 		public Group getGroup_7_5() { return cGroup_7_5; }
 
 		//','
 		public Keyword getCommaKeyword_7_5_0() { return cCommaKeyword_7_5_0; }
 
-		//args+=Expr
-		public Assignment getArgsAssignment_7_5_1() { return cArgsAssignment_7_5_1; }
+		//exprs+=Expr
+		public Assignment getExprsAssignment_7_5_1() { return cExprsAssignment_7_5_1; }
 
 		//Expr
-		public RuleCall getArgsExprParserRuleCall_7_5_1_0() { return cArgsExprParserRuleCall_7_5_1_0; }
+		public RuleCall getExprsExprParserRuleCall_7_5_1_0() { return cExprsExprParserRuleCall_7_5_1_0; }
 
-		//')'
-		public Keyword getRightParenthesisKeyword_7_6() { return cRightParenthesisKeyword_7_6; }
+		//']'
+		public Keyword getRightSquareBracketKeyword_7_6() { return cRightSquareBracketKeyword_7_6; }
 
-		//{SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
+		//{PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
 		public Group getGroup_8() { return cGroup_8; }
 
-		//{SpecificationCall}
-		public Action getSpecificationCallAction_8_0() { return cSpecificationCallAction_8_0; }
+		//{PatternCall}
+		public Action getPatternCallAction_8_0() { return cPatternCallAction_8_0; }
 
-		//'spec'
-		public Keyword getSpecKeyword_8_1() { return cSpecKeyword_8_1; }
+		//'pattern'
+		public Keyword getPatternKeyword_8_1() { return cPatternKeyword_8_1; }
 
-		//spec=[Specification]
-		public Assignment getSpecAssignment_8_2() { return cSpecAssignment_8_2; }
+		//pattern=[Pattern]
+		public Assignment getPatternAssignment_8_2() { return cPatternAssignment_8_2; }
 
-		//[Specification]
-		public CrossReference getSpecSpecificationCrossReference_8_2_0() { return cSpecSpecificationCrossReference_8_2_0; }
+		//[Pattern]
+		public CrossReference getPatternPatternCrossReference_8_2_0() { return cPatternPatternCrossReference_8_2_0; }
 
 		//ID
-		public RuleCall getSpecSpecificationIDTerminalRuleCall_8_2_0_1() { return cSpecSpecificationIDTerminalRuleCall_8_2_0_1; }
+		public RuleCall getPatternPatternIDTerminalRuleCall_8_2_0_1() { return cPatternPatternIDTerminalRuleCall_8_2_0_1; }
 
 		//'('
 		public Keyword getLeftParenthesisKeyword_8_3() { return cLeftParenthesisKeyword_8_3; }
@@ -2418,17 +2411,59 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_8_6() { return cRightParenthesisKeyword_8_6; }
 
-		//'(' Expr ')'
+		//{SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
 		public Group getGroup_9() { return cGroup_9; }
 
+		//{SpecificationCall}
+		public Action getSpecificationCallAction_9_0() { return cSpecificationCallAction_9_0; }
+
+		//'spec'
+		public Keyword getSpecKeyword_9_1() { return cSpecKeyword_9_1; }
+
+		//spec=[Specification]
+		public Assignment getSpecAssignment_9_2() { return cSpecAssignment_9_2; }
+
+		//[Specification]
+		public CrossReference getSpecSpecificationCrossReference_9_2_0() { return cSpecSpecificationCrossReference_9_2_0; }
+
+		//ID
+		public RuleCall getSpecSpecificationIDTerminalRuleCall_9_2_0_1() { return cSpecSpecificationIDTerminalRuleCall_9_2_0_1; }
+
 		//'('
-		public Keyword getLeftParenthesisKeyword_9_0() { return cLeftParenthesisKeyword_9_0; }
+		public Keyword getLeftParenthesisKeyword_9_3() { return cLeftParenthesisKeyword_9_3; }
+
+		//args+=Expr
+		public Assignment getArgsAssignment_9_4() { return cArgsAssignment_9_4; }
 
 		//Expr
-		public RuleCall getExprParserRuleCall_9_1() { return cExprParserRuleCall_9_1; }
+		public RuleCall getArgsExprParserRuleCall_9_4_0() { return cArgsExprParserRuleCall_9_4_0; }
+
+		//(',' args+=Expr)*
+		public Group getGroup_9_5() { return cGroup_9_5; }
+
+		//','
+		public Keyword getCommaKeyword_9_5_0() { return cCommaKeyword_9_5_0; }
+
+		//args+=Expr
+		public Assignment getArgsAssignment_9_5_1() { return cArgsAssignment_9_5_1; }
+
+		//Expr
+		public RuleCall getArgsExprParserRuleCall_9_5_1_0() { return cArgsExprParserRuleCall_9_5_1_0; }
 
 		//')'
-		public Keyword getRightParenthesisKeyword_9_2() { return cRightParenthesisKeyword_9_2; }
+		public Keyword getRightParenthesisKeyword_9_6() { return cRightParenthesisKeyword_9_6; }
+
+		//'(' Expr ')'
+		public Group getGroup_10() { return cGroup_10; }
+
+		//'('
+		public Keyword getLeftParenthesisKeyword_10_0() { return cLeftParenthesisKeyword_10_0; }
+
+		//Expr
+		public RuleCall getExprParserRuleCall_10_1() { return cExprParserRuleCall_10_1; }
+
+		//')'
+		public Keyword getRightParenthesisKeyword_10_2() { return cRightParenthesisKeyword_10_2; }
 	}
 
 	public class LiteralExprElements extends AbstractParserRuleElementFinder {
@@ -3036,7 +3071,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImpliesExpr Expr:
-	//	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?
+	//	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires')) right=ImpliesExpr)?
 	public ImpliesExprElements getImpliesExprAccess() {
 		return pImpliesExpr;
 	}
@@ -3086,8 +3121,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TemporalPrefixExpr Expr:
-	//	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after' | 'initially')
-	//	expr=TemporalPrefixExpr
+	//	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially') expr=TemporalPrefixExpr
 	//	| RelationalExpr
 	public TemporalPrefixExprElements getTemporalPrefixExprAccess() {
 		return pTemporalPrefixExpr;
@@ -3173,6 +3207,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	//	| {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 	//	| {PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
 	//	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
+	//	| {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)?
 	//	| {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
 	//	| {ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 	//	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'

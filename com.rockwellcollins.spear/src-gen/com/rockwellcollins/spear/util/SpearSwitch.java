@@ -412,6 +412,14 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.AFTER_UNTIL_EXPR:
+      {
+        AfterUntilExpr afterUntilExpr = (AfterUntilExpr)theEObject;
+        T result = caseAfterUntilExpr(afterUntilExpr);
+        if (result == null) result = caseExpr(afterUntilExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.RECORD_EXPR:
       {
         RecordExpr recordExpr = (RecordExpr)theEObject;
@@ -1175,6 +1183,22 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIfThenElseExpr(IfThenElseExpr object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>After Until Expr</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>After Until Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAfterUntilExpr(AfterUntilExpr object)
   {
     return null;
   }

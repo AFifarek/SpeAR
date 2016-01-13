@@ -419,6 +419,15 @@ public interface SpearFactory extends EFactory
   IfThenElseExpr createIfThenElseExpr();
 
   /**
+   * Returns a new object of class '<em>After Until Expr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>After Until Expr</em>'.
+   * @generated
+   */
+  AfterUntilExpr createAfterUntilExpr();
+
+  /**
    * Returns a new object of class '<em>Record Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

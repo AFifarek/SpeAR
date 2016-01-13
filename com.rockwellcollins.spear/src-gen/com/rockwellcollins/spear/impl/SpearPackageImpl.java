@@ -2,6 +2,7 @@
  */
 package com.rockwellcollins.spear.impl;
 
+import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
 import com.rockwellcollins.spear.ArrayType;
@@ -378,6 +379,13 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass ifThenElseExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass afterUntilExprEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1616,6 +1624,36 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getAfterUntilExpr()
+  {
+    return afterUntilExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAfterUntilExpr_After()
+  {
+    return (EReference)afterUntilExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAfterUntilExpr_Until()
+  {
+    return (EReference)afterUntilExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getRecordExpr()
   {
     return recordExprEClass;
@@ -1997,6 +2035,10 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(ifThenElseExprEClass, IF_THEN_ELSE_EXPR__THEN);
     createEReference(ifThenElseExprEClass, IF_THEN_ELSE_EXPR__ELSE);
 
+    afterUntilExprEClass = createEClass(AFTER_UNTIL_EXPR);
+    createEReference(afterUntilExprEClass, AFTER_UNTIL_EXPR__AFTER);
+    createEReference(afterUntilExprEClass, AFTER_UNTIL_EXPR__UNTIL);
+
     recordExprEClass = createEClass(RECORD_EXPR);
     createEReference(recordExprEClass, RECORD_EXPR__TYPE);
     createEReference(recordExprEClass, RECORD_EXPR__FIELD_EXPRS);
@@ -2086,6 +2128,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     mIdExprEClass.getESuperTypes().add(this.getExpr());
     previousExprEClass.getESuperTypes().add(this.getExpr());
     ifThenElseExprEClass.getESuperTypes().add(this.getExpr());
+    afterUntilExprEClass.getESuperTypes().add(this.getExpr());
     recordExprEClass.getESuperTypes().add(this.getExpr());
     arrayExprEClass.getESuperTypes().add(this.getExpr());
     patternCallEClass.getESuperTypes().add(this.getExpr());
@@ -2250,6 +2293,10 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getIfThenElseExpr_Cond(), this.getExpr(), null, "cond", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfThenElseExpr_Then(), this.getExpr(), null, "then", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfThenElseExpr_Else(), this.getExpr(), null, "else", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(afterUntilExprEClass, AfterUntilExpr.class, "AfterUntilExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAfterUntilExpr_After(), this.getExpr(), null, "after", null, 0, 1, AfterUntilExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAfterUntilExpr_Until(), this.getExpr(), null, "until", null, 0, 1, AfterUntilExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recordExprEClass, RecordExpr.class, "RecordExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordExpr_Type(), this.getRecordType(), null, "type", null, 0, 1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

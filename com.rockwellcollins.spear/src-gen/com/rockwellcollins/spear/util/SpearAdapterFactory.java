@@ -295,6 +295,11 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createIfThenElseExprAdapter();
       }
       @Override
+      public Adapter caseAfterUntilExpr(AfterUntilExpr object)
+      {
+        return createAfterUntilExprAdapter();
+      }
+      @Override
       public Adapter caseRecordExpr(RecordExpr object)
       {
         return createRecordExprAdapter();
@@ -1007,6 +1012,21 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIfThenElseExprAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.AfterUntilExpr <em>After Until Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.AfterUntilExpr
+   * @generated
+   */
+  public Adapter createAfterUntilExprAdapter()
   {
     return null;
   }

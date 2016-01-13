@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
+import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
 import com.rockwellcollins.spear.ArrayType;
@@ -292,6 +293,7 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 		case "and":
 		case "implies":
 		case "=>":
+		case "requires":
 		case "triggers":
 		case "T":
 		case "since":
@@ -328,8 +330,6 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 		//the following ops are syntactic sugar
 		case "never":
 		case "before":
-		case "after":
-
 			if (unit == SCALAR) {
 				return SCALAR;
 			}
@@ -425,7 +425,7 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 				return array;
 			}
 		}
-		error("Expected array, but received " + array, aue, SpearPackage.Literals.ARRAY_ACCESS_EXPR__ARRAY);
+		error("Expected array, but received " + array, aue, null);
 		return ERROR;
 	}
 	
@@ -492,6 +492,11 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 	public SpearUnit caseIfThenElseExpr(IfThenElseExpr ite) {
 		SpearUnit testUnit = doSwitch(ite.getCond());
 		SpearUnit thenUnit = doSwitch(ite.getThen());
+		
+		if(ite.getElse() == null) {
+			return thenUnit;
+		}
+		
 		SpearUnit elseUnit = doSwitch(ite.getElse());
 		
 		if(thenUnit == ERROR || elseUnit == ERROR) {
@@ -508,6 +513,23 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 		
 		error("Then branch of If-Then-Else has units " + thenUnit + ", but else branch has units " + elseUnit, ite, null);
 		return ERROR;
+	}
+	
+	@Override
+	public SpearUnit caseAfterUntilExpr(AfterUntilExpr afe) {
+		SpearUnit afterUnit = doSwitch(afe.getAfter());
+		if(afterUnit != SCALAR) {
+			error("After expressions must have scalar units.",afe.getAfter(),null);
+		}
+		
+		if(afe.getUntil() != null) {
+			SpearUnit untilUnit = doSwitch(afe.getUntil());
+			if(untilUnit != SCALAR) {
+				error("Until expressions must have scalar units.",afe.getUntil(),null);
+			}
+		}
+		
+		return afterUnit;
 	}
 	
 	@Override

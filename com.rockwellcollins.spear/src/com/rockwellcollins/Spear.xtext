@@ -101,7 +101,7 @@ EnglishConstraint: name=ID '=' text=STRING;
 /* Begin Expr Language */
 Expr: ImpliesExpr;
 
-ImpliesExpr returns Expr: OrExpr (=>({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)? ;
+ImpliesExpr returns Expr: OrExpr (=>({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires')) right=ImpliesExpr)? ;
 
 OrExpr returns Expr: AndExpr (=>({BinaryExpr.left=current} op=('or' | 'xor')) right=ImpliesExpr)? ;
 
@@ -112,7 +112,7 @@ TriggersExpr returns Expr: SinceExpr (=>({BinaryExpr.left=current} op=('T' | 'tr
 SinceExpr returns Expr: TemporalPrefixExpr (=>({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)? ;
 
 TemporalPrefixExpr returns Expr:
-	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after' | 'initially') expr=TemporalPrefixExpr
+	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'initially') expr=TemporalPrefixExpr
 |	RelationalExpr
 ;
 
@@ -152,6 +152,7 @@ AtomicExpr returns Expr:
 |	{MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 |	{PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
 |	{IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
+|	{AfterUntilExpr} 'after' (after=Expr) (=> 'until' until=Expr)?
 |	{RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
 |	{ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 |	{PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'

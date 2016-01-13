@@ -5,6 +5,7 @@ package com.rockwellcollins.serializer;
 
 import com.google.inject.Inject;
 import com.rockwellcollins.services.SpearGrammarAccess;
+import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
 import com.rockwellcollins.spear.ArrayType;
@@ -73,6 +74,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == SpearPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case SpearPackage.AFTER_UNTIL_EXPR:
+				sequence_AtomicExpr(context, (AfterUntilExpr) semanticObject); 
+				return; 
 			case SpearPackage.ARRAY_ACCESS_EXPR:
 				sequence_AccessExpr(context, (ArrayAccessExpr) semanticObject); 
 				return; 
@@ -413,7 +417,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (left=ImpliesExpr_BinaryExpr_1_0_0_0 (op='=>' | op='implies') right=ImpliesExpr) | 
+	 *         (left=ImpliesExpr_BinaryExpr_1_0_0_0 (op='=>' | op='implies' | op='requires') right=ImpliesExpr) | 
 	 *         (left=OrExpr_BinaryExpr_1_0_0_0 (op='or' | op='xor') right=ImpliesExpr) | 
 	 *         (left=AndExpr_BinaryExpr_1_0_0_0 op='and' right=AndExpr) | 
 	 *         (left=TriggersExpr_BinaryExpr_1_0_0_0 (op='T' | op='triggers') right=TriggersExpr) | 
@@ -424,6 +428,41 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     )
 	 */
 	protected void sequence_AndExpr_ImpliesExpr_MultiplyExpr_OrExpr_PlusExpr_RelationalExpr_SinceExpr_TriggersExpr(ISerializationContext context, BinaryExpr semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Expr returns AfterUntilExpr
+	 *     ImpliesExpr returns AfterUntilExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     OrExpr returns AfterUntilExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     AndExpr returns AfterUntilExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     TriggersExpr returns AfterUntilExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     SinceExpr returns AfterUntilExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     TemporalPrefixExpr returns AfterUntilExpr
+	 *     RelationalExpr returns AfterUntilExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     PlusExpr returns AfterUntilExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     MultiplyExpr returns AfterUntilExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     PrefixExpr returns AfterUntilExpr
+	 *     AccessExpr returns AfterUntilExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns AfterUntilExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns AfterUntilExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns AfterUntilExpr
+	 *     AtomicExpr returns AfterUntilExpr
+	 *
+	 * Constraint:
+	 *     (after=Expr until=Expr?)
+	 */
+	protected void sequence_AtomicExpr(ISerializationContext context, AfterUntilExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1083,7 +1122,6 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 op='historically' | 
 	 *                 op='never' | 
 	 *                 op='before' | 
-	 *                 op='after' | 
 	 *                 op='initially'
 	 *             ) 
 	 *             expr=TemporalPrefixExpr

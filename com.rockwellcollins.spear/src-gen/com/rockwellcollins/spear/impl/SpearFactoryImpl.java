@@ -108,6 +108,7 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.MID_EXPR: return createMIdExpr();
       case SpearPackage.PREVIOUS_EXPR: return createPreviousExpr();
       case SpearPackage.IF_THEN_ELSE_EXPR: return createIfThenElseExpr();
+      case SpearPackage.AFTER_UNTIL_EXPR: return createAfterUntilExpr();
       case SpearPackage.RECORD_EXPR: return createRecordExpr();
       case SpearPackage.ARRAY_EXPR: return createArrayExpr();
       case SpearPackage.PATTERN_CALL: return createPatternCall();
@@ -602,6 +603,17 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     IfThenElseExprImpl ifThenElseExpr = new IfThenElseExprImpl();
     return ifThenElseExpr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AfterUntilExpr createAfterUntilExpr()
+  {
+    AfterUntilExprImpl afterUntilExpr = new AfterUntilExprImpl();
+    return afterUntilExpr;
   }
 
   /**
