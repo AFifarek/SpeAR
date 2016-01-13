@@ -2045,9 +2045,10 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cThenKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
 		private final Assignment cThenAssignment_4_4 = (Assignment)cGroup_4.eContents().get(4);
 		private final RuleCall cThenExprParserRuleCall_4_4_0 = (RuleCall)cThenAssignment_4_4.eContents().get(0);
-		private final Keyword cElseKeyword_4_5 = (Keyword)cGroup_4.eContents().get(5);
-		private final Assignment cElseAssignment_4_6 = (Assignment)cGroup_4.eContents().get(6);
-		private final RuleCall cElseExprParserRuleCall_4_6_0 = (RuleCall)cElseAssignment_4_6.eContents().get(0);
+		private final Group cGroup_4_5 = (Group)cGroup_4.eContents().get(5);
+		private final Keyword cElseKeyword_4_5_0 = (Keyword)cGroup_4_5.eContents().get(0);
+		private final Assignment cElseAssignment_4_5_1 = (Assignment)cGroup_4_5.eContents().get(1);
+		private final RuleCall cElseExprParserRuleCall_4_5_1_0 = (RuleCall)cElseAssignment_4_5_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
 		private final Action cRecordExprAction_5_0 = (Action)cGroup_5.eContents().get(0);
 		private final Keyword cNewKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
@@ -2113,7 +2114,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//	LiteralExpr
 		//	| {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 		//	| {PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
-		//	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr 'else' else=Expr
+		//	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 		//	| {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
 		//	| {ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 		//	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
@@ -2122,8 +2123,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		@Override public ParserRule getRule() { return rule; }
 
 		//LiteralExpr | {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' | {PreviousExpr} 'prev' '('
-		//var=Expr ',' init=Expr ')' | {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr 'else' else=Expr | {RecordExpr} 'new'
-		//type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}' | {ArrayExpr} 'new'
+		//var=Expr ',' init=Expr ')' | {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)? | {RecordExpr}
+		//'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}' | {ArrayExpr} 'new'
 		//type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr
 		//(',' args+=Expr)* ')' | {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')' | '('
 		//Expr ')'
@@ -2213,7 +2214,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_3_6() { return cRightParenthesisKeyword_3_6; }
 
-		//{IfThenElseExpr} 'if' cond=Expr 'then' then=Expr 'else' else=Expr
+		//{IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//{IfThenElseExpr}
@@ -2237,14 +2238,17 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//Expr
 		public RuleCall getThenExprParserRuleCall_4_4_0() { return cThenExprParserRuleCall_4_4_0; }
 
-		//'else'
-		public Keyword getElseKeyword_4_5() { return cElseKeyword_4_5; }
+		//(=> 'else' else=Expr)?
+		public Group getGroup_4_5() { return cGroup_4_5; }
+
+		//=> 'else'
+		public Keyword getElseKeyword_4_5_0() { return cElseKeyword_4_5_0; }
 
 		//else=Expr
-		public Assignment getElseAssignment_4_6() { return cElseAssignment_4_6; }
+		public Assignment getElseAssignment_4_5_1() { return cElseAssignment_4_5_1; }
 
 		//Expr
-		public RuleCall getElseExprParserRuleCall_4_6_0() { return cElseExprParserRuleCall_4_6_0; }
+		public RuleCall getElseExprParserRuleCall_4_5_1_0() { return cElseExprParserRuleCall_4_5_1_0; }
 
 		//{RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
 		public Group getGroup_5() { return cGroup_5; }
@@ -3168,7 +3172,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	//	LiteralExpr
 	//	| {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 	//	| {PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
-	//	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr 'else' else=Expr
+	//	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	//	| {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
 	//	| {ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 	//	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'

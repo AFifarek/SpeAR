@@ -9960,7 +9960,6 @@ rule__AtomicExpr__Group_4__5
     }
 :
 	rule__AtomicExpr__Group_4__5__Impl
-	rule__AtomicExpr__Group_4__6
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -9972,11 +9971,9 @@ rule__AtomicExpr__Group_4__5__Impl
     }
 :
 (
-{ before(grammarAccess.getAtomicExprAccess().getElseKeyword_4_5()); }
-
-	'else' 
-
-{ after(grammarAccess.getAtomicExprAccess().getElseKeyword_4_5()); }
+{ before(grammarAccess.getAtomicExprAccess().getGroup_4_5()); }
+(rule__AtomicExpr__Group_4_5__0)?
+{ after(grammarAccess.getAtomicExprAccess().getGroup_4_5()); }
 )
 
 ;
@@ -9985,26 +9982,41 @@ finally {
 }
 
 
-rule__AtomicExpr__Group_4__6
+
+
+
+
+
+
+
+
+
+
+
+
+rule__AtomicExpr__Group_4_5__0
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__AtomicExpr__Group_4__6__Impl
+	rule__AtomicExpr__Group_4_5__0__Impl
+	rule__AtomicExpr__Group_4_5__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__AtomicExpr__Group_4__6__Impl
+rule__AtomicExpr__Group_4_5__0__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getAtomicExprAccess().getElseAssignment_4_6()); }
-(rule__AtomicExpr__ElseAssignment_4_6)
-{ after(grammarAccess.getAtomicExprAccess().getElseAssignment_4_6()); }
+{ before(grammarAccess.getAtomicExprAccess().getElseKeyword_4_5_0()); }
+(
+	'else' 
+)
+{ after(grammarAccess.getAtomicExprAccess().getElseKeyword_4_5_0()); }
 )
 
 ;
@@ -10013,14 +10025,32 @@ finally {
 }
 
 
+rule__AtomicExpr__Group_4_5__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__AtomicExpr__Group_4_5__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
+rule__AtomicExpr__Group_4_5__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getAtomicExprAccess().getElseAssignment_4_5_1()); }
+(rule__AtomicExpr__ElseAssignment_4_5_1)
+{ after(grammarAccess.getAtomicExprAccess().getElseAssignment_4_5_1()); }
+)
 
-
-
-
-
-
-
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 
 
@@ -13140,14 +13170,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__AtomicExpr__ElseAssignment_4_6
+rule__AtomicExpr__ElseAssignment_4_5_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getAtomicExprAccess().getElseExprParserRuleCall_4_6_0()); }
-	ruleExpr{ after(grammarAccess.getAtomicExprAccess().getElseExprParserRuleCall_4_6_0()); }
+{ before(grammarAccess.getAtomicExprAccess().getElseExprParserRuleCall_4_5_1_0()); }
+	ruleExpr{ after(grammarAccess.getAtomicExprAccess().getElseExprParserRuleCall_4_5_1_0()); }
 )
 
 ;

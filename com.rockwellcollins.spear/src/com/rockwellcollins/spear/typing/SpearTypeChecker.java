@@ -466,6 +466,15 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	public SpearType caseIfThenElseExpr(IfThenElseExpr ite) {
 		expectAssignableType(BOOL,ite.getCond());
 		SpearType thenType = doSwitch(ite.getThen());
+		
+		if(ite.getElse() == null) {
+			if(thenType != BOOL) {
+				error("Then branch must be of type boolean when else branch is unspecified.", ite.getThen());
+				return ERROR;
+			}
+			return thenType;
+		}
+		
 		SpearType elseType = doSwitch(ite.getElse());
 		
 		if(thenType == ERROR || elseType == ERROR) {

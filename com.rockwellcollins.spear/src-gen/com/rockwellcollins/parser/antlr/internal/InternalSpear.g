@@ -3485,14 +3485,15 @@ ruleAtomicExpr returns [EObject current=null]
 	    }
 
 )
-)	otherlv_21='else' 
+)(((	'else' 
+)=>	otherlv_21='else' 
     {
-    	newLeafNode(otherlv_21, grammarAccess.getAtomicExprAccess().getElseKeyword_4_5());
+    	newLeafNode(otherlv_21, grammarAccess.getAtomicExprAccess().getElseKeyword_4_5_0());
     }
-(
+)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAtomicExprAccess().getElseExprParserRuleCall_4_6_0()); 
+	        newCompositeNode(grammarAccess.getAtomicExprAccess().getElseExprParserRuleCall_4_5_1_0()); 
 	    }
 		lv_else_22_0=ruleExpr		{
 	        if ($current==null) {
@@ -3507,7 +3508,7 @@ ruleAtomicExpr returns [EObject current=null]
 	    }
 
 )
-))
+))?)
     |((
     {
         $current = forceCreateModelElement(

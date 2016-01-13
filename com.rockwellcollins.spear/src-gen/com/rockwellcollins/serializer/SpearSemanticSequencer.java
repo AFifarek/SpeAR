@@ -532,22 +532,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns IfThenElseExpr
 	 *
 	 * Constraint:
-	 *     (cond=Expr then=Expr else=Expr)
+	 *     (cond=Expr then=Expr else=Expr?)
 	 */
 	protected void sequence_AtomicExpr(ISerializationContext context, IfThenElseExpr semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__THEN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__THEN));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__ELSE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.IF_THEN_ELSE_EXPR__ELSE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAtomicExprAccess().getCondExprParserRuleCall_4_2_0(), semanticObject.getCond());
-		feeder.accept(grammarAccess.getAtomicExprAccess().getThenExprParserRuleCall_4_4_0(), semanticObject.getThen());
-		feeder.accept(grammarAccess.getAtomicExprAccess().getElseExprParserRuleCall_4_6_0(), semanticObject.getElse());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

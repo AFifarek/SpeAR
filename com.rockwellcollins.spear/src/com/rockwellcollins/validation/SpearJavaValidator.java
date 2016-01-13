@@ -87,7 +87,7 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	public void checkInitialIsNotEmbedded(UnaryExpr ue) {
 		if(ue.getOp().equals("initially")) {
 			if(ue.eContainer() instanceof Expr) {
-				error("The initial operator cannot be embedded within expressions.",ue,null);
+				error("The initially operator cannot be embedded within expressions.",ue,null);
 			}
 		}
 	}
