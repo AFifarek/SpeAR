@@ -1095,7 +1095,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *                 op='historically' | 
 	 *                 op='never' | 
 	 *                 op='before' | 
-	 *                 op='after'
+	 *                 op='after' | 
+	 *                 op='initially'
 	 *             ) 
 	 *             expr=TemporalPrefixExpr
 	 *         ) | 

@@ -268,6 +268,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		case "O":
 		case "historically":
 		case "H":
+		case "initially":
 		// the following ops are syntactic sugar
 		case "never":
 		case "before":

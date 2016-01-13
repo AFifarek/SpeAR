@@ -12,12 +12,14 @@ import org.eclipse.xtext.validation.ComposedChecks;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
+import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedType;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
@@ -78,6 +80,15 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	public void checkConstantsAreConstant(Constant c) {
 		if(!ConstantChecker.isConstant(c)) {
 			error("Constant " + c.getName() + " is defined by a non-constant expression.", c.getExpr(), null);
+		}
+	}
+	
+	@Check
+	public void checkInitialIsNotEmbedded(UnaryExpr ue) {
+		if(ue.getOp().equals("initial")) {
+			if(ue.eContainer() instanceof Expr) {
+				error("The initial operator cannot be embedded within expressions.",ue,null);
+			}
 		}
 	}
 	

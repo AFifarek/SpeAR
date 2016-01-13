@@ -324,10 +324,12 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 		case "O":
 		case "historically":
 		case "H":
+		case "initially":
 		//the following ops are syntactic sugar
 		case "never":
 		case "before":
 		case "after":
+
 			if (unit == SCALAR) {
 				return SCALAR;
 			}

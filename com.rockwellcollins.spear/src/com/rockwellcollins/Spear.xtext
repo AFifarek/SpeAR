@@ -42,7 +42,7 @@ Pattern:
 
 UnitDef:
 	{BaseUnit} name=ID (description=STRING)?
-|	{DerivedUnit} name=ID ':' unit=UnitExpr (description=STRING)?
+|	{DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING)?
 ;
 
 UnitExpr:
@@ -63,10 +63,10 @@ AtomicUnitExpr returns UnitExpr:
 ;
 
 TypeDef: 
-	{NamedType} name=ID '=' type=Type (unit=[UnitDef])?
-|	{RecordType} name=ID '=' 'record' '{' fields+=RecordTypeField (',' fields+=RecordTypeField)* '}'
-|   {ArrayType} name=ID '=' base=Type '[' size=INT ']'
-|	{EnumType} name=ID '=' 'enum' '{' values+=EnumValue (',' values+= EnumValue)* '}'
+	{NamedType} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
+|	{RecordType} name=ID IdTypeDelimiter 'record' '{' fields+=RecordTypeField (',' fields+=RecordTypeField)* '}'
+|   {ArrayType} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+|	{EnumType} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+= EnumValue)* '}'
 ;
 
 RecordTypeField: name=ID ':' type=Type ;
@@ -80,11 +80,17 @@ Type:
 |	{UserType} def=[TypeDef]
 ;
 
-Constant: name=ID (':' | 'is a' | 'is an') type=Type '=' expr=Expr;
+IdTypeDelimiter:
+	':'
+|	'is a'
+|	'is an'
+;
 
-Variable: name=ID (':' | 'is a' | 'is an') type=Type;
+Constant: name=ID IdTypeDelimiter type=Type '=' expr=Expr;
 
-Macro: name=ID (':' | 'is a' | 'is an') type=Type '=' expr=Expr;
+Variable: name=ID IdTypeDelimiter type=Type;
+
+Macro: name=ID IdTypeDelimiter type=Type '=' expr=Expr;
 
 Constraint: FormalConstraint | EnglishConstraint;
 
@@ -106,7 +112,7 @@ TriggersExpr returns Expr: SinceExpr (=>({BinaryExpr.left=current} op=('T' | 'tr
 SinceExpr returns Expr: TemporalPrefixExpr (=>({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)? ;
 
 TemporalPrefixExpr returns Expr:
-	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after') expr=TemporalPrefixExpr
+	{UnaryExpr} op=('O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after' | 'initially') expr=TemporalPrefixExpr
 |	RelationalExpr
 ;
 

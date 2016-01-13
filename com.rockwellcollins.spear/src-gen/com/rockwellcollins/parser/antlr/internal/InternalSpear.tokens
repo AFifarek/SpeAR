@@ -1,26 +1,26 @@
-'('=30
-')'=31
-'*'=28
-'+'=74
-','=35
-'-'=75
-'.'=77
-'/'=29
-':'=27
-':='=78
-'<'=62
-'<='=64
-'<>'=72
-'='=32
-'=='=70
+'('=29
+')'=30
+'*'=27
+'+'=75
+','=33
+'-'=76
+'.'=78
+'/'=28
+':'=38
+':='=79
+'<'=63
+'<='=65
+'<>'=73
+'='=44
+'=='=71
 '=>'=46
-'>'=66
-'>='=68
+'>'=67
+'>='=69
 'Assumptions:'=20
 'Constants:'=15
 'Definitions'=24
 'DerivedRequirements:'=21
-'FALSE'=89
+'FALSE'=90
 'H'=57
 'Imports:'=12
 'Inputs:'=16
@@ -34,50 +34,51 @@
 'Specification'=11
 'State:'=18
 'T'=51
-'TRUE'=87
+'TRUE'=88
 'Types:'=14
 'Units:'=13
-'['=37
-']'=38
+'['=35
+']'=36
 'after'=61
 'and'=50
 'before'=60
-'bool'=41
-'else'=83
-'enum'=39
-'equal to'=71
-'false'=90
-'greater than or equal to'=69
-'greater than'=67
+'bool'=40
+'else'=84
+'enum'=37
+'equal to'=72
+'false'=91
+'greater than or equal to'=70
+'greater than'=68
 'historically'=58
-'if'=81
+'if'=82
 'implies'=47
 'import'=23
-'int'=40
-'is a'=43
-'is an'=44
-'less than or equal to'=65
-'less than'=63
+'initially'=62
+'int'=39
+'is a'=42
+'is an'=43
+'less than or equal to'=66
+'less than'=64
 'never'=59
-'new'=84
-'not equal to'=73
-'not'=76
+'new'=85
+'not equal to'=74
+'not'=77
 'once'=56
 'or'=48
-'pattern'=85
-'prev'=80
-'real'=42
-'record'=33
+'pattern'=86
+'prev'=81
+'real'=41
+'record'=31
 'since'=54
-'spec'=86
+'spec'=87
 'text'=45
-'then'=82
+'then'=83
 'triggers'=52
-'true'=88
+'true'=89
 'xor'=49
-'{'=34
-'|'=79
-'}'=36
+'{'=32
+'|'=80
+'}'=34
 RULE_ANY_OTHER=10
 RULE_ID=4
 RULE_INT=6
@@ -165,3 +166,4 @@ T__87=87
 T__88=88
 T__89=89
 T__90=90
+T__91=91
