@@ -293,7 +293,6 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 		case "and":
 		case "implies":
 		case "=>":
-		case "requires":
 		case "triggers":
 		case "T":
 		case "since":

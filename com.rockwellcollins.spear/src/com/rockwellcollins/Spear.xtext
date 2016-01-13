@@ -101,7 +101,7 @@ EnglishConstraint: name=ID '=' text=STRING;
 /* Begin Expr Language */
 Expr: ImpliesExpr;
 
-ImpliesExpr returns Expr: OrExpr (=>({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires')) right=ImpliesExpr)? ;
+ImpliesExpr returns Expr: OrExpr (=>({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)? ;
 
 OrExpr returns Expr: AndExpr (=>({BinaryExpr.left=current} op=('or' | 'xor')) right=ImpliesExpr)? ;
 

@@ -232,7 +232,6 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		case "and":
 		case "implies":
 		case "=>":
-		case "requires":
 		case "triggers":
 		case "T":
 		case "since":
