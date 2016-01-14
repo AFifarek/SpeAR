@@ -13,8 +13,7 @@ public class SpearProposalProvider extends com.rockwellcollins.ui.contentassist.
 	
 	@Override
 	public void completeTypeDef_Unit(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		super.completeTypeDef_Unit(model, assignment, context, acceptor);
-		
+		super.completeTypeDef_Unit(model, assignment, context, acceptor);	
 	}
 	
 }
