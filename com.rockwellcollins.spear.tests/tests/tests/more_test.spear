@@ -1,0 +1,80 @@
+Specification test2
+
+Units:
+	m "meters"
+	s "seconds"
+
+	m3 : m*m*m "cubic meters"
+	m3_per_second : m3/s "cubic meters per second"
+	
+Types:
+	//extend English prepositional phrases to this section
+	switch_state is an enum {ON, OFF, FAILED}
+	flow_type is a real m3_per_second
+	
+	button : enum {PRESSED, NOT_PRESSED}
+	valve_state : enum {OPEN, CLOSED}
+	
+Constants:
+	C1 is an int = 5
+	C2 : int = 5
+
+Inputs:
+	simple_bool : bool
+
+	switch is a switch_state
+	emergency_stop is a button
+	reset is a button
+	
+	a is a bool
+	b is a bool
+
+Outputs:
+	valve_state is a valve_state
+	valve_flow is a flow_type
+	
+State:
+
+Macros:
+	no_valve_flow is a bool = valve_flow == 0.0 m3_per_second
+	positive_valve_flow is a bool = valve_flow greater than or equal to 0.0 m3_per_second
+	
+	reset_is_pressed is a bool = reset == PRESSED
+	reset_is_not_pressed is a bool = reset <> PRESSED
+	
+Assumptions:
+	a01 = not a
+
+DerivedRequirements:
+	r01_english = "While the switch is on it will always be the case that the valve flow is greater than or equal to 0.0 cubic meters per second"
+	r01_old = switch == ON implies valve_flow >= 0.0 m3_per_second
+	r01_current = switch equal to ON implies positive_valve_flow
+	r01_desired = if switch equal to ON then valve_flow greater than or equal to 0.0 m3_per_second
+	
+	r02_english = "After emergency stop button is pressed the emergency valve will be open"
+	r02_old = once emergency_stop == PRESSED implies valve_state == OPEN
+	text = "After emergency stop button is pressed the emergency valve will be open"	
+	
+	r02_current = after emergency_stop equal to PRESSED implies valve_state equal to OPEN
+	
+	//r02_desired = ?? 
+
+	//add an initial keyword
+	r03 = initially (valve_flow equal to 0.0 m3_per_second)
+	r03_error = initially (valve_flow == 0.0 m3_per_second) and initially (valve_state == OPEN)
+
+	//consider a transition operator
+	// state == A and guard transitions state == B
+	// pre_state == A and guard implies state == B
+	
+	//investigate the use of since and triggers to implement between and after until
+	r04 = after emergency_stop equal to PRESSED until reset equal to PRESSED implies no_valve_flow
+	r04_base = emergency_stop == PRESSED triggers not (reset equal to PRESSED) implies no_valve_flow
+	r04_alt = emergency_stop equal to PRESSED triggers reset not equal to PRESSED implies no_valve_flow
+
+	
+
+	
+Requirements:
+
+

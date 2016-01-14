@@ -1,0 +1,17 @@
+Specification complex
+
+Inputs:
+	a : real
+	b : real
+	c : real
+	d : real
+	e : real
+	
+Outputs:
+	x : int
+	y : bool
+	z : real
+
+DerivedRequirements:
+
+Requirements:

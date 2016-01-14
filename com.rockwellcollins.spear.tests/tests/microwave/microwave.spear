@@ -1,0 +1,32 @@
+Specification microwave
+
+Imports:
+	import "microwave_definitions.spear"
+	import "mode_logic.spear"
+
+Inputs:
+	user_input : user_input_type
+	door_closed : bool
+
+Outputs:
+	left_digit : int
+	middle_digit : int
+	right_digit : int
+
+State:
+	mode : mode_type
+	seconds_remaining : int
+
+Macros:
+	clear : bool = (user_input == CLEAR)
+	start : bool = (user_input == START)
+
+Assumptions:
+
+DerivedRequirements:
+	r0 = |mode,seconds_remaining| == spec mode_logic(clear, start, door_closed, seconds_to_cook)
+
+Requirements:
+	p0 = mode == COOKING => door_closed
+	p1 = before start implies mode == SETUP
+	

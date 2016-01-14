@@ -1,0 +1,12 @@
+Specification simple
+
+Inputs:
+	a : real
+	b : real
+	
+Outputs:
+	z : real
+
+DerivedRequirements:
+
+Requirements:

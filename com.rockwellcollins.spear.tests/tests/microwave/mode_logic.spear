@@ -1,0 +1,68 @@
+Specification mode_logic
+
+Imports:
+	import "compute_time.spear"
+	import "microwave_definitions.spear"
+	import "microwave_patterns.spear"
+
+Types:
+
+Inputs:
+	clear : bool
+	start : bool
+	door_closed : bool
+	seconds_to_cook : int
+
+Outputs:
+	mode : mode_type
+	seconds_remaining : int
+
+Macros:
+	pre_mode : mode_type = prev(mode,SETUP)
+	seconds_to_cook_positive : bool = seconds_to_cook > 0
+	seconds_remaining_positive : bool = seconds_remaining > 0
+	pre_seconds_remaining : int = prev(seconds_to_cook,0)
+	pre_door_closed : bool = prev(door_closed,TRUE)
+	
+	no_activity : bool = not start and not clear and (door_closed == pre_door_closed)
+	start_and_not_clear : bool = start and not clear
+	pre_mode_is_setup : bool = prev(mode==SETUP,true)
+	pre_mode_is_suspended : bool = prev(mode==SUSPENDED,false)
+	pre_mode_is_cooking : bool = prev(mode==COOKING,false)
+
+Assumptions:
+	a0 = seconds_to_cook >= 0
+	a1 = seconds_remaining <= 0 implies mode == SETUP
+	
+DerivedRequirements:
+	r0 = initially(mode == SETUP)
+	
+	r1 = if mode == SETUP 
+		 then seconds_remaining == seconds_to_cook 
+		 else if mode == SUSPENDED
+		 then seconds_remaining == pre_seconds_remaining
+		 else seconds_remaining == pre_seconds_remaining - 1
+		 
+	r2 = pre_mode_is_setup and no_activity implies mode == SETUP
+	r3 = pre_mode_is_setup and start_and_not_clear and seconds_to_cook_positive and door_closed implies (mode == COOKING)
+	r4 = pre_mode_is_setup and start_and_not_clear and seconds_to_cook_positive and not door_closed implies (mode == SUSPENDED)
+	
+	r5 = pre_mode_is_cooking and not seconds_remaining_positive implies mode == SETUP
+	r6 = pre_mode_is_cooking and (not door_closed or clear) implies mode == SUSPENDED
+	r7 = pre_mode_is_cooking and (door_closed and not clear and seconds_to_cook_positive) implies mode == COOKING
+		  
+	r8 = pre_mode_is_suspended and (not door_closed and not clear) implies mode == SUSPENDED
+	r9 = pre_mode_is_suspended and (door_closed and start_and_not_clear) implies mode == COOKING
+	r10 = pre_mode_is_suspended and clear implies mode == SETUP
+
+	r11 = "The microwave shall have a fire red door."
+	r12 = "The microwave shall be very powerful."
+	
+Requirements:
+	p1 = (mode == COOKING) => door_closed
+	p2 = (mode == COOKING) => (seconds_remaining < pre_seconds_remaining)
+	p3 = (mode == SUSPENDED) => (seconds_remaining <= pre_seconds_remaining)
+	p4 = before start implies mode == SETUP
+	p5 = mode == SUSPENDED implies seconds_remaining_positive
+	
+	
