@@ -402,7 +402,7 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 			return arrayUnit.base;
 		}
 		
-		error("Expected array of units but " + array + " was provided instead", aae.getArray(), SpearPackage.Literals.ARRAY_ACCESS_EXPR__ARRAY);
+		error("Expected array of units but " + array + " was provided instead", aae.getArray(), null);
 		return ERROR;
 	}
 	

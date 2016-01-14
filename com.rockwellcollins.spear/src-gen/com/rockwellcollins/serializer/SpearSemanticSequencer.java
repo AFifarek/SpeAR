@@ -417,7 +417,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *
 	 * Constraint:
 	 *     (
-	 *         (left=ImpliesExpr_BinaryExpr_1_0_0_0 (op='=>' | op='implies' | op='requires') right=ImpliesExpr) | 
+	 *         (left=ImpliesExpr_BinaryExpr_1_0_0_0 (op='=>' | op='implies') right=ImpliesExpr) | 
 	 *         (left=OrExpr_BinaryExpr_1_0_0_0 (op='or' | op='xor') right=ImpliesExpr) | 
 	 *         (left=AndExpr_BinaryExpr_1_0_0_0 op='and' right=AndExpr) | 
 	 *         (left=TriggersExpr_BinaryExpr_1_0_0_0 (op='T' | op='triggers') right=TriggersExpr) | 

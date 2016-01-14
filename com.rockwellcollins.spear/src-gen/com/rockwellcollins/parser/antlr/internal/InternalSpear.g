@@ -2061,9 +2061,6 @@ ruleImpliesExpr returns [EObject current=null]
     |			'implies' 
  
 
-    |			'requires' 
- 
-
 )
 
 )
@@ -2098,18 +2095,6 @@ ruleImpliesExpr returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getImpliesExprRule());
 	        }
        		setWithLastConsumed($current, "op", lv_op_2_2, null);
-	    }
-
-    |		lv_op_2_3=	'requires' 
-    {
-        newLeafNode(lv_op_2_3, grammarAccess.getImpliesExprAccess().getOpRequiresKeyword_1_0_0_1_0_2());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getImpliesExprRule());
-	        }
-       		setWithLastConsumed($current, "op", lv_op_2_3, null);
 	    }
 
 )
@@ -2750,13 +2735,19 @@ ruleRelationalOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
         newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanSignKeyword_0()); 
     }
 
-    |
-	kw='less than' 
+    |(
+	kw='less' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanKeyword_1()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessKeyword_1_0()); 
     }
 
+	kw='than' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getThanKeyword_1_1()); 
+    }
+)
     |
 	kw='<=' 
     {
@@ -2764,13 +2755,37 @@ ruleRelationalOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
         newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanSignEqualsSignKeyword_2()); 
     }
 
-    |
-	kw='less than or equal to' 
+    |(
+	kw='less' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanOrEqualToKeyword_3()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessKeyword_3_0()); 
     }
 
+	kw='than' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getThanKeyword_3_1()); 
+    }
+
+	kw='or' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getOrKeyword_3_2()); 
+    }
+
+	kw='equal' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getEqualKeyword_3_3()); 
+    }
+
+	kw='to' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getToKeyword_3_4()); 
+    }
+)
     |
 	kw='>' 
     {
@@ -2778,13 +2793,19 @@ ruleRelationalOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
         newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterThanSignKeyword_4()); 
     }
 
-    |
-	kw='greater than' 
+    |(
+	kw='greater' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterThanKeyword_5()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterKeyword_5_0()); 
     }
 
+	kw='than' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getThanKeyword_5_1()); 
+    }
+)
     |
 	kw='>=' 
     {
@@ -2792,13 +2813,37 @@ ruleRelationalOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
         newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterThanSignEqualsSignKeyword_6()); 
     }
 
-    |
-	kw='greater than or equal to' 
+    |(
+	kw='greater' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterThanOrEqualToKeyword_7()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getGreaterKeyword_7_0()); 
     }
 
+	kw='than' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getThanKeyword_7_1()); 
+    }
+
+	kw='or' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getOrKeyword_7_2()); 
+    }
+
+	kw='equal' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getEqualKeyword_7_3()); 
+    }
+
+	kw='to' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getToKeyword_7_4()); 
+    }
+)
     |
 	kw='==' 
     {
@@ -2806,13 +2851,19 @@ ruleRelationalOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
         newLeafNode(kw, grammarAccess.getRelationalOpAccess().getEqualsSignEqualsSignKeyword_8()); 
     }
 
-    |
-	kw='equal to' 
+    |(
+	kw='equal' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getEqualToKeyword_9()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getEqualKeyword_9_0()); 
     }
 
+	kw='to' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getToKeyword_9_1()); 
+    }
+)
     |
 	kw='<>' 
     {
@@ -2820,13 +2871,25 @@ ruleRelationalOp returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTo
         newLeafNode(kw, grammarAccess.getRelationalOpAccess().getLessThanSignGreaterThanSignKeyword_10()); 
     }
 
-    |
-	kw='not equal to' 
+    |(
+	kw='not' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getNotEqualToKeyword_11()); 
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getNotKeyword_11_0()); 
     }
-)
+
+	kw='equal' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getEqualKeyword_11_1()); 
+    }
+
+	kw='to' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getRelationalOpAccess().getToKeyword_11_2()); 
+    }
+))
     ;
 
 

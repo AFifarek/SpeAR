@@ -1226,36 +1226,35 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cOpAlternatives_1_0_0_1_0 = (Alternatives)cOpAssignment_1_0_0_1.eContents().get(0);
 		private final Keyword cOpEqualsSignGreaterThanSignKeyword_1_0_0_1_0_0 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(0);
 		private final Keyword cOpImpliesKeyword_1_0_0_1_0_1 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(1);
-		private final Keyword cOpRequiresKeyword_1_0_0_1_0_2 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(2);
 		private final Assignment cRightAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cRightImpliesExprParserRuleCall_1_1_0 = (RuleCall)cRightAssignment_1_1.eContents().get(0);
 		
 		//ImpliesExpr Expr:
-		//	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires')) right=ImpliesExpr)?
+		//	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?
 		@Override public ParserRule getRule() { return rule; }
 
-		//OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires')) right=ImpliesExpr)?
+		//OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?
 		public Group getGroup() { return cGroup; }
 
 		//OrExpr
 		public RuleCall getOrExprParserRuleCall_0() { return cOrExprParserRuleCall_0; }
 
-		//(=> ({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires')) right=ImpliesExpr)?
+		//(=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//=> ({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires'))
+		//=> ({BinaryExpr.left=current} op=('=>' | 'implies'))
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires'))
+		//({BinaryExpr.left=current} op=('=>' | 'implies'))
 		public Group getGroup_1_0_0() { return cGroup_1_0_0; }
 
 		//{BinaryExpr.left=current}
 		public Action getBinaryExprLeftAction_1_0_0_0() { return cBinaryExprLeftAction_1_0_0_0; }
 
-		//op=('=>' | 'implies' | 'requires')
+		//op=('=>' | 'implies')
 		public Assignment getOpAssignment_1_0_0_1() { return cOpAssignment_1_0_0_1; }
 
-		//('=>' | 'implies' | 'requires')
+		//('=>' | 'implies')
 		public Alternatives getOpAlternatives_1_0_0_1_0() { return cOpAlternatives_1_0_0_1_0; }
 
 		//'=>'
@@ -1263,9 +1262,6 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'implies'
 		public Keyword getOpImpliesKeyword_1_0_0_1_0_1() { return cOpImpliesKeyword_1_0_0_1_0_1; }
-
-		//'requires'
-		public Keyword getOpRequiresKeyword_1_0_0_1_0_2() { return cOpRequiresKeyword_1_0_0_1_0_2; }
 
 		//right=ImpliesExpr
 		public Assignment getRightAssignment_1_1() { return cRightAssignment_1_1; }
@@ -1612,67 +1608,143 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.RelationalOp");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Keyword cLessThanSignKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cLessThanKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cLessKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cThanKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Keyword cLessThanSignEqualsSignKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cLessThanOrEqualToKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
+		private final Keyword cLessKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cThanKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Keyword cOrKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
+		private final Keyword cEqualKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
+		private final Keyword cToKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
 		private final Keyword cGreaterThanSignKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		private final Keyword cGreaterThanKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
+		private final Keyword cGreaterKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cThanKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
 		private final Keyword cGreaterThanSignEqualsSignKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
-		private final Keyword cGreaterThanOrEqualToKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Group cGroup_7 = (Group)cAlternatives.eContents().get(7);
+		private final Keyword cGreaterKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Keyword cThanKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
+		private final Keyword cOrKeyword_7_2 = (Keyword)cGroup_7.eContents().get(2);
+		private final Keyword cEqualKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
+		private final Keyword cToKeyword_7_4 = (Keyword)cGroup_7.eContents().get(4);
 		private final Keyword cEqualsSignEqualsSignKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
-		private final Keyword cEqualToKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
+		private final Group cGroup_9 = (Group)cAlternatives.eContents().get(9);
+		private final Keyword cEqualKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
+		private final Keyword cToKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
 		private final Keyword cLessThanSignGreaterThanSignKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
-		private final Keyword cNotEqualToKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
+		private final Group cGroup_11 = (Group)cAlternatives.eContents().get(11);
+		private final Keyword cNotKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
+		private final Keyword cEqualKeyword_11_1 = (Keyword)cGroup_11.eContents().get(1);
+		private final Keyword cToKeyword_11_2 = (Keyword)cGroup_11.eContents().get(2);
 		
 		////This adds some english equivalents to the Relational Operators for a more english look and feel
 		//RelationalOp:
-		//	'<' | 'less than'
-		//	| '<=' | 'less than or equal to'
-		//	| '>' | 'greater than'
-		//	| '>=' | 'greater than or equal to'
-		//	| '==' | 'equal to'
-		//	| '<>' | 'not equal to';
+		//	'<' | 'less' 'than'
+		//	| '<=' | 'less' 'than' 'or' 'equal' 'to'
+		//	| '>' | 'greater' 'than'
+		//	| '>=' | 'greater' 'than' 'or' 'equal' 'to'
+		//	| '==' | 'equal' 'to'
+		//	| '<>' | 'not' 'equal' 'to';
 		@Override public ParserRule getRule() { return rule; }
 
-		//'<' | 'less than' | '<=' | 'less than or equal to' | '>' | 'greater than' | '>=' | 'greater than or equal to' | '==' |
-		//'equal to' | '<>' | 'not equal to'
+		//'<' | 'less' 'than' | '<=' | 'less' 'than' 'or' 'equal' 'to' | '>' | 'greater' 'than' | '>=' | 'greater' 'than' 'or'
+		//'equal' 'to' | '==' | 'equal' 'to' | '<>' | 'not' 'equal' 'to'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//'<'
 		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
 
-		//'less than'
-		public Keyword getLessThanKeyword_1() { return cLessThanKeyword_1; }
+		//'less' 'than'
+		public Group getGroup_1() { return cGroup_1; }
+
+		//'less'
+		public Keyword getLessKeyword_1_0() { return cLessKeyword_1_0; }
+
+		//'than'
+		public Keyword getThanKeyword_1_1() { return cThanKeyword_1_1; }
 
 		//'<='
 		public Keyword getLessThanSignEqualsSignKeyword_2() { return cLessThanSignEqualsSignKeyword_2; }
 
-		//'less than or equal to'
-		public Keyword getLessThanOrEqualToKeyword_3() { return cLessThanOrEqualToKeyword_3; }
+		//'less' 'than' 'or' 'equal' 'to'
+		public Group getGroup_3() { return cGroup_3; }
+
+		//'less'
+		public Keyword getLessKeyword_3_0() { return cLessKeyword_3_0; }
+
+		//'than'
+		public Keyword getThanKeyword_3_1() { return cThanKeyword_3_1; }
+
+		//'or'
+		public Keyword getOrKeyword_3_2() { return cOrKeyword_3_2; }
+
+		//'equal'
+		public Keyword getEqualKeyword_3_3() { return cEqualKeyword_3_3; }
+
+		//'to'
+		public Keyword getToKeyword_3_4() { return cToKeyword_3_4; }
 
 		//'>'
 		public Keyword getGreaterThanSignKeyword_4() { return cGreaterThanSignKeyword_4; }
 
-		//'greater than'
-		public Keyword getGreaterThanKeyword_5() { return cGreaterThanKeyword_5; }
+		//'greater' 'than'
+		public Group getGroup_5() { return cGroup_5; }
+
+		//'greater'
+		public Keyword getGreaterKeyword_5_0() { return cGreaterKeyword_5_0; }
+
+		//'than'
+		public Keyword getThanKeyword_5_1() { return cThanKeyword_5_1; }
 
 		//'>='
 		public Keyword getGreaterThanSignEqualsSignKeyword_6() { return cGreaterThanSignEqualsSignKeyword_6; }
 
-		//'greater than or equal to'
-		public Keyword getGreaterThanOrEqualToKeyword_7() { return cGreaterThanOrEqualToKeyword_7; }
+		//'greater' 'than' 'or' 'equal' 'to'
+		public Group getGroup_7() { return cGroup_7; }
+
+		//'greater'
+		public Keyword getGreaterKeyword_7_0() { return cGreaterKeyword_7_0; }
+
+		//'than'
+		public Keyword getThanKeyword_7_1() { return cThanKeyword_7_1; }
+
+		//'or'
+		public Keyword getOrKeyword_7_2() { return cOrKeyword_7_2; }
+
+		//'equal'
+		public Keyword getEqualKeyword_7_3() { return cEqualKeyword_7_3; }
+
+		//'to'
+		public Keyword getToKeyword_7_4() { return cToKeyword_7_4; }
 
 		//'=='
 		public Keyword getEqualsSignEqualsSignKeyword_8() { return cEqualsSignEqualsSignKeyword_8; }
 
-		//'equal to'
-		public Keyword getEqualToKeyword_9() { return cEqualToKeyword_9; }
+		//'equal' 'to'
+		public Group getGroup_9() { return cGroup_9; }
+
+		//'equal'
+		public Keyword getEqualKeyword_9_0() { return cEqualKeyword_9_0; }
+
+		//'to'
+		public Keyword getToKeyword_9_1() { return cToKeyword_9_1; }
 
 		//'<>'
 		public Keyword getLessThanSignGreaterThanSignKeyword_10() { return cLessThanSignGreaterThanSignKeyword_10; }
 
-		//'not equal to'
-		public Keyword getNotEqualToKeyword_11() { return cNotEqualToKeyword_11; }
+		//'not' 'equal' 'to'
+		public Group getGroup_11() { return cGroup_11; }
+
+		//'not'
+		public Keyword getNotKeyword_11_0() { return cNotKeyword_11_0; }
+
+		//'equal'
+		public Keyword getEqualKeyword_11_1() { return cEqualKeyword_11_1; }
+
+		//'to'
+		public Keyword getToKeyword_11_2() { return cToKeyword_11_2; }
 	}
 
 	public class PlusExprElements extends AbstractParserRuleElementFinder {
@@ -3071,7 +3143,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImpliesExpr Expr:
-	//	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies' | 'requires')) right=ImpliesExpr)?
+	//	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?
 	public ImpliesExprElements getImpliesExprAccess() {
 		return pImpliesExpr;
 	}
@@ -3143,12 +3215,12 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 	////This adds some english equivalents to the Relational Operators for a more english look and feel
 	//RelationalOp:
-	//	'<' | 'less than'
-	//	| '<=' | 'less than or equal to'
-	//	| '>' | 'greater than'
-	//	| '>=' | 'greater than or equal to'
-	//	| '==' | 'equal to'
-	//	| '<>' | 'not equal to';
+	//	'<' | 'less' 'than'
+	//	| '<=' | 'less' 'than' 'or' 'equal' 'to'
+	//	| '>' | 'greater' 'than'
+	//	| '>=' | 'greater' 'than' 'or' 'equal' 'to'
+	//	| '==' | 'equal' 'to'
+	//	| '<>' | 'not' 'equal' 'to';
 	public RelationalOpElements getRelationalOpAccess() {
 		return pRelationalOp;
 	}
