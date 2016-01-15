@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: com.rockwellcollins.spear
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0.qualifier
+Bundle-Name: SpeAR
+Bundle-Vendor: Rockwell Collins
+Bundle-Version: 2.0.0
 Bundle-SymbolicName: com.rockwellcollins.spear; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;visibility:=reexport,
@@ -13,20 +13,22 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.xbase.lib,
  org.antlr.runtime,
  org.eclipse.xtext.common.types,
- org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional
+ org.eclipse.equinox.app
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.rockwellcollins,
+ com.rockwellcollins.formatting,
+ com.rockwellcollins.generator,
+ com.rockwellcollins.parser.antlr,
+ com.rockwellcollins.parser.antlr.internal,
+ com.rockwellcollins.scoping,
+ com.rockwellcollins.serializer,
  com.rockwellcollins.services,
  com.rockwellcollins.spear,
  com.rockwellcollins.spear.impl,
  com.rockwellcollins.spear.util,
- com.rockwellcollins.serializer,
- com.rockwellcollins.parser.antlr,
- com.rockwellcollins.parser.antlr.internal,
  com.rockwellcollins.validation,
- com.rockwellcollins.scoping,
- com.rockwellcollins.generator,
- com.rockwellcollins.formatting
+ javax.xml.bind
 Bundle-ClassPath: .,
- dependencies/jkind-api.jar
+ dependencies/jkind-api.jar,
+ dependencies/jaxb-api-2.2.3.jar
