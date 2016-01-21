@@ -183,6 +183,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="until" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WhileExpr" eSuperTypes="#//Expr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cond" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="then" eType="#//Expr" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RecordExpr" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//RecordType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fieldExprs" upperBound="-1"

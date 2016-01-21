@@ -49,6 +49,7 @@ import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.WhileExpr;
 import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -202,6 +203,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SpearPackage.VARIABLE:
 				sequence_Variable(context, (Variable) semanticObject); 
+				return; 
+			case SpearPackage.WHILE_EXPR:
+				sequence_AtomicExpr(context, (WhileExpr) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -759,6 +763,50 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_AtomicExpr(ISerializationContext context, SpecificationCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Expr returns WhileExpr
+	 *     ImpliesExpr returns WhileExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     OrExpr returns WhileExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     AndExpr returns WhileExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     TriggersExpr returns WhileExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     SinceExpr returns WhileExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     TemporalPrefixExpr returns WhileExpr
+	 *     RelationalExpr returns WhileExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     PlusExpr returns WhileExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     MultiplyExpr returns WhileExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     PrefixExpr returns WhileExpr
+	 *     AccessExpr returns WhileExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns WhileExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns WhileExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns WhileExpr
+	 *     AtomicExpr returns WhileExpr
+	 *
+	 * Constraint:
+	 *     (cond=Expr then=Expr)
+	 */
+	protected void sequence_AtomicExpr(ISerializationContext context, WhileExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.WHILE_EXPR__COND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.WHILE_EXPR__COND));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.WHILE_EXPR__THEN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.WHILE_EXPR__THEN));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAtomicExprAccess().getCondExprParserRuleCall_6_2_0(), semanticObject.getCond());
+		feeder.accept(grammarAccess.getAtomicExprAccess().getThenExprParserRuleCall_6_4_0(), semanticObject.getThen());
+		feeder.finish();
 	}
 	
 	

@@ -49,6 +49,7 @@ import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class SpearTypeChecker extends SpearSwitch<SpearType> {
@@ -491,33 +492,25 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	
 	@Override
 	public SpearType caseAfterUntilExpr(AfterUntilExpr afe) {
-		SpearType afterType = doSwitch(afe.getAfter());
-		
-		if(afe.getUntil() == null) {
-			if(afterType != BOOL) {
-				error("After expressions must be of type boolean.", afe.getAfter());
+		expectAssignableType(BOOL, afe.getAfter());
+		if(afe.getUntil() != null) {
+			if(!expectAssignableType(BOOL, afe.getUntil())) {
 				return ERROR;
 			}
-			return BOOL;
 		}
-		
-		SpearType untilType = doSwitch(afe.getUntil());
-		boolean error = false;
-		if(afterType != BOOL) {
-			error("After expressions must be of type boolean.", afe.getAfter());
-			error=true;
-		}
-		
-		if(untilType != BOOL) {
-			error("Until expressions must be of type boolean.", afe.getUntil());
-			error=true;
-		}
-		
-		if(error) {
+		return BOOL;
+	}
+	
+	@Override
+	public SpearType caseWhileExpr(WhileExpr wh) {
+		if (!expectAssignableType(BOOL, wh.getCond())) {
 			return ERROR;
-		} else {
-			return BOOL;
 		}
+		
+		if (!expectAssignableType(BOOL, wh.getThen())) {
+			return ERROR;
+		}
+		return BOOL;
 	}
 	
 	@Override

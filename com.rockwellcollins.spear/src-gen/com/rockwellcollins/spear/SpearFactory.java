@@ -428,6 +428,15 @@ public interface SpearFactory extends EFactory
   AfterUntilExpr createAfterUntilExpr();
 
   /**
+   * Returns a new object of class '<em>While Expr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>While Expr</em>'.
+   * @generated
+   */
+  WhileExpr createWhileExpr();
+
+  /**
    * Returns a new object of class '<em>Record Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

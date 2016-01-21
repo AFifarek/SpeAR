@@ -46,6 +46,7 @@ import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class UnitChecker extends SpearSwitch<SpearUnit> {
@@ -527,8 +528,25 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 				error("Until expressions must have scalar units.",afe.getUntil(),null);
 			}
 		}
+		return SCALAR;
+	}
+	
+	@Override
+	public SpearUnit caseWhileExpr(WhileExpr wh) {
+		SpearUnit cond = doSwitch(wh.getCond());
+		SpearUnit then = doSwitch(wh.getThen());
 		
-		return afterUnit;
+		if(cond != SCALAR) {
+			error("While expressions must have scalar units.", wh.getCond(), null);
+			return ERROR;
+		}
+		
+		if(then != SCALAR) {
+			error("Then expression smust have scalar units.", wh.getThen(), null);
+			return ERROR;
+		}
+		
+		return SCALAR;
 	}
 	
 	@Override

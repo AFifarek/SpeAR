@@ -153,6 +153,7 @@ AtomicExpr returns Expr:
 |	{PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
 |	{IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 |	{AfterUntilExpr} 'after' (after=Expr) (=> 'until' until=Expr)?
+|	{WhileExpr} 'while' cond=Expr 'then' then=Expr
 |	{RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
 |	{ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 |	{PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'

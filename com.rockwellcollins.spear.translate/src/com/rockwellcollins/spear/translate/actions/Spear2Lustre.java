@@ -26,6 +26,7 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.transformations.NormalizeOperators;
 import com.rockwellcollins.spear.translate.transformations.RemoveSugar;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
@@ -60,6 +61,11 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 				Integer pass = 0;
 				Specification workingCopy = EcoreUtil2.copy(specification);
 
+				//apply operator normalization
+				workingCopy = NormalizeOperators.transform(workingCopy);
+				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
+				pass++;
+				
 				//apply remove sugar
 				workingCopy = RemoveSugar.transform(workingCopy);
 				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
