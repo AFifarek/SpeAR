@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.typing;
+package com.rockwellcollins.validation;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -30,7 +30,8 @@ Export-Package: com.rockwellcollins,
  com.rockwellcollins.spear.language,
  com.rockwellcollins.spear.util,
  com.rockwellcollins.validation,
- javax.xml.bind
+ javax.xml.bind,
+ jkind.lustre
 Bundle-ClassPath: .,
  dependencies/jkind-api.jar,
  dependencies/jaxb-api-2.2.3.jar

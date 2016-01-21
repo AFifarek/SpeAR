@@ -23,7 +23,6 @@ import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
-import com.rockwellcollins.spear.typing.TypesAcyclicValidator;
 import com.rockwellcollins.spear.units.UnitChecker;
 import com.rockwellcollins.spear.utilities.ConstantChecker;
 
@@ -34,7 +33,7 @@ import com.rockwellcollins.spear.utilities.ConstantChecker;
  * validation
  */
 
-@ComposedChecks(validators = {TypesAcyclicValidator.class})
+@ComposedChecks(validators = {TypesAcyclicValidator.class, SpecificationsAcyclicValidator.class})
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 
 	public static final String INVALID_ASSUMPTION_REF = "INVALID_ASSUMPTION_REF";

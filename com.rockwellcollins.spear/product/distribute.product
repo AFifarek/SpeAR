@@ -35,7 +35,6 @@ A tool for prototyping requirements using formal notations.
       </win>
    </launcher>
 
-
    <vm>
       <windows include="false">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
    </vm>
@@ -88,6 +87,7 @@ IS APPROVED FOR PUBLIC RELEASE.  CASE NUMBER: 88ABW-2014-2553.
       <plugin id="com.jcraft.jsch"/>
       <plugin id="com.rockwellcollins.spear"/>
       <plugin id="com.rockwellcollins.spear.tests"/>
+      <plugin id="com.rockwellcollins.spear.translate"/>
       <plugin id="com.rockwellcollins.spear.ui"/>
       <plugin id="com.sun.el"/>
       <plugin id="de.itemis.xtext.antlr"/>
