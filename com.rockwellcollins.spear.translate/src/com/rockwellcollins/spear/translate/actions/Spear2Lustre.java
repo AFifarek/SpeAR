@@ -33,7 +33,6 @@ import com.rockwellcollins.ui.internal.SpearActivator;
 public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 
 	private IWorkbenchWindow window;
-	private boolean createDebugFiles = true;
 
 	@Override
 	public void run(IAction action) {
@@ -93,7 +92,7 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 	}
 
 	private void printSpearFile(URI uri, Specification s) throws Exception {
-		if (createDebugFiles ) {
+		if (SpearRuntimeOptions.createDebugFiles) {
 			Resource res = new ResourceSetImpl().createResource(uri);
 			res.getContents().add(s);
 			res.save(null);
