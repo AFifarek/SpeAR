@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            label="Analyze"
+            visible="true"
+            id="com.rockwellcollins.spear.translate.actionSet">
+         <menu
+               label="SpeAR"
+               id="translateMenu">
+            <separator name="translateGroup">
+            </separator>
+         </menu>
+         <action
+               label="&amp;Analyze"
+               icon="icons/sample.gif"
+               class="com.rockwellcollins.spear.translate.actions.Spear2Lustre"
+               tooltip="Analyze SpeAR File"
+               menubarPath="translateMenu/translateGroup"
+               toolbarPath="translateGroup"
+               id="com.rockwellcollins.spear.translate.Spear2Lustre">
+         </action>
+      </actionSet>
+   </extension>
+
+</plugin>
