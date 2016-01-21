@@ -33,7 +33,9 @@ import com.rockwellcollins.spear.utilities.ConstantChecker;
  * validation
  */
 
-@ComposedChecks(validators = {TypesAcyclicValidator.class, SpecificationsAcyclicValidator.class})
+@ComposedChecks(validators = {TypesAcyclicValidator.class, 
+							  SpecificationsAcyclicValidator.class, 
+							  ConstantsAcyclicValidator.class})
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 
 	public static final String INVALID_ASSUMPTION_REF = "INVALID_ASSUMPTION_REF";

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
@@ -58,5 +59,10 @@ public class SpecificationsAcyclicValidator extends AbstractSpearJavaValidator {
 				error(message, specCall, SpearPackage.Literals.SPECIFICATION_CALL__SPEC);
 			}
 		}
+	}
+	
+	@Override
+	public void register(EValidatorRegistrar registrar) {
+		// this is intentionally empty to prevent the composed check from registering itself.
 	}
 }
