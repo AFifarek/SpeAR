@@ -22,6 +22,10 @@ import jkind.lustre.TypeDef;
  * Complex types are all handled here. They should only be referenced by IDs in the actual specification.
  */
 public class TranslateTypeDef extends SpearSwitch<TypeDef> {
+	
+	public static TypeDef translate(EObject o) {
+		return new TranslateTypeDef().doSwitch(o);
+	}
 
 	@Override
 	public TypeDef caseNamedType(NamedType nt) {
