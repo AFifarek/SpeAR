@@ -37,7 +37,8 @@ import com.rockwellcollins.spear.utilities.ConstantChecker;
 							  SpecificationsAcyclicValidator.class, 
 							  ConstantsAcyclicValidator.class,
 							  MacrosAcyclicValidator.class,
-							  IdentifyLustreKeywords.class })
+							  IdentifyLustreKeywords.class,
+							  VariablesAreUsedValidator.class})
 
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 
