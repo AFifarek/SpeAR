@@ -9,8 +9,13 @@ import org.eclipse.xtext.validation.Check;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.NamedType;
+import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.UnitDef;
+import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 
 public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
@@ -55,7 +60,36 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	
 	@Check
 	public void checkSpecificationTypes(Specification s) {
+		Set<String> set = new HashSet<>();
+		for(UserType ut : EcoreUtil2.getAllContentsOfType(s, UserType.class)) {
+			set.add(ut.getDef().getName());
+		}
 		
+		for(TypeDef td : s.getTypedefs()) {
+			if(!set.contains(td.getName())) {
+				warning("Type " + td.getName() + " is defined, but never referenced.",td,SpearPackage.Literals.TYPE_DEF__NAME);
+			}
+		}
+	}
+	
+	@Check
+	public void checkSpecificationUnits(Specification s) {
+		Set<String> set = new HashSet<>();
+		for(NamedType nt : EcoreUtil2.getAllContentsOfType(s, NamedType.class)) {
+			if(nt.getUnit() != null) {
+				set.add(nt.getUnit().getName());
+			}
+		}
+		
+		for(NamedUnitExpr nue : EcoreUtil2.getAllContentsOfType(s, NamedUnitExpr.class)) {
+			set.add(nue.getUnit().getName());
+		}
+		
+		for(UnitDef ud : s.getUnits()) {
+			if(!set.contains(ud.getName())) {
+				warning("Unit " + ud.getName() + " is defined, but never referenced.",ud,SpearPackage.Literals.UNIT_DEF__NAME);
+			}
+		}
 	}
 
 }
