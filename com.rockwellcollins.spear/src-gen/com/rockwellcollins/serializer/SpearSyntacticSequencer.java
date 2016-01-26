@@ -66,9 +66,8 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	/**
 	 * IdTypeDelimiter:
 	 * 	':'
-	 * |	'is a'
-	 * |	'is an'
-	 * ;
+	 * 	| 'is a'
+	 * 	| 'is an';
 	 */
 	protected String getIdTypeDelimiterToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
