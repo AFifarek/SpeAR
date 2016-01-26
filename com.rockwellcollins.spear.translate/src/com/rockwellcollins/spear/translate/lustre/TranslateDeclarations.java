@@ -3,28 +3,34 @@ package com.rockwellcollins.spear.translate.lustre;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.rockwellcollins.spear.util.SpearSwitch;
-
 import jkind.lustre.Ast;
-import jkind.lustre.Node;
+import jkind.lustre.Program;
 
-public class TranslateDeclarations extends SpearSwitch<Void> {
+public class TranslateDeclarations {
 
 	public Map<String,Ast> programElements = new HashMap<>();
+	public Map<String,String> renamed = new HashMap<>();
 	
-	@Override
-	public Void caseConstant(com.rockwellcollins.spear.Constant c) {
-//		String name = c.getName();		
-//		Type t = TranslateType.translate(c.getType());
-//		Expr e = TranslateExpr.translate(c.getExpr());
-//		programElements.put(name, new Constant(name,t,e));
-		return null;
+	private String getUniqueKey(String string) {
+		Integer unique = 0;
+		String name = string;
+		while(programElements.containsKey(name)) {
+			name = string + "_" + unique;
+			unique++;
+		}
+		return name;
 	}
 	
-	@Override
-	public Void caseSpecification(com.rockwellcollins.spear.Specification s) {
-		//TODO: double check these are correct.
-		Map<String,Node> nodes = HelperNodes.getPLTL();
+	public void insert(String name, Ast element) {
+		String uniqueName = getUniqueKey(name);
+		if(!uniqueName.equals(name)) {
+			renamed.put(name,uniqueName);
+		}
+		programElements.put(uniqueName, element);
+	}
+	
+	public Program caseSpecification(com.rockwellcollins.spear.Specification s) {
+		//helper nodes
 		
 		//build infrastructure
 			//unique names
@@ -34,19 +40,12 @@ public class TranslateDeclarations extends SpearSwitch<Void> {
 		//process constants
 		//process macros
 		
-		
 		//process inputs
 		//process outputs
 		//process state
 		
 		//process assumptions
 		//process properties	
-		return null;
-	}
-	
-	@Override
-	public Void caseTypeDef(com.rockwellcollins.spear.TypeDef td) {
-		
 		return null;
 	}
 }

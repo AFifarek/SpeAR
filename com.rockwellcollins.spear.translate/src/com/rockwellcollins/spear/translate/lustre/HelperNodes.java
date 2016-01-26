@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jkind.lustre.Ast;
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
 import jkind.lustre.BoolExpr;
@@ -179,9 +180,9 @@ public class HelperNodes {
 		return new Node(name, inputs, outputs, locals, equations);
 	}
 
-	public static Map<String, Node> getPLTL() {
+	public static Map<String, Ast> getPLTL() {
 		List<Node> nodes = new ArrayList<>();
-		Map<String, Node> map = new HashMap<>();
+		Map<String, Ast> map = new HashMap<>();
 
 		nodes.add(historically());
 		nodes.add(once());
