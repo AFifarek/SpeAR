@@ -6,6 +6,7 @@ import java.util.Map;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Ast;
+import jkind.lustre.Node;
 
 public class TranslateDeclarations extends SpearSwitch<Void> {
 
@@ -22,8 +23,10 @@ public class TranslateDeclarations extends SpearSwitch<Void> {
 	
 	@Override
 	public Void caseSpecification(com.rockwellcollins.spear.Specification s) {
-		//build infrastructure
+		//TODO: double check these are correct.
+		Map<String,Node> nodes = HelperNodes.getPLTL();
 		
+		//build infrastructure
 			//unique names
 			//
 		
@@ -37,9 +40,7 @@ public class TranslateDeclarations extends SpearSwitch<Void> {
 		//process state
 		
 		//process assumptions
-		//process properties
-
-		
+		//process properties	
 		return null;
 	}
 	

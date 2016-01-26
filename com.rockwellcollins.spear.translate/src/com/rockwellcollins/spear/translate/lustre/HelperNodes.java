@@ -13,7 +13,6 @@ import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
 import jkind.lustre.NamedType;
 import jkind.lustre.Node;
-import jkind.lustre.NodeCallExpr;
 import jkind.lustre.UnaryExpr;
 import jkind.lustre.UnaryOp;
 import jkind.lustre.VarDecl;
