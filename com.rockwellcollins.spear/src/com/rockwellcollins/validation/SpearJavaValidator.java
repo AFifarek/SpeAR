@@ -17,6 +17,7 @@ import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedType;
+import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.UnaryExpr;
@@ -94,6 +95,13 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 			if(ue.eContainer() instanceof Expr) {
 				error("The initially operator cannot be embedded within expressions.",ue,null);
 			}
+		}
+	}
+	
+	@Check
+	public void checkPreviousExpressionsAreGuarded(PreviousExpr pe) {
+		if(pe.getInit() == null) {
+			error("The initial value must be specified for previous expressions.",pe,null);
 		}
 	}
 	

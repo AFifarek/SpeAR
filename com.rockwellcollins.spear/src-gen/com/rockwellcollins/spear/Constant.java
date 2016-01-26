@@ -14,6 +14,7 @@ package com.rockwellcollins.spear;
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.Constant#getType <em>Type</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Constant#getExpr <em>Expr</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Constant#getDescriptor <em>Descriptor</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getConstant()
@@ -73,5 +74,31 @@ public interface Constant extends IdRef
    * @generated
    */
   void setExpr(Expr value);
+
+  /**
+   * Returns the value of the '<em><b>Descriptor</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Descriptor</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Descriptor</em>' attribute.
+   * @see #setDescriptor(String)
+   * @see com.rockwellcollins.spear.SpearPackage#getConstant_Descriptor()
+   * @model
+   * @generated
+   */
+  String getDescriptor();
+
+  /**
+   * Sets the value of the '{@link com.rockwellcollins.spear.Constant#getDescriptor <em>Descriptor</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Descriptor</em>' attribute.
+   * @see #getDescriptor()
+   * @generated
+   */
+  void setDescriptor(String value);
 
 } // Constant

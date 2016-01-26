@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.ConstantImpl#getType <em>Type</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.ConstantImpl#getExpr <em>Expr</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.ConstantImpl#getDescriptor <em>Descriptor</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,6 +51,26 @@ public class ConstantImpl extends IdRefImpl implements Constant
    * @ordered
    */
   protected Expr expr;
+
+  /**
+   * The default value of the '{@link #getDescriptor() <em>Descriptor</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescriptor()
+   * @generated
+   * @ordered
+   */
+  protected static final String DESCRIPTOR_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDescriptor() <em>Descriptor</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescriptor()
+   * @generated
+   * @ordered
+   */
+  protected String descriptor = DESCRIPTOR_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -173,6 +194,29 @@ public class ConstantImpl extends IdRefImpl implements Constant
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getDescriptor()
+  {
+    return descriptor;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDescriptor(String newDescriptor)
+  {
+    String oldDescriptor = descriptor;
+    descriptor = newDescriptor;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.CONSTANT__DESCRIPTOR, oldDescriptor, descriptor));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -200,6 +244,8 @@ public class ConstantImpl extends IdRefImpl implements Constant
         return getType();
       case SpearPackage.CONSTANT__EXPR:
         return getExpr();
+      case SpearPackage.CONSTANT__DESCRIPTOR:
+        return getDescriptor();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -219,6 +265,9 @@ public class ConstantImpl extends IdRefImpl implements Constant
         return;
       case SpearPackage.CONSTANT__EXPR:
         setExpr((Expr)newValue);
+        return;
+      case SpearPackage.CONSTANT__DESCRIPTOR:
+        setDescriptor((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -240,6 +289,9 @@ public class ConstantImpl extends IdRefImpl implements Constant
       case SpearPackage.CONSTANT__EXPR:
         setExpr((Expr)null);
         return;
+      case SpearPackage.CONSTANT__DESCRIPTOR:
+        setDescriptor(DESCRIPTOR_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -258,8 +310,27 @@ public class ConstantImpl extends IdRefImpl implements Constant
         return type != null;
       case SpearPackage.CONSTANT__EXPR:
         return expr != null;
+      case SpearPackage.CONSTANT__DESCRIPTOR:
+        return DESCRIPTOR_EDEFAULT == null ? descriptor != null : !DESCRIPTOR_EDEFAULT.equals(descriptor);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (descriptor: ");
+    result.append(descriptor);
+    result.append(')');
+    return result.toString();
   }
 
 } //ConstantImpl

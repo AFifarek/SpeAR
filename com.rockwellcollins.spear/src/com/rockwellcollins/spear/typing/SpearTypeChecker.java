@@ -449,6 +449,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	@Override
 	public SpearType casePreviousExpr(PreviousExpr prev) {
 		SpearType var = doSwitch(prev.getVar());
+		//TODO: we might have to change this to handle optional initials
 		SpearType init = doSwitch(prev.getInit());
 		
 		if(var == ERROR || init == ERROR) {

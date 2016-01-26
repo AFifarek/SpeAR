@@ -593,13 +593,22 @@ public interface SpearPackage extends EPackage
   int CONSTANT__EXPR = ID_REF_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Descriptor</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT__DESCRIPTOR = ID_REF_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Constant</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONSTANT_FEATURE_COUNT = ID_REF_FEATURE_COUNT + 2;
+  int CONSTANT_FEATURE_COUNT = ID_REF_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.VariableImpl <em>Variable</em>}' class.
@@ -676,13 +685,22 @@ public interface SpearPackage extends EPackage
   int MACRO__EXPR = ID_REF_FEATURE_COUNT + 1;
 
   /**
+   * The feature id for the '<em><b>Descriptor</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MACRO__DESCRIPTOR = ID_REF_FEATURE_COUNT + 2;
+
+  /**
    * The number of structural features of the '<em>Macro</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MACRO_FEATURE_COUNT = ID_REF_FEATURE_COUNT + 2;
+  int MACRO_FEATURE_COUNT = ID_REF_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -2388,6 +2406,17 @@ public interface SpearPackage extends EPackage
   EReference getConstant_Expr();
 
   /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Constant#getDescriptor <em>Descriptor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Descriptor</em>'.
+   * @see com.rockwellcollins.spear.Constant#getDescriptor()
+   * @see #getConstant()
+   * @generated
+   */
+  EAttribute getConstant_Descriptor();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.Variable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2439,6 +2468,17 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EReference getMacro_Expr();
+
+  /**
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.Macro#getDescriptor <em>Descriptor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Descriptor</em>'.
+   * @see com.rockwellcollins.spear.Macro#getDescriptor()
+   * @see #getMacro()
+   * @generated
+   */
+  EAttribute getMacro_Descriptor();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.Constraint <em>Constraint</em>}'.
@@ -3801,6 +3841,14 @@ public interface SpearPackage extends EPackage
     EReference CONSTANT__EXPR = eINSTANCE.getConstant_Expr();
 
     /**
+     * The meta object literal for the '<em><b>Descriptor</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONSTANT__DESCRIPTOR = eINSTANCE.getConstant_Descriptor();
+
+    /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.VariableImpl <em>Variable</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3843,6 +3891,14 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference MACRO__EXPR = eINSTANCE.getMacro_Expr();
+
+    /**
+     * The meta object literal for the '<em><b>Descriptor</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MACRO__DESCRIPTOR = eINSTANCE.getMacro_Descriptor();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.ConstraintImpl <em>Constraint</em>}' class.

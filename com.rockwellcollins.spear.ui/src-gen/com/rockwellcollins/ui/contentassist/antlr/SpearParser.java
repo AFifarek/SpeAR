@@ -102,8 +102,10 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeAccess().getGroup_2(), "rule__Type__Group_2__0");
 					put(grammarAccess.getTypeAccess().getGroup_3(), "rule__Type__Group_3__0");
 					put(grammarAccess.getConstantAccess().getGroup(), "rule__Constant__Group__0");
+					put(grammarAccess.getConstantAccess().getGroup_5(), "rule__Constant__Group_5__0");
 					put(grammarAccess.getVariableAccess().getGroup(), "rule__Variable__Group__0");
 					put(grammarAccess.getMacroAccess().getGroup(), "rule__Macro__Group__0");
+					put(grammarAccess.getMacroAccess().getGroup_5(), "rule__Macro__Group_5__0");
 					put(grammarAccess.getFormalConstraintAccess().getGroup(), "rule__FormalConstraint__Group__0");
 					put(grammarAccess.getFormalConstraintAccess().getGroup_3(), "rule__FormalConstraint__Group_3__0");
 					put(grammarAccess.getEnglishConstraintAccess().getGroup(), "rule__EnglishConstraint__Group__0");
@@ -164,6 +166,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAtomicExprAccess().getGroup_2(), "rule__AtomicExpr__Group_2__0");
 					put(grammarAccess.getAtomicExprAccess().getGroup_2_3(), "rule__AtomicExpr__Group_2_3__0");
 					put(grammarAccess.getAtomicExprAccess().getGroup_3(), "rule__AtomicExpr__Group_3__0");
+					put(grammarAccess.getAtomicExprAccess().getGroup_3_3(), "rule__AtomicExpr__Group_3_3__0");
 					put(grammarAccess.getAtomicExprAccess().getGroup_4(), "rule__AtomicExpr__Group_4__0");
 					put(grammarAccess.getAtomicExprAccess().getGroup_4_5(), "rule__AtomicExpr__Group_4_5__0");
 					put(grammarAccess.getAtomicExprAccess().getGroup_5(), "rule__AtomicExpr__Group_5__0");
@@ -232,11 +235,13 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getConstantAccess().getNameAssignment_0(), "rule__Constant__NameAssignment_0");
 					put(grammarAccess.getConstantAccess().getTypeAssignment_2(), "rule__Constant__TypeAssignment_2");
 					put(grammarAccess.getConstantAccess().getExprAssignment_4(), "rule__Constant__ExprAssignment_4");
+					put(grammarAccess.getConstantAccess().getDescriptorAssignment_5_2(), "rule__Constant__DescriptorAssignment_5_2");
 					put(grammarAccess.getVariableAccess().getNameAssignment_0(), "rule__Variable__NameAssignment_0");
 					put(grammarAccess.getVariableAccess().getTypeAssignment_2(), "rule__Variable__TypeAssignment_2");
 					put(grammarAccess.getMacroAccess().getNameAssignment_0(), "rule__Macro__NameAssignment_0");
 					put(grammarAccess.getMacroAccess().getTypeAssignment_2(), "rule__Macro__TypeAssignment_2");
 					put(grammarAccess.getMacroAccess().getExprAssignment_4(), "rule__Macro__ExprAssignment_4");
+					put(grammarAccess.getMacroAccess().getDescriptorAssignment_5_2(), "rule__Macro__DescriptorAssignment_5_2");
 					put(grammarAccess.getFormalConstraintAccess().getNameAssignment_0(), "rule__FormalConstraint__NameAssignment_0");
 					put(grammarAccess.getFormalConstraintAccess().getExprAssignment_2(), "rule__FormalConstraint__ExprAssignment_2");
 					put(grammarAccess.getFormalConstraintAccess().getDescriptorAssignment_3_2(), "rule__FormalConstraint__DescriptorAssignment_3_2");
@@ -270,8 +275,8 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAtomicExprAccess().getIdAssignment_1_1(), "rule__AtomicExpr__IdAssignment_1_1");
 					put(grammarAccess.getAtomicExprAccess().getIdsAssignment_2_2(), "rule__AtomicExpr__IdsAssignment_2_2");
 					put(grammarAccess.getAtomicExprAccess().getIdsAssignment_2_3_1(), "rule__AtomicExpr__IdsAssignment_2_3_1");
-					put(grammarAccess.getAtomicExprAccess().getVarAssignment_3_3(), "rule__AtomicExpr__VarAssignment_3_3");
-					put(grammarAccess.getAtomicExprAccess().getInitAssignment_3_5(), "rule__AtomicExpr__InitAssignment_3_5");
+					put(grammarAccess.getAtomicExprAccess().getVarAssignment_3_2(), "rule__AtomicExpr__VarAssignment_3_2");
+					put(grammarAccess.getAtomicExprAccess().getInitAssignment_3_3_3(), "rule__AtomicExpr__InitAssignment_3_3_3");
 					put(grammarAccess.getAtomicExprAccess().getCondAssignment_4_2(), "rule__AtomicExpr__CondAssignment_4_2");
 					put(grammarAccess.getAtomicExprAccess().getThenAssignment_4_4(), "rule__AtomicExpr__ThenAssignment_4_4");
 					put(grammarAccess.getAtomicExprAccess().getElseAssignment_4_5_1(), "rule__AtomicExpr__ElseAssignment_4_5_1");

@@ -86,11 +86,11 @@ IdTypeDelimiter:
 |	'is an'
 ;
 
-Constant: name=ID IdTypeDelimiter type=Type '=' expr=Expr;
+Constant: name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)?;
 
 Variable: name=ID IdTypeDelimiter type=Type;
 
-Macro: name=ID IdTypeDelimiter type=Type '=' expr=Expr;
+Macro: name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)?;
 
 Constraint: FormalConstraint | EnglishConstraint;
 
@@ -150,7 +150,7 @@ AtomicExpr returns Expr:
 	LiteralExpr
 |	{IdExpr} id=[IdRef]
 |	{MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
-|	{PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
+|	{PreviousExpr} 'previous' var=Expr (=> 'with' 'initial' 'value' init=Expr)?
 |	{IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 |	{AfterUntilExpr} 'after' (after=Expr) (=> 'until' until=Expr)?
 |	{WhileExpr} 'while' cond=Expr 'then' then=Expr

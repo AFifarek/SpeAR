@@ -126,7 +126,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) 'new' type=[ArrayType|ID]
 	 *     (rule start) (ambiguity) 'new' type=[RecordType|ID]
 	 *     (rule start) (ambiguity) 'pattern' pattern=[Pattern|ID]
-	 *     (rule start) (ambiguity) 'prev' '(' var=Expr
+	 *     (rule start) (ambiguity) 'previous' var=Expr
 	 *     (rule start) (ambiguity) 'spec' spec=[Specification|ID]
 	 *     (rule start) (ambiguity) 'while' cond=Expr
 	 *     (rule start) (ambiguity) '|' ids+=[IdRef|ID]

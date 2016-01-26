@@ -54,6 +54,7 @@
     <genClasses ecoreClass="Spear.ecore#//Constant">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Constant/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Constant/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Constant/descriptor"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Variable">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Variable/type"/>
@@ -61,6 +62,7 @@
     <genClasses ecoreClass="Spear.ecore#//Macro">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Macro/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Macro/expr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Macro/descriptor"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Constraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Constraint/name"/>

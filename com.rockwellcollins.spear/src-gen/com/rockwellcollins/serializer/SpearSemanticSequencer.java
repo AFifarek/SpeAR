@@ -680,19 +680,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns PreviousExpr
 	 *
 	 * Constraint:
-	 *     (var=Expr init=Expr)
+	 *     (var=Expr init=Expr?)
 	 */
 	protected void sequence_AtomicExpr(ISerializationContext context, PreviousExpr semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.PREVIOUS_EXPR__VAR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.PREVIOUS_EXPR__VAR));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.PREVIOUS_EXPR__INIT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.PREVIOUS_EXPR__INIT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAtomicExprAccess().getVarExprParserRuleCall_3_3_0(), semanticObject.getVar());
-		feeder.accept(grammarAccess.getAtomicExprAccess().getInitExprParserRuleCall_3_5_0(), semanticObject.getInit());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -839,22 +830,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     IdRef returns Constant
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type expr=Expr)
+	 *     (name=ID type=Type expr=Expr descriptor=STRING?)
 	 */
 	protected void sequence_Constant(ISerializationContext context, Constant semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ID_REF__NAME));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTANT__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONSTANT__TYPE));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.CONSTANT__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.CONSTANT__EXPR));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConstantAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getConstantAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getConstantAccess().getExprExprParserRuleCall_4_0(), semanticObject.getExpr());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1083,22 +1062,10 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     IdRef returns Macro
 	 *
 	 * Constraint:
-	 *     (name=ID type=Type expr=Expr)
+	 *     (name=ID type=Type expr=Expr descriptor=STRING?)
 	 */
 	protected void sequence_Macro(ISerializationContext context, Macro semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ID_REF__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ID_REF__NAME));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.MACRO__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.MACRO__TYPE));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.MACRO__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.MACRO__EXPR));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getMacroAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getMacroAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getMacroAccess().getExprExprParserRuleCall_4_0(), semanticObject.getExpr());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

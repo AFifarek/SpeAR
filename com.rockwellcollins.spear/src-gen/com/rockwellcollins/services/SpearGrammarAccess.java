@@ -989,12 +989,17 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cExprAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cExprExprParserRuleCall_4_0 = (RuleCall)cExprAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cTextKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cDescriptorAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cDescriptorSTRINGTerminalRuleCall_5_2_0 = (RuleCall)cDescriptorAssignment_5_2.eContents().get(0);
 		
 		//Constant:
-		//	name=ID IdTypeDelimiter type=Type '=' expr=Expr;
+		//	name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ID IdTypeDelimiter type=Type '=' expr=Expr
+		//name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)?
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -1020,6 +1025,21 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Expr
 		public RuleCall getExprExprParserRuleCall_4_0() { return cExprExprParserRuleCall_4_0; }
+
+		//('text' '=' descriptor=STRING)?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//'text'
+		public Keyword getTextKeyword_5_0() { return cTextKeyword_5_0; }
+
+		//'='
+		public Keyword getEqualsSignKeyword_5_1() { return cEqualsSignKeyword_5_1; }
+
+		//descriptor=STRING
+		public Assignment getDescriptorAssignment_5_2() { return cDescriptorAssignment_5_2; }
+
+		//STRING
+		public RuleCall getDescriptorSTRINGTerminalRuleCall_5_2_0() { return cDescriptorSTRINGTerminalRuleCall_5_2_0; }
 	}
 
 	public class VariableElements extends AbstractParserRuleElementFinder {
@@ -1065,12 +1085,17 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cExprAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cExprExprParserRuleCall_4_0 = (RuleCall)cExprAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cTextKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
+		private final Assignment cDescriptorAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
+		private final RuleCall cDescriptorSTRINGTerminalRuleCall_5_2_0 = (RuleCall)cDescriptorAssignment_5_2.eContents().get(0);
 		
 		//Macro:
-		//	name=ID IdTypeDelimiter type=Type '=' expr=Expr;
+		//	name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//name=ID IdTypeDelimiter type=Type '=' expr=Expr
+		//name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)?
 		public Group getGroup() { return cGroup; }
 
 		//name=ID
@@ -1096,6 +1121,21 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Expr
 		public RuleCall getExprExprParserRuleCall_4_0() { return cExprExprParserRuleCall_4_0; }
+
+		//('text' '=' descriptor=STRING)?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//'text'
+		public Keyword getTextKeyword_5_0() { return cTextKeyword_5_0; }
+
+		//'='
+		public Keyword getEqualsSignKeyword_5_1() { return cEqualsSignKeyword_5_1; }
+
+		//descriptor=STRING
+		public Assignment getDescriptorAssignment_5_2() { return cDescriptorAssignment_5_2; }
+
+		//STRING
+		public RuleCall getDescriptorSTRINGTerminalRuleCall_5_2_0() { return cDescriptorSTRINGTerminalRuleCall_5_2_0; }
 	}
 
 	public class ConstraintElements extends AbstractParserRuleElementFinder {
@@ -2099,14 +2139,15 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cVerticalLineKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Action cPreviousExprAction_3_0 = (Action)cGroup_3.eContents().get(0);
-		private final Keyword cPrevKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
-		private final Keyword cLeftParenthesisKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
-		private final Assignment cVarAssignment_3_3 = (Assignment)cGroup_3.eContents().get(3);
-		private final RuleCall cVarExprParserRuleCall_3_3_0 = (RuleCall)cVarAssignment_3_3.eContents().get(0);
-		private final Keyword cCommaKeyword_3_4 = (Keyword)cGroup_3.eContents().get(4);
-		private final Assignment cInitAssignment_3_5 = (Assignment)cGroup_3.eContents().get(5);
-		private final RuleCall cInitExprParserRuleCall_3_5_0 = (RuleCall)cInitAssignment_3_5.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_3_6 = (Keyword)cGroup_3.eContents().get(6);
+		private final Keyword cPreviousKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cVarAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cVarExprParserRuleCall_3_2_0 = (RuleCall)cVarAssignment_3_2.eContents().get(0);
+		private final Group cGroup_3_3 = (Group)cGroup_3.eContents().get(3);
+		private final Keyword cWithKeyword_3_3_0 = (Keyword)cGroup_3_3.eContents().get(0);
+		private final Keyword cInitialKeyword_3_3_1 = (Keyword)cGroup_3_3.eContents().get(1);
+		private final Keyword cValueKeyword_3_3_2 = (Keyword)cGroup_3_3.eContents().get(2);
+		private final Assignment cInitAssignment_3_3_3 = (Assignment)cGroup_3_3.eContents().get(3);
+		private final RuleCall cInitExprParserRuleCall_3_3_3_0 = (RuleCall)cInitAssignment_3_3_3.eContents().get(0);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
 		private final Action cIfThenElseExprAction_4_0 = (Action)cGroup_4.eContents().get(0);
 		private final Keyword cIfKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
@@ -2200,7 +2241,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//AtomicExpr Expr:
 		//	LiteralExpr
 		//	| {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
-		//	| {PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
+		//	| {PreviousExpr} 'previous' var=Expr (=> 'with' 'initial' 'value' init=Expr)?
 		//	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 		//	| {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)?
 		//	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
@@ -2211,13 +2252,13 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//	| '(' Expr ')'
 		@Override public ParserRule getRule() { return rule; }
 
-		//LiteralExpr | {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' | {PreviousExpr} 'prev' '('
-		//var=Expr ',' init=Expr ')' | {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)? |
-		//{AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)? | {WhileExpr} 'while' cond=Expr 'then' then=Expr |
-		//{RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}' |
-		//{ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall} 'pattern' pattern=[Pattern]
-		//'(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (','
-		//args+=Expr)* ')' | '(' Expr ')'
+		//LiteralExpr | {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' | {PreviousExpr} 'previous'
+		//var=Expr (=> 'with' 'initial' 'value' init=Expr)? | {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else'
+		//else=Expr)? | {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)? | {WhileExpr} 'while' cond=Expr 'then'
+		//then=Expr | {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)*
+		//'}' | {ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall} 'pattern'
+		//pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec' spec=[Specification] '('
+		//args+=Expr (',' args+=Expr)* ')' | '(' Expr ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LiteralExpr
@@ -2274,35 +2315,38 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'|'
 		public Keyword getVerticalLineKeyword_2_4() { return cVerticalLineKeyword_2_4; }
 
-		//{PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
+		//{PreviousExpr} 'previous' var=Expr (=> 'with' 'initial' 'value' init=Expr)?
 		public Group getGroup_3() { return cGroup_3; }
 
 		//{PreviousExpr}
 		public Action getPreviousExprAction_3_0() { return cPreviousExprAction_3_0; }
 
-		//'prev'
-		public Keyword getPrevKeyword_3_1() { return cPrevKeyword_3_1; }
-
-		//'('
-		public Keyword getLeftParenthesisKeyword_3_2() { return cLeftParenthesisKeyword_3_2; }
+		//'previous'
+		public Keyword getPreviousKeyword_3_1() { return cPreviousKeyword_3_1; }
 
 		//var=Expr
-		public Assignment getVarAssignment_3_3() { return cVarAssignment_3_3; }
+		public Assignment getVarAssignment_3_2() { return cVarAssignment_3_2; }
 
 		//Expr
-		public RuleCall getVarExprParserRuleCall_3_3_0() { return cVarExprParserRuleCall_3_3_0; }
+		public RuleCall getVarExprParserRuleCall_3_2_0() { return cVarExprParserRuleCall_3_2_0; }
 
-		//','
-		public Keyword getCommaKeyword_3_4() { return cCommaKeyword_3_4; }
+		//(=> 'with' 'initial' 'value' init=Expr)?
+		public Group getGroup_3_3() { return cGroup_3_3; }
+
+		//=> 'with'
+		public Keyword getWithKeyword_3_3_0() { return cWithKeyword_3_3_0; }
+
+		//'initial'
+		public Keyword getInitialKeyword_3_3_1() { return cInitialKeyword_3_3_1; }
+
+		//'value'
+		public Keyword getValueKeyword_3_3_2() { return cValueKeyword_3_3_2; }
 
 		//init=Expr
-		public Assignment getInitAssignment_3_5() { return cInitAssignment_3_5; }
+		public Assignment getInitAssignment_3_3_3() { return cInitAssignment_3_3_3; }
 
 		//Expr
-		public RuleCall getInitExprParserRuleCall_3_5_0() { return cInitExprParserRuleCall_3_5_0; }
-
-		//')'
-		public Keyword getRightParenthesisKeyword_3_6() { return cRightParenthesisKeyword_3_6; }
+		public RuleCall getInitExprParserRuleCall_3_3_3_0() { return cInitExprParserRuleCall_3_3_3_0; }
 
 		//{IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 		public Group getGroup_4() { return cGroup_4; }
@@ -3107,7 +3151,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Constant:
-	//	name=ID IdTypeDelimiter type=Type '=' expr=Expr;
+	//	name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)?;
 	public ConstantElements getConstantAccess() {
 		return pConstant;
 	}
@@ -3127,7 +3171,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Macro:
-	//	name=ID IdTypeDelimiter type=Type '=' expr=Expr;
+	//	name=ID IdTypeDelimiter type=Type '=' expr=Expr ('text' '=' descriptor=STRING)?;
 	public MacroElements getMacroAccess() {
 		return pMacro;
 	}
@@ -3311,7 +3355,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	//AtomicExpr Expr:
 	//	LiteralExpr
 	//	| {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
-	//	| {PreviousExpr} 'prev' '(' var=Expr ',' init=Expr ')'
+	//	| {PreviousExpr} 'previous' var=Expr (=> 'with' 'initial' 'value' init=Expr)?
 	//	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	//	| {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)?
 	//	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
