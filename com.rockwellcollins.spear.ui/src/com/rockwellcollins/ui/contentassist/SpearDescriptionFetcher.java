@@ -1,9 +1,11 @@
 package com.rockwellcollins.ui.contentassist;
 
 import com.rockwellcollins.spear.BaseUnit;
+import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.DerivedUnit;
 import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 /**
@@ -16,6 +18,22 @@ import com.rockwellcollins.spear.util.SpearSwitch;
  * 
  */
 public class SpearDescriptionFetcher extends SpearSwitch<String> {
+	
+	@Override
+	public String caseConstant(Constant c) {
+		if(c.getDescriptor() != null) {
+			return c.getDescriptor();
+		}
+		return null;
+	}
+	
+	@Override
+	public String caseMacro(Macro m) {
+		if(m.getDescriptor() != null) {
+			return m.getDescriptor();
+		}
+		return null;
+	}
 	
 	@Override
 	public String caseBaseUnit(BaseUnit base) {
