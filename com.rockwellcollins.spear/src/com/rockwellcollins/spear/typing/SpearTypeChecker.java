@@ -519,10 +519,10 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		return doSwitch(ev.eContainer());
 	}
 	
-	//TODO: Update when the Pattern is fleshed out.
 	@Override
 	public SpearType casePatternCall(PatternCall pce) {
-		return BOOL;
+		//TODO: This needs to be updated when Patterns are implemented.
+		return ERROR;
 	}
 	
 	@Override

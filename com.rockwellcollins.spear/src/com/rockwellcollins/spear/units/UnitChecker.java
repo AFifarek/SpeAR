@@ -32,6 +32,7 @@ import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedType;
 import com.rockwellcollins.spear.NamedUnitExpr;
+import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RecordAccessExpr;
@@ -581,6 +582,11 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 			output_units.add(doSwitch(v));
 		}
 		return compressTuple(new TupleUnit(output_units));
+	}
+	
+	@Override
+	public SpearUnit casePatternCall(PatternCall pc) {
+		return ERROR;
 	}
 
 	@Override

@@ -39,7 +39,9 @@ import com.rockwellcollins.spear.utilities.ConstantChecker;
 							  ConstantsAcyclicValidator.class,
 							  MacrosAcyclicValidator.class,
 							  IdentifyLustreKeywords.class,
-							  VariablesAreUsedValidator.class})
+							  VariablesAreUsedValidator.class,
+							  UnsupportedValidations.class,
+							  TypeCheckingValidator.class})
 
 public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractSpearJavaValidator {
 
@@ -102,42 +104,6 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 	public void checkPreviousExpressionsAreGuarded(PreviousExpr pe) {
 		if(pe.getInit() == null) {
 			error("The initial value must be specified for previous expressions.",pe,null);
-		}
-	}
-	
-	/***********************************************************************************************/
-	//Type Checking
-	/***********************************************************************************************/
-	@Check
-	public void typeCheckNamedType(NamedType nt) {
-		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		SpearType type = tc.checkNamedType(nt);
-		if(type == SpearTypeChecker.ERROR) {
-			new UnitChecker(getMessageAcceptor()).checkNamedType(nt);			
-		}
-	}
-	
-	@Check
-	public void typeCheckConstant(Constant c) {
-		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		if(tc.checkConstant(c)) {
-			new UnitChecker(getMessageAcceptor()).checkConstant(c);	
-		}
-	}
-	
-	@Check
-	public void typeCheckMacro(Macro m) {
-		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		if(tc.checkMacro(m)) {
-			new UnitChecker(getMessageAcceptor()).checkMacro(m);	
-		}
-	}
-	
-	@Check
-	public void typeCheckFormalConstraint(FormalConstraint fc) {
-		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		if(tc.checkFormalConstraint(fc)) {
-			new UnitChecker(getMessageAcceptor()).checkFormalConstraint(fc);			
 		}
 	}
 }
