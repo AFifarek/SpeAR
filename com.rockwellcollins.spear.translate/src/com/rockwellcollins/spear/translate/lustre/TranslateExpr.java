@@ -20,8 +20,11 @@ import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
 import jkind.lustre.IfThenElseExpr;
 import jkind.lustre.IntExpr;
+import jkind.lustre.NodeCallExpr;
 import jkind.lustre.RealExpr;
+import jkind.lustre.RecordAccessExpr;
 import jkind.lustre.RecordExpr;
+import jkind.lustre.RecordUpdateExpr;
 import jkind.lustre.UnaryExpr;
 import jkind.lustre.UnaryOp;
 
@@ -29,6 +32,44 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 
 	public static Expr translate(com.rockwellcollins.spear.Expr e) {
 		return new TranslateExpr().doSwitch(e);
+	}
+
+	@Override
+	public Expr caseUnaryExpr(com.rockwellcollins.spear.UnaryExpr unary) {
+		Expr sub = doSwitch(unary.getExpr());
+		
+		switch (unary.getOp()) {
+		case "not":
+			return new UnaryExpr(UnaryOp.NOT, sub);
+			
+		case "-":
+			return new UnaryExpr(UnaryOp.NEGATIVE, sub);
+
+		/*
+		 * Note: these are treated as reserved words in our translation. Conflicts are
+		 * actively renamed by RemoveLustreKeywords.
+		 */
+		//TODO : evaluate whether the PLTL node is actually available, now we just assume
+		case "once":
+		case "historically":
+		case "initially":
+			List<Expr> args = new ArrayList<>();
+			args.add(sub);
+			return new NodeCallExpr(unary.getOp(),args);
+			
+		default:
+			throw new RuntimeException("Unsupported unary operator " + unary.getOp() + " provided.");
+		}
+	}
+	
+	@Override
+	public Expr caseRecordAccessExpr(com.rockwellcollins.spear.RecordAccessExpr rae) {
+		return new RecordAccessExpr(doSwitch(rae.getRecord()),rae.getField().getName());
+	}
+	
+	@Override
+	public Expr caseRecordUpdateExpr(com.rockwellcollins.spear.RecordUpdateExpr rue) {
+		return new RecordUpdateExpr(doSwitch(rue.getRecord()),rue.getField().getName(),doSwitch(rue.getValue()));
 	}
 	
 	@Override
@@ -87,7 +128,6 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 				
 			default:
 				throw new RuntimeException("Unexpected boolean literal encountered.");
-		
 		}
 	}
 

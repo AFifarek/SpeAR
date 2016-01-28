@@ -26,8 +26,33 @@ import jkind.lustre.VarDecl;
 public class HelperNodes {
 
 	/**
-	 * Historically EXPR must be true on the current step and every previous
-	 * step.
+	 * Initially
+	 */
+	public static Node initially() {
+		String name = "initially";
+		List<VarDecl> inputs = new ArrayList<>();
+		List<VarDecl> locals = new ArrayList<>();
+		List<VarDecl> outputs = new ArrayList<>();
+		List<Equation> equations = new ArrayList<>();
+
+		// inputs: signal : bool
+		VarDecl signal = new VarDecl("signal", NamedType.BOOL);
+
+		// outputs: holds : bool
+		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+
+		// equations: holds = signal -> true
+		Equation equation = new Equation(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.ARROW, new BoolExpr(true)));
+
+		inputs.add(signal);
+		outputs.add(holds);
+		equations.add(equation);
+
+		return new Node(name, inputs, outputs, locals, equations);
+	}
+	
+	/**
+	 * Historically EXPR must be true on the current step and every previous step.
 	 */
 	public static Node historically() {
 		String name = "historically";

@@ -36,6 +36,13 @@ public class LustreUtilities {
 		keywords.add("false");
 		keywords.add("node");
 		keywords.add("or");
+		
+		//these aren't Lustre keywords, but ones we're reserving for the translation
+		keywords.add("initially");
+		keywords.add("once");
+		keywords.add("historically");
+		keywords.add("since");
+		keywords.add("triggers");
 		return keywords;
 	}
 }
