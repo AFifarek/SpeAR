@@ -57,6 +57,11 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 				BinaryOp op = BinaryOp.fromString(binary.getOp());
 				return new BinaryExpr(left, op, right);
 				
+			/*
+			 * Note: these are treated as reserved words in our translation. Conflicts are
+			 * actively renamed by RemoveLustreKeywords.
+			 */
+			//TODO : evaluate whether the PLTL node is actually available, now we just assume
 			case "since":
 			case "triggers":
 				List<Expr> args = new ArrayList<>();
@@ -173,11 +178,6 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	public Expr caseRealLiteral(com.rockwellcollins.spear.RealLiteral rl) {
 		return new RealExpr(new BigDecimal(rl.getValue()));
 	}	
-	
-	@Override
-	public Expr caseExpr(com.rockwellcollins.spear.Expr e) {
-		throw new RuntimeException("Expr is not handled.");
-	}
 	
 	@Override
 	public Expr defaultCase(EObject o) {
