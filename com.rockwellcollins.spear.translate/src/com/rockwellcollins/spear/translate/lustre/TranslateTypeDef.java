@@ -60,6 +60,6 @@ public class TranslateTypeDef extends SpearSwitch<TypeDef> {
 	
 	@Override
 	public TypeDef defaultCase(EObject o) {
-		throw new RuntimeException("Expected a typedef, but received " + o);
+		throw new RuntimeException("Expected a typedef, but received " + o + " instead.");
 	}
 }
