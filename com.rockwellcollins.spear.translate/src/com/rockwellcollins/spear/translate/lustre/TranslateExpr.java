@@ -35,30 +35,63 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	}
 
 	@Override
+	public Expr caseBinaryExpr(com.rockwellcollins.spear.BinaryExpr binary) {
+		Expr left = doSwitch(binary.getLeft());
+		Expr right = doSwitch(binary.getRight());
+		
+		switch (binary.getOp()) {
+			case "and":
+			case "or":
+			case "xor":
+			case "implies":
+			case ">":
+			case ">=":
+			case "<":
+			case "<=":
+			case "==":
+			case "<>":
+			case "+":
+			case "-":
+			case "*":
+			case "/":
+				BinaryOp op = BinaryOp.fromString(binary.getOp());
+				return new BinaryExpr(left, op, right);
+				
+			case "since":
+			case "triggers":
+				List<Expr> args = new ArrayList<>();
+				args.add(left);
+				args.add(right);
+				return new NodeCallExpr(binary.getOp(),args);
+				
+			default:
+				throw new RuntimeException("Unsupported binary operator " + binary.getOp() + " provided.");
+		}
+	}
+	
+	@Override
 	public Expr caseUnaryExpr(com.rockwellcollins.spear.UnaryExpr unary) {
 		Expr sub = doSwitch(unary.getExpr());
 		
 		switch (unary.getOp()) {
-		case "not":
-			return new UnaryExpr(UnaryOp.NOT, sub);
-			
-		case "-":
-			return new UnaryExpr(UnaryOp.NEGATIVE, sub);
-
-		/*
-		 * Note: these are treated as reserved words in our translation. Conflicts are
-		 * actively renamed by RemoveLustreKeywords.
-		 */
-		//TODO : evaluate whether the PLTL node is actually available, now we just assume
-		case "once":
-		case "historically":
-		case "initially":
-			List<Expr> args = new ArrayList<>();
-			args.add(sub);
-			return new NodeCallExpr(unary.getOp(),args);
-			
-		default:
-			throw new RuntimeException("Unsupported unary operator " + unary.getOp() + " provided.");
+			case "not":
+			case "-":
+				return new UnaryExpr(UnaryOp.fromString(unary.getOp()), sub);
+	
+			/*
+			 * Note: these are treated as reserved words in our translation. Conflicts are
+			 * actively renamed by RemoveLustreKeywords.
+			 */
+			//TODO : evaluate whether the PLTL node is actually available, now we just assume
+			case "once":
+			case "historically":
+			case "initially":
+				List<Expr> args = new ArrayList<>();
+				args.add(sub);
+				return new NodeCallExpr(unary.getOp(),args);
+				
+			default:
+				throw new RuntimeException("Unsupported unary operator " + unary.getOp() + " provided.");
 		}
 	}
 	
