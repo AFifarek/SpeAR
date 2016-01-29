@@ -2,8 +2,8 @@
  */
 package com.rockwellcollins.spear.impl;
 
+import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordFieldExpr;
 import com.rockwellcollins.spear.RecordType;
 import com.rockwellcollins.spear.SpearPackage;
 
@@ -56,7 +56,7 @@ public class RecordExprImpl extends ExprImpl implements RecordExpr
    * @generated
    * @ordered
    */
-  protected EList<RecordFieldExpr> fieldExprs;
+  protected EList<FieldExpr> fieldExprs;
 
   /**
    * <!-- begin-user-doc -->
@@ -127,11 +127,11 @@ public class RecordExprImpl extends ExprImpl implements RecordExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<RecordFieldExpr> getFieldExprs()
+  public EList<FieldExpr> getFieldExprs()
   {
     if (fieldExprs == null)
     {
-      fieldExprs = new EObjectContainmentEList<RecordFieldExpr>(RecordFieldExpr.class, this, SpearPackage.RECORD_EXPR__FIELD_EXPRS);
+      fieldExprs = new EObjectContainmentEList<FieldExpr>(FieldExpr.class, this, SpearPackage.RECORD_EXPR__FIELD_EXPRS);
     }
     return fieldExprs;
   }
@@ -187,7 +187,7 @@ public class RecordExprImpl extends ExprImpl implements RecordExpr
         return;
       case SpearPackage.RECORD_EXPR__FIELD_EXPRS:
         getFieldExprs().clear();
-        getFieldExprs().addAll((Collection<? extends RecordFieldExpr>)newValue);
+        getFieldExprs().addAll((Collection<? extends FieldExpr>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

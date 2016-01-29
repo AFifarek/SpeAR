@@ -393,25 +393,25 @@ finally {
 
 
 
-// Entry rule entryRuleRecordTypeField
-entryRuleRecordTypeField 
+// Entry rule entryRuleFieldType
+entryRuleFieldType 
 :
-{ before(grammarAccess.getRecordTypeFieldRule()); }
-	 ruleRecordTypeField
-{ after(grammarAccess.getRecordTypeFieldRule()); } 
+{ before(grammarAccess.getFieldTypeRule()); }
+	 ruleFieldType
+{ after(grammarAccess.getFieldTypeRule()); } 
 	 EOF 
 ;
 
-// Rule RecordTypeField
-ruleRecordTypeField
+// Rule FieldType
+ruleFieldType
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getRecordTypeFieldAccess().getGroup()); }
-(rule__RecordTypeField__Group__0)
-{ after(grammarAccess.getRecordTypeFieldAccess().getGroup()); }
+{ before(grammarAccess.getFieldTypeAccess().getGroup()); }
+(rule__FieldType__Group__0)
+{ after(grammarAccess.getFieldTypeAccess().getGroup()); }
 )
 
 ;
@@ -1095,25 +1095,25 @@ finally {
 
 
 
-// Entry rule entryRuleRecordFieldExpr
-entryRuleRecordFieldExpr 
+// Entry rule entryRuleFieldExpr
+entryRuleFieldExpr 
 :
-{ before(grammarAccess.getRecordFieldExprRule()); }
-	 ruleRecordFieldExpr
-{ after(grammarAccess.getRecordFieldExprRule()); } 
+{ before(grammarAccess.getFieldExprRule()); }
+	 ruleFieldExpr
+{ after(grammarAccess.getFieldExprRule()); } 
 	 EOF 
 ;
 
-// Rule RecordFieldExpr
-ruleRecordFieldExpr
+// Rule FieldExpr
+ruleFieldExpr
     @init {
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getRecordFieldExprAccess().getGroup()); }
-(rule__RecordFieldExpr__Group__0)
-{ after(grammarAccess.getRecordFieldExprAccess().getGroup()); }
+{ before(grammarAccess.getFieldExprAccess().getGroup()); }
+(rule__FieldExpr__Group__0)
+{ after(grammarAccess.getFieldExprAccess().getGroup()); }
 )
 
 ;
@@ -5458,27 +5458,27 @@ finally {
 
 
 
-rule__RecordTypeField__Group__0
+rule__FieldType__Group__0
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__RecordTypeField__Group__0__Impl
-	rule__RecordTypeField__Group__1
+	rule__FieldType__Group__0__Impl
+	rule__FieldType__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RecordTypeField__Group__0__Impl
+rule__FieldType__Group__0__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRecordTypeFieldAccess().getNameAssignment_0()); }
-(rule__RecordTypeField__NameAssignment_0)
-{ after(grammarAccess.getRecordTypeFieldAccess().getNameAssignment_0()); }
+{ before(grammarAccess.getFieldTypeAccess().getNameAssignment_0()); }
+(rule__FieldType__NameAssignment_0)
+{ after(grammarAccess.getFieldTypeAccess().getNameAssignment_0()); }
 )
 
 ;
@@ -5487,29 +5487,29 @@ finally {
 }
 
 
-rule__RecordTypeField__Group__1
+rule__FieldType__Group__1
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__RecordTypeField__Group__1__Impl
-	rule__RecordTypeField__Group__2
+	rule__FieldType__Group__1__Impl
+	rule__FieldType__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RecordTypeField__Group__1__Impl
+rule__FieldType__Group__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRecordTypeFieldAccess().getColonKeyword_1()); }
+{ before(grammarAccess.getFieldTypeAccess().getColonKeyword_1()); }
 
 	':' 
 
-{ after(grammarAccess.getRecordTypeFieldAccess().getColonKeyword_1()); }
+{ after(grammarAccess.getFieldTypeAccess().getColonKeyword_1()); }
 )
 
 ;
@@ -5518,26 +5518,26 @@ finally {
 }
 
 
-rule__RecordTypeField__Group__2
+rule__FieldType__Group__2
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__RecordTypeField__Group__2__Impl
+	rule__FieldType__Group__2__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RecordTypeField__Group__2__Impl
+rule__FieldType__Group__2__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRecordTypeFieldAccess().getTypeAssignment_2()); }
-(rule__RecordTypeField__TypeAssignment_2)
-{ after(grammarAccess.getRecordTypeFieldAccess().getTypeAssignment_2()); }
+{ before(grammarAccess.getFieldTypeAccess().getTypeAssignment_2()); }
+(rule__FieldType__TypeAssignment_2)
+{ after(grammarAccess.getFieldTypeAccess().getTypeAssignment_2()); }
 )
 
 ;
@@ -12799,27 +12799,27 @@ finally {
 
 
 
-rule__RecordFieldExpr__Group__0
+rule__FieldExpr__Group__0
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__RecordFieldExpr__Group__0__Impl
-	rule__RecordFieldExpr__Group__1
+	rule__FieldExpr__Group__0__Impl
+	rule__FieldExpr__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RecordFieldExpr__Group__0__Impl
+rule__FieldExpr__Group__0__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRecordFieldExprAccess().getNameAssignment_0()); }
-(rule__RecordFieldExpr__NameAssignment_0)
-{ after(grammarAccess.getRecordFieldExprAccess().getNameAssignment_0()); }
+{ before(grammarAccess.getFieldExprAccess().getNameAssignment_0()); }
+(rule__FieldExpr__NameAssignment_0)
+{ after(grammarAccess.getFieldExprAccess().getNameAssignment_0()); }
 )
 
 ;
@@ -12828,29 +12828,29 @@ finally {
 }
 
 
-rule__RecordFieldExpr__Group__1
+rule__FieldExpr__Group__1
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__RecordFieldExpr__Group__1__Impl
-	rule__RecordFieldExpr__Group__2
+	rule__FieldExpr__Group__1__Impl
+	rule__FieldExpr__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RecordFieldExpr__Group__1__Impl
+rule__FieldExpr__Group__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRecordFieldExprAccess().getEqualsSignKeyword_1()); }
+{ before(grammarAccess.getFieldExprAccess().getEqualsSignKeyword_1()); }
 
 	'=' 
 
-{ after(grammarAccess.getRecordFieldExprAccess().getEqualsSignKeyword_1()); }
+{ after(grammarAccess.getFieldExprAccess().getEqualsSignKeyword_1()); }
 )
 
 ;
@@ -12859,26 +12859,26 @@ finally {
 }
 
 
-rule__RecordFieldExpr__Group__2
+rule__FieldExpr__Group__2
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__RecordFieldExpr__Group__2__Impl
+	rule__FieldExpr__Group__2__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RecordFieldExpr__Group__2__Impl
+rule__FieldExpr__Group__2__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRecordFieldExprAccess().getExprAssignment_2()); }
-(rule__RecordFieldExpr__ExprAssignment_2)
-{ after(grammarAccess.getRecordFieldExprAccess().getExprAssignment_2()); }
+{ before(grammarAccess.getFieldExprAccess().getExprAssignment_2()); }
+(rule__FieldExpr__ExprAssignment_2)
+{ after(grammarAccess.getFieldExprAccess().getExprAssignment_2()); }
 )
 
 ;
@@ -13528,8 +13528,8 @@ rule__TypeDef__FieldsAssignment_1_5
     }
 :
 (
-{ before(grammarAccess.getTypeDefAccess().getFieldsRecordTypeFieldParserRuleCall_1_5_0()); }
-	ruleRecordTypeField{ after(grammarAccess.getTypeDefAccess().getFieldsRecordTypeFieldParserRuleCall_1_5_0()); }
+{ before(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_5_0()); }
+	ruleFieldType{ after(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_5_0()); }
 )
 
 ;
@@ -13543,8 +13543,8 @@ rule__TypeDef__FieldsAssignment_1_6_1
     }
 :
 (
-{ before(grammarAccess.getTypeDefAccess().getFieldsRecordTypeFieldParserRuleCall_1_6_1_0()); }
-	ruleRecordTypeField{ after(grammarAccess.getTypeDefAccess().getFieldsRecordTypeFieldParserRuleCall_1_6_1_0()); }
+{ before(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_6_1_0()); }
+	ruleFieldType{ after(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_6_1_0()); }
 )
 
 ;
@@ -13642,14 +13642,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RecordTypeField__NameAssignment_0
+rule__FieldType__NameAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRecordTypeFieldAccess().getNameIDTerminalRuleCall_0_0()); }
-	RULE_ID{ after(grammarAccess.getRecordTypeFieldAccess().getNameIDTerminalRuleCall_0_0()); }
+{ before(grammarAccess.getFieldTypeAccess().getNameIDTerminalRuleCall_0_0()); }
+	RULE_ID{ after(grammarAccess.getFieldTypeAccess().getNameIDTerminalRuleCall_0_0()); }
 )
 
 ;
@@ -13657,14 +13657,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RecordTypeField__TypeAssignment_2
+rule__FieldType__TypeAssignment_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRecordTypeFieldAccess().getTypeTypeParserRuleCall_2_0()); }
-	ruleType{ after(grammarAccess.getRecordTypeFieldAccess().getTypeTypeParserRuleCall_2_0()); }
+{ before(grammarAccess.getFieldTypeAccess().getTypeTypeParserRuleCall_2_0()); }
+	ruleType{ after(grammarAccess.getFieldTypeAccess().getTypeTypeParserRuleCall_2_0()); }
 )
 
 ;
@@ -14253,12 +14253,12 @@ rule__AccessExpr__FieldAssignment_1_0_1
     }
 :
 (
-{ before(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprCrossReference_1_0_1_0()); }
+{ before(grammarAccess.getAccessExprAccess().getFieldFieldExprCrossReference_1_0_1_0()); }
 (
-{ before(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_0_1_0_1()); }
-	RULE_ID{ after(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_0_1_0_1()); }
+{ before(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_0_1_0_1()); }
+	RULE_ID{ after(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_0_1_0_1()); }
 )
-{ after(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprCrossReference_1_0_1_0()); }
+{ after(grammarAccess.getAccessExprAccess().getFieldFieldExprCrossReference_1_0_1_0()); }
 )
 
 ;
@@ -14272,12 +14272,12 @@ rule__AccessExpr__FieldAssignment_1_1_0_0_2
     }
 :
 (
-{ before(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprCrossReference_1_1_0_0_2_0()); }
+{ before(grammarAccess.getAccessExprAccess().getFieldFieldExprCrossReference_1_1_0_0_2_0()); }
 (
-{ before(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1()); }
-	RULE_ID{ after(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1()); }
+{ before(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1()); }
+	RULE_ID{ after(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1()); }
 )
-{ after(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprCrossReference_1_1_0_0_2_0()); }
+{ after(grammarAccess.getAccessExprAccess().getFieldFieldExprCrossReference_1_1_0_0_2_0()); }
 )
 
 ;
@@ -14547,8 +14547,8 @@ rule__AtomicExpr__FieldExprsAssignment_7_4
     }
 :
 (
-{ before(grammarAccess.getAtomicExprAccess().getFieldExprsRecordFieldExprParserRuleCall_7_4_0()); }
-	ruleRecordFieldExpr{ after(grammarAccess.getAtomicExprAccess().getFieldExprsRecordFieldExprParserRuleCall_7_4_0()); }
+{ before(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_7_4_0()); }
+	ruleFieldExpr{ after(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_7_4_0()); }
 )
 
 ;
@@ -14562,8 +14562,8 @@ rule__AtomicExpr__FieldExprsAssignment_7_5_1
     }
 :
 (
-{ before(grammarAccess.getAtomicExprAccess().getFieldExprsRecordFieldExprParserRuleCall_7_5_1_0()); }
-	ruleRecordFieldExpr{ after(grammarAccess.getAtomicExprAccess().getFieldExprsRecordFieldExprParserRuleCall_7_5_1_0()); }
+{ before(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_7_5_1_0()); }
+	ruleFieldExpr{ after(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_7_5_1_0()); }
 )
 
 ;
@@ -14801,14 +14801,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RecordFieldExpr__NameAssignment_0
+rule__FieldExpr__NameAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRecordFieldExprAccess().getNameIDTerminalRuleCall_0_0()); }
-	RULE_ID{ after(grammarAccess.getRecordFieldExprAccess().getNameIDTerminalRuleCall_0_0()); }
+{ before(grammarAccess.getFieldExprAccess().getNameIDTerminalRuleCall_0_0()); }
+	RULE_ID{ after(grammarAccess.getFieldExprAccess().getNameIDTerminalRuleCall_0_0()); }
 )
 
 ;
@@ -14816,14 +14816,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RecordFieldExpr__ExprAssignment_2
+rule__FieldExpr__ExprAssignment_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRecordFieldExprAccess().getExprExprParserRuleCall_2_0()); }
-	ruleExpr{ after(grammarAccess.getRecordFieldExprAccess().getExprExprParserRuleCall_2_0()); }
+{ before(grammarAccess.getFieldExprAccess().getExprExprParserRuleCall_2_0()); }
+	ruleExpr{ after(grammarAccess.getFieldExprAccess().getExprExprParserRuleCall_2_0()); }
 )
 
 ;

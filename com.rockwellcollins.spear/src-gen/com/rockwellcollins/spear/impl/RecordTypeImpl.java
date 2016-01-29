@@ -2,8 +2,8 @@
  */
 package com.rockwellcollins.spear.impl;
 
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.RecordType;
-import com.rockwellcollins.spear.RecordTypeField;
 import com.rockwellcollins.spear.SpearPackage;
 
 import java.util.Collection;
@@ -41,7 +41,7 @@ public class RecordTypeImpl extends TypeDefImpl implements RecordType
    * @generated
    * @ordered
    */
-  protected EList<RecordTypeField> fields;
+  protected EList<FieldType> fields;
 
   /**
    * <!-- begin-user-doc -->
@@ -69,11 +69,11 @@ public class RecordTypeImpl extends TypeDefImpl implements RecordType
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<RecordTypeField> getFields()
+  public EList<FieldType> getFields()
   {
     if (fields == null)
     {
-      fields = new EObjectContainmentEList<RecordTypeField>(RecordTypeField.class, this, SpearPackage.RECORD_TYPE__FIELDS);
+      fields = new EObjectContainmentEList<FieldType>(FieldType.class, this, SpearPackage.RECORD_TYPE__FIELDS);
     }
     return fields;
   }
@@ -123,7 +123,7 @@ public class RecordTypeImpl extends TypeDefImpl implements RecordType
     {
       case SpearPackage.RECORD_TYPE__FIELDS:
         getFields().clear();
-        getFields().addAll((Collection<? extends RecordTypeField>)newValue);
+        getFields().addAll((Collection<? extends FieldType>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

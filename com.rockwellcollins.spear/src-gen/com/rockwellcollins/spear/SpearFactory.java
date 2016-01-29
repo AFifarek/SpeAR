@@ -104,13 +104,13 @@ public interface SpearFactory extends EFactory
   TypeDef createTypeDef();
 
   /**
-   * Returns a new object of class '<em>Record Type Field</em>'.
+   * Returns a new object of class '<em>Field Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Record Type Field</em>'.
+   * @return a new object of class '<em>Field Type</em>'.
    * @generated
    */
-  RecordTypeField createRecordTypeField();
+  FieldType createFieldType();
 
   /**
    * Returns a new object of class '<em>Enum Value</em>'.
@@ -212,13 +212,13 @@ public interface SpearFactory extends EFactory
   IdRef createIdRef();
 
   /**
-   * Returns a new object of class '<em>Record Field Expr</em>'.
+   * Returns a new object of class '<em>Field Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Record Field Expr</em>'.
+   * @return a new object of class '<em>Field Expr</em>'.
    * @generated
    */
-  RecordFieldExpr createRecordFieldExpr();
+  FieldExpr createFieldExpr();
 
   /**
    * Returns a new object of class '<em>Base Unit</em>'.

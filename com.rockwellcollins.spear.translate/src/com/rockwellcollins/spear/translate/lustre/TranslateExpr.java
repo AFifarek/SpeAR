@@ -138,7 +138,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	@Override
 	public Expr caseRecordExpr(com.rockwellcollins.spear.RecordExpr re) {
 		Map<String,Expr> fields = new LinkedHashMap<>();
-		for(com.rockwellcollins.spear.RecordFieldExpr rfe : re.getFieldExprs()) {
+		for(com.rockwellcollins.spear.FieldExpr rfe : re.getFieldExprs()) {
 			fields.put(rfe.getName(), doSwitch(rfe.getExpr()));
 		}
 		return new RecordExpr(re.getType().getName(),fields);

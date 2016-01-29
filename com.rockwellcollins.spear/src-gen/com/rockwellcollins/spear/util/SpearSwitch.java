@@ -138,10 +138,10 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SpearPackage.RECORD_TYPE_FIELD:
+      case SpearPackage.FIELD_TYPE:
       {
-        RecordTypeField recordTypeField = (RecordTypeField)theEObject;
-        T result = caseRecordTypeField(recordTypeField);
+        FieldType fieldType = (FieldType)theEObject;
+        T result = caseFieldType(fieldType);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -229,10 +229,10 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SpearPackage.RECORD_FIELD_EXPR:
+      case SpearPackage.FIELD_EXPR:
       {
-        RecordFieldExpr recordFieldExpr = (RecordFieldExpr)theEObject;
-        T result = caseRecordFieldExpr(recordFieldExpr);
+        FieldExpr fieldExpr = (FieldExpr)theEObject;
+        T result = caseFieldExpr(fieldExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -636,17 +636,17 @@ public class SpearSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Record Type Field</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Field Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Record Type Field</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Field Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRecordTypeField(RecordTypeField object)
+  public T caseFieldType(FieldType object)
   {
     return null;
   }
@@ -828,17 +828,17 @@ public class SpearSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Record Field Expr</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Field Expr</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Record Field Expr</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Field Expr</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRecordFieldExpr(RecordFieldExpr object)
+  public T caseFieldExpr(FieldExpr object)
   {
     return null;
   }

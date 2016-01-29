@@ -96,7 +96,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeDefAccess().getGroup_2(), "rule__TypeDef__Group_2__0");
 					put(grammarAccess.getTypeDefAccess().getGroup_3(), "rule__TypeDef__Group_3__0");
 					put(grammarAccess.getTypeDefAccess().getGroup_3_6(), "rule__TypeDef__Group_3_6__0");
-					put(grammarAccess.getRecordTypeFieldAccess().getGroup(), "rule__RecordTypeField__Group__0");
+					put(grammarAccess.getFieldTypeAccess().getGroup(), "rule__FieldType__Group__0");
 					put(grammarAccess.getTypeAccess().getGroup_0(), "rule__Type__Group_0__0");
 					put(grammarAccess.getTypeAccess().getGroup_1(), "rule__Type__Group_1__0");
 					put(grammarAccess.getTypeAccess().getGroup_2(), "rule__Type__Group_2__0");
@@ -184,7 +184,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLiteralExprAccess().getGroup_0(), "rule__LiteralExpr__Group_0__0");
 					put(grammarAccess.getLiteralExprAccess().getGroup_1(), "rule__LiteralExpr__Group_1__0");
 					put(grammarAccess.getLiteralExprAccess().getGroup_2(), "rule__LiteralExpr__Group_2__0");
-					put(grammarAccess.getRecordFieldExprAccess().getGroup(), "rule__RecordFieldExpr__Group__0");
+					put(grammarAccess.getFieldExprAccess().getGroup(), "rule__FieldExpr__Group__0");
 					put(grammarAccess.getREALAccess().getGroup(), "rule__REAL__Group__0");
 					put(grammarAccess.getSpecificationAccess().getNameAssignment_1(), "rule__Specification__NameAssignment_1");
 					put(grammarAccess.getSpecificationAccess().getImportsAssignment_2_1(), "rule__Specification__ImportsAssignment_2_1");
@@ -228,8 +228,8 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTypeDefAccess().getNameAssignment_3_1(), "rule__TypeDef__NameAssignment_3_1");
 					put(grammarAccess.getTypeDefAccess().getValuesAssignment_3_5(), "rule__TypeDef__ValuesAssignment_3_5");
 					put(grammarAccess.getTypeDefAccess().getValuesAssignment_3_6_1(), "rule__TypeDef__ValuesAssignment_3_6_1");
-					put(grammarAccess.getRecordTypeFieldAccess().getNameAssignment_0(), "rule__RecordTypeField__NameAssignment_0");
-					put(grammarAccess.getRecordTypeFieldAccess().getTypeAssignment_2(), "rule__RecordTypeField__TypeAssignment_2");
+					put(grammarAccess.getFieldTypeAccess().getNameAssignment_0(), "rule__FieldType__NameAssignment_0");
+					put(grammarAccess.getFieldTypeAccess().getTypeAssignment_2(), "rule__FieldType__TypeAssignment_2");
 					put(grammarAccess.getEnumValueAccess().getNameAssignment(), "rule__EnumValue__NameAssignment");
 					put(grammarAccess.getTypeAccess().getDefAssignment_3_1(), "rule__Type__DefAssignment_3_1");
 					put(grammarAccess.getConstantAccess().getNameAssignment_0(), "rule__Constant__NameAssignment_0");
@@ -301,8 +301,8 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLiteralExprAccess().getValueAssignment_1_1(), "rule__LiteralExpr__ValueAssignment_1_1");
 					put(grammarAccess.getLiteralExprAccess().getValueAssignment_2_1(), "rule__LiteralExpr__ValueAssignment_2_1");
 					put(grammarAccess.getLiteralExprAccess().getUnitAssignment_2_2(), "rule__LiteralExpr__UnitAssignment_2_2");
-					put(grammarAccess.getRecordFieldExprAccess().getNameAssignment_0(), "rule__RecordFieldExpr__NameAssignment_0");
-					put(grammarAccess.getRecordFieldExprAccess().getExprAssignment_2(), "rule__RecordFieldExpr__ExprAssignment_2");
+					put(grammarAccess.getFieldExprAccess().getNameAssignment_0(), "rule__FieldExpr__NameAssignment_0");
+					put(grammarAccess.getFieldExprAccess().getExprAssignment_2(), "rule__FieldExpr__ExprAssignment_2");
 				}
 			};
 		}

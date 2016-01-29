@@ -73,7 +73,7 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.UNIT_DEF: return createUnitDef();
       case SpearPackage.UNIT_EXPR: return createUnitExpr();
       case SpearPackage.TYPE_DEF: return createTypeDef();
-      case SpearPackage.RECORD_TYPE_FIELD: return createRecordTypeField();
+      case SpearPackage.FIELD_TYPE: return createFieldType();
       case SpearPackage.ENUM_VALUE: return createEnumValue();
       case SpearPackage.TYPE: return createType();
       case SpearPackage.CONSTANT: return createConstant();
@@ -85,7 +85,7 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.EXPR: return createExpr();
       case SpearPackage.LITERAL_EXPR: return createLiteralExpr();
       case SpearPackage.ID_REF: return createIdRef();
-      case SpearPackage.RECORD_FIELD_EXPR: return createRecordFieldExpr();
+      case SpearPackage.FIELD_EXPR: return createFieldExpr();
       case SpearPackage.BASE_UNIT: return createBaseUnit();
       case SpearPackage.DERIVED_UNIT: return createDerivedUnit();
       case SpearPackage.BINARY_UNIT_EXPR: return createBinaryUnitExpr();
@@ -226,10 +226,10 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public RecordTypeField createRecordTypeField()
+  public FieldType createFieldType()
   {
-    RecordTypeFieldImpl recordTypeField = new RecordTypeFieldImpl();
-    return recordTypeField;
+    FieldTypeImpl fieldType = new FieldTypeImpl();
+    return fieldType;
   }
 
   /**
@@ -358,10 +358,10 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public RecordFieldExpr createRecordFieldExpr()
+  public FieldExpr createFieldExpr()
   {
-    RecordFieldExprImpl recordFieldExpr = new RecordFieldExprImpl();
-    return recordFieldExpr;
+    FieldExprImpl fieldExpr = new FieldExprImpl();
+    return fieldExpr;
   }
 
   /**

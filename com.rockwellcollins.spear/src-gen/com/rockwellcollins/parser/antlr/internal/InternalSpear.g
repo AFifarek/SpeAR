@@ -1147,9 +1147,9 @@ ruleIdTypeDelimiter
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeDefAccess().getFieldsRecordTypeFieldParserRuleCall_1_5_0()); 
+	        newCompositeNode(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_5_0()); 
 	    }
-		lv_fields_10_0=ruleRecordTypeField		{
+		lv_fields_10_0=ruleFieldType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypeDefRule());
 	        }
@@ -1157,7 +1157,7 @@ ruleIdTypeDelimiter
        			$current, 
        			"fields",
         		lv_fields_10_0, 
-        		"com.rockwellcollins.Spear.RecordTypeField");
+        		"com.rockwellcollins.Spear.FieldType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1169,9 +1169,9 @@ ruleIdTypeDelimiter
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypeDefAccess().getFieldsRecordTypeFieldParserRuleCall_1_6_1_0()); 
+	        newCompositeNode(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_6_1_0()); 
 	    }
-		lv_fields_12_0=ruleRecordTypeField		{
+		lv_fields_12_0=ruleFieldType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypeDefRule());
 	        }
@@ -1179,7 +1179,7 @@ ruleIdTypeDelimiter
        			$current, 
        			"fields",
         		lv_fields_12_0, 
-        		"com.rockwellcollins.Spear.RecordTypeField");
+        		"com.rockwellcollins.Spear.FieldType");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -1357,17 +1357,17 @@ ruleIdTypeDelimiter
 
 
 
-// Entry rule entryRuleRecordTypeField
-entryRuleRecordTypeField returns [EObject current=null] 
+// Entry rule entryRuleFieldType
+entryRuleFieldType returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getRecordTypeFieldRule()); }
-	 iv_ruleRecordTypeField=ruleRecordTypeField 
-	 { $current=$iv_ruleRecordTypeField.current; } 
+	{ newCompositeNode(grammarAccess.getFieldTypeRule()); }
+	 iv_ruleFieldType=ruleFieldType 
+	 { $current=$iv_ruleFieldType.current; } 
 	 EOF 
 ;
 
-// Rule RecordTypeField
-ruleRecordTypeField returns [EObject current=null] 
+// Rule FieldType
+ruleFieldType returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
@@ -1375,11 +1375,11 @@ ruleRecordTypeField returns [EObject current=null]
 (
 		lv_name_0_0=RULE_ID
 		{
-			newLeafNode(lv_name_0_0, grammarAccess.getRecordTypeFieldAccess().getNameIDTerminalRuleCall_0_0()); 
+			newLeafNode(lv_name_0_0, grammarAccess.getFieldTypeAccess().getNameIDTerminalRuleCall_0_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getRecordTypeFieldRule());
+	            $current = createModelElement(grammarAccess.getFieldTypeRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -1391,16 +1391,16 @@ ruleRecordTypeField returns [EObject current=null]
 )
 )	otherlv_1=':' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getRecordTypeFieldAccess().getColonKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getFieldTypeAccess().getColonKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRecordTypeFieldAccess().getTypeTypeParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getFieldTypeAccess().getTypeTypeParserRuleCall_2_0()); 
 	    }
 		lv_type_2_0=ruleType		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRecordTypeFieldRule());
+	            $current = createModelElementForParent(grammarAccess.getFieldTypeRule());
 	        }
        		set(
        			$current, 
@@ -3271,7 +3271,7 @@ ruleAccessExpr returns [EObject current=null]
         }
 	otherlv_3=RULE_ID
 	{
-		newLeafNode(otherlv_3, grammarAccess.getAccessExprAccess().getFieldRecordFieldExprCrossReference_1_0_1_0()); 
+		newLeafNode(otherlv_3, grammarAccess.getAccessExprAccess().getFieldFieldExprCrossReference_1_0_1_0()); 
 	}
 
 )
@@ -3303,7 +3303,7 @@ ruleAccessExpr returns [EObject current=null]
         }
 	otherlv_6=RULE_ID
 	{
-		newLeafNode(otherlv_6, grammarAccess.getAccessExprAccess().getFieldRecordFieldExprCrossReference_1_1_0_0_2_0()); 
+		newLeafNode(otherlv_6, grammarAccess.getAccessExprAccess().getFieldFieldExprCrossReference_1_1_0_0_2_0()); 
 	}
 
 )
@@ -3761,9 +3761,9 @@ ruleAtomicExpr returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAtomicExprAccess().getFieldExprsRecordFieldExprParserRuleCall_7_4_0()); 
+	        newCompositeNode(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_7_4_0()); 
 	    }
-		lv_fieldExprs_37_0=ruleRecordFieldExpr		{
+		lv_fieldExprs_37_0=ruleFieldExpr		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAtomicExprRule());
 	        }
@@ -3771,7 +3771,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"fieldExprs",
         		lv_fieldExprs_37_0, 
-        		"com.rockwellcollins.Spear.RecordFieldExpr");
+        		"com.rockwellcollins.Spear.FieldExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -3783,9 +3783,9 @@ ruleAtomicExpr returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getAtomicExprAccess().getFieldExprsRecordFieldExprParserRuleCall_7_5_1_0()); 
+	        newCompositeNode(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_7_5_1_0()); 
 	    }
-		lv_fieldExprs_39_0=ruleRecordFieldExpr		{
+		lv_fieldExprs_39_0=ruleFieldExpr		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getAtomicExprRule());
 	        }
@@ -3793,7 +3793,7 @@ ruleAtomicExpr returns [EObject current=null]
        			$current, 
        			"fieldExprs",
         		lv_fieldExprs_39_0, 
-        		"com.rockwellcollins.Spear.RecordFieldExpr");
+        		"com.rockwellcollins.Spear.FieldExpr");
 	        afterParserOrEnumRuleCall();
 	    }
 
@@ -4166,17 +4166,17 @@ ruleLiteralExpr returns [EObject current=null]
 
 
 
-// Entry rule entryRuleRecordFieldExpr
-entryRuleRecordFieldExpr returns [EObject current=null] 
+// Entry rule entryRuleFieldExpr
+entryRuleFieldExpr returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getRecordFieldExprRule()); }
-	 iv_ruleRecordFieldExpr=ruleRecordFieldExpr 
-	 { $current=$iv_ruleRecordFieldExpr.current; } 
+	{ newCompositeNode(grammarAccess.getFieldExprRule()); }
+	 iv_ruleFieldExpr=ruleFieldExpr 
+	 { $current=$iv_ruleFieldExpr.current; } 
 	 EOF 
 ;
 
-// Rule RecordFieldExpr
-ruleRecordFieldExpr returns [EObject current=null] 
+// Rule FieldExpr
+ruleFieldExpr returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
@@ -4184,11 +4184,11 @@ ruleRecordFieldExpr returns [EObject current=null]
 (
 		lv_name_0_0=RULE_ID
 		{
-			newLeafNode(lv_name_0_0, grammarAccess.getRecordFieldExprAccess().getNameIDTerminalRuleCall_0_0()); 
+			newLeafNode(lv_name_0_0, grammarAccess.getFieldExprAccess().getNameIDTerminalRuleCall_0_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getRecordFieldExprRule());
+	            $current = createModelElement(grammarAccess.getFieldExprRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -4200,16 +4200,16 @@ ruleRecordFieldExpr returns [EObject current=null]
 )
 )	otherlv_1='=' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getRecordFieldExprAccess().getEqualsSignKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getFieldExprAccess().getEqualsSignKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRecordFieldExprAccess().getExprExprParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getFieldExprAccess().getExprExprParserRuleCall_2_0()); 
 	    }
 		lv_expr_2_0=ruleExpr		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getRecordFieldExprRule());
+	            $current = createModelElementForParent(grammarAccess.getFieldExprRule());
 	        }
        		set(
        			$current, 

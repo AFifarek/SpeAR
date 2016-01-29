@@ -59,11 +59,11 @@ AtomicUnitExpr returns UnitExpr:
 
 TypeDef:
 	{NamedType} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
-	| {RecordType} name=ID IdTypeDelimiter 'record' '{' fields+=RecordTypeField (',' fields+=RecordTypeField)* '}'
+	| {RecordType} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
 	| {ArrayType} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
 	| {EnumType} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
 
-RecordTypeField:
+FieldType:
 	name=ID ':' type=Type;
 
 EnumValue:
@@ -146,8 +146,8 @@ PrefixExpr returns Expr:
 	| AccessExpr;
 
 AccessExpr returns Expr:
-	AtomicExpr (=> ({RecordAccessExpr.record=current} '.') field=[RecordFieldExpr]
-	| => ({RecordUpdateExpr.record=current} '{' field=[RecordFieldExpr] ':=') value=Expr '}'
+	AtomicExpr (=> ({RecordAccessExpr.record=current} '.') field=[FieldExpr]
+	| => ({RecordUpdateExpr.record=current} '{' field=[FieldExpr] ':=') value=Expr '}'
 	| => ({ArrayAccessExpr.array=current} '[') index=Expr (=> ({ArrayUpdateExpr.access=current} ':=') value=Expr)? ']')*;
 
 AtomicExpr returns Expr:
@@ -158,7 +158,7 @@ AtomicExpr returns Expr:
 	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	| {AfterUntilExpr} 'after' (after=Expr) (=> 'until' until=Expr)?
 	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
-	| {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=RecordFieldExpr (',' fieldExprs+=RecordFieldExpr)* '}'
+	| {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
 	| {ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
 	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
@@ -175,7 +175,7 @@ IdRef:
 	| Constant
 	| EnumValue;
 
-RecordFieldExpr:
+FieldExpr:
 	name=ID '=' expr=Expr;
 
 BOOL:

@@ -24,6 +24,8 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumType;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.FieldExpr;
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IdRef;
@@ -39,9 +41,7 @@ import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordFieldExpr;
 import com.rockwellcollins.spear.RecordType;
-import com.rockwellcollins.spear.RecordTypeField;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
@@ -100,7 +100,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		}
 
 		Map<String, SpearType> fields = new LinkedHashMap<>();
-		for (RecordTypeField rtf : rt.getFields()) {
+		for (FieldType rtf : rt.getFields()) {
 			fields.put(rtf.getName(), doSwitch(rtf.getType()));
 		}
 		return new SpearRecordType(rt.getName(), fields);
@@ -322,7 +322,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	@Override
 	public SpearType caseRecordExpr(RecordExpr re) {
 		Map<String, Expr> fields = new LinkedHashMap<>();
-		for (RecordFieldExpr rfe : re.getFieldExprs()) {
+		for (FieldExpr rfe : re.getFieldExprs()) {
 			fields.put(rfe.getName(), rfe.getExpr());
 		}
 

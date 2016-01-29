@@ -444,14 +444,14 @@ public interface SpearPackage extends EPackage
   int TYPE_DEF_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link com.rockwellcollins.spear.impl.RecordTypeFieldImpl <em>Record Type Field</em>}' class.
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.FieldTypeImpl <em>Field Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see com.rockwellcollins.spear.impl.RecordTypeFieldImpl
-   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordTypeField()
+   * @see com.rockwellcollins.spear.impl.FieldTypeImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFieldType()
    * @generated
    */
-  int RECORD_TYPE_FIELD = 9;
+  int FIELD_TYPE = 9;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -460,7 +460,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RECORD_TYPE_FIELD__NAME = 0;
+  int FIELD_TYPE__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -469,16 +469,16 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RECORD_TYPE_FIELD__TYPE = 1;
+  int FIELD_TYPE__TYPE = 1;
 
   /**
-   * The number of structural features of the '<em>Record Type Field</em>' class.
+   * The number of structural features of the '<em>Field Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RECORD_TYPE_FIELD_FEATURE_COUNT = 2;
+  int FIELD_TYPE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.IdRefImpl <em>Id Ref</em>}' class.
@@ -852,14 +852,14 @@ public interface SpearPackage extends EPackage
   int LITERAL_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link com.rockwellcollins.spear.impl.RecordFieldExprImpl <em>Record Field Expr</em>}' class.
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.FieldExprImpl <em>Field Expr</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see com.rockwellcollins.spear.impl.RecordFieldExprImpl
-   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordFieldExpr()
+   * @see com.rockwellcollins.spear.impl.FieldExprImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFieldExpr()
    * @generated
    */
-  int RECORD_FIELD_EXPR = 21;
+  int FIELD_EXPR = 21;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -868,7 +868,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RECORD_FIELD_EXPR__NAME = 0;
+  int FIELD_EXPR__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -877,16 +877,16 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RECORD_FIELD_EXPR__EXPR = 1;
+  int FIELD_EXPR__EXPR = 1;
 
   /**
-   * The number of structural features of the '<em>Record Field Expr</em>' class.
+   * The number of structural features of the '<em>Field Expr</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RECORD_FIELD_EXPR_FEATURE_COUNT = 2;
+  int FIELD_EXPR_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.BaseUnitImpl <em>Base Unit</em>}' class.
@@ -2322,36 +2322,36 @@ public interface SpearPackage extends EPackage
   EAttribute getTypeDef_Name();
 
   /**
-   * Returns the meta object for class '{@link com.rockwellcollins.spear.RecordTypeField <em>Record Type Field</em>}'.
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.FieldType <em>Field Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Record Type Field</em>'.
-   * @see com.rockwellcollins.spear.RecordTypeField
+   * @return the meta object for class '<em>Field Type</em>'.
+   * @see com.rockwellcollins.spear.FieldType
    * @generated
    */
-  EClass getRecordTypeField();
+  EClass getFieldType();
 
   /**
-   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.RecordTypeField#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.FieldType#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see com.rockwellcollins.spear.RecordTypeField#getName()
-   * @see #getRecordTypeField()
+   * @see com.rockwellcollins.spear.FieldType#getName()
+   * @see #getFieldType()
    * @generated
    */
-  EAttribute getRecordTypeField_Name();
+  EAttribute getFieldType_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.RecordTypeField#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.FieldType#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see com.rockwellcollins.spear.RecordTypeField#getType()
-   * @see #getRecordTypeField()
+   * @see com.rockwellcollins.spear.FieldType#getType()
+   * @see #getFieldType()
    * @generated
    */
-  EReference getRecordTypeField_Type();
+  EReference getFieldType_Type();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.EnumValue <em>Enum Value</em>}'.
@@ -2596,36 +2596,36 @@ public interface SpearPackage extends EPackage
   EAttribute getIdRef_Name();
 
   /**
-   * Returns the meta object for class '{@link com.rockwellcollins.spear.RecordFieldExpr <em>Record Field Expr</em>}'.
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.FieldExpr <em>Field Expr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Record Field Expr</em>'.
-   * @see com.rockwellcollins.spear.RecordFieldExpr
+   * @return the meta object for class '<em>Field Expr</em>'.
+   * @see com.rockwellcollins.spear.FieldExpr
    * @generated
    */
-  EClass getRecordFieldExpr();
+  EClass getFieldExpr();
 
   /**
-   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.RecordFieldExpr#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.FieldExpr#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see com.rockwellcollins.spear.RecordFieldExpr#getName()
-   * @see #getRecordFieldExpr()
+   * @see com.rockwellcollins.spear.FieldExpr#getName()
+   * @see #getFieldExpr()
    * @generated
    */
-  EAttribute getRecordFieldExpr_Name();
+  EAttribute getFieldExpr_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.RecordFieldExpr#getExpr <em>Expr</em>}'.
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.FieldExpr#getExpr <em>Expr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Expr</em>'.
-   * @see com.rockwellcollins.spear.RecordFieldExpr#getExpr()
-   * @see #getRecordFieldExpr()
+   * @see com.rockwellcollins.spear.FieldExpr#getExpr()
+   * @see #getFieldExpr()
    * @generated
    */
-  EReference getRecordFieldExpr_Expr();
+  EReference getFieldExpr_Expr();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.BaseUnit <em>Base Unit</em>}'.
@@ -3769,14 +3769,14 @@ public interface SpearPackage extends EPackage
     EAttribute TYPE_DEF__NAME = eINSTANCE.getTypeDef_Name();
 
     /**
-     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.RecordTypeFieldImpl <em>Record Type Field</em>}' class.
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.FieldTypeImpl <em>Field Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see com.rockwellcollins.spear.impl.RecordTypeFieldImpl
-     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordTypeField()
+     * @see com.rockwellcollins.spear.impl.FieldTypeImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFieldType()
      * @generated
      */
-    EClass RECORD_TYPE_FIELD = eINSTANCE.getRecordTypeField();
+    EClass FIELD_TYPE = eINSTANCE.getFieldType();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -3784,7 +3784,7 @@ public interface SpearPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute RECORD_TYPE_FIELD__NAME = eINSTANCE.getRecordTypeField_Name();
+    EAttribute FIELD_TYPE__NAME = eINSTANCE.getFieldType_Name();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
@@ -3792,7 +3792,7 @@ public interface SpearPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RECORD_TYPE_FIELD__TYPE = eINSTANCE.getRecordTypeField_Type();
+    EReference FIELD_TYPE__TYPE = eINSTANCE.getFieldType_Type();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.EnumValueImpl <em>Enum Value</em>}' class.
@@ -4001,14 +4001,14 @@ public interface SpearPackage extends EPackage
     EAttribute ID_REF__NAME = eINSTANCE.getIdRef_Name();
 
     /**
-     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.RecordFieldExprImpl <em>Record Field Expr</em>}' class.
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.FieldExprImpl <em>Field Expr</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see com.rockwellcollins.spear.impl.RecordFieldExprImpl
-     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordFieldExpr()
+     * @see com.rockwellcollins.spear.impl.FieldExprImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFieldExpr()
      * @generated
      */
-    EClass RECORD_FIELD_EXPR = eINSTANCE.getRecordFieldExpr();
+    EClass FIELD_EXPR = eINSTANCE.getFieldExpr();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -4016,7 +4016,7 @@ public interface SpearPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute RECORD_FIELD_EXPR__NAME = eINSTANCE.getRecordFieldExpr_Name();
+    EAttribute FIELD_EXPR__NAME = eINSTANCE.getFieldExpr_Name();
 
     /**
      * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
@@ -4024,7 +4024,7 @@ public interface SpearPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RECORD_FIELD_EXPR__EXPR = eINSTANCE.getRecordFieldExpr_Expr();
+    EReference FIELD_EXPR__EXPR = eINSTANCE.getFieldExpr_Expr();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.BaseUnitImpl <em>Base Unit</em>}' class.

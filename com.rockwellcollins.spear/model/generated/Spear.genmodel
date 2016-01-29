@@ -45,9 +45,9 @@
     <genClasses ecoreClass="Spear.ecore#//TypeDef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//TypeDef/name"/>
     </genClasses>
-    <genClasses ecoreClass="Spear.ecore#//RecordTypeField">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//RecordTypeField/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//RecordTypeField/type"/>
+    <genClasses ecoreClass="Spear.ecore#//FieldType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//FieldType/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//FieldType/type"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//EnumValue"/>
     <genClasses ecoreClass="Spear.ecore#//Type"/>
@@ -79,9 +79,9 @@
     <genClasses ecoreClass="Spear.ecore#//IdRef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//IdRef/name"/>
     </genClasses>
-    <genClasses ecoreClass="Spear.ecore#//RecordFieldExpr">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//RecordFieldExpr/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//RecordFieldExpr/expr"/>
+    <genClasses ecoreClass="Spear.ecore#//FieldExpr">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//FieldExpr/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//FieldExpr/expr"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//BaseUnit"/>
     <genClasses ecoreClass="Spear.ecore#//DerivedUnit">

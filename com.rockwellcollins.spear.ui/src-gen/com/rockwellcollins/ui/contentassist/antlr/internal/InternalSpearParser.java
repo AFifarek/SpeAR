@@ -1170,23 +1170,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleTypeDef"
 
 
-    // $ANTLR start "entryRuleRecordTypeField"
-    // InternalSpear.g:397:1: entryRuleRecordTypeField : ruleRecordTypeField EOF ;
-    public final void entryRuleRecordTypeField() throws RecognitionException {
+    // $ANTLR start "entryRuleFieldType"
+    // InternalSpear.g:397:1: entryRuleFieldType : ruleFieldType EOF ;
+    public final void entryRuleFieldType() throws RecognitionException {
         try {
-            // InternalSpear.g:398:1: ( ruleRecordTypeField EOF )
-            // InternalSpear.g:399:1: ruleRecordTypeField EOF
+            // InternalSpear.g:398:1: ( ruleFieldType EOF )
+            // InternalSpear.g:399:1: ruleFieldType EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordTypeFieldRule()); 
+               before(grammarAccess.getFieldTypeRule()); 
             }
             pushFollow(FOLLOW_1);
-            ruleRecordTypeField();
+            ruleFieldType();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordTypeFieldRule()); 
+               after(grammarAccess.getFieldTypeRule()); 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return ;
 
@@ -1201,30 +1201,30 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleRecordTypeField"
+    // $ANTLR end "entryRuleFieldType"
 
 
-    // $ANTLR start "ruleRecordTypeField"
-    // InternalSpear.g:406:1: ruleRecordTypeField : ( ( rule__RecordTypeField__Group__0 ) ) ;
-    public final void ruleRecordTypeField() throws RecognitionException {
+    // $ANTLR start "ruleFieldType"
+    // InternalSpear.g:406:1: ruleFieldType : ( ( rule__FieldType__Group__0 ) ) ;
+    public final void ruleFieldType() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:410:2: ( ( ( rule__RecordTypeField__Group__0 ) ) )
-            // InternalSpear.g:411:1: ( ( rule__RecordTypeField__Group__0 ) )
+            // InternalSpear.g:410:2: ( ( ( rule__FieldType__Group__0 ) ) )
+            // InternalSpear.g:411:1: ( ( rule__FieldType__Group__0 ) )
             {
-            // InternalSpear.g:411:1: ( ( rule__RecordTypeField__Group__0 ) )
-            // InternalSpear.g:412:1: ( rule__RecordTypeField__Group__0 )
+            // InternalSpear.g:411:1: ( ( rule__FieldType__Group__0 ) )
+            // InternalSpear.g:412:1: ( rule__FieldType__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordTypeFieldAccess().getGroup()); 
+               before(grammarAccess.getFieldTypeAccess().getGroup()); 
             }
-            // InternalSpear.g:413:1: ( rule__RecordTypeField__Group__0 )
-            // InternalSpear.g:413:2: rule__RecordTypeField__Group__0
+            // InternalSpear.g:413:1: ( rule__FieldType__Group__0 )
+            // InternalSpear.g:413:2: rule__FieldType__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__RecordTypeField__Group__0();
+            rule__FieldType__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -1232,7 +1232,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordTypeFieldAccess().getGroup()); 
+               after(grammarAccess.getFieldTypeAccess().getGroup()); 
             }
 
             }
@@ -1252,7 +1252,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleRecordTypeField"
+    // $ANTLR end "ruleFieldType"
 
 
     // $ANTLR start "entryRuleEnumValue"
@@ -3289,23 +3289,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleLiteralExpr"
 
 
-    // $ANTLR start "entryRuleRecordFieldExpr"
-    // InternalSpear.g:1099:1: entryRuleRecordFieldExpr : ruleRecordFieldExpr EOF ;
-    public final void entryRuleRecordFieldExpr() throws RecognitionException {
+    // $ANTLR start "entryRuleFieldExpr"
+    // InternalSpear.g:1099:1: entryRuleFieldExpr : ruleFieldExpr EOF ;
+    public final void entryRuleFieldExpr() throws RecognitionException {
         try {
-            // InternalSpear.g:1100:1: ( ruleRecordFieldExpr EOF )
-            // InternalSpear.g:1101:1: ruleRecordFieldExpr EOF
+            // InternalSpear.g:1100:1: ( ruleFieldExpr EOF )
+            // InternalSpear.g:1101:1: ruleFieldExpr EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordFieldExprRule()); 
+               before(grammarAccess.getFieldExprRule()); 
             }
             pushFollow(FOLLOW_1);
-            ruleRecordFieldExpr();
+            ruleFieldExpr();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordFieldExprRule()); 
+               after(grammarAccess.getFieldExprRule()); 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return ;
 
@@ -3320,30 +3320,30 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleRecordFieldExpr"
+    // $ANTLR end "entryRuleFieldExpr"
 
 
-    // $ANTLR start "ruleRecordFieldExpr"
-    // InternalSpear.g:1108:1: ruleRecordFieldExpr : ( ( rule__RecordFieldExpr__Group__0 ) ) ;
-    public final void ruleRecordFieldExpr() throws RecognitionException {
+    // $ANTLR start "ruleFieldExpr"
+    // InternalSpear.g:1108:1: ruleFieldExpr : ( ( rule__FieldExpr__Group__0 ) ) ;
+    public final void ruleFieldExpr() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:1112:2: ( ( ( rule__RecordFieldExpr__Group__0 ) ) )
-            // InternalSpear.g:1113:1: ( ( rule__RecordFieldExpr__Group__0 ) )
+            // InternalSpear.g:1112:2: ( ( ( rule__FieldExpr__Group__0 ) ) )
+            // InternalSpear.g:1113:1: ( ( rule__FieldExpr__Group__0 ) )
             {
-            // InternalSpear.g:1113:1: ( ( rule__RecordFieldExpr__Group__0 ) )
-            // InternalSpear.g:1114:1: ( rule__RecordFieldExpr__Group__0 )
+            // InternalSpear.g:1113:1: ( ( rule__FieldExpr__Group__0 ) )
+            // InternalSpear.g:1114:1: ( rule__FieldExpr__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordFieldExprAccess().getGroup()); 
+               before(grammarAccess.getFieldExprAccess().getGroup()); 
             }
-            // InternalSpear.g:1115:1: ( rule__RecordFieldExpr__Group__0 )
-            // InternalSpear.g:1115:2: rule__RecordFieldExpr__Group__0
+            // InternalSpear.g:1115:1: ( rule__FieldExpr__Group__0 )
+            // InternalSpear.g:1115:2: rule__FieldExpr__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__RecordFieldExpr__Group__0();
+            rule__FieldExpr__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -3351,7 +3351,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordFieldExprAccess().getGroup()); 
+               after(grammarAccess.getFieldExprAccess().getGroup()); 
             }
 
             }
@@ -3371,7 +3371,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleRecordFieldExpr"
+    // $ANTLR end "ruleFieldExpr"
 
 
     // $ANTLR start "entryRuleBOOL"
@@ -16329,23 +16329,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TypeDef__Group_3_6__1__Impl"
 
 
-    // $ANTLR start "rule__RecordTypeField__Group__0"
-    // InternalSpear.g:5461:1: rule__RecordTypeField__Group__0 : rule__RecordTypeField__Group__0__Impl rule__RecordTypeField__Group__1 ;
-    public final void rule__RecordTypeField__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__FieldType__Group__0"
+    // InternalSpear.g:5461:1: rule__FieldType__Group__0 : rule__FieldType__Group__0__Impl rule__FieldType__Group__1 ;
+    public final void rule__FieldType__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:5465:1: ( rule__RecordTypeField__Group__0__Impl rule__RecordTypeField__Group__1 )
-            // InternalSpear.g:5466:2: rule__RecordTypeField__Group__0__Impl rule__RecordTypeField__Group__1
+            // InternalSpear.g:5465:1: ( rule__FieldType__Group__0__Impl rule__FieldType__Group__1 )
+            // InternalSpear.g:5466:2: rule__FieldType__Group__0__Impl rule__FieldType__Group__1
             {
             pushFollow(FOLLOW_29);
-            rule__RecordTypeField__Group__0__Impl();
+            rule__FieldType__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RecordTypeField__Group__1();
+            rule__FieldType__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -16364,30 +16364,30 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordTypeField__Group__0"
+    // $ANTLR end "rule__FieldType__Group__0"
 
 
-    // $ANTLR start "rule__RecordTypeField__Group__0__Impl"
-    // InternalSpear.g:5473:1: rule__RecordTypeField__Group__0__Impl : ( ( rule__RecordTypeField__NameAssignment_0 ) ) ;
-    public final void rule__RecordTypeField__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FieldType__Group__0__Impl"
+    // InternalSpear.g:5473:1: rule__FieldType__Group__0__Impl : ( ( rule__FieldType__NameAssignment_0 ) ) ;
+    public final void rule__FieldType__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:5477:1: ( ( ( rule__RecordTypeField__NameAssignment_0 ) ) )
-            // InternalSpear.g:5478:1: ( ( rule__RecordTypeField__NameAssignment_0 ) )
+            // InternalSpear.g:5477:1: ( ( ( rule__FieldType__NameAssignment_0 ) ) )
+            // InternalSpear.g:5478:1: ( ( rule__FieldType__NameAssignment_0 ) )
             {
-            // InternalSpear.g:5478:1: ( ( rule__RecordTypeField__NameAssignment_0 ) )
-            // InternalSpear.g:5479:1: ( rule__RecordTypeField__NameAssignment_0 )
+            // InternalSpear.g:5478:1: ( ( rule__FieldType__NameAssignment_0 ) )
+            // InternalSpear.g:5479:1: ( rule__FieldType__NameAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordTypeFieldAccess().getNameAssignment_0()); 
+               before(grammarAccess.getFieldTypeAccess().getNameAssignment_0()); 
             }
-            // InternalSpear.g:5480:1: ( rule__RecordTypeField__NameAssignment_0 )
-            // InternalSpear.g:5480:2: rule__RecordTypeField__NameAssignment_0
+            // InternalSpear.g:5480:1: ( rule__FieldType__NameAssignment_0 )
+            // InternalSpear.g:5480:2: rule__FieldType__NameAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__RecordTypeField__NameAssignment_0();
+            rule__FieldType__NameAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -16395,7 +16395,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordTypeFieldAccess().getNameAssignment_0()); 
+               after(grammarAccess.getFieldTypeAccess().getNameAssignment_0()); 
             }
 
             }
@@ -16415,26 +16415,26 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordTypeField__Group__0__Impl"
+    // $ANTLR end "rule__FieldType__Group__0__Impl"
 
 
-    // $ANTLR start "rule__RecordTypeField__Group__1"
-    // InternalSpear.g:5490:1: rule__RecordTypeField__Group__1 : rule__RecordTypeField__Group__1__Impl rule__RecordTypeField__Group__2 ;
-    public final void rule__RecordTypeField__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__FieldType__Group__1"
+    // InternalSpear.g:5490:1: rule__FieldType__Group__1 : rule__FieldType__Group__1__Impl rule__FieldType__Group__2 ;
+    public final void rule__FieldType__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:5494:1: ( rule__RecordTypeField__Group__1__Impl rule__RecordTypeField__Group__2 )
-            // InternalSpear.g:5495:2: rule__RecordTypeField__Group__1__Impl rule__RecordTypeField__Group__2
+            // InternalSpear.g:5494:1: ( rule__FieldType__Group__1__Impl rule__FieldType__Group__2 )
+            // InternalSpear.g:5495:2: rule__FieldType__Group__1__Impl rule__FieldType__Group__2
             {
             pushFollow(FOLLOW_20);
-            rule__RecordTypeField__Group__1__Impl();
+            rule__FieldType__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RecordTypeField__Group__2();
+            rule__FieldType__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -16453,12 +16453,12 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordTypeField__Group__1"
+    // $ANTLR end "rule__FieldType__Group__1"
 
 
-    // $ANTLR start "rule__RecordTypeField__Group__1__Impl"
-    // InternalSpear.g:5502:1: rule__RecordTypeField__Group__1__Impl : ( ':' ) ;
-    public final void rule__RecordTypeField__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FieldType__Group__1__Impl"
+    // InternalSpear.g:5502:1: rule__FieldType__Group__1__Impl : ( ':' ) ;
+    public final void rule__FieldType__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -16470,11 +16470,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:5508:1: ':'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordTypeFieldAccess().getColonKeyword_1()); 
+               before(grammarAccess.getFieldTypeAccess().getColonKeyword_1()); 
             }
             match(input,11,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordTypeFieldAccess().getColonKeyword_1()); 
+               after(grammarAccess.getFieldTypeAccess().getColonKeyword_1()); 
             }
 
             }
@@ -16494,21 +16494,21 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordTypeField__Group__1__Impl"
+    // $ANTLR end "rule__FieldType__Group__1__Impl"
 
 
-    // $ANTLR start "rule__RecordTypeField__Group__2"
-    // InternalSpear.g:5521:1: rule__RecordTypeField__Group__2 : rule__RecordTypeField__Group__2__Impl ;
-    public final void rule__RecordTypeField__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__FieldType__Group__2"
+    // InternalSpear.g:5521:1: rule__FieldType__Group__2 : rule__FieldType__Group__2__Impl ;
+    public final void rule__FieldType__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:5525:1: ( rule__RecordTypeField__Group__2__Impl )
-            // InternalSpear.g:5526:2: rule__RecordTypeField__Group__2__Impl
+            // InternalSpear.g:5525:1: ( rule__FieldType__Group__2__Impl )
+            // InternalSpear.g:5526:2: rule__FieldType__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__RecordTypeField__Group__2__Impl();
+            rule__FieldType__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -16527,30 +16527,30 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordTypeField__Group__2"
+    // $ANTLR end "rule__FieldType__Group__2"
 
 
-    // $ANTLR start "rule__RecordTypeField__Group__2__Impl"
-    // InternalSpear.g:5532:1: rule__RecordTypeField__Group__2__Impl : ( ( rule__RecordTypeField__TypeAssignment_2 ) ) ;
-    public final void rule__RecordTypeField__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FieldType__Group__2__Impl"
+    // InternalSpear.g:5532:1: rule__FieldType__Group__2__Impl : ( ( rule__FieldType__TypeAssignment_2 ) ) ;
+    public final void rule__FieldType__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:5536:1: ( ( ( rule__RecordTypeField__TypeAssignment_2 ) ) )
-            // InternalSpear.g:5537:1: ( ( rule__RecordTypeField__TypeAssignment_2 ) )
+            // InternalSpear.g:5536:1: ( ( ( rule__FieldType__TypeAssignment_2 ) ) )
+            // InternalSpear.g:5537:1: ( ( rule__FieldType__TypeAssignment_2 ) )
             {
-            // InternalSpear.g:5537:1: ( ( rule__RecordTypeField__TypeAssignment_2 ) )
-            // InternalSpear.g:5538:1: ( rule__RecordTypeField__TypeAssignment_2 )
+            // InternalSpear.g:5537:1: ( ( rule__FieldType__TypeAssignment_2 ) )
+            // InternalSpear.g:5538:1: ( rule__FieldType__TypeAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordTypeFieldAccess().getTypeAssignment_2()); 
+               before(grammarAccess.getFieldTypeAccess().getTypeAssignment_2()); 
             }
-            // InternalSpear.g:5539:1: ( rule__RecordTypeField__TypeAssignment_2 )
-            // InternalSpear.g:5539:2: rule__RecordTypeField__TypeAssignment_2
+            // InternalSpear.g:5539:1: ( rule__FieldType__TypeAssignment_2 )
+            // InternalSpear.g:5539:2: rule__FieldType__TypeAssignment_2
             {
             pushFollow(FOLLOW_2);
-            rule__RecordTypeField__TypeAssignment_2();
+            rule__FieldType__TypeAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -16558,7 +16558,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordTypeFieldAccess().getTypeAssignment_2()); 
+               after(grammarAccess.getFieldTypeAccess().getTypeAssignment_2()); 
             }
 
             }
@@ -16578,7 +16578,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordTypeField__Group__2__Impl"
+    // $ANTLR end "rule__FieldType__Group__2__Impl"
 
 
     // $ANTLR start "rule__Type__Group_0__0"
@@ -35947,23 +35947,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__LiteralExpr__Group_2__2__Impl"
 
 
-    // $ANTLR start "rule__RecordFieldExpr__Group__0"
-    // InternalSpear.g:12802:1: rule__RecordFieldExpr__Group__0 : rule__RecordFieldExpr__Group__0__Impl rule__RecordFieldExpr__Group__1 ;
-    public final void rule__RecordFieldExpr__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__FieldExpr__Group__0"
+    // InternalSpear.g:12802:1: rule__FieldExpr__Group__0 : rule__FieldExpr__Group__0__Impl rule__FieldExpr__Group__1 ;
+    public final void rule__FieldExpr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12806:1: ( rule__RecordFieldExpr__Group__0__Impl rule__RecordFieldExpr__Group__1 )
-            // InternalSpear.g:12807:2: rule__RecordFieldExpr__Group__0__Impl rule__RecordFieldExpr__Group__1
+            // InternalSpear.g:12806:1: ( rule__FieldExpr__Group__0__Impl rule__FieldExpr__Group__1 )
+            // InternalSpear.g:12807:2: rule__FieldExpr__Group__0__Impl rule__FieldExpr__Group__1
             {
             pushFollow(FOLLOW_33);
-            rule__RecordFieldExpr__Group__0__Impl();
+            rule__FieldExpr__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RecordFieldExpr__Group__1();
+            rule__FieldExpr__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -35982,30 +35982,30 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordFieldExpr__Group__0"
+    // $ANTLR end "rule__FieldExpr__Group__0"
 
 
-    // $ANTLR start "rule__RecordFieldExpr__Group__0__Impl"
-    // InternalSpear.g:12814:1: rule__RecordFieldExpr__Group__0__Impl : ( ( rule__RecordFieldExpr__NameAssignment_0 ) ) ;
-    public final void rule__RecordFieldExpr__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FieldExpr__Group__0__Impl"
+    // InternalSpear.g:12814:1: rule__FieldExpr__Group__0__Impl : ( ( rule__FieldExpr__NameAssignment_0 ) ) ;
+    public final void rule__FieldExpr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12818:1: ( ( ( rule__RecordFieldExpr__NameAssignment_0 ) ) )
-            // InternalSpear.g:12819:1: ( ( rule__RecordFieldExpr__NameAssignment_0 ) )
+            // InternalSpear.g:12818:1: ( ( ( rule__FieldExpr__NameAssignment_0 ) ) )
+            // InternalSpear.g:12819:1: ( ( rule__FieldExpr__NameAssignment_0 ) )
             {
-            // InternalSpear.g:12819:1: ( ( rule__RecordFieldExpr__NameAssignment_0 ) )
-            // InternalSpear.g:12820:1: ( rule__RecordFieldExpr__NameAssignment_0 )
+            // InternalSpear.g:12819:1: ( ( rule__FieldExpr__NameAssignment_0 ) )
+            // InternalSpear.g:12820:1: ( rule__FieldExpr__NameAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordFieldExprAccess().getNameAssignment_0()); 
+               before(grammarAccess.getFieldExprAccess().getNameAssignment_0()); 
             }
-            // InternalSpear.g:12821:1: ( rule__RecordFieldExpr__NameAssignment_0 )
-            // InternalSpear.g:12821:2: rule__RecordFieldExpr__NameAssignment_0
+            // InternalSpear.g:12821:1: ( rule__FieldExpr__NameAssignment_0 )
+            // InternalSpear.g:12821:2: rule__FieldExpr__NameAssignment_0
             {
             pushFollow(FOLLOW_2);
-            rule__RecordFieldExpr__NameAssignment_0();
+            rule__FieldExpr__NameAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -36013,7 +36013,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordFieldExprAccess().getNameAssignment_0()); 
+               after(grammarAccess.getFieldExprAccess().getNameAssignment_0()); 
             }
 
             }
@@ -36033,26 +36033,26 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordFieldExpr__Group__0__Impl"
+    // $ANTLR end "rule__FieldExpr__Group__0__Impl"
 
 
-    // $ANTLR start "rule__RecordFieldExpr__Group__1"
-    // InternalSpear.g:12831:1: rule__RecordFieldExpr__Group__1 : rule__RecordFieldExpr__Group__1__Impl rule__RecordFieldExpr__Group__2 ;
-    public final void rule__RecordFieldExpr__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__FieldExpr__Group__1"
+    // InternalSpear.g:12831:1: rule__FieldExpr__Group__1 : rule__FieldExpr__Group__1__Impl rule__FieldExpr__Group__2 ;
+    public final void rule__FieldExpr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12835:1: ( rule__RecordFieldExpr__Group__1__Impl rule__RecordFieldExpr__Group__2 )
-            // InternalSpear.g:12836:2: rule__RecordFieldExpr__Group__1__Impl rule__RecordFieldExpr__Group__2
+            // InternalSpear.g:12835:1: ( rule__FieldExpr__Group__1__Impl rule__FieldExpr__Group__2 )
+            // InternalSpear.g:12836:2: rule__FieldExpr__Group__1__Impl rule__FieldExpr__Group__2
             {
             pushFollow(FOLLOW_34);
-            rule__RecordFieldExpr__Group__1__Impl();
+            rule__FieldExpr__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RecordFieldExpr__Group__2();
+            rule__FieldExpr__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -36071,12 +36071,12 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordFieldExpr__Group__1"
+    // $ANTLR end "rule__FieldExpr__Group__1"
 
 
-    // $ANTLR start "rule__RecordFieldExpr__Group__1__Impl"
-    // InternalSpear.g:12843:1: rule__RecordFieldExpr__Group__1__Impl : ( '=' ) ;
-    public final void rule__RecordFieldExpr__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FieldExpr__Group__1__Impl"
+    // InternalSpear.g:12843:1: rule__FieldExpr__Group__1__Impl : ( '=' ) ;
+    public final void rule__FieldExpr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -36088,11 +36088,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12849:1: '='
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordFieldExprAccess().getEqualsSignKeyword_1()); 
+               before(grammarAccess.getFieldExprAccess().getEqualsSignKeyword_1()); 
             }
             match(input,72,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordFieldExprAccess().getEqualsSignKeyword_1()); 
+               after(grammarAccess.getFieldExprAccess().getEqualsSignKeyword_1()); 
             }
 
             }
@@ -36112,21 +36112,21 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordFieldExpr__Group__1__Impl"
+    // $ANTLR end "rule__FieldExpr__Group__1__Impl"
 
 
-    // $ANTLR start "rule__RecordFieldExpr__Group__2"
-    // InternalSpear.g:12862:1: rule__RecordFieldExpr__Group__2 : rule__RecordFieldExpr__Group__2__Impl ;
-    public final void rule__RecordFieldExpr__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__FieldExpr__Group__2"
+    // InternalSpear.g:12862:1: rule__FieldExpr__Group__2 : rule__FieldExpr__Group__2__Impl ;
+    public final void rule__FieldExpr__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12866:1: ( rule__RecordFieldExpr__Group__2__Impl )
-            // InternalSpear.g:12867:2: rule__RecordFieldExpr__Group__2__Impl
+            // InternalSpear.g:12866:1: ( rule__FieldExpr__Group__2__Impl )
+            // InternalSpear.g:12867:2: rule__FieldExpr__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__RecordFieldExpr__Group__2__Impl();
+            rule__FieldExpr__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -36145,30 +36145,30 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordFieldExpr__Group__2"
+    // $ANTLR end "rule__FieldExpr__Group__2"
 
 
-    // $ANTLR start "rule__RecordFieldExpr__Group__2__Impl"
-    // InternalSpear.g:12873:1: rule__RecordFieldExpr__Group__2__Impl : ( ( rule__RecordFieldExpr__ExprAssignment_2 ) ) ;
-    public final void rule__RecordFieldExpr__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FieldExpr__Group__2__Impl"
+    // InternalSpear.g:12873:1: rule__FieldExpr__Group__2__Impl : ( ( rule__FieldExpr__ExprAssignment_2 ) ) ;
+    public final void rule__FieldExpr__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:12877:1: ( ( ( rule__RecordFieldExpr__ExprAssignment_2 ) ) )
-            // InternalSpear.g:12878:1: ( ( rule__RecordFieldExpr__ExprAssignment_2 ) )
+            // InternalSpear.g:12877:1: ( ( ( rule__FieldExpr__ExprAssignment_2 ) ) )
+            // InternalSpear.g:12878:1: ( ( rule__FieldExpr__ExprAssignment_2 ) )
             {
-            // InternalSpear.g:12878:1: ( ( rule__RecordFieldExpr__ExprAssignment_2 ) )
-            // InternalSpear.g:12879:1: ( rule__RecordFieldExpr__ExprAssignment_2 )
+            // InternalSpear.g:12878:1: ( ( rule__FieldExpr__ExprAssignment_2 ) )
+            // InternalSpear.g:12879:1: ( rule__FieldExpr__ExprAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordFieldExprAccess().getExprAssignment_2()); 
+               before(grammarAccess.getFieldExprAccess().getExprAssignment_2()); 
             }
-            // InternalSpear.g:12880:1: ( rule__RecordFieldExpr__ExprAssignment_2 )
-            // InternalSpear.g:12880:2: rule__RecordFieldExpr__ExprAssignment_2
+            // InternalSpear.g:12880:1: ( rule__FieldExpr__ExprAssignment_2 )
+            // InternalSpear.g:12880:2: rule__FieldExpr__ExprAssignment_2
             {
             pushFollow(FOLLOW_2);
-            rule__RecordFieldExpr__ExprAssignment_2();
+            rule__FieldExpr__ExprAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -36176,7 +36176,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordFieldExprAccess().getExprAssignment_2()); 
+               after(grammarAccess.getFieldExprAccess().getExprAssignment_2()); 
             }
 
             }
@@ -36196,7 +36196,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordFieldExpr__Group__2__Impl"
+    // $ANTLR end "rule__FieldExpr__Group__2__Impl"
 
 
     // $ANTLR start "rule__REAL__Group__0"
@@ -37950,28 +37950,28 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__FieldsAssignment_1_5"
-    // InternalSpear.g:13525:1: rule__TypeDef__FieldsAssignment_1_5 : ( ruleRecordTypeField ) ;
+    // InternalSpear.g:13525:1: rule__TypeDef__FieldsAssignment_1_5 : ( ruleFieldType ) ;
     public final void rule__TypeDef__FieldsAssignment_1_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13529:1: ( ( ruleRecordTypeField ) )
-            // InternalSpear.g:13530:1: ( ruleRecordTypeField )
+            // InternalSpear.g:13529:1: ( ( ruleFieldType ) )
+            // InternalSpear.g:13530:1: ( ruleFieldType )
             {
-            // InternalSpear.g:13530:1: ( ruleRecordTypeField )
-            // InternalSpear.g:13531:1: ruleRecordTypeField
+            // InternalSpear.g:13530:1: ( ruleFieldType )
+            // InternalSpear.g:13531:1: ruleFieldType
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeDefAccess().getFieldsRecordTypeFieldParserRuleCall_1_5_0()); 
+               before(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_5_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleRecordTypeField();
+            ruleFieldType();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeDefAccess().getFieldsRecordTypeFieldParserRuleCall_1_5_0()); 
+               after(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_5_0()); 
             }
 
             }
@@ -37995,28 +37995,28 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypeDef__FieldsAssignment_1_6_1"
-    // InternalSpear.g:13540:1: rule__TypeDef__FieldsAssignment_1_6_1 : ( ruleRecordTypeField ) ;
+    // InternalSpear.g:13540:1: rule__TypeDef__FieldsAssignment_1_6_1 : ( ruleFieldType ) ;
     public final void rule__TypeDef__FieldsAssignment_1_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:13544:1: ( ( ruleRecordTypeField ) )
-            // InternalSpear.g:13545:1: ( ruleRecordTypeField )
+            // InternalSpear.g:13544:1: ( ( ruleFieldType ) )
+            // InternalSpear.g:13545:1: ( ruleFieldType )
             {
-            // InternalSpear.g:13545:1: ( ruleRecordTypeField )
-            // InternalSpear.g:13546:1: ruleRecordTypeField
+            // InternalSpear.g:13545:1: ( ruleFieldType )
+            // InternalSpear.g:13546:1: ruleFieldType
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypeDefAccess().getFieldsRecordTypeFieldParserRuleCall_1_6_1_0()); 
+               before(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_6_1_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleRecordTypeField();
+            ruleFieldType();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypeDefAccess().getFieldsRecordTypeFieldParserRuleCall_1_6_1_0()); 
+               after(grammarAccess.getTypeDefAccess().getFieldsFieldTypeParserRuleCall_1_6_1_0()); 
             }
 
             }
@@ -38297,9 +38297,9 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TypeDef__ValuesAssignment_3_6_1"
 
 
-    // $ANTLR start "rule__RecordTypeField__NameAssignment_0"
-    // InternalSpear.g:13645:1: rule__RecordTypeField__NameAssignment_0 : ( RULE_ID ) ;
-    public final void rule__RecordTypeField__NameAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__FieldType__NameAssignment_0"
+    // InternalSpear.g:13645:1: rule__FieldType__NameAssignment_0 : ( RULE_ID ) ;
+    public final void rule__FieldType__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -38311,11 +38311,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:13651:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordTypeFieldAccess().getNameIDTerminalRuleCall_0_0()); 
+               before(grammarAccess.getFieldTypeAccess().getNameIDTerminalRuleCall_0_0()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordTypeFieldAccess().getNameIDTerminalRuleCall_0_0()); 
+               after(grammarAccess.getFieldTypeAccess().getNameIDTerminalRuleCall_0_0()); 
             }
 
             }
@@ -38335,12 +38335,12 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordTypeField__NameAssignment_0"
+    // $ANTLR end "rule__FieldType__NameAssignment_0"
 
 
-    // $ANTLR start "rule__RecordTypeField__TypeAssignment_2"
-    // InternalSpear.g:13660:1: rule__RecordTypeField__TypeAssignment_2 : ( ruleType ) ;
-    public final void rule__RecordTypeField__TypeAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__FieldType__TypeAssignment_2"
+    // InternalSpear.g:13660:1: rule__FieldType__TypeAssignment_2 : ( ruleType ) ;
+    public final void rule__FieldType__TypeAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -38352,7 +38352,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:13666:1: ruleType
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordTypeFieldAccess().getTypeTypeParserRuleCall_2_0()); 
+               before(grammarAccess.getFieldTypeAccess().getTypeTypeParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleType();
@@ -38360,7 +38360,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordTypeFieldAccess().getTypeTypeParserRuleCall_2_0()); 
+               after(grammarAccess.getFieldTypeAccess().getTypeTypeParserRuleCall_2_0()); 
             }
 
             }
@@ -38380,7 +38380,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordTypeField__TypeAssignment_2"
+    // $ANTLR end "rule__FieldType__TypeAssignment_2"
 
 
     // $ANTLR start "rule__EnumValue__NameAssignment"
@@ -40086,23 +40086,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:14256:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprCrossReference_1_0_1_0()); 
+               before(grammarAccess.getAccessExprAccess().getFieldFieldExprCrossReference_1_0_1_0()); 
             }
             // InternalSpear.g:14257:1: ( RULE_ID )
             // InternalSpear.g:14258:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_0_1_0_1()); 
+               before(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_0_1_0_1()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_0_1_0_1()); 
+               after(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_0_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprCrossReference_1_0_1_0()); 
+               after(grammarAccess.getAccessExprAccess().getFieldFieldExprCrossReference_1_0_1_0()); 
             }
 
             }
@@ -40139,23 +40139,23 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:14275:1: ( RULE_ID )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprCrossReference_1_1_0_0_2_0()); 
+               before(grammarAccess.getAccessExprAccess().getFieldFieldExprCrossReference_1_1_0_0_2_0()); 
             }
             // InternalSpear.g:14276:1: ( RULE_ID )
             // InternalSpear.g:14277:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1()); 
+               before(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1()); 
+               after(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprCrossReference_1_1_0_0_2_0()); 
+               after(grammarAccess.getAccessExprAccess().getFieldFieldExprCrossReference_1_1_0_0_2_0()); 
             }
 
             }
@@ -40931,28 +40931,28 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__FieldExprsAssignment_7_4"
-    // InternalSpear.g:14544:1: rule__AtomicExpr__FieldExprsAssignment_7_4 : ( ruleRecordFieldExpr ) ;
+    // InternalSpear.g:14544:1: rule__AtomicExpr__FieldExprsAssignment_7_4 : ( ruleFieldExpr ) ;
     public final void rule__AtomicExpr__FieldExprsAssignment_7_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14548:1: ( ( ruleRecordFieldExpr ) )
-            // InternalSpear.g:14549:1: ( ruleRecordFieldExpr )
+            // InternalSpear.g:14548:1: ( ( ruleFieldExpr ) )
+            // InternalSpear.g:14549:1: ( ruleFieldExpr )
             {
-            // InternalSpear.g:14549:1: ( ruleRecordFieldExpr )
-            // InternalSpear.g:14550:1: ruleRecordFieldExpr
+            // InternalSpear.g:14549:1: ( ruleFieldExpr )
+            // InternalSpear.g:14550:1: ruleFieldExpr
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAtomicExprAccess().getFieldExprsRecordFieldExprParserRuleCall_7_4_0()); 
+               before(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_7_4_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleRecordFieldExpr();
+            ruleFieldExpr();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAtomicExprAccess().getFieldExprsRecordFieldExprParserRuleCall_7_4_0()); 
+               after(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_7_4_0()); 
             }
 
             }
@@ -40976,28 +40976,28 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__AtomicExpr__FieldExprsAssignment_7_5_1"
-    // InternalSpear.g:14559:1: rule__AtomicExpr__FieldExprsAssignment_7_5_1 : ( ruleRecordFieldExpr ) ;
+    // InternalSpear.g:14559:1: rule__AtomicExpr__FieldExprsAssignment_7_5_1 : ( ruleFieldExpr ) ;
     public final void rule__AtomicExpr__FieldExprsAssignment_7_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:14563:1: ( ( ruleRecordFieldExpr ) )
-            // InternalSpear.g:14564:1: ( ruleRecordFieldExpr )
+            // InternalSpear.g:14563:1: ( ( ruleFieldExpr ) )
+            // InternalSpear.g:14564:1: ( ruleFieldExpr )
             {
-            // InternalSpear.g:14564:1: ( ruleRecordFieldExpr )
-            // InternalSpear.g:14565:1: ruleRecordFieldExpr
+            // InternalSpear.g:14564:1: ( ruleFieldExpr )
+            // InternalSpear.g:14565:1: ruleFieldExpr
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getAtomicExprAccess().getFieldExprsRecordFieldExprParserRuleCall_7_5_1_0()); 
+               before(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_7_5_1_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleRecordFieldExpr();
+            ruleFieldExpr();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getAtomicExprAccess().getFieldExprsRecordFieldExprParserRuleCall_7_5_1_0()); 
+               after(grammarAccess.getAtomicExprAccess().getFieldExprsFieldExprParserRuleCall_7_5_1_0()); 
             }
 
             }
@@ -41686,9 +41686,9 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__LiteralExpr__UnitAssignment_2_2"
 
 
-    // $ANTLR start "rule__RecordFieldExpr__NameAssignment_0"
-    // InternalSpear.g:14804:1: rule__RecordFieldExpr__NameAssignment_0 : ( RULE_ID ) ;
-    public final void rule__RecordFieldExpr__NameAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__FieldExpr__NameAssignment_0"
+    // InternalSpear.g:14804:1: rule__FieldExpr__NameAssignment_0 : ( RULE_ID ) ;
+    public final void rule__FieldExpr__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -41700,11 +41700,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:14810:1: RULE_ID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordFieldExprAccess().getNameIDTerminalRuleCall_0_0()); 
+               before(grammarAccess.getFieldExprAccess().getNameIDTerminalRuleCall_0_0()); 
             }
             match(input,RULE_ID,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordFieldExprAccess().getNameIDTerminalRuleCall_0_0()); 
+               after(grammarAccess.getFieldExprAccess().getNameIDTerminalRuleCall_0_0()); 
             }
 
             }
@@ -41724,12 +41724,12 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordFieldExpr__NameAssignment_0"
+    // $ANTLR end "rule__FieldExpr__NameAssignment_0"
 
 
-    // $ANTLR start "rule__RecordFieldExpr__ExprAssignment_2"
-    // InternalSpear.g:14819:1: rule__RecordFieldExpr__ExprAssignment_2 : ( ruleExpr ) ;
-    public final void rule__RecordFieldExpr__ExprAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__FieldExpr__ExprAssignment_2"
+    // InternalSpear.g:14819:1: rule__FieldExpr__ExprAssignment_2 : ( ruleExpr ) ;
+    public final void rule__FieldExpr__ExprAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -41741,7 +41741,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:14825:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRecordFieldExprAccess().getExprExprParserRuleCall_2_0()); 
+               before(grammarAccess.getFieldExprAccess().getExprExprParserRuleCall_2_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleExpr();
@@ -41749,7 +41749,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRecordFieldExprAccess().getExprExprParserRuleCall_2_0()); 
+               after(grammarAccess.getFieldExprAccess().getExprExprParserRuleCall_2_0()); 
             }
 
             }
@@ -41769,7 +41769,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RecordFieldExpr__ExprAssignment_2"
+    // $ANTLR end "rule__FieldExpr__ExprAssignment_2"
 
     // $ANTLR start synpred94_InternalSpear
     public final void synpred94_InternalSpear_fragment() throws RecognitionException {   

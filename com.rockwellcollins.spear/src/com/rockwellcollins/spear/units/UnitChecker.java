@@ -23,6 +23,8 @@ import com.rockwellcollins.spear.DerivedUnit;
 import com.rockwellcollins.spear.EnumType;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.FieldExpr;
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IdRef;
@@ -37,9 +39,7 @@ import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordFieldExpr;
 import com.rockwellcollins.spear.RecordType;
-import com.rockwellcollins.spear.RecordTypeField;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
@@ -193,7 +193,7 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 	@Override
 	public SpearUnit caseRecordType(RecordType rt) {
 		Map<String,SpearUnit> fields = new HashMap<>();
-		for(RecordTypeField rtf : rt.getFields()) {
+		for(FieldType rtf : rt.getFields()) {
 			fields.put(rtf.getName(), doSwitch(rtf.getType()));
 		}
 		return new RecordUnit(rt.getName(),fields);
@@ -384,7 +384,7 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 	@Override
 	public SpearUnit caseRecordExpr(RecordExpr re) {
 		Map<String,SpearUnit> fields = new HashMap<>();
-		for(RecordFieldExpr rfe : re.getFieldExprs()) {
+		for(FieldExpr rfe : re.getFieldExprs()) {
 			fields.put(rfe.getName(), doSwitch(rfe.getExpr()));
 		}
 		

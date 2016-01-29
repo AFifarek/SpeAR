@@ -21,6 +21,8 @@ import com.rockwellcollins.spear.DerivedUnit;
 import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.EnumType;
 import com.rockwellcollins.spear.EnumValue;
+import com.rockwellcollins.spear.FieldExpr;
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
@@ -39,9 +41,7 @@ import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordFieldExpr;
 import com.rockwellcollins.spear.RecordType;
-import com.rockwellcollins.spear.RecordTypeField;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
@@ -123,6 +123,12 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.ENUM_VALUE:
 				sequence_EnumValue(context, (EnumValue) semanticObject); 
 				return; 
+			case SpearPackage.FIELD_EXPR:
+				sequence_FieldExpr(context, (FieldExpr) semanticObject); 
+				return; 
+			case SpearPackage.FIELD_TYPE:
+				sequence_FieldType(context, (FieldType) semanticObject); 
+				return; 
 			case SpearPackage.FORMAL_CONSTRAINT:
 				sequence_FormalConstraint(context, (FormalConstraint) semanticObject); 
 				return; 
@@ -177,14 +183,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.RECORD_EXPR:
 				sequence_AtomicExpr(context, (RecordExpr) semanticObject); 
 				return; 
-			case SpearPackage.RECORD_FIELD_EXPR:
-				sequence_RecordFieldExpr(context, (RecordFieldExpr) semanticObject); 
-				return; 
 			case SpearPackage.RECORD_TYPE:
 				sequence_TypeDef(context, (RecordType) semanticObject); 
-				return; 
-			case SpearPackage.RECORD_TYPE_FIELD:
-				sequence_RecordTypeField(context, (RecordTypeField) semanticObject); 
 				return; 
 			case SpearPackage.RECORD_UPDATE_EXPR:
 				sequence_AccessExpr(context, (RecordUpdateExpr) semanticObject); 
@@ -329,7 +329,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns RecordAccessExpr
 	 *
 	 * Constraint:
-	 *     (record=AccessExpr_RecordAccessExpr_1_0_0_0_0 field=[RecordFieldExpr|ID])
+	 *     (record=AccessExpr_RecordAccessExpr_1_0_0_0_0 field=[FieldExpr|ID])
 	 */
 	protected void sequence_AccessExpr(ISerializationContext context, RecordAccessExpr semanticObject) {
 		if (errorAcceptor != null) {
@@ -340,7 +340,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAccessExprAccess().getRecordAccessExprRecordAction_1_0_0_0_0(), semanticObject.getRecord());
-		feeder.accept(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_0_1_0_1(), semanticObject.getField());
+		feeder.accept(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_0_1_0_1(), semanticObject.getField());
 		feeder.finish();
 	}
 	
@@ -373,7 +373,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns RecordUpdateExpr
 	 *
 	 * Constraint:
-	 *     (record=AccessExpr_RecordUpdateExpr_1_1_0_0_0 field=[RecordFieldExpr|ID] value=Expr)
+	 *     (record=AccessExpr_RecordUpdateExpr_1_1_0_0_0 field=[FieldExpr|ID] value=Expr)
 	 */
 	protected void sequence_AccessExpr(ISerializationContext context, RecordUpdateExpr semanticObject) {
 		if (errorAcceptor != null) {
@@ -386,7 +386,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAccessExprAccess().getRecordUpdateExprRecordAction_1_1_0_0_0(), semanticObject.getRecord());
-		feeder.accept(grammarAccess.getAccessExprAccess().getFieldRecordFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1(), semanticObject.getField());
+		feeder.accept(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1(), semanticObject.getField());
 		feeder.accept(grammarAccess.getAccessExprAccess().getValueExprParserRuleCall_1_1_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
@@ -715,7 +715,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns RecordExpr
 	 *
 	 * Constraint:
-	 *     (type=[RecordType|ID] fieldExprs+=RecordFieldExpr fieldExprs+=RecordFieldExpr*)
+	 *     (type=[RecordType|ID] fieldExprs+=FieldExpr fieldExprs+=FieldExpr*)
 	 */
 	protected void sequence_AtomicExpr(ISerializationContext context, RecordExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -907,6 +907,48 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getEnumValueAccess().getNameIDTerminalRuleCall_0(), semanticObject.getName());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FieldExpr returns FieldExpr
+	 *
+	 * Constraint:
+	 *     (name=ID expr=Expr)
+	 */
+	protected void sequence_FieldExpr(ISerializationContext context, FieldExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.FIELD_EXPR__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.FIELD_EXPR__NAME));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.FIELD_EXPR__EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.FIELD_EXPR__EXPR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFieldExprAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getFieldExprAccess().getExprExprParserRuleCall_2_0(), semanticObject.getExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     FieldType returns FieldType
+	 *
+	 * Constraint:
+	 *     (name=ID type=Type)
+	 */
+	protected void sequence_FieldType(ISerializationContext context, FieldType semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.FIELD_TYPE__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.FIELD_TYPE__NAME));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.FIELD_TYPE__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.FIELD_TYPE__TYPE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFieldTypeAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getFieldTypeAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
 		feeder.finish();
 	}
 	
@@ -1151,48 +1193,6 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     RecordFieldExpr returns RecordFieldExpr
-	 *
-	 * Constraint:
-	 *     (name=ID expr=Expr)
-	 */
-	protected void sequence_RecordFieldExpr(ISerializationContext context, RecordFieldExpr semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_FIELD_EXPR__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_FIELD_EXPR__NAME));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_FIELD_EXPR__EXPR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_FIELD_EXPR__EXPR));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRecordFieldExprAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRecordFieldExprAccess().getExprExprParserRuleCall_2_0(), semanticObject.getExpr());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     RecordTypeField returns RecordTypeField
-	 *
-	 * Constraint:
-	 *     (name=ID type=Type)
-	 */
-	protected void sequence_RecordTypeField(ISerializationContext context, RecordTypeField semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_TYPE_FIELD__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_TYPE_FIELD__NAME));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.RECORD_TYPE_FIELD__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.RECORD_TYPE_FIELD__TYPE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRecordTypeFieldAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRecordTypeFieldAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     File returns Specification
 	 *     Specification returns Specification
 	 *
@@ -1270,7 +1270,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     TypeDef returns RecordType
 	 *
 	 * Constraint:
-	 *     (name=ID fields+=RecordTypeField fields+=RecordTypeField*)
+	 *     (name=ID fields+=FieldType fields+=FieldType*)
 	 */
 	protected void sequence_TypeDef(ISerializationContext context, RecordType semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

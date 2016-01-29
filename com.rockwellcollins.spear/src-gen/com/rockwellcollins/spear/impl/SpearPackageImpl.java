@@ -20,6 +20,8 @@ import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.EnumType;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.FieldExpr;
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
@@ -41,9 +43,7 @@ import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordFieldExpr;
 import com.rockwellcollins.spear.RecordType;
-import com.rockwellcollins.spear.RecordTypeField;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.SpearPackage;
@@ -141,7 +141,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass recordTypeFieldEClass = null;
+  private EClass fieldTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -225,7 +225,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass recordFieldExprEClass = null;
+  private EClass fieldExprEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -812,9 +812,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getRecordTypeField()
+  public EClass getFieldType()
   {
-    return recordTypeFieldEClass;
+    return fieldTypeEClass;
   }
 
   /**
@@ -822,9 +822,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getRecordTypeField_Name()
+  public EAttribute getFieldType_Name()
   {
-    return (EAttribute)recordTypeFieldEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)fieldTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -832,9 +832,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRecordTypeField_Type()
+  public EReference getFieldType_Type()
   {
-    return (EReference)recordTypeFieldEClass.getEStructuralFeatures().get(1);
+    return (EReference)fieldTypeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1072,9 +1072,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getRecordFieldExpr()
+  public EClass getFieldExpr()
   {
-    return recordFieldExprEClass;
+    return fieldExprEClass;
   }
 
   /**
@@ -1082,9 +1082,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getRecordFieldExpr_Name()
+  public EAttribute getFieldExpr_Name()
   {
-    return (EAttribute)recordFieldExprEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)fieldExprEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1092,9 +1092,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRecordFieldExpr_Expr()
+  public EReference getFieldExpr_Expr()
   {
-    return (EReference)recordFieldExprEClass.getEStructuralFeatures().get(1);
+    return (EReference)fieldExprEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1976,9 +1976,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     typeDefEClass = createEClass(TYPE_DEF);
     createEAttribute(typeDefEClass, TYPE_DEF__NAME);
 
-    recordTypeFieldEClass = createEClass(RECORD_TYPE_FIELD);
-    createEAttribute(recordTypeFieldEClass, RECORD_TYPE_FIELD__NAME);
-    createEReference(recordTypeFieldEClass, RECORD_TYPE_FIELD__TYPE);
+    fieldTypeEClass = createEClass(FIELD_TYPE);
+    createEAttribute(fieldTypeEClass, FIELD_TYPE__NAME);
+    createEReference(fieldTypeEClass, FIELD_TYPE__TYPE);
 
     enumValueEClass = createEClass(ENUM_VALUE);
 
@@ -2014,9 +2014,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     idRefEClass = createEClass(ID_REF);
     createEAttribute(idRefEClass, ID_REF__NAME);
 
-    recordFieldExprEClass = createEClass(RECORD_FIELD_EXPR);
-    createEAttribute(recordFieldExprEClass, RECORD_FIELD_EXPR__NAME);
-    createEReference(recordFieldExprEClass, RECORD_FIELD_EXPR__EXPR);
+    fieldExprEClass = createEClass(FIELD_EXPR);
+    createEAttribute(fieldExprEClass, FIELD_EXPR__NAME);
+    createEReference(fieldExprEClass, FIELD_EXPR__EXPR);
 
     baseUnitEClass = createEClass(BASE_UNIT);
 
@@ -2242,9 +2242,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEClass(typeDefEClass, TypeDef.class, "TypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTypeDef_Name(), ecorePackage.getEString(), "name", null, 0, 1, TypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(recordTypeFieldEClass, RecordTypeField.class, "RecordTypeField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRecordTypeField_Name(), ecorePackage.getEString(), "name", null, 0, 1, RecordTypeField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRecordTypeField_Type(), this.getType(), null, "type", null, 0, 1, RecordTypeField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(fieldTypeEClass, FieldType.class, "FieldType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFieldType_Name(), ecorePackage.getEString(), "name", null, 0, 1, FieldType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFieldType_Type(), this.getType(), null, "type", null, 0, 1, FieldType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enumValueEClass, EnumValue.class, "EnumValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2280,9 +2280,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEClass(idRefEClass, IdRef.class, "IdRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIdRef_Name(), ecorePackage.getEString(), "name", null, 0, 1, IdRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(recordFieldExprEClass, RecordFieldExpr.class, "RecordFieldExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRecordFieldExpr_Name(), ecorePackage.getEString(), "name", null, 0, 1, RecordFieldExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRecordFieldExpr_Expr(), this.getExpr(), null, "expr", null, 0, 1, RecordFieldExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(fieldExprEClass, FieldExpr.class, "FieldExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFieldExpr_Name(), ecorePackage.getEString(), "name", null, 0, 1, FieldExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFieldExpr_Expr(), this.getExpr(), null, "expr", null, 0, 1, FieldExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(baseUnitEClass, BaseUnit.class, "BaseUnit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2302,7 +2302,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getNamedType_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, NamedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recordTypeEClass, RecordType.class, "RecordType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRecordType_Fields(), this.getRecordTypeField(), null, "fields", null, 0, -1, RecordType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordType_Fields(), this.getFieldType(), null, "fields", null, 0, -1, RecordType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(arrayTypeEClass, ArrayType.class, "ArrayType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getArrayType_Base(), this.getType(), null, "base", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2331,11 +2331,11 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     initEClass(recordAccessExprEClass, RecordAccessExpr.class, "RecordAccessExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordAccessExpr_Record(), this.getExpr(), null, "record", null, 0, 1, RecordAccessExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRecordAccessExpr_Field(), this.getRecordFieldExpr(), null, "field", null, 0, 1, RecordAccessExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordAccessExpr_Field(), this.getFieldExpr(), null, "field", null, 0, 1, RecordAccessExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recordUpdateExprEClass, RecordUpdateExpr.class, "RecordUpdateExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordUpdateExpr_Record(), this.getExpr(), null, "record", null, 0, 1, RecordUpdateExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRecordUpdateExpr_Field(), this.getRecordFieldExpr(), null, "field", null, 0, 1, RecordUpdateExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordUpdateExpr_Field(), this.getFieldExpr(), null, "field", null, 0, 1, RecordUpdateExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRecordUpdateExpr_Value(), this.getExpr(), null, "value", null, 0, 1, RecordUpdateExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(arrayAccessExprEClass, ArrayAccessExpr.class, "ArrayAccessExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2371,7 +2371,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     initEClass(recordExprEClass, RecordExpr.class, "RecordExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordExpr_Type(), this.getRecordType(), null, "type", null, 0, 1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRecordExpr_FieldExprs(), this.getRecordFieldExpr(), null, "fieldExprs", null, 0, -1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordExpr_FieldExprs(), this.getFieldExpr(), null, "fieldExprs", null, 0, -1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(arrayExprEClass, ArrayExpr.class, "ArrayExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getArrayExpr_Type(), this.getArrayType(), null, "type", null, 0, 1, ArrayExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

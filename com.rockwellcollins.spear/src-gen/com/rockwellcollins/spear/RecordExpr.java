@@ -51,7 +51,7 @@ public interface RecordExpr extends Expr
 
   /**
    * Returns the value of the '<em><b>Field Exprs</b></em>' containment reference list.
-   * The list contents are of type {@link com.rockwellcollins.spear.RecordFieldExpr}.
+   * The list contents are of type {@link com.rockwellcollins.spear.FieldExpr}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Field Exprs</em>' containment reference list isn't clear,
@@ -63,6 +63,6 @@ public interface RecordExpr extends Expr
    * @model containment="true"
    * @generated
    */
-  EList<RecordFieldExpr> getFieldExprs();
+  EList<FieldExpr> getFieldExprs();
 
 } // RecordExpr

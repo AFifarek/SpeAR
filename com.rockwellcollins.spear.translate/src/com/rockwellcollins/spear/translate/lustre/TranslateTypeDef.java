@@ -10,9 +10,9 @@ import org.eclipse.emf.ecore.EObject;
 import com.rockwellcollins.spear.ArrayType;
 import com.rockwellcollins.spear.EnumType;
 import com.rockwellcollins.spear.EnumValue;
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.NamedType;
 import com.rockwellcollins.spear.RecordType;
-import com.rockwellcollins.spear.RecordTypeField;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Type;
@@ -35,7 +35,7 @@ public class TranslateTypeDef extends SpearSwitch<TypeDef> {
 	@Override
 	public TypeDef caseRecordType(RecordType rt) {
 		Map<String,Type> fields = new LinkedHashMap<>();
-		for(RecordTypeField rtf : rt.getFields()) {
+		for(FieldType rtf : rt.getFields()) {
 			fields.put(rtf.getName(), TranslateType.translate(rtf.getType()));
 		}
 		jkind.lustre.RecordType record = new jkind.lustre.RecordType(rt.getName(),fields); 

@@ -120,9 +120,9 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createTypeDefAdapter();
       }
       @Override
-      public Adapter caseRecordTypeField(RecordTypeField object)
+      public Adapter caseFieldType(FieldType object)
       {
-        return createRecordTypeFieldAdapter();
+        return createFieldTypeAdapter();
       }
       @Override
       public Adapter caseEnumValue(EnumValue object)
@@ -180,9 +180,9 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createIdRefAdapter();
       }
       @Override
-      public Adapter caseRecordFieldExpr(RecordFieldExpr object)
+      public Adapter caseFieldExpr(FieldExpr object)
       {
-        return createRecordFieldExprAdapter();
+        return createFieldExprAdapter();
       }
       @Override
       public Adapter caseBaseUnit(BaseUnit object)
@@ -497,16 +497,16 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.RecordTypeField <em>Record Type Field</em>}'.
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.FieldType <em>Field Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.rockwellcollins.spear.RecordTypeField
+   * @see com.rockwellcollins.spear.FieldType
    * @generated
    */
-  public Adapter createRecordTypeFieldAdapter()
+  public Adapter createFieldTypeAdapter()
   {
     return null;
   }
@@ -677,16 +677,16 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.RecordFieldExpr <em>Record Field Expr</em>}'.
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.FieldExpr <em>Field Expr</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.rockwellcollins.spear.RecordFieldExpr
+   * @see com.rockwellcollins.spear.FieldExpr
    * @generated
    */
-  public Adapter createRecordFieldExprAdapter()
+  public Adapter createFieldExprAdapter()
   {
     return null;
   }

@@ -24,7 +24,7 @@ public interface RecordType extends TypeDef
 {
   /**
    * Returns the value of the '<em><b>Fields</b></em>' containment reference list.
-   * The list contents are of type {@link com.rockwellcollins.spear.RecordTypeField}.
+   * The list contents are of type {@link com.rockwellcollins.spear.FieldType}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Fields</em>' containment reference list isn't clear,
@@ -36,6 +36,6 @@ public interface RecordType extends TypeDef
    * @model containment="true"
    * @generated
    */
-  EList<RecordTypeField> getFields();
+  EList<FieldType> getFields();
 
 } // RecordType
