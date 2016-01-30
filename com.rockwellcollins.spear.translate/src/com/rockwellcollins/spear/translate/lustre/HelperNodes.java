@@ -205,9 +205,9 @@ public class HelperNodes {
 		return new Node(name, inputs, outputs, locals, equations);
 	}
 
-	public static Map<String, Ast> getPLTL() {
+	public static Map<String, Node> getPLTL() {
 		List<Node> nodes = new ArrayList<>();
-		Map<String, Ast> map = new HashMap<>();
+		Map<String, Node> map = new HashMap<>();
 
 		nodes.add(historically());
 		nodes.add(once());

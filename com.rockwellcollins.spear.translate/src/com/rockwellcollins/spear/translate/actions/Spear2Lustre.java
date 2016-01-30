@@ -1,8 +1,13 @@
 package com.rockwellcollins.spear.translate.actions;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -26,10 +31,13 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.lustre.TranslateSpecification;
 import com.rockwellcollins.spear.translate.transformations.NormalizeOperators;
 import com.rockwellcollins.spear.translate.transformations.RemoveLustreKeywords;
 import com.rockwellcollins.spear.translate.transformations.RemoveSugar;
 import com.rockwellcollins.ui.internal.SpearActivator;
+
+import jkind.lustre.Program;
 
 public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 
@@ -76,8 +84,15 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
 				pass++;
 				
-				//refresh the workspace
+				//translate to Lustre
+				Program p = TranslateSpecification.translate(workingCopy);
+				URI lustreURI = createURI(state.getURI(), "", "lus");
+				
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+				IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
+				printResource(finalResource, p.toString());
+				
+				//refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				return null;
 			}	
@@ -114,6 +129,20 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 			uri = uri.appendSegment(filename.substring(0, i) + ".final.limp");
 		}
 		return uri;
+	}
+	
+	private static URI createURI(URI baseURI, String suffix, String extension) {
+		String filename = baseURI.lastSegment();
+		baseURI = baseURI.trimSegments(1);
+		int i = filename.lastIndexOf(".");
+		baseURI = baseURI.appendSegment((filename.substring(0, i) + suffix + "." + extension));
+		return baseURI;
+	}
+	
+	private void printResource(IResource res, String contents) throws IOException {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(res.getRawLocation().toFile()))) {
+			bw.write(contents);	
+		}
 	}
 	
 	@Override

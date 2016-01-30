@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.translate.lustre;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -13,11 +14,15 @@ import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Specification;
 
+import jkind.lustre.BinaryExpr;
+import jkind.lustre.BinaryOp;
 import jkind.lustre.Constant;
 import jkind.lustre.Equation;
 import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
 import jkind.lustre.NamedType;
+import jkind.lustre.Node;
+import jkind.lustre.NodeCallExpr;
 import jkind.lustre.Program;
 import jkind.lustre.Type;
 import jkind.lustre.TypeDef;
@@ -25,6 +30,14 @@ import jkind.lustre.VarDecl;
 
 public class TranslateSpecification {
 
+	private static final String CONJUNCTION_ID = "CONJUNCT";
+	private static final String HISTORICAL_CONJUNCT_ID = "HISTORICAL_CONJUNCT";
+
+	public static Program translate(com.rockwellcollins.spear.Specification s) {
+		TranslateSpecification translate = new TranslateSpecification(new HashSet<>());
+		return translate.translateSpecification(s);
+	}
+	
 	public static Constant translate(com.rockwellcollins.spear.Constant c) {
 		return new Constant(c.getName(),TranslateType.translate(c.getType()),TranslateExpr.translate(c.getExpr()));
 	}
@@ -138,7 +151,7 @@ public class TranslateSpecification {
 		return equations;
 	}
 	
-	public Program translate(Specification s) {
+	public Program translateSpecification(Specification s) {
 		String mainNodeName = s.getName();
 		List<TypeDef> typedefs = getTypeDefs(s);
 		List<Constant> constants = getConstants(s);
@@ -161,8 +174,8 @@ public class TranslateSpecification {
 		
 		List<VarDecl> macroVarDecls = getMacrosVarDecls(s.getMacros());
 		List<VarDecl> assumptionVarDecls = getConstraintVarDecls(s.getAssumptions());
-		List<VarDecl> behaviorVarDecls = getConstraintVarDecls(s.getBehaviors());
 		List<VarDecl> requirementVarDecls = getConstraintVarDecls(s.getRequirements());
+		List<VarDecl> behaviorVarDecls = getConstraintVarDecls(s.getBehaviors());
 
 		List<VarDecl> nodeLocals = new ArrayList<>();
 		nodeLocals.addAll(state);
@@ -170,6 +183,8 @@ public class TranslateSpecification {
 		nodeLocals.addAll(assumptionVarDecls);
 		nodeLocals.addAll(behaviorVarDecls);
 		nodeLocals.addAll(requirementVarDecls);
+		nodeLocals.add(new VarDecl(CONJUNCTION_ID,NamedType.BOOL));
+		nodeLocals.add(new VarDecl(HISTORICAL_CONJUNCT_ID,NamedType.BOOL));
 		
 		List<VarDecl> nodeOutputs = new ArrayList<>();
 		nodeOutputs.addAll(outputs);
@@ -178,23 +193,52 @@ public class TranslateSpecification {
 		equations.addAll(makeEquationsForShadowVars(state,shadowState));
 		equations.addAll(makeEquationsForShadowVars(outputs,shadowOutputs));
 		equations.addAll(makeEquationsForConstraints(s.getAssumptions()));
-		equations.addAll(makeEquationsForConstraints(s.getBehaviors()));
 		equations.addAll(makeEquationsForConstraints(s.getRequirements()));
+		equations.addAll(makeEquationsForConstraints(s.getBehaviors()));
 		
-		Equation conjunct = conjunctAssumptionsAndBehaviors(assumptionVarDecls,behaviorVarDecls);
+		Equation conjunct = conjunctAssumptionsAndRequirements(assumptionVarDecls,requirementVarDecls);
 		equations.add(conjunct);
 		
-		
-		
-		
+		List<IdExpr> LHS = Collections.singletonList(new IdExpr(TranslateSpecification.HISTORICAL_CONJUNCT_ID));
+		Expr RHS = new NodeCallExpr("historically",Collections.singletonList(new IdExpr(TranslateSpecification.CONJUNCTION_ID)));
 
+		Equation historicalConjunct = new Equation(LHS, RHS);
+		equations.add(historicalConjunct);
 		
+		Node main = new Node(mainNodeName, nodeInputs, nodeOutputs, nodeLocals, equations, null, null, null);
 		
-		return null;
+		List<Node> nodes = new ArrayList<>();
+		for(Node n : HelperNodes.getPLTL().values()) {
+			nodes.add(n);
+		}
+		
+		nodes.add(main);
+		
+		Program p = new Program(typedefs, constants, nodes, mainNodeName);		
+		return p;
 	}
 
-	private Equation conjunctAssumptionsAndBehaviors(List<VarDecl> assumptionVarDecls, List<VarDecl> behaviorVarDecls) {
-		return null;
+	private Expr conjunctify(Iterator<VarDecl> it) {
+		VarDecl next = it.next();
+		IdExpr idExpr = new IdExpr(next.id);
+		if(it.hasNext()) {
+			return new BinaryExpr(idExpr, BinaryOp.AND, conjunctify(it));
+		} else {
+			return idExpr;
+		}
+	}
+	
+	private Equation conjunctAssumptionsAndRequirements(List<VarDecl> assumptionVarDecls, List<VarDecl> behaviorVarDecls) {
+		List<VarDecl> all = new ArrayList<>();
+		all.addAll(assumptionVarDecls);
+		all.addAll(behaviorVarDecls);
+		
+		if(all.size() == 0) {
+			return null;
+		}
+		
+		Iterator<VarDecl> iterate = all.iterator();
+		return new Equation(Collections.singletonList(new IdExpr(CONJUNCTION_ID)), conjunctify(iterate));
 	}
 
 }

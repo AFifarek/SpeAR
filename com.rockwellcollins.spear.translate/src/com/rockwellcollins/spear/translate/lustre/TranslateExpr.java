@@ -48,7 +48,6 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			case ">=":
 			case "<":
 			case "<=":
-			case "==":
 			case "<>":
 			case "+":
 			case "-":
@@ -56,6 +55,9 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			case "/":
 				BinaryOp op = BinaryOp.fromString(binary.getOp());
 				return new BinaryExpr(left, op, right);
+			
+			case "==":
+				return new BinaryExpr(left, BinaryOp.EQUAL, right);
 				
 			/*
 			 * Note: these are treated as reserved words in our translation. Conflicts are
