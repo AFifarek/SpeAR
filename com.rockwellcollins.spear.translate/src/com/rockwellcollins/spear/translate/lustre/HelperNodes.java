@@ -2,15 +2,15 @@ package com.rockwellcollins.spear.translate.lustre;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import jkind.lustre.Ast;
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
 import jkind.lustre.BoolExpr;
 import jkind.lustre.Equation;
-import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
 import jkind.lustre.NamedType;
 import jkind.lustre.Node;
@@ -138,46 +138,46 @@ public class HelperNodes {
 		return new Node(name, inputs, outputs, locals, equations);
 	}
 
+//	/**
+//	 * T is the node that implements Trigger
+//	 */
+//	public static Node triggers() {
+//		String name = "triggers";
+//		List<VarDecl> inputs = new ArrayList<>();
+//		List<VarDecl> locals = new ArrayList<>();
+//		List<VarDecl> outputs = new ArrayList<>();
+//		List<Equation> equations = new ArrayList<>();
+//
+//		// inputs
+//		VarDecl a = new VarDecl("a", NamedType.BOOL);
+//		VarDecl b = new VarDecl("b", NamedType.BOOL);
+//
+//		// outputs
+//		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+//
+//		List<Expr> args = new ArrayList<>();
+//		args.add(new IdExpr(holds.id));
+//
+//		// equations: holds = b and (a or (true -> pre holds))
+//		Equation equation = new Equation(new IdExpr(holds.id),
+//				new BinaryExpr(new IdExpr(b.id), BinaryOp.AND,
+//						new BinaryExpr(new IdExpr(a.id), BinaryOp.OR, new BinaryExpr(new BoolExpr(true), BinaryOp.ARROW,
+//								new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
+//
+//		inputs.add(a);
+//		inputs.add(b);
+//
+//		outputs.add(holds);
+//		equations.add(equation);
+//
+//		return new Node(name, inputs, outputs, locals, equations);
+//	}
+
 	/**
 	 * T is the node that implements Trigger
 	 */
 	public static Node triggers() {
 		String name = "triggers";
-		List<VarDecl> inputs = new ArrayList<>();
-		List<VarDecl> locals = new ArrayList<>();
-		List<VarDecl> outputs = new ArrayList<>();
-		List<Equation> equations = new ArrayList<>();
-
-		// inputs
-		VarDecl a = new VarDecl("a", NamedType.BOOL);
-		VarDecl b = new VarDecl("b", NamedType.BOOL);
-
-		// outputs
-		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
-
-		List<Expr> args = new ArrayList<>();
-		args.add(new IdExpr(holds.id));
-
-		// equations: holds = b and (a or (true -> pre holds))
-		Equation equation = new Equation(new IdExpr(holds.id),
-				new BinaryExpr(new IdExpr(b.id), BinaryOp.AND,
-						new BinaryExpr(new IdExpr(a.id), BinaryOp.OR, new BinaryExpr(new BoolExpr(true), BinaryOp.ARROW,
-								new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
-
-		inputs.add(a);
-		inputs.add(b);
-
-		outputs.add(holds);
-		equations.add(equation);
-
-		return new Node(name, inputs, outputs, locals, equations);
-	}
-
-	/**
-	 * T is the node that implements Trigger
-	 */
-	public static Node triggers_alt() {
-		String name = "triggers_alt";
 		List<VarDecl> inputs = new ArrayList<>();
 		List<VarDecl> locals = new ArrayList<>();
 		List<VarDecl> outputs = new ArrayList<>();
@@ -205,20 +205,13 @@ public class HelperNodes {
 		return new Node(name, inputs, outputs, locals, equations);
 	}
 
-	public static Map<String, Node> getPLTL() {
-		List<Node> nodes = new ArrayList<>();
-		Map<String, Node> map = new HashMap<>();
-
+	public static Set<Node> getPLTL() {
+		Set<Node> nodes = new LinkedHashSet<>();
+		nodes.add(initially());
 		nodes.add(historically());
 		nodes.add(once());
 		nodes.add(since());
 		nodes.add(triggers());
-		nodes.add(triggers_alt());
-
-		for (Node n : nodes) {
-			map.put(n.id, n);
-		}
-
-		return map;
+		return nodes;
 	}
 }
