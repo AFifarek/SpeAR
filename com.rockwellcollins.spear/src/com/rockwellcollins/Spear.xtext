@@ -143,18 +143,18 @@ MultiplyExpr returns Expr:
 // | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after'
 PrefixExpr returns Expr:
 	{UnaryExpr} op=('-' | 'not') expr=PrefixExpr
+	| {PreviousExpr} 'previous' var=PrefixExpr (=> 'with' 'initial' 'value' init=PrefixExpr)?
 	| AccessExpr;
 
 AccessExpr returns Expr:
-	AtomicExpr (=> ({RecordAccessExpr.record=current} '.') field=[FieldExpr]
-	| => ({RecordUpdateExpr.record=current} '{' field=[FieldExpr] ':=') value=Expr '}'
+	AtomicExpr (=> ({RecordAccessExpr.record=current} '.') field=[FieldType]
+	| => ({RecordUpdateExpr.record=current} '{' field=[FieldType] ':=') value=Expr '}'
 	| => ({ArrayAccessExpr.array=current} '[') index=Expr (=> ({ArrayUpdateExpr.access=current} ':=') value=Expr)? ']')*;
 
 AtomicExpr returns Expr:
 	LiteralExpr
 	| {IdExpr} id=[IdRef]
 	| {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
-	| {PreviousExpr} 'previous' var=Expr (=> 'with' 'initial' 'value' init=Expr)?
 	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	| {AfterUntilExpr} 'after' (after=Expr) (=> 'until' until=Expr)?
 	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
@@ -176,7 +176,7 @@ IdRef:
 	| EnumValue;
 
 FieldExpr:
-	name=ID '=' expr=Expr;
+	field=[FieldType] '=' expr=Expr;
 
 BOOL:
 	BOOLEAN_TRUE | BOOLEAN_FALSE;

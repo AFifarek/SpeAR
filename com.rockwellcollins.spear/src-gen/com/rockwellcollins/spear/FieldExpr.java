@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.rockwellcollins.spear.FieldExpr#getName <em>Name</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.FieldExpr#getField <em>Field</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.FieldExpr#getExpr <em>Expr</em>}</li>
  * </ul>
  *
@@ -24,30 +24,30 @@ import org.eclipse.emf.ecore.EObject;
 public interface FieldExpr extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Field</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * If the meaning of the '<em>Field</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see com.rockwellcollins.spear.SpearPackage#getFieldExpr_Name()
+   * @return the value of the '<em>Field</em>' reference.
+   * @see #setField(FieldType)
+   * @see com.rockwellcollins.spear.SpearPackage#getFieldExpr_Field()
    * @model
    * @generated
    */
-  String getName();
+  FieldType getField();
 
   /**
-   * Sets the value of the '{@link com.rockwellcollins.spear.FieldExpr#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link com.rockwellcollins.spear.FieldExpr#getField <em>Field</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' attribute.
-   * @see #getName()
+   * @param value the new value of the '<em>Field</em>' reference.
+   * @see #getField()
    * @generated
    */
-  void setName(String value);
+  void setField(FieldType value);
 
   /**
    * Returns the value of the '<em><b>Expr</b></em>' containment reference.

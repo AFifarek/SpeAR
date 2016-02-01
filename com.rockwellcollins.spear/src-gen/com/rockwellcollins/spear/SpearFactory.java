@@ -347,6 +347,15 @@ public interface SpearFactory extends EFactory
   UnaryExpr createUnaryExpr();
 
   /**
+   * Returns a new object of class '<em>Previous Expr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Previous Expr</em>'.
+   * @generated
+   */
+  PreviousExpr createPreviousExpr();
+
+  /**
    * Returns a new object of class '<em>Record Access Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -399,15 +408,6 @@ public interface SpearFactory extends EFactory
    * @generated
    */
   MIdExpr createMIdExpr();
-
-  /**
-   * Returns a new object of class '<em>Previous Expr</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Previous Expr</em>'.
-   * @generated
-   */
-  PreviousExpr createPreviousExpr();
 
   /**
    * Returns a new object of class '<em>If Then Else Expr</em>'.

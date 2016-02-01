@@ -100,13 +100,13 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.USER_TYPE: return createUserType();
       case SpearPackage.BINARY_EXPR: return createBinaryExpr();
       case SpearPackage.UNARY_EXPR: return createUnaryExpr();
+      case SpearPackage.PREVIOUS_EXPR: return createPreviousExpr();
       case SpearPackage.RECORD_ACCESS_EXPR: return createRecordAccessExpr();
       case SpearPackage.RECORD_UPDATE_EXPR: return createRecordUpdateExpr();
       case SpearPackage.ARRAY_ACCESS_EXPR: return createArrayAccessExpr();
       case SpearPackage.ARRAY_UPDATE_EXPR: return createArrayUpdateExpr();
       case SpearPackage.ID_EXPR: return createIdExpr();
       case SpearPackage.MID_EXPR: return createMIdExpr();
-      case SpearPackage.PREVIOUS_EXPR: return createPreviousExpr();
       case SpearPackage.IF_THEN_ELSE_EXPR: return createIfThenElseExpr();
       case SpearPackage.AFTER_UNTIL_EXPR: return createAfterUntilExpr();
       case SpearPackage.WHILE_EXPR: return createWhileExpr();
@@ -523,6 +523,17 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public PreviousExpr createPreviousExpr()
+  {
+    PreviousExprImpl previousExpr = new PreviousExprImpl();
+    return previousExpr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public RecordAccessExpr createRecordAccessExpr()
   {
     RecordAccessExprImpl recordAccessExpr = new RecordAccessExprImpl();
@@ -582,17 +593,6 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     MIdExprImpl mIdExpr = new MIdExprImpl();
     return mIdExpr;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PreviousExpr createPreviousExpr()
-  {
-    PreviousExprImpl previousExpr = new PreviousExprImpl();
-    return previousExpr;
   }
 
   /**

@@ -3,7 +3,7 @@
 package com.rockwellcollins.spear.impl;
 
 import com.rockwellcollins.spear.Expr;
-import com.rockwellcollins.spear.FieldExpr;
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 
@@ -50,7 +50,7 @@ public class RecordUpdateExprImpl extends ExprImpl implements RecordUpdateExpr
    * @generated
    * @ordered
    */
-  protected FieldExpr field;
+  protected FieldType field;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -136,12 +136,12 @@ public class RecordUpdateExprImpl extends ExprImpl implements RecordUpdateExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public FieldExpr getField()
+  public FieldType getField()
   {
     if (field != null && field.eIsProxy())
     {
       InternalEObject oldField = (InternalEObject)field;
-      field = (FieldExpr)eResolveProxy(oldField);
+      field = (FieldType)eResolveProxy(oldField);
       if (field != oldField)
       {
         if (eNotificationRequired())
@@ -156,7 +156,7 @@ public class RecordUpdateExprImpl extends ExprImpl implements RecordUpdateExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public FieldExpr basicGetField()
+  public FieldType basicGetField()
   {
     return field;
   }
@@ -166,9 +166,9 @@ public class RecordUpdateExprImpl extends ExprImpl implements RecordUpdateExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setField(FieldExpr newField)
+  public void setField(FieldType newField)
   {
-    FieldExpr oldField = field;
+    FieldType oldField = field;
     field = newField;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.RECORD_UPDATE_EXPR__FIELD, oldField, field));
@@ -275,7 +275,7 @@ public class RecordUpdateExprImpl extends ExprImpl implements RecordUpdateExpr
         setRecord((Expr)newValue);
         return;
       case SpearPackage.RECORD_UPDATE_EXPR__FIELD:
-        setField((FieldExpr)newValue);
+        setField((FieldType)newValue);
         return;
       case SpearPackage.RECORD_UPDATE_EXPR__VALUE:
         setValue((Expr)newValue);
@@ -298,7 +298,7 @@ public class RecordUpdateExprImpl extends ExprImpl implements RecordUpdateExpr
         setRecord((Expr)null);
         return;
       case SpearPackage.RECORD_UPDATE_EXPR__FIELD:
-        setField((FieldExpr)null);
+        setField((FieldType)null);
         return;
       case SpearPackage.RECORD_UPDATE_EXPR__VALUE:
         setValue((Expr)null);

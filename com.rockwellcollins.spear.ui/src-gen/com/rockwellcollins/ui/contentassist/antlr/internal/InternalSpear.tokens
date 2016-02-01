@@ -4,10 +4,10 @@
 '+'=35
 ','=65
 '-'=36
-'.'=79
+'.'=83
 '/'=38
 ':'=11
-':='=80
+':='=84
 '<'=29
 '<='=30
 '<>'=34
@@ -52,7 +52,7 @@
 'if'=86
 'implies'=15
 'import'=56
-'initial'=84
+'initial'=81
 'initially'=28
 'int'=69
 'is a'=12
@@ -64,7 +64,7 @@
 'once'=23
 'or'=16
 'pattern'=93
-'previous'=82
+'previous'=79
 'real'=71
 'record'=62
 'since'=21
@@ -76,12 +76,12 @@
 'triggers'=19
 'true'=41
 'until'=90
-'value'=85
+'value'=82
 'while'=91
-'with'=83
+'with'=80
 'xor'=17
 '{'=63
-'|'=81
+'|'=85
 '}'=64
 RULE_ANY_OTHER=10
 RULE_ID=5

@@ -57,12 +57,12 @@ public interface RecordAccessExpr extends Expr
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Field</em>' reference.
-   * @see #setField(FieldExpr)
+   * @see #setField(FieldType)
    * @see com.rockwellcollins.spear.SpearPackage#getRecordAccessExpr_Field()
    * @model
    * @generated
    */
-  FieldExpr getField();
+  FieldType getField();
 
   /**
    * Sets the value of the '{@link com.rockwellcollins.spear.RecordAccessExpr#getField <em>Field</em>}' reference.
@@ -72,6 +72,6 @@ public interface RecordAccessExpr extends Expr
    * @see #getField()
    * @generated
    */
-  void setField(FieldExpr value);
+  void setField(FieldType value);
 
 } // RecordAccessExpr

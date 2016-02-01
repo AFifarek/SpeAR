@@ -3,7 +3,7 @@
 package com.rockwellcollins.spear.impl;
 
 import com.rockwellcollins.spear.Expr;
-import com.rockwellcollins.spear.FieldExpr;
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.SpearPackage;
 
@@ -49,7 +49,7 @@ public class RecordAccessExprImpl extends ExprImpl implements RecordAccessExpr
    * @generated
    * @ordered
    */
-  protected FieldExpr field;
+  protected FieldType field;
 
   /**
    * <!-- begin-user-doc -->
@@ -125,12 +125,12 @@ public class RecordAccessExprImpl extends ExprImpl implements RecordAccessExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public FieldExpr getField()
+  public FieldType getField()
   {
     if (field != null && field.eIsProxy())
     {
       InternalEObject oldField = (InternalEObject)field;
-      field = (FieldExpr)eResolveProxy(oldField);
+      field = (FieldType)eResolveProxy(oldField);
       if (field != oldField)
       {
         if (eNotificationRequired())
@@ -145,7 +145,7 @@ public class RecordAccessExprImpl extends ExprImpl implements RecordAccessExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public FieldExpr basicGetField()
+  public FieldType basicGetField()
   {
     return field;
   }
@@ -155,9 +155,9 @@ public class RecordAccessExprImpl extends ExprImpl implements RecordAccessExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setField(FieldExpr newField)
+  public void setField(FieldType newField)
   {
-    FieldExpr oldField = field;
+    FieldType oldField = field;
     field = newField;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.RECORD_ACCESS_EXPR__FIELD, oldField, field));
@@ -212,7 +212,7 @@ public class RecordAccessExprImpl extends ExprImpl implements RecordAccessExpr
         setRecord((Expr)newValue);
         return;
       case SpearPackage.RECORD_ACCESS_EXPR__FIELD:
-        setField((FieldExpr)newValue);
+        setField((FieldType)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -232,7 +232,7 @@ public class RecordAccessExprImpl extends ExprImpl implements RecordAccessExpr
         setRecord((Expr)null);
         return;
       case SpearPackage.RECORD_ACCESS_EXPR__FIELD:
-        setField((FieldExpr)null);
+        setField((FieldType)null);
         return;
     }
     super.eUnset(featureID);

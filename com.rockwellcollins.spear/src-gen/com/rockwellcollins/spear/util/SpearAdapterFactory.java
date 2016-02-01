@@ -255,6 +255,11 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createUnaryExprAdapter();
       }
       @Override
+      public Adapter casePreviousExpr(PreviousExpr object)
+      {
+        return createPreviousExprAdapter();
+      }
+      @Override
       public Adapter caseRecordAccessExpr(RecordAccessExpr object)
       {
         return createRecordAccessExprAdapter();
@@ -283,11 +288,6 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
       public Adapter caseMIdExpr(MIdExpr object)
       {
         return createMIdExprAdapter();
-      }
-      @Override
-      public Adapter casePreviousExpr(PreviousExpr object)
-      {
-        return createPreviousExprAdapter();
       }
       @Override
       public Adapter caseIfThenElseExpr(IfThenElseExpr object)
@@ -902,6 +902,21 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.PreviousExpr <em>Previous Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.PreviousExpr
+   * @generated
+   */
+  public Adapter createPreviousExprAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.RecordAccessExpr <em>Record Access Expr</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -987,21 +1002,6 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMIdExprAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.PreviousExpr <em>Previous Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.rockwellcollins.spear.PreviousExpr
-   * @generated
-   */
-  public Adapter createPreviousExprAdapter()
   {
     return null;
   }

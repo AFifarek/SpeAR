@@ -862,13 +862,13 @@ public interface SpearPackage extends EPackage
   int FIELD_EXPR = 21;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Field</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FIELD_EXPR__NAME = 0;
+  int FIELD_EXPR__FIELD = 0;
 
   /**
    * The feature id for the '<em><b>Expr</b></em>' containment reference.
@@ -1380,6 +1380,43 @@ public interface SpearPackage extends EPackage
   int UNARY_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.PreviousExprImpl <em>Previous Expr</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.rockwellcollins.spear.impl.PreviousExprImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getPreviousExpr()
+   * @generated
+   */
+  int PREVIOUS_EXPR = 36;
+
+  /**
+   * The feature id for the '<em><b>Var</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PREVIOUS_EXPR__VAR = EXPR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Init</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PREVIOUS_EXPR__INIT = EXPR_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Previous Expr</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PREVIOUS_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.RecordAccessExprImpl <em>Record Access Expr</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1387,7 +1424,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordAccessExpr()
    * @generated
    */
-  int RECORD_ACCESS_EXPR = 36;
+  int RECORD_ACCESS_EXPR = 37;
 
   /**
    * The feature id for the '<em><b>Record</b></em>' containment reference.
@@ -1424,7 +1461,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordUpdateExpr()
    * @generated
    */
-  int RECORD_UPDATE_EXPR = 37;
+  int RECORD_UPDATE_EXPR = 38;
 
   /**
    * The feature id for the '<em><b>Record</b></em>' containment reference.
@@ -1470,7 +1507,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayAccessExpr()
    * @generated
    */
-  int ARRAY_ACCESS_EXPR = 38;
+  int ARRAY_ACCESS_EXPR = 39;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' containment reference.
@@ -1507,7 +1544,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayUpdateExpr()
    * @generated
    */
-  int ARRAY_UPDATE_EXPR = 39;
+  int ARRAY_UPDATE_EXPR = 40;
 
   /**
    * The feature id for the '<em><b>Access</b></em>' containment reference.
@@ -1544,7 +1581,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIdExpr()
    * @generated
    */
-  int ID_EXPR = 40;
+  int ID_EXPR = 41;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' reference.
@@ -1572,7 +1609,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getMIdExpr()
    * @generated
    */
-  int MID_EXPR = 41;
+  int MID_EXPR = 42;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -1591,43 +1628,6 @@ public interface SpearPackage extends EPackage
    * @ordered
    */
   int MID_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link com.rockwellcollins.spear.impl.PreviousExprImpl <em>Previous Expr</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see com.rockwellcollins.spear.impl.PreviousExprImpl
-   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getPreviousExpr()
-   * @generated
-   */
-  int PREVIOUS_EXPR = 42;
-
-  /**
-   * The feature id for the '<em><b>Var</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PREVIOUS_EXPR__VAR = EXPR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Init</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PREVIOUS_EXPR__INIT = EXPR_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Previous Expr</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PREVIOUS_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.IfThenElseExprImpl <em>If Then Else Expr</em>}' class.
@@ -2606,15 +2606,15 @@ public interface SpearPackage extends EPackage
   EClass getFieldExpr();
 
   /**
-   * Returns the meta object for the attribute '{@link com.rockwellcollins.spear.FieldExpr#getName <em>Name</em>}'.
+   * Returns the meta object for the reference '{@link com.rockwellcollins.spear.FieldExpr#getField <em>Field</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see com.rockwellcollins.spear.FieldExpr#getName()
+   * @return the meta object for the reference '<em>Field</em>'.
+   * @see com.rockwellcollins.spear.FieldExpr#getField()
    * @see #getFieldExpr()
    * @generated
    */
-  EAttribute getFieldExpr_Name();
+  EReference getFieldExpr_Field();
 
   /**
    * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.FieldExpr#getExpr <em>Expr</em>}'.
@@ -2955,6 +2955,38 @@ public interface SpearPackage extends EPackage
   EReference getUnaryExpr_Expr();
 
   /**
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.PreviousExpr <em>Previous Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Previous Expr</em>'.
+   * @see com.rockwellcollins.spear.PreviousExpr
+   * @generated
+   */
+  EClass getPreviousExpr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.PreviousExpr#getVar <em>Var</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Var</em>'.
+   * @see com.rockwellcollins.spear.PreviousExpr#getVar()
+   * @see #getPreviousExpr()
+   * @generated
+   */
+  EReference getPreviousExpr_Var();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.PreviousExpr#getInit <em>Init</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Init</em>'.
+   * @see com.rockwellcollins.spear.PreviousExpr#getInit()
+   * @see #getPreviousExpr()
+   * @generated
+   */
+  EReference getPreviousExpr_Init();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.RecordAccessExpr <em>Record Access Expr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3134,38 +3166,6 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EReference getMIdExpr_Ids();
-
-  /**
-   * Returns the meta object for class '{@link com.rockwellcollins.spear.PreviousExpr <em>Previous Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Previous Expr</em>'.
-   * @see com.rockwellcollins.spear.PreviousExpr
-   * @generated
-   */
-  EClass getPreviousExpr();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.PreviousExpr#getVar <em>Var</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Var</em>'.
-   * @see com.rockwellcollins.spear.PreviousExpr#getVar()
-   * @see #getPreviousExpr()
-   * @generated
-   */
-  EReference getPreviousExpr_Var();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.PreviousExpr#getInit <em>Init</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Init</em>'.
-   * @see com.rockwellcollins.spear.PreviousExpr#getInit()
-   * @see #getPreviousExpr()
-   * @generated
-   */
-  EReference getPreviousExpr_Init();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.IfThenElseExpr <em>If Then Else Expr</em>}'.
@@ -4011,12 +4011,12 @@ public interface SpearPackage extends EPackage
     EClass FIELD_EXPR = eINSTANCE.getFieldExpr();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Field</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FIELD_EXPR__NAME = eINSTANCE.getFieldExpr_Name();
+    EReference FIELD_EXPR__FIELD = eINSTANCE.getFieldExpr_Field();
 
     /**
      * The meta object literal for the '<em><b>Expr</b></em>' containment reference feature.
@@ -4303,6 +4303,32 @@ public interface SpearPackage extends EPackage
     EReference UNARY_EXPR__EXPR = eINSTANCE.getUnaryExpr_Expr();
 
     /**
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.PreviousExprImpl <em>Previous Expr</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.rockwellcollins.spear.impl.PreviousExprImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getPreviousExpr()
+     * @generated
+     */
+    EClass PREVIOUS_EXPR = eINSTANCE.getPreviousExpr();
+
+    /**
+     * The meta object literal for the '<em><b>Var</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PREVIOUS_EXPR__VAR = eINSTANCE.getPreviousExpr_Var();
+
+    /**
+     * The meta object literal for the '<em><b>Init</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PREVIOUS_EXPR__INIT = eINSTANCE.getPreviousExpr_Init();
+
+    /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.RecordAccessExprImpl <em>Record Access Expr</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4449,32 +4475,6 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference MID_EXPR__IDS = eINSTANCE.getMIdExpr_Ids();
-
-    /**
-     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.PreviousExprImpl <em>Previous Expr</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see com.rockwellcollins.spear.impl.PreviousExprImpl
-     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getPreviousExpr()
-     * @generated
-     */
-    EClass PREVIOUS_EXPR = eINSTANCE.getPreviousExpr();
-
-    /**
-     * The meta object literal for the '<em><b>Var</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PREVIOUS_EXPR__VAR = eINSTANCE.getPreviousExpr_Var();
-
-    /**
-     * The meta object literal for the '<em><b>Init</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PREVIOUS_EXPR__INIT = eINSTANCE.getPreviousExpr_Init();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.IfThenElseExprImpl <em>If Then Else Expr</em>}' class.

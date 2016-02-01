@@ -348,6 +348,14 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.PREVIOUS_EXPR:
+      {
+        PreviousExpr previousExpr = (PreviousExpr)theEObject;
+        T result = casePreviousExpr(previousExpr);
+        if (result == null) result = caseExpr(previousExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.RECORD_ACCESS_EXPR:
       {
         RecordAccessExpr recordAccessExpr = (RecordAccessExpr)theEObject;
@@ -393,14 +401,6 @@ public class SpearSwitch<T> extends Switch<T>
         MIdExpr mIdExpr = (MIdExpr)theEObject;
         T result = caseMIdExpr(mIdExpr);
         if (result == null) result = caseExpr(mIdExpr);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case SpearPackage.PREVIOUS_EXPR:
-      {
-        PreviousExpr previousExpr = (PreviousExpr)theEObject;
-        T result = casePreviousExpr(previousExpr);
-        if (result == null) result = caseExpr(previousExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1068,6 +1068,22 @@ public class SpearSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Previous Expr</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Previous Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePreviousExpr(PreviousExpr object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Record Access Expr</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1159,22 +1175,6 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseMIdExpr(MIdExpr object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Previous Expr</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Previous Expr</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePreviousExpr(PreviousExpr object)
   {
     return null;
   }

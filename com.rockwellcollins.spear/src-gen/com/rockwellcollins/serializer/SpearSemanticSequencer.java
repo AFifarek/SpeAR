@@ -169,7 +169,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_Patterns(context, (Patterns) semanticObject); 
 				return; 
 			case SpearPackage.PREVIOUS_EXPR:
-				sequence_AtomicExpr(context, (PreviousExpr) semanticObject); 
+				sequence_PrefixExpr(context, (PreviousExpr) semanticObject); 
 				return; 
 			case SpearPackage.REAL_LITERAL:
 				sequence_LiteralExpr(context, (RealLiteral) semanticObject); 
@@ -329,7 +329,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns RecordAccessExpr
 	 *
 	 * Constraint:
-	 *     (record=AccessExpr_RecordAccessExpr_1_0_0_0_0 field=[FieldExpr|ID])
+	 *     (record=AccessExpr_RecordAccessExpr_1_0_0_0_0 field=[FieldType|ID])
 	 */
 	protected void sequence_AccessExpr(ISerializationContext context, RecordAccessExpr semanticObject) {
 		if (errorAcceptor != null) {
@@ -340,7 +340,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAccessExprAccess().getRecordAccessExprRecordAction_1_0_0_0_0(), semanticObject.getRecord());
-		feeder.accept(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_0_1_0_1(), semanticObject.getField());
+		feeder.accept(grammarAccess.getAccessExprAccess().getFieldFieldTypeIDTerminalRuleCall_1_0_1_0_1(), semanticObject.getField());
 		feeder.finish();
 	}
 	
@@ -373,7 +373,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns RecordUpdateExpr
 	 *
 	 * Constraint:
-	 *     (record=AccessExpr_RecordUpdateExpr_1_1_0_0_0 field=[FieldExpr|ID] value=Expr)
+	 *     (record=AccessExpr_RecordUpdateExpr_1_1_0_0_0 field=[FieldType|ID] value=Expr)
 	 */
 	protected void sequence_AccessExpr(ISerializationContext context, RecordUpdateExpr semanticObject) {
 		if (errorAcceptor != null) {
@@ -386,7 +386,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAccessExprAccess().getRecordUpdateExprRecordAction_1_1_0_0_0(), semanticObject.getRecord());
-		feeder.accept(grammarAccess.getAccessExprAccess().getFieldFieldExprIDTerminalRuleCall_1_1_0_0_2_0_1(), semanticObject.getField());
+		feeder.accept(grammarAccess.getAccessExprAccess().getFieldFieldTypeIDTerminalRuleCall_1_1_0_0_2_0_1(), semanticObject.getField());
 		feeder.accept(grammarAccess.getAccessExprAccess().getValueExprParserRuleCall_1_1_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
@@ -654,41 +654,6 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     Expr returns PreviousExpr
-	 *     ImpliesExpr returns PreviousExpr
-	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
-	 *     OrExpr returns PreviousExpr
-	 *     OrExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
-	 *     AndExpr returns PreviousExpr
-	 *     AndExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
-	 *     TriggersExpr returns PreviousExpr
-	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
-	 *     SinceExpr returns PreviousExpr
-	 *     SinceExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
-	 *     TemporalPrefixExpr returns PreviousExpr
-	 *     RelationalExpr returns PreviousExpr
-	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
-	 *     PlusExpr returns PreviousExpr
-	 *     PlusExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
-	 *     MultiplyExpr returns PreviousExpr
-	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
-	 *     PrefixExpr returns PreviousExpr
-	 *     AccessExpr returns PreviousExpr
-	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns PreviousExpr
-	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns PreviousExpr
-	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns PreviousExpr
-	 *     AtomicExpr returns PreviousExpr
-	 *
-	 * Constraint:
-	 *     (var=Expr init=Expr?)
-	 */
-	protected void sequence_AtomicExpr(ISerializationContext context, PreviousExpr semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Expr returns RecordExpr
 	 *     ImpliesExpr returns RecordExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns RecordExpr
@@ -795,8 +760,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.WHILE_EXPR__THEN));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAtomicExprAccess().getCondExprParserRuleCall_6_2_0(), semanticObject.getCond());
-		feeder.accept(grammarAccess.getAtomicExprAccess().getThenExprParserRuleCall_6_4_0(), semanticObject.getThen());
+		feeder.accept(grammarAccess.getAtomicExprAccess().getCondExprParserRuleCall_5_2_0(), semanticObject.getCond());
+		feeder.accept(grammarAccess.getAtomicExprAccess().getThenExprParserRuleCall_5_4_0(), semanticObject.getThen());
 		feeder.finish();
 	}
 	
@@ -916,17 +881,17 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     FieldExpr returns FieldExpr
 	 *
 	 * Constraint:
-	 *     (name=ID expr=Expr)
+	 *     (field=[FieldType|ID] expr=Expr)
 	 */
 	protected void sequence_FieldExpr(ISerializationContext context, FieldExpr semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.FIELD_EXPR__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.FIELD_EXPR__NAME));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.FIELD_EXPR__FIELD) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.FIELD_EXPR__FIELD));
 			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.FIELD_EXPR__EXPR) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.FIELD_EXPR__EXPR));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFieldExprAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getFieldExprAccess().getFieldFieldTypeIDTerminalRuleCall_0_0_1(), semanticObject.getField());
 		feeder.accept(grammarAccess.getFieldExprAccess().getExprExprParserRuleCall_2_0(), semanticObject.getExpr());
 		feeder.finish();
 	}
@@ -1138,6 +1103,41 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     (name=ID patterns+=Pattern*)
 	 */
 	protected void sequence_Patterns(ISerializationContext context, Patterns semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Expr returns PreviousExpr
+	 *     ImpliesExpr returns PreviousExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     OrExpr returns PreviousExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     AndExpr returns PreviousExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     TriggersExpr returns PreviousExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     SinceExpr returns PreviousExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     TemporalPrefixExpr returns PreviousExpr
+	 *     RelationalExpr returns PreviousExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     PlusExpr returns PreviousExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     MultiplyExpr returns PreviousExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     PrefixExpr returns PreviousExpr
+	 *     AccessExpr returns PreviousExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns PreviousExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns PreviousExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns PreviousExpr
+	 *     AtomicExpr returns PreviousExpr
+	 *
+	 * Constraint:
+	 *     (var=PrefixExpr init=PrefixExpr?)
+	 */
+	protected void sequence_PrefixExpr(ISerializationContext context, PreviousExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

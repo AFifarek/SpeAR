@@ -322,8 +322,8 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	@Override
 	public SpearType caseRecordExpr(RecordExpr re) {
 		Map<String, Expr> fields = new LinkedHashMap<>();
-		for (FieldExpr rfe : re.getFieldExprs()) {
-			fields.put(rfe.getName(), rfe.getExpr());
+		for (FieldExpr fe : re.getFieldExprs()) {
+			fields.put(fe.getField().getName(), fe.getExpr());
 		}
 
 		SpearType result = doSwitch(re.getType());

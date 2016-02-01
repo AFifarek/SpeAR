@@ -4,6 +4,7 @@ package com.rockwellcollins.spear.impl;
 
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
+import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.SpearPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -23,7 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.rockwellcollins.spear.impl.FieldExprImpl#getName <em>Name</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.FieldExprImpl#getField <em>Field</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.FieldExprImpl#getExpr <em>Expr</em>}</li>
  * </ul>
  *
@@ -32,24 +33,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class FieldExprImpl extends MinimalEObjectImpl.Container implements FieldExpr
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getField() <em>Field</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getField()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
+  protected FieldType field;
 
   /**
    * The cached value of the '{@link #getExpr() <em>Expr</em>}' containment reference.
@@ -87,9 +78,19 @@ public class FieldExprImpl extends MinimalEObjectImpl.Container implements Field
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName()
+  public FieldType getField()
   {
-    return name;
+    if (field != null && field.eIsProxy())
+    {
+      InternalEObject oldField = (InternalEObject)field;
+      field = (FieldType)eResolveProxy(oldField);
+      if (field != oldField)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SpearPackage.FIELD_EXPR__FIELD, oldField, field));
+      }
+    }
+    return field;
   }
 
   /**
@@ -97,12 +98,22 @@ public class FieldExprImpl extends MinimalEObjectImpl.Container implements Field
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setName(String newName)
+  public FieldType basicGetField()
   {
-    String oldName = name;
-    name = newName;
+    return field;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setField(FieldType newField)
+  {
+    FieldType oldField = field;
+    field = newField;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.FIELD_EXPR__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.FIELD_EXPR__FIELD, oldField, field));
   }
 
   /**
@@ -179,8 +190,9 @@ public class FieldExprImpl extends MinimalEObjectImpl.Container implements Field
   {
     switch (featureID)
     {
-      case SpearPackage.FIELD_EXPR__NAME:
-        return getName();
+      case SpearPackage.FIELD_EXPR__FIELD:
+        if (resolve) return getField();
+        return basicGetField();
       case SpearPackage.FIELD_EXPR__EXPR:
         return getExpr();
     }
@@ -197,8 +209,8 @@ public class FieldExprImpl extends MinimalEObjectImpl.Container implements Field
   {
     switch (featureID)
     {
-      case SpearPackage.FIELD_EXPR__NAME:
-        setName((String)newValue);
+      case SpearPackage.FIELD_EXPR__FIELD:
+        setField((FieldType)newValue);
         return;
       case SpearPackage.FIELD_EXPR__EXPR:
         setExpr((Expr)newValue);
@@ -217,8 +229,8 @@ public class FieldExprImpl extends MinimalEObjectImpl.Container implements Field
   {
     switch (featureID)
     {
-      case SpearPackage.FIELD_EXPR__NAME:
-        setName(NAME_EDEFAULT);
+      case SpearPackage.FIELD_EXPR__FIELD:
+        setField((FieldType)null);
         return;
       case SpearPackage.FIELD_EXPR__EXPR:
         setExpr((Expr)null);
@@ -237,29 +249,12 @@ public class FieldExprImpl extends MinimalEObjectImpl.Container implements Field
   {
     switch (featureID)
     {
-      case SpearPackage.FIELD_EXPR__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case SpearPackage.FIELD_EXPR__FIELD:
+        return field != null;
       case SpearPackage.FIELD_EXPR__EXPR:
         return expr != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
   }
 
 } //FieldExprImpl
