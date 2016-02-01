@@ -7,6 +7,8 @@ import java.io.IOException;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -17,6 +19,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
@@ -35,9 +38,14 @@ import com.rockwellcollins.spear.translate.lustre.TranslateSpecification;
 import com.rockwellcollins.spear.translate.transformations.NormalizeOperators;
 import com.rockwellcollins.spear.translate.transformations.RemoveLustreKeywords;
 import com.rockwellcollins.spear.translate.transformations.RemoveSugar;
+import com.rockwellcollins.spear.translate.views.JKindResultsView;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
+import jkind.api.JKindApi;
+import jkind.api.results.JKindResult;
 import jkind.lustre.Program;
+import jkind.results.layout.Layout;
+import jkind.results.layout.NodeLayout;
 
 public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 
@@ -94,8 +102,22 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 				
 				//refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
+				
+				JKindApi api = getJKindApi();
+				JKindResult result = new JKindResult("result", p.getMainNode().properties);
+				IProgressMonitor monitor = new NullProgressMonitor();
+				showView(result, new NodeLayout(p));
+				
+				try {
+					api.execute(p, result, monitor);
+				} catch (Exception e) {
+					System.out.println(result.getText());
+					throw e;
+				}
+				
 				return null;
-			}	
+			}
+
 		});		
 	}
 
@@ -143,6 +165,25 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(res.getRawLocation().toFile()))) {
 			bw.write(contents);	
 		}
+	}
+	
+	private JKindApi getJKindApi() {
+		JKindApi api = new JKindApi();
+		return api;
+	}	
+	
+	private void showView(final JKindResult result, final Layout layout) {
+		window.getShell().getDisplay().syncExec(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					JKindResultsView page = (JKindResultsView) window.getActivePage().showView(JKindResultsView.ID);
+					page.setInput(result, layout);
+				} catch (PartInitException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 	
 	@Override

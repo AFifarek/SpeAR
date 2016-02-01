@@ -1,6 +1,7 @@
 package com.rockwellcollins.spear.translate.lustre;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -225,6 +226,7 @@ public class TranslateSpecification {
 		List<Equation> equations = new ArrayList<>();
 		equations.addAll(makeEquationsForShadowVars(state, shadowState));
 		equations.addAll(makeEquationsForShadowVars(outputs, shadowOutputs));
+		equations.addAll(makeEquationForMacros(s.getMacros()));
 		equations.addAll(makeEquationsForConstraints(s.getAssumptions()));
 		equations.addAll(makeEquationsForConstraints(s.getRequirements()));
 		equations.addAll(makeEquationsForConstraints(s.getBehaviors()));
@@ -255,6 +257,16 @@ public class TranslateSpecification {
 
 		Program p = new Program(typedefs, constants, nodes, mainNodeName);
 		return p;
+	}
+
+	private List<Equation> makeEquationForMacros(List<Macro> macros) {
+		List<Equation> equations = new ArrayList<>();
+		for(Macro m : macros) {
+			List<IdExpr> LHS = Collections.singletonList(new IdExpr(m.getName()));
+			Expr RHS = TranslateExpr.translate(m.getExpr());
+			equations.add(new Equation(LHS,RHS));
+		}
+		return equations;
 	}
 
 	private Expr conjunctify(Iterator<VarDecl> it) {

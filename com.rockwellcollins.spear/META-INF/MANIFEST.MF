@@ -31,7 +31,13 @@ Export-Package: com.rockwellcollins,
  com.rockwellcollins.spear.util,
  com.rockwellcollins.validation,
  javax.xml.bind,
- jkind.lustre
+ jkind.api,
+ jkind.api.results,
+ jkind.api.ui.counterexample,
+ jkind.api.ui.results,
+ jkind.lustre,
+ jkind.results,
+ jkind.results.layout
 Bundle-ClassPath: .,
  dependencies/jkind-api.jar,
  dependencies/jaxb-api-2.2.3.jar

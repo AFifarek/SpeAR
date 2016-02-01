@@ -25,5 +25,23 @@
          </action>
       </actionSet>
    </extension>
+    <extension point="org.eclipse.ui.views">
+      <category
+            id="com.rockwellcollins.spear.translate"
+            name="SpeAR View">
+      </category>
+        <view
+              category="com.rockwellcollins.spear.translate"
+              class="com.rockwellcollins.spear.translate.views.JKindResultsView"
+              icon="icons/spear_icon.png"
+              id="com.rockwellcollins.spear.translate.views.jKindResultsView"
+              name="Analysis Results"/>
+		<view
+              category="com.rockwellcollins.spear.translate.lustre"
+              class="com.rockwellcollins.spear.translate.views.JKindCounterexampleView"
+              icon="icons/sample.gif"
+              id="com.rockwellcollins.spear.translate.views.jKindCounterexampleView"
+              name="Counterexample"/>              
+   </extension>
 
 </plugin>
