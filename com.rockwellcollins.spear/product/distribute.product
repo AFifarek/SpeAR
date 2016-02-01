@@ -16,6 +16,8 @@ A tool for prototyping requirements using formal notations.
    </configIni>
 
    <launcherArgs>
+      <programArgs>-consoleLog
+      </programArgs>
       <vmArgs>-Dosgi.requiredJavaVersion=1.8
       </vmArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
