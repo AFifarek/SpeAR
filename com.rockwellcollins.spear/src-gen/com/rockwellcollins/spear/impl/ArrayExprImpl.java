@@ -3,7 +3,7 @@
 package com.rockwellcollins.spear.impl;
 
 import com.rockwellcollins.spear.ArrayExpr;
-import com.rockwellcollins.spear.ArrayType;
+import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.SpearPackage;
 
@@ -46,7 +46,7 @@ public class ArrayExprImpl extends ExprImpl implements ArrayExpr
    * @generated
    * @ordered
    */
-  protected ArrayType type;
+  protected ArrayTypeDef type;
 
   /**
    * The cached value of the '{@link #getExprs() <em>Exprs</em>}' containment reference list.
@@ -84,12 +84,12 @@ public class ArrayExprImpl extends ExprImpl implements ArrayExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public ArrayType getType()
+  public ArrayTypeDef getType()
   {
     if (type != null && type.eIsProxy())
     {
       InternalEObject oldType = (InternalEObject)type;
-      type = (ArrayType)eResolveProxy(oldType);
+      type = (ArrayTypeDef)eResolveProxy(oldType);
       if (type != oldType)
       {
         if (eNotificationRequired())
@@ -104,7 +104,7 @@ public class ArrayExprImpl extends ExprImpl implements ArrayExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public ArrayType basicGetType()
+  public ArrayTypeDef basicGetType()
   {
     return type;
   }
@@ -114,9 +114,9 @@ public class ArrayExprImpl extends ExprImpl implements ArrayExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(ArrayType newType)
+  public void setType(ArrayTypeDef newType)
   {
-    ArrayType oldType = type;
+    ArrayTypeDef oldType = type;
     type = newType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.ARRAY_EXPR__TYPE, oldType, type));
@@ -183,7 +183,7 @@ public class ArrayExprImpl extends ExprImpl implements ArrayExpr
     switch (featureID)
     {
       case SpearPackage.ARRAY_EXPR__TYPE:
-        setType((ArrayType)newValue);
+        setType((ArrayTypeDef)newValue);
         return;
       case SpearPackage.ARRAY_EXPR__EXPRS:
         getExprs().clear();
@@ -204,7 +204,7 @@ public class ArrayExprImpl extends ExprImpl implements ArrayExpr
     switch (featureID)
     {
       case SpearPackage.ARRAY_EXPR__TYPE:
-        setType((ArrayType)null);
+        setType((ArrayTypeDef)null);
         return;
       case SpearPackage.ARRAY_EXPR__EXPRS:
         getExprs().clear();

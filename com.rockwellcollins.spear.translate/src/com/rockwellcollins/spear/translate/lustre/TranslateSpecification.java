@@ -1,11 +1,12 @@
 package com.rockwellcollins.spear.translate.lustre;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
@@ -40,41 +41,40 @@ public class TranslateSpecification {
 		return translate.translateSpecification(s);
 	}
 
-	public static Constant translate(com.rockwellcollins.spear.Constant c) {
-		return new Constant(c.getName(), TranslateType.translate(c.getType()), TranslateExpr.translate(c.getExpr()));
-	}
-
-	public static VarDecl translate(com.rockwellcollins.spear.Variable v) {
-		return new VarDecl(v.getName(), TranslateType.translate(v.getType()));
-	}
-
 	public TranslateSpecification(Set<String> globalNames) {
 		this.globalNames = globalNames;
 		this.localNames = new HashSet<>();
+		this.global_renamed = new HashMap<>();
+		this.local_renamed = new HashMap<>();
 	}
 
 	private Set<String> globalNames;
 	private Set<String> localNames;
+	
+	private Map<String,String> global_renamed;
+	private Map<String,String> local_renamed;
+	
 	private final String SHADOW_SUFFIX = "_shadow";
 
 	private String getUniqueGlobalName(String proposed) {
 		String unique = proposed;
-
-		// TODO: do unique renaming
+		//TODO: uniqueify
+		global_renamed.put(proposed, unique);
 		return unique;
 	}
 
 	private String getUniqueLocalName(String proposed) {
 		String unique = proposed;
-
-		// TODO: do unique renaming
+		//TODO: uniqueify
+		local_renamed.put(proposed, unique);
 		return unique;
 	}
-
+	
 	private List<TypeDef> getTypeDefs(Specification s) {
 		List<TypeDef> typedefs = new ArrayList<>();
 		for (com.rockwellcollins.spear.TypeDef spearTypeDef : s.getTypedefs()) {
-			TypeDef lustreTypeDef = TranslateTypeDef.translate(spearTypeDef);
+			String name = getUniqueGlobalName(spearTypeDef.getName());
+			TypeDef lustreTypeDef = TranslateDecl.translate(spearTypeDef, name);
 			typedefs.add(lustreTypeDef);
 			globalNames.add(lustreTypeDef.id);
 		}
@@ -84,7 +84,8 @@ public class TranslateSpecification {
 	private List<Constant> getConstants(Specification s) {
 		List<Constant> constants = new ArrayList<>();
 		for (com.rockwellcollins.spear.Constant spearConstant : s.getConstants()) {
-			Constant lustreConstant = TranslateSpecification.translate(spearConstant);
+			String name = getUniqueGlobalName(spearConstant.getName());
+			Constant lustreConstant = TranslateDecl.translate(spearConstant, name);
 			constants.add(lustreConstant);
 			globalNames.add(lustreConstant.id);
 		}
@@ -94,7 +95,8 @@ public class TranslateSpecification {
 	private List<VarDecl> getVariables(List<com.rockwellcollins.spear.Variable> variables) {
 		List<VarDecl> list = new ArrayList<>();
 		for (com.rockwellcollins.spear.Variable var : variables) {
-			VarDecl lustreVariable = TranslateSpecification.translate(var);
+			String name = getUniqueLocalName(var.getName());
+			VarDecl lustreVariable = TranslateDecl.translate(var, name);
 			list.add(lustreVariable);
 			localNames.add(lustreVariable.id);
 		}
@@ -180,6 +182,14 @@ public class TranslateSpecification {
 		}
 		return properties;
 	}
+	
+	private VarDecl getHistoricalConjuctVarDecl() {
+		return new VarDecl(HISTORICAL_CONJUNCT_ID, NamedType.BOOL);
+	}
+
+	private VarDecl getConjuctVarDecl() {
+		return new VarDecl(CONJUNCTION_ID, NamedType.BOOL);
+	}
 
 	public Program translateSpecification(Specification s) {
 		String mainNodeName = s.getName();
@@ -215,8 +225,8 @@ public class TranslateSpecification {
 		nodeLocals.addAll(assumptionVarDecls);
 		nodeLocals.addAll(requirementVarDecls);
 		nodeLocals.addAll(behaviorVarDecls);
-		nodeLocals.add(new VarDecl(CONJUNCTION_ID, NamedType.BOOL));
-		nodeLocals.add(new VarDecl(HISTORICAL_CONJUNCT_ID, NamedType.BOOL));
+		nodeLocals.add(getConjuctVarDecl());
+		nodeLocals.add(getHistoricalConjuctVarDecl());
 		List<VarDecl> propertyVarDecls = getPropertyVarDecls(behaviorVarDecls);
 		nodeLocals.addAll(propertyVarDecls);
 

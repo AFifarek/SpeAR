@@ -2,7 +2,7 @@
  */
 package com.rockwellcollins.spear.impl;
 
-import com.rockwellcollins.spear.NamedType;
+import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.UnitDef;
@@ -17,19 +17,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Named Type</b></em>'.
+ * An implementation of the model object '<em><b>Named Type Def</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.rockwellcollins.spear.impl.NamedTypeImpl#getType <em>Type</em>}</li>
- *   <li>{@link com.rockwellcollins.spear.impl.NamedTypeImpl#getUnit <em>Unit</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.NamedTypeDefImpl#getType <em>Type</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.NamedTypeDefImpl#getUnit <em>Unit</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class NamedTypeImpl extends TypeDefImpl implements NamedType
+public class NamedTypeDefImpl extends TypeDefImpl implements NamedTypeDef
 {
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -56,7 +56,7 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NamedTypeImpl()
+  protected NamedTypeDefImpl()
   {
     super();
   }
@@ -69,7 +69,7 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
   @Override
   protected EClass eStaticClass()
   {
-    return SpearPackage.Literals.NAMED_TYPE;
+    return SpearPackage.Literals.NAMED_TYPE_DEF;
   }
 
   /**
@@ -93,7 +93,7 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
     type = newType;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpearPackage.NAMED_TYPE__TYPE, oldType, newType);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SpearPackage.NAMED_TYPE_DEF__TYPE, oldType, newType);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -110,14 +110,14 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
     {
       NotificationChain msgs = null;
       if (type != null)
-        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpearPackage.NAMED_TYPE__TYPE, null, msgs);
+        msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SpearPackage.NAMED_TYPE_DEF__TYPE, null, msgs);
       if (newType != null)
-        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpearPackage.NAMED_TYPE__TYPE, null, msgs);
+        msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SpearPackage.NAMED_TYPE_DEF__TYPE, null, msgs);
       msgs = basicSetType(newType, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.NAMED_TYPE__TYPE, newType, newType));
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.NAMED_TYPE_DEF__TYPE, newType, newType));
   }
 
   /**
@@ -134,7 +134,7 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
       if (unit != oldUnit)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SpearPackage.NAMED_TYPE__UNIT, oldUnit, unit));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SpearPackage.NAMED_TYPE_DEF__UNIT, oldUnit, unit));
       }
     }
     return unit;
@@ -160,7 +160,7 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
     UnitDef oldUnit = unit;
     unit = newUnit;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.NAMED_TYPE__UNIT, oldUnit, unit));
+      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.NAMED_TYPE_DEF__UNIT, oldUnit, unit));
   }
 
   /**
@@ -173,7 +173,7 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
   {
     switch (featureID)
     {
-      case SpearPackage.NAMED_TYPE__TYPE:
+      case SpearPackage.NAMED_TYPE_DEF__TYPE:
         return basicSetType(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -189,9 +189,9 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
   {
     switch (featureID)
     {
-      case SpearPackage.NAMED_TYPE__TYPE:
+      case SpearPackage.NAMED_TYPE_DEF__TYPE:
         return getType();
-      case SpearPackage.NAMED_TYPE__UNIT:
+      case SpearPackage.NAMED_TYPE_DEF__UNIT:
         if (resolve) return getUnit();
         return basicGetUnit();
     }
@@ -208,10 +208,10 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
   {
     switch (featureID)
     {
-      case SpearPackage.NAMED_TYPE__TYPE:
+      case SpearPackage.NAMED_TYPE_DEF__TYPE:
         setType((Type)newValue);
         return;
-      case SpearPackage.NAMED_TYPE__UNIT:
+      case SpearPackage.NAMED_TYPE_DEF__UNIT:
         setUnit((UnitDef)newValue);
         return;
     }
@@ -228,10 +228,10 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
   {
     switch (featureID)
     {
-      case SpearPackage.NAMED_TYPE__TYPE:
+      case SpearPackage.NAMED_TYPE_DEF__TYPE:
         setType((Type)null);
         return;
-      case SpearPackage.NAMED_TYPE__UNIT:
+      case SpearPackage.NAMED_TYPE_DEF__UNIT:
         setUnit((UnitDef)null);
         return;
     }
@@ -248,12 +248,12 @@ public class NamedTypeImpl extends TypeDefImpl implements NamedType
   {
     switch (featureID)
     {
-      case SpearPackage.NAMED_TYPE__TYPE:
+      case SpearPackage.NAMED_TYPE_DEF__TYPE:
         return type != null;
-      case SpearPackage.NAMED_TYPE__UNIT:
+      case SpearPackage.NAMED_TYPE_DEF__UNIT:
         return unit != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //NamedTypeImpl
+} //NamedTypeDefImpl

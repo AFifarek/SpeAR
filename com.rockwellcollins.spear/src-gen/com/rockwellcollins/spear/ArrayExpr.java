@@ -32,12 +32,12 @@ public interface ArrayExpr extends Expr
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(ArrayType)
+   * @see #setType(ArrayTypeDef)
    * @see com.rockwellcollins.spear.SpearPackage#getArrayExpr_Type()
    * @model
    * @generated
    */
-  ArrayType getType();
+  ArrayTypeDef getType();
 
   /**
    * Sets the value of the '{@link com.rockwellcollins.spear.ArrayExpr#getType <em>Type</em>}' reference.
@@ -47,7 +47,7 @@ public interface ArrayExpr extends Expr
    * @see #getType()
    * @generated
    */
-  void setType(ArrayType value);
+  void setType(ArrayTypeDef value);
 
   /**
    * Returns the value of the '<em><b>Exprs</b></em>' containment reference list.

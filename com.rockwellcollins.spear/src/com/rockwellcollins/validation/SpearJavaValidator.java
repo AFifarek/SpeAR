@@ -13,18 +13,12 @@ import org.eclipse.xtext.validation.ComposedChecks;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Expr;
-import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
-import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.NamedType;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.Variable;
-import com.rockwellcollins.spear.typing.SpearType;
-import com.rockwellcollins.spear.typing.SpearTypeChecker;
-import com.rockwellcollins.spear.units.UnitChecker;
 import com.rockwellcollins.spear.utilities.ConstantChecker;
 
 /**

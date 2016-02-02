@@ -60,42 +60,44 @@ public class SpearFormatter extends AbstractDeclarativeFormatter {
 		//this works for all variable definitions in Inputs, Outputs, and State
 		c.setLinewrap().after(g.getVariableRule());
 		
-		c.setLinewrap().after(g.getSpecificationAccess().getInputsKeyword_6());
-		c.setIndentationIncrement().after(g.getSpecificationAccess().getInputsKeyword_6());
-		c.setIndentationDecrement().after(g.getSpecificationAccess().getInputsVariableParserRuleCall_7_0());
-		c.setLinewrap(2).after(g.getSpecificationAccess().getInputsVariableParserRuleCall_7_0());
+		c.setLinewrap().after(g.getSpecificationAccess().getInputsKeyword_7());
+		c.setIndentationIncrement().after(g.getSpecificationAccess().getInputsKeyword_7());
+		c.setIndentationDecrement().after(g.getSpecificationAccess().getInputsVariableParserRuleCall_8_0());
+		c.setLinewrap(2).after(g.getSpecificationAccess().getInputsVariableParserRuleCall_8_0());
 		
-		c.setLinewrap().after(g.getSpecificationAccess().getOutputsKeyword_8());
-		c.setIndentationIncrement().after(g.getSpecificationAccess().getOutputsKeyword_8());
-		c.setIndentationDecrement().after(g.getSpecificationAccess().getOutputsVariableParserRuleCall_9_0());
-		c.setLinewrap(2).after(g.getSpecificationAccess().getOutputsVariableParserRuleCall_9_0());		
+		c.setLinewrap().after(g.getSpecificationAccess().getOutputsKeyword_9());
+		c.setIndentationIncrement().after(g.getSpecificationAccess().getOutputsKeyword_9());
+		c.setIndentationDecrement().after(g.getSpecificationAccess().getOutputsVariableParserRuleCall_10_0());
+		c.setLinewrap(2).after(g.getSpecificationAccess().getOutputsVariableParserRuleCall_10_0());		
 		
-		c.setLinewrap().after(g.getSpecificationAccess().getStateKeyword_10_0());
-		c.setIndentationIncrement().after(g.getSpecificationAccess().getStateKeyword_10_0());
-		c.setIndentationDecrement().after(g.getSpecificationAccess().getStateVariableParserRuleCall_10_1_0());
-		c.setLinewrap(2).after(g.getSpecificationAccess().getStateVariableParserRuleCall_10_1_0());
+		c.setLinewrap().after(g.getSpecificationAccess().getStateKeyword_11_0());
+		c.setIndentationIncrement().after(g.getSpecificationAccess().getStateKeyword_11_0());
+		c.setIndentationDecrement().after(g.getSpecificationAccess().getStateVariableParserRuleCall_11_1_0());
+		c.setLinewrap(2).after(g.getSpecificationAccess().getStateVariableParserRuleCall_11_1_0());
 		
-		c.setLinewrap().after(g.getSpecificationAccess().getMacrosKeyword_11_0());
-		c.setIndentationIncrement().after(g.getSpecificationAccess().getMacrosKeyword_11_0());
+		c.setLinewrap().after(g.getSpecificationAccess().getMacrosKeyword_12_0());
+		c.setIndentationIncrement().after(g.getSpecificationAccess().getMacrosKeyword_12_0());
 		c.setLinewrap().after(g.getMacroRule());
-		c.setIndentationDecrement().after(g.getSpecificationAccess().getMacrosMacroParserRuleCall_11_1_0());
-		c.setLinewrap(2).after(g.getSpecificationAccess().getMacrosMacroParserRuleCall_11_1_0());
+		c.setIndentationDecrement().after(g.getSpecificationAccess().getMacrosMacroParserRuleCall_12_1_0());
+		c.setLinewrap(2).after(g.getSpecificationAccess().getMacrosMacroParserRuleCall_12_1_0());
 
 		//this works for all formal constraints
 		c.setLinewrap().after(g.getFormalConstraintRule());
 		
-		c.setLinewrap().after(g.getSpecificationAccess().getAssumptionsKeyword_12_0());
-		c.setIndentationIncrement().after(g.getSpecificationAccess().getAssumptionsKeyword_12_0());
-		c.setIndentationDecrement().after(g.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_12_1_0());
-		c.setLinewrap(2).after(g.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_12_1_0());
+		c.setLinewrap().after(g.getSpecificationAccess().getAssumptionsKeyword_13_0());
+		c.setIndentationIncrement().after(g.getSpecificationAccess().getAssumptionsKeyword_13_0());
+		c.setIndentationDecrement().after(g.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_13_1_0());
+		c.setLinewrap(2).after(g.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_13_1_0());
 		
-		c.setLinewrap().after(g.getSpecificationAccess().getDerivedRequirementsKeyword_13());
-		c.setIndentationIncrement().after(g.getSpecificationAccess().getDerivedRequirementsKeyword_13());
+		c.setLinewrap().after(g.getConstraintsKeywordRule());
+		c.setIndentationIncrement().after(g.getConstraintsKeywordRule());
+		c.setIndentationDecrement().after(g.getSpecificationAccess().getBehaviorsConstraintParserRuleCall_16_1_0());
+		c.setLinewrap(2).after(g.getSpecificationAccess().getBehaviorsConstraintParserRuleCall_16_1_0());
 
-		c.setLinewrap().after(g.getSpecificationAccess().getRequirementsKeyword_15_0());
-		c.setIndentationIncrement().after(g.getSpecificationAccess().getRequirementsKeyword_15_0());
-		c.setIndentationDecrement().after(g.getSpecificationAccess().getRequirementsConstraintParserRuleCall_14_0());
-		c.setLinewrap(2).after(g.getSpecificationAccess().getRequirementsConstraintParserRuleCall_14_0());
+		c.setLinewrap().after(g.getSpecificationAccess().getRequirementsKeyword_16_0());
+		c.setIndentationIncrement().after(g.getSpecificationAccess().getRequirementsKeyword_16_0());
+		c.setIndentationDecrement().after(g.getSpecificationAccess().getRequirementsConstraintParserRuleCall_15_0());
+		c.setLinewrap(2).after(g.getSpecificationAccess().getRequirementsConstraintParserRuleCall_15_0());
 		
 		c.setLinewrap().after(g.getSpecificationRule());
 		

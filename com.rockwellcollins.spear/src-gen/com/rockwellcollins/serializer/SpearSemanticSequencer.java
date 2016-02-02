@@ -8,7 +8,7 @@ import com.rockwellcollins.services.SpearGrammarAccess;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
-import com.rockwellcollins.spear.ArrayType;
+import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.ArrayUpdateExpr;
 import com.rockwellcollins.spear.BaseUnit;
 import com.rockwellcollins.spear.BinaryExpr;
@@ -19,7 +19,7 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.DerivedUnit;
 import com.rockwellcollins.spear.EnglishConstraint;
-import com.rockwellcollins.spear.EnumType;
+import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldType;
@@ -31,7 +31,7 @@ import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.NamedType;
+import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PatternCall;
@@ -41,7 +41,7 @@ import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordType;
+import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
@@ -84,8 +84,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.ARRAY_EXPR:
 				sequence_AtomicExpr(context, (ArrayExpr) semanticObject); 
 				return; 
-			case SpearPackage.ARRAY_TYPE:
-				sequence_TypeDef(context, (ArrayType) semanticObject); 
+			case SpearPackage.ARRAY_TYPE_DEF:
+				sequence_TypeDef(context, (ArrayTypeDef) semanticObject); 
 				return; 
 			case SpearPackage.ARRAY_UPDATE_EXPR:
 				sequence_AccessExpr(context, (ArrayUpdateExpr) semanticObject); 
@@ -117,8 +117,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.ENGLISH_CONSTRAINT:
 				sequence_EnglishConstraint(context, (EnglishConstraint) semanticObject); 
 				return; 
-			case SpearPackage.ENUM_TYPE:
-				sequence_TypeDef(context, (EnumType) semanticObject); 
+			case SpearPackage.ENUM_TYPE_DEF:
+				sequence_TypeDef(context, (EnumTypeDef) semanticObject); 
 				return; 
 			case SpearPackage.ENUM_VALUE:
 				sequence_EnumValue(context, (EnumValue) semanticObject); 
@@ -153,8 +153,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.MACRO:
 				sequence_Macro(context, (Macro) semanticObject); 
 				return; 
-			case SpearPackage.NAMED_TYPE:
-				sequence_TypeDef(context, (NamedType) semanticObject); 
+			case SpearPackage.NAMED_TYPE_DEF:
+				sequence_TypeDef(context, (NamedTypeDef) semanticObject); 
 				return; 
 			case SpearPackage.NAMED_UNIT_EXPR:
 				sequence_AtomicUnitExpr(context, (NamedUnitExpr) semanticObject); 
@@ -183,8 +183,8 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.RECORD_EXPR:
 				sequence_AtomicExpr(context, (RecordExpr) semanticObject); 
 				return; 
-			case SpearPackage.RECORD_TYPE:
-				sequence_TypeDef(context, (RecordType) semanticObject); 
+			case SpearPackage.RECORD_TYPE_DEF:
+				sequence_TypeDef(context, (RecordTypeDef) semanticObject); 
 				return; 
 			case SpearPackage.RECORD_UPDATE_EXPR:
 				sequence_AccessExpr(context, (RecordUpdateExpr) semanticObject); 
@@ -499,7 +499,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns ArrayExpr
 	 *
 	 * Constraint:
-	 *     (type=[ArrayType|ID] exprs+=Expr exprs+=Expr*)
+	 *     (type=[ArrayTypeDef|ID] exprs+=Expr exprs+=Expr*)
 	 */
 	protected void sequence_AtomicExpr(ISerializationContext context, ArrayExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -680,7 +680,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     AtomicExpr returns RecordExpr
 	 *
 	 * Constraint:
-	 *     (type=[RecordType|ID] fieldExprs+=FieldExpr fieldExprs+=FieldExpr*)
+	 *     (type=[RecordTypeDef|ID] fieldExprs+=FieldExpr fieldExprs+=FieldExpr*)
 	 */
 	protected void sequence_AtomicExpr(ISerializationContext context, RecordExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1203,6 +1203,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         units+=UnitDef* 
 	 *         typedefs+=TypeDef* 
 	 *         constants+=Constant* 
+	 *         patterns+=Pattern* 
 	 *         inputs+=Variable* 
 	 *         outputs+=Variable* 
 	 *         state+=Variable* 
@@ -1219,19 +1220,19 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     TypeDef returns ArrayType
+	 *     TypeDef returns ArrayTypeDef
 	 *
 	 * Constraint:
 	 *     (name=ID base=Type size=INT)
 	 */
-	protected void sequence_TypeDef(ISerializationContext context, ArrayType semanticObject) {
+	protected void sequence_TypeDef(ISerializationContext context, ArrayTypeDef semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.TYPE_DEF__NAME));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_TYPE__BASE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_TYPE__BASE));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_TYPE__SIZE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_TYPE__SIZE));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_TYPE_DEF__BASE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_TYPE_DEF__BASE));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.ARRAY_TYPE_DEF__SIZE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTypeDefAccess().getNameIDTerminalRuleCall_2_1_0(), semanticObject.getName());
@@ -1243,36 +1244,36 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     TypeDef returns EnumType
+	 *     TypeDef returns EnumTypeDef
 	 *
 	 * Constraint:
 	 *     (name=ID values+=EnumValue values+=EnumValue*)
 	 */
-	protected void sequence_TypeDef(ISerializationContext context, EnumType semanticObject) {
+	protected void sequence_TypeDef(ISerializationContext context, EnumTypeDef semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     TypeDef returns NamedType
+	 *     TypeDef returns NamedTypeDef
 	 *
 	 * Constraint:
 	 *     (name=ID type=Type unit=[UnitDef|ID]?)
 	 */
-	protected void sequence_TypeDef(ISerializationContext context, NamedType semanticObject) {
+	protected void sequence_TypeDef(ISerializationContext context, NamedTypeDef semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Contexts:
-	 *     TypeDef returns RecordType
+	 *     TypeDef returns RecordTypeDef
 	 *
 	 * Constraint:
 	 *     (name=ID fields+=FieldType fields+=FieldType*)
 	 */
-	protected void sequence_TypeDef(ISerializationContext context, RecordType semanticObject) {
+	protected void sequence_TypeDef(ISerializationContext context, RecordTypeDef semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

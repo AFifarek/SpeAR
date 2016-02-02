@@ -257,40 +257,40 @@ public interface SpearFactory extends EFactory
   NamedUnitExpr createNamedUnitExpr();
 
   /**
-   * Returns a new object of class '<em>Named Type</em>'.
+   * Returns a new object of class '<em>Named Type Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Named Type</em>'.
+   * @return a new object of class '<em>Named Type Def</em>'.
    * @generated
    */
-  NamedType createNamedType();
+  NamedTypeDef createNamedTypeDef();
 
   /**
-   * Returns a new object of class '<em>Record Type</em>'.
+   * Returns a new object of class '<em>Record Type Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Record Type</em>'.
+   * @return a new object of class '<em>Record Type Def</em>'.
    * @generated
    */
-  RecordType createRecordType();
+  RecordTypeDef createRecordTypeDef();
 
   /**
-   * Returns a new object of class '<em>Array Type</em>'.
+   * Returns a new object of class '<em>Array Type Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Array Type</em>'.
+   * @return a new object of class '<em>Array Type Def</em>'.
    * @generated
    */
-  ArrayType createArrayType();
+  ArrayTypeDef createArrayTypeDef();
 
   /**
-   * Returns a new object of class '<em>Enum Type</em>'.
+   * Returns a new object of class '<em>Enum Type Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Enum Type</em>'.
+   * @return a new object of class '<em>Enum Type Def</em>'.
    * @generated
    */
-  EnumType createEnumType();
+  EnumTypeDef createEnumTypeDef();
 
   /**
    * Returns a new object of class '<em>Int Type</em>'.

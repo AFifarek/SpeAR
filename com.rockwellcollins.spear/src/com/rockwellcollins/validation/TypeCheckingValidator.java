@@ -5,7 +5,7 @@ import org.eclipse.xtext.validation.Check;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.NamedType;
+import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.units.UnitChecker;
@@ -16,11 +16,11 @@ public class TypeCheckingValidator extends AbstractSpearJavaValidator {
 	//Type Checking
 	/***********************************************************************************************/
 	@Check
-	public void typeCheckNamedType(NamedType nt) {
+	public void typeCheckNamedTypeDef(NamedTypeDef nt) {
 		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
 		SpearType type = tc.checkNamedType(nt);
 		if(type != SpearTypeChecker.ERROR) {
-			new UnitChecker(getMessageAcceptor()).checkNamedType(nt);			
+			new UnitChecker(getMessageAcceptor()).checkNamedTypeDef(nt);			
 		}
 	}
 	

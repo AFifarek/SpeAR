@@ -27,12 +27,13 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_Definitions_ConstantsKeyword_4_0_q;
 	protected AbstractElementAlias match_Definitions_TypesKeyword_3_0_q;
 	protected AbstractElementAlias match_Definitions_UnitsKeyword_2_0_q;
-	protected AbstractElementAlias match_Specification_AssumptionsKeyword_12_0_q;
+	protected AbstractElementAlias match_Specification_AssumptionsKeyword_13_0_q;
 	protected AbstractElementAlias match_Specification_ConstantsKeyword_5_0_q;
 	protected AbstractElementAlias match_Specification_ImportsKeyword_2_0_q;
-	protected AbstractElementAlias match_Specification_MacrosKeyword_11_0_q;
-	protected AbstractElementAlias match_Specification_RequirementsKeyword_15_0_q;
-	protected AbstractElementAlias match_Specification_StateKeyword_10_0_q;
+	protected AbstractElementAlias match_Specification_MacrosKeyword_12_0_q;
+	protected AbstractElementAlias match_Specification_PatternsKeyword_6_0_q;
+	protected AbstractElementAlias match_Specification_RequirementsKeyword_16_0_q;
+	protected AbstractElementAlias match_Specification_StateKeyword_11_0_q;
 	protected AbstractElementAlias match_Specification_TypesKeyword_4_0_q;
 	protected AbstractElementAlias match_Specification_UnitsKeyword_3_0_q;
 	
@@ -46,21 +47,36 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_Definitions_ConstantsKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getConstantsKeyword_4_0());
 		match_Definitions_TypesKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getTypesKeyword_3_0());
 		match_Definitions_UnitsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getUnitsKeyword_2_0());
-		match_Specification_AssumptionsKeyword_12_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getAssumptionsKeyword_12_0());
+		match_Specification_AssumptionsKeyword_13_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getAssumptionsKeyword_13_0());
 		match_Specification_ConstantsKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getConstantsKeyword_5_0());
 		match_Specification_ImportsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getImportsKeyword_2_0());
-		match_Specification_MacrosKeyword_11_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getMacrosKeyword_11_0());
-		match_Specification_RequirementsKeyword_15_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getRequirementsKeyword_15_0());
-		match_Specification_StateKeyword_10_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getStateKeyword_10_0());
+		match_Specification_MacrosKeyword_12_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getMacrosKeyword_12_0());
+		match_Specification_PatternsKeyword_6_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getPatternsKeyword_6_0());
+		match_Specification_RequirementsKeyword_16_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getRequirementsKeyword_16_0());
+		match_Specification_StateKeyword_11_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getStateKeyword_11_0());
 		match_Specification_TypesKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getTypesKeyword_4_0());
 		match_Specification_UnitsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getUnitsKeyword_3_0());
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getIdTypeDelimiterRule())
+		if (ruleCall.getRule() == grammarAccess.getConstraintsKeywordRule())
+			return getConstraintsKeywordToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getIdTypeDelimiterRule())
 			return getIdTypeDelimiterToken(semanticObject, ruleCall, node);
 		return "";
+	}
+	
+	/**
+	 * ConstraintsKeyword:
+	 * 	'DerivedRequirements:'
+	 * |	'Constraints:'
+	 * ;
+	 */
+	protected String getConstraintsKeywordToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "DerivedRequirements:";
 	}
 	
 	/**
@@ -95,18 +111,20 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Definitions_TypesKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Definitions_UnitsKeyword_2_0_q.equals(syntax))
 				emit_Definitions_UnitsKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Specification_AssumptionsKeyword_12_0_q.equals(syntax))
-				emit_Specification_AssumptionsKeyword_12_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Specification_AssumptionsKeyword_13_0_q.equals(syntax))
+				emit_Specification_AssumptionsKeyword_13_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Specification_ConstantsKeyword_5_0_q.equals(syntax))
 				emit_Specification_ConstantsKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Specification_ImportsKeyword_2_0_q.equals(syntax))
 				emit_Specification_ImportsKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Specification_MacrosKeyword_11_0_q.equals(syntax))
-				emit_Specification_MacrosKeyword_11_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Specification_RequirementsKeyword_15_0_q.equals(syntax))
-				emit_Specification_RequirementsKeyword_15_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Specification_StateKeyword_10_0_q.equals(syntax))
-				emit_Specification_StateKeyword_10_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Specification_MacrosKeyword_12_0_q.equals(syntax))
+				emit_Specification_MacrosKeyword_12_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Specification_PatternsKeyword_6_0_q.equals(syntax))
+				emit_Specification_PatternsKeyword_6_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Specification_RequirementsKeyword_16_0_q.equals(syntax))
+				emit_Specification_RequirementsKeyword_16_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Specification_StateKeyword_11_0_q.equals(syntax))
+				emit_Specification_StateKeyword_11_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Specification_TypesKeyword_4_0_q.equals(syntax))
 				emit_Specification_TypesKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Specification_UnitsKeyword_3_0_q.equals(syntax))
@@ -122,8 +140,8 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) 'after' after=Expr
 	 *     (rule start) (ambiguity) 'if' cond=Expr
-	 *     (rule start) (ambiguity) 'new' type=[ArrayType|ID]
-	 *     (rule start) (ambiguity) 'new' type=[RecordType|ID]
+	 *     (rule start) (ambiguity) 'new' type=[ArrayTypeDef|ID]
+	 *     (rule start) (ambiguity) 'new' type=[RecordTypeDef|ID]
 	 *     (rule start) (ambiguity) 'pattern' pattern=[Pattern|ID]
 	 *     (rule start) (ambiguity) 'previous' var=PrefixExpr
 	 *     (rule start) (ambiguity) 'spec' spec=[Specification|ID]
@@ -245,35 +263,38 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'Assumptions:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     constants+=Constant 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     constants+=Constant 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     constants+=Constant 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' requirements+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' requirements+=Constraint
-	 *     inputs+=Variable 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     inputs+=Variable 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     inputs+=Variable 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' requirements+=Constraint
-	 *     macros+=Macro (ambiguity) 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     macros+=Macro (ambiguity) 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     macros+=Macro (ambiguity) 'DerivedRequirements:' requirements+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' requirements+=Constraint
-	 *     outputs+=Variable 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     outputs+=Variable 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     outputs+=Variable 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' requirements+=Constraint
-	 *     state+=Variable 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     state+=Variable 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     state+=Variable 'Macros:'? (ambiguity) 'DerivedRequirements:' requirements+=Constraint
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' requirements+=Constraint
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) 'DerivedRequirements:' requirements+=Constraint
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword requirements+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword requirements+=Constraint
+	 *     inputs+=Variable 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     inputs+=Variable 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     inputs+=Variable 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword requirements+=Constraint
+	 *     macros+=Macro (ambiguity) ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     macros+=Macro (ambiguity) ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     macros+=Macro (ambiguity) ConstraintsKeyword requirements+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword requirements+=Constraint
+	 *     outputs+=Variable 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     outputs+=Variable 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     outputs+=Variable 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword requirements+=Constraint
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword requirements+=Constraint
+	 *     state+=Variable 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     state+=Variable 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     state+=Variable 'Macros:'? (ambiguity) ConstraintsKeyword requirements+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword requirements+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? (ambiguity) ConstraintsKeyword requirements+=Constraint
 	 */
-	protected void emit_Specification_AssumptionsKeyword_12_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Specification_AssumptionsKeyword_13_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -282,38 +303,42 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'Constants:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:' state+=Variable
-	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
-	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' outputs+=Variable
-	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Inputs:' inputs+=Variable
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:' state+=Variable
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' outputs+=Variable
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Inputs:' inputs+=Variable
-	 *     typedefs+=TypeDef (ambiguity) 'Inputs:' 'Outputs:' 'State:' state+=Variable
-	 *     typedefs+=TypeDef (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
-	 *     typedefs+=TypeDef (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     typedefs+=TypeDef (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     typedefs+=TypeDef (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     typedefs+=TypeDef (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     typedefs+=TypeDef (ambiguity) 'Inputs:' 'Outputs:' outputs+=Variable
-	 *     typedefs+=TypeDef (ambiguity) 'Inputs:' inputs+=Variable
-	 *     units+=UnitDef 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:' state+=Variable
-	 *     units+=UnitDef 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
-	 *     units+=UnitDef 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     units+=UnitDef 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     units+=UnitDef 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     units+=UnitDef 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     units+=UnitDef 'Types:'? (ambiguity) 'Inputs:' 'Outputs:' outputs+=Variable
-	 *     units+=UnitDef 'Types:'? (ambiguity) 'Inputs:' inputs+=Variable
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:' patterns+=Pattern
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' inputs+=Variable
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:' patterns+=Pattern
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' inputs+=Variable
+	 *     typedefs+=TypeDef (ambiguity) 'Patterns:' patterns+=Pattern
+	 *     typedefs+=TypeDef (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     typedefs+=TypeDef (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     typedefs+=TypeDef (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     typedefs+=TypeDef (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     typedefs+=TypeDef (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     typedefs+=TypeDef (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     typedefs+=TypeDef (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     typedefs+=TypeDef (ambiguity) 'Patterns:'? 'Inputs:' inputs+=Variable
+	 *     units+=UnitDef 'Types:'? (ambiguity) 'Patterns:' patterns+=Pattern
+	 *     units+=UnitDef 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     units+=UnitDef 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     units+=UnitDef 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     units+=UnitDef 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     units+=UnitDef 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     units+=UnitDef 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     units+=UnitDef 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     units+=UnitDef 'Types:'? (ambiguity) 'Patterns:'? 'Inputs:' inputs+=Variable
 	 */
 	protected void emit_Specification_ConstantsKeyword_5_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -327,14 +352,15 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ID (ambiguity) 'Units:' units+=UnitDef
 	 *     name=ID (ambiguity) 'Units:'? 'Types:' typedefs+=TypeDef
 	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:' constants+=Constant
-	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
-	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
-	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' outputs+=Variable
-	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' inputs+=Variable
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' inputs+=Variable
 	 */
 	protected void emit_Specification_ImportsKeyword_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -345,40 +371,94 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'Macros:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     constants+=Constant 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
-	 *     constants+=Constant 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     constants+=Constant 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     constants+=Constant 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
 	 *     inputs+=Variable 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
-	 *     inputs+=Variable 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     inputs+=Variable 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     inputs+=Variable 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
+	 *     inputs+=Variable 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     inputs+=Variable 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     inputs+=Variable 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
 	 *     outputs+=Variable 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
-	 *     outputs+=Variable 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     outputs+=Variable 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     outputs+=Variable 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
+	 *     outputs+=Variable 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     outputs+=Variable 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     outputs+=Variable 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
 	 *     state+=Variable (ambiguity) 'Assumptions:' assumptions+=Constraint
-	 *     state+=Variable (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     state+=Variable (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     state+=Variable (ambiguity) 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
+	 *     state+=Variable (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     state+=Variable (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     state+=Variable (ambiguity) 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:' assumptions+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? (ambiguity) 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
 	 */
-	protected void emit_Specification_MacrosKeyword_11_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Specification_MacrosKeyword_12_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'Patterns:'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     constants+=Constant (ambiguity) 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     constants+=Constant (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     constants+=Constant (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     constants+=Constant (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     constants+=Constant (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     constants+=Constant (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     constants+=Constant (ambiguity) 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     constants+=Constant (ambiguity) 'Inputs:' inputs+=Variable
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' inputs+=Variable
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' inputs+=Variable
+	 *     typedefs+=TypeDef 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     typedefs+=TypeDef 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     typedefs+=TypeDef 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     typedefs+=TypeDef 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     typedefs+=TypeDef 'Constants:'? (ambiguity) 'Inputs:' inputs+=Variable
+	 *     units+=UnitDef 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     units+=UnitDef 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     units+=UnitDef 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     units+=UnitDef 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     units+=UnitDef 'Types:'? 'Constants:'? (ambiguity) 'Inputs:' inputs+=Variable
+	 */
+	protected void emit_Specification_PatternsKeyword_6_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -387,19 +467,20 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'Requirements:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     assumptions+=Constraint 'DerivedRequirements:' (ambiguity) (rule end)
-	 *     constants+=Constant 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' (ambiguity) (rule end)
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' (ambiguity) (rule end)
-	 *     inputs+=Variable 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' (ambiguity) (rule end)
-	 *     macros+=Macro 'Assumptions:'? 'DerivedRequirements:' (ambiguity) (rule end)
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' (ambiguity) (rule end)
-	 *     outputs+=Variable 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' (ambiguity) (rule end)
+	 *     assumptions+=Constraint ConstraintsKeyword (ambiguity) (rule end)
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword (ambiguity) (rule end)
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword (ambiguity) (rule end)
+	 *     inputs+=Variable 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword (ambiguity) (rule end)
+	 *     macros+=Macro 'Assumptions:'? ConstraintsKeyword (ambiguity) (rule end)
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword (ambiguity) (rule end)
+	 *     outputs+=Variable 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword (ambiguity) (rule end)
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword (ambiguity) (rule end)
 	 *     requirements+=Constraint (ambiguity) (rule end)
-	 *     state+=Variable 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' (ambiguity) (rule end)
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' (ambiguity) (rule end)
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' (ambiguity) (rule end)
+	 *     state+=Variable 'Macros:'? 'Assumptions:'? ConstraintsKeyword (ambiguity) (rule end)
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword (ambiguity) (rule end)
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword (ambiguity) (rule end)
 	 */
-	protected void emit_Specification_RequirementsKeyword_15_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Specification_RequirementsKeyword_16_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -408,43 +489,48 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'State:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     constants+=Constant 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
-	 *     constants+=Constant 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     constants+=Constant 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     constants+=Constant 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     constants+=Constant 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     constants+=Constant 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
 	 *     inputs+=Variable 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
 	 *     inputs+=Variable 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     inputs+=Variable 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     inputs+=Variable 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     inputs+=Variable 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
+	 *     inputs+=Variable 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     inputs+=Variable 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     inputs+=Variable 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
 	 *     outputs+=Variable (ambiguity) 'Macros:' macros+=Macro
 	 *     outputs+=Variable (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     outputs+=Variable (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     outputs+=Variable (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     outputs+=Variable (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     typedefs+=TypeDef 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
+	 *     outputs+=Variable (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     outputs+=Variable (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     outputs+=Variable (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     patterns+=Pattern 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     typedefs+=TypeDef 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:' macros+=Macro
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     units+=UnitDef 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' (ambiguity) 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
 	 */
-	protected void emit_Specification_StateKeyword_10_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Specification_StateKeyword_11_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -454,32 +540,35 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:' constants+=Constant
-	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
-	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
-	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' outputs+=Variable
-	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' inputs+=Variable
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' inputs+=Variable
 	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:' constants+=Constant
-	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
-	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
-	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' outputs+=Variable
-	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Inputs:' inputs+=Variable
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' inputs+=Variable
 	 *     units+=UnitDef (ambiguity) 'Constants:' constants+=Constant
-	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
-	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
-	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Inputs:' 'Outputs:' outputs+=Variable
-	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Inputs:' inputs+=Variable
+	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     units+=UnitDef (ambiguity) 'Constants:'? 'Patterns:'? 'Inputs:' inputs+=Variable
 	 */
 	protected void emit_Specification_TypesKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
@@ -492,24 +581,26 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * This ambiguous syntax occurs at:
 	 *     imports+=Import (ambiguity) 'Types:' typedefs+=TypeDef
 	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:' constants+=Constant
-	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
-	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
-	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' outputs+=Variable
-	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' inputs+=Variable
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' inputs+=Variable
 	 *     name=ID 'Imports:'? (ambiguity) 'Types:' typedefs+=TypeDef
 	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:' constants+=Constant
-	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
-	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
-	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
-	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:' behaviors+=Constraint
-	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' 'Requirements:'? (rule end)
-	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? 'DerivedRequirements:' requirements+=Constraint
-	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' 'Outputs:' outputs+=Variable
-	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Inputs:' inputs+=Variable
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:' state+=Variable
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:' macros+=Macro
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:' assumptions+=Constraint
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:' behaviors+=Constraint
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword 'Requirements:'? (rule end)
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' 'State:'? 'Macros:'? 'Assumptions:'? ConstraintsKeyword requirements+=Constraint
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' 'Outputs:' outputs+=Variable
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? 'Inputs:' inputs+=Variable
 	 */
 	protected void emit_Specification_UnitsKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);

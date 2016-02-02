@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link com.rockwellcollins.spear.Specification#getUnits <em>Units</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Specification#getTypedefs <em>Typedefs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Specification#getConstants <em>Constants</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Specification#getPatterns <em>Patterns</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Specification#getInputs <em>Inputs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Specification#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Specification#getState <em>State</em>}</li>
@@ -95,6 +96,22 @@ public interface Specification extends File
    * @generated
    */
   EList<Constant> getConstants();
+
+  /**
+   * Returns the value of the '<em><b>Patterns</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Pattern}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Patterns</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Patterns</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getSpecification_Patterns()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Pattern> getPatterns();
 
   /**
    * Returns the value of the '<em><b>Inputs</b></em>' containment reference list.

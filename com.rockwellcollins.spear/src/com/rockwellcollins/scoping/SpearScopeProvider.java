@@ -9,7 +9,7 @@ import org.eclipse.xtext.scoping.Scopes;
 
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.RecordAccessExpr;
-import com.rockwellcollins.spear.RecordType;
+import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 
 /**
@@ -30,7 +30,7 @@ public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractD
 	}
 
 	private IScope getRecordScope(Expr expr) {
-		RecordType record = CompositeTypeLookup.getRecordType(expr);
+		RecordTypeDef record = CompositeTypeLookup.getRecordType(expr);
 		if (record != null) {
 			return Scopes.scopeFor(record.getFields());
 		} else {

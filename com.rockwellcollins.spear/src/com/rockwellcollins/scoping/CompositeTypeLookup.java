@@ -3,39 +3,41 @@ package com.rockwellcollins.scoping;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordType;
+import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class CompositeTypeLookup extends SpearSwitch<RecordType> {
+import jkind.lustre.RecordType;
 
-	public static RecordType getRecordType(Expr e) {
+public class CompositeTypeLookup extends SpearSwitch<RecordTypeDef> {
+
+	public static RecordTypeDef getRecordType(Expr e) {
 		return new CompositeTypeLookup().doSwitch(e);
 	}
 	
 	@Override
-	public RecordType caseVariable(Variable v) {
+	public RecordTypeDef caseVariable(Variable v) {
 		return doSwitch(v.getType());
 	}
 	
 	@Override
-	public RecordType caseIdExpr(IdExpr ide) {
+	public RecordTypeDef caseIdExpr(IdExpr ide) {
 		return doSwitch(ide.getId());
 	}
 	
 	@Override
-	public RecordType caseRecordExpr(RecordExpr re) {
+	public RecordTypeDef caseRecordExpr(RecordExpr re) {
 		return doSwitch(re.getType());
 	}
 	
 	@Override
-	public RecordType caseUserType(UserType ut) {
+	public RecordTypeDef caseUserType(UserType ut) {
 		return doSwitch(ut.getDef());
 	}
 	
 	@Override
-	public RecordType caseRecordType(RecordType rt) {
+	public RecordTypeDef caseRecordTypeDef(RecordTypeDef rt) {
 		return rt;
 	}
 	

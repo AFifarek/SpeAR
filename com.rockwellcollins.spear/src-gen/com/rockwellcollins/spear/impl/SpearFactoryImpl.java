@@ -90,10 +90,10 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.DERIVED_UNIT: return createDerivedUnit();
       case SpearPackage.BINARY_UNIT_EXPR: return createBinaryUnitExpr();
       case SpearPackage.NAMED_UNIT_EXPR: return createNamedUnitExpr();
-      case SpearPackage.NAMED_TYPE: return createNamedType();
-      case SpearPackage.RECORD_TYPE: return createRecordType();
-      case SpearPackage.ARRAY_TYPE: return createArrayType();
-      case SpearPackage.ENUM_TYPE: return createEnumType();
+      case SpearPackage.NAMED_TYPE_DEF: return createNamedTypeDef();
+      case SpearPackage.RECORD_TYPE_DEF: return createRecordTypeDef();
+      case SpearPackage.ARRAY_TYPE_DEF: return createArrayTypeDef();
+      case SpearPackage.ENUM_TYPE_DEF: return createEnumTypeDef();
       case SpearPackage.INT_TYPE: return createIntType();
       case SpearPackage.BOOL_TYPE: return createBoolType();
       case SpearPackage.REAL_TYPE: return createRealType();
@@ -413,10 +413,10 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public NamedType createNamedType()
+  public NamedTypeDef createNamedTypeDef()
   {
-    NamedTypeImpl namedType = new NamedTypeImpl();
-    return namedType;
+    NamedTypeDefImpl namedTypeDef = new NamedTypeDefImpl();
+    return namedTypeDef;
   }
 
   /**
@@ -424,10 +424,10 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public RecordType createRecordType()
+  public RecordTypeDef createRecordTypeDef()
   {
-    RecordTypeImpl recordType = new RecordTypeImpl();
-    return recordType;
+    RecordTypeDefImpl recordTypeDef = new RecordTypeDefImpl();
+    return recordTypeDef;
   }
 
   /**
@@ -435,10 +435,10 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ArrayType createArrayType()
+  public ArrayTypeDef createArrayTypeDef()
   {
-    ArrayTypeImpl arrayType = new ArrayTypeImpl();
-    return arrayType;
+    ArrayTypeDefImpl arrayTypeDef = new ArrayTypeDefImpl();
+    return arrayTypeDef;
   }
 
   /**
@@ -446,10 +446,10 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public EnumType createEnumType()
+  public EnumTypeDef createEnumTypeDef()
   {
-    EnumTypeImpl enumType = new EnumTypeImpl();
-    return enumType;
+    EnumTypeDefImpl enumTypeDef = new EnumTypeDefImpl();
+    return enumTypeDef;
   }
 
   /**

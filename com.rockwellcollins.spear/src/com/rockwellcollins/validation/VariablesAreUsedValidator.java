@@ -9,7 +9,7 @@ import org.eclipse.xtext.validation.Check;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.NamedType;
+import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
@@ -75,7 +75,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	@Check
 	public void checkSpecificationUnits(Specification s) {
 		Set<String> set = new HashSet<>();
-		for(NamedType nt : EcoreUtil2.getAllContentsOfType(s, NamedType.class)) {
+		for(NamedTypeDef nt : EcoreUtil2.getAllContentsOfType(s, NamedTypeDef.class)) {
 			if(nt.getUnit() != null) {
 				set.add(nt.getUnit().getName());
 			}

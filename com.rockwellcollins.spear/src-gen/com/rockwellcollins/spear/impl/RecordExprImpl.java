@@ -4,7 +4,7 @@ package com.rockwellcollins.spear.impl;
 
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordType;
+import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.SpearPackage;
 
 import java.util.Collection;
@@ -46,7 +46,7 @@ public class RecordExprImpl extends ExprImpl implements RecordExpr
    * @generated
    * @ordered
    */
-  protected RecordType type;
+  protected RecordTypeDef type;
 
   /**
    * The cached value of the '{@link #getFieldExprs() <em>Field Exprs</em>}' containment reference list.
@@ -84,12 +84,12 @@ public class RecordExprImpl extends ExprImpl implements RecordExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public RecordType getType()
+  public RecordTypeDef getType()
   {
     if (type != null && type.eIsProxy())
     {
       InternalEObject oldType = (InternalEObject)type;
-      type = (RecordType)eResolveProxy(oldType);
+      type = (RecordTypeDef)eResolveProxy(oldType);
       if (type != oldType)
       {
         if (eNotificationRequired())
@@ -104,7 +104,7 @@ public class RecordExprImpl extends ExprImpl implements RecordExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public RecordType basicGetType()
+  public RecordTypeDef basicGetType()
   {
     return type;
   }
@@ -114,9 +114,9 @@ public class RecordExprImpl extends ExprImpl implements RecordExpr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(RecordType newType)
+  public void setType(RecordTypeDef newType)
   {
-    RecordType oldType = type;
+    RecordTypeDef oldType = type;
     type = newType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.RECORD_EXPR__TYPE, oldType, type));
@@ -183,7 +183,7 @@ public class RecordExprImpl extends ExprImpl implements RecordExpr
     switch (featureID)
     {
       case SpearPackage.RECORD_EXPR__TYPE:
-        setType((RecordType)newValue);
+        setType((RecordTypeDef)newValue);
         return;
       case SpearPackage.RECORD_EXPR__FIELD_EXPRS:
         getFieldExprs().clear();
@@ -204,7 +204,7 @@ public class RecordExprImpl extends ExprImpl implements RecordExpr
     switch (featureID)
     {
       case SpearPackage.RECORD_EXPR__TYPE:
-        setType((RecordType)null);
+        setType((RecordTypeDef)null);
         return;
       case SpearPackage.RECORD_EXPR__FIELD_EXPRS:
         getFieldExprs().clear();

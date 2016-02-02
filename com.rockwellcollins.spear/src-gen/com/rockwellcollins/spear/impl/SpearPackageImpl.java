@@ -5,7 +5,7 @@ package com.rockwellcollins.spear.impl;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
-import com.rockwellcollins.spear.ArrayType;
+import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.ArrayUpdateExpr;
 import com.rockwellcollins.spear.BaseUnit;
 import com.rockwellcollins.spear.BinaryExpr;
@@ -17,7 +17,7 @@ import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.DerivedUnit;
 import com.rockwellcollins.spear.EnglishConstraint;
-import com.rockwellcollins.spear.EnumType;
+import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
@@ -33,7 +33,7 @@ import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.LiteralExpr;
 import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.NamedType;
+import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PatternCall;
@@ -43,7 +43,7 @@ import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordType;
+import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.SpearPackage;
@@ -260,28 +260,28 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass namedTypeEClass = null;
+  private EClass namedTypeDefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass recordTypeEClass = null;
+  private EClass recordTypeDefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass arrayTypeEClass = null;
+  private EClass arrayTypeDefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass enumTypeEClass = null;
+  private EClass enumTypeDefEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -582,7 +582,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Inputs()
+  public EReference getSpecification_Patterns()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(4);
   }
@@ -592,7 +592,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Outputs()
+  public EReference getSpecification_Inputs()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(5);
   }
@@ -602,7 +602,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_State()
+  public EReference getSpecification_Outputs()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(6);
   }
@@ -612,7 +612,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Macros()
+  public EReference getSpecification_State()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(7);
   }
@@ -622,7 +622,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Assumptions()
+  public EReference getSpecification_Macros()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(8);
   }
@@ -632,7 +632,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Requirements()
+  public EReference getSpecification_Assumptions()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(9);
   }
@@ -642,9 +642,19 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Behaviors()
+  public EReference getSpecification_Requirements()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(10);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSpecification_Behaviors()
+  {
+    return (EReference)specificationEClass.getEStructuralFeatures().get(11);
   }
 
   /**
@@ -1192,9 +1202,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getNamedType()
+  public EClass getNamedTypeDef()
   {
-    return namedTypeEClass;
+    return namedTypeDefEClass;
   }
 
   /**
@@ -1202,9 +1212,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getNamedType_Type()
+  public EReference getNamedTypeDef_Type()
   {
-    return (EReference)namedTypeEClass.getEStructuralFeatures().get(0);
+    return (EReference)namedTypeDefEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1212,9 +1222,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getNamedType_Unit()
+  public EReference getNamedTypeDef_Unit()
   {
-    return (EReference)namedTypeEClass.getEStructuralFeatures().get(1);
+    return (EReference)namedTypeDefEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1222,9 +1232,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getRecordType()
+  public EClass getRecordTypeDef()
   {
-    return recordTypeEClass;
+    return recordTypeDefEClass;
   }
 
   /**
@@ -1232,9 +1242,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getRecordType_Fields()
+  public EReference getRecordTypeDef_Fields()
   {
-    return (EReference)recordTypeEClass.getEStructuralFeatures().get(0);
+    return (EReference)recordTypeDefEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1242,9 +1252,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getArrayType()
+  public EClass getArrayTypeDef()
   {
-    return arrayTypeEClass;
+    return arrayTypeDefEClass;
   }
 
   /**
@@ -1252,9 +1262,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getArrayType_Base()
+  public EReference getArrayTypeDef_Base()
   {
-    return (EReference)arrayTypeEClass.getEStructuralFeatures().get(0);
+    return (EReference)arrayTypeDefEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1262,9 +1272,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getArrayType_Size()
+  public EAttribute getArrayTypeDef_Size()
   {
-    return (EAttribute)arrayTypeEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)arrayTypeDefEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1272,9 +1282,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getEnumType()
+  public EClass getEnumTypeDef()
   {
-    return enumTypeEClass;
+    return enumTypeDefEClass;
   }
 
   /**
@@ -1282,9 +1292,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getEnumType_Values()
+  public EReference getEnumTypeDef_Values()
   {
-    return (EReference)enumTypeEClass.getEStructuralFeatures().get(0);
+    return (EReference)enumTypeDefEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1945,6 +1955,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(specificationEClass, SPECIFICATION__UNITS);
     createEReference(specificationEClass, SPECIFICATION__TYPEDEFS);
     createEReference(specificationEClass, SPECIFICATION__CONSTANTS);
+    createEReference(specificationEClass, SPECIFICATION__PATTERNS);
     createEReference(specificationEClass, SPECIFICATION__INPUTS);
     createEReference(specificationEClass, SPECIFICATION__OUTPUTS);
     createEReference(specificationEClass, SPECIFICATION__STATE);
@@ -2031,19 +2042,19 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     namedUnitExprEClass = createEClass(NAMED_UNIT_EXPR);
     createEReference(namedUnitExprEClass, NAMED_UNIT_EXPR__UNIT);
 
-    namedTypeEClass = createEClass(NAMED_TYPE);
-    createEReference(namedTypeEClass, NAMED_TYPE__TYPE);
-    createEReference(namedTypeEClass, NAMED_TYPE__UNIT);
+    namedTypeDefEClass = createEClass(NAMED_TYPE_DEF);
+    createEReference(namedTypeDefEClass, NAMED_TYPE_DEF__TYPE);
+    createEReference(namedTypeDefEClass, NAMED_TYPE_DEF__UNIT);
 
-    recordTypeEClass = createEClass(RECORD_TYPE);
-    createEReference(recordTypeEClass, RECORD_TYPE__FIELDS);
+    recordTypeDefEClass = createEClass(RECORD_TYPE_DEF);
+    createEReference(recordTypeDefEClass, RECORD_TYPE_DEF__FIELDS);
 
-    arrayTypeEClass = createEClass(ARRAY_TYPE);
-    createEReference(arrayTypeEClass, ARRAY_TYPE__BASE);
-    createEAttribute(arrayTypeEClass, ARRAY_TYPE__SIZE);
+    arrayTypeDefEClass = createEClass(ARRAY_TYPE_DEF);
+    createEReference(arrayTypeDefEClass, ARRAY_TYPE_DEF__BASE);
+    createEAttribute(arrayTypeDefEClass, ARRAY_TYPE_DEF__SIZE);
 
-    enumTypeEClass = createEClass(ENUM_TYPE);
-    createEReference(enumTypeEClass, ENUM_TYPE__VALUES);
+    enumTypeDefEClass = createEClass(ENUM_TYPE_DEF);
+    createEReference(enumTypeDefEClass, ENUM_TYPE_DEF__VALUES);
 
     intTypeEClass = createEClass(INT_TYPE);
 
@@ -2174,10 +2185,10 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     derivedUnitEClass.getESuperTypes().add(this.getUnitDef());
     binaryUnitExprEClass.getESuperTypes().add(this.getUnitExpr());
     namedUnitExprEClass.getESuperTypes().add(this.getUnitExpr());
-    namedTypeEClass.getESuperTypes().add(this.getTypeDef());
-    recordTypeEClass.getESuperTypes().add(this.getTypeDef());
-    arrayTypeEClass.getESuperTypes().add(this.getTypeDef());
-    enumTypeEClass.getESuperTypes().add(this.getTypeDef());
+    namedTypeDefEClass.getESuperTypes().add(this.getTypeDef());
+    recordTypeDefEClass.getESuperTypes().add(this.getTypeDef());
+    arrayTypeDefEClass.getESuperTypes().add(this.getTypeDef());
+    enumTypeDefEClass.getESuperTypes().add(this.getTypeDef());
     intTypeEClass.getESuperTypes().add(this.getType());
     boolTypeEClass.getESuperTypes().add(this.getType());
     realTypeEClass.getESuperTypes().add(this.getType());
@@ -2211,6 +2222,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getSpecification_Units(), this.getUnitDef(), null, "units", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Typedefs(), this.getTypeDef(), null, "typedefs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Constants(), this.getConstant(), null, "constants", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpecification_Patterns(), this.getPattern(), null, "patterns", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Inputs(), this.getVariable(), null, "inputs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Outputs(), this.getVariable(), null, "outputs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_State(), this.getVariable(), null, "state", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2297,19 +2309,19 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEClass(namedUnitExprEClass, NamedUnitExpr.class, "NamedUnitExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNamedUnitExpr_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, NamedUnitExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(namedTypeEClass, NamedType.class, "NamedType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNamedType_Type(), this.getType(), null, "type", null, 0, 1, NamedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNamedType_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, NamedType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(namedTypeDefEClass, NamedTypeDef.class, "NamedTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNamedTypeDef_Type(), this.getType(), null, "type", null, 0, 1, NamedTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNamedTypeDef_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, NamedTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(recordTypeEClass, RecordType.class, "RecordType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRecordType_Fields(), this.getFieldType(), null, "fields", null, 0, -1, RecordType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(recordTypeDefEClass, RecordTypeDef.class, "RecordTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRecordTypeDef_Fields(), this.getFieldType(), null, "fields", null, 0, -1, RecordTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(arrayTypeEClass, ArrayType.class, "ArrayType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getArrayType_Base(), this.getType(), null, "base", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getArrayType_Size(), ecorePackage.getEInt(), "size", null, 0, 1, ArrayType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(arrayTypeDefEClass, ArrayTypeDef.class, "ArrayTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getArrayTypeDef_Base(), this.getType(), null, "base", null, 0, 1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getArrayTypeDef_Size(), ecorePackage.getEInt(), "size", null, 0, 1, ArrayTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(enumTypeEClass, EnumType.class, "EnumType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEnumType_Values(), this.getEnumValue(), null, "values", null, 0, -1, EnumType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(enumTypeDefEClass, EnumTypeDef.class, "EnumTypeDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEnumTypeDef_Values(), this.getEnumValue(), null, "values", null, 0, -1, EnumTypeDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(intTypeEClass, IntType.class, "IntType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2370,11 +2382,11 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getWhileExpr_Then(), this.getExpr(), null, "then", null, 0, 1, WhileExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recordExprEClass, RecordExpr.class, "RecordExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRecordExpr_Type(), this.getRecordType(), null, "type", null, 0, 1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRecordExpr_Type(), this.getRecordTypeDef(), null, "type", null, 0, 1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRecordExpr_FieldExprs(), this.getFieldExpr(), null, "fieldExprs", null, 0, -1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(arrayExprEClass, ArrayExpr.class, "ArrayExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getArrayExpr_Type(), this.getArrayType(), null, "type", null, 0, 1, ArrayExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getArrayExpr_Type(), this.getArrayTypeDef(), null, "type", null, 0, 1, ArrayExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getArrayExpr_Exprs(), this.getExpr(), null, "exprs", null, 0, -1, ArrayExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patternCallEClass, PatternCall.class, "PatternCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

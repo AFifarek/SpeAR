@@ -11,13 +11,19 @@ Specification:
 	('Units:' units+=UnitDef*)?
 	('Types:' typedefs+=TypeDef*)?
 	('Constants:' constants+=Constant*)?
+	('Patterns:' patterns+=Pattern*)?
 	'Inputs:' inputs+=Variable*
 	'Outputs:' outputs+=Variable*
 	('State:' state+=Variable*)?
 	('Macros:' macros+=Macro*)?
 	('Assumptions:' assumptions+=Constraint*)?
-	'DerivedRequirements:' requirements+=Constraint*
+	ConstraintsKeyword requirements+=Constraint*
 	('Requirements:' behaviors+=Constraint*)?;
+
+ConstraintsKeyword:
+	'DerivedRequirements:'
+|	'Constraints:'
+;
 
 Import:
 	'import' importURI=STRING;
@@ -58,10 +64,10 @@ AtomicUnitExpr returns UnitExpr:
 	| '(' UnitExpr ')';
 
 TypeDef:
-	{NamedType} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
-	| {RecordType} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
-	| {ArrayType} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
-	| {EnumType} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
+	  {NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
+	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
+	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
 
 FieldType:
 	name=ID ':' type=Type;
@@ -158,8 +164,8 @@ AtomicExpr returns Expr:
 	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	| {AfterUntilExpr} 'after' (after=Expr) (=> 'until' until=Expr)?
 	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
-	| {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
-	| {ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
+	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
+	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
 	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
 	| '(' Expr ')';

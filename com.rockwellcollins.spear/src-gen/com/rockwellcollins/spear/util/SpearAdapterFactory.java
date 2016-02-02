@@ -205,24 +205,24 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createNamedUnitExprAdapter();
       }
       @Override
-      public Adapter caseNamedType(NamedType object)
+      public Adapter caseNamedTypeDef(NamedTypeDef object)
       {
-        return createNamedTypeAdapter();
+        return createNamedTypeDefAdapter();
       }
       @Override
-      public Adapter caseRecordType(RecordType object)
+      public Adapter caseRecordTypeDef(RecordTypeDef object)
       {
-        return createRecordTypeAdapter();
+        return createRecordTypeDefAdapter();
       }
       @Override
-      public Adapter caseArrayType(ArrayType object)
+      public Adapter caseArrayTypeDef(ArrayTypeDef object)
       {
-        return createArrayTypeAdapter();
+        return createArrayTypeDefAdapter();
       }
       @Override
-      public Adapter caseEnumType(EnumType object)
+      public Adapter caseEnumTypeDef(EnumTypeDef object)
       {
-        return createEnumTypeAdapter();
+        return createEnumTypeDefAdapter();
       }
       @Override
       public Adapter caseIntType(IntType object)
@@ -752,61 +752,61 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.NamedType <em>Named Type</em>}'.
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.NamedTypeDef <em>Named Type Def</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.rockwellcollins.spear.NamedType
+   * @see com.rockwellcollins.spear.NamedTypeDef
    * @generated
    */
-  public Adapter createNamedTypeAdapter()
+  public Adapter createNamedTypeDefAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.RecordType <em>Record Type</em>}'.
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.RecordTypeDef <em>Record Type Def</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.rockwellcollins.spear.RecordType
+   * @see com.rockwellcollins.spear.RecordTypeDef
    * @generated
    */
-  public Adapter createRecordTypeAdapter()
+  public Adapter createRecordTypeDefAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.ArrayType <em>Array Type</em>}'.
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.ArrayTypeDef <em>Array Type Def</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.rockwellcollins.spear.ArrayType
+   * @see com.rockwellcollins.spear.ArrayTypeDef
    * @generated
    */
-  public Adapter createArrayTypeAdapter()
+  public Adapter createArrayTypeDefAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.EnumType <em>Enum Type</em>}'.
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.EnumTypeDef <em>Enum Type Def</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.rockwellcollins.spear.EnumType
+   * @see com.rockwellcollins.spear.EnumTypeDef
    * @generated
    */
-  public Adapter createEnumTypeAdapter()
+  public Adapter createEnumTypeDefAdapter()
   {
     return null;
   }

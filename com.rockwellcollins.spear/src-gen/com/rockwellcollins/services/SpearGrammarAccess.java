@@ -64,45 +64,49 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cConstantsKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cConstantsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
 		private final RuleCall cConstantsConstantParserRuleCall_5_1_0 = (RuleCall)cConstantsAssignment_5_1.eContents().get(0);
-		private final Keyword cInputsKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cInputsAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cInputsVariableParserRuleCall_7_0 = (RuleCall)cInputsAssignment_7.eContents().get(0);
-		private final Keyword cOutputsKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Assignment cOutputsAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cOutputsVariableParserRuleCall_9_0 = (RuleCall)cOutputsAssignment_9.eContents().get(0);
-		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
-		private final Keyword cStateKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
-		private final Assignment cStateAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
-		private final RuleCall cStateVariableParserRuleCall_10_1_0 = (RuleCall)cStateAssignment_10_1.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cPatternsKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cPatternsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cPatternsPatternParserRuleCall_6_1_0 = (RuleCall)cPatternsAssignment_6_1.eContents().get(0);
+		private final Keyword cInputsKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cInputsAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cInputsVariableParserRuleCall_8_0 = (RuleCall)cInputsAssignment_8.eContents().get(0);
+		private final Keyword cOutputsKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cOutputsAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cOutputsVariableParserRuleCall_10_0 = (RuleCall)cOutputsAssignment_10.eContents().get(0);
 		private final Group cGroup_11 = (Group)cGroup.eContents().get(11);
-		private final Keyword cMacrosKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
-		private final Assignment cMacrosAssignment_11_1 = (Assignment)cGroup_11.eContents().get(1);
-		private final RuleCall cMacrosMacroParserRuleCall_11_1_0 = (RuleCall)cMacrosAssignment_11_1.eContents().get(0);
+		private final Keyword cStateKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
+		private final Assignment cStateAssignment_11_1 = (Assignment)cGroup_11.eContents().get(1);
+		private final RuleCall cStateVariableParserRuleCall_11_1_0 = (RuleCall)cStateAssignment_11_1.eContents().get(0);
 		private final Group cGroup_12 = (Group)cGroup.eContents().get(12);
-		private final Keyword cAssumptionsKeyword_12_0 = (Keyword)cGroup_12.eContents().get(0);
-		private final Assignment cAssumptionsAssignment_12_1 = (Assignment)cGroup_12.eContents().get(1);
-		private final RuleCall cAssumptionsConstraintParserRuleCall_12_1_0 = (RuleCall)cAssumptionsAssignment_12_1.eContents().get(0);
-		private final Keyword cDerivedRequirementsKeyword_13 = (Keyword)cGroup.eContents().get(13);
-		private final Assignment cRequirementsAssignment_14 = (Assignment)cGroup.eContents().get(14);
-		private final RuleCall cRequirementsConstraintParserRuleCall_14_0 = (RuleCall)cRequirementsAssignment_14.eContents().get(0);
-		private final Group cGroup_15 = (Group)cGroup.eContents().get(15);
-		private final Keyword cRequirementsKeyword_15_0 = (Keyword)cGroup_15.eContents().get(0);
-		private final Assignment cBehaviorsAssignment_15_1 = (Assignment)cGroup_15.eContents().get(1);
-		private final RuleCall cBehaviorsConstraintParserRuleCall_15_1_0 = (RuleCall)cBehaviorsAssignment_15_1.eContents().get(0);
+		private final Keyword cMacrosKeyword_12_0 = (Keyword)cGroup_12.eContents().get(0);
+		private final Assignment cMacrosAssignment_12_1 = (Assignment)cGroup_12.eContents().get(1);
+		private final RuleCall cMacrosMacroParserRuleCall_12_1_0 = (RuleCall)cMacrosAssignment_12_1.eContents().get(0);
+		private final Group cGroup_13 = (Group)cGroup.eContents().get(13);
+		private final Keyword cAssumptionsKeyword_13_0 = (Keyword)cGroup_13.eContents().get(0);
+		private final Assignment cAssumptionsAssignment_13_1 = (Assignment)cGroup_13.eContents().get(1);
+		private final RuleCall cAssumptionsConstraintParserRuleCall_13_1_0 = (RuleCall)cAssumptionsAssignment_13_1.eContents().get(0);
+		private final RuleCall cConstraintsKeywordParserRuleCall_14 = (RuleCall)cGroup.eContents().get(14);
+		private final Assignment cRequirementsAssignment_15 = (Assignment)cGroup.eContents().get(15);
+		private final RuleCall cRequirementsConstraintParserRuleCall_15_0 = (RuleCall)cRequirementsAssignment_15.eContents().get(0);
+		private final Group cGroup_16 = (Group)cGroup.eContents().get(16);
+		private final Keyword cRequirementsKeyword_16_0 = (Keyword)cGroup_16.eContents().get(0);
+		private final Assignment cBehaviorsAssignment_16_1 = (Assignment)cGroup_16.eContents().get(1);
+		private final RuleCall cBehaviorsConstraintParserRuleCall_16_1_0 = (RuleCall)cBehaviorsAssignment_16_1.eContents().get(0);
 		
 		//Specification:
 		//	'Specification' name=ID ('Imports:' imports+=Import*)? ('Units:' units+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
-		//	('Constants:' constants+=Constant*)?
+		//	('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?
 		//	'Inputs:' inputs+=Variable*
 		//	'Outputs:' outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? ('Assumptions:'
 		//	assumptions+=Constraint*)?
-		//	'DerivedRequirements:' requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?;
+		//	ConstraintsKeyword requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//'Specification' name=ID ('Imports:' imports+=Import*)? ('Units:' units+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
-		//('Constants:' constants+=Constant*)? 'Inputs:' inputs+=Variable* 'Outputs:' outputs+=Variable* ('State:'
-		//state+=Variable*)? ('Macros:' macros+=Macro*)? ('Assumptions:' assumptions+=Constraint*)? 'DerivedRequirements:'
-		//requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?
+		//('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)? 'Inputs:' inputs+=Variable* 'Outputs:'
+		//outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? ('Assumptions:' assumptions+=Constraint*)?
+		//ConstraintsKeyword requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?
 		public Group getGroup() { return cGroup; }
 
 		//'Specification'
@@ -162,80 +166,113 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//Constant
 		public RuleCall getConstantsConstantParserRuleCall_5_1_0() { return cConstantsConstantParserRuleCall_5_1_0; }
 
+		//('Patterns:' patterns+=Pattern*)?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//'Patterns:'
+		public Keyword getPatternsKeyword_6_0() { return cPatternsKeyword_6_0; }
+
+		//patterns+=Pattern*
+		public Assignment getPatternsAssignment_6_1() { return cPatternsAssignment_6_1; }
+
+		//Pattern
+		public RuleCall getPatternsPatternParserRuleCall_6_1_0() { return cPatternsPatternParserRuleCall_6_1_0; }
+
 		//'Inputs:'
-		public Keyword getInputsKeyword_6() { return cInputsKeyword_6; }
+		public Keyword getInputsKeyword_7() { return cInputsKeyword_7; }
 
 		//inputs+=Variable*
-		public Assignment getInputsAssignment_7() { return cInputsAssignment_7; }
+		public Assignment getInputsAssignment_8() { return cInputsAssignment_8; }
 
 		//Variable
-		public RuleCall getInputsVariableParserRuleCall_7_0() { return cInputsVariableParserRuleCall_7_0; }
+		public RuleCall getInputsVariableParserRuleCall_8_0() { return cInputsVariableParserRuleCall_8_0; }
 
 		//'Outputs:'
-		public Keyword getOutputsKeyword_8() { return cOutputsKeyword_8; }
+		public Keyword getOutputsKeyword_9() { return cOutputsKeyword_9; }
 
 		//outputs+=Variable*
-		public Assignment getOutputsAssignment_9() { return cOutputsAssignment_9; }
+		public Assignment getOutputsAssignment_10() { return cOutputsAssignment_10; }
 
 		//Variable
-		public RuleCall getOutputsVariableParserRuleCall_9_0() { return cOutputsVariableParserRuleCall_9_0; }
+		public RuleCall getOutputsVariableParserRuleCall_10_0() { return cOutputsVariableParserRuleCall_10_0; }
 
 		//('State:' state+=Variable*)?
-		public Group getGroup_10() { return cGroup_10; }
-
-		//'State:'
-		public Keyword getStateKeyword_10_0() { return cStateKeyword_10_0; }
-
-		//state+=Variable*
-		public Assignment getStateAssignment_10_1() { return cStateAssignment_10_1; }
-
-		//Variable
-		public RuleCall getStateVariableParserRuleCall_10_1_0() { return cStateVariableParserRuleCall_10_1_0; }
-
-		//('Macros:' macros+=Macro*)?
 		public Group getGroup_11() { return cGroup_11; }
 
-		//'Macros:'
-		public Keyword getMacrosKeyword_11_0() { return cMacrosKeyword_11_0; }
+		//'State:'
+		public Keyword getStateKeyword_11_0() { return cStateKeyword_11_0; }
 
-		//macros+=Macro*
-		public Assignment getMacrosAssignment_11_1() { return cMacrosAssignment_11_1; }
+		//state+=Variable*
+		public Assignment getStateAssignment_11_1() { return cStateAssignment_11_1; }
 
-		//Macro
-		public RuleCall getMacrosMacroParserRuleCall_11_1_0() { return cMacrosMacroParserRuleCall_11_1_0; }
+		//Variable
+		public RuleCall getStateVariableParserRuleCall_11_1_0() { return cStateVariableParserRuleCall_11_1_0; }
 
-		//('Assumptions:' assumptions+=Constraint*)?
+		//('Macros:' macros+=Macro*)?
 		public Group getGroup_12() { return cGroup_12; }
 
+		//'Macros:'
+		public Keyword getMacrosKeyword_12_0() { return cMacrosKeyword_12_0; }
+
+		//macros+=Macro*
+		public Assignment getMacrosAssignment_12_1() { return cMacrosAssignment_12_1; }
+
+		//Macro
+		public RuleCall getMacrosMacroParserRuleCall_12_1_0() { return cMacrosMacroParserRuleCall_12_1_0; }
+
+		//('Assumptions:' assumptions+=Constraint*)?
+		public Group getGroup_13() { return cGroup_13; }
+
 		//'Assumptions:'
-		public Keyword getAssumptionsKeyword_12_0() { return cAssumptionsKeyword_12_0; }
+		public Keyword getAssumptionsKeyword_13_0() { return cAssumptionsKeyword_13_0; }
 
 		//assumptions+=Constraint*
-		public Assignment getAssumptionsAssignment_12_1() { return cAssumptionsAssignment_12_1; }
+		public Assignment getAssumptionsAssignment_13_1() { return cAssumptionsAssignment_13_1; }
 
 		//Constraint
-		public RuleCall getAssumptionsConstraintParserRuleCall_12_1_0() { return cAssumptionsConstraintParserRuleCall_12_1_0; }
+		public RuleCall getAssumptionsConstraintParserRuleCall_13_1_0() { return cAssumptionsConstraintParserRuleCall_13_1_0; }
 
-		//'DerivedRequirements:'
-		public Keyword getDerivedRequirementsKeyword_13() { return cDerivedRequirementsKeyword_13; }
+		//ConstraintsKeyword
+		public RuleCall getConstraintsKeywordParserRuleCall_14() { return cConstraintsKeywordParserRuleCall_14; }
 
 		//requirements+=Constraint*
-		public Assignment getRequirementsAssignment_14() { return cRequirementsAssignment_14; }
+		public Assignment getRequirementsAssignment_15() { return cRequirementsAssignment_15; }
 
 		//Constraint
-		public RuleCall getRequirementsConstraintParserRuleCall_14_0() { return cRequirementsConstraintParserRuleCall_14_0; }
+		public RuleCall getRequirementsConstraintParserRuleCall_15_0() { return cRequirementsConstraintParserRuleCall_15_0; }
 
 		//('Requirements:' behaviors+=Constraint*)?
-		public Group getGroup_15() { return cGroup_15; }
+		public Group getGroup_16() { return cGroup_16; }
 
 		//'Requirements:'
-		public Keyword getRequirementsKeyword_15_0() { return cRequirementsKeyword_15_0; }
+		public Keyword getRequirementsKeyword_16_0() { return cRequirementsKeyword_16_0; }
 
 		//behaviors+=Constraint*
-		public Assignment getBehaviorsAssignment_15_1() { return cBehaviorsAssignment_15_1; }
+		public Assignment getBehaviorsAssignment_16_1() { return cBehaviorsAssignment_16_1; }
 
 		//Constraint
-		public RuleCall getBehaviorsConstraintParserRuleCall_15_1_0() { return cBehaviorsConstraintParserRuleCall_15_1_0; }
+		public RuleCall getBehaviorsConstraintParserRuleCall_16_1_0() { return cBehaviorsConstraintParserRuleCall_16_1_0; }
+	}
+
+	public class ConstraintsKeywordElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.ConstraintsKeyword");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Keyword cDerivedRequirementsKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
+		private final Keyword cConstraintsKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//ConstraintsKeyword:
+		//	'DerivedRequirements:'
+		//	| 'Constraints:';
+		@Override public ParserRule getRule() { return rule; }
+
+		//'DerivedRequirements:' | 'Constraints:'
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//'DerivedRequirements:'
+		public Keyword getDerivedRequirementsKeyword_0() { return cDerivedRequirementsKeyword_0; }
+
+		//'Constraints:'
+		public Keyword getConstraintsKeyword_1() { return cConstraintsKeyword_1; }
 	}
 
 	public class ImportElements extends AbstractParserRuleElementFinder {
@@ -624,7 +661,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.TypeDef");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cNamedTypeAction_0_0 = (Action)cGroup_0.eContents().get(0);
+		private final Action cNamedTypeDefAction_0_0 = (Action)cGroup_0.eContents().get(0);
 		private final Assignment cNameAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_0_1_0 = (RuleCall)cNameAssignment_0_1.eContents().get(0);
 		private final RuleCall cIdTypeDelimiterParserRuleCall_0_2 = (RuleCall)cGroup_0.eContents().get(2);
@@ -634,7 +671,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cUnitUnitDefCrossReference_0_4_0 = (CrossReference)cUnitAssignment_0_4.eContents().get(0);
 		private final RuleCall cUnitUnitDefIDTerminalRuleCall_0_4_0_1 = (RuleCall)cUnitUnitDefCrossReference_0_4_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Action cRecordTypeAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Action cRecordTypeDefAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
 		private final RuleCall cIdTypeDelimiterParserRuleCall_1_2 = (RuleCall)cGroup_1.eContents().get(2);
@@ -648,7 +685,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFieldsFieldTypeParserRuleCall_1_6_1_0 = (RuleCall)cFieldsAssignment_1_6_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_1_7 = (Keyword)cGroup_1.eContents().get(7);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Action cArrayTypeAction_2_0 = (Action)cGroup_2.eContents().get(0);
+		private final Action cArrayTypeDefAction_2_0 = (Action)cGroup_2.eContents().get(0);
 		private final Assignment cNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_2_1_0 = (RuleCall)cNameAssignment_2_1.eContents().get(0);
 		private final RuleCall cIdTypeDelimiterParserRuleCall_2_2 = (RuleCall)cGroup_2.eContents().get(2);
@@ -659,7 +696,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSizeINTTerminalRuleCall_2_5_0 = (RuleCall)cSizeAssignment_2_5.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_2_6 = (Keyword)cGroup_2.eContents().get(6);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
-		private final Action cEnumTypeAction_3_0 = (Action)cGroup_3.eContents().get(0);
+		private final Action cEnumTypeDefAction_3_0 = (Action)cGroup_3.eContents().get(0);
 		private final Assignment cNameAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_3_1_0 = (RuleCall)cNameAssignment_3_1.eContents().get(0);
 		private final RuleCall cIdTypeDelimiterParserRuleCall_3_2 = (RuleCall)cGroup_3.eContents().get(2);
@@ -674,22 +711,22 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_3_7 = (Keyword)cGroup_3.eContents().get(7);
 		
 		//TypeDef:
-		//	{NamedType} name=ID IdTypeDelimiter type=Type unit=[UnitDef]?
-		//	| {RecordType} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
-		//	| {ArrayType} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
-		//	| {EnumType} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
+		//	{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]?
+		//	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
+		//	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+		//	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
 		@Override public ParserRule getRule() { return rule; }
 
-		//{NamedType} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {RecordType} name=ID IdTypeDelimiter 'record' '{'
-		//fields+=FieldType (',' fields+=FieldType)* '}' | {ArrayType} name=ID IdTypeDelimiter base=Type '[' size=INT ']' |
-		//{EnumType} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}'
+		//{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]? | {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{'
+		//fields+=FieldType (',' fields+=FieldType)* '}' | {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']' |
+		//{EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//{NamedType} name=ID IdTypeDelimiter type=Type unit=[UnitDef]?
+		//{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]?
 		public Group getGroup_0() { return cGroup_0; }
 
-		//{NamedType}
-		public Action getNamedTypeAction_0_0() { return cNamedTypeAction_0_0; }
+		//{NamedTypeDef}
+		public Action getNamedTypeDefAction_0_0() { return cNamedTypeDefAction_0_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_0_1() { return cNameAssignment_0_1; }
@@ -715,11 +752,11 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getUnitUnitDefIDTerminalRuleCall_0_4_0_1() { return cUnitUnitDefIDTerminalRuleCall_0_4_0_1; }
 
-		//{RecordType} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
+		//{RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
 		public Group getGroup_1() { return cGroup_1; }
 
-		//{RecordType}
-		public Action getRecordTypeAction_1_0() { return cRecordTypeAction_1_0; }
+		//{RecordTypeDef}
+		public Action getRecordTypeDefAction_1_0() { return cRecordTypeDefAction_1_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
@@ -757,11 +794,11 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_1_7() { return cRightCurlyBracketKeyword_1_7; }
 
-		//{ArrayType} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+		//{ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
 		public Group getGroup_2() { return cGroup_2; }
 
-		//{ArrayType}
-		public Action getArrayTypeAction_2_0() { return cArrayTypeAction_2_0; }
+		//{ArrayTypeDef}
+		public Action getArrayTypeDefAction_2_0() { return cArrayTypeDefAction_2_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_2_1() { return cNameAssignment_2_1; }
@@ -790,11 +827,11 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//']'
 		public Keyword getRightSquareBracketKeyword_2_6() { return cRightSquareBracketKeyword_2_6; }
 
-		//{EnumType} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}'
+		//{EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}'
 		public Group getGroup_3() { return cGroup_3; }
 
-		//{EnumType}
-		public Action getEnumTypeAction_3_0() { return cEnumTypeAction_3_0; }
+		//{EnumTypeDef}
+		public Action getEnumTypeDefAction_3_0() { return cEnumTypeDefAction_3_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_3_1() { return cNameAssignment_3_1; }
@@ -2216,8 +2253,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cRecordExprAction_6_0 = (Action)cGroup_6.eContents().get(0);
 		private final Keyword cNewKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
 		private final Assignment cTypeAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
-		private final CrossReference cTypeRecordTypeCrossReference_6_2_0 = (CrossReference)cTypeAssignment_6_2.eContents().get(0);
-		private final RuleCall cTypeRecordTypeIDTerminalRuleCall_6_2_0_1 = (RuleCall)cTypeRecordTypeCrossReference_6_2_0.eContents().get(1);
+		private final CrossReference cTypeRecordTypeDefCrossReference_6_2_0 = (CrossReference)cTypeAssignment_6_2.eContents().get(0);
+		private final RuleCall cTypeRecordTypeDefIDTerminalRuleCall_6_2_0_1 = (RuleCall)cTypeRecordTypeDefCrossReference_6_2_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_6_3 = (Keyword)cGroup_6.eContents().get(3);
 		private final Assignment cFieldExprsAssignment_6_4 = (Assignment)cGroup_6.eContents().get(4);
 		private final RuleCall cFieldExprsFieldExprParserRuleCall_6_4_0 = (RuleCall)cFieldExprsAssignment_6_4.eContents().get(0);
@@ -2230,8 +2267,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cArrayExprAction_7_0 = (Action)cGroup_7.eContents().get(0);
 		private final Keyword cNewKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
 		private final Assignment cTypeAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
-		private final CrossReference cTypeArrayTypeCrossReference_7_2_0 = (CrossReference)cTypeAssignment_7_2.eContents().get(0);
-		private final RuleCall cTypeArrayTypeIDTerminalRuleCall_7_2_0_1 = (RuleCall)cTypeArrayTypeCrossReference_7_2_0.eContents().get(1);
+		private final CrossReference cTypeArrayTypeDefCrossReference_7_2_0 = (CrossReference)cTypeAssignment_7_2.eContents().get(0);
+		private final RuleCall cTypeArrayTypeDefIDTerminalRuleCall_7_2_0_1 = (RuleCall)cTypeArrayTypeDefCrossReference_7_2_0.eContents().get(1);
 		private final Keyword cLeftSquareBracketKeyword_7_3 = (Keyword)cGroup_7.eContents().get(3);
 		private final Assignment cExprsAssignment_7_4 = (Assignment)cGroup_7.eContents().get(4);
 		private final RuleCall cExprsExprParserRuleCall_7_4_0 = (RuleCall)cExprsAssignment_7_4.eContents().get(0);
@@ -2279,8 +2316,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 		//	| {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)?
 		//	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
-		//	| {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
-		//	| {ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
+		//	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
+		//	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 		//	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
 		//	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
 		//	| '(' Expr ')'
@@ -2288,8 +2325,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//LiteralExpr | {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' | {IfThenElseExpr} 'if' cond=Expr
 		//'then' then=Expr (=> 'else' else=Expr)? | {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)? | {WhileExpr}
-		//'while' cond=Expr 'then' then=Expr | {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=FieldExpr (','
-		//fieldExprs+=FieldExpr)* '}' | {ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']' |
+		//'while' cond=Expr 'then' then=Expr | {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (','
+		//fieldExprs+=FieldExpr)* '}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']' |
 		//{PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec'
 		//spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')' | '(' Expr ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
@@ -2435,7 +2472,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//Expr
 		public RuleCall getThenExprParserRuleCall_5_4_0() { return cThenExprParserRuleCall_5_4_0; }
 
-		//{RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
+		//{RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
 		public Group getGroup_6() { return cGroup_6; }
 
 		//{RecordExpr}
@@ -2444,14 +2481,14 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'new'
 		public Keyword getNewKeyword_6_1() { return cNewKeyword_6_1; }
 
-		//type=[RecordType]
+		//type=[RecordTypeDef]
 		public Assignment getTypeAssignment_6_2() { return cTypeAssignment_6_2; }
 
-		//[RecordType]
-		public CrossReference getTypeRecordTypeCrossReference_6_2_0() { return cTypeRecordTypeCrossReference_6_2_0; }
+		//[RecordTypeDef]
+		public CrossReference getTypeRecordTypeDefCrossReference_6_2_0() { return cTypeRecordTypeDefCrossReference_6_2_0; }
 
 		//ID
-		public RuleCall getTypeRecordTypeIDTerminalRuleCall_6_2_0_1() { return cTypeRecordTypeIDTerminalRuleCall_6_2_0_1; }
+		public RuleCall getTypeRecordTypeDefIDTerminalRuleCall_6_2_0_1() { return cTypeRecordTypeDefIDTerminalRuleCall_6_2_0_1; }
 
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_6_3() { return cLeftCurlyBracketKeyword_6_3; }
@@ -2477,7 +2514,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'}'
 		public Keyword getRightCurlyBracketKeyword_6_6() { return cRightCurlyBracketKeyword_6_6; }
 
-		//{ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
+		//{ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 		public Group getGroup_7() { return cGroup_7; }
 
 		//{ArrayExpr}
@@ -2486,14 +2523,14 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'new'
 		public Keyword getNewKeyword_7_1() { return cNewKeyword_7_1; }
 
-		//type=[ArrayType]
+		//type=[ArrayTypeDef]
 		public Assignment getTypeAssignment_7_2() { return cTypeAssignment_7_2; }
 
-		//[ArrayType]
-		public CrossReference getTypeArrayTypeCrossReference_7_2_0() { return cTypeArrayTypeCrossReference_7_2_0; }
+		//[ArrayTypeDef]
+		public CrossReference getTypeArrayTypeDefCrossReference_7_2_0() { return cTypeArrayTypeDefCrossReference_7_2_0; }
 
 		//ID
-		public RuleCall getTypeArrayTypeIDTerminalRuleCall_7_2_0_1() { return cTypeArrayTypeIDTerminalRuleCall_7_2_0_1; }
+		public RuleCall getTypeArrayTypeDefIDTerminalRuleCall_7_2_0_1() { return cTypeArrayTypeDefIDTerminalRuleCall_7_2_0_1; }
 
 		//'['
 		public Keyword getLeftSquareBracketKeyword_7_3() { return cLeftSquareBracketKeyword_7_3; }
@@ -2856,6 +2893,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final FileElements pFile;
 	private final SpecificationElements pSpecification;
+	private final ConstraintsKeywordElements pConstraintsKeyword;
 	private final ImportElements pImport;
 	private final DefinitionsElements pDefinitions;
 	private final PatternsElements pPatterns;
@@ -2909,6 +2947,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pFile = new FileElements();
 		this.pSpecification = new SpecificationElements();
+		this.pConstraintsKeyword = new ConstraintsKeywordElements();
 		this.pImport = new ImportElements();
 		this.pDefinitions = new DefinitionsElements();
 		this.pPatterns = new PatternsElements();
@@ -2991,17 +3030,28 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Specification:
 	//	'Specification' name=ID ('Imports:' imports+=Import*)? ('Units:' units+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
-	//	('Constants:' constants+=Constant*)?
+	//	('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?
 	//	'Inputs:' inputs+=Variable*
 	//	'Outputs:' outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? ('Assumptions:'
 	//	assumptions+=Constraint*)?
-	//	'DerivedRequirements:' requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?;
+	//	ConstraintsKeyword requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?;
 	public SpecificationElements getSpecificationAccess() {
 		return pSpecification;
 	}
 	
 	public ParserRule getSpecificationRule() {
 		return getSpecificationAccess().getRule();
+	}
+
+	//ConstraintsKeyword:
+	//	'DerivedRequirements:'
+	//	| 'Constraints:';
+	public ConstraintsKeywordElements getConstraintsKeywordAccess() {
+		return pConstraintsKeyword;
+	}
+	
+	public ParserRule getConstraintsKeywordRule() {
+		return getConstraintsKeywordAccess().getRule();
 	}
 
 	//Import:
@@ -3097,10 +3147,10 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TypeDef:
-	//	{NamedType} name=ID IdTypeDelimiter type=Type unit=[UnitDef]?
-	//	| {RecordType} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
-	//	| {ArrayType} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
-	//	| {EnumType} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
+	//	{NamedTypeDef} name=ID IdTypeDelimiter type=Type unit=[UnitDef]?
+	//	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
+	//	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
+	//	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';
 	public TypeDefElements getTypeDefAccess() {
 		return pTypeDef;
 	}
@@ -3363,8 +3413,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	//	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	//	| {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)?
 	//	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
-	//	| {RecordExpr} 'new' type=[RecordType] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
-	//	| {ArrayExpr} 'new' type=[ArrayType] '[' exprs+=Expr (',' exprs+=Expr)* ']'
+	//	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
+	//	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 	//	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
 	//	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
 	//	| '(' Expr ')'

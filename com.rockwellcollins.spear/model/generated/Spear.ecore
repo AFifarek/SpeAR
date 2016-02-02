@@ -13,6 +13,8 @@
         eType="#//TypeDef" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constants" upperBound="-1"
         eType="#//Constant" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
+        eType="#//Pattern" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
@@ -107,19 +109,19 @@
   <eClassifiers xsi:type="ecore:EClass" name="NamedUnitExpr" eSuperTypes="#//UnitExpr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="unit" eType="#//UnitDef"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NamedType" eSuperTypes="#//TypeDef">
+  <eClassifiers xsi:type="ecore:EClass" name="NamedTypeDef" eSuperTypes="#//TypeDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="unit" eType="#//UnitDef"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RecordType" eSuperTypes="#//TypeDef">
+  <eClassifiers xsi:type="ecore:EClass" name="RecordTypeDef" eSuperTypes="#//TypeDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="fields" upperBound="-1"
         eType="#//FieldType" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ArrayType" eSuperTypes="#//TypeDef">
+  <eClassifiers xsi:type="ecore:EClass" name="ArrayTypeDef" eSuperTypes="#//TypeDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="base" eType="#//Type" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EnumType" eSuperTypes="#//TypeDef">
+  <eClassifiers xsi:type="ecore:EClass" name="EnumTypeDef" eSuperTypes="#//TypeDef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
         eType="#//EnumValue" containment="true"/>
   </eClassifiers>
@@ -190,12 +192,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="then" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RecordExpr" eSuperTypes="#//Expr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//RecordType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//RecordTypeDef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fieldExprs" upperBound="-1"
         eType="#//FieldExpr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArrayExpr" eSuperTypes="#//Expr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ArrayType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//ArrayTypeDef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprs" upperBound="-1"
         eType="#//Expr" containment="true"/>
   </eClassifiers>

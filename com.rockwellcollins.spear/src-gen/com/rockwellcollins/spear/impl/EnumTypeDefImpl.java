@@ -2,8 +2,8 @@
  */
 package com.rockwellcollins.spear.impl;
 
-import com.rockwellcollins.spear.FieldType;
-import com.rockwellcollins.spear.RecordType;
+import com.rockwellcollins.spear.EnumTypeDef;
+import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.SpearPackage;
 
 import java.util.Collection;
@@ -20,35 +20,35 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Record Type</b></em>'.
+ * An implementation of the model object '<em><b>Enum Type Def</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.rockwellcollins.spear.impl.RecordTypeImpl#getFields <em>Fields</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.EnumTypeDefImpl#getValues <em>Values</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RecordTypeImpl extends TypeDefImpl implements RecordType
+public class EnumTypeDefImpl extends TypeDefImpl implements EnumTypeDef
 {
   /**
-   * The cached value of the '{@link #getFields() <em>Fields</em>}' containment reference list.
+   * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFields()
+   * @see #getValues()
    * @generated
    * @ordered
    */
-  protected EList<FieldType> fields;
+  protected EList<EnumValue> values;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RecordTypeImpl()
+  protected EnumTypeDefImpl()
   {
     super();
   }
@@ -61,7 +61,7 @@ public class RecordTypeImpl extends TypeDefImpl implements RecordType
   @Override
   protected EClass eStaticClass()
   {
-    return SpearPackage.Literals.RECORD_TYPE;
+    return SpearPackage.Literals.ENUM_TYPE_DEF;
   }
 
   /**
@@ -69,13 +69,13 @@ public class RecordTypeImpl extends TypeDefImpl implements RecordType
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<FieldType> getFields()
+  public EList<EnumValue> getValues()
   {
-    if (fields == null)
+    if (values == null)
     {
-      fields = new EObjectContainmentEList<FieldType>(FieldType.class, this, SpearPackage.RECORD_TYPE__FIELDS);
+      values = new EObjectContainmentEList<EnumValue>(EnumValue.class, this, SpearPackage.ENUM_TYPE_DEF__VALUES);
     }
-    return fields;
+    return values;
   }
 
   /**
@@ -88,8 +88,8 @@ public class RecordTypeImpl extends TypeDefImpl implements RecordType
   {
     switch (featureID)
     {
-      case SpearPackage.RECORD_TYPE__FIELDS:
-        return ((InternalEList<?>)getFields()).basicRemove(otherEnd, msgs);
+      case SpearPackage.ENUM_TYPE_DEF__VALUES:
+        return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -104,8 +104,8 @@ public class RecordTypeImpl extends TypeDefImpl implements RecordType
   {
     switch (featureID)
     {
-      case SpearPackage.RECORD_TYPE__FIELDS:
-        return getFields();
+      case SpearPackage.ENUM_TYPE_DEF__VALUES:
+        return getValues();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -121,9 +121,9 @@ public class RecordTypeImpl extends TypeDefImpl implements RecordType
   {
     switch (featureID)
     {
-      case SpearPackage.RECORD_TYPE__FIELDS:
-        getFields().clear();
-        getFields().addAll((Collection<? extends FieldType>)newValue);
+      case SpearPackage.ENUM_TYPE_DEF__VALUES:
+        getValues().clear();
+        getValues().addAll((Collection<? extends EnumValue>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -139,8 +139,8 @@ public class RecordTypeImpl extends TypeDefImpl implements RecordType
   {
     switch (featureID)
     {
-      case SpearPackage.RECORD_TYPE__FIELDS:
-        getFields().clear();
+      case SpearPackage.ENUM_TYPE_DEF__VALUES:
+        getValues().clear();
         return;
     }
     super.eUnset(featureID);
@@ -156,10 +156,10 @@ public class RecordTypeImpl extends TypeDefImpl implements RecordType
   {
     switch (featureID)
     {
-      case SpearPackage.RECORD_TYPE__FIELDS:
-        return fields != null && !fields.isEmpty();
+      case SpearPackage.ENUM_TYPE_DEF__VALUES:
+        return values != null && !values.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //RecordTypeImpl
+} //EnumTypeDefImpl

@@ -12,7 +12,7 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
-import com.rockwellcollins.spear.ArrayType;
+import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.ArrayUpdateExpr;
 import com.rockwellcollins.spear.BaseUnit;
 import com.rockwellcollins.spear.BinaryExpr;
@@ -20,7 +20,7 @@ import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.DerivedUnit;
-import com.rockwellcollins.spear.EnumType;
+import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
@@ -32,14 +32,14 @@ import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.NamedType;
+import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordType;
+import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
@@ -64,7 +64,7 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 	/***************************************************************************************************/
 	// Checks
 	/***************************************************************************************************/
-	public void checkNamedType(NamedType nt) {
+	public void checkNamedTypeDef(NamedTypeDef nt) {
 		doSwitch(nt);
 	}
 
@@ -182,7 +182,7 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 	// TypeDefs
 	/***************************************************************************************************/
 	@Override
-	public SpearUnit caseNamedType(NamedType nt) {
+	public SpearUnit caseNamedTypeDef(NamedTypeDef nt) {
 		if (nt.getUnit() == null) {
 			return SCALAR;
 		} else {
@@ -191,7 +191,7 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	@Override
-	public SpearUnit caseRecordType(RecordType rt) {
+	public SpearUnit caseRecordTypeDef(RecordTypeDef rt) {
 		Map<String,SpearUnit> fields = new HashMap<>();
 		for(FieldType rtf : rt.getFields()) {
 			fields.put(rtf.getName(), doSwitch(rtf.getType()));
@@ -200,12 +200,12 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public ArrayUnit caseArrayType(ArrayType at) {
+	public ArrayUnit caseArrayTypeDef(ArrayTypeDef at) {
 		return new ArrayUnit(at.getName(),doSwitch(at.getBase()),at.getSize());
 	}
 
 	@Override
-	public SpearUnit caseEnumType(EnumType enumtype) {
+	public SpearUnit caseEnumTypeDef(EnumTypeDef enumtype) {
 		return new EnumUnit(enumtype.getName());
 	}
 

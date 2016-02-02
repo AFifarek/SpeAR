@@ -6,21 +6,21 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Enum Type</b></em>'.
+ * A representation of the model object '<em><b>Enum Type Def</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.rockwellcollins.spear.EnumType#getValues <em>Values</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.EnumTypeDef#getValues <em>Values</em>}</li>
  * </ul>
  *
- * @see com.rockwellcollins.spear.SpearPackage#getEnumType()
+ * @see com.rockwellcollins.spear.SpearPackage#getEnumTypeDef()
  * @model
  * @generated
  */
-public interface EnumType extends TypeDef
+public interface EnumTypeDef extends TypeDef
 {
   /**
    * Returns the value of the '<em><b>Values</b></em>' containment reference list.
@@ -32,10 +32,10 @@ public interface EnumType extends TypeDef
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Values</em>' containment reference list.
-   * @see com.rockwellcollins.spear.SpearPackage#getEnumType_Values()
+   * @see com.rockwellcollins.spear.SpearPackage#getEnumTypeDef_Values()
    * @model containment="true"
    * @generated
    */
   EList<EnumValue> getValues();
 
-} // EnumType
+} // EnumTypeDef

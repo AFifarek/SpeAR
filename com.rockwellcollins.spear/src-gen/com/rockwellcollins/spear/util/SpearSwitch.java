@@ -268,35 +268,35 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SpearPackage.NAMED_TYPE:
+      case SpearPackage.NAMED_TYPE_DEF:
       {
-        NamedType namedType = (NamedType)theEObject;
-        T result = caseNamedType(namedType);
-        if (result == null) result = caseTypeDef(namedType);
+        NamedTypeDef namedTypeDef = (NamedTypeDef)theEObject;
+        T result = caseNamedTypeDef(namedTypeDef);
+        if (result == null) result = caseTypeDef(namedTypeDef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SpearPackage.RECORD_TYPE:
+      case SpearPackage.RECORD_TYPE_DEF:
       {
-        RecordType recordType = (RecordType)theEObject;
-        T result = caseRecordType(recordType);
-        if (result == null) result = caseTypeDef(recordType);
+        RecordTypeDef recordTypeDef = (RecordTypeDef)theEObject;
+        T result = caseRecordTypeDef(recordTypeDef);
+        if (result == null) result = caseTypeDef(recordTypeDef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SpearPackage.ARRAY_TYPE:
+      case SpearPackage.ARRAY_TYPE_DEF:
       {
-        ArrayType arrayType = (ArrayType)theEObject;
-        T result = caseArrayType(arrayType);
-        if (result == null) result = caseTypeDef(arrayType);
+        ArrayTypeDef arrayTypeDef = (ArrayTypeDef)theEObject;
+        T result = caseArrayTypeDef(arrayTypeDef);
+        if (result == null) result = caseTypeDef(arrayTypeDef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SpearPackage.ENUM_TYPE:
+      case SpearPackage.ENUM_TYPE_DEF:
       {
-        EnumType enumType = (EnumType)theEObject;
-        T result = caseEnumType(enumType);
-        if (result == null) result = caseTypeDef(enumType);
+        EnumTypeDef enumTypeDef = (EnumTypeDef)theEObject;
+        T result = caseEnumTypeDef(enumTypeDef);
+        if (result == null) result = caseTypeDef(enumTypeDef);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -908,65 +908,65 @@ public class SpearSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Named Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Named Type Def</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Named Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Named Type Def</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseNamedType(NamedType object)
+  public T caseNamedTypeDef(NamedTypeDef object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Record Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Record Type Def</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Record Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Record Type Def</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRecordType(RecordType object)
+  public T caseRecordTypeDef(RecordTypeDef object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Array Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Array Type Def</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Array Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Array Type Def</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseArrayType(ArrayType object)
+  public T caseArrayTypeDef(ArrayTypeDef object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Enum Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Enum Type Def</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Enum Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Enum Type Def</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseEnumType(EnumType object)
+  public T caseEnumTypeDef(EnumTypeDef object)
   {
     return null;
   }

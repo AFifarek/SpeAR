@@ -15,13 +15,13 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import com.rockwellcollins.spear.AfterUntilExpr;
 import com.rockwellcollins.spear.ArrayAccessExpr;
 import com.rockwellcollins.spear.ArrayExpr;
-import com.rockwellcollins.spear.ArrayType;
+import com.rockwellcollins.spear.ArrayTypeDef;
 import com.rockwellcollins.spear.ArrayUpdateExpr;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
 import com.rockwellcollins.spear.Constant;
-import com.rockwellcollins.spear.EnumType;
+import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
@@ -34,14 +34,14 @@ import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.NamedType;
+import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
-import com.rockwellcollins.spear.RecordType;
+import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.SpecificationCall;
@@ -68,7 +68,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	/***************************************************************************************************/
 	// Checks
 	/***************************************************************************************************/
-	public SpearType checkNamedType(NamedType nt) {
+	public SpearType checkNamedType(NamedTypeDef nt) {
 		return doSwitch(nt);
 	}
 	
@@ -89,12 +89,12 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	/***************************************************************************************************/
 
 	@Override
-	public SpearType caseNamedType(NamedType nt) {
+	public SpearType caseNamedTypeDef(NamedTypeDef nt) {
 		return doSwitch(nt.getType());
 	}
 
 	@Override
-	public SpearType caseRecordType(RecordType rt) {
+	public SpearType caseRecordTypeDef(RecordTypeDef rt) {
 		if (rt.getName() == null) {
 			return ERROR;
 		}
@@ -107,7 +107,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseArrayType(ArrayType at) {
+	public SpearType caseArrayTypeDef(ArrayTypeDef at) {
 		if (at.getName() == null) {
 			return ERROR;
 		}
@@ -116,7 +116,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseEnumType(EnumType et) {
+	public SpearType caseEnumTypeDef(EnumTypeDef et) {
 		if (et.getName() == null) {
 			return ERROR;
 		}

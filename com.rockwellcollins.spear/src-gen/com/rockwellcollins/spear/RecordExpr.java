@@ -32,12 +32,12 @@ public interface RecordExpr extends Expr
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' reference.
-   * @see #setType(RecordType)
+   * @see #setType(RecordTypeDef)
    * @see com.rockwellcollins.spear.SpearPackage#getRecordExpr_Type()
    * @model
    * @generated
    */
-  RecordType getType();
+  RecordTypeDef getType();
 
   /**
    * Sets the value of the '{@link com.rockwellcollins.spear.RecordExpr#getType <em>Type</em>}' reference.
@@ -47,7 +47,7 @@ public interface RecordExpr extends Expr
    * @see #getType()
    * @generated
    */
-  void setType(RecordType value);
+  void setType(RecordTypeDef value);
 
   /**
    * Returns the value of the '<em><b>Field Exprs</b></em>' containment reference list.
