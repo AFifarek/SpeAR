@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.translate.actions;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Set;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -11,6 +12,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.IAction;
@@ -36,7 +38,7 @@ import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.lustre.TranslateSpecification;
-import com.rockwellcollins.spear.translate.transformations.ImportExpansion;
+import com.rockwellcollins.spear.translate.transformations.GetReferences;
 import com.rockwellcollins.spear.translate.transformations.NormalizeOperators;
 import com.rockwellcollins.spear.translate.transformations.RemoveLustreKeywords;
 import com.rockwellcollins.spear.translate.transformations.RemoveSugar;
@@ -88,6 +90,9 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 				Specification workingCopy = EcoreUtil2.copy(specification);
 
 				//TODO: we're going to have to bring everything that's referenced from external files into a single file.
+//				workingCopy = ImportExpansion.transform(workingCopy);
+//				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
+//				pass++;
 				
 				// apply operator normalization
 				workingCopy = RemoveLustreKeywords.transform(workingCopy);
@@ -104,8 +109,10 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
 				pass++;
 
+				Set<EObject> references = GetReferences.getReferences(workingCopy);
+				
 				// translate to Lustre
-				Program p = TranslateSpecification.translate(workingCopy);
+				Program p = TranslateSpecification.translate(workingCopy, references);
 				URI lustreURI = createURI(state.getURI(), "", "lus");
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();

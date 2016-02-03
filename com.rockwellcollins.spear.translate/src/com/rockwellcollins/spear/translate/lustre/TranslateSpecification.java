@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.FormalConstraint;
@@ -36,9 +37,9 @@ public class TranslateSpecification {
 	private static final String HISTORICAL_CONJUNCT_ID = "HISTORICAL_CONJUNCT";
 	private static final String PROPERTY_SUFFIX = "_PROP";
 
-	public static Program translate(com.rockwellcollins.spear.Specification s) {
+	public static Program translate(com.rockwellcollins.spear.Specification s, Set<EObject> references) {
 		TranslateSpecification translate = new TranslateSpecification(new HashSet<>());
-		return translate.translateSpecification(s);
+		return translate.translateSpecification(s,references);
 	}
 
 	public TranslateSpecification(Set<String> globalNames) {
@@ -70,7 +71,7 @@ public class TranslateSpecification {
 		return unique;
 	}
 	
-	private List<TypeDef> getTypeDefs(Specification s) {
+	private List<TypeDef> getTypeDefs(Specification s, Set<EObject> references) {
 		List<TypeDef> typedefs = new ArrayList<>();
 		for (com.rockwellcollins.spear.TypeDef spearTypeDef : s.getTypedefs()) {
 			String name = getUniqueGlobalName(spearTypeDef.getName());
@@ -78,16 +79,36 @@ public class TranslateSpecification {
 			typedefs.add(lustreTypeDef);
 			globalNames.add(lustreTypeDef.id);
 		}
+		
+		for(EObject reference : references) {
+			if (reference instanceof com.rockwellcollins.spear.TypeDef) {
+				com.rockwellcollins.spear.TypeDef spearTypeDef = (com.rockwellcollins.spear.TypeDef) reference;
+				String name = getUniqueGlobalName(spearTypeDef.getName());
+				TypeDef lustreTypeDef = TranslateDecl.translate(spearTypeDef, name);
+				typedefs.add(lustreTypeDef);
+				globalNames.add(lustreTypeDef.id);
+			}
+		}
 		return typedefs;
 	}
 
-	private List<Constant> getConstants(Specification s) {
+	private List<Constant> getConstants(Specification s, Set<EObject> references) {
 		List<Constant> constants = new ArrayList<>();
 		for (com.rockwellcollins.spear.Constant spearConstant : s.getConstants()) {
 			String name = getUniqueGlobalName(spearConstant.getName());
 			Constant lustreConstant = TranslateDecl.translate(spearConstant, name);
 			constants.add(lustreConstant);
 			globalNames.add(lustreConstant.id);
+		}
+		
+		for(EObject reference : references) {
+			if (reference instanceof com.rockwellcollins.spear.Constant) {
+				com.rockwellcollins.spear.Constant spearConstant = (com.rockwellcollins.spear.Constant) reference;
+				String name = getUniqueGlobalName(spearConstant.getName());
+				Constant lustreConstant = TranslateDecl.translate(spearConstant, name);
+				constants.add(lustreConstant);
+				globalNames.add(lustreConstant.id);
+			}
 		}
 		return constants;
 	}
@@ -191,10 +212,10 @@ public class TranslateSpecification {
 		return new VarDecl(CONJUNCTION_ID, NamedType.BOOL);
 	}
 
-	public Program translateSpecification(Specification s) {
+	public Program translateSpecification(Specification s, Set<EObject> references) {
 		String mainNodeName = s.getName();
-		List<TypeDef> typedefs = getTypeDefs(s);
-		List<Constant> constants = getConstants(s);
+		List<TypeDef> typedefs = getTypeDefs(s,references);
+		List<Constant> constants = getConstants(s,references);
 
 		// these represent the original inputs, outputs, and locals of a SpeAR
 		// specification
