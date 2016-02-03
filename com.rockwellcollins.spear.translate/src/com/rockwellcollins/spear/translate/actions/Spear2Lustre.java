@@ -89,11 +89,6 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 				Integer pass = 0;
 				Specification workingCopy = EcoreUtil2.copy(specification);
 
-				//TODO: we're going to have to bring everything that's referenced from external files into a single file.
-//				workingCopy = ImportExpansion.transform(workingCopy);
-//				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
-//				pass++;
-				
 				// apply operator normalization
 				workingCopy = RemoveLustreKeywords.transform(workingCopy);
 				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
