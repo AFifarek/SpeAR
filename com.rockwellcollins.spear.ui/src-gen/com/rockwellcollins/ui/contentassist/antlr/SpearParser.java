@@ -78,7 +78,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDefinitionsAccess().getGroup_2(), "rule__Definitions__Group_2__0");
 					put(grammarAccess.getDefinitionsAccess().getGroup_3(), "rule__Definitions__Group_3__0");
 					put(grammarAccess.getDefinitionsAccess().getGroup_4(), "rule__Definitions__Group_4__0");
-					put(grammarAccess.getPatternsAccess().getGroup(), "rule__Patterns__Group__0");
+					put(grammarAccess.getDefinitionsAccess().getGroup_5(), "rule__Definitions__Group_5__0");
 					put(grammarAccess.getPatternAccess().getGroup(), "rule__Pattern__Group__0");
 					put(grammarAccess.getUnitDefAccess().getGroup_0(), "rule__UnitDef__Group_0__0");
 					put(grammarAccess.getUnitDefAccess().getGroup_1(), "rule__UnitDef__Group_1__0");
@@ -206,8 +206,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDefinitionsAccess().getUnitdefsAssignment_2_1(), "rule__Definitions__UnitdefsAssignment_2_1");
 					put(grammarAccess.getDefinitionsAccess().getTypedefsAssignment_3_1(), "rule__Definitions__TypedefsAssignment_3_1");
 					put(grammarAccess.getDefinitionsAccess().getConstantsAssignment_4_1(), "rule__Definitions__ConstantsAssignment_4_1");
-					put(grammarAccess.getPatternsAccess().getNameAssignment_1(), "rule__Patterns__NameAssignment_1");
-					put(grammarAccess.getPatternsAccess().getPatternsAssignment_2(), "rule__Patterns__PatternsAssignment_2");
+					put(grammarAccess.getDefinitionsAccess().getPatternsAssignment_5_1(), "rule__Definitions__PatternsAssignment_5_1");
 					put(grammarAccess.getPatternAccess().getNameAssignment_1(), "rule__Pattern__NameAssignment_1");
 					put(grammarAccess.getUnitDefAccess().getNameAssignment_0_1(), "rule__UnitDef__NameAssignment_0_1");
 					put(grammarAccess.getUnitDefAccess().getDescriptionAssignment_0_2(), "rule__UnitDef__DescriptionAssignment_0_2");

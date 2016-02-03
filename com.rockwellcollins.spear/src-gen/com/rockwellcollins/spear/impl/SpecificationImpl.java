@@ -2,14 +2,11 @@
  */
 package com.rockwellcollins.spear.impl;
 
-import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnitDef;
 import com.rockwellcollins.spear.Variable;
 
@@ -35,9 +32,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getUnits <em>Units</em>}</li>
- *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getTypedefs <em>Typedefs</em>}</li>
- *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getConstants <em>Constants</em>}</li>
- *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getPatterns <em>Patterns</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getState <em>State</em>}</li>
@@ -70,36 +64,6 @@ public class SpecificationImpl extends FileImpl implements Specification
    * @ordered
    */
   protected EList<UnitDef> units;
-
-  /**
-   * The cached value of the '{@link #getTypedefs() <em>Typedefs</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTypedefs()
-   * @generated
-   * @ordered
-   */
-  protected EList<TypeDef> typedefs;
-
-  /**
-   * The cached value of the '{@link #getConstants() <em>Constants</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getConstants()
-   * @generated
-   * @ordered
-   */
-  protected EList<Constant> constants;
-
-  /**
-   * The cached value of the '{@link #getPatterns() <em>Patterns</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPatterns()
-   * @generated
-   * @ordered
-   */
-  protected EList<Pattern> patterns;
 
   /**
    * The cached value of the '{@link #getInputs() <em>Inputs</em>}' containment reference list.
@@ -225,48 +189,6 @@ public class SpecificationImpl extends FileImpl implements Specification
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TypeDef> getTypedefs()
-  {
-    if (typedefs == null)
-    {
-      typedefs = new EObjectContainmentEList<TypeDef>(TypeDef.class, this, SpearPackage.SPECIFICATION__TYPEDEFS);
-    }
-    return typedefs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Constant> getConstants()
-  {
-    if (constants == null)
-    {
-      constants = new EObjectContainmentEList<Constant>(Constant.class, this, SpearPackage.SPECIFICATION__CONSTANTS);
-    }
-    return constants;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Pattern> getPatterns()
-  {
-    if (patterns == null)
-    {
-      patterns = new EObjectContainmentEList<Pattern>(Pattern.class, this, SpearPackage.SPECIFICATION__PATTERNS);
-    }
-    return patterns;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EList<Variable> getInputs()
   {
     if (inputs == null)
@@ -374,12 +296,6 @@ public class SpecificationImpl extends FileImpl implements Specification
         return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
       case SpearPackage.SPECIFICATION__UNITS:
         return ((InternalEList<?>)getUnits()).basicRemove(otherEnd, msgs);
-      case SpearPackage.SPECIFICATION__TYPEDEFS:
-        return ((InternalEList<?>)getTypedefs()).basicRemove(otherEnd, msgs);
-      case SpearPackage.SPECIFICATION__CONSTANTS:
-        return ((InternalEList<?>)getConstants()).basicRemove(otherEnd, msgs);
-      case SpearPackage.SPECIFICATION__PATTERNS:
-        return ((InternalEList<?>)getPatterns()).basicRemove(otherEnd, msgs);
       case SpearPackage.SPECIFICATION__INPUTS:
         return ((InternalEList<?>)getInputs()).basicRemove(otherEnd, msgs);
       case SpearPackage.SPECIFICATION__OUTPUTS:
@@ -412,12 +328,6 @@ public class SpecificationImpl extends FileImpl implements Specification
         return getImports();
       case SpearPackage.SPECIFICATION__UNITS:
         return getUnits();
-      case SpearPackage.SPECIFICATION__TYPEDEFS:
-        return getTypedefs();
-      case SpearPackage.SPECIFICATION__CONSTANTS:
-        return getConstants();
-      case SpearPackage.SPECIFICATION__PATTERNS:
-        return getPatterns();
       case SpearPackage.SPECIFICATION__INPUTS:
         return getInputs();
       case SpearPackage.SPECIFICATION__OUTPUTS:
@@ -454,18 +364,6 @@ public class SpecificationImpl extends FileImpl implements Specification
       case SpearPackage.SPECIFICATION__UNITS:
         getUnits().clear();
         getUnits().addAll((Collection<? extends UnitDef>)newValue);
-        return;
-      case SpearPackage.SPECIFICATION__TYPEDEFS:
-        getTypedefs().clear();
-        getTypedefs().addAll((Collection<? extends TypeDef>)newValue);
-        return;
-      case SpearPackage.SPECIFICATION__CONSTANTS:
-        getConstants().clear();
-        getConstants().addAll((Collection<? extends Constant>)newValue);
-        return;
-      case SpearPackage.SPECIFICATION__PATTERNS:
-        getPatterns().clear();
-        getPatterns().addAll((Collection<? extends Pattern>)newValue);
         return;
       case SpearPackage.SPECIFICATION__INPUTS:
         getInputs().clear();
@@ -515,15 +413,6 @@ public class SpecificationImpl extends FileImpl implements Specification
       case SpearPackage.SPECIFICATION__UNITS:
         getUnits().clear();
         return;
-      case SpearPackage.SPECIFICATION__TYPEDEFS:
-        getTypedefs().clear();
-        return;
-      case SpearPackage.SPECIFICATION__CONSTANTS:
-        getConstants().clear();
-        return;
-      case SpearPackage.SPECIFICATION__PATTERNS:
-        getPatterns().clear();
-        return;
       case SpearPackage.SPECIFICATION__INPUTS:
         getInputs().clear();
         return;
@@ -563,12 +452,6 @@ public class SpecificationImpl extends FileImpl implements Specification
         return imports != null && !imports.isEmpty();
       case SpearPackage.SPECIFICATION__UNITS:
         return units != null && !units.isEmpty();
-      case SpearPackage.SPECIFICATION__TYPEDEFS:
-        return typedefs != null && !typedefs.isEmpty();
-      case SpearPackage.SPECIFICATION__CONSTANTS:
-        return constants != null && !constants.isEmpty();
-      case SpearPackage.SPECIFICATION__PATTERNS:
-        return patterns != null && !patterns.isEmpty();
       case SpearPackage.SPECIFICATION__INPUTS:
         return inputs != null && !inputs.isEmpty();
       case SpearPackage.SPECIFICATION__OUTPUTS:

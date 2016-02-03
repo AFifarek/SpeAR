@@ -96,16 +96,6 @@ ruleFile returns [EObject current=null]
         $current = $this_Definitions_1.current; 
         afterParserOrEnumRuleCall();
     }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getFileAccess().getPatternsParserRuleCall_2()); 
-    }
-    this_Patterns_2=rulePatterns
-    { 
-        $current = $this_Patterns_2.current; 
-        afterParserOrEnumRuleCall();
-    }
 )
 ;
 
@@ -603,68 +593,29 @@ ruleDefinitions returns [EObject current=null]
 	    }
 
 )
-)*)?)
-;
-
-
-
-
-
-// Entry rule entryRulePatterns
-entryRulePatterns returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getPatternsRule()); }
-	 iv_rulePatterns=rulePatterns 
-	 { $current=$iv_rulePatterns.current; } 
-	 EOF 
-;
-
-// Rule Patterns
-rulePatterns returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(	otherlv_0='Patterns' 
+)*)?(	otherlv_8='Patterns:' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getPatternsAccess().getPatternsKeyword_0());
+    	newLeafNode(otherlv_8, grammarAccess.getDefinitionsAccess().getPatternsKeyword_5_0());
     }
 (
-(
-		lv_name_1_0=RULE_ID
-		{
-			newLeafNode(lv_name_1_0, grammarAccess.getPatternsAccess().getNameIDTerminalRuleCall_1_0()); 
-		}
-		{
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getPatternsRule());
-	        }
-       		setWithLastConsumed(
-       			$current, 
-       			"name",
-        		lv_name_1_0, 
-        		"org.eclipse.xtext.common.Terminals.ID");
-	    }
-
-)
-)(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getPatternsAccess().getPatternsPatternParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getDefinitionsAccess().getPatternsPatternParserRuleCall_5_1_0()); 
 	    }
-		lv_patterns_2_0=rulePattern		{
+		lv_patterns_9_0=rulePattern		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getPatternsRule());
+	            $current = createModelElementForParent(grammarAccess.getDefinitionsRule());
 	        }
        		add(
        			$current, 
        			"patterns",
-        		lv_patterns_2_0, 
+        		lv_patterns_9_0, 
         		"com.rockwellcollins.Spear.Pattern");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*)
+)*)?)
 ;
 
 

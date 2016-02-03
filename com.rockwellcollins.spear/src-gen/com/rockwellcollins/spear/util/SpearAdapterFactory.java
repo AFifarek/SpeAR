@@ -95,11 +95,6 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createDefinitionsAdapter();
       }
       @Override
-      public Adapter casePatterns(Patterns object)
-      {
-        return createPatternsAdapter();
-      }
-      @Override
       public Adapter casePattern(Pattern object)
       {
         return createPatternAdapter();
@@ -417,21 +412,6 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDefinitionsAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.Patterns <em>Patterns</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.rockwellcollins.spear.Patterns
-   * @generated
-   */
-  public Adapter createPatternsAdapter()
   {
     return null;
   }

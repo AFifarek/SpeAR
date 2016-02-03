@@ -3,7 +3,7 @@ grammar com.rockwellcollins.Spear with org.eclipse.xtext.common.Terminals
 generate spear "http://www.rockwellcollins.com/Spear"
 
 File:
-	Specification | Definitions | Patterns;
+	Specification | Definitions;
 
 Specification:
 	'Specification' (name=ID)
@@ -32,10 +32,8 @@ Definitions:
 	'Definitions' (name=ID)
 	('Units:' unitdefs+=UnitDef*)?
 	('Types:' typedefs+=TypeDef*)?
-	('Constants:' constants+=Constant*)?;
-
-Patterns:
-	'Patterns' name=ID patterns+=Pattern*;
+	('Constants:' constants+=Constant*)?
+	('Patterns:' patterns +=Pattern*)?;
 
 Pattern:
 	'Pattern' (name=ID)

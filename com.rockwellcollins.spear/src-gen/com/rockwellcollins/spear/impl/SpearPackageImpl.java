@@ -37,7 +37,6 @@ import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PatternCall;
-import com.rockwellcollins.spear.Patterns;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
@@ -100,13 +99,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass definitionsEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass patternsEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -532,6 +524,36 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getFile_Typedefs()
+  {
+    return (EReference)fileEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFile_Constants()
+  {
+    return (EReference)fileEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFile_Patterns()
+  {
+    return (EReference)fileEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getSpecification()
   {
     return specificationEClass;
@@ -562,7 +584,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Typedefs()
+  public EReference getSpecification_Inputs()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(2);
   }
@@ -572,7 +594,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Constants()
+  public EReference getSpecification_Outputs()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(3);
   }
@@ -582,7 +604,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Patterns()
+  public EReference getSpecification_State()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(4);
   }
@@ -592,7 +614,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Inputs()
+  public EReference getSpecification_Macros()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(5);
   }
@@ -602,7 +624,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Outputs()
+  public EReference getSpecification_Assumptions()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(6);
   }
@@ -612,7 +634,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_State()
+  public EReference getSpecification_Requirements()
   {
     return (EReference)specificationEClass.getEStructuralFeatures().get(7);
   }
@@ -622,39 +644,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecification_Macros()
-  {
-    return (EReference)specificationEClass.getEStructuralFeatures().get(8);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getSpecification_Assumptions()
-  {
-    return (EReference)specificationEClass.getEStructuralFeatures().get(9);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getSpecification_Requirements()
-  {
-    return (EReference)specificationEClass.getEStructuralFeatures().get(10);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getSpecification_Behaviors()
   {
-    return (EReference)specificationEClass.getEStructuralFeatures().get(11);
+    return (EReference)specificationEClass.getEStructuralFeatures().get(8);
   }
 
   /**
@@ -695,46 +687,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EReference getDefinitions_Unitdefs()
   {
     return (EReference)definitionsEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDefinitions_Typedefs()
-  {
-    return (EReference)definitionsEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDefinitions_Constants()
-  {
-    return (EReference)definitionsEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getPatterns()
-  {
-    return patternsEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getPatterns_Patterns()
-  {
-    return (EReference)patternsEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1949,13 +1901,13 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     // Create classes and their features
     fileEClass = createEClass(FILE);
     createEAttribute(fileEClass, FILE__NAME);
+    createEReference(fileEClass, FILE__TYPEDEFS);
+    createEReference(fileEClass, FILE__CONSTANTS);
+    createEReference(fileEClass, FILE__PATTERNS);
 
     specificationEClass = createEClass(SPECIFICATION);
     createEReference(specificationEClass, SPECIFICATION__IMPORTS);
     createEReference(specificationEClass, SPECIFICATION__UNITS);
-    createEReference(specificationEClass, SPECIFICATION__TYPEDEFS);
-    createEReference(specificationEClass, SPECIFICATION__CONSTANTS);
-    createEReference(specificationEClass, SPECIFICATION__PATTERNS);
     createEReference(specificationEClass, SPECIFICATION__INPUTS);
     createEReference(specificationEClass, SPECIFICATION__OUTPUTS);
     createEReference(specificationEClass, SPECIFICATION__STATE);
@@ -1969,11 +1921,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     definitionsEClass = createEClass(DEFINITIONS);
     createEReference(definitionsEClass, DEFINITIONS__UNITDEFS);
-    createEReference(definitionsEClass, DEFINITIONS__TYPEDEFS);
-    createEReference(definitionsEClass, DEFINITIONS__CONSTANTS);
-
-    patternsEClass = createEClass(PATTERNS);
-    createEReference(patternsEClass, PATTERNS__PATTERNS);
 
     patternEClass = createEClass(PATTERN);
     createEAttribute(patternEClass, PATTERN__NAME);
@@ -2173,7 +2120,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     // Add supertypes to classes
     specificationEClass.getESuperTypes().add(this.getFile());
     definitionsEClass.getESuperTypes().add(this.getFile());
-    patternsEClass.getESuperTypes().add(this.getFile());
     enumValueEClass.getESuperTypes().add(this.getIdRef());
     constantEClass.getESuperTypes().add(this.getIdRef());
     variableEClass.getESuperTypes().add(this.getIdRef());
@@ -2216,13 +2162,13 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     // Initialize classes and features; add operations and parameters
     initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFile_Name(), ecorePackage.getEString(), "name", null, 0, 1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFile_Typedefs(), this.getTypeDef(), null, "typedefs", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFile_Constants(), this.getConstant(), null, "constants", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFile_Patterns(), this.getPattern(), null, "patterns", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(specificationEClass, Specification.class, "Specification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSpecification_Imports(), this.getImport(), null, "imports", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Units(), this.getUnitDef(), null, "units", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSpecification_Typedefs(), this.getTypeDef(), null, "typedefs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSpecification_Constants(), this.getConstant(), null, "constants", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSpecification_Patterns(), this.getPattern(), null, "patterns", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Inputs(), this.getVariable(), null, "inputs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_Outputs(), this.getVariable(), null, "outputs", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpecification_State(), this.getVariable(), null, "state", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2236,11 +2182,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     initEClass(definitionsEClass, Definitions.class, "Definitions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDefinitions_Unitdefs(), this.getUnitDef(), null, "unitdefs", null, 0, -1, Definitions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDefinitions_Typedefs(), this.getTypeDef(), null, "typedefs", null, 0, -1, Definitions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDefinitions_Constants(), this.getConstant(), null, "constants", null, 0, -1, Definitions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(patternsEClass, Patterns.class, "Patterns", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPatterns_Patterns(), this.getPattern(), null, "patterns", null, 0, -1, Patterns.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPattern_Name(), ecorePackage.getEString(), "name", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

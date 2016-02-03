@@ -9,13 +9,13 @@
       fileExtensions="spear" ecorePackage="Spear.ecore#/">
     <genClasses ecoreClass="Spear.ecore#//File">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//File/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//File/typedefs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//File/constants"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//File/patterns"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Specification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/imports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/units"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/typedefs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/constants"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/patterns"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/inputs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/outputs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/state"/>
@@ -29,11 +29,6 @@
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Definitions">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Definitions/unitdefs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Definitions/typedefs"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Definitions/constants"/>
-    </genClasses>
-    <genClasses ecoreClass="Spear.ecore#//Patterns">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Patterns/patterns"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Pattern">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Pattern/name"/>
