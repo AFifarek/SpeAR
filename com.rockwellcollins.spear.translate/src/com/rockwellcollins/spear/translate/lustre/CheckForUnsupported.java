@@ -2,6 +2,7 @@ package com.rockwellcollins.spear.translate.lustre;
 
 import org.eclipse.xtext.EcoreUtil2;
 
+import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
@@ -24,6 +25,10 @@ public class CheckForUnsupported extends SpearSwitch<Void> {
 		}
 		
 		for(PatternCall call : EcoreUtil2.getAllContentsOfType(s, PatternCall.class)) {
+			unsupported = true;
+		}
+		
+		for(Import importFile : EcoreUtil2.getAllContentsOfType(s, Import.class)) {
 			unsupported = true;
 		}
 		return null;

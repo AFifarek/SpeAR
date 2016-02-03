@@ -36,6 +36,7 @@ import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.lustre.TranslateSpecification;
+import com.rockwellcollins.spear.translate.transformations.ImportExpansion;
 import com.rockwellcollins.spear.translate.transformations.NormalizeOperators;
 import com.rockwellcollins.spear.translate.transformations.RemoveLustreKeywords;
 import com.rockwellcollins.spear.translate.transformations.RemoveSugar;
