@@ -23,13 +23,12 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cSpecificationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cDefinitionsParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cPatternsParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//File:
-		//	Specification | Definitions | Patterns;
+		//	Specification | Definitions;
 		@Override public ParserRule getRule() { return rule; }
 
-		//Specification | Definitions | Patterns
+		//Specification | Definitions
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Specification
@@ -37,9 +36,6 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Definitions
 		public RuleCall getDefinitionsParserRuleCall_1() { return cDefinitionsParserRuleCall_1; }
-
-		//Patterns
-		public RuleCall getPatternsParserRuleCall_2() { return cPatternsParserRuleCall_2; }
 	}
 
 	public class SpecificationElements extends AbstractParserRuleElementFinder {
@@ -317,13 +313,18 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cConstantsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Assignment cConstantsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final RuleCall cConstantsConstantParserRuleCall_4_1_0 = (RuleCall)cConstantsAssignment_4_1.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final Keyword cPatternsKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cPatternsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cPatternsPatternParserRuleCall_5_1_0 = (RuleCall)cPatternsAssignment_5_1.eContents().get(0);
 		
 		//Definitions:
 		//	'Definitions' name=ID ('Units:' unitdefs+=UnitDef*)? ('Types:' typedefs+=TypeDef*)? ('Constants:'
-		//	constants+=Constant*)?;
+		//	constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//'Definitions' name=ID ('Units:' unitdefs+=UnitDef*)? ('Types:' typedefs+=TypeDef*)? ('Constants:' constants+=Constant*)?
+		//('Patterns:' patterns+=Pattern*)?
 		public Group getGroup() { return cGroup; }
 
 		//'Definitions'
@@ -370,38 +371,18 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Constant
 		public RuleCall getConstantsConstantParserRuleCall_4_1_0() { return cConstantsConstantParserRuleCall_4_1_0; }
-	}
 
-	public class PatternsElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.Patterns");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPatternsKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Assignment cPatternsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPatternsPatternParserRuleCall_2_0 = (RuleCall)cPatternsAssignment_2.eContents().get(0);
-		
-		//Patterns:
-		//	'Patterns' name=ID patterns+=Pattern*;
-		@Override public ParserRule getRule() { return rule; }
+		//('Patterns:' patterns+=Pattern*)?
+		public Group getGroup_5() { return cGroup_5; }
 
-		//'Patterns' name=ID patterns+=Pattern*
-		public Group getGroup() { return cGroup; }
-
-		//'Patterns'
-		public Keyword getPatternsKeyword_0() { return cPatternsKeyword_0; }
-
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		//'Patterns:'
+		public Keyword getPatternsKeyword_5_0() { return cPatternsKeyword_5_0; }
 
 		//patterns+=Pattern*
-		public Assignment getPatternsAssignment_2() { return cPatternsAssignment_2; }
+		public Assignment getPatternsAssignment_5_1() { return cPatternsAssignment_5_1; }
 
 		//Pattern
-		public RuleCall getPatternsPatternParserRuleCall_2_0() { return cPatternsPatternParserRuleCall_2_0; }
+		public RuleCall getPatternsPatternParserRuleCall_5_1_0() { return cPatternsPatternParserRuleCall_5_1_0; }
 	}
 
 	public class PatternElements extends AbstractParserRuleElementFinder {
@@ -2896,7 +2877,6 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	private final ConstraintsKeywordElements pConstraintsKeyword;
 	private final ImportElements pImport;
 	private final DefinitionsElements pDefinitions;
-	private final PatternsElements pPatterns;
 	private final PatternElements pPattern;
 	private final UnitDefElements pUnitDef;
 	private final UnitExprElements pUnitExpr;
@@ -2950,7 +2930,6 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		this.pConstraintsKeyword = new ConstraintsKeywordElements();
 		this.pImport = new ImportElements();
 		this.pDefinitions = new DefinitionsElements();
-		this.pPatterns = new PatternsElements();
 		this.pPattern = new PatternElements();
 		this.pUnitDef = new UnitDefElements();
 		this.pUnitExpr = new UnitExprElements();
@@ -3019,7 +2998,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//File:
-	//	Specification | Definitions | Patterns;
+	//	Specification | Definitions;
 	public FileElements getFileAccess() {
 		return pFile;
 	}
@@ -3066,23 +3045,13 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Definitions:
 	//	'Definitions' name=ID ('Units:' unitdefs+=UnitDef*)? ('Types:' typedefs+=TypeDef*)? ('Constants:'
-	//	constants+=Constant*)?;
+	//	constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?;
 	public DefinitionsElements getDefinitionsAccess() {
 		return pDefinitions;
 	}
 	
 	public ParserRule getDefinitionsRule() {
 		return getDefinitionsAccess().getRule();
-	}
-
-	//Patterns:
-	//	'Patterns' name=ID patterns+=Pattern*;
-	public PatternsElements getPatternsAccess() {
-		return pPatterns;
-	}
-	
-	public ParserRule getPatternsRule() {
-		return getPatternsAccess().getRule();
 	}
 
 	//Pattern:

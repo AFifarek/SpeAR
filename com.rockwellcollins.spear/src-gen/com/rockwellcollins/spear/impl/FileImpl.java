@@ -2,15 +2,27 @@
  */
 package com.rockwellcollins.spear.impl;
 
+import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.SpearPackage;
+import com.rockwellcollins.spear.TypeDef;
+
+import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +33,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.FileImpl#getName <em>Name</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.FileImpl#getTypedefs <em>Typedefs</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.FileImpl#getConstants <em>Constants</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.FileImpl#getPatterns <em>Patterns</em>}</li>
  * </ul>
  *
  * @generated
@@ -46,6 +61,36 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getTypedefs() <em>Typedefs</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTypedefs()
+   * @generated
+   * @ordered
+   */
+  protected EList<TypeDef> typedefs;
+
+  /**
+   * The cached value of the '{@link #getConstants() <em>Constants</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getConstants()
+   * @generated
+   * @ordered
+   */
+  protected EList<Constant> constants;
+
+  /**
+   * The cached value of the '{@link #getPatterns() <em>Patterns</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPatterns()
+   * @generated
+   * @ordered
+   */
+  protected EList<Pattern> patterns;
 
   /**
    * <!-- begin-user-doc -->
@@ -96,6 +141,68 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<TypeDef> getTypedefs()
+  {
+    if (typedefs == null)
+    {
+      typedefs = new EObjectContainmentEList<TypeDef>(TypeDef.class, this, SpearPackage.FILE__TYPEDEFS);
+    }
+    return typedefs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Constant> getConstants()
+  {
+    if (constants == null)
+    {
+      constants = new EObjectContainmentEList<Constant>(Constant.class, this, SpearPackage.FILE__CONSTANTS);
+    }
+    return constants;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Pattern> getPatterns()
+  {
+    if (patterns == null)
+    {
+      patterns = new EObjectContainmentEList<Pattern>(Pattern.class, this, SpearPackage.FILE__PATTERNS);
+    }
+    return patterns;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case SpearPackage.FILE__TYPEDEFS:
+        return ((InternalEList<?>)getTypedefs()).basicRemove(otherEnd, msgs);
+      case SpearPackage.FILE__CONSTANTS:
+        return ((InternalEList<?>)getConstants()).basicRemove(otherEnd, msgs);
+      case SpearPackage.FILE__PATTERNS:
+        return ((InternalEList<?>)getPatterns()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -103,6 +210,12 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
     {
       case SpearPackage.FILE__NAME:
         return getName();
+      case SpearPackage.FILE__TYPEDEFS:
+        return getTypedefs();
+      case SpearPackage.FILE__CONSTANTS:
+        return getConstants();
+      case SpearPackage.FILE__PATTERNS:
+        return getPatterns();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -112,6 +225,7 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -119,6 +233,18 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
     {
       case SpearPackage.FILE__NAME:
         setName((String)newValue);
+        return;
+      case SpearPackage.FILE__TYPEDEFS:
+        getTypedefs().clear();
+        getTypedefs().addAll((Collection<? extends TypeDef>)newValue);
+        return;
+      case SpearPackage.FILE__CONSTANTS:
+        getConstants().clear();
+        getConstants().addAll((Collection<? extends Constant>)newValue);
+        return;
+      case SpearPackage.FILE__PATTERNS:
+        getPatterns().clear();
+        getPatterns().addAll((Collection<? extends Pattern>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,6 +263,15 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
       case SpearPackage.FILE__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case SpearPackage.FILE__TYPEDEFS:
+        getTypedefs().clear();
+        return;
+      case SpearPackage.FILE__CONSTANTS:
+        getConstants().clear();
+        return;
+      case SpearPackage.FILE__PATTERNS:
+        getPatterns().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -153,6 +288,12 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
     {
       case SpearPackage.FILE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case SpearPackage.FILE__TYPEDEFS:
+        return typedefs != null && !typedefs.isEmpty();
+      case SpearPackage.FILE__CONSTANTS:
+        return constants != null && !constants.isEmpty();
+      case SpearPackage.FILE__PATTERNS:
+        return patterns != null && !patterns.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -102,14 +102,6 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SpearPackage.PATTERNS:
-      {
-        Patterns patterns = (Patterns)theEObject;
-        T result = casePatterns(patterns);
-        if (result == null) result = caseFile(patterns);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case SpearPackage.PATTERN:
       {
         Pattern pattern = (Pattern)theEObject;
@@ -551,22 +543,6 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDefinitions(Definitions object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Patterns</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Patterns</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T casePatterns(Patterns object)
   {
     return null;
   }

@@ -68,7 +68,6 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.SPECIFICATION: return createSpecification();
       case SpearPackage.IMPORT: return createImport();
       case SpearPackage.DEFINITIONS: return createDefinitions();
-      case SpearPackage.PATTERNS: return createPatterns();
       case SpearPackage.PATTERN: return createPattern();
       case SpearPackage.UNIT_DEF: return createUnitDef();
       case SpearPackage.UNIT_EXPR: return createUnitExpr();
@@ -164,17 +163,6 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     DefinitionsImpl definitions = new DefinitionsImpl();
     return definitions;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Patterns createPatterns()
-  {
-    PatternsImpl patterns = new PatternsImpl();
-    return patterns;
   }
 
   /**

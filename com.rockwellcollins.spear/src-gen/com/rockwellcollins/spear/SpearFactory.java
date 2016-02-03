@@ -59,15 +59,6 @@ public interface SpearFactory extends EFactory
   Definitions createDefinitions();
 
   /**
-   * Returns a new object of class '<em>Patterns</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Patterns</em>'.
-   * @generated
-   */
-  Patterns createPatterns();
-
-  /**
    * Returns a new object of class '<em>Pattern</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -35,7 +35,6 @@ import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PatternCall;
-import com.rockwellcollins.spear.Patterns;
 import com.rockwellcollins.spear.PreviousExpr;
 import com.rockwellcollins.spear.RealLiteral;
 import com.rockwellcollins.spear.RealType;
@@ -164,9 +163,6 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SpearPackage.PATTERN_CALL:
 				sequence_AtomicExpr(context, (PatternCall) semanticObject); 
-				return; 
-			case SpearPackage.PATTERNS:
-				sequence_Patterns(context, (Patterns) semanticObject); 
 				return; 
 			case SpearPackage.PREVIOUS_EXPR:
 				sequence_PrefixExpr(context, (PreviousExpr) semanticObject); 
@@ -808,7 +804,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Definitions returns Definitions
 	 *
 	 * Constraint:
-	 *     (name=ID unitdefs+=UnitDef* typedefs+=TypeDef* constants+=Constant*)
+	 *     (name=ID unitdefs+=UnitDef* typedefs+=TypeDef* constants+=Constant* patterns+=Pattern*)
 	 */
 	protected void sequence_Definitions(ISerializationContext context, Definitions semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -1091,19 +1087,6 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPatternAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     File returns Patterns
-	 *     Patterns returns Patterns
-	 *
-	 * Constraint:
-	 *     (name=ID patterns+=Pattern*)
-	 */
-	protected void sequence_Patterns(ISerializationContext context, Patterns semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
