@@ -1442,28 +1442,28 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//=> ({BinaryExpr.left=current} op=('T' | 'triggers'))
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//({BinaryExpr.left=current} op=('T' | 'triggers'))
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.25/@alternatives/@elements.1/@elements.0/@elements.0'
 		public Group getGroup_1_0_0() { return cGroup_1_0_0; }
 
-		//{BinaryExpr.left=current}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.25/@alternatives/@elements.1/@elements.0/@elements.0/@elements.0'
 		public Action getBinaryExprLeftAction_1_0_0_0() { return cBinaryExprLeftAction_1_0_0_0; }
 
-		//op=('T' | 'triggers')
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.25/@alternatives/@elements.1/@elements.0/@elements.0/@elements.1'
 		public Assignment getOpAssignment_1_0_0_1() { return cOpAssignment_1_0_0_1; }
 
-		//('T' | 'triggers')
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.25/@alternatives/@elements.1/@elements.0/@elements.0/@elements.1/@terminal'
 		public Alternatives getOpAlternatives_1_0_0_1_0() { return cOpAlternatives_1_0_0_1_0; }
 
-		//'T'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.25/@alternatives/@elements.1/@elements.0/@elements.0/@elements.1/@terminal/@elements.0'
 		public Keyword getOpTKeyword_1_0_0_1_0_0() { return cOpTKeyword_1_0_0_1_0_0; }
 
-		//'triggers'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.25/@alternatives/@elements.1/@elements.0/@elements.0/@elements.1/@terminal/@elements.1'
 		public Keyword getOpTriggersKeyword_1_0_0_1_0_1() { return cOpTriggersKeyword_1_0_0_1_0_1; }
 
-		//right=TriggersExpr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.25/@alternatives/@elements.1/@elements.1'
 		public Assignment getRightAssignment_1_1() { return cRightAssignment_1_1; }
 
-		//TriggersExpr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.25/@alternatives/@elements.1/@elements.1/@terminal'
 		public RuleCall getRightTriggersExprParserRuleCall_1_1_0() { return cRightTriggersExprParserRuleCall_1_1_0; }
 	}
 
@@ -1482,26 +1482,25 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRightAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cRightSinceExprParserRuleCall_1_1_0 = (RuleCall)cRightAssignment_1_1.eContents().get(0);
 		
-		//SinceExpr Expr:
-		//	TemporalPrefixExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#XtextFragmentProvider_com.rockwellcollins.Spear/SinceExpr'
 		@Override public ParserRule getRule() { return rule; }
 
-		//TemporalPrefixExpr (=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.26/@alternatives'
 		public Group getGroup() { return cGroup; }
 
-		//TemporalPrefixExpr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.26/@alternatives/@elements.0'
 		public RuleCall getTemporalPrefixExprParserRuleCall_0() { return cTemporalPrefixExprParserRuleCall_0; }
 
-		//(=> ({BinaryExpr.left=current} op=('S' | 'since')) right=SinceExpr)?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.26/@alternatives/@elements.1'
 		public Group getGroup_1() { return cGroup_1; }
 
-		//=> ({BinaryExpr.left=current} op=('S' | 'since'))
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.26/@alternatives/@elements.1/@elements.0'
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//({BinaryExpr.left=current} op=('S' | 'since'))
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.26/@alternatives/@elements.1/@elements.0/@elements.0'
 		public Group getGroup_1_0_0() { return cGroup_1_0_0; }
 
-		//{BinaryExpr.left=current}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.26/@alternatives/@elements.1/@elements.0/@elements.0/@elements.0'
 		public Action getBinaryExprLeftAction_1_0_0_0() { return cBinaryExprLeftAction_1_0_0_0; }
 
 		//op=('S' | 'since')
@@ -2312,220 +2311,220 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//{MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 		public Group getGroup_2() { return cGroup_2; }
 
-		//{MIdExpr}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.0'
 		public Action getMIdExprAction_2_0() { return cMIdExprAction_2_0; }
 
-		//'|'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.1'
 		public Keyword getVerticalLineKeyword_2_1() { return cVerticalLineKeyword_2_1; }
 
-		//ids+=[IdRef]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.2'
 		public Assignment getIdsAssignment_2_2() { return cIdsAssignment_2_2; }
 
-		//[IdRef]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.2/@terminal'
 		public CrossReference getIdsIdRefCrossReference_2_2_0() { return cIdsIdRefCrossReference_2_2_0; }
 
-		//ID
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.2/@terminal/@terminal'
 		public RuleCall getIdsIdRefIDTerminalRuleCall_2_2_0_1() { return cIdsIdRefIDTerminalRuleCall_2_2_0_1; }
 
-		//(',' ids+=[IdRef])*
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.3'
 		public Group getGroup_2_3() { return cGroup_2_3; }
 
-		//','
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.3/@elements.0'
 		public Keyword getCommaKeyword_2_3_0() { return cCommaKeyword_2_3_0; }
 
-		//ids+=[IdRef]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.3/@elements.1'
 		public Assignment getIdsAssignment_2_3_1() { return cIdsAssignment_2_3_1; }
 
-		//[IdRef]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.3/@elements.1/@terminal'
 		public CrossReference getIdsIdRefCrossReference_2_3_1_0() { return cIdsIdRefCrossReference_2_3_1_0; }
 
-		//ID
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.3/@elements.1/@terminal/@terminal'
 		public RuleCall getIdsIdRefIDTerminalRuleCall_2_3_1_0_1() { return cIdsIdRefIDTerminalRuleCall_2_3_1_0_1; }
 
-		//'|'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.2/@elements.4'
 		public Keyword getVerticalLineKeyword_2_4() { return cVerticalLineKeyword_2_4; }
 
-		//{IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3'
 		public Group getGroup_3() { return cGroup_3; }
 
-		//{IfThenElseExpr}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.0'
 		public Action getIfThenElseExprAction_3_0() { return cIfThenElseExprAction_3_0; }
 
-		//'if'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.1'
 		public Keyword getIfKeyword_3_1() { return cIfKeyword_3_1; }
 
-		//cond=Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.2'
 		public Assignment getCondAssignment_3_2() { return cCondAssignment_3_2; }
 
-		//Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.2/@terminal'
 		public RuleCall getCondExprParserRuleCall_3_2_0() { return cCondExprParserRuleCall_3_2_0; }
 
-		//'then'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.3'
 		public Keyword getThenKeyword_3_3() { return cThenKeyword_3_3; }
 
-		//then=Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.4'
 		public Assignment getThenAssignment_3_4() { return cThenAssignment_3_4; }
 
-		//Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.4/@terminal'
 		public RuleCall getThenExprParserRuleCall_3_4_0() { return cThenExprParserRuleCall_3_4_0; }
 
-		//(=> 'else' else=Expr)?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.5'
 		public Group getGroup_3_5() { return cGroup_3_5; }
 
-		//=> 'else'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.5/@elements.0'
 		public Keyword getElseKeyword_3_5_0() { return cElseKeyword_3_5_0; }
 
-		//else=Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.5/@elements.1'
 		public Assignment getElseAssignment_3_5_1() { return cElseAssignment_3_5_1; }
 
-		//Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.3/@elements.5/@elements.1/@terminal'
 		public RuleCall getElseExprParserRuleCall_3_5_1_0() { return cElseExprParserRuleCall_3_5_1_0; }
 
-		//{AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.4'
 		public Group getGroup_4() { return cGroup_4; }
 
-		//{AfterUntilExpr}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.4/@elements.0'
 		public Action getAfterUntilExprAction_4_0() { return cAfterUntilExprAction_4_0; }
 
-		//'after'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.4/@elements.1'
 		public Keyword getAfterKeyword_4_1() { return cAfterKeyword_4_1; }
 
-		//after=Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.4/@elements.2'
 		public Assignment getAfterAssignment_4_2() { return cAfterAssignment_4_2; }
 
-		//Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.4/@elements.2/@terminal'
 		public RuleCall getAfterExprParserRuleCall_4_2_0() { return cAfterExprParserRuleCall_4_2_0; }
 
-		//(=> 'until' until=Expr)?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.4/@elements.3'
 		public Group getGroup_4_3() { return cGroup_4_3; }
 
-		//=> 'until'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.4/@elements.3/@elements.0'
 		public Keyword getUntilKeyword_4_3_0() { return cUntilKeyword_4_3_0; }
 
-		//until=Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.4/@elements.3/@elements.1'
 		public Assignment getUntilAssignment_4_3_1() { return cUntilAssignment_4_3_1; }
 
-		//Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.4/@elements.3/@elements.1/@terminal'
 		public RuleCall getUntilExprParserRuleCall_4_3_1_0() { return cUntilExprParserRuleCall_4_3_1_0; }
 
-		//{WhileExpr} 'while' cond=Expr 'then' then=Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.5'
 		public Group getGroup_5() { return cGroup_5; }
 
-		//{WhileExpr}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.5/@elements.0'
 		public Action getWhileExprAction_5_0() { return cWhileExprAction_5_0; }
 
-		//'while'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.5/@elements.1'
 		public Keyword getWhileKeyword_5_1() { return cWhileKeyword_5_1; }
 
-		//cond=Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.5/@elements.2'
 		public Assignment getCondAssignment_5_2() { return cCondAssignment_5_2; }
 
-		//Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.5/@elements.2/@terminal'
 		public RuleCall getCondExprParserRuleCall_5_2_0() { return cCondExprParserRuleCall_5_2_0; }
 
-		//'then'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.5/@elements.3'
 		public Keyword getThenKeyword_5_3() { return cThenKeyword_5_3; }
 
-		//then=Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.5/@elements.4'
 		public Assignment getThenAssignment_5_4() { return cThenAssignment_5_4; }
 
-		//Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.5/@elements.4/@terminal'
 		public RuleCall getThenExprParserRuleCall_5_4_0() { return cThenExprParserRuleCall_5_4_0; }
 
-		//{RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6'
 		public Group getGroup_6() { return cGroup_6; }
 
-		//{RecordExpr}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.0'
 		public Action getRecordExprAction_6_0() { return cRecordExprAction_6_0; }
 
-		//'new'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.1'
 		public Keyword getNewKeyword_6_1() { return cNewKeyword_6_1; }
 
-		//type=[RecordTypeDef]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.2'
 		public Assignment getTypeAssignment_6_2() { return cTypeAssignment_6_2; }
 
-		//[RecordTypeDef]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.2/@terminal'
 		public CrossReference getTypeRecordTypeDefCrossReference_6_2_0() { return cTypeRecordTypeDefCrossReference_6_2_0; }
 
-		//ID
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.2/@terminal/@terminal'
 		public RuleCall getTypeRecordTypeDefIDTerminalRuleCall_6_2_0_1() { return cTypeRecordTypeDefIDTerminalRuleCall_6_2_0_1; }
 
-		//'{'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.3'
 		public Keyword getLeftCurlyBracketKeyword_6_3() { return cLeftCurlyBracketKeyword_6_3; }
 
-		//fieldExprs+=FieldExpr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.4'
 		public Assignment getFieldExprsAssignment_6_4() { return cFieldExprsAssignment_6_4; }
 
-		//FieldExpr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.4/@terminal'
 		public RuleCall getFieldExprsFieldExprParserRuleCall_6_4_0() { return cFieldExprsFieldExprParserRuleCall_6_4_0; }
 
-		//(',' fieldExprs+=FieldExpr)*
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.5'
 		public Group getGroup_6_5() { return cGroup_6_5; }
 
-		//','
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.5/@elements.0'
 		public Keyword getCommaKeyword_6_5_0() { return cCommaKeyword_6_5_0; }
 
-		//fieldExprs+=FieldExpr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.5/@elements.1'
 		public Assignment getFieldExprsAssignment_6_5_1() { return cFieldExprsAssignment_6_5_1; }
 
-		//FieldExpr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.5/@elements.1/@terminal'
 		public RuleCall getFieldExprsFieldExprParserRuleCall_6_5_1_0() { return cFieldExprsFieldExprParserRuleCall_6_5_1_0; }
 
-		//'}'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.6/@elements.6'
 		public Keyword getRightCurlyBracketKeyword_6_6() { return cRightCurlyBracketKeyword_6_6; }
 
-		//{ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7'
 		public Group getGroup_7() { return cGroup_7; }
 
-		//{ArrayExpr}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.0'
 		public Action getArrayExprAction_7_0() { return cArrayExprAction_7_0; }
 
-		//'new'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.1'
 		public Keyword getNewKeyword_7_1() { return cNewKeyword_7_1; }
 
-		//type=[ArrayTypeDef]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.2'
 		public Assignment getTypeAssignment_7_2() { return cTypeAssignment_7_2; }
 
-		//[ArrayTypeDef]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.2/@terminal'
 		public CrossReference getTypeArrayTypeDefCrossReference_7_2_0() { return cTypeArrayTypeDefCrossReference_7_2_0; }
 
-		//ID
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.2/@terminal/@terminal'
 		public RuleCall getTypeArrayTypeDefIDTerminalRuleCall_7_2_0_1() { return cTypeArrayTypeDefIDTerminalRuleCall_7_2_0_1; }
 
-		//'['
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.3'
 		public Keyword getLeftSquareBracketKeyword_7_3() { return cLeftSquareBracketKeyword_7_3; }
 
-		//exprs+=Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.4'
 		public Assignment getExprsAssignment_7_4() { return cExprsAssignment_7_4; }
 
-		//Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.4/@terminal'
 		public RuleCall getExprsExprParserRuleCall_7_4_0() { return cExprsExprParserRuleCall_7_4_0; }
 
-		//(',' exprs+=Expr)*
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.5'
 		public Group getGroup_7_5() { return cGroup_7_5; }
 
-		//','
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.5/@elements.0'
 		public Keyword getCommaKeyword_7_5_0() { return cCommaKeyword_7_5_0; }
 
-		//exprs+=Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.5/@elements.1'
 		public Assignment getExprsAssignment_7_5_1() { return cExprsAssignment_7_5_1; }
 
-		//Expr
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.5/@elements.1/@terminal'
 		public RuleCall getExprsExprParserRuleCall_7_5_1_0() { return cExprsExprParserRuleCall_7_5_1_0; }
 
-		//']'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.7/@elements.6'
 		public Keyword getRightSquareBracketKeyword_7_6() { return cRightSquareBracketKeyword_7_6; }
 
-		//{PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.8'
 		public Group getGroup_8() { return cGroup_8; }
 
-		//{PatternCall}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.8/@elements.0'
 		public Action getPatternCallAction_8_0() { return cPatternCallAction_8_0; }
 
-		//'pattern'
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.8/@elements.1'
 		public Keyword getPatternKeyword_8_1() { return cPatternKeyword_8_1; }
 
-		//pattern=[Pattern]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.34/@alternatives/@elements.8/@elements.2'
 		public Assignment getPatternAssignment_8_2() { return cPatternAssignment_8_2; }
 
 		//[Pattern]
@@ -2665,37 +2664,37 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getUnitUnitDefIDTerminalRuleCall_0_2_0_1() { return cUnitUnitDefIDTerminalRuleCall_0_2_0_1; }
 
-		//{BoolLiteral} value=BOOL
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#XtextFragmentProvider_com.rockwellcollins.Spear/BOOL'
 		public Group getGroup_1() { return cGroup_1; }
 
-		//{BoolLiteral}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.35/@alternatives/@elements.1/@elements.0'
 		public Action getBoolLiteralAction_1_0() { return cBoolLiteralAction_1_0; }
 
-		//value=BOOL
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.35/@alternatives/@elements.1/@elements.1'
 		public Assignment getValueAssignment_1_1() { return cValueAssignment_1_1; }
 
-		//BOOL
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.35/@alternatives/@elements.1/@elements.1/@terminal'
 		public RuleCall getValueBOOLParserRuleCall_1_1_0() { return cValueBOOLParserRuleCall_1_1_0; }
 
-		//{RealLiteral} value=REAL unit=[UnitDef]?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.35/@alternatives/@elements.2'
 		public Group getGroup_2() { return cGroup_2; }
 
-		//{RealLiteral}
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.35/@alternatives/@elements.2/@elements.0'
 		public Action getRealLiteralAction_2_0() { return cRealLiteralAction_2_0; }
 
-		//value=REAL
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.35/@alternatives/@elements.2/@elements.1'
 		public Assignment getValueAssignment_2_1() { return cValueAssignment_2_1; }
 
-		//REAL
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.35/@alternatives/@elements.2/@elements.1/@terminal'
 		public RuleCall getValueREALParserRuleCall_2_1_0() { return cValueREALParserRuleCall_2_1_0; }
 
-		//unit=[UnitDef]?
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.35/@alternatives/@elements.2/@elements.2'
 		public Assignment getUnitAssignment_2_2() { return cUnitAssignment_2_2; }
 
-		//[UnitDef]
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.35/@alternatives/@elements.2/@elements.2/@terminal'
 		public CrossReference getUnitUnitDefCrossReference_2_2_0() { return cUnitUnitDefCrossReference_2_2_0; }
 
-		//ID
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.35/@alternatives/@elements.2/@elements.2/@terminal/@terminal'
 		public RuleCall getUnitUnitDefIDTerminalRuleCall_2_2_0_1() { return cUnitUnitDefIDTerminalRuleCall_2_2_0_1; }
 	}
 
@@ -2707,26 +2706,22 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cConstantParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cEnumValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
-		//IdRef:
-		//	Variable
-		//	| Macro
-		//	| Constant
-		//	| EnumValue;
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#XtextFragmentProvider_com.rockwellcollins.Spear/IdRef'
 		@Override public ParserRule getRule() { return rule; }
 
-		//Variable | Macro | Constant | EnumValue
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.36/@alternatives'
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//Variable
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.36/@alternatives/@elements.0'
 		public RuleCall getVariableParserRuleCall_0() { return cVariableParserRuleCall_0; }
 
-		//Macro
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.36/@alternatives/@elements.1'
 		public RuleCall getMacroParserRuleCall_1() { return cMacroParserRuleCall_1; }
 
-		//Constant
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.36/@alternatives/@elements.2'
 		public RuleCall getConstantParserRuleCall_2() { return cConstantParserRuleCall_2; }
 
-		//EnumValue
+		//org.eclipse.xtext.resource.ClasspathUriResolutionException: org.eclipse.xtext.resource.FileNotFoundOnClasspathException: Couldn't find resource on classpath. URI was 'classpath:/com/rockwellcollins/Spear.xtext#/0/@rules.36/@alternatives/@elements.3'
 		public RuleCall getEnumValueParserRuleCall_3() { return cEnumValueParserRuleCall_3; }
 	}
 
