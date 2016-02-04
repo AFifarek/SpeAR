@@ -82,7 +82,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cAssumptionsKeyword_13_0 = (Keyword)cGroup_13.eContents().get(0);
 		private final Assignment cAssumptionsAssignment_13_1 = (Assignment)cGroup_13.eContents().get(1);
 		private final RuleCall cAssumptionsConstraintParserRuleCall_13_1_0 = (RuleCall)cAssumptionsAssignment_13_1.eContents().get(0);
-		private final RuleCall cConstraintsKeywordParserRuleCall_14 = (RuleCall)cGroup.eContents().get(14);
+		private final Keyword cDerivedRequirementsKeyword_14 = (Keyword)cGroup.eContents().get(14);
 		private final Assignment cRequirementsAssignment_15 = (Assignment)cGroup.eContents().get(15);
 		private final RuleCall cRequirementsConstraintParserRuleCall_15_0 = (RuleCall)cRequirementsAssignment_15.eContents().get(0);
 		private final Group cGroup_16 = (Group)cGroup.eContents().get(16);
@@ -96,13 +96,13 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//	'Inputs:' inputs+=Variable*
 		//	'Outputs:' outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? ('Assumptions:'
 		//	assumptions+=Constraint*)?
-		//	ConstraintsKeyword requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?;
+		//	'DerivedRequirements:' requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?;
 		@Override public ParserRule getRule() { return rule; }
 
 		//'Specification' name=ID ('Imports:' imports+=Import*)? ('Units:' units+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
 		//('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)? 'Inputs:' inputs+=Variable* 'Outputs:'
 		//outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? ('Assumptions:' assumptions+=Constraint*)?
-		//ConstraintsKeyword requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?
+		//'DerivedRequirements:' requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?
 		public Group getGroup() { return cGroup; }
 
 		//'Specification'
@@ -228,8 +228,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//Constraint
 		public RuleCall getAssumptionsConstraintParserRuleCall_13_1_0() { return cAssumptionsConstraintParserRuleCall_13_1_0; }
 
-		//ConstraintsKeyword
-		public RuleCall getConstraintsKeywordParserRuleCall_14() { return cConstraintsKeywordParserRuleCall_14; }
+		//'DerivedRequirements:'
+		public Keyword getDerivedRequirementsKeyword_14() { return cDerivedRequirementsKeyword_14; }
 
 		//requirements+=Constraint*
 		public Assignment getRequirementsAssignment_15() { return cRequirementsAssignment_15; }
@@ -248,27 +248,6 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Constraint
 		public RuleCall getBehaviorsConstraintParserRuleCall_16_1_0() { return cBehaviorsConstraintParserRuleCall_16_1_0; }
-	}
-
-	public class ConstraintsKeywordElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.ConstraintsKeyword");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Keyword cDerivedRequirementsKeyword_0 = (Keyword)cAlternatives.eContents().get(0);
-		private final Keyword cConstraintsKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		
-		//ConstraintsKeyword:
-		//	'DerivedRequirements:'
-		//	| 'Constraints:';
-		@Override public ParserRule getRule() { return rule; }
-
-		//'DerivedRequirements:' | 'Constraints:'
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//'DerivedRequirements:'
-		public Keyword getDerivedRequirementsKeyword_0() { return cDerivedRequirementsKeyword_0; }
-
-		//'Constraints:'
-		public Keyword getConstraintsKeyword_1() { return cConstraintsKeyword_1; }
 	}
 
 	public class ImportElements extends AbstractParserRuleElementFinder {
@@ -2874,7 +2853,6 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private final FileElements pFile;
 	private final SpecificationElements pSpecification;
-	private final ConstraintsKeywordElements pConstraintsKeyword;
 	private final ImportElements pImport;
 	private final DefinitionsElements pDefinitions;
 	private final PatternElements pPattern;
@@ -2927,7 +2905,6 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		this.gaTerminals = gaTerminals;
 		this.pFile = new FileElements();
 		this.pSpecification = new SpecificationElements();
-		this.pConstraintsKeyword = new ConstraintsKeywordElements();
 		this.pImport = new ImportElements();
 		this.pDefinitions = new DefinitionsElements();
 		this.pPattern = new PatternElements();
@@ -3013,24 +2990,13 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	//	'Inputs:' inputs+=Variable*
 	//	'Outputs:' outputs+=Variable* ('State:' state+=Variable*)? ('Macros:' macros+=Macro*)? ('Assumptions:'
 	//	assumptions+=Constraint*)?
-	//	ConstraintsKeyword requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?;
+	//	'DerivedRequirements:' requirements+=Constraint* ('Requirements:' behaviors+=Constraint*)?;
 	public SpecificationElements getSpecificationAccess() {
 		return pSpecification;
 	}
 	
 	public ParserRule getSpecificationRule() {
 		return getSpecificationAccess().getRule();
-	}
-
-	//ConstraintsKeyword:
-	//	'DerivedRequirements:'
-	//	| 'Constraints:';
-	public ConstraintsKeywordElements getConstraintsKeywordAccess() {
-		return pConstraintsKeyword;
-	}
-	
-	public ParserRule getConstraintsKeywordRule() {
-		return getConstraintsKeywordAccess().getRule();
 	}
 
 	//Import:

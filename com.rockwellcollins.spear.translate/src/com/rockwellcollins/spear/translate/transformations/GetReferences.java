@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.Specification;

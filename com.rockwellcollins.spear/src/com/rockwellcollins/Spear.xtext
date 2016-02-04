@@ -17,13 +17,8 @@ Specification:
 	('State:' state+=Variable*)?
 	('Macros:' macros+=Macro*)?
 	('Assumptions:' assumptions+=Constraint*)?
-	ConstraintsKeyword requirements+=Constraint*
+	'DerivedRequirements:' requirements+=Constraint*
 	('Requirements:' behaviors+=Constraint*)?;
-
-ConstraintsKeyword:
-	'DerivedRequirements:'
-|	'Constraints:'
-;
 
 Import:
 	'import' importURI=STRING;

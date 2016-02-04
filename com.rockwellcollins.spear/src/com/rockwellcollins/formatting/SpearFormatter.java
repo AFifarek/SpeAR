@@ -89,8 +89,8 @@ public class SpearFormatter extends AbstractDeclarativeFormatter {
 		c.setIndentationDecrement().after(g.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_13_1_0());
 		c.setLinewrap(2).after(g.getSpecificationAccess().getAssumptionsConstraintParserRuleCall_13_1_0());
 		
-		c.setLinewrap().after(g.getConstraintsKeywordRule());
-		c.setIndentationIncrement().after(g.getConstraintsKeywordRule());
+		c.setLinewrap().after(g.getSpecificationAccess().getDerivedRequirementsKeyword_14());
+		c.setIndentationIncrement().after(g.getSpecificationAccess().getDerivedRequirementsKeyword_14());
 		c.setIndentationDecrement().after(g.getSpecificationAccess().getBehaviorsConstraintParserRuleCall_16_1_0());
 		c.setLinewrap(2).after(g.getSpecificationAccess().getBehaviorsConstraintParserRuleCall_16_1_0());
 

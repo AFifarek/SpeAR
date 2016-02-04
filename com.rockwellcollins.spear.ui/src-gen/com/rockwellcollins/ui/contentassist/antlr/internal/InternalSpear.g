@@ -113,34 +113,6 @@ finally {
 
 
 
-// Entry rule entryRuleConstraintsKeyword
-entryRuleConstraintsKeyword 
-:
-{ before(grammarAccess.getConstraintsKeywordRule()); }
-	 ruleConstraintsKeyword
-{ after(grammarAccess.getConstraintsKeywordRule()); } 
-	 EOF 
-;
-
-// Rule ConstraintsKeyword
-ruleConstraintsKeyword
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-{ before(grammarAccess.getConstraintsKeywordAccess().getAlternatives()); }
-(rule__ConstraintsKeyword__Alternatives)
-{ after(grammarAccess.getConstraintsKeywordAccess().getAlternatives()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 // Entry rule entryRuleImport
 entryRuleImport 
 :
@@ -1251,32 +1223,6 @@ rule__File__Alternatives
 { before(grammarAccess.getFileAccess().getDefinitionsParserRuleCall_1()); }
 	ruleDefinitions
 { after(grammarAccess.getFileAccess().getDefinitionsParserRuleCall_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ConstraintsKeyword__Alternatives
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getConstraintsKeywordAccess().getDerivedRequirementsKeyword_0()); }
-
-	'DerivedRequirements:' 
-
-{ after(grammarAccess.getConstraintsKeywordAccess().getDerivedRequirementsKeyword_0()); }
-)
-
-    |(
-{ before(grammarAccess.getConstraintsKeywordAccess().getConstraintsKeyword_1()); }
-
-	'Constraints:' 
-
-{ after(grammarAccess.getConstraintsKeywordAccess().getConstraintsKeyword_1()); }
 )
 
 ;
@@ -2483,9 +2429,11 @@ rule__Specification__Group__14__Impl
     }
 :
 (
-{ before(grammarAccess.getSpecificationAccess().getConstraintsKeywordParserRuleCall_14()); }
-	ruleConstraintsKeyword
-{ after(grammarAccess.getSpecificationAccess().getConstraintsKeywordParserRuleCall_14()); }
+{ before(grammarAccess.getSpecificationAccess().getDerivedRequirementsKeyword_14()); }
+
+	'DerivedRequirements:' 
+
+{ after(grammarAccess.getSpecificationAccess().getDerivedRequirementsKeyword_14()); }
 )
 
 ;

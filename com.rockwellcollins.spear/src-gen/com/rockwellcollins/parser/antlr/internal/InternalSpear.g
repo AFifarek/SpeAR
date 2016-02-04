@@ -359,13 +359,9 @@ ruleSpecification returns [EObject current=null]
 	    }
 
 )
-)*)?
-    { 
-        newCompositeNode(grammarAccess.getSpecificationAccess().getConstraintsKeywordParserRuleCall_14()); 
-    }
-ruleConstraintsKeyword
-    { 
-        afterParserOrEnumRuleCall();
+)*)?	otherlv_22='DerivedRequirements:' 
+    {
+    	newLeafNode(otherlv_22, grammarAccess.getSpecificationAccess().getDerivedRequirementsKeyword_14());
     }
 (
 (
@@ -409,40 +405,6 @@ ruleConstraintsKeyword
 )
 )*)?)
 ;
-
-
-
-
-
-// Entry rule entryRuleConstraintsKeyword
-entryRuleConstraintsKeyword returns [String current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getConstraintsKeywordRule()); } 
-	 iv_ruleConstraintsKeyword=ruleConstraintsKeyword 
-	 { $current=$iv_ruleConstraintsKeyword.current.getText(); }  
-	 EOF 
-;
-
-// Rule ConstraintsKeyword
-ruleConstraintsKeyword returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-	kw='DerivedRequirements:' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getConstraintsKeywordAccess().getDerivedRequirementsKeyword_0()); 
-    }
-
-    |
-	kw='Constraints:' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getConstraintsKeywordAccess().getConstraintsKeyword_1()); 
-    }
-)
-    ;
 
 
 

@@ -2,11 +2,8 @@ package com.rockwellcollins.spear.translate.lustre;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
@@ -36,57 +33,27 @@ public class TranslateSpecification {
 	private static final String CONJUNCTION_ID = "CONJUNCT";
 	private static final String HISTORICAL_CONJUNCT_ID = "HISTORICAL_CONJUNCT";
 	private static final String PROPERTY_SUFFIX = "_PROP";
-
+	private static final String SHADOW_SUFFIX = "_shadow";
+	
 	public static Program translate(com.rockwellcollins.spear.Specification s, Set<EObject> references) {
-		TranslateSpecification translate = new TranslateSpecification(new HashSet<>());
+		TranslateSpecification translate = new TranslateSpecification();
 		return translate.translateSpecification(s,references);
-	}
-
-	public TranslateSpecification(Set<String> globalNames) {
-		this.globalNames = globalNames;
-		this.localNames = new HashSet<>();
-		this.global_renamed = new HashMap<>();
-		this.local_renamed = new HashMap<>();
-	}
-
-	private Set<String> globalNames;
-	private Set<String> localNames;
-	
-	private Map<String,String> global_renamed;
-	private Map<String,String> local_renamed;
-	
-	private final String SHADOW_SUFFIX = "_shadow";
-
-	private String getUniqueGlobalName(String proposed) {
-		String unique = proposed;
-		//TODO: uniqueify
-		global_renamed.put(proposed, unique);
-		return unique;
-	}
-
-	private String getUniqueLocalName(String proposed) {
-		String unique = proposed;
-		//TODO: uniqueify
-		local_renamed.put(proposed, unique);
-		return unique;
 	}
 	
 	private List<TypeDef> getTypeDefs(Specification s, Set<EObject> references) {
 		List<TypeDef> typedefs = new ArrayList<>();
 		for (com.rockwellcollins.spear.TypeDef spearTypeDef : s.getTypedefs()) {
-			String name = getUniqueGlobalName(spearTypeDef.getName());
+			String name = spearTypeDef.getName();
 			TypeDef lustreTypeDef = TranslateDecl.translate(spearTypeDef, name);
 			typedefs.add(lustreTypeDef);
-			globalNames.add(lustreTypeDef.id);
 		}
 		
 		for(EObject reference : references) {
 			if (reference instanceof com.rockwellcollins.spear.TypeDef) {
 				com.rockwellcollins.spear.TypeDef spearTypeDef = (com.rockwellcollins.spear.TypeDef) reference;
-				String name = getUniqueGlobalName(spearTypeDef.getName());
+				String name = spearTypeDef.getName();
 				TypeDef lustreTypeDef = TranslateDecl.translate(spearTypeDef, name);
 				typedefs.add(lustreTypeDef);
-				globalNames.add(lustreTypeDef.id);
 			}
 		}
 		return typedefs;
@@ -95,19 +62,17 @@ public class TranslateSpecification {
 	private List<Constant> getConstants(Specification s, Set<EObject> references) {
 		List<Constant> constants = new ArrayList<>();
 		for (com.rockwellcollins.spear.Constant spearConstant : s.getConstants()) {
-			String name = getUniqueGlobalName(spearConstant.getName());
+			String name = spearConstant.getName();
 			Constant lustreConstant = TranslateDecl.translate(spearConstant, name);
 			constants.add(lustreConstant);
-			globalNames.add(lustreConstant.id);
 		}
 		
 		for(EObject reference : references) {
 			if (reference instanceof com.rockwellcollins.spear.Constant) {
 				com.rockwellcollins.spear.Constant spearConstant = (com.rockwellcollins.spear.Constant) reference;
-				String name = getUniqueGlobalName(spearConstant.getName());
+				String name = spearConstant.getName();
 				Constant lustreConstant = TranslateDecl.translate(spearConstant, name);
 				constants.add(lustreConstant);
-				globalNames.add(lustreConstant.id);
 			}
 		}
 		return constants;
@@ -116,10 +81,9 @@ public class TranslateSpecification {
 	private List<VarDecl> getVariables(List<com.rockwellcollins.spear.Variable> variables) {
 		List<VarDecl> list = new ArrayList<>();
 		for (com.rockwellcollins.spear.Variable var : variables) {
-			String name = getUniqueLocalName(var.getName());
+			String name = var.getName();
 			VarDecl lustreVariable = TranslateDecl.translate(var, name);
 			list.add(lustreVariable);
-			localNames.add(lustreVariable.id);
 		}
 		return list;
 	}
@@ -127,7 +91,7 @@ public class TranslateSpecification {
 	private List<VarDecl> createShadowVariables(List<VarDecl> variables) {
 		List<VarDecl> shadowVariables = new ArrayList<>();
 		for (VarDecl v : variables) {
-			String name = getUniqueLocalName(v.id + SHADOW_SUFFIX);
+			String name = v.id + SHADOW_SUFFIX;
 			shadowVariables.add(new VarDecl(name, v.type));
 		}
 		return shadowVariables;
@@ -137,7 +101,7 @@ public class TranslateSpecification {
 		List<VarDecl> list = new ArrayList<>();
 		for (com.rockwellcollins.spear.Macro macro : macros) {
 			Type t = TranslateType.translate(macro.getType());
-			String name = getUniqueLocalName(macro.getName());
+			String name = macro.getName();
 			list.add(new VarDecl(name, t));
 		}
 		return list;
@@ -188,7 +152,7 @@ public class TranslateSpecification {
 	private List<Equation> getPropertyEquations(List<VarDecl> decls) {
 		List<Equation> equations = new ArrayList<>();
 		for (VarDecl vd : decls) {
-			List<IdExpr> LHS = Collections.singletonList(new IdExpr(this.getUniqueLocalName(vd.id + PROPERTY_SUFFIX)));
+			List<IdExpr> LHS = Collections.singletonList(new IdExpr(vd.id + PROPERTY_SUFFIX));
 			Expr RHS = new BinaryExpr(new IdExpr(TranslateSpecification.HISTORICAL_CONJUNCT_ID), BinaryOp.IMPLIES,
 					new IdExpr(vd.id));
 			equations.add(new Equation(LHS, RHS));

@@ -38,7 +38,6 @@ public class SpearParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getFileAccess().getAlternatives(), "rule__File__Alternatives");
-					put(grammarAccess.getConstraintsKeywordAccess().getAlternatives(), "rule__ConstraintsKeyword__Alternatives");
 					put(grammarAccess.getUnitDefAccess().getAlternatives(), "rule__UnitDef__Alternatives");
 					put(grammarAccess.getAtomicUnitExprAccess().getAlternatives(), "rule__AtomicUnitExpr__Alternatives");
 					put(grammarAccess.getTypeDefAccess().getAlternatives(), "rule__TypeDef__Alternatives");
