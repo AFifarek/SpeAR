@@ -3,7 +3,9 @@ package com.rockwellcollins.spear.naming;
 import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 
+import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.TypeDef;
 
 public class SpearDeclarativeQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
@@ -16,4 +18,11 @@ public class SpearDeclarativeQualifiedNameProvider extends DefaultDeclarativeQua
 		return QualifiedName.create(t.getName());
 	}
 	
+	protected QualifiedName qualifiedName(Constant c) {
+		return QualifiedName.create(c.getName());
+	}
+	
+	protected QualifiedName qualifiedName(Pattern p) {
+		return QualifiedName.create(p.getName());
+	}
 }
