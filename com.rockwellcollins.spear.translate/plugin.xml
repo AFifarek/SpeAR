@@ -39,7 +39,7 @@
 		<view
               category="com.rockwellcollins.spear.translate.lustre"
               class="com.rockwellcollins.spear.translate.views.JKindCounterexampleView"
-              icon="icons/sample.gif"
+              icon="icons/spear_icon.png"
               id="com.rockwellcollins.spear.translate.views.jKindCounterexampleView"
               name="Counterexample"/>              
    </extension>
