@@ -80,6 +80,7 @@ Export-Package: com.rockwellcollins;uses:="com.google.inject,org.eclipse.xtext,o
    org.eclipse.jface.viewers,
    new jkind.api.ui.results",
  jkind.lustre;uses:="jkind.lustre.visitors",
+ jkind.lustre.builders,
  jkind.results;uses:="jkind.results.layout,jkind.lustre.values",
  jkind.results.layout;uses:="jkind.lustre"
 Bundle-ClassPath: .,

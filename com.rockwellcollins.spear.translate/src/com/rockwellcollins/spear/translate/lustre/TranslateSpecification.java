@@ -30,6 +30,8 @@ import jkind.lustre.Program;
 import jkind.lustre.Type;
 import jkind.lustre.TypeDef;
 import jkind.lustre.VarDecl;
+import jkind.lustre.builders.NodeBuilder;
+import jkind.lustre.builders.ProgramBuilder;
 
 public class TranslateSpecification {
 
@@ -292,18 +294,22 @@ public class TranslateSpecification {
 	}
 
 	public Program translateSpecification(Specification s, Map<EObject,EObject> references) {
+		ProgramBuilder program = new ProgramBuilder();
+		
 		//lets add PLTL first to save its names
-		List<Node> nodes = new ArrayList<>();
 		for (Node n : HelperNodes.getPLTL()) {
-			nodes.add(n);
+			program.addNode(n);
 		}
 
 		//these elements will have global scoping
 		String mainNodeName = s.getName();
+		program.setMain(mainNodeName);
 		mapping.put(mainNodeName,mainNodeName);
-		List<TypeDef> typedefs = getTypeDefs(s,references);
-		List<Constant> constants = getConstants(s,references);
+		
+		program.addTypes(getTypeDefs(s,references));
+		program.addConstants(getConstants(s,references));
 
+		NodeBuilder mainNode = new NodeBuilder(mainNodeName);
 		// these represent the original inputs, outputs, and locals of a SpeAR
 		// specification
 		List<VarDecl> inputs = getVariables(s.getInputs());
@@ -323,10 +329,9 @@ public class TranslateSpecification {
 		 * 2. The shadow inputs (or nondeterministic inputs) representing the state variables
 		 * 3. The shadow inputs (or nondeterministic inputs) representing the outputs
 		 */
-		List<VarDecl> nodeInputs = new ArrayList<>();
-		nodeInputs.addAll(inputs);
-		nodeInputs.addAll(shadowState);
-		nodeInputs.addAll(shadowOutputs);
+		mainNode.addInputs(inputs);
+		mainNode.addInputs(shadowState);
+		mainNode.addInputs(shadowOutputs);
 
 		/*
 		 * Macros, assumptions, requirements, and behaviors are all local variables and thus
@@ -335,42 +340,39 @@ public class TranslateSpecification {
 		List<VarDecl> macroVarDecls = getMacrosVarDecls(s.getMacros());
 		List<VarDecl> assumptionVarDecls = getConstraintVarDecls(s.getAssumptions());
 		List<VarDecl> requirementVarDecls = getConstraintVarDecls(s.getRequirements());
-		List<VarDecl> nodeLocals = new ArrayList<>();
-		nodeLocals.addAll(state);
-		nodeLocals.addAll(macroVarDecls);
-		nodeLocals.addAll(assumptionVarDecls);
-		nodeLocals.addAll(requirementVarDecls);
+		mainNode.addLocals(state);
+		mainNode.addLocals(macroVarDecls);
+		mainNode.addLocals(assumptionVarDecls);
+		mainNode.addLocals(requirementVarDecls);
 		
 		/*
 		 * In addition we create a few unique signals that are the conjunct of all the
 		 * assumptions and requirements. The next block of code addresses that.
 		 */
-		nodeLocals.add(getConjuctVarDecl());
-		nodeLocals.add(getHistoricalConjuctVarDecl());
+		mainNode.addLocal(getConjuctVarDecl());
+		mainNode.addLocal(getHistoricalConjuctVarDecl());
 		
 		/*
 		 * The node outputs are the outputs that are assigned to the corresponding shadow inputs
 		 */
-		List<VarDecl> nodeOutputs = new ArrayList<>();
-		nodeOutputs.addAll(outputs);
+		mainNode.addOutputs(outputs);
 
 		/*
 		 * We must create equations that assign the true state and outputs to their corresponding shadow variables.
 		 */
-		List<Equation> equations = new ArrayList<>();
-		equations.addAll(makeEquationsForShadowVars(state, shadowState));
-		equations.addAll(makeEquationsForShadowVars(outputs, shadowOutputs));
+		mainNode.addEquations(makeEquationsForShadowVars(state, shadowState));
+		mainNode.addEquations(makeEquationsForShadowVars(outputs, shadowOutputs));
 		
 		/*
 		 * We must create an equation for each macro.
 		 */
-		equations.addAll(makeEquationForMacros(s.getMacros()));
+		mainNode.addEquations(makeEquationForMacros(s.getMacros()));
 		
 		/*
 		 * Equations are created for each assumption, requirement, and behavior.
 		 */
-		equations.addAll(makeEquationsForConstraints(s.getAssumptions()));
-		equations.addAll(makeEquationsForConstraints(s.getRequirements()));
+		mainNode.addEquations(makeEquationsForConstraints(s.getAssumptions()));
+		mainNode.addEquations(makeEquationsForConstraints(s.getRequirements()));
 
 		/*
 		 * We must create an equation that takes the conjunct of each assumption and requirements.
@@ -379,57 +381,52 @@ public class TranslateSpecification {
 		 * 		CONJUNCT = a0 and a1 and r0 and r1;
 		 */
 		Equation conjunct = conjunctAssumptionsAndRequirements(assumptionVarDecls, requirementVarDecls);
-		equations.add(conjunct);
-
+		mainNode.addEquation(conjunct);
+		
 		/*
 		 * We must create an equation that represents whether the CONJUNCT equation has been true from the 
 		 * beginning of execution until the current time step.
 		 */
 		Equation historicalConjunct = createHistoricalConjunct();
-		equations.add(historicalConjunct);
+		mainNode.addEquation(historicalConjunct);
 
-		Node main = new Node(mainNodeName, nodeInputs, nodeOutputs, nodeLocals, equations, null, null, null);
-		nodes.add(main);
-
-		Program p = new Program(typedefs, constants, nodes, mainNodeName);
-		return p;
+		program.addNode(mainNode.build());
+		return program.build();
 	}
 	
-	//TODO: Rebuild this using Andrew's NodeBuilder
 	public Program addAnalysisProperties(Specification s, Program p) {
-		Node main = p.getMainNode();
+		NodeBuilder nodeBuilder = new NodeBuilder(p.getMainNode());
 		
 		/*
 		 * We must add the following VarDecls to the Node to account for the analysis.
 		 */
 		List<VarDecl> behaviorVarDecls = getConstraintVarDecls(s.getBehaviors());
 		List<VarDecl> propertyVarDecls = getPropertyVarDecls(behaviorVarDecls);
-		List<VarDecl> newLocals = new ArrayList<>();
-		newLocals.addAll(main.locals);
-		newLocals.addAll(behaviorVarDecls);
-		newLocals.addAll(propertyVarDecls);
+		nodeBuilder.addLocals(behaviorVarDecls);
+		nodeBuilder.addLocals(propertyVarDecls);
 		
 		/*
 		 * We must add the following property information to account for analysis.
 		 */
 		List<Equation> propertyEquations = getPropertyEquations(behaviorVarDecls);
-		List<Equation> newEquations = new ArrayList<>();
-		newEquations.addAll(main.equations);
-		newEquations.addAll(makeEquationsForConstraints(s.getBehaviors()));
-		newEquations.addAll(propertyEquations);
+		nodeBuilder.addEquations(makeEquationsForConstraints(s.getBehaviors()));
+		nodeBuilder.addEquations(propertyEquations);
+
+		/*
+		 * Here we add properties for the analysis
+		 */
+		nodeBuilder.addProperties(getPropertyStrings(propertyVarDecls));
 		
-		List<String> properties = getPropertyStrings(propertyVarDecls);
-		
-		Node newMain = new Node(main.id,main.inputs,main.outputs,newLocals,newEquations,properties,null,null);
-		
-		List<Node> newNodes = new ArrayList<>();
+		ProgramBuilder programBuilder = new ProgramBuilder(p);
+		programBuilder.clearNodes();
 		for(Node n : p.nodes) {
 			if(!n.id.equals(p.main)) {
-				newNodes.add(n);
+				programBuilder.addNode(n);
 			}
 		}
-		newNodes.add(newMain);
-		Program newProgram = new Program(p.types,p.constants,newNodes,p.main);
-		return newProgram;
+		Node main = nodeBuilder.build();
+		programBuilder.addNode(main);
+		programBuilder.setMain(main.id);
+		return programBuilder.build();
 	}
 }
