@@ -71,7 +71,7 @@ public class TranslateDecl extends SpearSwitch<Ast> {
 		String newName = mapping.get(etd.getName());
 		List<String> values = new ArrayList<>();
 		for(EnumValue ev : etd.getValues()) {
-			values.add(ev.getName());
+			values.add(mapping.get(ev.getName()));
 		}
 		return new TypeDef(newName,new EnumType(newName,values));
 	}

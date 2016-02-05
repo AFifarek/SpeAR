@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Definitions;
+import com.rockwellcollins.spear.EnumTypeDef;
+import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Specification;
@@ -73,6 +75,18 @@ public class TranslateSpecification {
 		return specificationName + "_" + name;
 	}
 	
+	private void processEnumeration(com.rockwellcollins.spear.TypeDef spearTypeDef) {
+		if (spearTypeDef instanceof EnumTypeDef) {
+			EnumTypeDef etd = (EnumTypeDef) spearTypeDef;
+			for(EnumValue ev : etd.getValues()) {
+				String original = ev.getName();
+				String proposed = etd.getName() + "_" + original;
+				String renamed = getUniqueName(proposed);
+				mapping.put(original, renamed);
+			}
+		}
+	}
+	
 	private List<TypeDef> getTypeDefs(Specification s, Map<EObject,EObject> references) {
 		List<TypeDef> typedefs = new ArrayList<>();
 		for (com.rockwellcollins.spear.TypeDef spearTypeDef : s.getTypedefs()) {
@@ -81,6 +95,7 @@ public class TranslateSpecification {
 			String renamed = getUniqueName(proposed);
 			mapping.put(original, renamed);
 			globals.add(renamed);
+			processEnumeration(spearTypeDef);
 			TypeDef lustreTypeDef = (TypeDef) TranslateDecl.translate(spearTypeDef, mapping);
 			typedefs.add(lustreTypeDef);
 		}
@@ -98,12 +113,15 @@ public class TranslateSpecification {
 				String renamed = getUniqueName(proposed);
 				mapping.put(original, renamed);
 				globals.add(renamed);
+				processEnumeration(spearTypeDef);
 				TypeDef lustreTypeDef = (TypeDef) TranslateDecl.translate(spearTypeDef, mapping);
 				typedefs.add(lustreTypeDef);
 			}
 		}
 		return typedefs;
 	}
+
+
 
 	private List<Constant> getConstants(Specification s, Map<EObject,EObject> references) {
 		List<Constant> constants = new ArrayList<>();
