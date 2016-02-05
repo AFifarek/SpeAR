@@ -5,90 +5,86 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.rockwellcollins.spear.ArrayTypeDef;
-import com.rockwellcollins.spear.EnumTypeDef;
+import org.eclipse.emf.ecore.EObject;
+
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.FieldType;
-import com.rockwellcollins.spear.NamedTypeDef;
-import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-import jkind.lustre.ArrayType;
 import jkind.lustre.Ast;
 import jkind.lustre.Constant;
 import jkind.lustre.EnumType;
+import jkind.lustre.Expr;
 import jkind.lustre.Type;
 import jkind.lustre.TypeDef;
 import jkind.lustre.VarDecl;
 
 public class TranslateDecl extends SpearSwitch<Ast> {
 
-	public static TypeDef translate(com.rockwellcollins.spear.TypeDef td, String name) {
-		if (td instanceof NamedTypeDef) {
-			NamedTypeDef namedTypeDef = (NamedTypeDef) td;
-			return TranslateDecl.translate(namedTypeDef,name);
-		} else if(td instanceof RecordTypeDef) {
-			RecordTypeDef recordTypeDef = (RecordTypeDef) td;
-			return TranslateDecl.translate(recordTypeDef,name);
-		} else if(td instanceof ArrayTypeDef) {
-			ArrayTypeDef arrayTypeDef = (ArrayTypeDef) td;
-			return TranslateDecl.translate(arrayTypeDef,name);
-		} else if(td instanceof EnumTypeDef) {
-			EnumTypeDef enumTypeDef = (EnumTypeDef) td;
-			return TranslateDecl.translate(enumTypeDef,name);
-		}
-		throw new RuntimeException("This should never happen, ever. EVER. EVER!!!!!!!!!!");
+	public static Ast translate(EObject o, Map<String,String> mapping) {
+		return new TranslateDecl(mapping).doSwitch(o);
 	}
 	
-	private static TypeDef translate(com.rockwellcollins.spear.NamedTypeDef nt, String name) {
-		return new TypeDef(name,TranslateType.translate(nt.getType()));
+	private Map<String,String> mapping;
+	
+	private TranslateDecl(Map<String,String> mapping) {
+		this.mapping=mapping;
 	}
 	
-	public static TypeDef translate(com.rockwellcollins.spear.NamedTypeDef nt) {
-		return translate(nt,nt.getName());
+	@Override
+	public Ast caseConstant(com.rockwellcollins.spear.Constant c) {
+		String newName = mapping.get(c.getName());
+		Type type = TranslateType.translate(c.getType(), mapping);
+		Expr expr = TranslateExpr.translate(c.getExpr(), mapping);
+		return new Constant(newName,type,expr);
 	}
 	
-	public static TypeDef translate(com.rockwellcollins.spear.RecordTypeDef recordType, String name) {
+	@Override
+	public Ast caseNamedTypeDef(com.rockwellcollins.spear.NamedTypeDef ntd) {
+		String newName = mapping.get(ntd.getName());
+		Type type = TranslateType.translate(ntd.getType(), mapping);
+		return new TypeDef(newName,type);
+	}
+	
+	@Override
+	public Ast caseRecordTypeDef(com.rockwellcollins.spear.RecordTypeDef rtd) {
+		String newName = mapping.get(rtd.getName());
 		Map<String,Type> fields = new LinkedHashMap<>();
-		for(FieldType ft : recordType.getFields()) {
-			fields.put(ft.getName(), TranslateType.translate(ft.getType()));
+		for(FieldType ft : rtd.getFields()) {
+			String field = ft.getName();
+			Type type = TranslateType.translate(ft.getType(), mapping);
+			fields.put(field,type);
 		}
-		return new TypeDef(name,new jkind.lustre.RecordType(name,fields));		
+		return new TypeDef(newName,new jkind.lustre.RecordType(newName,fields));		
 	}
 	
-	public static TypeDef translate(com.rockwellcollins.spear.RecordTypeDef recordType) {
-		return translate(recordType, recordType.getName());
+	@Override
+	public Ast caseArrayTypeDef(com.rockwellcollins.spear.ArrayTypeDef atd) {
+		String newName = mapping.get(atd.getName());
+		Type base = TranslateType.translate(atd.getBase(), mapping);
+		int size = atd.getSize();
+		return new TypeDef(newName,new jkind.lustre.ArrayType(base,size));
 	}
 	
-	public static TypeDef translate(com.rockwellcollins.spear.ArrayTypeDef arrayType, String name) {
-		return new jkind.lustre.TypeDef(name,new ArrayType(TranslateType.translate(arrayType.getBase()),arrayType.getSize()));
-	}
-	
-	public static TypeDef translate(com.rockwellcollins.spear.ArrayTypeDef arrayType) {
-		return translate(arrayType, arrayType.getName());
-	}
-	
-	public static TypeDef translate(com.rockwellcollins.spear.EnumTypeDef enumType, String name) {
+	@Override
+	public Ast caseEnumTypeDef(com.rockwellcollins.spear.EnumTypeDef etd) {
+		String newName = mapping.get(etd.getName());
 		List<String> values = new ArrayList<>();
-		for(EnumValue ev : enumType.getValues()) {
+		for(EnumValue ev : etd.getValues()) {
 			values.add(ev.getName());
 		}
-		return new jkind.lustre.TypeDef(name,new EnumType(name,values));		
+		return new TypeDef(newName,new EnumType(newName,values));
 	}
 	
-	public static Constant translate(com.rockwellcollins.spear.Constant c, String name) {
-		return new Constant(name,TranslateType.translate(c.getType()),TranslateExpr.translate(c.getExpr()));		
+	@Override
+	public Ast caseVariable(com.rockwellcollins.spear.Variable v) {
+		String newName = mapping.get(v.getName());
+		Type type = TranslateType.translate(v.getType(), mapping);
+		return new VarDecl(newName, type);
 	}
 	
-	public static Constant translate(com.rockwellcollins.spear.Constant c) {
-		return translate(c,c.getName());
-	}
-
-	public static VarDecl translate(com.rockwellcollins.spear.Variable v, String name) {
-		return new VarDecl(name,TranslateType.translate(v.getType()));
-	}
-	
-	public static VarDecl translate(com.rockwellcollins.spear.Variable v) {
-		return translate(v,v.getName());
-	}
+	@Override
+	public Ast defaultCase(EObject o) {
+		throw new RuntimeException("Unexpected object " + o + " provided.");
+	}	
 }

@@ -30,10 +30,16 @@ import jkind.lustre.UnaryOp;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
-	public static Expr translate(com.rockwellcollins.spear.Expr e) {
-		return new TranslateExpr().doSwitch(e);
+	public static Expr translate(com.rockwellcollins.spear.Expr e, Map<String,String> mapping) {
+		return new TranslateExpr(mapping).doSwitch(e);
 	}
 
+	private Map<String, String> mapping;
+
+	public TranslateExpr(Map<String,String> mapping) {
+		this.mapping=mapping;
+	}
+	
 	@Override
 	public Expr caseBinaryExpr(com.rockwellcollins.spear.BinaryExpr binary) {
 		Expr left = doSwitch(binary.getLeft());
@@ -126,7 +132,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseIdExpr(com.rockwellcollins.spear.IdExpr ide) {
-		return new IdExpr(ide.getId().getName());
+		return new IdExpr(mapping.get(ide.getId().getName()));
 	}
 	
 	@Override

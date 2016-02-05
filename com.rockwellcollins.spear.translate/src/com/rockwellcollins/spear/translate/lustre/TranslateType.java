@@ -1,5 +1,7 @@
 package com.rockwellcollins.spear.translate.lustre;
 
+import java.util.Map;
+
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.BoolType;
@@ -12,13 +14,20 @@ import jkind.lustre.Type;
 
 public class TranslateType extends SpearSwitch<Type> {
 
-	public static Type translate(com.rockwellcollins.spear.Type type) {
-		return new TranslateType().doSwitch(type); 
+	public static Type translate(com.rockwellcollins.spear.Type t, Map<String,String> mapping) {
+		return new TranslateType(mapping).doSwitch(t);
+	}
+	
+	private Map<String, String> mapping;
+
+	public TranslateType(Map<String,String> mapping) {
+		this.mapping = mapping;
 	}
 	
 	@Override
 	public Type caseUserType(UserType ut) {
-		return new jkind.lustre.NamedType(ut.getDef().getName());
+		String name = mapping.get(ut.getDef().getName());
+		return new jkind.lustre.NamedType(name);
 	}
 		
 	@Override

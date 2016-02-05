@@ -3,7 +3,7 @@ package com.rockwellcollins.spear.translate.actions;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Set;
+import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -104,7 +104,7 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
 				pass++;
 
-				Set<EObject> references = GetReferences.getReferences(workingCopy);
+				Map<EObject,EObject> references = GetReferences.getReferences(workingCopy);
 				
 				// translate to Lustre
 				Program p = TranslateSpecification.translate(workingCopy, references);

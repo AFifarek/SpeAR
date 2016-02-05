@@ -1,7 +1,7 @@
 package com.rockwellcollins.spear.translate.transformations;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
@@ -11,7 +11,7 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class GetReferences extends SpearSwitch<Void> {
 
-	public static Set<EObject> getReferences(Specification s) {
+	public static Map<EObject,EObject> getReferences(Specification s) {
 		GetReferences getRefs = new GetReferences(s);
 		getRefs.doSwitch(s);
 		return getRefs.referenced;
@@ -22,7 +22,7 @@ public class GetReferences extends SpearSwitch<Void> {
 	}
 	
 	public Specification root;
-	public Set<EObject> referenced = new HashSet<>();
+	public Map<EObject,EObject> referenced = new HashMap<>();
 
 	@Override
 	public Void defaultCase(EObject e) {
@@ -32,7 +32,8 @@ public class GetReferences extends SpearSwitch<Void> {
 		
 		for(EObject ref : e.eCrossReferences()) {
 			if(!EcoreUtil2.isAncestor(root, ref)) {
-				referenced.add(ref);
+				EObject referencedRoot = EcoreUtil2.getRootContainer(ref);
+				referenced.put(ref,referencedRoot);
 			}
 			this.doSwitch(ref);
 		}
