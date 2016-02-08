@@ -57,7 +57,7 @@ public class TranslateSpecification {
 
 	private static final String CONJUNCTION_ID = "CONJUNCT";
 	private static final String HISTORICAL_CONJUNCT_ID = "HISTORICAL_CONJUNCT";
-	private static final String PROPERTY_SUFFIX = "_PROP";
+	private static final String PROPERTY_PREFIX = "historically";
 	private static final String SHADOW_SUFFIX = "_shadow";
 	private static final String COUNTER_ID = "counter";
 	private static final String CONSISTENCY_CHECK_ID = "check_consistency";
@@ -282,11 +282,15 @@ public class TranslateSpecification {
 		Iterator<VarDecl> iterate = all.iterator();
 		return new Equation(Collections.singletonList(new IdExpr(mapping.get(CONJUNCTION_ID))), conjunctify(iterate));
 	}
+	
+	private String getPropertyPrefix(String id) {
+		return TranslateSpecification.PROPERTY_PREFIX + "_" + id;
+	}
 
 	private List<VarDecl> getPropertyVarDecls(List<VarDecl> properties) {
 		List<VarDecl> decls = new ArrayList<>();
 		for (VarDecl vd : properties) {
-			String original = vd.id + TranslateSpecification.PROPERTY_SUFFIX;
+			String original = getPropertyPrefix(vd.id);
 			String renamed = getUniqueName(original);
 			mapping.put(original, renamed);
 			decls.add(new VarDecl(renamed, NamedType.BOOL));
@@ -297,7 +301,7 @@ public class TranslateSpecification {
 	private List<Equation> getPropertyEquations(List<VarDecl> decls) {
 		List<Equation> equations = new ArrayList<>();
 		for (VarDecl vd : decls) {
-			List<IdExpr> LHS = Collections.singletonList(new IdExpr(mapping.get(vd.id + PROPERTY_SUFFIX)));
+			List<IdExpr> LHS = Collections.singletonList(new IdExpr(mapping.get(getPropertyPrefix(vd.id))));
 			Expr RHS = new BinaryExpr(new IdExpr(mapping.get(TranslateSpecification.HISTORICAL_CONJUNCT_ID)), BinaryOp.IMPLIES, new IdExpr(mapping.get(vd.id)));
 			equations.add(new Equation(LHS, RHS));
 		}
