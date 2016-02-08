@@ -16,7 +16,7 @@
          </menu>
          <action
                label="&amp;Check Logical Consistency"
-               icon="icons/spear_icon.png"
+               icon="icons/logical_consistency.png"
                class="com.rockwellcollins.spear.translate.actions.CheckLogicalConsistency"
                tooltip="Check for Logical Consistency"
                menubarPath="translateMenu/translateGroup"
@@ -25,7 +25,7 @@
          </action>
          <action
                label="&amp;Check Logical Entailment"
-               icon="icons/spear_icon.png"
+               icon="icons/logical_entailment.png"
                class="com.rockwellcollins.spear.translate.actions.CheckLogicalEntailment"
                tooltip="Check for Logical Entailment"
                menubarPath="translateMenu/translateGroup"
