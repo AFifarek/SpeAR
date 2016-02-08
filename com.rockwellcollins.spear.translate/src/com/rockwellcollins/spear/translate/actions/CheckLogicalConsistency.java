@@ -35,6 +35,7 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.lustre.TranslateSpecification;
 import com.rockwellcollins.spear.translate.transformations.GetReferences;
@@ -46,7 +47,6 @@ import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
 import jkind.lustre.Program;
 import jkind.results.layout.Layout;
-import jkind.results.layout.NodeLayout;
 
 public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 
@@ -101,7 +101,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				JKindApi api = getJKindApi();
 				JKindResult result = new JKindResult("result", p.getMainNode().properties);
 				IProgressMonitor monitor = new NullProgressMonitor();
-				showView(result, new NodeLayout(p));
+				showView(result, new SpearLayout(workingCopy));
 
 				try {
 					api.execute(p, result, monitor);

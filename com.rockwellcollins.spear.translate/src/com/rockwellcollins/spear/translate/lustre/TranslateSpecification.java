@@ -65,7 +65,6 @@ public class TranslateSpecification {
 	private String specificationName; 
 	private Map<String,String> mapping;
 	private Set<String> globals;
-	private boolean assumptionsAndRequirements;
 	private ArrayList<String> supportIds;
 
 	public TranslateSpecification(Specification s) {
