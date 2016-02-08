@@ -14,7 +14,6 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -39,9 +38,7 @@ import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.lustre.TranslateSpecification;
 import com.rockwellcollins.spear.translate.transformations.GetReferences;
-import com.rockwellcollins.spear.translate.transformations.NormalizeOperators;
-import com.rockwellcollins.spear.translate.transformations.RemoveLustreKeywords;
-import com.rockwellcollins.spear.translate.transformations.RemoveSugar;
+import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.views.JKindResultsView;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
@@ -51,7 +48,7 @@ import jkind.lustre.Program;
 import jkind.results.layout.Layout;
 import jkind.results.layout.NodeLayout;
 
-public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
+public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 	private IWorkbenchWindow window;
 
@@ -74,40 +71,25 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 			@Override
 			public java.lang.Void exec(XtextResource state) throws Exception {
 				Specification specification = (Specification) state.getContents().get(0);
-				
+
 				if (hasErrors(specification.eResource())) {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
 					return null;
 				}
-				
+
 				if (CheckForUnsupported.check(specification)) {
 					MessageDialog.openError(window.getShell(), "Unsupported Specification elements.",
 							"Specification contains at least one unsupported element.");
 					return null;
 				}
 
-				Integer pass = 0;
 				Specification workingCopy = EcoreUtil2.copy(specification);
+				PerformTransforms.apply(workingCopy, state);
 
-				// apply operator normalization
-				workingCopy = RemoveLustreKeywords.transform(workingCopy);
-				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
-				pass++;
+				Map<EObject, EObject> references = GetReferences.getReferences(workingCopy);
 
-				// apply operator normalization
-				workingCopy = NormalizeOperators.transform(workingCopy);
-				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
-				pass++;
-
-				// apply remove sugar
-				workingCopy = RemoveSugar.transform(workingCopy);
-				printSpearFile(getOutputURI(state.getURI(), pass.toString()), workingCopy);
-				pass++;
-
-				Map<EObject,EObject> references = GetReferences.getReferences(workingCopy);
-				
 				// translate to Lustre
-				Program p = TranslateSpecification.translate(workingCopy, references);
+				Program p = TranslateSpecification.translateForEntailment(workingCopy, references);
 				URI lustreURI = createURI(state.getURI(), "", "lus");
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -147,26 +129,6 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 		return false;
 	}
 
-	private void printSpearFile(URI uri, Specification s) throws Exception {
-		if (SpearRuntimeOptions.createDebugFiles) {
-			Resource res = new ResourceSetImpl().createResource(uri);
-			res.getContents().add(s);
-			res.save(null);
-		}
-	}
-
-	private static URI getOutputURI(URI uri, String pass) {
-		String filename = uri.lastSegment();
-		uri = uri.trimSegments(1);
-		int i = filename.lastIndexOf(".");
-		if (pass != null) {
-			uri = uri.appendSegment(filename.substring(0, i) + "." + pass + ".spear");
-		} else {
-			uri = uri.appendSegment(filename.substring(0, i) + ".final.limp");
-		}
-		return uri;
-	}
-
 	private static URI createURI(URI baseURI, String suffix, String extension) {
 		String filename = baseURI.lastSegment();
 		baseURI = baseURI.trimSegments(1);
@@ -201,18 +163,13 @@ public class Spear2Lustre implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {
-
-	}
+	public void selectionChanged(IAction arg0, ISelection arg1) { }
 
 	@Override
-	public void dispose() {
-
-	}
+	public void dispose() { }
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {
 		this.window = arg0;
 	}
-
 }

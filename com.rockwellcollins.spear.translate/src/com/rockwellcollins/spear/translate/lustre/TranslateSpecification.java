@@ -18,6 +18,7 @@ import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.actions.SpearRuntimeOptions;
 
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
@@ -25,22 +26,32 @@ import jkind.lustre.Constant;
 import jkind.lustre.Equation;
 import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
+import jkind.lustre.IntExpr;
 import jkind.lustre.NamedType;
 import jkind.lustre.Node;
 import jkind.lustre.NodeCallExpr;
 import jkind.lustre.Program;
 import jkind.lustre.Type;
 import jkind.lustre.TypeDef;
+import jkind.lustre.UnaryExpr;
+import jkind.lustre.UnaryOp;
 import jkind.lustre.VarDecl;
 import jkind.lustre.builders.NodeBuilder;
 import jkind.lustre.builders.ProgramBuilder;
 
 public class TranslateSpecification {
 
-	public static Program translate(com.rockwellcollins.spear.Specification s, Map<EObject,EObject> references) {
+	public static Program translateForEntailment(com.rockwellcollins.spear.Specification s, Map<EObject,EObject> references) {
 		TranslateSpecification translate = new TranslateSpecification(s);
 		Program normal = translate.translateSpecification(s,references);
 		Program extended = translate.addAnalysisProperties(s, normal);
+		return extended; 
+	}
+	
+	public static Program translateForConsistency(com.rockwellcollins.spear.Specification s, Map<EObject,EObject> references) {
+		TranslateSpecification translate = new TranslateSpecification(s);
+		Program normal = translate.translateSpecification(s,references);
+		Program extended = translate.addConsistencyChecks(s, normal);
 		return extended; 
 	}
 
@@ -48,10 +59,14 @@ public class TranslateSpecification {
 	private static final String HISTORICAL_CONJUNCT_ID = "HISTORICAL_CONJUNCT";
 	private static final String PROPERTY_SUFFIX = "_PROP";
 	private static final String SHADOW_SUFFIX = "_shadow";
+	private static final String COUNTER_ID = "counter";
+	private static final String CONSISTENCY_CHECK_ID = "check_consistency";
 
 	private String specificationName; 
 	private Map<String,String> mapping;
 	private Set<String> globals;
+	private boolean assumptionsAndRequirements;
+	private ArrayList<String> supportIds;
 
 	public TranslateSpecification(Specification s) {
 		this.specificationName = s.getName();
@@ -120,8 +135,6 @@ public class TranslateSpecification {
 		}
 		return typedefs;
 	}
-
-
 
 	private List<Constant> getConstants(Specification s, Map<EObject,EObject> references) {
 		List<Constant> constants = new ArrayList<>();
@@ -223,6 +236,16 @@ public class TranslateSpecification {
 			}
 		}
 		return constraintDecls;
+	}
+	
+	private void initSupportIds() {
+		supportIds = new ArrayList<>();
+	}
+	
+	private void saveSupportIds(List<VarDecl> vars) {
+		for(VarDecl vd : vars) {
+			supportIds.add(vd.id);
+		}
 	}
 
 	private List<Equation> makeEquationsForConstraints(List<Constraint> constraints) {
@@ -358,10 +381,19 @@ public class TranslateSpecification {
 		List<VarDecl> macroVarDecls = getMacrosVarDecls(s.getMacros());
 		List<VarDecl> assumptionVarDecls = getConstraintVarDecls(s.getAssumptions());
 		List<VarDecl> requirementVarDecls = getConstraintVarDecls(s.getRequirements());
+
+		/*
+		 * Assumptions and Requirement Ids need to be saved for the Support string
+		 */
+		initSupportIds();
+		saveSupportIds(assumptionVarDecls);
+		saveSupportIds(requirementVarDecls);
+		
 		mainNode.addLocals(state);
 		mainNode.addLocals(macroVarDecls);
 		mainNode.addLocals(assumptionVarDecls);
 		mainNode.addLocals(requirementVarDecls);
+		mainNode.addLocal(createCounterVarDecl());
 		
 		/*
 		 * In addition we create a few unique signals that are the conjunct of all the
@@ -393,6 +425,11 @@ public class TranslateSpecification {
 		mainNode.addEquations(makeEquationsForConstraints(s.getRequirements()));
 
 		/*
+		 * Create and add the counter equation
+		 */
+		mainNode.addEquation(getCounterEquation());
+		
+		/*
 		 * We must create an equation that takes the conjunct of each assumption and requirements.
 		 * 
 		 * For example, if we have assumptions a0 and a1 and requirements r0 and r1 this will be:
@@ -411,30 +448,89 @@ public class TranslateSpecification {
 		program.addNode(mainNode.build());
 		return program.build();
 	}
+
+
+
+	private VarDecl createCounterVarDecl() {
+		String counterName = TranslateSpecification.COUNTER_ID;
+		String renamed = getUniqueName(counterName);
+		mapping.put(counterName,renamed);
+		return new VarDecl(renamed, NamedType.INT);
+	}
+
+	private Equation getCounterEquation() {
+		List<IdExpr> LHS = Collections.singletonList(new IdExpr(mapping.get(COUNTER_ID)));
+		Expr pre_counter_plus_one = new BinaryExpr(new UnaryExpr(UnaryOp.PRE, new IdExpr(mapping.get(COUNTER_ID))), BinaryOp.PLUS, new IntExpr(1));
+		Expr RHS = new BinaryExpr(new IntExpr(1), BinaryOp.ARROW, pre_counter_plus_one);
+		Equation EQ = new Equation(LHS,RHS);
+		return EQ;
+	}
 	
 	public Program addAnalysisProperties(Specification s, Program p) {
-		NodeBuilder nodeBuilder = new NodeBuilder(p.getMainNode());
+		NodeBuilder mainNode = new NodeBuilder(p.getMainNode());
 		
 		/*
 		 * We must add the following VarDecls to the Node to account for the analysis.
 		 */
 		List<VarDecl> behaviorVarDecls = getConstraintVarDecls(s.getBehaviors());
 		List<VarDecl> propertyVarDecls = getPropertyVarDecls(behaviorVarDecls);
-		nodeBuilder.addLocals(behaviorVarDecls);
-		nodeBuilder.addLocals(propertyVarDecls);
+		mainNode.addLocals(behaviorVarDecls);
+		mainNode.addLocals(propertyVarDecls);
 		
 		/*
 		 * We must add the following property information to account for analysis.
 		 */
 		List<Equation> propertyEquations = getPropertyEquations(behaviorVarDecls);
-		nodeBuilder.addEquations(makeEquationsForConstraints(s.getBehaviors()));
-		nodeBuilder.addEquations(propertyEquations);
+		mainNode.addEquations(makeEquationsForConstraints(s.getBehaviors()));
+		mainNode.addEquations(propertyEquations);
 
 		/*
 		 * Here we add properties for the analysis
 		 */
-		nodeBuilder.addProperties(getPropertyStrings(propertyVarDecls));
+		mainNode.addProperties(getPropertyStrings(propertyVarDecls));
 		
+		ProgramBuilder programBuilder = addNewMainNode(p, mainNode);
+		return programBuilder.build();
+	}
+
+	private VarDecl getConsistencyVarDecl() {
+		String name = CONSISTENCY_CHECK_ID;
+		String renamed = getUniqueName(name);
+		mapping.put(name, renamed);
+		return new VarDecl(renamed,NamedType.BOOL);
+	}
+	
+	private Equation getConsistencyEquation() {
+		Expr relational = new BinaryExpr(new IdExpr(mapping.get(COUNTER_ID)), BinaryOp.GREATEREQUAL, new IntExpr(SpearRuntimeOptions.consistencyDepth));
+		Expr RHS = new UnaryExpr(UnaryOp.NOT, new BinaryExpr(new IdExpr(mapping.get(HISTORICAL_CONJUNCT_ID)), BinaryOp.AND, relational));
+		Equation eq = new Equation(Collections.singletonList(new IdExpr(mapping.get(CONSISTENCY_CHECK_ID))),RHS);
+		return eq;
+	}
+	
+	public Program addConsistencyChecks(Specification s, Program p) {
+		NodeBuilder mainNode = new NodeBuilder(p.getMainNode());
+		/*
+		 * Add a local for the consistency property
+		 */
+		mainNode.addLocal(getConsistencyVarDecl());
+		
+		/*
+		 * Add the equation for the consistency property which is basically
+		 *   consistency = not(HISTORICAL_CONJUNCT and counter >= N)
+		 */
+		mainNode.addEquation(getConsistencyEquation());
+		
+		/*
+		 * Add property for consistency check 
+		 */
+		mainNode.addProperty(mapping.get(TranslateSpecification.CONSISTENCY_CHECK_ID));
+		mainNode.addSupports(supportIds);
+		
+		ProgramBuilder programBuilder = addNewMainNode(p,mainNode);
+		return programBuilder.build();
+	}
+	
+	private ProgramBuilder addNewMainNode(Program p, NodeBuilder mainNode) {
 		ProgramBuilder programBuilder = new ProgramBuilder(p);
 		programBuilder.clearNodes();
 		for(Node n : p.nodes) {
@@ -442,9 +538,9 @@ public class TranslateSpecification {
 				programBuilder.addNode(n);
 			}
 		}
-		Node main = nodeBuilder.build();
+		Node main = mainNode.build();
 		programBuilder.addNode(main);
 		programBuilder.setMain(main.id);
-		return programBuilder.build();
+		return programBuilder;
 	}
 }

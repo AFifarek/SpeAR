@@ -1,10 +1,6 @@
 package com.rockwellcollins.spear.translate.lustre;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import jkind.lustre.BinaryExpr;
@@ -12,11 +8,13 @@ import jkind.lustre.BinaryOp;
 import jkind.lustre.BoolExpr;
 import jkind.lustre.Equation;
 import jkind.lustre.IdExpr;
+import jkind.lustre.LustreUtil;
 import jkind.lustre.NamedType;
 import jkind.lustre.Node;
 import jkind.lustre.UnaryExpr;
 import jkind.lustre.UnaryOp;
 import jkind.lustre.VarDecl;
+import jkind.lustre.builders.NodeBuilder;
 
 /**
  * PLTL is a utility that generates some commonly used PLTL expressions as
@@ -29,53 +27,39 @@ public class HelperNodes {
 	 * Initially
 	 */
 	public static Node initially() {
-		String name = "initially";
-		List<VarDecl> inputs = new ArrayList<>();
-		List<VarDecl> locals = new ArrayList<>();
-		List<VarDecl> outputs = new ArrayList<>();
-		List<Equation> equations = new ArrayList<>();
-
-		// inputs: signal : bool
+		NodeBuilder initially = new NodeBuilder("initially");
+		
 		VarDecl signal = new VarDecl("signal", NamedType.BOOL);
+		initially.addInput(signal);
 
-		// outputs: holds : bool
 		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		initially.addOutput(holds);
 
 		// equations: holds = signal -> true
-		Equation equation = new Equation(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.ARROW, new BoolExpr(true)));
-
-		inputs.add(signal);
-		outputs.add(holds);
-		equations.add(equation);
-
-		return new Node(name, inputs, outputs, locals, equations);
+		Equation equation = LustreUtil.eq(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.ARROW, new BoolExpr(true)));
+		initially.addEquation(equation);
+		
+		return initially.build();
 	}
 	
 	/**
 	 * Historically EXPR must be true on the current step and every previous step.
 	 */
 	public static Node historically() {
-		String name = "historically";
-		List<VarDecl> inputs = new ArrayList<>();
-		List<VarDecl> locals = new ArrayList<>();
-		List<VarDecl> outputs = new ArrayList<>();
-		List<Equation> equations = new ArrayList<>();
+		NodeBuilder historically = new NodeBuilder("historically");
 
-		// inputs: signal : bool
 		VarDecl signal = new VarDecl("signal", NamedType.BOOL);
-
-		// outputs: holds : bool
+		historically.addInput(signal);
+		
 		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		historically.addOutput(holds);
 
 		// equations: holds = signal and (true -> pre holds);
-		Equation equation = new Equation(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.AND,
+		Equation equation = LustreUtil.eq(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.AND,
 				new BinaryExpr(new BoolExpr(true), BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id)))));
-
-		inputs.add(signal);
-		outputs.add(holds);
-		equations.add(equation);
-
-		return new Node(name, inputs, outputs, locals, equations);
+		historically.addEquation(equation);
+		
+		return historically.build();
 	}
 
 	/**
@@ -83,126 +67,67 @@ public class HelperNodes {
 	 * on the current step and every previous step.
 	 */
 	public static Node once() {
-		String name = "once";
-		List<VarDecl> inputs = new ArrayList<>();
-		List<VarDecl> locals = new ArrayList<>();
-		List<VarDecl> outputs = new ArrayList<>();
-		List<Equation> equations = new ArrayList<>();
+		NodeBuilder once = new NodeBuilder("once");
 
-		// inputs: signal : bool
 		VarDecl signal = new VarDecl("signal", NamedType.BOOL);
+		once.addInput(signal);
 
-		// outputs: holds : bool
 		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		once.addOutput(holds);
 
 		// equations: holds = signal or (false -> pre holds);
-		Equation equation = new Equation(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.OR,
+		Equation equation = LustreUtil.eq(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.OR,
 				new BinaryExpr(new BoolExpr(false), BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id)))));
 
-		inputs.add(signal);
-		outputs.add(holds);
-		equations.add(equation);
-
-		return new Node(name, inputs, outputs, locals, equations);
+		once.addEquation(equation);
+		return once.build();
 	}
 
 	/**
 	 * S is the node that implements Since.
 	 */
 	public static Node since() {
-		String name = "since";
-		List<VarDecl> inputs = new ArrayList<>();
-		List<VarDecl> locals = new ArrayList<>();
-		List<VarDecl> outputs = new ArrayList<>();
-		List<Equation> equations = new ArrayList<>();
+		NodeBuilder since = new NodeBuilder("since");
 
-		// inputs: a : bool; b : bool;
 		VarDecl a = new VarDecl("a", NamedType.BOOL);
 		VarDecl b = new VarDecl("b", NamedType.BOOL);
-
-		// outputs: holds : bool
+		since.addInput(a);
+		since.addInput(b);
+		
 		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		since.addOutput(holds);
 
 		// equations: holds = b or (a and (false -> pre holds))
-		Equation equation = new Equation(new IdExpr(holds.id),
+		Equation equation = LustreUtil.eq(new IdExpr(holds.id),
 				new BinaryExpr(new IdExpr(b.id), BinaryOp.OR,
 						new BinaryExpr(new IdExpr(a.id), BinaryOp.AND, new BinaryExpr(new BoolExpr(false),
 								BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
 
-		inputs.add(a);
-		inputs.add(b);
-
-		outputs.add(holds);
-		equations.add(equation);
-
-		return new Node(name, inputs, outputs, locals, equations);
+		since.addEquation(equation);
+		return since.build();
 	}
 
-//	/**
-//	 * T is the node that implements Trigger
-//	 */
-//	public static Node triggers() {
-//		String name = "triggers";
-//		List<VarDecl> inputs = new ArrayList<>();
-//		List<VarDecl> locals = new ArrayList<>();
-//		List<VarDecl> outputs = new ArrayList<>();
-//		List<Equation> equations = new ArrayList<>();
-//
-//		// inputs
-//		VarDecl a = new VarDecl("a", NamedType.BOOL);
-//		VarDecl b = new VarDecl("b", NamedType.BOOL);
-//
-//		// outputs
-//		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
-//
-//		List<Expr> args = new ArrayList<>();
-//		args.add(new IdExpr(holds.id));
-//
-//		// equations: holds = b and (a or (true -> pre holds))
-//		Equation equation = new Equation(new IdExpr(holds.id),
-//				new BinaryExpr(new IdExpr(b.id), BinaryOp.AND,
-//						new BinaryExpr(new IdExpr(a.id), BinaryOp.OR, new BinaryExpr(new BoolExpr(true), BinaryOp.ARROW,
-//								new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
-//
-//		inputs.add(a);
-//		inputs.add(b);
-//
-//		outputs.add(holds);
-//		equations.add(equation);
-//
-//		return new Node(name, inputs, outputs, locals, equations);
-//	}
-
 	/**
-	 * T is the node that implements Trigger
+	 * T is the node that implements Trigger (an alternate version that is false on the initial step.
 	 */
 	public static Node triggers() {
-		String name = "triggers";
-		List<VarDecl> inputs = new ArrayList<>();
-		List<VarDecl> locals = new ArrayList<>();
-		List<VarDecl> outputs = new ArrayList<>();
-		List<Equation> equations = new ArrayList<>();
+		NodeBuilder triggers = new NodeBuilder("triggers");
 
-		// inputs: a : bool; b : bool
 		VarDecl a = new VarDecl("a", NamedType.BOOL);
 		VarDecl b = new VarDecl("b", NamedType.BOOL);
+		triggers.addInput(a);
+		triggers.addInput(b);
 
-		// outputs: holds : bool
 		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		triggers.addOutput(holds);
 
 		// equations: holds = b and (a or (false -> pre holds))
 		Equation equation = new Equation(new IdExpr(holds.id),
 				new BinaryExpr(new IdExpr(b.id), BinaryOp.AND,
 						new BinaryExpr(new IdExpr(a.id), BinaryOp.OR, new BinaryExpr(new BoolExpr(false), BinaryOp.ARROW,
 								new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
-
-		inputs.add(a);
-		inputs.add(b);
-
-		outputs.add(holds);
-		equations.add(equation);
-
-		return new Node(name, inputs, outputs, locals, equations);
+		triggers.addEquation(equation);
+		return triggers.build();
 	}
 
 	public static Set<Node> getPLTL() {

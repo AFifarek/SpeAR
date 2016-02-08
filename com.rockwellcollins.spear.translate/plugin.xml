@@ -5,7 +5,7 @@
    <extension
          point="org.eclipse.ui.actionSets">
       <actionSet
-            label="Analyze"
+            label="Analysis"
             visible="true"
             id="com.rockwellcollins.spear.translate.actionSet">
          <menu
@@ -15,13 +15,22 @@
             </separator>
          </menu>
          <action
-               label="&amp;Analyze"
-               icon="icons/sample.gif"
-               class="com.rockwellcollins.spear.translate.actions.Spear2Lustre"
-               tooltip="Analyze SpeAR File"
+               label="&amp;Check Logical Consistency"
+               icon="icons/spear_icon.png"
+               class="com.rockwellcollins.spear.translate.actions.CheckLogicalConsistency"
+               tooltip="Check for Logical Consistency"
                menubarPath="translateMenu/translateGroup"
                toolbarPath="translateGroup"
-               id="com.rockwellcollins.spear.translate.Spear2Lustre">
+               id="com.rockwellcollins.spear.translate.CheckConsistency">
+         </action>
+         <action
+               label="&amp;Check Logical Entailment"
+               icon="icons/spear_icon.png"
+               class="com.rockwellcollins.spear.translate.actions.CheckLogicalEntailment"
+               tooltip="Check for Logical Entailment"
+               menubarPath="translateMenu/translateGroup"
+               toolbarPath="translateGroup"
+               id="com.rockwellcollins.spear.translate.CheckLogicalEntailment">
          </action>
       </actionSet>
    </extension>
