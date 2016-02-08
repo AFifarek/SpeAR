@@ -28,7 +28,7 @@ Definitions:
 	('Units:' unitdefs+=UnitDef*)?
 	('Types:' typedefs+=TypeDef*)?
 	('Constants:' constants+=Constant*)?
-	('Patterns:' patterns +=Pattern*)?;
+	('Patterns:' patterns+=Pattern*)?;
 
 Pattern:
 	'Pattern' (name=ID)
@@ -57,7 +57,7 @@ AtomicUnitExpr returns UnitExpr:
 	| '(' UnitExpr ')';
 
 TypeDef:
-	  {NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
+	{NamedTypeDef} name=ID IdTypeDelimiter type=Type (unit=[UnitDef])?
 	| {RecordTypeDef} name=ID IdTypeDelimiter 'record' '{' fields+=FieldType (',' fields+=FieldType)* '}'
 	| {ArrayTypeDef} name=ID IdTypeDelimiter base=Type '[' size=INT ']'
 	| {EnumTypeDef} name=ID IdTypeDelimiter 'enum' '{' values+=EnumValue (',' values+=EnumValue)* '}';

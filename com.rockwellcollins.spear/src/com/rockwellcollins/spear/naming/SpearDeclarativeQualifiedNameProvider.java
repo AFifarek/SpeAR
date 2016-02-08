@@ -7,11 +7,16 @@ import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.UnitDef;
 
 public class SpearDeclarativeQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
 
 	protected QualifiedName qualifiedName(EnumValue e) {
 		return QualifiedName.create(e.getName());
+	}
+	
+	protected QualifiedName qualifiedName(UnitDef d) {
+		return QualifiedName.create(d.getName());
 	}
 	
 	protected QualifiedName qualifiedName(TypeDef t) {
