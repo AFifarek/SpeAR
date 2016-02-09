@@ -84,6 +84,11 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
+				if (specification.getBehaviors().size() == 0) {
+					MessageDialog.openError(window.getShell(), "Nothing to analyze",
+							"The user must specify at least one requirement to check for logical entailment.");
+				}
+
 				Specification workingCopy = EcoreUtil2.copy(specification);
 				PerformTransforms.apply(workingCopy, state);
 
@@ -102,10 +107,10 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				KindApi api = PreferencesUtil.getKindApi();
 
 				JKindResult result = new JKindResult("Spear Result");
-				for(String prop : p.getMainNode().properties) {
-					result.addProperty(prop,false);
+				for (String prop : p.getMainNode().properties) {
+					result.addProperty(prop, false);
 				}
-				
+
 				IProgressMonitor monitor = new NullProgressMonitor();
 				showView(result, new SpearLayout(workingCopy));
 
@@ -163,10 +168,12 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 	}
 
 	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) { }
+	public void selectionChanged(IAction arg0, ISelection arg1) {
+	}
 
 	@Override
-	public void dispose() { }
+	public void dispose() {
+	}
 
 	@Override
 	public void init(IWorkbenchWindow arg0) {
