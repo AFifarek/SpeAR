@@ -20,6 +20,7 @@ State:
 Macros:
 	clear : bool = (user_input == CLEAR)
 	start : bool = (user_input == START)
+	seconds_to_cook : int = left_digit * 60 + middle_digit * 10 + right_digit
 
 Assumptions:
 

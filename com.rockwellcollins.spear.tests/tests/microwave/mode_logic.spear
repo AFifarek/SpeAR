@@ -3,7 +3,6 @@ Specification mode_logic
 Imports:
 	import "compute_time.spear"
 	import "microwave_definitions.spear"
-	import "microwave_patterns.spear"
 
 Types:
 
@@ -18,21 +17,22 @@ Outputs:
 	seconds_remaining : int
 
 Macros:
-	pre_mode : mode_type = prev(mode,SETUP)
+	pre_mode : mode_type = previous mode with initial value SETUP
+	pre_mode_is_setup : bool = pre_mode == SETUP
+	pre_mode_is_cooking : bool = pre_mode == COOKING
+	pre_mode_is_suspended : bool = pre_mode == SUSPENDED
+	
+	no_activity : bool = (door_closed == previous door_closed with initial value false) and (not clear) and (not start) 
+	
 	seconds_to_cook_positive : bool = seconds_to_cook > 0
 	seconds_remaining_positive : bool = seconds_remaining > 0
-	pre_seconds_remaining : int = prev(seconds_to_cook,0)
-	pre_door_closed : bool = prev(door_closed,TRUE)
+	pre_seconds_remaining : int = previous seconds_remaining with initial value 0
 	
-	no_activity : bool = not start and not clear and (door_closed == pre_door_closed)
 	start_and_not_clear : bool = start and not clear
-	pre_mode_is_setup : bool = prev(mode==SETUP,true)
-	pre_mode_is_suspended : bool = prev(mode==SUSPENDED,false)
-	pre_mode_is_cooking : bool = prev(mode==COOKING,false)
-
+	
+	
 Assumptions:
 	a0 = seconds_to_cook >= 0
-	a1 = seconds_remaining <= 0 implies mode == SETUP
 	
 DerivedRequirements:
 	r0 = initially(mode == SETUP)
