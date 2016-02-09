@@ -1,0 +1,16 @@
+Specification demo_module
+
+Imports:
+	import "demo_definitions.spear"
+
+Inputs:
+	in1 : english_length
+	
+Outputs:
+	out1 : english_length
+	out2 : int
+
+DerivedRequirements:
+
+Requirements:
+	r00 = out1 greater than or equal to in1	

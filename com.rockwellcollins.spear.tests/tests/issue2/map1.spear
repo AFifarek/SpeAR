@@ -1,0 +1,75 @@
+Definitions map1
+
+// Allow other Definition imports - check
+
+Units:
+	m "meters"	
+	km "kilometers"	
+	
+	m_per_km : m/km "meters per kilometer"
+	km_per_m : km/m "kilometer per meters"
+	
+
+Types:
+//	Doesn't allow units inside a record
+//	ROZ_type is a record{rootX : real m }
+
+	ROZ_threat_type is an int
+	coordinate_type is a real m
+	radius_type is a real m
+
+	ROZ_type is a record{rootX : coordinate_type, rootY : coordinate_type, 
+						 widthX : coordinate_type, lengthY : coordinate_type, 
+						 threat : ROZ_threat_type
+	}
+
+	operating_region_type is a record {rootX : coordinate_type, rootY : coordinate_type, 
+						 			   widthX : coordinate_type, lengthY : coordinate_type
+	}
+	
+	home_base_type is a record {centerX : coordinate_type, centerY : coordinate_type, incircle_radius : radius_type}
+	
+	objective_type is a record {centerX : coordinate_type, centerY : coordinate_type, incircle_radius : radius_type}
+	
+	meter_per_km_type is a real m_per_km
+	km_per_meter is a real km_per_m
+	
+Constants:
+
+	CONV_M_KM_SCALING_FACTOR is a meter_per_km_type = 1000.0 m / 1.0 km
+	CONV_KM_M_SCALING_FACTOR is a km_per_meter = 1.0 km / 1000.0 m
+	
+	OPERATING_REGION is an operating_region_type = new operating_region_type {rootX = 0.0 m, rootY = 0.0 m, widthX = 20000.0 m, lengthY = 20000.0 m }
+	
+//	OPERATING_REGION_tst is an operating_region_type = OPERATING_REGION_tst{operating_region_type.rootX := 0.0 m}
+
+//	HOME_BASE is a home_base_type = {500.0 m, 500.0 m, 500.0 m}
+	
+//	OBJECTIVE1 is an objective_type = {7000.0 m, 9500.0 m, 250.0 m}
+//	OBJECTIVE2 is an objective_type = {10000.0 m, 17000.0 m, 250.0m}
+//	OBJECTIVE3 is an objective_type = {17000.0 m, 12000.0 m, 250.0m}
+//	OBJECTIVE4 is an objective_type = {14000.0 m, 3000.0 m, 250.0m}
+//	OBJECTIVE5 is an objective_type = {19000.0 m, 19000.0 m, 250.0m}
+	
+//	ROZ01 is a ROZ_type = {3000.0 m, 5000.0 m, 5000.0 m, 3000.0 m, 4}
+//	ROZ02 is a ROZ_type = {6000.0 m, 1100.0 m, 1200.0 m, 1000.0 m, 20}
+//	ROZ03 is a ROZ_type = {6800.0 m, 2300.0 m, 1200.0 m, 1000.0 m, 20}
+//	ROZ04 is a ROZ_type = {7800.0 m, 3500.0 m, 1200.0 m, 1000.0 m, 20}
+//	ROZ05 is a ROZ_type = {8800.0 m, 4700.0 m, 1200.0 m, 1000.0 m, 20}
+//	ROZ06 is a ROZ_type = {15000.0 m, 5000.0 m, 3000.0 m, 2000.0 m, 1}
+//	ROZ07 is a ROZ_type = {15300.0 m, 6200.0 m, 800.0 m, 600.0 m, 6}
+//	ROZ08 is a ROZ_type = {16900.0 m, 5400.0 m, 800.0 m, 600.0 m, 6}
+//	ROZ09 is a ROZ_type = {13700.0 m, 8800.0 m, 800.0 m, 600.0 m, 8}
+//	ROZ10 is a ROZ_type = {18600.0 m, 9200.0 m, 800.0 m, 600.0 m, 8}
+//	ROZ11 is a ROZ_type = {13700.0 m, 13700.0 m, 800.0 m, 600.0 m, 8}
+//	ROZ12 is a ROZ_type = {17600.0 m, 14800.0 m, 800.0 m, 600.0 m, 8}
+//	ROZ13 is a ROZ_type = {14000.0 m, 17000.0 m, 3000.0 m, 2000.0 m, 4}
+//	ROZ14 is a ROZ_type = {14700.0 m, 17700.0 m, 800.0 m, 600.0 m, 8}
+//	ROZ15 is a ROZ_type = {11000.0 m, 10500.0 m, 1000.0 m, 3700.0 m, 20}
+//	ROZ16 is a ROZ_type = {6900.0 m, 10800.0 m, 2600.0 m, 400.0 m, 20}
+//	ROZ17 is a ROZ_type = {0.0 m, 13000.0 m, 9000.0 m, 7000.0 m, 2}
+//	ROZ18 is a ROZ_type = {3000.0 m, 13700.0 m, 3000.0 m, 2300.0 m, 20}
+//	ROZ19 is a ROZ_type = {5000.0 m, 16400.0 m, 3000.0 m, 2200.0 m, 20}
+//	ROZ20 is a ROZ_type = {1300.0 m, 16900.0 m, 1700.0 m, 2200.0 m, 20}
+	
+

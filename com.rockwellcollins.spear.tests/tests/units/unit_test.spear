@@ -1,0 +1,64 @@
+Specification cyclic_types
+
+Units:
+	kg "kilograms"
+	g "grams"
+	m  "meters"
+	mm "millimeters"
+	s "seconds"
+
+	kg_to_g_scaling : g/kg 
+	//kg_to_g : scaling 1000 g / kg
+
+	mps : m/s "meter per second"
+	mpss : m/(s*s) "meters per second squared"
+
+Types:
+	mass1 : real kg
+	mass2 : real g
+	
+	type1 : type2
+	type2 : type1
+	
+	type3 : type4
+	type4 : type5
+	type5 : int
+	
+	acceleration : real mpss
+	
+	kg_to_g : real kg_to_g_scaling
+	enum1 : enum {A,B,C}
+
+Constants:
+	G : acceleration = 9.8 mpss
+	G_PER_KG : kg_to_g = 1000.0 kg_to_g_scaling
+	c1 : int = 100
+	c2 : int = 200 + c1
+	c3 : int = c2 * 1000
+	B_type : enum1 = B
+	
+	c4 : int = c5
+	c5 : int = c4
+
+Inputs:
+	a : real
+	b : real
+	c : real
+	d : int
+	
+Outputs:
+	x : int
+	y : bool
+	z : real
+	acceleration_value : acceleration
+
+Macros:
+	macro1 : mass1 = 1000.0 kg
+	macro2 : mass2 = 1000.0 g
+	macro3 : mass2 = (macro1 * G_PER_KG) + macro2
+	
+	two_g : acceleration = G * 2.0
+
+DerivedRequirements:
+
+Requirements:

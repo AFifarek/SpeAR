@@ -1,0 +1,9 @@
+Definitions test_definitions
+
+Types:
+	user_type1 : real
+	user_enumeration : enum {A,B,C,D,E,NULL}
+
+Constants:
+	user_constant1 : real = 3.141519
+	

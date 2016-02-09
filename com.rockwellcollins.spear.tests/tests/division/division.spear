@@ -1,0 +1,26 @@
+Specification division
+
+Types:
+
+Inputs:
+	a : int
+	b : int
+	
+	d : real
+	e : real
+
+Outputs:
+	x : int
+	y : real
+
+Assumptions:
+	a0 = a > 0 and b > 0
+	a1 = d > 0.0 and e > 0.0
+
+DerivedRequirements:
+	r0 = x == a / b
+	r1 = y == d / e
+
+Requirements:
+	dr0 = x > 0
+	dr1 = y > 0.0

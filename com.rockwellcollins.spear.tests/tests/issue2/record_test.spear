@@ -1,0 +1,42 @@
+Specification record_test
+
+Imports:
+
+Units:
+
+Types:
+	record1 : record {a : int, b : bool, c : real}
+	record2 : record {a : real, b : bool, c : int}
+
+Constants:
+	record1_constant : record1 = new record1 {a = 5, b = true, c = 5.0}
+	record2_constant : record2 = new record2 {a = 5.0, b = true, c = 5}
+
+Inputs:
+	in1 : record1
+	in2 : record2
+
+Outputs:
+	out1 : record1
+	out2 : record2
+
+State:
+
+Macros:
+	in1_a : int = in1.a
+	in2_b : bool = in2.b
+
+Assumptions:
+	a0 = in1.a > 0 and in1.c > 0.0
+	a1 = in2.a > 0.0 and in2.c > 0
+	a2 = not (in1.b and in2.b) and (in1.b or in2.b)
+
+	
+DerivedRequirements:
+	dr0 = out2 == in2{b := in2.b}{c := 5}
+	dr1 = out1 == in1{a := in1_a}{b := in2_b}
+	
+Requirements:
+	r0 = out1.a > 0
+	r1 = out2.c > 0
+	r2 = not (out1.b and out2.b)

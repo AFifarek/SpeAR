@@ -1,0 +1,11 @@
+Definitions import_definitions
+
+Units:
+	m "meters"
+	m2 : m*m "meters squared"
+
+Types:
+	typeA : real
+
+Constants:
+	c1 : real = 5.1

@@ -1,0 +1,25 @@
+Specification simple_reproduction
+
+Imports:
+	import "simple_definitions.spear"
+
+Types:
+	distance2 : real m
+	
+Inputs:
+	in1 : distance
+	in2 : distance2
+
+Outputs:
+	out1 : distance
+	out2 : distance2
+
+State:
+	
+Assumptions:
+	a0 = in1 > 0 m
+	
+
+DerivedRequirements:
+
+Requirements:

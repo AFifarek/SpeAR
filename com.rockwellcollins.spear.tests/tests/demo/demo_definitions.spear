@@ -1,0 +1,17 @@
+Definitions demo_definitions
+
+Units:
+	ft "feet"
+
+Types:
+	user_type1 : real
+	user_enumeration : enum {A,B,C,D,E,NULL}
+	
+	english_length is a real ft	
+
+Constants:
+	user_constant1 : real = 3.141519
+	
+Patterns:
+	Pattern my_pattern
+	

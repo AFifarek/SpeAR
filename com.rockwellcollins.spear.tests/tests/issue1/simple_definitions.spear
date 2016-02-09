@@ -1,0 +1,8 @@
+Definitions simple_definitions
+
+Units:
+	m "meters"
+	m2 : m*m "meters squared"
+	
+Types:
+	distance : int m
