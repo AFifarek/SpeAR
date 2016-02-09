@@ -11,16 +11,16 @@ import jkind.results.layout.Layout;
 /**
  * JKindResult is a helper class for performing analysis. 
  */
-public class JKindResultsView extends ViewPart {
+public class SpearResultsView extends ViewPart {
 	public static final String ID = "com.rockwellcollins.spear.translate.views.jKindResultsView";
 
 	private AnalysisResultTable table;
-	private JKindMenuListener menuListener;
+	private SpearMenuListener menuListener;
 
 	@Override
 	public void createPartControl(Composite parent) {
 		table = new AnalysisResultTable(parent);
-		menuListener = new JKindMenuListener(this.getViewSite().getWorkbenchWindow(), table);
+		menuListener = new SpearMenuListener(this.getViewSite().getWorkbenchWindow(), table);
 		MenuManager manager = new MenuManager();
 		manager.setRemoveAllWhenShown(true);
 		manager.addMenuListener(menuListener);

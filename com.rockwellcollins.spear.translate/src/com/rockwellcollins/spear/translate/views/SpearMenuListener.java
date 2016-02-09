@@ -25,12 +25,12 @@ import jkind.results.layout.Layout;
 /**
  * JKindMenuListener is a class necessary to display the Analysis pulldown menu.
  */
-public class JKindMenuListener implements IMenuListener {
+public class SpearMenuListener implements IMenuListener {
 	private final AnalysisResultTable table;
 	private Layout layout;
 	private IWorkbenchWindow window;
 
-	public JKindMenuListener(IWorkbenchWindow window, AnalysisResultTable table) {
+	public SpearMenuListener(IWorkbenchWindow window, AnalysisResultTable table) {
 		this.window = window;
 		this.table = table;
 	}
@@ -93,7 +93,7 @@ public class JKindMenuListener implements IMenuListener {
 	
 	private void viewCexEclipse(Counterexample cex, Layout layout) {
 		try {
-			JKindCounterexampleView cexView = (JKindCounterexampleView) window.getActivePage().showView(JKindCounterexampleView.ID);
+			SpearCounterexampleView cexView = (SpearCounterexampleView) window.getActivePage().showView(SpearCounterexampleView.ID);
 			cexView.setInput(cex, layout);
 			cexView.setFocus();
 		} catch (PartInitException e) {

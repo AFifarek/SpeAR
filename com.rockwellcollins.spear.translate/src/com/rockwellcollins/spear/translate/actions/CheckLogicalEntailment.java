@@ -40,7 +40,7 @@ import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.lustre.TranslateSpecification;
 import com.rockwellcollins.spear.translate.transformations.GetReferences;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
-import com.rockwellcollins.spear.translate.views.JKindResultsView;
+import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
@@ -159,7 +159,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 			@Override
 			public void run() {
 				try {
-					JKindResultsView page = (JKindResultsView) window.getActivePage().showView(JKindResultsView.ID);
+					SpearResultsView page = (SpearResultsView) window.getActivePage().showView(SpearResultsView.ID);
 					page.setInput(result, layout);
 				} catch (PartInitException e) {
 					e.printStackTrace();
