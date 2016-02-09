@@ -41,9 +41,10 @@ import com.rockwellcollins.spear.translate.lustre.TranslateSpecification;
 import com.rockwellcollins.spear.translate.transformations.GetReferences;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.views.JKindResultsView;
+import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
-import jkind.api.JKindApi;
+import jkind.api.KindApi;
 import jkind.api.results.JKindResult;
 import jkind.lustre.Program;
 import jkind.results.layout.Layout;
@@ -98,9 +99,13 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
+				KindApi api = PreferencesUtil.getKindApi();
 
-				JKindApi api = getJKindApi();
-				JKindResult result = new JKindResult("result", p.getMainNode().properties);
+				JKindResult result = new JKindResult("Spear Result");
+				for(String prop : p.getMainNode().properties) {
+					result.addProperty(prop,false);
+				}
+				
 				IProgressMonitor monitor = new NullProgressMonitor();
 				showView(result, new SpearLayout(workingCopy));
 
@@ -141,11 +146,6 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(res.getRawLocation().toFile()))) {
 			bw.write(contents);
 		}
-	}
-
-	private JKindApi getJKindApi() {
-		JKindApi api = new JKindApi();
-		return api;
 	}
 
 	private void showView(final JKindResult result, final Layout layout) {

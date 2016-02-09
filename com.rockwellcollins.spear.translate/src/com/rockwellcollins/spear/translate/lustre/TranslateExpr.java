@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
+import com.rockwellcollins.spear.typing.SpearType;
+import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.ArrayAccessExpr;
@@ -57,10 +59,16 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			case "+":
 			case "-":
 			case "*":
-			case "/":
 				BinaryOp op = BinaryOp.fromString(binary.getOp());
 				return new BinaryExpr(left, op, right);
 
+			case "/":
+				SpearType leftType = SpearTypeChecker.typeCheck(binary.getLeft());
+				if(leftType.equals(SpearTypeChecker.INT)) {
+					return new BinaryExpr(left, BinaryOp.INT_DIVIDE, right);
+				}
+				return new BinaryExpr(left, BinaryOp.DIVIDE, right);
+				
 			case "implies":
 				return new BinaryExpr(left, BinaryOp.IMPLIES, right);
 				

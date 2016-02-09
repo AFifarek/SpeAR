@@ -41,9 +41,11 @@ import com.rockwellcollins.spear.translate.lustre.TranslateSpecification;
 import com.rockwellcollins.spear.translate.transformations.GetReferences;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.views.JKindResultsView;
+import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 import jkind.api.JKindApi;
+import jkind.api.KindApi;
 import jkind.api.results.JKindResult;
 import jkind.lustre.Program;
 import jkind.results.layout.Layout;
@@ -98,8 +100,13 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 
-				JKindApi api = getJKindApi();
-				JKindResult result = new JKindResult("result", p.getMainNode().properties);
+				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
+				api.setReduceSupport();
+				
+				JKindResult result = new JKindResult("result");
+				for(String prop : p.getMainNode().properties) {
+					result.addProperty(prop,true);
+				}
 				IProgressMonitor monitor = new NullProgressMonitor();
 				showView(result, new SpearLayout(workingCopy));
 
@@ -140,11 +147,6 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(res.getRawLocation().toFile()))) {
 			bw.write(contents);
 		}
-	}
-
-	private JKindApi getJKindApi() {
-		JKindApi api = new JKindApi();
-		return api;
 	}
 
 	private void showView(final JKindResult result, final Layout layout) {

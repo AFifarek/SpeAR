@@ -45,6 +45,7 @@ Export-Package: com.rockwellcollins;uses:="com.google.inject,org.eclipse.xtext,o
    org.eclipse.emf.common.util,
    org.eclipse.emf.common.notify",
  com.rockwellcollins.spear.language;uses:="com.rockwellcollins.spear",
+ com.rockwellcollins.spear.typing,
  com.rockwellcollins.spear.util;
   uses:="org.eclipse.emf.ecore,
    com.rockwellcollins.spear,
@@ -61,6 +62,7 @@ Export-Package: com.rockwellcollins;uses:="com.google.inject,org.eclipse.xtext,o
    javax.xml.namespace,
    org.xml.sax,
    javax.xml.bind.attachment",
+ jkind,
  jkind.api;
   uses:="org.eclipse.core.runtime,
    jkind,

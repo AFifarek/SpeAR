@@ -54,16 +54,25 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class SpearTypeChecker extends SpearSwitch<SpearType> {
 
+	public static SpearType typeCheck(EObject o) {
+		SpearTypeChecker typecheck = new SpearTypeChecker();
+		return typecheck.doSwitch(o);
+	}
+	
 	final private ValidationMessageAcceptor messageAcceptor;
 
+	public SpearTypeChecker() {
+		this.messageAcceptor = null;
+	}
+	
 	public SpearTypeChecker(ValidationMessageAcceptor messageAcceptor) {
 		this.messageAcceptor = messageAcceptor;
 	}
 
 	public static final SpearType ERROR = SpearBuiltinType.ERROR;
-	private static final SpearType BOOL = SpearBuiltinType.BOOL;
-	private static final SpearType INT = SpearBuiltinType.INT;
-	private static final SpearType REAL = SpearBuiltinType.REAL;
+	public static final SpearType BOOL = SpearBuiltinType.BOOL;
+	public static final SpearType INT = SpearBuiltinType.INT;
+	public static final SpearType REAL = SpearBuiltinType.REAL;
 
 	/***************************************************************************************************/
 	// Checks
@@ -449,19 +458,24 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	@Override
 	public SpearType casePreviousExpr(PreviousExpr prev) {
 		SpearType var = doSwitch(prev.getVar());
-		//TODO: we might have to change this to handle optional initials
-		SpearType init = doSwitch(prev.getInit());
-		
-		if(var == ERROR || init == ERROR) {
+
+		if(var == ERROR) {
 			return ERROR;
 		}
 		
-		if(!var.equals(init)) {
-			error("Previous must be supplied expressions of the same type.", prev.getInit());
-			return ERROR;
-		} else {
-			return var;
+		if(prev.getInit() != null) {
+			SpearType init = doSwitch(prev.getInit());
+			if(init == ERROR) {
+				return ERROR;
+			}
+
+			if(!var.equals(init)) {
+				error("Previous must be supplied expressions of the same type.", prev.getInit());
+				return ERROR;
+			}
 		}
+		
+		return var;
 	}
 	
 	@Override
@@ -582,10 +596,14 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 	
 	private void error(String message, EObject e, EStructuralFeature feature) {
-		messageAcceptor.acceptError(message, e, feature, 0, null);
+		if(messageAcceptor != null) {
+			messageAcceptor.acceptError(message, e, feature, 0, null);	
+		}
 	}
 
 	private void error(String message, EObject e) {
-		messageAcceptor.acceptError(message, e, null, 0, null);
+		if(messageAcceptor != null) {
+			messageAcceptor.acceptError(message, e, null, 0, null);
+		}
 	}
 }

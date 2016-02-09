@@ -2,6 +2,7 @@ package com.rockwellcollins.spear.translate.views;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
@@ -18,6 +19,7 @@ import jkind.results.Counterexample;
 import jkind.results.InvalidProperty;
 import jkind.results.Property;
 import jkind.results.UnknownProperty;
+import jkind.results.ValidProperty;
 import jkind.results.layout.Layout;
 
 /**
@@ -48,6 +50,7 @@ public class JKindMenuListener implements IMenuListener {
 
 	private void addLinkedMenus(IMenuManager manager, PropertyResult result) {
 		addViewCounterexampleMenu(manager, result);
+		addViewSupport(manager,result);
 	}
 
 	private void addViewCounterexampleMenu(IMenuManager manager, PropertyResult result) {
@@ -71,11 +74,23 @@ public class JKindMenuListener implements IMenuListener {
 			public void run() {
 				viewCexEclipse(cex,layout);
 			}
-
-
 		});
 	}
+	
+	private void addViewSupport(IMenuManager manager, PropertyResult result) {
+		final Set<String> support = getSupport(result);
+		if (support == null) {
+			return;
+		}
 
+		manager.add(new Action("View Support") {
+			@Override
+			public void run() {
+				viewSupport(support);
+			}
+		});
+	}
+	
 	private void viewCexEclipse(Counterexample cex, Layout layout) {
 		try {
 			JKindCounterexampleView cexView = (JKindCounterexampleView) window.getActivePage().showView(JKindCounterexampleView.ID);
@@ -98,6 +113,20 @@ public class JKindMenuListener implements IMenuListener {
 		}
 	}
 
+	//TODO: fix this mess.
+	private void viewSupport(Set<String> support) {
+		MessageDialog.openInformation(window.getShell(), "Support Information", support.toString());
+	}
+	
+	private static Set<String> getSupport(PropertyResult result) {
+		Property prop = result.getProperty();
+		if (prop instanceof ValidProperty) {
+			ValidProperty valid = (ValidProperty) prop;
+			return valid.getSupport();
+		}
+		return null;
+	}
+	
 	private static Counterexample getCounterexample(PropertyResult result) {
 		Property prop = result.getProperty();
 		if (prop instanceof InvalidProperty) {

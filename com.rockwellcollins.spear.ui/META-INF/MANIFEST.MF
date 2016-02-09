@@ -16,12 +16,14 @@ Require-Bundle: com.rockwellcollins.spear;visibility:=reexport,
  org.eclipse.xtext.common.types.ui,
  org.eclipse.xtext.ui.codetemplates.ui,
  org.eclipse.compare,
- org.antlr.runtime
+ org.antlr.runtime,
+ org.eclipse.core.runtime
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: com.rockwellcollins.ui.quickfix,
+Export-Package: com.rockwellcollins.spear.ui.preferences,
  com.rockwellcollins.ui.contentassist,
- com.rockwellcollins.ui.internal,
  com.rockwellcollins.ui.contentassist.antlr,
- com.rockwellcollins.ui.contentassist.antlr.internal
+ com.rockwellcollins.ui.contentassist.antlr.internal,
+ com.rockwellcollins.ui.internal,
+ com.rockwellcollins.ui.quickfix
 Bundle-Activator: com.rockwellcollins.ui.internal.SpearActivator
