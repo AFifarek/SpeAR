@@ -95,8 +95,10 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				URI lustreURI = createURI(state.getURI(), "", "lus");
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
-				printResource(finalResource, p.toString());
+				if(SpearRuntimeOptions.printFinalLustre) {
+					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
+					printResource(finalResource, p.toString());
+				}
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);

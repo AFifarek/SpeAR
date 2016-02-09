@@ -49,14 +49,13 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 
 	private StringFieldEditor remoteUrlFieldEditor;
 
-	private static final String[][] SOLVERS = 
-		  { { PreferenceConstants.SOLVER_YICES, PreferenceConstants.SOLVER_YICES },
+	private static final String[][] SOLVERS = { { PreferenceConstants.SOLVER_YICES, PreferenceConstants.SOLVER_YICES },
 			{ PreferenceConstants.SOLVER_Z3, PreferenceConstants.SOLVER_Z3 },
 			{ PreferenceConstants.SOLVER_CVC4, PreferenceConstants.SOLVER_CVC4 },
 			{ PreferenceConstants.SOLVER_YICES2, PreferenceConstants.SOLVER_YICES2 },
 			{ PreferenceConstants.SOLVER_MATHSAT, PreferenceConstants.SOLVER_MATHSAT },
 			{ PreferenceConstants.SOLVER_SMTINTERPOL, PreferenceConstants.SOLVER_SMTINTERPOL } };
-	
+
 	private ComboFieldEditor solverFieldEditor;
 	private String selectedSolver;
 
@@ -71,8 +70,8 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 	private NonNegativeIntegerFieldEditor depthFieldEditor;
 	private NonNegativeIntegerFieldEditor timeoutFieldEditor;
 	private NonNegativeIntegerFieldEditor consistencyFieldEditor;
-	
-	/*Spear specific preferences */
+
+	/* Spear specific preferences */
 	private BooleanFieldEditor debugFieldEditor;
 	private BooleanFieldEditor spearDebugFilesFieldEditor;
 
@@ -113,9 +112,14 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 		reduceSupportFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_REDUCE_SUPPORT,
 				"Reduce support (expensive)", getFieldEditorParent());
 		addField(reduceSupportFieldEditor);
-		
-		spearDebugFilesFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_GENERATE_SPEAR_DEBUG_FILES,"Generate SpeAR debug files", getFieldEditorParent());
+
+		spearDebugFilesFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_GENERATE_SPEAR_DEBUG_FILES,
+				"Generate SpeAR debug files", getFieldEditorParent());
 		addField(spearDebugFilesFieldEditor);
+
+		BooleanFieldEditor spearFinalLustreFileFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_GENERATE_FINAL_LUSTRE_FILE,
+				"Generate final Lustre file", getFieldEditorParent());
+		addField(spearFinalLustreFileFieldEditor);
 
 		smoothCexFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES,
 				"Generate smooth counterexamples (minimal number of input value changes)", getFieldEditorParent());
