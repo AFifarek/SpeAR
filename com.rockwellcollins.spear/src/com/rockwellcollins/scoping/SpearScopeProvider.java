@@ -9,6 +9,7 @@ import org.eclipse.xtext.scoping.Scopes;
 
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.RecordAccessExpr;
+import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 
@@ -21,6 +22,14 @@ import com.rockwellcollins.spear.RecordUpdateExpr;
  */
 public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
 
+	IScope scope_FieldExpr_field(RecordExpr re, EReference reference) {
+		return Scopes.scopeFor(re.getType().getFields());
+	}
+	
+//	IScope scope_RecordExpr_fieldExprs(RecordExpr e, EReference reference) {
+//		return Scopes.scopeFor(e.getType().getFields());
+//	}
+//	
 	IScope scope_RecordAccessExpr_field(RecordAccessExpr e, EReference reference) {
 		return getRecordScope(e.getRecord());
 	}

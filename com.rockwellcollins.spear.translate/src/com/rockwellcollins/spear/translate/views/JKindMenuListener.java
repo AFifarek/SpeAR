@@ -113,9 +113,8 @@ public class JKindMenuListener implements IMenuListener {
 		}
 	}
 
-	//TODO: fix this mess.
 	private void viewSupport(Set<String> support) {
-		MessageDialog.openInformation(window.getShell(), "Support Information", support.toString());
+		MessageDialog.openInformation(window.getShell(), "Conflicting Assumptions and Requirements!", support.toString());
 	}
 	
 	private static Set<String> getSupport(PropertyResult result) {

@@ -163,7 +163,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		for(com.rockwellcollins.spear.FieldExpr fe : re.getFieldExprs()) {
 			fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
 		}
-		return new RecordExpr(re.getType().getName(),fields);
+		return new RecordExpr(mapping.get(re.getType().getName()),fields);
 	}
 	
 	@Override
