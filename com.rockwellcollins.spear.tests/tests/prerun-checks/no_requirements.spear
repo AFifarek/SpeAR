@@ -1,0 +1,12 @@
+Specification small
+
+Inputs:
+	a : int
+	
+Outputs:
+	z : int
+
+DerivedRequirements:
+	dr0 = z == a
+
+Requirements:
