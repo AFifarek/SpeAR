@@ -11,7 +11,7 @@ import jkind.results.layout.Layout;
  * JKindCounterexampleView is a view.
  */
 public class SpearCounterexampleView extends ViewPart {
-	public static final String ID = "com.rockwellcollins.spear.translate.views.jKindCounterexampleView";
+	public static final String ID = "com.rockwellcollins.spear.translate.views.SpearCounterexampleView";
 
 	private CounterexampleTreeViewer tree;
 

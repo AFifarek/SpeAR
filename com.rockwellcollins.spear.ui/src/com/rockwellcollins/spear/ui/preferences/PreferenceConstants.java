@@ -4,6 +4,10 @@ package com.rockwellcollins.spear.ui.preferences;
  * Constant definitions for plug-in preferences
  */
 public class PreferenceConstants {
+	/*Spear specifics */
+	public static final String PREF_SPEAR_CONSISTENCY_DEPTH = "consistency depth";
+	public static final String PREF_GENERATE_SPEAR_DEBUG_FILES = "debug files";
+	
 	public static final String PREF_BOUNDED_MODEL_CHECKING = "boundedModelChecking";
 	public static final String PREF_K_INDUCTION = "kInduction";
 	public static final String PREF_INVARIANT_GENERATION = "invariantGeneration";
@@ -17,7 +21,7 @@ public class PreferenceConstants {
 	public static final String PREF_DEPTH = "inductionDepth";
 
 	public static final String PREF_TIMEOUT = "timeout";
-
+	
 	public static final String PREF_SOLVER = "solver";
 
 	public static final String SOLVER_YICES = "Yices";

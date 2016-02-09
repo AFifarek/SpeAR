@@ -33,8 +33,7 @@ import jkind.api.KindApi;
  * preference store that belongs to the main plug-in class. That way,
  * preferences can be accessed directly via the preference store.
  */
-public class SpearPreferencePage extends FieldEditorPreferencePage implements
-		IWorkbenchPreferencePage {
+public class SpearPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
 	public SpearPreferencePage() {
 		super(GRID);
@@ -44,20 +43,20 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements
 	private static final String[][] MODEL_CHECKERS = {
 			{ PreferenceConstants.MODEL_CHECKER_JKIND, PreferenceConstants.MODEL_CHECKER_JKIND },
 			{ PreferenceConstants.MODEL_CHECKER_KIND2, PreferenceConstants.MODEL_CHECKER_KIND2 },
-			{ PreferenceConstants.MODEL_CHECKER_KIND2WEB,
-					PreferenceConstants.MODEL_CHECKER_KIND2WEB } };
+			{ PreferenceConstants.MODEL_CHECKER_KIND2WEB, PreferenceConstants.MODEL_CHECKER_KIND2WEB } };
 	private ComboFieldEditor modelCheckerFieldEditor;
 	private String selectedModelChecker;
 
 	private StringFieldEditor remoteUrlFieldEditor;
 
-	private static final String[][] SOLVERS = {
-			{ PreferenceConstants.SOLVER_YICES, PreferenceConstants.SOLVER_YICES },
+	private static final String[][] SOLVERS = 
+		  { { PreferenceConstants.SOLVER_YICES, PreferenceConstants.SOLVER_YICES },
 			{ PreferenceConstants.SOLVER_Z3, PreferenceConstants.SOLVER_Z3 },
 			{ PreferenceConstants.SOLVER_CVC4, PreferenceConstants.SOLVER_CVC4 },
 			{ PreferenceConstants.SOLVER_YICES2, PreferenceConstants.SOLVER_YICES2 },
 			{ PreferenceConstants.SOLVER_MATHSAT, PreferenceConstants.SOLVER_MATHSAT },
 			{ PreferenceConstants.SOLVER_SMTINTERPOL, PreferenceConstants.SOLVER_SMTINTERPOL } };
+	
 	private ComboFieldEditor solverFieldEditor;
 	private String selectedSolver;
 
@@ -71,28 +70,32 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements
 	private BooleanFieldEditor intervalGenFieldEditor;
 	private NonNegativeIntegerFieldEditor depthFieldEditor;
 	private NonNegativeIntegerFieldEditor timeoutFieldEditor;
+	private NonNegativeIntegerFieldEditor consistencyFieldEditor;
+	
+	/*Spear specific preferences */
 	private BooleanFieldEditor debugFieldEditor;
+	private BooleanFieldEditor spearDebugFilesFieldEditor;
 
 	@Override
 	public void createFieldEditors() {
-		modelCheckerFieldEditor = new ComboFieldEditor(PreferenceConstants.PREF_MODEL_CHECKER,
-				"Model Checker", MODEL_CHECKERS, getFieldEditorParent());
+		modelCheckerFieldEditor = new ComboFieldEditor(PreferenceConstants.PREF_MODEL_CHECKER, "Model Checker",
+				MODEL_CHECKERS, getFieldEditorParent());
 		addField(modelCheckerFieldEditor);
 
-		remoteUrlFieldEditor = new StringFieldEditor(PreferenceConstants.PREF_REMOTE_URL,
-				"Remote URL", getFieldEditorParent());
+		remoteUrlFieldEditor = new StringFieldEditor(PreferenceConstants.PREF_REMOTE_URL, "Remote URL",
+				getFieldEditorParent());
 		addField(remoteUrlFieldEditor);
 
-		solverFieldEditor = new ComboFieldEditor(PreferenceConstants.PREF_SOLVER, "SMT Solver",
-				SOLVERS, getFieldEditorParent());
+		solverFieldEditor = new ComboFieldEditor(PreferenceConstants.PREF_SOLVER, "SMT Solver", SOLVERS,
+				getFieldEditorParent());
 		addField(solverFieldEditor);
 
 		bmcFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING,
 				"Use bounded model checking", getFieldEditorParent());
 		addField(bmcFieldEditor);
 
-		kInductionFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_K_INDUCTION,
-				"Use k-induction", getFieldEditorParent());
+		kInductionFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_K_INDUCTION, "Use k-induction",
+				getFieldEditorParent());
 		addField(kInductionFieldEditor);
 
 		invGenFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_INVARIANT_GENERATION,
@@ -103,23 +106,22 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements
 				"Maximum number of PDR instances (0 to disable)", getFieldEditorParent());
 		addField(pdrMaxFieldEditor);
 
-		inductCexFieldEditor = new BooleanFieldEditor(
-				PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES,
+		inductCexFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES,
 				"Generate inductive counterexamples", getFieldEditorParent());
 		addField(inductCexFieldEditor);
 
 		reduceSupportFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_REDUCE_SUPPORT,
 				"Reduce support (expensive)", getFieldEditorParent());
 		addField(reduceSupportFieldEditor);
+		
+		spearDebugFilesFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_GENERATE_SPEAR_DEBUG_FILES,"Generate SpeAR debug files", getFieldEditorParent());
+		addField(spearDebugFilesFieldEditor);
 
-		smoothCexFieldEditor = new BooleanFieldEditor(
-				PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES,
-				"Generate smooth counterexamples (minimal number of input value changes)",
-				getFieldEditorParent());
+		smoothCexFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES,
+				"Generate smooth counterexamples (minimal number of input value changes)", getFieldEditorParent());
 		addField(smoothCexFieldEditor);
 
-		intervalGenFieldEditor = new BooleanFieldEditor(
-				PreferenceConstants.PREF_INTERVAL_GENERALIZATION,
+		intervalGenFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_INTERVAL_GENERALIZATION,
 				"Generalize counterexamples using interval analysis", getFieldEditorParent());
 		addField(intervalGenFieldEditor);
 
@@ -127,13 +129,16 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements
 				"Maximum depth for k-induction", getFieldEditorParent());
 		addField(depthFieldEditor);
 
-		timeoutFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_TIMEOUT,
-				"Timeout in seconds", getFieldEditorParent());
+		timeoutFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_TIMEOUT, "Timeout in seconds",
+				getFieldEditorParent());
 		addField(timeoutFieldEditor);
 
-		debugFieldEditor = new BooleanButtonFieldEditor(PreferenceConstants.PREF_DEBUG,
-				"Debug mode (record log files)", "Open temporary folder",
-				this::openTemporaryFolder, getFieldEditorParent());
+		consistencyFieldEditor = new NonNegativeIntegerFieldEditor(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH,
+				"Depth of consistency check in steps", getFieldEditorParent());
+		addField(consistencyFieldEditor);
+
+		debugFieldEditor = new BooleanButtonFieldEditor(PreferenceConstants.PREF_DEBUG, "Debug mode (record log files)",
+				"Open temporary folder", this::openTemporaryFolder, getFieldEditorParent());
 		addField(debugFieldEditor);
 
 		Button checkAvailableButton = new Button(getFieldEditorParent(), SWT.PUSH);

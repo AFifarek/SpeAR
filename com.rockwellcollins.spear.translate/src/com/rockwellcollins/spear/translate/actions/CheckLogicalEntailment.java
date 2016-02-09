@@ -90,6 +90,9 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
+				//Set the runtime options
+				SpearRuntimeOptions.setRuntimeOptions();
+				
 				Specification workingCopy = EcoreUtil2.copy(specification);
 				PerformTransforms.apply(workingCopy, state);
 

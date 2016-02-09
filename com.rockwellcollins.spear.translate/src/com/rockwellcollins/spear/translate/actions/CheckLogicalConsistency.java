@@ -83,7 +83,9 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 							"Specification contains at least one unsupported element.");
 					return null;
 				}
-
+				//Set the runtime options
+				SpearRuntimeOptions.setRuntimeOptions();
+				
 				Specification workingCopy = EcoreUtil2.copy(specification);
 				PerformTransforms.apply(workingCopy, state);
 				Map<EObject, EObject> references = GetReferences.getReferences(workingCopy);
@@ -98,7 +100,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
-
+				
 				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
 				api.setReduceSupport();
 				

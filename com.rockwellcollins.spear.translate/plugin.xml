@@ -41,15 +41,15 @@
       </category>
         <view
               category="com.rockwellcollins.spear.translate"
-              class="com.rockwellcollins.spear.translate.views.JKindResultsView"
+              class="com.rockwellcollins.spear.translate.views.SpearResultsView"
               icon="icons/spear_icon.png"
-              id="com.rockwellcollins.spear.translate.views.jKindResultsView"
+              id="com.rockwellcollins.spear.translate.views.SpearResultsView"
               name="Analysis Results"/>
 		<view
               category="com.rockwellcollins.spear.translate.lustre"
-              class="com.rockwellcollins.spear.translate.views.JKindCounterexampleView"
-              icon="icons/spear_icon.png"
-              id="com.rockwellcollins.spear.translate.views.jKindCounterexampleView"
+              class="com.rockwellcollins.spear.translate.views.SpearCounterexampleView"
+              icon="icons/counterexample.png"
+              id="com.rockwellcollins.spear.translate.views.SpearCounterexampleView"
               name="Counterexample"/>              
    </extension>
 

@@ -11,6 +11,17 @@ import jkind.api.Kind2WebApi;
 import jkind.api.KindApi;
 
 public class PreferencesUtil {
+	
+	public static int getConsistencyDepthOption() {
+		IPreferenceStore prefs = getPreferenceStore();
+		return prefs.getInt(PreferenceConstants.PREF_SPEAR_CONSISTENCY_DEPTH);
+	}
+	
+	public static boolean getSpearDeubgOption() {
+		IPreferenceStore prefs = getPreferenceStore();
+		return prefs.getBoolean(PreferenceConstants.PREF_GENERATE_SPEAR_DEBUG_FILES);
+	}
+	
 	public static KindApi getKindApi() {
 		IPreferenceStore prefs = getPreferenceStore();
 		String modelChecker = prefs.getString(PreferenceConstants.PREF_MODEL_CHECKER);

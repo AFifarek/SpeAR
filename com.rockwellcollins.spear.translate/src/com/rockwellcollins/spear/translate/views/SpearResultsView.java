@@ -12,7 +12,7 @@ import jkind.results.layout.Layout;
  * JKindResult is a helper class for performing analysis. 
  */
 public class SpearResultsView extends ViewPart {
-	public static final String ID = "com.rockwellcollins.spear.translate.views.jKindResultsView";
+	public static final String ID = "com.rockwellcollins.spear.translate.views.SpearResultsView";
 
 	private AnalysisResultTable table;
 	private SpearMenuListener menuListener;
