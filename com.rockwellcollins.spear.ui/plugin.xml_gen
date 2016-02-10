@@ -397,6 +397,17 @@
 	    </page>
 	</extension>
 
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.xtext.projectwiz"
+            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:com.rockwellcollins.ui.wizard.SpearNewProjectWizard"
+            id="com.rockwellcollins.ui.wizard.SpearNewProjectWizard"
+            name="Spear Project"
+            project="true">
+      </wizard>
+   </extension>
+
   <extension point="org.eclipse.compare.contentViewers">
     <viewer id="com.rockwellcollins.Spear.compare.contentViewers"
             class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"

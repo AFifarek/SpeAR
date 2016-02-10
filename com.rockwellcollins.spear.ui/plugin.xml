@@ -437,4 +437,58 @@
             class="com.rockwellcollins.spear.ui.preferences.PreferenceInitializer">
       </initializer>
    </extension>
+   
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="org.eclipse.xtext.projectwiz"
+            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:com.rockwellcollins.ui.wizard.SpearNewProjectWizard"
+            id="com.rockwellcollins.ui.wizard.SpearNewProjectWizard"
+            name="Spear Project"
+            project="true">
+      </wizard>
+      <category
+            id="com.rockwellcollins.spear.ui"
+            name="SpeAR">
+      </category>
+      <wizard
+            category="com.rockwellcollins.spear.ui"
+            class="com.rockwellcollins.spear.ui.wizards.SpearNewSpecificationWizard"
+            icon="icons/spear_icon.png"
+            id="com.rockwellcollins.spear.ui.wizards.SpearNewSpecificationWizard"
+            name="Create new SpeAR specification file">
+      </wizard>
+      <wizard
+            category="com.rockwellcollins.spear.ui"
+            class="com.rockwellcollins.spear.ui.wizards.SpearNewDefinitionsWizard"
+            icon="icons/spear_icon.png"
+            id="com.rockwellcollins.spear.ui.wizards.SpearNewDefinitionsWizard"
+            name="Create new SpeAR definitions file">
+      </wizard>
+   </extension>
+
+  <extension point="org.eclipse.compare.contentViewers">
+    <viewer id="com.rockwellcollins.Spear.compare.contentViewers"
+            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+            extensions="spear">
+    </viewer>
+  </extension>
+  <extension point="org.eclipse.compare.contentMergeViewers">
+    <viewer id="com.rockwellcollins.Spear.compare.contentMergeViewers"
+            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+            extensions="spear" label="Spear Compare">
+     </viewer>
+  </extension>
+  <extension point="org.eclipse.ui.editors.documentProviders">
+    <provider id="com.rockwellcollins.Spear.editors.documentProviders"
+            class="com.rockwellcollins.ui.SpearExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+            extensions="spear">
+    </provider>
+  </extension>
+  <extension point="org.eclipse.team.core.fileTypes">
+    <fileTypes
+            extension="spear"
+            type="text">
+    </fileTypes>
+  </extension>   
 </plugin>

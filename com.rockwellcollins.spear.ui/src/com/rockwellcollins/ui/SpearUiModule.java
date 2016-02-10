@@ -17,13 +17,13 @@ public class SpearUiModule extends com.rockwellcollins.ui.AbstractSpearUiModule 
 	public SpearUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
-	
+
 	public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {
-        return SpearEObjectHoverProvider.class;
-    }
-	
-	public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProviderr() {
-        return SpearEObjectDocumentationProvider.class;
-		//return MultiLineCommentDocumentationProvider.class;
-    }
+		return SpearEObjectHoverProvider.class;
+	}
+
+	public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider() {
+		return SpearEObjectDocumentationProvider.class;
+		// return MultiLineCommentDocumentationProvider.class;
+	}
 }
