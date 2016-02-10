@@ -3,27 +3,20 @@
  */
 package com.rockwellcollins.ui;
 
-import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.documentation.IEObjectDocumentationProvider;
 import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 
-import com.google.inject.Binder;
-import com.google.inject.name.Names;
 import com.rockwellcollins.ui.contentassist.SpearEObjectDocumentationProvider;
 import com.rockwellcollins.ui.contentassist.SpearEObjectHoverProvider;
-import com.rockwellcollins.ui.wizard.SpearProjectCreator;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class SpearUiModule extends com.rockwellcollins.ui.AbstractSpearUiModule {
-	private AbstractUIPlugin plugin;
 
 	public SpearUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
-		this.plugin=plugin;
 	}
 
 	public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {
@@ -33,26 +26,5 @@ public class SpearUiModule extends com.rockwellcollins.ui.AbstractSpearUiModule 
 	public Class<? extends IEObjectDocumentationProvider> bindIEObjectDocumentationProvider() {
 		return SpearEObjectDocumentationProvider.class;
 		// return MultiLineCommentDocumentationProvider.class;
-	}
-
-	public void configureLanguageName(Binder binder) {
-		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("com.rockwellcollins.spear");
-	}
-
-	public void configureFileExtensions(Binder binder) {
-		binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("spear");
-	}
-
-	@Override
-	public void configure(Binder binder) {
-		super.configure(binder);
-		binder.bind(AbstractUIPlugin.class).toInstance(plugin);
-		binder.bind(IDialogSettings.class).toInstance(plugin.getDialogSettings());
-	}
-
-	// contributed by
-	// org.eclipse.xtext.ui.generator.projectWizard.SimpleProjectWizardFragment
-	public Class<? extends org.eclipse.xtext.ui.wizard.IProjectCreator> bindIProjectCreator() {
-		return SpearProjectCreator.class;
 	}
 }
