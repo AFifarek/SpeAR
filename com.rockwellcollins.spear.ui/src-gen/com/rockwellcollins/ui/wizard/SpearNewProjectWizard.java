@@ -1,10 +1,9 @@
-package com.rockwellcollins.spear.ui.wizards;
+package com.rockwellcollins.ui.wizard;
 
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.wizard.IProjectInfo;
 import org.eclipse.xtext.ui.wizard.IProjectCreator;
 import com.google.inject.Inject;
-import com.rockwellcollins.ui.wizard.SpearProjectInfo;
 
 public class SpearNewProjectWizard extends org.eclipse.xtext.ui.wizard.XtextNewProjectWizard {
 

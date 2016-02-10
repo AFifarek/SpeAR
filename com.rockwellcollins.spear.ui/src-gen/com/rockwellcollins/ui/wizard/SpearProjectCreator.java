@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.ui.wizards;
+package com.rockwellcollins.ui.wizard;
 
 import java.util.List;
 
@@ -14,15 +14,13 @@ import org.eclipse.xpand2.output.OutputImpl;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
-import com.rockwellcollins.ui.wizard.SpearProjectInfo;
 
 public class SpearProjectCreator extends org.eclipse.xtext.ui.wizard.AbstractPluginProjectCreator {
 
 	protected static final String DSL_GENERATOR_PROJECT_NAME = "com.rockwellcollins.spear";
 
-	protected static final String SRC_ROOT = "src";
-	protected static final String SRC_GEN_ROOT = "src-gen";
-	protected final List<String> SRC_FOLDER_LIST = ImmutableList.of(SRC_ROOT, SRC_GEN_ROOT);
+	protected static final String SPECIFICATION_FOLDER = "specification";
+	protected final List<String> SRC_FOLDER_LIST = ImmutableList.of(SPECIFICATION_FOLDER);
 
 	@Override
 	protected SpearProjectInfo getProjectInfo() {
@@ -31,7 +29,7 @@ public class SpearProjectCreator extends org.eclipse.xtext.ui.wizard.AbstractPlu
 	
 	@Override
 	protected String getModelFolderName() {
-		return SRC_ROOT;
+		return SPECIFICATION_FOLDER;
 	}
 	
 	@Override

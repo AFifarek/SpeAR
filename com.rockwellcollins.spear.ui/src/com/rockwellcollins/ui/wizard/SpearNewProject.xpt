@@ -5,11 +5,11 @@
 «ENDDEFINE»
 
 «DEFINE model FOR SpearProjectInfo»
-«FILE "src/model/Model.spear"-»
+«FILE "src/model/example.spear"-»
 /*
  * This is an example SpeAR specification
  */
- Specification Model
+ Specification example
  
  //this section is optional
  Imports:
