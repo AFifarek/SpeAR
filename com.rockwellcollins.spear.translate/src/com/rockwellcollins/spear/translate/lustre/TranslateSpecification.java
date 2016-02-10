@@ -43,15 +43,15 @@ public class TranslateSpecification {
 
 	public static Program translateForEntailment(com.rockwellcollins.spear.Specification s, Map<EObject,EObject> references) {
 		TranslateSpecification translate = new TranslateSpecification(s);
-		Program normal = translate.translateSpecification(s,references);
-		Program extended = translate.addAnalysisProperties(s, normal);
+		translate.translateSpecification(s,references);
+		Program extended = translate.addAnalysisProperties(s);
 		return extended; 
 	}
 	
 	public static Program translateForConsistency(com.rockwellcollins.spear.Specification s, Map<EObject,EObject> references) {
 		TranslateSpecification translate = new TranslateSpecification(s);
-		Program normal = translate.translateSpecification(s,references);
-		Program extended = translate.addConsistencyChecks(s, normal);
+		translate.translateSpecification(s,references);
+		Program extended = translate.addConsistencyChecks(s);
 		return extended; 
 	}
 
@@ -66,6 +66,7 @@ public class TranslateSpecification {
 	private Map<String,String> mapping;
 	private Set<String> globals;
 	private ArrayList<String> supportIds;
+	private ProgramBuilder programBuilder;
 
 	public TranslateSpecification(Specification s) {
 		this.specificationName = s.getName();
@@ -338,20 +339,20 @@ public class TranslateSpecification {
 	}
 
 	public Program translateSpecification(Specification s, Map<EObject,EObject> references) {
-		ProgramBuilder program = new ProgramBuilder();
+		programBuilder = new ProgramBuilder();
 		
 		//lets add PLTL first to save its names
 		for (Node n : HelperNodes.getPLTL()) {
-			program.addNode(n);
+			programBuilder.addNode(n);
 		}
 
 		//these elements will have global scoping
 		String mainNodeName = s.getName();
-		program.setMain(mainNodeName);
+		programBuilder.setMain(mainNodeName);
 		mapping.put(mainNodeName,mainNodeName);
 		
-		program.addTypes(getTypeDefs(s,references));
-		program.addConstants(getConstants(s,references));
+		programBuilder.addTypes(getTypeDefs(s,references));
+		programBuilder.addConstants(getConstants(s,references));
 
 		NodeBuilder mainNode = new NodeBuilder(mainNodeName);
 		// these represent the original inputs, outputs, and locals of a SpeAR
@@ -448,8 +449,8 @@ public class TranslateSpecification {
 		Equation historicalConjunct = createHistoricalConjunct();
 		mainNode.addEquation(historicalConjunct);
 
-		program.addNode(mainNode.build());
-		return program.build();
+		programBuilder.addNode(mainNode.build());
+		return programBuilder.build();
 	}
 
 
@@ -469,8 +470,9 @@ public class TranslateSpecification {
 		return EQ;
 	}
 	
-	public Program addAnalysisProperties(Specification s, Program p) {
-		NodeBuilder mainNode = new NodeBuilder(p.getMainNode());
+	public Program addAnalysisProperties(Specification s) {
+		Program program = programBuilder.build(); 
+		NodeBuilder mainNode = new NodeBuilder(program.getMainNode());
 		
 		/*
 		 * We must add the following VarDecls to the Node to account for the analysis.
@@ -492,7 +494,7 @@ public class TranslateSpecification {
 		 */
 		mainNode.addProperties(getPropertyStrings(propertyVarDecls));
 		
-		ProgramBuilder programBuilder = addNewMainNode(p, mainNode);
+		programBuilder = addNewMainNode(program, mainNode);
 		return programBuilder.build();
 	}
 
@@ -510,7 +512,8 @@ public class TranslateSpecification {
 		return eq;
 	}
 	
-	public Program addConsistencyChecks(Specification s, Program p) {
+	public Program addConsistencyChecks(Specification s) {
+		Program p = programBuilder.build();
 		NodeBuilder mainNode = new NodeBuilder(p.getMainNode());
 		/*
 		 * Add a local for the consistency property
@@ -529,7 +532,7 @@ public class TranslateSpecification {
 		mainNode.addProperty(mapping.get(TranslateSpecification.CONSISTENCY_CHECK_ID));
 		mainNode.addSupports(supportIds);
 		
-		ProgramBuilder programBuilder = addNewMainNode(p,mainNode);
+		programBuilder = addNewMainNode(p,mainNode);
 		return programBuilder.build();
 	}
 	
