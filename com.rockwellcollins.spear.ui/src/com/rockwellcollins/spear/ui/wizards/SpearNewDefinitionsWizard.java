@@ -40,7 +40,7 @@ import org.eclipse.ui.ide.IDE;
  */
 
 public class SpearNewDefinitionsWizard extends Wizard implements INewWizard {
-	private SpearNewSpecificationWizardPage page;
+	private SpearNewDefinitionsWizardPage page;
 	private ISelection selection;
 
 	/**
@@ -56,7 +56,7 @@ public class SpearNewDefinitionsWizard extends Wizard implements INewWizard {
 	 */
 
 	public void addPages() {
-		page = new SpearNewSpecificationWizardPage(selection);
+		page = new SpearNewDefinitionsWizardPage(selection);
 		addPage(page);
 	}
 
