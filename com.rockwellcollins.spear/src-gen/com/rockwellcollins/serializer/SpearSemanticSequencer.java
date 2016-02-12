@@ -45,6 +45,7 @@ import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
+import com.rockwellcollins.spear.TotalSpecificationCall;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
@@ -190,6 +191,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SpearPackage.SPECIFICATION_CALL:
 				sequence_AtomicExpr(context, (SpecificationCall) semanticObject); 
+				return; 
+			case SpearPackage.TOTAL_SPECIFICATION_CALL:
+				sequence_UnusedExpr(context, (TotalSpecificationCall) semanticObject); 
 				return; 
 			case SpearPackage.UNARY_EXPR:
 				sequence_PrefixExpr_TemporalPrefixExpr(context, (UnaryExpr) semanticObject); 
@@ -1335,6 +1339,18 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     (name=ID unit=UnitExpr description=STRING?)
 	 */
 	protected void sequence_UnitDef(ISerializationContext context, DerivedUnit semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     UnusedExpr returns TotalSpecificationCall
+	 *
+	 * Constraint:
+	 *     (ids+=[IdRef|ID] ids+=[IdRef|ID]* spec=[Specification|ID] args+=Expr args+=Expr*)
+	 */
+	protected void sequence_UnusedExpr(ISerializationContext context, TotalSpecificationCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

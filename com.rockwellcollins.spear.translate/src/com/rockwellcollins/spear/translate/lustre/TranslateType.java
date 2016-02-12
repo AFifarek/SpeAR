@@ -1,32 +1,31 @@
 package com.rockwellcollins.spear.translate.lustre;
 
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.BoolType;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.UserType;
+import com.rockwellcollins.spear.translate.experimental.NameManager;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Type;
 
 public class TranslateType extends SpearSwitch<Type> {
 
-	public static Type translate(com.rockwellcollins.spear.Type t, Map<String,String> mapping) {
-		return new TranslateType(mapping).doSwitch(t);
+	public static Type translate(com.rockwellcollins.spear.Type t, NameManager naming) {
+		return new TranslateType(naming).doSwitch(t);
 	}
 	
-	private Map<String, String> mapping;
+	private NameManager naming;
 
-	public TranslateType(Map<String,String> mapping) {
-		this.mapping = mapping;
+	public TranslateType(NameManager naming) {
+		this.naming = naming;
 	}
 	
 	@Override
 	public Type caseUserType(UserType ut) {
-		String name = mapping.get(ut.getDef().getName());
+		String name = naming.lookup(ut.getDef().getName());
 		return new jkind.lustre.NamedType(name);
 	}
 		

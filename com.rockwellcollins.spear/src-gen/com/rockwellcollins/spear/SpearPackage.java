@@ -2007,6 +2007,52 @@ public interface SpearPackage extends EPackage
    */
   int REAL_LITERAL_FEATURE_COUNT = LITERAL_EXPR_FEATURE_COUNT + 2;
 
+  /**
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.TotalSpecificationCallImpl <em>Total Specification Call</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.rockwellcollins.spear.impl.TotalSpecificationCallImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getTotalSpecificationCall()
+   * @generated
+   */
+  int TOTAL_SPECIFICATION_CALL = 52;
+
+  /**
+   * The feature id for the '<em><b>Ids</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOTAL_SPECIFICATION_CALL__IDS = EXPR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Spec</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOTAL_SPECIFICATION_CALL__SPEC = EXPR_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Args</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOTAL_SPECIFICATION_CALL__ARGS = EXPR_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Total Specification Call</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOTAL_SPECIFICATION_CALL_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
+
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.File <em>File</em>}'.
@@ -3464,6 +3510,49 @@ public interface SpearPackage extends EPackage
   EReference getRealLiteral_Unit();
 
   /**
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.TotalSpecificationCall <em>Total Specification Call</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Total Specification Call</em>'.
+   * @see com.rockwellcollins.spear.TotalSpecificationCall
+   * @generated
+   */
+  EClass getTotalSpecificationCall();
+
+  /**
+   * Returns the meta object for the reference list '{@link com.rockwellcollins.spear.TotalSpecificationCall#getIds <em>Ids</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Ids</em>'.
+   * @see com.rockwellcollins.spear.TotalSpecificationCall#getIds()
+   * @see #getTotalSpecificationCall()
+   * @generated
+   */
+  EReference getTotalSpecificationCall_Ids();
+
+  /**
+   * Returns the meta object for the reference '{@link com.rockwellcollins.spear.TotalSpecificationCall#getSpec <em>Spec</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Spec</em>'.
+   * @see com.rockwellcollins.spear.TotalSpecificationCall#getSpec()
+   * @see #getTotalSpecificationCall()
+   * @generated
+   */
+  EReference getTotalSpecificationCall_Spec();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.TotalSpecificationCall#getArgs <em>Args</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Args</em>'.
+   * @see com.rockwellcollins.spear.TotalSpecificationCall#getArgs()
+   * @see #getTotalSpecificationCall()
+   * @generated
+   */
+  EReference getTotalSpecificationCall_Args();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4685,6 +4774,40 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference REAL_LITERAL__UNIT = eINSTANCE.getRealLiteral_Unit();
+
+    /**
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.TotalSpecificationCallImpl <em>Total Specification Call</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.rockwellcollins.spear.impl.TotalSpecificationCallImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getTotalSpecificationCall()
+     * @generated
+     */
+    EClass TOTAL_SPECIFICATION_CALL = eINSTANCE.getTotalSpecificationCall();
+
+    /**
+     * The meta object literal for the '<em><b>Ids</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TOTAL_SPECIFICATION_CALL__IDS = eINSTANCE.getTotalSpecificationCall_Ids();
+
+    /**
+     * The meta object literal for the '<em><b>Spec</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TOTAL_SPECIFICATION_CALL__SPEC = eINSTANCE.getTotalSpecificationCall_Spec();
+
+    /**
+     * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TOTAL_SPECIFICATION_CALL__ARGS = eINSTANCE.getTotalSpecificationCall_Args();
 
   }
 

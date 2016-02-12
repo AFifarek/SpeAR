@@ -25,6 +25,10 @@ public class PerformTransforms {
 		printSpearFile(getOutputURI(state.getURI(), pass.toString()), s);
 		pass++;
 		
+		s = ReplaceSpecificationCalls.replace(s);
+		printSpearFile(getOutputURI(state.getURI(), pass.toString()), s);
+		pass++;
+		
 		return s;
 	}
 	

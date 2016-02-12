@@ -32,6 +32,15 @@
                toolbarPath="translateGroup"
                id="com.rockwellcollins.spear.translate.CheckLogicalEntailment">
          </action>
+         <action
+               label="&amp;Test Alternate Translation"
+               icon="icons/logical_entailment.png"
+               class="com.rockwellcollins.spear.translate.actions.AlternateTranslation"
+               tooltip="Test Alternate Translation"
+               menubarPath="translateMenu/translateGroup"
+               toolbarPath="translateGroup"
+               id="com.rockwellcollins.spear.translate.actions.AlternateTranslation">
+         </action>
       </actionSet>
    </extension>
     <extension point="org.eclipse.ui.views">

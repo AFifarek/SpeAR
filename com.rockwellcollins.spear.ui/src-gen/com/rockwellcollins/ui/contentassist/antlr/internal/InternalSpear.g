@@ -1067,6 +1067,8 @@ finally {
 
 
 
+
+
 // Entry rule entryRuleFieldExpr
 entryRuleFieldExpr 
 :
@@ -12859,6 +12861,9 @@ finally {
 
 
 
+
+
+
 rule__FieldExpr__Group__0
     @init {
 		int stackSize = keepStackSize();
@@ -14860,6 +14865,11 @@ rule__LiteralExpr__UnitAssignment_2_2
 finally {
 	restoreStackSize(stackSize);
 }
+
+
+
+
+
 
 rule__FieldExpr__FieldAssignment_0
     @init {

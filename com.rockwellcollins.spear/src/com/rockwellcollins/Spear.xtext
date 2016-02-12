@@ -168,6 +168,10 @@ LiteralExpr:
 	| {BoolLiteral} value=BOOL
 	| {RealLiteral} value=REAL (unit=[UnitDef])?;
 
+UnusedExpr returns Expr:
+	{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
+;
+
 IdRef:
 	Variable
 	| Macro

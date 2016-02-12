@@ -2699,6 +2699,116 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getUnitUnitDefIDTerminalRuleCall_2_2_0_1() { return cUnitUnitDefIDTerminalRuleCall_2_2_0_1; }
 	}
 
+	public class UnusedExprElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.UnusedExpr");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cTotalSpecificationCallAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cNumberSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cIdsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cIdsIdRefCrossReference_2_0 = (CrossReference)cIdsAssignment_2.eContents().get(0);
+		private final RuleCall cIdsIdRefIDTerminalRuleCall_2_0_1 = (RuleCall)cIdsIdRefCrossReference_2_0.eContents().get(1);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cIdsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final CrossReference cIdsIdRefCrossReference_3_1_0 = (CrossReference)cIdsAssignment_3_1.eContents().get(0);
+		private final RuleCall cIdsIdRefIDTerminalRuleCall_3_1_0_1 = (RuleCall)cIdsIdRefCrossReference_3_1_0.eContents().get(1);
+		private final Keyword cNumberSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cEqualsSignEqualsSignKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cSpecKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cSpecAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final CrossReference cSpecSpecificationCrossReference_7_0 = (CrossReference)cSpecAssignment_7.eContents().get(0);
+		private final RuleCall cSpecSpecificationIDTerminalRuleCall_7_0_1 = (RuleCall)cSpecSpecificationCrossReference_7_0.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cArgsAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cArgsExprParserRuleCall_9_0 = (RuleCall)cArgsAssignment_9.eContents().get(0);
+		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
+		private final Keyword cCommaKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final Assignment cArgsAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
+		private final RuleCall cArgsExprParserRuleCall_10_1_0 = (RuleCall)cArgsAssignment_10_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		
+		//UnusedExpr Expr:
+		//	{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr
+		//	(',' args+=Expr)* ')'
+		@Override public ParserRule getRule() { return rule; }
+
+		//{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','
+		//args+=Expr)* ')'
+		public Group getGroup() { return cGroup; }
+
+		//{TotalSpecificationCall}
+		public Action getTotalSpecificationCallAction_0() { return cTotalSpecificationCallAction_0; }
+
+		//'#'
+		public Keyword getNumberSignKeyword_1() { return cNumberSignKeyword_1; }
+
+		//ids+=[IdRef]
+		public Assignment getIdsAssignment_2() { return cIdsAssignment_2; }
+
+		//[IdRef]
+		public CrossReference getIdsIdRefCrossReference_2_0() { return cIdsIdRefCrossReference_2_0; }
+
+		//ID
+		public RuleCall getIdsIdRefIDTerminalRuleCall_2_0_1() { return cIdsIdRefIDTerminalRuleCall_2_0_1; }
+
+		//(',' ids+=[IdRef])*
+		public Group getGroup_3() { return cGroup_3; }
+
+		//','
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+
+		//ids+=[IdRef]
+		public Assignment getIdsAssignment_3_1() { return cIdsAssignment_3_1; }
+
+		//[IdRef]
+		public CrossReference getIdsIdRefCrossReference_3_1_0() { return cIdsIdRefCrossReference_3_1_0; }
+
+		//ID
+		public RuleCall getIdsIdRefIDTerminalRuleCall_3_1_0_1() { return cIdsIdRefIDTerminalRuleCall_3_1_0_1; }
+
+		//'#'
+		public Keyword getNumberSignKeyword_4() { return cNumberSignKeyword_4; }
+
+		//'=='
+		public Keyword getEqualsSignEqualsSignKeyword_5() { return cEqualsSignEqualsSignKeyword_5; }
+
+		//'spec'
+		public Keyword getSpecKeyword_6() { return cSpecKeyword_6; }
+
+		//spec=[Specification]
+		public Assignment getSpecAssignment_7() { return cSpecAssignment_7; }
+
+		//[Specification]
+		public CrossReference getSpecSpecificationCrossReference_7_0() { return cSpecSpecificationCrossReference_7_0; }
+
+		//ID
+		public RuleCall getSpecSpecificationIDTerminalRuleCall_7_0_1() { return cSpecSpecificationIDTerminalRuleCall_7_0_1; }
+
+		//'('
+		public Keyword getLeftParenthesisKeyword_8() { return cLeftParenthesisKeyword_8; }
+
+		//args+=Expr
+		public Assignment getArgsAssignment_9() { return cArgsAssignment_9; }
+
+		//Expr
+		public RuleCall getArgsExprParserRuleCall_9_0() { return cArgsExprParserRuleCall_9_0; }
+
+		//(',' args+=Expr)*
+		public Group getGroup_10() { return cGroup_10; }
+
+		//','
+		public Keyword getCommaKeyword_10_0() { return cCommaKeyword_10_0; }
+
+		//args+=Expr
+		public Assignment getArgsAssignment_10_1() { return cArgsAssignment_10_1; }
+
+		//Expr
+		public RuleCall getArgsExprParserRuleCall_10_1_0() { return cArgsExprParserRuleCall_10_1_0; }
+
+		//')'
+		public Keyword getRightParenthesisKeyword_11() { return cRightParenthesisKeyword_11; }
+	}
+
 	public class IdRefElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.IdRef");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -2887,6 +2997,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	private final AccessExprElements pAccessExpr;
 	private final AtomicExprElements pAtomicExpr;
 	private final LiteralExprElements pLiteralExpr;
+	private final UnusedExprElements pUnusedExpr;
 	private final IdRefElements pIdRef;
 	private final FieldExprElements pFieldExpr;
 	private final BOOLElements pBOOL;
@@ -2939,6 +3050,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		this.pAccessExpr = new AccessExprElements();
 		this.pAtomicExpr = new AtomicExprElements();
 		this.pLiteralExpr = new LiteralExprElements();
+		this.pUnusedExpr = new UnusedExprElements();
 		this.pIdRef = new IdRefElements();
 		this.pFieldExpr = new FieldExprElements();
 		this.pBOOL = new BOOLElements();
@@ -3371,6 +3483,17 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getLiteralExprRule() {
 		return getLiteralExprAccess().getRule();
+	}
+
+	//UnusedExpr Expr:
+	//	{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr
+	//	(',' args+=Expr)* ')'
+	public UnusedExprElements getUnusedExprAccess() {
+		return pUnusedExpr;
+	}
+	
+	public ParserRule getUnusedExprRule() {
+		return getUnusedExprAccess().getRule();
 	}
 
 	//IdRef:

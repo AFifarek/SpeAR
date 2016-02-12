@@ -491,6 +491,15 @@ public interface SpearFactory extends EFactory
   RealLiteral createRealLiteral();
 
   /**
+   * Returns a new object of class '<em>Total Specification Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Total Specification Call</em>'.
+   * @generated
+   */
+  TotalSpecificationCall createTotalSpecificationCall();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

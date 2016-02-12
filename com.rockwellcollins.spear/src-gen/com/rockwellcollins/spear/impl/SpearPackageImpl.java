@@ -48,6 +48,7 @@ import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
+import com.rockwellcollins.spear.TotalSpecificationCall;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
@@ -435,6 +436,13 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass realLiteralEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass totalSpecificationCallEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -1874,6 +1882,46 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getTotalSpecificationCall()
+  {
+    return totalSpecificationCallEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTotalSpecificationCall_Ids()
+  {
+    return (EReference)totalSpecificationCallEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTotalSpecificationCall_Spec()
+  {
+    return (EReference)totalSpecificationCallEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTotalSpecificationCall_Args()
+  {
+    return (EReference)totalSpecificationCallEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public SpearFactory getSpearFactory()
   {
     return (SpearFactory)getEFactoryInstance();
@@ -2087,6 +2135,11 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     realLiteralEClass = createEClass(REAL_LITERAL);
     createEAttribute(realLiteralEClass, REAL_LITERAL__VALUE);
     createEReference(realLiteralEClass, REAL_LITERAL__UNIT);
+
+    totalSpecificationCallEClass = createEClass(TOTAL_SPECIFICATION_CALL);
+    createEReference(totalSpecificationCallEClass, TOTAL_SPECIFICATION_CALL__IDS);
+    createEReference(totalSpecificationCallEClass, TOTAL_SPECIFICATION_CALL__SPEC);
+    createEReference(totalSpecificationCallEClass, TOTAL_SPECIFICATION_CALL__ARGS);
   }
 
   /**
@@ -2158,6 +2211,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     intLiteralEClass.getESuperTypes().add(this.getLiteralExpr());
     boolLiteralEClass.getESuperTypes().add(this.getLiteralExpr());
     realLiteralEClass.getESuperTypes().add(this.getLiteralExpr());
+    totalSpecificationCallEClass.getESuperTypes().add(this.getExpr());
 
     // Initialize classes and features; add operations and parameters
     initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2348,6 +2402,11 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEClass(realLiteralEClass, RealLiteral.class, "RealLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRealLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, RealLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRealLiteral_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, RealLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(totalSpecificationCallEClass, TotalSpecificationCall.class, "TotalSpecificationCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTotalSpecificationCall_Ids(), this.getIdRef(), null, "ids", null, 0, -1, TotalSpecificationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTotalSpecificationCall_Spec(), this.getSpecification(), null, "spec", null, 0, 1, TotalSpecificationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTotalSpecificationCall_Args(), this.getExpr(), null, "args", null, 0, -1, TotalSpecificationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

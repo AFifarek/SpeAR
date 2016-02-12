@@ -185,6 +185,9 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLiteralExprAccess().getGroup_0(), "rule__LiteralExpr__Group_0__0");
 					put(grammarAccess.getLiteralExprAccess().getGroup_1(), "rule__LiteralExpr__Group_1__0");
 					put(grammarAccess.getLiteralExprAccess().getGroup_2(), "rule__LiteralExpr__Group_2__0");
+					put(grammarAccess.getUnusedExprAccess().getGroup(), "rule__UnusedExpr__Group__0");
+					put(grammarAccess.getUnusedExprAccess().getGroup_3(), "rule__UnusedExpr__Group_3__0");
+					put(grammarAccess.getUnusedExprAccess().getGroup_10(), "rule__UnusedExpr__Group_10__0");
 					put(grammarAccess.getFieldExprAccess().getGroup(), "rule__FieldExpr__Group__0");
 					put(grammarAccess.getREALAccess().getGroup(), "rule__REAL__Group__0");
 					put(grammarAccess.getSpecificationAccess().getNameAssignment_1(), "rule__Specification__NameAssignment_1");
@@ -302,6 +305,11 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLiteralExprAccess().getValueAssignment_1_1(), "rule__LiteralExpr__ValueAssignment_1_1");
 					put(grammarAccess.getLiteralExprAccess().getValueAssignment_2_1(), "rule__LiteralExpr__ValueAssignment_2_1");
 					put(grammarAccess.getLiteralExprAccess().getUnitAssignment_2_2(), "rule__LiteralExpr__UnitAssignment_2_2");
+					put(grammarAccess.getUnusedExprAccess().getIdsAssignment_2(), "rule__UnusedExpr__IdsAssignment_2");
+					put(grammarAccess.getUnusedExprAccess().getIdsAssignment_3_1(), "rule__UnusedExpr__IdsAssignment_3_1");
+					put(grammarAccess.getUnusedExprAccess().getSpecAssignment_7(), "rule__UnusedExpr__SpecAssignment_7");
+					put(grammarAccess.getUnusedExprAccess().getArgsAssignment_9(), "rule__UnusedExpr__ArgsAssignment_9");
+					put(grammarAccess.getUnusedExprAccess().getArgsAssignment_10_1(), "rule__UnusedExpr__ArgsAssignment_10_1");
 					put(grammarAccess.getFieldExprAccess().getFieldAssignment_0(), "rule__FieldExpr__FieldAssignment_0");
 					put(grammarAccess.getFieldExprAccess().getExprAssignment_2(), "rule__FieldExpr__ExprAssignment_2");
 				}
