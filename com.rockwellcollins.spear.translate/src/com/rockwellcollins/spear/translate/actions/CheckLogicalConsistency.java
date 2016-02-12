@@ -87,7 +87,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				PerformTransforms.apply(workingCopy, state);
 
 				// translate to Lustre
-				Program p = SpearProgram.translateLogicalEntailment(workingCopy);
+				Program p = SpearProgram.translateConsistencyCheck(workingCopy);
 				URI lustreURI = createURI(state.getURI(), "", "lus");
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();

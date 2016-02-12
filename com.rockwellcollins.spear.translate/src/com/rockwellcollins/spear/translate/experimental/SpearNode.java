@@ -249,7 +249,7 @@ public class SpearNode extends SpearAst {
 	private VarDecl getConsistencyVarDecl() {
 		String original = CONSISTENCY_CHECK_ID;
 		String renamed = naming.getUniqueNameAndRegister(original);
-		return new VarDecl(renamed, NamedType.INT);
+		return new VarDecl(renamed, NamedType.BOOL);
 	}
 
 	private Equation getCounterEquation() {
