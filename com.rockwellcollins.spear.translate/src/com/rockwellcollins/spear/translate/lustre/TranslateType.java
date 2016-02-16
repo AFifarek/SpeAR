@@ -6,20 +6,20 @@ import com.rockwellcollins.spear.BoolType;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.UserType;
-import com.rockwellcollins.spear.translate.experimental.NameManager;
+import com.rockwellcollins.spear.translate.experimental.TranslationManager;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Type;
 
 public class TranslateType extends SpearSwitch<Type> {
 
-	public static Type translate(com.rockwellcollins.spear.Type t, NameManager naming) {
+	public static Type translate(com.rockwellcollins.spear.Type t, TranslationManager naming) {
 		return new TranslateType(naming).doSwitch(t);
 	}
 	
-	private NameManager naming;
+	private TranslationManager naming;
 
-	public TranslateType(NameManager naming) {
+	public TranslateType(TranslationManager naming) {
 		this.naming = naming;
 	}
 	

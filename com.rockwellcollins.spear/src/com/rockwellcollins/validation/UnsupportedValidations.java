@@ -3,7 +3,7 @@ package com.rockwellcollins.validation;
 import org.eclipse.xtext.validation.Check;
 
 import com.rockwellcollins.spear.PatternCall;
-import com.rockwellcollins.spear.SpecificationCall;
+import com.rockwellcollins.spear.TotalSpecificationCall;
 
 /**
  * This class will create validations that highlight anything that is unsupported.
@@ -18,7 +18,7 @@ public class UnsupportedValidations extends AbstractSpearJavaValidator {
 	}
 	
 	@Check
-	public void flagSpecificationCall(SpecificationCall sc) {
-		warning("Specification calls are not yet supported for analysis.", sc, null);
+	public void flagTotalSpecificationCall(TotalSpecificationCall tsc) {
+		error("Total Specification Calls are unsupported when written by the user.", tsc, null);
 	}
 }

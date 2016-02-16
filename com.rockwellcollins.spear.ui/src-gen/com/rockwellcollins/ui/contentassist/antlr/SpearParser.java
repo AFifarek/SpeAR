@@ -181,7 +181,7 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAtomicExprAccess().getGroup_8_5(), "rule__AtomicExpr__Group_8_5__0");
 					put(grammarAccess.getAtomicExprAccess().getGroup_9(), "rule__AtomicExpr__Group_9__0");
 					put(grammarAccess.getAtomicExprAccess().getGroup_9_5(), "rule__AtomicExpr__Group_9_5__0");
-					put(grammarAccess.getAtomicExprAccess().getGroup_10(), "rule__AtomicExpr__Group_10__0");
+					put(grammarAccess.getAtomicExprAccess().getGroup_11(), "rule__AtomicExpr__Group_11__0");
 					put(grammarAccess.getLiteralExprAccess().getGroup_0(), "rule__LiteralExpr__Group_0__0");
 					put(grammarAccess.getLiteralExprAccess().getGroup_1(), "rule__LiteralExpr__Group_1__0");
 					put(grammarAccess.getLiteralExprAccess().getGroup_2(), "rule__LiteralExpr__Group_2__0");

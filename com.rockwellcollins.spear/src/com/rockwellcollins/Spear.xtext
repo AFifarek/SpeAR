@@ -161,6 +161,7 @@ AtomicExpr returns Expr:
 	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
 	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
+	| UnusedExpr
 	| '(' Expr ')';
 
 LiteralExpr:
@@ -168,6 +169,7 @@ LiteralExpr:
 	| {BoolLiteral} value=BOOL
 	| {RealLiteral} value=REAL (unit=[UnitDef])?;
 
+//this is a cute little hack to make processing easier on the translation to Lustre
 UnusedExpr returns Expr:
 	{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
 ;

@@ -1,3 +1,4 @@
+'#'=92
 '('=29
 ')'=30
 '*'=27
@@ -20,7 +21,7 @@
 'Constants:'=15
 'Definitions'=25
 'DerivedRequirements:'=22
-'FALSE'=94
+'FALSE'=95
 'H'=57
 'Imports:'=12
 'Inputs:'=17
@@ -34,7 +35,7 @@
 'Specification'=11
 'State:'=19
 'T'=51
-'TRUE'=92
+'TRUE'=93
 'Types:'=14
 'Units:'=13
 '['=35
@@ -46,7 +47,7 @@
 'else'=85
 'enum'=37
 'equal'=66
-'false'=95
+'false'=96
 'greater'=69
 'historically'=58
 'if'=83
@@ -74,7 +75,7 @@
 'then'=84
 'to'=67
 'triggers'=52
-'true'=93
+'true'=94
 'until'=87
 'value'=79
 'while'=88
@@ -175,3 +176,4 @@ T__92=92
 T__93=93
 T__94=94
 T__95=95
+T__96=96

@@ -30,7 +30,6 @@ import jkind.lustre.VarDecl;
 import jkind.lustre.builders.NodeBuilder;
 
 public class SpearNode extends SpearAst {
-
 	public String name;
 	public List<Variable> inputs = new ArrayList<>();
 	public List<Variable> outputs = new ArrayList<>();
@@ -42,7 +41,7 @@ public class SpearNode extends SpearAst {
 
 	public Specification sourceSpecification;
 
-	private NameManager naming;
+	private TranslationManager naming;
 	private static final String SHADOW_SUFFIX = "SHADOW";
 	private static final String CONJUNCT_ID = "CONJUNCT";
 	private static final String HISTORICAL_CONJUNCT_ID = "HISTORICAL_CONJUNCT";
@@ -56,7 +55,6 @@ public class SpearNode extends SpearAst {
 		outputs.addAll(s.getOutputs());
 		state.addAll(s.getState());
 		macros.addAll(s.getMacros());
-
 		assumptions.addAll(s.getAssumptions());
 		requirements.addAll(s.getRequirements());
 		behaviors.addAll(s.getBehaviors());
@@ -169,7 +167,7 @@ public class SpearNode extends SpearAst {
 		String renamed = naming.getUniqueNameAndRegister(original);
 		return new VarDecl(renamed, NamedType.BOOL);
 	}
-	
+
 	private Equation getConjunctEquation() {
 		List<Constraint> constraints = new ArrayList<>();
 		constraints.addAll(assumptions);
@@ -177,20 +175,19 @@ public class SpearNode extends SpearAst {
 		return LustreUtil.eq(new IdExpr(naming.lookup(CONJUNCT_ID)), getConjunctExpr(constraints.iterator()));
 	}
 
-
 	private VarDecl getHistoricalConjunctVarDecl() {
 		String original = HISTORICAL_CONJUNCT_ID;
 		String renamed = naming.getUniqueNameAndRegister(original);
 		return new VarDecl(renamed, NamedType.BOOL);
 	}
-	
+
 	private Equation addHistoricalConjuctEquation() {
 		return LustreUtil.eq(new IdExpr(naming.lookup(HISTORICAL_CONJUNCT_ID)),
 				new NodeCallExpr("historically", new IdExpr(naming.lookup(CONJUNCT_ID))));
 	}
 
-	public Node getBaseLustre(NameManager globalNaming) {
-		naming = new NameManager(globalNaming);
+	public Node getBaseLustre(TranslationManager globalNaming) {
+		naming = new TranslationManager(globalNaming);
 		NodeBuilder node = new NodeBuilder(name);
 		// inputs are true inputs and shadow vars for outputs and state
 		node.addInputs(processVariables(inputs));
@@ -269,27 +266,24 @@ public class SpearNode extends SpearAst {
 
 	private List<String> getSupportIds() {
 		List<String> supports = new ArrayList<>();
-		for(Constraint c : assumptions) {
+		for (Constraint c : assumptions) {
 			supports.add(naming.lookup(c.getName()));
 		}
-		
-		for(Constraint c : requirements) {
+
+		for (Constraint c : requirements) {
 			supports.add(naming.lookup(c.getName()));
 		}
 		return supports;
 	}
-	
+
 	public Node addConsistencyProperties(Node base) {
 		NodeBuilder node = new NodeBuilder(base);
 		node.addLocal(getCounterVarDecl());
 		node.addLocal(getConsistencyVarDecl());
-		
 		node.addEquation(getCounterEquation());
 		node.addEquation(getConsistencyEquation());
-		
 		node.addProperty(naming.lookup(CONSISTENCY_CHECK_ID));
 		node.addSupports(getSupportIds());
-		
 		return node.build();
 	}
 }

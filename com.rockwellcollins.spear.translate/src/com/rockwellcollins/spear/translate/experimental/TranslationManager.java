@@ -3,15 +3,18 @@ package com.rockwellcollins.spear.translate.experimental;
 import java.util.HashMap;
 import java.util.Map;
 
-public class NameManager {
+import jkind.lustre.Node;
+
+public class TranslationManager {
 
 	private Map<String,String> map;
+	private Map<String,Node> calledSpecifications;
 	
-	public NameManager() {
+	public TranslationManager() {
 		map = new HashMap<>();
 	}
 	
-	public NameManager(NameManager existing) {
+	public TranslationManager(TranslationManager existing) {
 		map = new HashMap<>();
 		map.putAll(existing.map);
 	}

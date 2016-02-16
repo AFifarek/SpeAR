@@ -20,8 +20,8 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected SpearGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_AtomicExpr_LeftParenthesisKeyword_10_0_a;
-	protected AbstractElementAlias match_AtomicExpr_LeftParenthesisKeyword_10_0_p;
+	protected AbstractElementAlias match_AtomicExpr_LeftParenthesisKeyword_11_0_a;
+	protected AbstractElementAlias match_AtomicExpr_LeftParenthesisKeyword_11_0_p;
 	protected AbstractElementAlias match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a;
 	protected AbstractElementAlias match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p;
 	protected AbstractElementAlias match_Definitions_ConstantsKeyword_4_0_q;
@@ -41,8 +41,8 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SpearGrammarAccess) access;
-		match_AtomicExpr_LeftParenthesisKeyword_10_0_a = new TokenAlias(true, true, grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_10_0());
-		match_AtomicExpr_LeftParenthesisKeyword_10_0_p = new TokenAlias(true, false, grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_10_0());
+		match_AtomicExpr_LeftParenthesisKeyword_11_0_a = new TokenAlias(true, true, grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_11_0());
+		match_AtomicExpr_LeftParenthesisKeyword_11_0_p = new TokenAlias(true, false, grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_11_0());
 		match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a = new TokenAlias(true, true, grammarAccess.getAtomicUnitExprAccess().getLeftParenthesisKeyword_1_0());
 		match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getAtomicUnitExprAccess().getLeftParenthesisKeyword_1_0());
 		match_Definitions_ConstantsKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getConstantsKeyword_4_0());
@@ -85,10 +85,10 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_AtomicExpr_LeftParenthesisKeyword_10_0_a.equals(syntax))
-				emit_AtomicExpr_LeftParenthesisKeyword_10_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AtomicExpr_LeftParenthesisKeyword_10_0_p.equals(syntax))
-				emit_AtomicExpr_LeftParenthesisKeyword_10_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_AtomicExpr_LeftParenthesisKeyword_11_0_a.equals(syntax))
+				emit_AtomicExpr_LeftParenthesisKeyword_11_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AtomicExpr_LeftParenthesisKeyword_11_0_p.equals(syntax))
+				emit_AtomicExpr_LeftParenthesisKeyword_11_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a.equals(syntax))
 				emit_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p.equals(syntax))
@@ -128,6 +128,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     '('*
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) '#' ids+=[IdRef|ID]
 	 *     (rule start) (ambiguity) 'after' after=Expr
 	 *     (rule start) (ambiguity) 'if' cond=Expr
 	 *     (rule start) (ambiguity) 'new' type=[ArrayTypeDef|ID]
@@ -156,7 +157,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {RecordAccessExpr.record=}
 	 *     (rule start) (ambiguity) {RecordUpdateExpr.record=}
 	 */
-	protected void emit_AtomicExpr_LeftParenthesisKeyword_10_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AtomicExpr_LeftParenthesisKeyword_11_0_a(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -181,7 +182,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {RecordAccessExpr.record=}
 	 *     (rule start) (ambiguity) {RecordUpdateExpr.record=}
 	 */
-	protected void emit_AtomicExpr_LeftParenthesisKeyword_10_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_AtomicExpr_LeftParenthesisKeyword_11_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

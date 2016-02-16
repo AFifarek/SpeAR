@@ -1345,6 +1345,30 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Expr returns TotalSpecificationCall
+	 *     ImpliesExpr returns TotalSpecificationCall
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
+	 *     OrExpr returns TotalSpecificationCall
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
+	 *     AndExpr returns TotalSpecificationCall
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
+	 *     TriggersExpr returns TotalSpecificationCall
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
+	 *     SinceExpr returns TotalSpecificationCall
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
+	 *     TemporalPrefixExpr returns TotalSpecificationCall
+	 *     RelationalExpr returns TotalSpecificationCall
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
+	 *     PlusExpr returns TotalSpecificationCall
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
+	 *     MultiplyExpr returns TotalSpecificationCall
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
+	 *     PrefixExpr returns TotalSpecificationCall
+	 *     AccessExpr returns TotalSpecificationCall
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns TotalSpecificationCall
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns TotalSpecificationCall
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns TotalSpecificationCall
+	 *     AtomicExpr returns TotalSpecificationCall
 	 *     UnusedExpr returns TotalSpecificationCall
 	 *
 	 * Constraint:
