@@ -33,6 +33,7 @@ import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
+import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PreviousExpr;
@@ -45,7 +46,6 @@ import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
-import com.rockwellcollins.spear.TotalSpecificationCall;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
@@ -159,6 +159,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.NAMED_UNIT_EXPR:
 				sequence_AtomicUnitExpr(context, (NamedUnitExpr) semanticObject); 
 				return; 
+			case SpearPackage.NORMALIZED_CALL:
+				sequence_UnusedExpr(context, (NormalizedCall) semanticObject); 
+				return; 
 			case SpearPackage.PATTERN:
 				sequence_Pattern(context, (Pattern) semanticObject); 
 				return; 
@@ -191,9 +194,6 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SpearPackage.SPECIFICATION_CALL:
 				sequence_AtomicExpr(context, (SpecificationCall) semanticObject); 
-				return; 
-			case SpearPackage.TOTAL_SPECIFICATION_CALL:
-				sequence_UnusedExpr(context, (TotalSpecificationCall) semanticObject); 
 				return; 
 			case SpearPackage.UNARY_EXPR:
 				sequence_PrefixExpr_TemporalPrefixExpr(context, (UnaryExpr) semanticObject); 
@@ -1345,36 +1345,36 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     Expr returns TotalSpecificationCall
-	 *     ImpliesExpr returns TotalSpecificationCall
-	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
-	 *     OrExpr returns TotalSpecificationCall
-	 *     OrExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
-	 *     AndExpr returns TotalSpecificationCall
-	 *     AndExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
-	 *     TriggersExpr returns TotalSpecificationCall
-	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
-	 *     SinceExpr returns TotalSpecificationCall
-	 *     SinceExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
-	 *     TemporalPrefixExpr returns TotalSpecificationCall
-	 *     RelationalExpr returns TotalSpecificationCall
-	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
-	 *     PlusExpr returns TotalSpecificationCall
-	 *     PlusExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
-	 *     MultiplyExpr returns TotalSpecificationCall
-	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns TotalSpecificationCall
-	 *     PrefixExpr returns TotalSpecificationCall
-	 *     AccessExpr returns TotalSpecificationCall
-	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns TotalSpecificationCall
-	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns TotalSpecificationCall
-	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns TotalSpecificationCall
-	 *     AtomicExpr returns TotalSpecificationCall
-	 *     UnusedExpr returns TotalSpecificationCall
+	 *     Expr returns NormalizedCall
+	 *     ImpliesExpr returns NormalizedCall
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
+	 *     OrExpr returns NormalizedCall
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
+	 *     AndExpr returns NormalizedCall
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
+	 *     TriggersExpr returns NormalizedCall
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
+	 *     SinceExpr returns NormalizedCall
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
+	 *     TemporalPrefixExpr returns NormalizedCall
+	 *     RelationalExpr returns NormalizedCall
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
+	 *     PlusExpr returns NormalizedCall
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
+	 *     MultiplyExpr returns NormalizedCall
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
+	 *     PrefixExpr returns NormalizedCall
+	 *     AccessExpr returns NormalizedCall
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns NormalizedCall
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns NormalizedCall
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns NormalizedCall
+	 *     AtomicExpr returns NormalizedCall
+	 *     UnusedExpr returns NormalizedCall
 	 *
 	 * Constraint:
 	 *     (ids+=[IdRef|ID] ids+=[IdRef|ID]* spec=[Specification|ID] args+=Expr args+=Expr*)
 	 */
-	protected void sequence_UnusedExpr(ISerializationContext context, TotalSpecificationCall semanticObject) {
+	protected void sequence_UnusedExpr(ISerializationContext context, NormalizedCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

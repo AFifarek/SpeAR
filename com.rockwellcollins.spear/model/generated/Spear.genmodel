@@ -187,10 +187,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//RealLiteral/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//RealLiteral/unit"/>
     </genClasses>
-    <genClasses ecoreClass="Spear.ecore#//TotalSpecificationCall">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//TotalSpecificationCall/ids"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//TotalSpecificationCall/spec"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//TotalSpecificationCall/args"/>
+    <genClasses ecoreClass="Spear.ecore#//NormalizedCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//NormalizedCall/ids"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//NormalizedCall/spec"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//NormalizedCall/args"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

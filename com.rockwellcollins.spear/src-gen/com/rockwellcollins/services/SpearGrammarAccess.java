@@ -2707,7 +2707,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	public class UnusedExprElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "com.rockwellcollins.Spear.UnusedExpr");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cTotalSpecificationCallAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cNormalizedCallAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cNumberSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cIdsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cIdsIdRefCrossReference_2_0 = (CrossReference)cIdsAssignment_2.eContents().get(0);
@@ -2734,16 +2734,16 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		
 		////this is a cute little hack to make processing easier on the translation to Lustre
 		//UnusedExpr Expr:
-		//	{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr
-		//	(',' args+=Expr)* ')'
+		//	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','
+		//	args+=Expr)* ')'
 		@Override public ParserRule getRule() { return rule; }
 
-		//{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','
+		//{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','
 		//args+=Expr)* ')'
 		public Group getGroup() { return cGroup; }
 
-		//{TotalSpecificationCall}
-		public Action getTotalSpecificationCallAction_0() { return cTotalSpecificationCallAction_0; }
+		//{NormalizedCall}
+		public Action getNormalizedCallAction_0() { return cNormalizedCallAction_0; }
 
 		//'#'
 		public Keyword getNumberSignKeyword_1() { return cNumberSignKeyword_1; }
@@ -3494,8 +3494,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 	////this is a cute little hack to make processing easier on the translation to Lustre
 	//UnusedExpr Expr:
-	//	{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr
-	//	(',' args+=Expr)* ')'
+	//	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (','
+	//	args+=Expr)* ')'
 	public UnusedExprElements getUnusedExprAccess() {
 		return pUnusedExpr;
 	}

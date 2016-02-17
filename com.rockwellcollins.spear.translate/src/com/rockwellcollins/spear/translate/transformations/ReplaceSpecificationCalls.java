@@ -7,10 +7,10 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.MIdExpr;
+import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
-import com.rockwellcollins.spear.TotalSpecificationCall;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
@@ -28,7 +28,7 @@ public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 		if (right instanceof SpecificationCall) {
 			SpecificationCall specificationCall = (SpecificationCall) right;
 			
-			TotalSpecificationCall replacement = f.createTotalSpecificationCall();
+			NormalizedCall replacement = f.createNormalizedCall();
 			replacement.setSpec(specificationCall.getSpec());
 			replacement.getArgs().addAll(specificationCall.getArgs());
 			

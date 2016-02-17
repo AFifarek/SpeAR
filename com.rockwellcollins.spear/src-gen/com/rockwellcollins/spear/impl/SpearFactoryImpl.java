@@ -116,7 +116,7 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.INT_LITERAL: return createIntLiteral();
       case SpearPackage.BOOL_LITERAL: return createBoolLiteral();
       case SpearPackage.REAL_LITERAL: return createRealLiteral();
-      case SpearPackage.TOTAL_SPECIFICATION_CALL: return createTotalSpecificationCall();
+      case SpearPackage.NORMALIZED_CALL: return createNormalizedCall();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -699,10 +699,10 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TotalSpecificationCall createTotalSpecificationCall()
+  public NormalizedCall createNormalizedCall()
   {
-    TotalSpecificationCallImpl totalSpecificationCall = new TotalSpecificationCallImpl();
-    return totalSpecificationCall;
+    NormalizedCallImpl normalizedCall = new NormalizedCallImpl();
+    return normalizedCall;
   }
 
   /**

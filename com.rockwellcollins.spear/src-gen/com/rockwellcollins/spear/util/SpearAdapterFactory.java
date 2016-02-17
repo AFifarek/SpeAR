@@ -335,9 +335,9 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createRealLiteralAdapter();
       }
       @Override
-      public Adapter caseTotalSpecificationCall(TotalSpecificationCall object)
+      public Adapter caseNormalizedCall(NormalizedCall object)
       {
-        return createTotalSpecificationCallAdapter();
+        return createNormalizedCallAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -1142,16 +1142,16 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.TotalSpecificationCall <em>Total Specification Call</em>}'.
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.NormalizedCall <em>Normalized Call</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.rockwellcollins.spear.TotalSpecificationCall
+   * @see com.rockwellcollins.spear.NormalizedCall
    * @generated
    */
-  public Adapter createTotalSpecificationCallAdapter()
+  public Adapter createNormalizedCallAdapter()
   {
     return null;
   }

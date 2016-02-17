@@ -479,11 +479,11 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SpearPackage.TOTAL_SPECIFICATION_CALL:
+      case SpearPackage.NORMALIZED_CALL:
       {
-        TotalSpecificationCall totalSpecificationCall = (TotalSpecificationCall)theEObject;
-        T result = caseTotalSpecificationCall(totalSpecificationCall);
-        if (result == null) result = caseExpr(totalSpecificationCall);
+        NormalizedCall normalizedCall = (NormalizedCall)theEObject;
+        T result = caseNormalizedCall(normalizedCall);
+        if (result == null) result = caseExpr(normalizedCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1324,17 +1324,17 @@ public class SpearSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Total Specification Call</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Normalized Call</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Total Specification Call</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Normalized Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTotalSpecificationCall(TotalSpecificationCall object)
+  public T caseNormalizedCall(NormalizedCall object)
   {
     return null;
   }

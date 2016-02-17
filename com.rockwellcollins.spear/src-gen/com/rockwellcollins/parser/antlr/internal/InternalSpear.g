@@ -4164,7 +4164,7 @@ ruleUnusedExpr returns [EObject current=null]
 ((
     {
         $current = forceCreateModelElement(
-            grammarAccess.getUnusedExprAccess().getTotalSpecificationCallAction_0(),
+            grammarAccess.getUnusedExprAccess().getNormalizedCallAction_0(),
             $current);
     }
 )	otherlv_1='#' 

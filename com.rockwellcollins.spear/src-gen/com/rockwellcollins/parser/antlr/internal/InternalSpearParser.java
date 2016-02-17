@@ -11330,7 +11330,7 @@ public class InternalSpearParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
                       current = forceCreateModelElement(
-                          grammarAccess.getUnusedExprAccess().getTotalSpecificationCallAction_0(),
+                          grammarAccess.getUnusedExprAccess().getNormalizedCallAction_0(),
                           current);
                   
             }

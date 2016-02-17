@@ -214,7 +214,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="unit" eType="#//UnitDef"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TotalSpecificationCall" eSuperTypes="#//Expr">
+  <eClassifiers xsi:type="ecore:EClass" name="NormalizedCall" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
         eType="#//IdRef"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="spec" eType="#//Specification"/>

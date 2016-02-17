@@ -12911,11 +12911,11 @@ rule__UnusedExpr__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getUnusedExprAccess().getTotalSpecificationCallAction_0()); }
+{ before(grammarAccess.getUnusedExprAccess().getNormalizedCallAction_0()); }
 (
 
 )
-{ after(grammarAccess.getUnusedExprAccess().getTotalSpecificationCallAction_0()); }
+{ after(grammarAccess.getUnusedExprAccess().getNormalizedCallAction_0()); }
 )
 
 ;

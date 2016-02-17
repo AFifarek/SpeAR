@@ -36307,7 +36307,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12914:1: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnusedExprAccess().getTotalSpecificationCallAction_0()); 
+               before(grammarAccess.getUnusedExprAccess().getNormalizedCallAction_0()); 
             }
             // InternalSpear.g:12915:1: ()
             // InternalSpear.g:12917:1: 
@@ -36315,7 +36315,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnusedExprAccess().getTotalSpecificationCallAction_0()); 
+               after(grammarAccess.getUnusedExprAccess().getNormalizedCallAction_0()); 
             }
 
             }

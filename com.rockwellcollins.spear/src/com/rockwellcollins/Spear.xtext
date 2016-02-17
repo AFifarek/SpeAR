@@ -171,7 +171,7 @@ LiteralExpr:
 
 	//this is a cute little hack to make processing easier on the translation to Lustre
 UnusedExpr returns Expr:
-	{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')';
+	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')';
 
 IdRef:
 	Variable

@@ -2008,14 +2008,14 @@ public interface SpearPackage extends EPackage
   int REAL_LITERAL_FEATURE_COUNT = LITERAL_EXPR_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link com.rockwellcollins.spear.impl.TotalSpecificationCallImpl <em>Total Specification Call</em>}' class.
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.NormalizedCallImpl <em>Normalized Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see com.rockwellcollins.spear.impl.TotalSpecificationCallImpl
-   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getTotalSpecificationCall()
+   * @see com.rockwellcollins.spear.impl.NormalizedCallImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getNormalizedCall()
    * @generated
    */
-  int TOTAL_SPECIFICATION_CALL = 52;
+  int NORMALIZED_CALL = 52;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -2024,7 +2024,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TOTAL_SPECIFICATION_CALL__IDS = EXPR_FEATURE_COUNT + 0;
+  int NORMALIZED_CALL__IDS = EXPR_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Spec</b></em>' reference.
@@ -2033,7 +2033,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TOTAL_SPECIFICATION_CALL__SPEC = EXPR_FEATURE_COUNT + 1;
+  int NORMALIZED_CALL__SPEC = EXPR_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Args</b></em>' containment reference list.
@@ -2042,16 +2042,16 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TOTAL_SPECIFICATION_CALL__ARGS = EXPR_FEATURE_COUNT + 2;
+  int NORMALIZED_CALL__ARGS = EXPR_FEATURE_COUNT + 2;
 
   /**
-   * The number of structural features of the '<em>Total Specification Call</em>' class.
+   * The number of structural features of the '<em>Normalized Call</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TOTAL_SPECIFICATION_CALL_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
+  int NORMALIZED_CALL_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
 
 
   /**
@@ -3510,47 +3510,47 @@ public interface SpearPackage extends EPackage
   EReference getRealLiteral_Unit();
 
   /**
-   * Returns the meta object for class '{@link com.rockwellcollins.spear.TotalSpecificationCall <em>Total Specification Call</em>}'.
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.NormalizedCall <em>Normalized Call</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Total Specification Call</em>'.
-   * @see com.rockwellcollins.spear.TotalSpecificationCall
+   * @return the meta object for class '<em>Normalized Call</em>'.
+   * @see com.rockwellcollins.spear.NormalizedCall
    * @generated
    */
-  EClass getTotalSpecificationCall();
+  EClass getNormalizedCall();
 
   /**
-   * Returns the meta object for the reference list '{@link com.rockwellcollins.spear.TotalSpecificationCall#getIds <em>Ids</em>}'.
+   * Returns the meta object for the reference list '{@link com.rockwellcollins.spear.NormalizedCall#getIds <em>Ids</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference list '<em>Ids</em>'.
-   * @see com.rockwellcollins.spear.TotalSpecificationCall#getIds()
-   * @see #getTotalSpecificationCall()
+   * @see com.rockwellcollins.spear.NormalizedCall#getIds()
+   * @see #getNormalizedCall()
    * @generated
    */
-  EReference getTotalSpecificationCall_Ids();
+  EReference getNormalizedCall_Ids();
 
   /**
-   * Returns the meta object for the reference '{@link com.rockwellcollins.spear.TotalSpecificationCall#getSpec <em>Spec</em>}'.
+   * Returns the meta object for the reference '{@link com.rockwellcollins.spear.NormalizedCall#getSpec <em>Spec</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Spec</em>'.
-   * @see com.rockwellcollins.spear.TotalSpecificationCall#getSpec()
-   * @see #getTotalSpecificationCall()
+   * @see com.rockwellcollins.spear.NormalizedCall#getSpec()
+   * @see #getNormalizedCall()
    * @generated
    */
-  EReference getTotalSpecificationCall_Spec();
+  EReference getNormalizedCall_Spec();
 
   /**
-   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.TotalSpecificationCall#getArgs <em>Args</em>}'.
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.NormalizedCall#getArgs <em>Args</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Args</em>'.
-   * @see com.rockwellcollins.spear.TotalSpecificationCall#getArgs()
-   * @see #getTotalSpecificationCall()
+   * @see com.rockwellcollins.spear.NormalizedCall#getArgs()
+   * @see #getNormalizedCall()
    * @generated
    */
-  EReference getTotalSpecificationCall_Args();
+  EReference getNormalizedCall_Args();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -4776,14 +4776,14 @@ public interface SpearPackage extends EPackage
     EReference REAL_LITERAL__UNIT = eINSTANCE.getRealLiteral_Unit();
 
     /**
-     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.TotalSpecificationCallImpl <em>Total Specification Call</em>}' class.
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.NormalizedCallImpl <em>Normalized Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see com.rockwellcollins.spear.impl.TotalSpecificationCallImpl
-     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getTotalSpecificationCall()
+     * @see com.rockwellcollins.spear.impl.NormalizedCallImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getNormalizedCall()
      * @generated
      */
-    EClass TOTAL_SPECIFICATION_CALL = eINSTANCE.getTotalSpecificationCall();
+    EClass NORMALIZED_CALL = eINSTANCE.getNormalizedCall();
 
     /**
      * The meta object literal for the '<em><b>Ids</b></em>' reference list feature.
@@ -4791,7 +4791,7 @@ public interface SpearPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TOTAL_SPECIFICATION_CALL__IDS = eINSTANCE.getTotalSpecificationCall_Ids();
+    EReference NORMALIZED_CALL__IDS = eINSTANCE.getNormalizedCall_Ids();
 
     /**
      * The meta object literal for the '<em><b>Spec</b></em>' reference feature.
@@ -4799,7 +4799,7 @@ public interface SpearPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TOTAL_SPECIFICATION_CALL__SPEC = eINSTANCE.getTotalSpecificationCall_Spec();
+    EReference NORMALIZED_CALL__SPEC = eINSTANCE.getNormalizedCall_Spec();
 
     /**
      * The meta object literal for the '<em><b>Args</b></em>' containment reference list feature.
@@ -4807,7 +4807,7 @@ public interface SpearPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference TOTAL_SPECIFICATION_CALL__ARGS = eINSTANCE.getTotalSpecificationCall_Args();
+    EReference NORMALIZED_CALL__ARGS = eINSTANCE.getNormalizedCall_Args();
 
   }
 
