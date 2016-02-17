@@ -2265,11 +2265,11 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cArgsAssignment_9_5_1 = (Assignment)cGroup_9_5.eContents().get(1);
 		private final RuleCall cArgsExprParserRuleCall_9_5_1_0 = (RuleCall)cArgsAssignment_9_5_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_9_6 = (Keyword)cGroup_9.eContents().get(6);
-		private final RuleCall cUnusedExprParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
-		private final Group cGroup_11 = (Group)cAlternatives.eContents().get(11);
-		private final Keyword cLeftParenthesisKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
-		private final RuleCall cExprParserRuleCall_11_1 = (RuleCall)cGroup_11.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_11_2 = (Keyword)cGroup_11.eContents().get(2);
+		private final Group cGroup_10 = (Group)cAlternatives.eContents().get(10);
+		private final Keyword cLeftParenthesisKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final RuleCall cExprParserRuleCall_10_1 = (RuleCall)cGroup_10.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_10_2 = (Keyword)cGroup_10.eContents().get(2);
+		private final RuleCall cUnusedExprParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
 		
 		//AtomicExpr Expr:
 		//	LiteralExpr
@@ -2281,8 +2281,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 		//	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
 		//	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
-		//	| UnusedExpr
 		//	| '(' Expr ')'
+		//	| UnusedExpr
 		@Override public ParserRule getRule() { return rule; }
 
 		//LiteralExpr | {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' | {IfThenElseExpr} 'if' cond=Expr
@@ -2290,7 +2290,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//'while' cond=Expr 'then' then=Expr | {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (','
 		//fieldExprs+=FieldExpr)* '}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']' |
 		//{PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec'
-		//spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')' | UnusedExpr | '(' Expr ')'
+		//spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')' | '(' Expr ')' | UnusedExpr
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LiteralExpr
@@ -2602,20 +2602,20 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//')'
 		public Keyword getRightParenthesisKeyword_9_6() { return cRightParenthesisKeyword_9_6; }
 
-		//UnusedExpr
-		public RuleCall getUnusedExprParserRuleCall_10() { return cUnusedExprParserRuleCall_10; }
-
 		//'(' Expr ')'
-		public Group getGroup_11() { return cGroup_11; }
+		public Group getGroup_10() { return cGroup_10; }
 
 		//'('
-		public Keyword getLeftParenthesisKeyword_11_0() { return cLeftParenthesisKeyword_11_0; }
+		public Keyword getLeftParenthesisKeyword_10_0() { return cLeftParenthesisKeyword_10_0; }
 
 		//Expr
-		public RuleCall getExprParserRuleCall_11_1() { return cExprParserRuleCall_11_1; }
+		public RuleCall getExprParserRuleCall_10_1() { return cExprParserRuleCall_10_1; }
 
 		//')'
-		public Keyword getRightParenthesisKeyword_11_2() { return cRightParenthesisKeyword_11_2; }
+		public Keyword getRightParenthesisKeyword_10_2() { return cRightParenthesisKeyword_10_2; }
+
+		//UnusedExpr
+		public RuleCall getUnusedExprParserRuleCall_11() { return cUnusedExprParserRuleCall_11; }
 	}
 
 	public class LiteralExprElements extends AbstractParserRuleElementFinder {
@@ -2732,6 +2732,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cArgsExprParserRuleCall_10_1_0 = (RuleCall)cArgsAssignment_10_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
+		////this is a cute little hack to make processing easier on the translation to Lustre
 		//UnusedExpr Expr:
 		//	{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr
 		//	(',' args+=Expr)* ')'
@@ -3469,8 +3470,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	//	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 	//	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
 	//	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
-	//	| UnusedExpr
 	//	| '(' Expr ')'
+	//	| UnusedExpr
 	public AtomicExprElements getAtomicExprAccess() {
 		return pAtomicExpr;
 	}
@@ -3491,6 +3492,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		return getLiteralExprAccess().getRule();
 	}
 
+	////this is a cute little hack to make processing easier on the translation to Lustre
 	//UnusedExpr Expr:
 	//	{TotalSpecificationCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr
 	//	(',' args+=Expr)* ')'

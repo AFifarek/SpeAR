@@ -41,7 +41,7 @@ public class SpearNode extends SpearAst {
 
 	public Specification sourceSpecification;
 
-	private TranslationManager naming;
+	private Manager naming;
 	private static final String SHADOW_SUFFIX = "SHADOW";
 	private static final String CONJUNCT_ID = "CONJUNCT";
 	private static final String HISTORICAL_CONJUNCT_ID = "HISTORICAL_CONJUNCT";
@@ -186,8 +186,8 @@ public class SpearNode extends SpearAst {
 				new NodeCallExpr("historically", new IdExpr(naming.lookup(CONJUNCT_ID))));
 	}
 
-	public Node getBaseLustre(TranslationManager globalNaming) {
-		naming = new TranslationManager(globalNaming);
+	public Node getBaseLustre(Manager globalNaming) {
+		naming = new Manager(globalNaming);
 		NodeBuilder node = new NodeBuilder(name);
 		// inputs are true inputs and shadow vars for outputs and state
 		node.addInputs(processVariables(inputs));

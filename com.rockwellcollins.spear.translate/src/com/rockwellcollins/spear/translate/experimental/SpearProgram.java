@@ -46,10 +46,10 @@ public class SpearProgram extends SpearAst {
 	public List<SpearNode> called_specifications = new ArrayList<>();
 	public SpearNode main;
 	
-	private TranslationManager naming;
+	private Manager naming;
 
 	public SpearProgram(Specification s) {
-		naming = new TranslationManager();
+		naming = new Manager();
 		Map<EObject, EObject> references = GetReferences.getReferences(s);
 		for (TypeDef typedef : s.getTypedefs()) {
 			typedefs.add(new SpearTypeDef(typedef,s));
@@ -138,7 +138,7 @@ public class SpearProgram extends SpearAst {
 
 	public Program logicalCheck() {
 		ProgramBuilder program = new ProgramBuilder();
-		naming = new TranslationManager();
+		naming = new Manager();
 		program.addNodes(addHelperNodes());
 		program.addTypes(processTypeDefs());
 		program.addConstants(processConstants());
@@ -150,7 +150,7 @@ public class SpearProgram extends SpearAst {
 	
 	public Program consistencyCheck() {
 		ProgramBuilder program = new ProgramBuilder();
-		naming = new TranslationManager();
+		naming = new Manager();
 		program.addNodes(addHelperNodes());
 		program.addTypes(processTypeDefs());
 		program.addConstants(processConstants());

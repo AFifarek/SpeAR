@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.rockwellcollins.spear.translate.experimental.TranslationManager;
+import com.rockwellcollins.spear.translate.experimental.Manager;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -33,13 +33,13 @@ import jkind.lustre.UnaryOp;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
-	public static Expr translate(com.rockwellcollins.spear.Expr e, TranslationManager naming) {
+	public static Expr translate(com.rockwellcollins.spear.Expr e, Manager naming) {
 		return new TranslateExpr(naming).doSwitch(e);
 	}
 
-	private TranslationManager naming;
+	private Manager naming;
 
-	public TranslateExpr(TranslationManager naming) {
+	public TranslateExpr(Manager naming) {
 		this.naming=naming;
 	}
 	
