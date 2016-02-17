@@ -14,7 +14,7 @@ import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.translate.lustre.HelperNodes;
 import com.rockwellcollins.spear.translate.lustre.TranslateDecl;
-import com.rockwellcollins.spear.translate.transformations.GetReferences;
+import com.rockwellcollins.spear.translate.transformations.ReferenceFinder;
 
 import jkind.lustre.Node;
 import jkind.lustre.Program;
@@ -27,11 +27,12 @@ public class SpearProgram extends SpearAst {
 		SpearProgram spearProgram = new SpearProgram(s);
 		return spearProgram.logicalCheck();
 	}
-	
+
 	public static Program translateConsistencyCheck(Specification s) {
 		SpearProgram spearProgram = new SpearProgram(s);
 		return spearProgram.consistencyCheck();
 	}
+
 	/*
 	 * Each of these maps has the object of interest (in the keyset) and the
 	 * object it was derived from.
@@ -45,17 +46,17 @@ public class SpearProgram extends SpearAst {
 	public List<SpearConstant> constants = new ArrayList<>();
 	public List<SpearNode> called_specifications = new ArrayList<>();
 	public SpearNode main;
-	
+
 	private Naming naming;
 
 	public SpearProgram(Specification s) {
-		Map<EObject, EObject> references = GetReferences.getReferences(s);
+		Map<EObject, EObject> references = ReferenceFinder.getReferences(s);
 		for (TypeDef typedef : s.getTypedefs()) {
-			typedefs.add(new SpearTypeDef(typedef,s));
+			typedefs.add(new SpearTypeDef(typedef, s));
 		}
 
 		for (Constant constant : s.getConstants()) {
-			constants.add(new SpearConstant(constant,s));
+			constants.add(new SpearConstant(constant, s));
 		}
 
 		for (EObject o : references.keySet()) {
@@ -75,10 +76,10 @@ public class SpearProgram extends SpearAst {
 		}
 		main = new SpearNode(s);
 	}
-	
+
 	private List<Node> addHelperNodes() {
 		List<Node> nodes = new ArrayList<>();
-		for(Node n : HelperNodes.getPLTL()) {
+		for (Node n : HelperNodes.getPLTL()) {
 			NodeBuilder node = new NodeBuilder(n);
 			String renamed = naming.getUniqueNameAndRegister(n.id);
 			node.setId(renamed);
@@ -86,52 +87,54 @@ public class SpearProgram extends SpearAst {
 		}
 		return nodes;
 	}
-	
+
 	private String prependSpecName(SpearTypeDef spearTypeDef) {
 		if (spearTypeDef.root instanceof Specification) {
 			Specification s = (Specification) spearTypeDef.root;
 			return s.getName() + "_" + spearTypeDef.typedef.getName();
 		}
-		
+
 		if (spearTypeDef.root instanceof Definitions) {
 			Definitions definitions = (Definitions) spearTypeDef.root;
 			return definitions.getName() + "_" + spearTypeDef.typedef.getName();
 		}
-		
+
 		throw new RuntimeException("Root object should be a specification or definitions file.");
 	}
-	
+
 	private List<jkind.lustre.TypeDef> processTypeDefs() {
 		List<jkind.lustre.TypeDef> typedefs = new ArrayList<>();
-		for(SpearTypeDef spearTypeDef : this.typedefs) {
+		for (SpearTypeDef spearTypeDef : this.typedefs) {
 			String proposed = prependSpecName(spearTypeDef);
-			//I'm aware that we're depending on side conditions here, hence the suppression.
+			// I'm aware that we're depending on side conditions here, hence the
+			// suppression.
 			@SuppressWarnings("unused")
 			String renamed = naming.getUniqueNameAndRegister(proposed);
 			typedefs.add((jkind.lustre.TypeDef) TranslateDecl.translate(spearTypeDef.typedef, naming));
 		}
 		return typedefs;
 	}
-	
+
 	private String prependSpecName(SpearConstant spearConstant) {
 		if (spearConstant.root instanceof Specification) {
 			Specification s = (Specification) spearConstant.root;
 			return s.getName() + "_" + spearConstant.constant.getName();
 		}
-		
+
 		if (spearConstant.root instanceof Definitions) {
 			Definitions definitions = (Definitions) spearConstant.root;
 			return definitions.getName() + "_" + spearConstant.constant.getName();
 		}
-		
+
 		throw new RuntimeException("Root object should be a specification or definitions file.");
 	}
-	
+
 	private List<jkind.lustre.Constant> processConstants() {
 		List<jkind.lustre.Constant> constants = new ArrayList<>();
-		for(SpearConstant spearConstant : this.constants) {
+		for (SpearConstant spearConstant : this.constants) {
 			String proposed = prependSpecName(spearConstant);
-			//I'm aware that we're depending on side conditions here, hence the suppression.
+			// I'm aware that we're depending on side conditions here, hence the
+			// suppression.
 			@SuppressWarnings("unused")
 			String renamed = naming.getUniqueNameAndRegister(proposed);
 			constants.add((jkind.lustre.Constant) TranslateDecl.translate(spearConstant.constant, naming));
@@ -145,20 +148,20 @@ public class SpearProgram extends SpearAst {
 		program.addNodes(addHelperNodes());
 		program.addTypes(processTypeDefs());
 		program.addConstants(processConstants());
-		//program.addNodes(processCalledSpecs());
+		// program.addNodes(processCalledSpecs());
 		Node mainNode = main.getLogicalEntailmentModel(naming);
 		program.addNode(mainNode);
 		program.setMain(mainNode.id);
 		return program.build();
 	}
-	
+
 	public Program consistencyCheck() {
 		ProgramBuilder program = new ProgramBuilder();
 		naming = new Naming();
 		program.addNodes(addHelperNodes());
 		program.addTypes(processTypeDefs());
 		program.addConstants(processConstants());
-		//program.addNodes(processCalledSpecs());
+		// program.addNodes(processCalledSpecs());
 		Node mainNode = main.getLogicalConsistencyModel(naming);
 		program.addNode(mainNode);
 		program.setMain(mainNode.id);

@@ -34,6 +34,7 @@ import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.experimental.SpearProgram;
+import com.rockwellcollins.spear.translate.intermediate.SProgram;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
@@ -86,6 +87,8 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				Specification workingCopy = EcoreUtil2.copy(specification);
 				PerformTransforms.apply(workingCopy, state);
 
+				SProgram sp = new SProgram(workingCopy);
+				
 				// translate to Lustre
 				Program p = SpearProgram.translateConsistencyCheck(workingCopy);
 				URI lustreURI = createURI(state.getURI(), "", "lus");

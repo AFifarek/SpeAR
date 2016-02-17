@@ -11,3 +11,6 @@ Require-Bundle: org.eclipse.ui.workbench,
  com.rockwellcollins.spear.ui,
  org.eclipse.xtext.ui,
  org.eclipse.emf.ecore
+Bundle-ClassPath: dependencies/commons-collections4-4.1.jar,
+ dependencies/commons-lang3-3.4.jar,
+ .

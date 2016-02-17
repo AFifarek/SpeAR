@@ -1,7 +1,7 @@
 package com.rockwellcollins.spear.translate.experimental;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.apache.commons.collections4.BidiMap;
+import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 
 /**
  * This class manages the various aspects of the SpeAR to Lustre translation.
@@ -10,14 +10,15 @@ import java.util.Map;
  */
 public class Naming {
 
-	private Map<String,String> map;
+	//this needs to be reimplemented.
+	private BidiMap<String,String> map = new DualHashBidiMap<>();
 	
 	public Naming() {
-		map = new HashMap<>();
+		map = new DualHashBidiMap<>();
 	}
 	
 	public Naming(Naming existing) {
-		map = new HashMap<>();
+		map = new DualHashBidiMap<>();
 		map.putAll(existing.map);
 	}
 	
@@ -32,7 +33,7 @@ public class Naming {
 	}
 	
 	private void register(String original, String renamed) {
-		map.put(original, renamed);
+		map.put(renamed, original);
 	}
 	
 	public String getUniqueNameAndRegister(String original) {
@@ -42,6 +43,6 @@ public class Naming {
 	}
 	
 	public String lookup(String original) {
-		return map.get(original);
+		return map.inverseBidiMap().get(original);
 	}
 }
