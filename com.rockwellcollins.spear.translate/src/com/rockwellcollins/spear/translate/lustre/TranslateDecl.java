@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.FieldType;
-import com.rockwellcollins.spear.translate.experimental.Manager;
+import com.rockwellcollins.spear.translate.experimental.Naming;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Ast;
@@ -22,13 +22,13 @@ import jkind.lustre.VarDecl;
 
 public class TranslateDecl extends SpearSwitch<Ast> {
 
-	public static Ast translate(EObject o, Manager naming) {
+	public static Ast translate(EObject o, Naming naming) {
 		return new TranslateDecl(naming).doSwitch(o);
 	}
 	
-	private Manager naming;
+	private Naming naming;
 	
-	private TranslateDecl(Manager naming) {
+	private TranslateDecl(Naming naming) {
 		this.naming=naming;
 	}
 	

@@ -3,23 +3,20 @@ package com.rockwellcollins.spear.translate.experimental;
 import java.util.HashMap;
 import java.util.Map;
 
-import jkind.lustre.Node;
-
 /**
  * This class manages the various aspects of the SpeAR to Lustre translation.
  * @author lgwagner
  *
  */
-public class Manager {
+public class Naming {
 
 	private Map<String,String> map;
-	private Map<String,Node> calledSpecifications;
 	
-	public Manager() {
+	public Naming() {
 		map = new HashMap<>();
 	}
 	
-	public Manager(Manager existing) {
+	public Naming(Naming existing) {
 		map = new HashMap<>();
 		map.putAll(existing.map);
 	}

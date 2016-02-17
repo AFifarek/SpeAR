@@ -46,10 +46,9 @@ public class SpearProgram extends SpearAst {
 	public List<SpearNode> called_specifications = new ArrayList<>();
 	public SpearNode main;
 	
-	private Manager naming;
+	private Naming naming;
 
 	public SpearProgram(Specification s) {
-		naming = new Manager();
 		Map<EObject, EObject> references = GetReferences.getReferences(s);
 		for (TypeDef typedef : s.getTypedefs()) {
 			typedefs.add(new SpearTypeDef(typedef,s));
@@ -106,6 +105,8 @@ public class SpearProgram extends SpearAst {
 		List<jkind.lustre.TypeDef> typedefs = new ArrayList<>();
 		for(SpearTypeDef spearTypeDef : this.typedefs) {
 			String proposed = prependSpecName(spearTypeDef);
+			//I'm aware that we're depending on side conditions here, hence the suppression.
+			@SuppressWarnings("unused")
 			String renamed = naming.getUniqueNameAndRegister(proposed);
 			typedefs.add((jkind.lustre.TypeDef) TranslateDecl.translate(spearTypeDef.typedef, naming));
 		}
@@ -130,6 +131,8 @@ public class SpearProgram extends SpearAst {
 		List<jkind.lustre.Constant> constants = new ArrayList<>();
 		for(SpearConstant spearConstant : this.constants) {
 			String proposed = prependSpecName(spearConstant);
+			//I'm aware that we're depending on side conditions here, hence the suppression.
+			@SuppressWarnings("unused")
 			String renamed = naming.getUniqueNameAndRegister(proposed);
 			constants.add((jkind.lustre.Constant) TranslateDecl.translate(spearConstant.constant, naming));
 		}
@@ -138,25 +141,27 @@ public class SpearProgram extends SpearAst {
 
 	public Program logicalCheck() {
 		ProgramBuilder program = new ProgramBuilder();
-		naming = new Manager();
+		naming = new Naming();
 		program.addNodes(addHelperNodes());
 		program.addTypes(processTypeDefs());
 		program.addConstants(processConstants());
 		//program.addNodes(processCalledSpecs());
-		Node mainNode = main.getBaseLustre(naming);
-		program.addNode(main.addLogicalProperties(mainNode));
+		Node mainNode = main.getLogicalEntailmentModel(naming);
+		program.addNode(mainNode);
+		program.setMain(mainNode.id);
 		return program.build();
 	}
 	
 	public Program consistencyCheck() {
 		ProgramBuilder program = new ProgramBuilder();
-		naming = new Manager();
+		naming = new Naming();
 		program.addNodes(addHelperNodes());
 		program.addTypes(processTypeDefs());
 		program.addConstants(processConstants());
 		//program.addNodes(processCalledSpecs());
-		Node mainNode = main.getBaseLustre(naming);
-		program.addNode(main.addConsistencyProperties(mainNode));
+		Node mainNode = main.getLogicalConsistencyModel(naming);
+		program.addNode(mainNode);
+		program.setMain(mainNode.id);
 		return program.build();
 	}
 }

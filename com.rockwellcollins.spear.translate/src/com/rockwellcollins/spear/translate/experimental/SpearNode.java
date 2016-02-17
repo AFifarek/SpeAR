@@ -41,7 +41,7 @@ public class SpearNode extends SpearAst {
 
 	public Specification sourceSpecification;
 
-	private Manager naming;
+	private Naming naming;
 	private static final String SHADOW_SUFFIX = "SHADOW";
 	private static final String CONJUNCT_ID = "CONJUNCT";
 	private static final String HISTORICAL_CONJUNCT_ID = "HISTORICAL_CONJUNCT";
@@ -186,8 +186,7 @@ public class SpearNode extends SpearAst {
 				new NodeCallExpr("historically", new IdExpr(naming.lookup(CONJUNCT_ID))));
 	}
 
-	public Node getBaseLustre(Manager globalNaming) {
-		naming = new Manager(globalNaming);
+	private NodeBuilder getBaseLustre() {
 		NodeBuilder node = new NodeBuilder(name);
 		// inputs are true inputs and shadow vars for outputs and state
 		node.addInputs(processVariables(inputs));
@@ -220,7 +219,7 @@ public class SpearNode extends SpearAst {
 		node.addEquation(getConjunctEquation());
 		node.addEquation(addHistoricalConjuctEquation());
 
-		return node.build();
+		return node;
 	}
 
 	private List<String> getBehaviorProperties() {
@@ -231,10 +230,11 @@ public class SpearNode extends SpearAst {
 		return properties;
 	}
 
-	public Node addLogicalProperties(Node base) {
-		NodeBuilder node = new NodeBuilder(base);
-		node.addProperties(getBehaviorProperties());
-		return node.build();
+	public Node getLogicalEntailmentModel(Naming current) {
+		naming = new Naming(current);
+		NodeBuilder builder = this.getBaseLustre();
+		builder.addProperties(getBehaviorProperties());
+		return builder.build();
 	}
 
 	private VarDecl getCounterVarDecl() {
@@ -276,8 +276,9 @@ public class SpearNode extends SpearAst {
 		return supports;
 	}
 
-	public Node addConsistencyProperties(Node base) {
-		NodeBuilder node = new NodeBuilder(base);
+	public Node getLogicalConsistencyModel(Naming current) {
+		naming = new Naming(current);
+		NodeBuilder node = this.getBaseLustre();
 		node.addLocal(getCounterVarDecl());
 		node.addLocal(getConsistencyVarDecl());
 		node.addEquation(getCounterEquation());
