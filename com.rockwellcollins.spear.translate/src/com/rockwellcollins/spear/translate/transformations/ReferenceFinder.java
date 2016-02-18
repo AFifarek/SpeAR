@@ -36,7 +36,6 @@ public class ReferenceFinder extends SpearSwitch<Void> {
 	
 	public Collection<TypeDef> typedefs = new HashSet<>();
 	public Collection<Constant> constants = new HashSet<>();
-	public Collection<Specification> specifications = new HashSet<>();
 	
 	@Override
 	public Void caseTypeDef(TypeDef td) {
@@ -47,12 +46,6 @@ public class ReferenceFinder extends SpearSwitch<Void> {
 	@Override
 	public Void caseConstant(Constant c) {
 		constants.add(c);
-		return null;
-	}
-	
-	@Override
-	public Void caseSpecification(Specification s) {
-		specifications.add(s);
 		return null;
 	}
 	

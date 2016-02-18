@@ -27,6 +27,7 @@ public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 		
 		if (right instanceof SpecificationCall) {
 			SpecificationCall specificationCall = (SpecificationCall) right;
+			this.doSwitch(specificationCall.getSpec());
 			
 			NormalizedCall replacement = f.createNormalizedCall();
 			replacement.setSpec(specificationCall.getSpec());

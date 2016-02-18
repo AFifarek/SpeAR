@@ -4,6 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.translate.experimental.Naming;
+import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
+import com.rockwellcollins.spear.translate.lustre.TranslateType;
+
+import jkind.lustre.Ast;
+import jkind.lustre.Expr;
+import jkind.lustre.IdExpr;
+import jkind.lustre.LustreUtil;
+import jkind.lustre.Type;
+import jkind.lustre.VarDecl;
 
 public class SMacro extends SAst {
 
@@ -21,6 +31,16 @@ public class SMacro extends SAst {
 	public SMacro(Macro m, SNode context) {
 		this.macro = m;
 		this.name = context.scope.getUniqueNameAndRegister(m.getName());
+	}
+	
+	public Ast getVarDecl(Naming naming) {
+		Type t = TranslateType.translate(macro.getType(), naming);
+		return new VarDecl(name,t);	
+	}
+	
+	public Ast getEquation(Naming naming) {
+		Expr e = TranslateExpr.translate(macro.getExpr(), naming);
+		return LustreUtil.eq(new IdExpr(name), e);
 	}
 	
 	@Override

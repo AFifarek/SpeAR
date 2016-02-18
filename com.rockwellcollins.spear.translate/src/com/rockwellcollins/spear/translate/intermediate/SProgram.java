@@ -25,9 +25,7 @@ public class SProgram extends SAst {
 		ReferenceFinder finder = ReferenceFinder.get(s);
 		typedefs.addAll(STypeDef.convertList(finder.typedefs, this));
 		constants.addAll(SConstant.convertList(finder.constants, this));
-		calledNodes.addAll(SNode.convertList(finder.specifications, this, true));
-		
-		main = new SNode(s, this, false);
+		main = new SNode(s, this);
 	}
 
 	@Override

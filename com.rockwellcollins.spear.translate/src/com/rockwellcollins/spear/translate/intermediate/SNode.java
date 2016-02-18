@@ -17,16 +17,15 @@ import com.rockwellcollins.spear.translate.experimental.Naming;
 
 public class SNode extends SAst {
 
-	public static Set<SNode> convertList(Collection<Specification> list, SProgram context, boolean called) {
+	public static Set<SNode> convertList(Collection<Specification> list, SProgram context) {
 		Set<SNode> converted = new HashSet<>();
 		for(Specification s : list) {
-			converted.add(new SNode(s,context,called));
+			converted.add(new SNode(s,context));
 		}
 		return converted;
 	}
 	
 	private String name;
-	private boolean called;
 	
 	protected Naming scope;
 	
@@ -40,19 +39,17 @@ public class SNode extends SAst {
 	
 	public Map<NormalizedCall,SNode> calls = new HashMap<>();
 	
-	public SNode(Specification s, SProgram program, boolean called) {
+	public SNode(Specification s, SProgram program) {
 		//capture the name in the Program context
 		this.name = program.scope.getUniqueNameAndRegister(s.getName());
-		this.called = called;
 		
-		if(!this.called) {
-			//process the global stuff first
-			program.typedefs.addAll(STypeDef.convertList(s.getTypedefs(), program));
-			program.constants.addAll(SConstant.convertList(s.getConstants(), program));
-		}
+		//process the global stuff first
+		program.typedefs.addAll(STypeDef.convertList(s.getTypedefs(), program));
+		program.constants.addAll(SConstant.convertList(s.getConstants(), program));
 		
 		for(NormalizedCall call : EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)) {
-			SNode calledNode = new SNode(call.getSpec(), program, true);
+			SNode calledNode = new SNode(call.getSpec(), program);
+			program.calledNodes.add(calledNode);
 			calls.put(call, calledNode);
 		}
 
