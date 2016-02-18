@@ -6,26 +6,26 @@ import com.rockwellcollins.spear.BoolType;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.UserType;
-import com.rockwellcollins.spear.translate.experimental.Naming;
+import com.rockwellcollins.spear.translate.intermediate.SContextElement;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Type;
 
 public class TranslateType extends SpearSwitch<Type> {
 
-	public static Type translate(com.rockwellcollins.spear.Type t, Naming naming) {
-		return new TranslateType(naming).doSwitch(t);
+	public static Type translate(com.rockwellcollins.spear.Type t, SContextElement context) {
+		return new TranslateType(context).doSwitch(t);
 	}
 	
-	private Naming naming;
+	private SContextElement context;
 
-	public TranslateType(Naming naming) {
-		this.naming = naming;
+	public TranslateType(SContextElement context) {
+		this.context = context;
 	}
 	
 	@Override
 	public Type caseUserType(UserType ut) {
-		String name = naming.lookup(ut.getDef().getName());
+		String name = context.scope.lookup(ut.getDef().getName());
 		return new jkind.lustre.NamedType(name);
 	}
 		

@@ -33,7 +33,6 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.experimental.SpearProgram;
 import com.rockwellcollins.spear.translate.intermediate.SProgram;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
@@ -86,11 +85,9 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				
 				Specification workingCopy = EcoreUtil2.copy(specification);
 				PerformTransforms.apply(workingCopy, state);
-
-				SProgram sp = new SProgram(workingCopy);
 				
 				// translate to Lustre
-				Program p = SpearProgram.translateConsistencyCheck(workingCopy);
+				Program p = new SProgram(workingCopy).getLogicalEntailment();
 				URI lustreURI = createURI(state.getURI(), "", "lus");
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();

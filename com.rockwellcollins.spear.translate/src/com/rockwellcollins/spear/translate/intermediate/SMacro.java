@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rockwellcollins.spear.Macro;
-import com.rockwellcollins.spear.translate.experimental.Naming;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
 
@@ -25,6 +24,22 @@ public class SMacro extends SAst {
 		return converted;
 	}
 	
+	public static List<VarDecl> getVarDecls(List<SMacro> list, SNode context) {
+		List<VarDecl> lustre = new ArrayList<>();
+		for(SMacro smacro : list) {
+			lustre.add(smacro.getVarDecl(context));
+		}
+		return lustre;
+	}
+	
+	public static List<Equation> getEquations(List<SMacro> list, SNode context) {
+		List<Equation> lustre = new ArrayList<>();
+		for(SMacro smacro : list) {
+			lustre.add(smacro.getEquation(context));
+		}
+		return lustre;
+	}
+	
 	private Macro macro;
 	public String name;
 
@@ -33,13 +48,13 @@ public class SMacro extends SAst {
 		this.name = context.scope.getUniqueNameAndRegister(m.getName());
 	}
 	
-	public VarDecl getVarDecl(Naming naming) {
-		Type t = TranslateType.translate(macro.getType(), naming);
+	public VarDecl getVarDecl(SNode context) {
+		Type t = TranslateType.translate(macro.getType(), context);
 		return new VarDecl(name,t);	
 	}
 	
-	public Equation getEquation(Naming naming) {
-		Expr e = TranslateExpr.translate(macro.getExpr(), naming);
+	public Equation getEquation(SNode context) {
+		Expr e = TranslateExpr.translate(macro.getExpr(), context);
 		return LustreUtil.eq(new IdExpr(name), e);
 	}
 	

@@ -33,7 +33,7 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.experimental.SpearProgram;
+import com.rockwellcollins.spear.translate.intermediate.SProgram;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
@@ -94,7 +94,8 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				PerformTransforms.apply(workingCopy, state);
 
 				// translate to Lustre
-				Program p = SpearProgram.translateLogicalEntailment(workingCopy);
+				SProgram sprogram = new SProgram(workingCopy);
+				Program p = sprogram.getLogicalEntailment();
 				URI lustreURI = createURI(state.getURI(), "", "lus");
 
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();

@@ -8,7 +8,7 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
-import com.rockwellcollins.spear.translate.experimental.Naming;
+import com.rockwellcollins.spear.translate.intermediate.SContextElement;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -33,14 +33,15 @@ import jkind.lustre.UnaryOp;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
-	public static Expr translate(com.rockwellcollins.spear.Expr e, Naming naming) {
-		return new TranslateExpr(naming).doSwitch(e);
+	public static Expr translate(com.rockwellcollins.spear.Expr e, SContextElement context) {
+		return new TranslateExpr(context).doSwitch(e);
 	}
 
-	private Naming naming;
 
-	public TranslateExpr(Naming naming) {
-		this.naming=naming;
+	private SContextElement context;
+
+	public TranslateExpr(SContextElement context) {
+		this.context=context;
 	}
 	
 	@Override
@@ -141,7 +142,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseIdExpr(com.rockwellcollins.spear.IdExpr ide) {
-		String id = naming.lookup(ide.getId().getName());
+		String id = context.scope.lookup(ide.getId().getName());
 		if(id == null) {
 			throw new RuntimeException("Mapping did not contain the referenced variable: " + ide.getId().getName());
 		}
@@ -164,7 +165,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		for(com.rockwellcollins.spear.FieldExpr fe : re.getFieldExprs()) {
 			fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
 		}
-		return new RecordExpr(naming.lookup(re.getType().getName()),fields);
+		return new RecordExpr(context.scope.lookup(re.getType().getName()),fields);
 	}
 	
 	@Override

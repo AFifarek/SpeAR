@@ -9,7 +9,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.FieldType;
-import com.rockwellcollins.spear.translate.experimental.Naming;
+import com.rockwellcollins.spear.translate.intermediate.Naming;
+import com.rockwellcollins.spear.translate.intermediate.SContextElement;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Ast;
@@ -22,38 +23,38 @@ import jkind.lustre.VarDecl;
 
 public class TranslateDecl extends SpearSwitch<Ast> {
 
-	public static Ast translate(EObject o, Naming naming) {
-		return new TranslateDecl(naming).doSwitch(o);
+	public static Ast translate(EObject o, SContextElement context) {
+		return new TranslateDecl(context).doSwitch(o);
 	}
 	
-	private Naming naming;
+	private SContextElement context;
 	
-	private TranslateDecl(Naming naming) {
-		this.naming=naming;
+	private TranslateDecl(SContextElement context) {
+		this.context=context;
 	}
 	
 	@Override
 	public Ast caseConstant(com.rockwellcollins.spear.Constant c) {
-		String newName = naming.lookup(c.getName());
-		Type type = TranslateType.translate(c.getType(), naming);
-		Expr expr = TranslateExpr.translate(c.getExpr(), naming);
+		String newName = context.scope.lookup(c.getName());
+		Type type = TranslateType.translate(c.getType(), context);
+		Expr expr = TranslateExpr.translate(c.getExpr(), context);
 		return new Constant(newName,type,expr);
 	}
 	
 	@Override
 	public Ast caseNamedTypeDef(com.rockwellcollins.spear.NamedTypeDef ntd) {
-		String newName = naming.lookup(ntd.getName());
-		Type type = TranslateType.translate(ntd.getType(), naming);
+		String newName = context.scope.lookup(ntd.getName());
+		Type type = TranslateType.translate(ntd.getType(), context);
 		return new TypeDef(newName,type);
 	}
 	
 	@Override
 	public Ast caseRecordTypeDef(com.rockwellcollins.spear.RecordTypeDef rtd) {
-		String newName = naming.lookup(rtd.getName());
+		String newName = context.scope.lookup(rtd.getName());
 		Map<String,Type> fields = new LinkedHashMap<>();
 		for(FieldType ft : rtd.getFields()) {
 			String field = ft.getName();
-			Type type = TranslateType.translate(ft.getType(), naming);
+			Type type = TranslateType.translate(ft.getType(), context);
 			fields.put(field,type);
 		}
 		return new TypeDef(newName,new jkind.lustre.RecordType(newName,fields));		
@@ -61,26 +62,26 @@ public class TranslateDecl extends SpearSwitch<Ast> {
 	
 	@Override
 	public Ast caseArrayTypeDef(com.rockwellcollins.spear.ArrayTypeDef atd) {
-		String newName = naming.lookup(atd.getName());
-		Type base = TranslateType.translate(atd.getBase(), naming);
+		String newName = context.scope.lookup(atd.getName());
+		Type base = TranslateType.translate(atd.getBase(), context);
 		int size = atd.getSize();
 		return new TypeDef(newName,new jkind.lustre.ArrayType(base,size));
 	}
 	
 	@Override
 	public Ast caseEnumTypeDef(com.rockwellcollins.spear.EnumTypeDef etd) {
-		String newName = naming.lookup(etd.getName());
+		String newName = context.scope.lookup(etd.getName());
 		List<String> values = new ArrayList<>();
 		for(EnumValue ev : etd.getValues()) {
-			values.add(naming.lookup(ev.getName()));
+			values.add(context.scope.lookup(ev.getName()));
 		}
 		return new TypeDef(newName,new EnumType(newName,values));
 	}
 	
 	@Override
 	public Ast caseVariable(com.rockwellcollins.spear.Variable v) {
-		String newName = naming.lookup(v.getName());
-		Type type = TranslateType.translate(v.getType(), naming);
+		String newName = context.scope.lookup(v.getName());
+		Type type = TranslateType.translate(v.getType(), context);
 		return new VarDecl(newName, type);
 	}
 	
