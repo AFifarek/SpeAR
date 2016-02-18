@@ -7,7 +7,6 @@ import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.experimental.Naming;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
 
-import jkind.lustre.Ast;
 import jkind.lustre.VarDecl;
 
 public class SVariable extends SAst {
@@ -31,11 +30,11 @@ public class SVariable extends SAst {
 		this.variable = v;
 	}
 	
-	public Ast toVarDecl(Naming naming) {
+	public VarDecl toVarDecl(Naming naming) {
 		return new VarDecl(name,TranslateType.translate(variable.getType(), naming));
 	}
 	
-	public Ast toShadowVarDecl(Naming naming) {
+	public VarDecl toShadowVarDecl(Naming naming) {
 		return new VarDecl(shadowName,TranslateType.translate(variable.getType(), naming));
 	}
 	

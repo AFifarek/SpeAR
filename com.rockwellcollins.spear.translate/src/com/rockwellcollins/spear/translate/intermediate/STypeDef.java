@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.rockwellcollins.spear.TypeDef;
+import com.rockwellcollins.spear.translate.experimental.Naming;
+import com.rockwellcollins.spear.translate.lustre.TranslateDecl;
 
 public class STypeDef extends SAst {
 
@@ -22,6 +24,10 @@ public class STypeDef extends SAst {
 	public STypeDef(TypeDef typedef, SProgram context) {
 		this.typedef = typedef;
 		this.name = context.scope.getUniqueNameAndRegister(typedef.getName());
+	}
+	
+	public TypeDef toLustre(Naming naming) {
+		return (TypeDef) TranslateDecl.translate(typedef, naming);
 	}
 	
 	@Override

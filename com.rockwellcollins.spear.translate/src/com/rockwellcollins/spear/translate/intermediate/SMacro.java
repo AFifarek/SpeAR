@@ -8,7 +8,7 @@ import com.rockwellcollins.spear.translate.experimental.Naming;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
 
-import jkind.lustre.Ast;
+import jkind.lustre.Equation;
 import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
 import jkind.lustre.LustreUtil;
@@ -33,12 +33,12 @@ public class SMacro extends SAst {
 		this.name = context.scope.getUniqueNameAndRegister(m.getName());
 	}
 	
-	public Ast getVarDecl(Naming naming) {
+	public VarDecl getVarDecl(Naming naming) {
 		Type t = TranslateType.translate(macro.getType(), naming);
 		return new VarDecl(name,t);	
 	}
 	
-	public Ast getEquation(Naming naming) {
+	public Equation getEquation(Naming naming) {
 		Expr e = TranslateExpr.translate(macro.getExpr(), naming);
 		return LustreUtil.eq(new IdExpr(name), e);
 	}

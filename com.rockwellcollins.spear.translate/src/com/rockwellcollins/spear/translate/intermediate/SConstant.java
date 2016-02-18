@@ -9,7 +9,6 @@ import com.rockwellcollins.spear.translate.experimental.Naming;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
 
-import jkind.lustre.Ast;
 import jkind.lustre.Expr;
 import jkind.lustre.Type;
 
@@ -31,7 +30,7 @@ public class SConstant extends SAst {
 		this.name = context.scope.getUniqueNameAndRegister(c.getName());
 	}
 	
-	public Ast toLustre(Naming naming) {
+	public jkind.lustre.Constant toLustre(Naming naming) {
 		Type t = TranslateType.translate(constant.getType(), naming);
 		Expr e = TranslateExpr.translate(constant.getExpr(), naming);
 		return new jkind.lustre.Constant(this.name,t,e);
