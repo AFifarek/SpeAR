@@ -42,6 +42,8 @@ public class SNode extends SContextElement {
 	public List<SVariable> inputs = new ArrayList<>();
 	public List<SVariable> outputs = new ArrayList<>();
 	public List<SVariable> state = new ArrayList<>();
+	public List<ShadowVariable> shadow_outputs = new ArrayList<>();
+	public List<ShadowVariable> shadow_state = new ArrayList<>();
 	public List<SMacro> macros = new ArrayList<>();
 	public List<SConstraint> assumptions = new ArrayList<>();
 	public List<SConstraint> requirements = new ArrayList<>();
@@ -73,6 +75,8 @@ public class SNode extends SContextElement {
 			 * 3. Map these calls to these additional args for lookup later
 			 */
 			SNode calledNode = new SNode(call.getSpec(), program);
+			
+			
 			program.calledNodes.add(calledNode);
 			calls.put(call, calledNode);
 		}
@@ -82,6 +86,11 @@ public class SNode extends SContextElement {
 		inputs.addAll(SVariable.convertList(s.getInputs(), this));
 		outputs.addAll(SVariable.convertList(s.getOutputs(), this));
 		state.addAll(SVariable.convertList(s.getState(), this));
+		
+		//create the shadow variables
+		shadow_outputs.addAll(ShadowVariable.create(outputs, this));
+		shadow_state.addAll(ShadowVariable.create(state, this));
+		
 		macros.addAll(SMacro.convertList(s.getMacros(), this));
 		assumptions.addAll(SConstraint.convertList(s.getAssumptions(), this));
 		requirements.addAll(SConstraint.convertList(s.getRequirements(), this));
@@ -135,8 +144,8 @@ public class SNode extends SContextElement {
 		 * 3. the shadow variables for the state
 		 */
 		builder.addInputs(SVariable.toVarDecl(inputs, this));
-		builder.addInputs(SVariable.toShadowVarDecl(outputs, this));
-		builder.addInputs(SVariable.toShadowVarDecl(state, this));
+		builder.addInputs(ShadowVariable.getVarDecls(shadow_outputs, this));
+		builder.addInputs(ShadowVariable.getVarDecls(shadow_state, this));
 		
 		/*
 		 * The locals are:
@@ -163,8 +172,8 @@ public class SNode extends SContextElement {
 		 * 4. assignment of the requirements
 		 * 5. assignment of the behaviors
 		 */
-		builder.addEquations(SVariable.assignVarToShadowVars(outputs, this));
-		builder.addEquations(SVariable.assignVarToShadowVars(state, this));
+		builder.addEquations(ShadowVariable.getEquations(shadow_outputs, this));
+		builder.addEquations(ShadowVariable.getEquations(shadow_state, this));
 		builder.addEquations(SConstraint.getEquations(assumptions, this));
 		builder.addEquations(SConstraint.getEquations(requirements, this));
 		builder.addEquations(SConstraint.getEquations(behaviors, this));
