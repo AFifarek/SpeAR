@@ -36,7 +36,7 @@ public class SProgram extends SContextElement {
 		ProgramBuilder program = new ProgramBuilder();
 		
 		/*
-		 * 1. add the patterns
+		 * 1. add the PLTL patterns
 		 * 2. add the typedefs
 		 * 3. add the constants
 		 */
@@ -44,6 +44,13 @@ public class SProgram extends SContextElement {
 		program.addTypes(STypeDef.toLustre(typedefs, this));
 		program.addConstants(SConstant.toLustre(constants, this));
 
+		/*
+		 * At some point we'll have to add user patterns
+		 * 1. They'll have to be uniquely named
+		 * 2. We'll have to grab them recursively
+		 */
+		//TODO: add support for user patterns
+		
 		Node mainNode = main.getLogicalEntailment().build();
 		program.setMain(mainNode.id);
 		return program.build();
