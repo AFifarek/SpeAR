@@ -9,6 +9,8 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.translate.intermediate.SContextElement;
+import com.rockwellcollins.spear.translate.intermediate.SNode;
+import com.rockwellcollins.spear.translate.intermediate.SVariable;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -191,6 +193,12 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			default:
 				throw new RuntimeException("Unexpected boolean literal encountered.");
 		}
+	}
+	
+	@Override
+	public Expr caseNormalizedCall(com.rockwellcollins.spear.NormalizedCall nc) {
+
+		return null;
 	}
 
 	@Override

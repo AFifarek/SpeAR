@@ -45,14 +45,12 @@ public class SVariable extends SAst {
 		return lustre;
 	}
 	
-	private static final String SHADOW_SUFFIX = "_SHADOW";
 	public String name;
 	private String shadowName;
 	private Variable variable;
 	
 	public SVariable(Variable v, SNode context) {
 		this.name = context.scope.getUniqueNameAndRegister(v.getName());
-		this.shadowName = context.scope.getUniqueNameAndRegister(v.getName() + SHADOW_SUFFIX);
 		this.variable = v;
 	}
 	

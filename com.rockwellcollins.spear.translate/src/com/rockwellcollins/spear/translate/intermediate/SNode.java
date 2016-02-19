@@ -48,6 +48,7 @@ public class SNode extends SContextElement {
 	public List<SConstraint> behaviors = new ArrayList<>();
 	
 	public Map<NormalizedCall,SNode> calls = new HashMap<>();
+	public Map<NormalizedCall,List<VarDecl>> additionalArgs = new HashMap<>();
 
 	private static final String CONJUNCT_ID = "conjunct";
 	private static final String HISTORICAL_CONJUNCT = "historic_conjunct";
@@ -64,6 +65,13 @@ public class SNode extends SContextElement {
 		program.constants.addAll(SConstant.convertList(s.getConstants(), program));
 		
 		for(NormalizedCall call : EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)) {
+			/*
+			 * What we need to do:
+			 * 1. Create an SNode for the called node
+			 * 2. Create additional args in the calling node to match the shadow vars in the called node.
+			 *    - lets name them callX_specificationName_arg0
+			 * 3. Map these calls to these additional args for lookup later
+			 */
 			SNode calledNode = new SNode(call.getSpec(), program);
 			program.calledNodes.add(calledNode);
 			calls.put(call, calledNode);
