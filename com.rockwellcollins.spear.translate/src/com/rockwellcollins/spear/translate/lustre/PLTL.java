@@ -7,7 +7,10 @@ import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
 import jkind.lustre.BoolExpr;
 import jkind.lustre.Equation;
+import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
+import jkind.lustre.IfThenElseExpr;
+import jkind.lustre.IntExpr;
 import jkind.lustre.LustreUtil;
 import jkind.lustre.NamedType;
 import jkind.lustre.Node;
@@ -28,7 +31,7 @@ public class PLTL {
 	 */
 	public static Node initially() {
 		NodeBuilder initially = new NodeBuilder("initially");
-		
+
 		VarDecl signal = new VarDecl("signal", NamedType.BOOL);
 		initially.addInput(signal);
 
@@ -36,21 +39,23 @@ public class PLTL {
 		initially.addOutput(holds);
 
 		// equations: holds = signal -> true
-		Equation equation = LustreUtil.eq(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.ARROW, new BoolExpr(true)));
+		Equation equation = LustreUtil.eq(new IdExpr(holds.id),
+				new BinaryExpr(new IdExpr(signal.id), BinaryOp.ARROW, new BoolExpr(true)));
 		initially.addEquation(equation);
-		
+
 		return initially.build();
 	}
-	
+
 	/**
-	 * Historically EXPR must be true on the current step and every previous step.
+	 * Historically EXPR must be true on the current step and every previous
+	 * step.
 	 */
 	public static Node historically() {
 		NodeBuilder historically = new NodeBuilder("historically");
 
 		VarDecl signal = new VarDecl("signal", NamedType.BOOL);
 		historically.addInput(signal);
-		
+
 		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
 		historically.addOutput(holds);
 
@@ -58,7 +63,7 @@ public class PLTL {
 		Equation equation = LustreUtil.eq(new IdExpr(holds.id), new BinaryExpr(new IdExpr(signal.id), BinaryOp.AND,
 				new BinaryExpr(new BoolExpr(true), BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id)))));
 		historically.addEquation(equation);
-		
+
 		return historically.build();
 	}
 
@@ -93,7 +98,7 @@ public class PLTL {
 		VarDecl b = new VarDecl("b", NamedType.BOOL);
 		since.addInput(a);
 		since.addInput(b);
-		
+
 		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
 		since.addOutput(holds);
 
@@ -108,7 +113,8 @@ public class PLTL {
 	}
 
 	/**
-	 * T is the node that implements Trigger (an alternate version that is false on the initial step.
+	 * T is the node that implements Trigger (an alternate version that is false
+	 * on the initial step.
 	 */
 	public static Node triggers() {
 		NodeBuilder triggers = new NodeBuilder("triggers");
@@ -124,10 +130,49 @@ public class PLTL {
 		// equations: holds = b and (a or (false -> pre holds))
 		Equation equation = new Equation(new IdExpr(holds.id),
 				new BinaryExpr(new IdExpr(b.id), BinaryOp.AND,
-						new BinaryExpr(new IdExpr(a.id), BinaryOp.OR, new BinaryExpr(new BoolExpr(false), BinaryOp.ARROW,
-								new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
+						new BinaryExpr(new IdExpr(a.id), BinaryOp.OR, new BinaryExpr(new BoolExpr(false),
+								BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(holds.id))))));
 		triggers.addEquation(equation);
 		return triggers.build();
+	}
+
+	/**
+	 * Responds within shows causation of two variables a,b where A causes B to
+	 * happen.
+	 */
+	public static Node responds_within() {
+		NodeBuilder responds_within = new NodeBuilder("responds_within");
+
+		VarDecl a = new VarDecl("a", NamedType.BOOL);
+		VarDecl b = new VarDecl("b", NamedType.BOOL);
+		VarDecl n = new VarDecl("n", NamedType.INT);
+		responds_within.addInput(a);
+		responds_within.addInput(b);
+
+		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
+		responds_within.addOutput(holds);
+
+		VarDecl scope = new VarDecl("scope", NamedType.BOOL);
+		VarDecl scope_time = new VarDecl("scope_time", NamedType.INT);
+		responds_within.addLocal(scope);
+		responds_within.addLocal(scope_time);
+
+		Equation scope_eq = new Equation(new IdExpr(scope.id),
+				new BinaryExpr(new UnaryExpr(UnaryOp.NOT, new IdExpr(a.id)), BinaryOp.AND,
+						new BinaryExpr(new IdExpr(b.id), BinaryOp.OR, new BinaryExpr(new BoolExpr(false),
+								BinaryOp.ARROW, new UnaryExpr(UnaryOp.PRE, new IdExpr(scope.id))))));
+
+		Equation scope_time_eq = new Equation(new IdExpr(scope_time.id),
+				new IfThenElseExpr(new IdExpr(scope.id),
+						new BinaryExpr(new IntExpr(0), BinaryOp.ARROW, new BinaryExpr(
+								new UnaryExpr(UnaryOp.PRE, new IdExpr(scope.id)), BinaryOp.PLUS, new IntExpr(1))),
+				new IntExpr(0)));
+		
+		Equation holds_eq = new Equation(new IdExpr(holds.id), new BinaryExpr(new IdExpr(scope.id), BinaryOp.IMPLIES, new BinaryExpr(new IdExpr(scope_time.id), BinaryOp.LESSEQUAL, new IdExpr(n.id))));
+		responds_within.addEquation(scope_eq);
+		responds_within.addEquation(scope_time_eq);
+		responds_within.addEquation(holds_eq);
+		return responds_within.build();
 	}
 
 	public static Set<Node> getPLTL() {
@@ -137,6 +182,7 @@ public class PLTL {
 		nodes.add(once());
 		nodes.add(since());
 		nodes.add(triggers());
+		nodes.add(responds_within());
 		return nodes;
 	}
 }
