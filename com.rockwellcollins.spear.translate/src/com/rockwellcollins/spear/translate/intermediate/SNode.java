@@ -23,6 +23,7 @@ import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
 import jkind.lustre.LustreUtil;
 import jkind.lustre.NamedType;
+import jkind.lustre.Node;
 import jkind.lustre.NodeCallExpr;
 import jkind.lustre.VarDecl;
 import jkind.lustre.builders.NodeBuilder;
@@ -37,7 +38,7 @@ public class SNode extends SContextElement {
 		return converted;
 	}
 	
-	private String name;
+	public String name;
 	
 	public List<SVariable> inputs = new ArrayList<>();
 	public List<SVariable> outputs = new ArrayList<>();
@@ -49,8 +50,10 @@ public class SNode extends SContextElement {
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
 	
+	
 	public Map<NormalizedCall,SNode> calls = new HashMap<>();
-	public Map<NormalizedCall,List<VarDecl>> additionalArgs = new HashMap<>();
+	public Map<NormalizedCall,List<SAddArg>> directCalledArgs = new HashMap<>();
+	public Map<NormalizedCall,List<SAddArg>> indirectCalledArgs = new HashMap<>();
 
 	private static final String CONJUNCT_ID = "conjunct";
 	private static final String HISTORICAL_CONJUNCT = "historic_conjunct";
@@ -63,9 +66,12 @@ public class SNode extends SContextElement {
 		this.name = program.scope.getUniqueNameAndRegister(s.getName());
 		
 		//process the global stuff first
+		//TODO: this does not account for duplicates
 		program.typedefs.addAll(STypeDef.convertList(s.getTypedefs(), program));
 		program.constants.addAll(SConstant.convertList(s.getConstants(), program));
 		
+		//set the local scope before processing local elements
+		scope = new Naming(program.scope);
 		for(NormalizedCall call : EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)) {
 			/*
 			 * What we need to do:
@@ -75,14 +81,14 @@ public class SNode extends SContextElement {
 			 * 3. Map these calls to these additional args for lookup later
 			 */
 			SNode calledNode = new SNode(call.getSpec(), program);
-			
+			indirectCalledArgs.put(call, getIndirectArgs(calledNode));
+			directCalledArgs.put(call, getDirectCalledArgs(this,calledNode,call.hashCode()));
 			
 			program.calledNodes.add(calledNode);
 			calls.put(call, calledNode);
 		}
 
 		//set the local scope before processing local elements
-		scope = new Naming(program.scope);
 		inputs.addAll(SVariable.convertList(s.getInputs(), this));
 		outputs.addAll(SVariable.convertList(s.getOutputs(), this));
 		state.addAll(SVariable.convertList(s.getState(), this));
@@ -98,6 +104,36 @@ public class SNode extends SContextElement {
 		
 		this.conjunctName = scope.getUniqueNameAndRegister(CONJUNCT_ID);
 		this.historicConjunctName = scope.getUniqueNameAndRegister(HISTORICAL_CONJUNCT);
+	}
+	
+	private List<SAddArg> getIndirectArgs(SNode calledNode) {
+		List<SAddArg> indirect = new ArrayList<>();
+		for(NormalizedCall nce : calledNode.directCalledArgs.keySet()) {
+			indirect.addAll(calledNode.directCalledArgs.get(nce));
+		}
+		return indirect;
+	}
+
+	private List<SAddArg> getDirectCalledArgs(SNode caller, SNode calledNode, Integer callNumber) {
+		List<SAddArg> args = new ArrayList<>();
+		List<ShadowVariable> shadowVars = new ArrayList<>();
+		shadowVars.addAll(calledNode.shadow_outputs);
+		shadowVars.addAll(calledNode.shadow_state);
+		
+		for(ShadowVariable sv : shadowVars) {
+			String proposed = caller.name + "_call" + callNumber + "_" + calledNode.name + "_" + sv.name;
+			String renamed = scope.getUniqueNameAndRegister(proposed);
+			args.add(new SAddArg(renamed, sv.type));
+		}
+		return args;
+	}
+	
+	public Collection<Node> getCalledNodes() {
+		Set<Node> nodes = new HashSet<>();
+		for(SNode called : calls.values()) {
+			nodes.add(called.getLogicalEntailment().build());
+		}
+		return nodes;
 	}
 	
 	private VarDecl getConjuctVarDecl() {
@@ -134,6 +170,22 @@ public class SNode extends SContextElement {
 		return LustreUtil.eq(lhs,rhs);
 	}
 	
+	private Collection<VarDecl> getDirectVarDecls(SNode context) {
+		List<VarDecl> dvd = new ArrayList<>();
+		for(List<SAddArg> list : directCalledArgs.values()) {
+			dvd.addAll(SAddArg.convert(list, context));
+		}
+		return dvd;
+	}
+	
+	private Collection<VarDecl> getIndirectVarDecls(SNode context) {
+		List<VarDecl> dvd = new ArrayList<>();
+		for(List<SAddArg> list : this.indirectCalledArgs.values()) {
+			dvd.addAll(SAddArg.convert(list, context));
+		}
+		return dvd;
+	}
+	
 	private NodeBuilder getBaseLustre() {
 		NodeBuilder builder = new NodeBuilder(this.name);
 		
@@ -146,6 +198,8 @@ public class SNode extends SContextElement {
 		builder.addInputs(SVariable.toVarDecl(inputs, this));
 		builder.addInputs(ShadowVariable.getVarDecls(shadow_outputs, this));
 		builder.addInputs(ShadowVariable.getVarDecls(shadow_state, this));
+		builder.addInputs(getDirectVarDecls(this));
+		builder.addInputs(getIndirectVarDecls(this));
 		
 		/*
 		 * The locals are:
@@ -180,7 +234,7 @@ public class SNode extends SContextElement {
 
 		return builder;
 	}
-	
+
 	public NodeBuilder getLogicalEntailment() {
 		NodeBuilder base = this.getBaseLustre();
 		/*
@@ -191,7 +245,7 @@ public class SNode extends SContextElement {
 		 */
 		base.addLocal(this.getConjuctVarDecl());
 		base.addLocal(this.getHistoricalConjunctVarDecl());
-		base.addLocals(SConstraint.getPropertyVarDecls(assumptions, this));
+		base.addLocals(SConstraint.getPropertyVarDecls(behaviors, this));
 		
 		/*
 		 * We must extend the base node equations with

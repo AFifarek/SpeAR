@@ -41,9 +41,9 @@ public class ShadowVariable {
 	private static final String SHADOW_SUFFIX = "_SHADOW";
 	
 	public String name;
+	public Type type;
 	
 	private String shadowedName;
-	private Type type;
 	
 	public ShadowVariable(SVariable v, SNode context) {
 		this.shadowedName = v.name;

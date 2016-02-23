@@ -8,9 +8,14 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
+import com.rockwellcollins.spear.Constant;
+import com.rockwellcollins.spear.EnumValue;
+import com.rockwellcollins.spear.IdRef;
+import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.translate.intermediate.SAddArg;
 import com.rockwellcollins.spear.translate.intermediate.SContextElement;
 import com.rockwellcollins.spear.translate.intermediate.SNode;
-import com.rockwellcollins.spear.translate.intermediate.SVariable;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -30,6 +35,7 @@ import jkind.lustre.RealExpr;
 import jkind.lustre.RecordAccessExpr;
 import jkind.lustre.RecordExpr;
 import jkind.lustre.RecordUpdateExpr;
+import jkind.lustre.TupleExpr;
 import jkind.lustre.UnaryExpr;
 import jkind.lustre.UnaryOp;
 
@@ -197,8 +203,38 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseNormalizedCall(com.rockwellcollins.spear.NormalizedCall nc) {
+		if (context instanceof SNode) {
+			SNode node_context = (SNode) context;
+			SNode called = node_context.calls.get(nc);
+			List<Expr> nodeCallArgs = new ArrayList<>();
+			for(com.rockwellcollins.spear.Expr arg : nc.getArgs()) {
+				nodeCallArgs.add(this.doSwitch(arg));
+			}
+			
+			List<SAddArg> directArgs = node_context.directCalledArgs.get(nc);
+			List<Expr> directArgExpressions = SAddArg.getArgExpressions(directArgs);
+			
+			List<SAddArg> indirectArgs = node_context.indirectCalledArgs.get(nc);
+			List<Expr> indirectArgExpressions = SAddArg.getArgExpressions(indirectArgs);
+			
 
-		return null;
+			nodeCallArgs.addAll(directArgExpressions);
+			nodeCallArgs.addAll(indirectArgExpressions);
+			Expr RHS = new NodeCallExpr(called.name, nodeCallArgs);
+			
+			List<Expr> tupleList = new ArrayList<>();
+			for(IdRef ref : nc.getIds()) {
+				tupleList.add(this.doSwitch(ref));
+			}
+
+			if(tupleList.size() == 1) {
+				return new BinaryExpr(tupleList.get(0), BinaryOp.EQUAL, RHS);
+			} else {
+				return new BinaryExpr(new TupleExpr(tupleList), BinaryOp.EQUAL, RHS);				
+			}
+		} else {
+			throw new RuntimeException("Context is incorrect for expression: " + context);
+		}
 	}
 
 	@Override
@@ -209,10 +245,30 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	@Override
 	public Expr caseRealLiteral(com.rockwellcollins.spear.RealLiteral rl) {
 		return new RealExpr(new BigDecimal(rl.getValue()));
-	}	
+	}
+	
+	@Override
+	public Expr caseVariable(Variable v) {
+		return new IdExpr(context.scope.lookup(v.getName()));
+	}
+	
+	@Override
+	public Expr caseMacro(Macro m) {
+		return new IdExpr(context.scope.lookup(m.getName()));
+	}
+	
+	@Override
+	public Expr caseConstant(Constant c) {
+		return new IdExpr(context.scope.lookup(c.getName()));
+	}
+	
+	@Override
+	public Expr caseEnumValue(EnumValue ev) {
+		return new IdExpr(context.scope.lookup(ev.getName()));
+	}
 	
 	@Override
 	public Expr defaultCase(EObject o) {
-		throw new RuntimeException("Unexpected element provided.");
+		throw new RuntimeException("Unexpected element provided: " + o.toString());
 	}
 }

@@ -30,6 +30,7 @@ public class SProgram extends SContextElement {
 		typedefs.addAll(STypeDef.convertList(finder.typedefs, this));
 		constants.addAll(SConstant.convertList(finder.constants, this));
 		main = new SNode(s, this);
+		System.out.println("the end.");
 	}
 
 	public Program getLogicalEntailment() {
@@ -51,8 +52,15 @@ public class SProgram extends SContextElement {
 		 */
 		//TODO: add support for user patterns
 		
+		Set<Node> calledNodes = new HashSet<>();
+		for(SNode called : main.calls.values()) {
+			calledNodes.add(called.getLogicalEntailment().build());
+			calledNodes.addAll(called.getCalledNodes());
+		}
+		program.addNodes(calledNodes);
 		Node mainNode = main.getLogicalEntailment().build();
 		program.setMain(mainNode.id);
+		program.addNode(mainNode);
 		return program.build();
 	}
 	

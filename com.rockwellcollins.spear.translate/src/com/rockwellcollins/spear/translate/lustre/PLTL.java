@@ -148,6 +148,7 @@ public class PLTL {
 		VarDecl n = new VarDecl("n", NamedType.INT);
 		responds_within.addInput(a);
 		responds_within.addInput(b);
+		responds_within.addInput(n);
 
 		VarDecl holds = new VarDecl("holds", NamedType.BOOL);
 		responds_within.addOutput(holds);
@@ -165,7 +166,7 @@ public class PLTL {
 		Equation scope_time_eq = new Equation(new IdExpr(scope_time.id),
 				new IfThenElseExpr(new IdExpr(scope.id),
 						new BinaryExpr(new IntExpr(0), BinaryOp.ARROW, new BinaryExpr(
-								new UnaryExpr(UnaryOp.PRE, new IdExpr(scope.id)), BinaryOp.PLUS, new IntExpr(1))),
+								new UnaryExpr(UnaryOp.PRE, new IdExpr(scope_time.id)), BinaryOp.PLUS, new IntExpr(1))),
 				new IntExpr(0)));
 		
 		Equation holds_eq = new Equation(new IdExpr(holds.id), new BinaryExpr(new IdExpr(scope.id), BinaryOp.IMPLIES, new BinaryExpr(new IdExpr(scope_time.id), BinaryOp.LESSEQUAL, new IdExpr(n.id))));
