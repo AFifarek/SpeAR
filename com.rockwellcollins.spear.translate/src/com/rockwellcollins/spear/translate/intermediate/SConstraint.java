@@ -97,7 +97,7 @@ public class SConstraint extends SAst {
 	
 	public Equation getPropertyEquation(jkind.lustre.Expr conjunct, SNode context) {
 		IdExpr lhs = new IdExpr(this.propertyName);
-		BinaryExpr rhs = new BinaryExpr(conjunct, BinaryOp.ARROW, new IdExpr(this.name));
+		BinaryExpr rhs = new BinaryExpr(conjunct, BinaryOp.IMPLIES, new IdExpr(this.name));
 		return LustreUtil.eq(lhs, rhs);
 	}
 	

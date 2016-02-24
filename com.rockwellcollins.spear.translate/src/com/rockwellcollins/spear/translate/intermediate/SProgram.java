@@ -27,10 +27,9 @@ public class SProgram extends SContextElement {
 		
 		//get the referenced elements, still global
 		ReferenceFinder finder = ReferenceFinder.get(s);
-		typedefs.addAll(STypeDef.convertList(finder.typedefs, this));
-		constants.addAll(SConstant.convertList(finder.constants, this));
+		typedefs.addAll(STypeDef.convertList(finder.typedefs.keySet(), this));
+		constants.addAll(SConstant.convertList(finder.constants.keySet(), this));
 		main = new SNode(s, this);
-		System.out.println("the end.");
 	}
 
 	public Program getLogicalEntailment() {

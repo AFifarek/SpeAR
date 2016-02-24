@@ -1,7 +1,7 @@
 package com.rockwellcollins.spear.translate.transformations;
 
-import java.util.Collection;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -25,25 +25,33 @@ public class ReferenceFinder extends SpearSwitch<Void> {
 	
 	public Specification root;
 	
-	public Collection<TypeDef> typedefs = new HashSet<>();
-	public Collection<Constant> constants = new HashSet<>();
-	public Collection<Pattern> patterns = new HashSet<>();
+	public Map<TypeDef,Specification> typedefs = new HashMap<>();
+	public Map<Constant,Specification> constants = new HashMap<>();
+	public Map<Pattern,Specification> patterns = new HashMap<>();
 	
 	@Override
 	public Void caseTypeDef(TypeDef td) {
-		typedefs.add(td);
+		typedefs.put(td,root);
 		return null;
 	}
 	
 	@Override
 	public Void caseConstant(Constant c) {
-		constants.add(c);
+		constants.put(c,root);
 		return null;
 	}
 	
 	@Override
 	public Void casePattern(Pattern p) {
-		patterns.add(p);
+		patterns.put(p,root);
+		return null;
+	}
+	
+	@Override
+	public Void caseSpecification(Specification s) {
+		Specification previous = this.root;
+		this.root = s;
+		this.defaultCase(s);
 		return null;
 	}
 	
