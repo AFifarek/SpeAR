@@ -7,13 +7,12 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.lustre.PLTL;
-import com.rockwellcollins.spear.translate.transformations.ReferenceFinder;
 
 import jkind.lustre.Node;
 import jkind.lustre.Program;
 import jkind.lustre.builders.ProgramBuilder;
 
-public class SProgram extends SContextElement {
+public class SProgram {
 
 	public Set<SPattern> patterns = new HashSet<>();
 	public Set<STypeDef> typedefs = new HashSet<>();
@@ -22,27 +21,30 @@ public class SProgram extends SContextElement {
 	public SNode main;
 
 	public SProgram(Specification s) {
-		scope = new Naming();
-		patterns.addAll(SPattern.convert(PLTL.getPLTL(), this));
-		
-		//get the referenced elements, still global
-		ReferenceFinder finder = ReferenceFinder.get(s);
-		typedefs.addAll(STypeDef.convertList(finder.typedefs.keySet(), this));
-		constants.addAll(SConstant.convertList(finder.constants.keySet(), this));
-		main = new SNode(s, this);
+		main = new SNode(s);
+	}
+	
+	public static Naming getInitialNaming() {
+		Naming scope = new Naming();
+		for(Node n : PLTL.getPLTL()) {
+			scope.getUniqueLocalNameAndRegister(n.id);
+		}
+		return scope;
 	}
 
 	public Program getLogicalEntailment() {
 		ProgramBuilder program = new ProgramBuilder();
+		
+		//get the PLTL stuff
+		program.addNodes(PLTL.getPLTL());
 		
 		/*
 		 * 1. add the PLTL patterns
 		 * 2. add the typedefs
 		 * 3. add the constants
 		 */
-		program.addNodes(SPattern.toLustre(patterns, this));
-		program.addTypes(STypeDef.toLustre(typedefs, this));
-		program.addConstants(SConstant.toLustre(constants, this));
+		program.addTypes(main.getRecursiveLustreTypeDefs());
+		program.addConstants(main.getRecursiveLustreConstants());
 
 		/*
 		 * At some point we'll have to add user patterns

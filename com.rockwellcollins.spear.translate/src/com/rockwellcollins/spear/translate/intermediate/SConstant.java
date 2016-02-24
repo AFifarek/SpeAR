@@ -13,7 +13,7 @@ import jkind.lustre.Type;
 
 public class SConstant extends SAst {
 
-	public static List<SConstant> convertList(Collection<Constant> list, SProgram context) {
+	public static List<SConstant> convertList(Collection<Constant> list, SNode context) {
 		List<SConstant> converted = new ArrayList<>();
 		for (Constant c : list) {
 			converted.add(new SConstant(c, context));
@@ -21,7 +21,7 @@ public class SConstant extends SAst {
 		return converted;
 	}
 	
-	public static List<jkind.lustre.Constant> toLustre(Collection<SConstant> list, SProgram context) {
+	public static List<jkind.lustre.Constant> toLustre(Collection<SConstant> list, SNode context) {
 		List<jkind.lustre.Constant> lustre = new ArrayList<>();
 		for(SConstant sconstant : list) {
 			lustre.add(sconstant.toLustre(context));
@@ -32,12 +32,12 @@ public class SConstant extends SAst {
 	private Constant constant;
 	public String name;
 
-	public SConstant(Constant c, SProgram context) {
+	public SConstant(Constant c, SNode context) {
 		this.constant = c;
-		this.name = context.scope.getUniqueNameAndRegister(c.getName());
+		this.name = context.scope.getUniqueGlobalNameAndRegister(context.name, c.getName());
 	}
 	
-	public jkind.lustre.Constant toLustre(SProgram context) {
+	public jkind.lustre.Constant toLustre(SNode context) {
 		Type t = TranslateType.translate(constant.getType(), context);
 		Expr e = TranslateExpr.translate(constant.getExpr(), context);
 		return new jkind.lustre.Constant(this.name,t,e);

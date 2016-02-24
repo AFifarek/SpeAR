@@ -6,20 +6,20 @@ import com.rockwellcollins.spear.BoolType;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.RealType;
 import com.rockwellcollins.spear.UserType;
-import com.rockwellcollins.spear.translate.intermediate.SContextElement;
+import com.rockwellcollins.spear.translate.intermediate.SNode;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Type;
 
 public class TranslateType extends SpearSwitch<Type> {
 
-	public static Type translate(com.rockwellcollins.spear.Type t, SContextElement context) {
+	public static Type translate(com.rockwellcollins.spear.Type t, SNode context) {
 		return new TranslateType(context).doSwitch(t);
 	}
 	
-	private SContextElement context;
+	private SNode context;
 
-	public TranslateType(SContextElement context) {
+	public TranslateType(SNode context) {
 		this.context = context;
 	}
 	

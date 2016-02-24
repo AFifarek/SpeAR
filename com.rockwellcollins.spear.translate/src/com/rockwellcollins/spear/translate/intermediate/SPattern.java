@@ -9,7 +9,7 @@ import jkind.lustre.builders.NodeBuilder;
 
 public class SPattern extends SAst {
 
-	public static List<SPattern> convert(Collection<Node> list, SProgram context) {
+	public static List<SPattern> convertList(Collection<Node> list, SNode context) {
 		List<SPattern> converted = new ArrayList<>();
 		for(Node n : list) {
 			converted.add(new SPattern(n,context));
@@ -17,7 +17,7 @@ public class SPattern extends SAst {
 		return converted;
 	}
 	
-	public static List<Node> toLustre(Collection<SPattern> list, SProgram context) {
+	public static List<Node> toLustre(Collection<SPattern> list, SNode context) {
 		List<Node> lustre = new ArrayList<>();
 		for(SPattern spattern : list) {
 			lustre.add(spattern.toLustre());
@@ -28,8 +28,8 @@ public class SPattern extends SAst {
 	public String name;
 	private Node node;
 
-	public SPattern(Node n, SProgram context) {
-		this.name = context.scope.getUniqueNameAndRegister(n.id);
+	public SPattern(Node n, SNode context) {
+		this.name = context.scope.getUniqueGlobalNameAndRegister(context.name, n.id);
 		NodeBuilder builder = new NodeBuilder(n);
 		builder.setId(name);
 		node = builder.build();

@@ -30,7 +30,7 @@ public class SVariable extends SAst {
 	protected Variable variable;
 	
 	public SVariable(Variable v, SNode context) {
-		this.name = context.scope.getUniqueNameAndRegister(v.getName());
+		this.name = context.scope.getUniqueLocalNameAndRegister(v.getName());
 		this.variable = v;
 	}
 	

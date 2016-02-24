@@ -14,7 +14,6 @@ import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.intermediate.SAddArg;
-import com.rockwellcollins.spear.translate.intermediate.SContextElement;
 import com.rockwellcollins.spear.translate.intermediate.SNode;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
@@ -41,14 +40,14 @@ import jkind.lustre.UnaryOp;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
-	public static Expr translate(com.rockwellcollins.spear.Expr e, SContextElement context) {
+	public static Expr translate(com.rockwellcollins.spear.Expr e, SNode context) {
 		return new TranslateExpr(context).doSwitch(e);
 	}
 
 
-	private SContextElement context;
+	private SNode context;
 
-	public TranslateExpr(SContextElement context) {
+	public TranslateExpr(SNode context) {
 		this.context=context;
 	}
 	

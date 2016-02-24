@@ -9,7 +9,7 @@ import com.rockwellcollins.spear.translate.lustre.TranslateDecl;
 
 public class STypeDef extends SAst {
 
-	public static List<STypeDef> convertList(Collection<TypeDef> list, SProgram context) {
+	public static List<STypeDef> convertList(Collection<TypeDef> list, SNode context) {
 		List<STypeDef> converted = new ArrayList<>();
 		for(TypeDef typedef : list) {
 			converted.add(new STypeDef(typedef,context));
@@ -17,9 +17,9 @@ public class STypeDef extends SAst {
 		return converted;
 	}
 	
-	public static List<jkind.lustre.TypeDef> toLustre(Collection<STypeDef> typedefs, SProgram context) {
+	public static List<jkind.lustre.TypeDef> toLustre(Collection<STypeDef> set, SNode context) {
 		List<jkind.lustre.TypeDef> lustre = new ArrayList<>();
-		for(STypeDef stypedef : typedefs) {
+		for(STypeDef stypedef : set) {
 			lustre.add(stypedef.toLustre(context));
 		}
 		return lustre;
@@ -28,12 +28,12 @@ public class STypeDef extends SAst {
 	private TypeDef typedef;
 	public String name;
 
-	public STypeDef(TypeDef typedef, SProgram context) {
+	public STypeDef(TypeDef typedef, SNode context) {
 		this.typedef = typedef;
-		this.name = context.scope.getUniqueNameAndRegister(typedef.getName());
+		this.name = context.scope.getUniqueGlobalNameAndRegister(context.name,typedef.getName());
 	}
 	
-	public jkind.lustre.TypeDef toLustre(SProgram context) {
+	public jkind.lustre.TypeDef toLustre(SNode context) {
 		return (jkind.lustre.TypeDef) TranslateDecl.translate(typedef, context);
 	}
 	

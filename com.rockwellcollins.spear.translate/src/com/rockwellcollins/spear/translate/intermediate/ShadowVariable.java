@@ -49,7 +49,7 @@ public class ShadowVariable {
 		this.shadowedName = v.name;
 		this.type = v.variable.getType();
 		String proposed = v.name + SHADOW_SUFFIX;
-		this.name = context.scope.getUniqueNameAndRegister(proposed);
+		this.name = context.scope.getUniqueLocalNameAndRegister(proposed);
 	}
 	
 	public VarDecl getVarDecl(SNode context) {

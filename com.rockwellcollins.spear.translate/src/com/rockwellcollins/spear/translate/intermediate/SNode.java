@@ -15,9 +15,11 @@ import org.eclipse.xtext.EcoreUtil2;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.lustre.PLTL;
+import com.rockwellcollins.spear.translate.transformations.ReferenceFinder;
 
 import jkind.lustre.BinaryExpr;
 import jkind.lustre.BinaryOp;
+import jkind.lustre.Constant;
 import jkind.lustre.Equation;
 import jkind.lustre.Expr;
 import jkind.lustre.IdExpr;
@@ -25,20 +27,27 @@ import jkind.lustre.LustreUtil;
 import jkind.lustre.NamedType;
 import jkind.lustre.Node;
 import jkind.lustre.NodeCallExpr;
+import jkind.lustre.TypeDef;
 import jkind.lustre.VarDecl;
 import jkind.lustre.builders.NodeBuilder;
 
-public class SNode extends SContextElement {
+public class SNode {
 
-	public static Set<SNode> convertList(Collection<Specification> list, SProgram context) {
+	public static Set<SNode> convertList(Collection<Specification> list) {
 		Set<SNode> converted = new HashSet<>();
 		for(Specification s : list) {
-			converted.add(new SNode(s,context));
+			converted.add(new SNode(s));
 		}
 		return converted;
 	}
 	
 	public String name;
+	
+	public Naming scope;
+	
+	public List<STypeDef> typedefs = new ArrayList<>();
+	public List<SConstant> constants = new ArrayList<>();
+	public List<SPattern> patterns = new ArrayList<>();
 	
 	public List<SVariable> inputs = new ArrayList<>();
 	public List<SVariable> outputs = new ArrayList<>();
@@ -60,15 +69,18 @@ public class SNode extends SContextElement {
 	private String conjunctName;
 	private String historicConjunctName;
 	
-	public SNode(Specification s, SProgram program) {
-		//capture the name in the Program context
-		this.name = program.scope.getUniqueNameAndRegister(s.getName());
-		
-		//process the global stuff first
-		//TODO: this does not account for duplicates
-		
+	public SNode(Specification s) {
+		//get the specification name, it should be unique
+		this.name = s.getName();
+
 		//set the local scope before processing local elements
-		scope = new Naming(program.scope);
+		scope = SProgram.getInitialNaming();
+		
+		ReferenceFinder finder = ReferenceFinder.get(s);
+		typedefs = STypeDef.convertList(finder.getSpecificationTypeDefs(s), this);
+		constants = SConstant.convertList(finder.getSpecificationConstants(s), this);
+		//TODO: add patterns
+		
 		for(NormalizedCall call : EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class)) {
 			/*
 			 * What we need to do:
@@ -77,12 +89,13 @@ public class SNode extends SContextElement {
 			 *    - lets name them callX_specificationName_arg0
 			 * 3. Map these calls to these additional args for lookup later
 			 */
-			SNode calledNode = new SNode(call.getSpec(), program);
-			indirectCalledArgs.put(call, getIndirectArgs(calledNode));
-			directCalledArgs.put(call, getDirectCalledArgs(this,calledNode,call.hashCode()));
-			
-			program.calledNodes.add(calledNode);
+			SNode calledNode = new SNode(call.getSpec());
 			calls.put(call, calledNode);
+			
+			//collect the direct args (the args for the call)
+			indirectCalledArgs.put(call, getIndirectArgs(calledNode));
+			//collect the indirect args (the args for the call's calls)
+			directCalledArgs.put(call, getDirectCalledArgs(this,calledNode,call.hashCode()));
 		}
 
 		//set the local scope before processing local elements
@@ -99,8 +112,26 @@ public class SNode extends SContextElement {
 		requirements.addAll(SConstraint.convertList(s.getRequirements(), this));
 		behaviors.addAll(SConstraint.convertList(s.getBehaviors(), this));
 		
-		this.conjunctName = scope.getUniqueNameAndRegister(CONJUNCT_ID);
-		this.historicConjunctName = scope.getUniqueNameAndRegister(HISTORICAL_CONJUNCT);
+		this.conjunctName = scope.getUniqueLocalNameAndRegister(CONJUNCT_ID);
+		this.historicConjunctName = scope.getUniqueLocalNameAndRegister(HISTORICAL_CONJUNCT);
+	}
+	
+	public List<TypeDef> getRecursiveLustreTypeDefs() {
+		List<TypeDef> lustre = new ArrayList<>();
+		lustre.addAll(STypeDef.toLustre(this.typedefs, this));
+		for(SNode called : this.calls.values()) {
+			lustre.addAll(called.getRecursiveLustreTypeDefs());
+		}
+		return lustre;
+	}
+	
+	public List<Constant> getRecursiveLustreConstants() {
+		List<Constant> lustre = new ArrayList<>();
+		lustre.addAll(SConstant.toLustre(this.constants, this));
+		for(SNode called : this.calls.values()) {
+			lustre.addAll(called.getRecursiveLustreConstants());
+		}
+		return lustre;
 	}
 	
 	private List<SAddArg> getIndirectArgs(SNode calledNode) {
@@ -119,7 +150,7 @@ public class SNode extends SContextElement {
 		
 		for(ShadowVariable sv : shadowVars) {
 			String proposed = caller.name + "_call" + callNumber + "_" + calledNode.name + "_" + sv.name;
-			String renamed = scope.getUniqueNameAndRegister(proposed);
+			String renamed = scope.getUniqueLocalNameAndRegister(proposed);
 			args.add(new SAddArg(renamed, sv.type));
 		}
 		return args;

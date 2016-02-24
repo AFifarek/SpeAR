@@ -9,8 +9,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.FieldType;
-import com.rockwellcollins.spear.translate.intermediate.Naming;
-import com.rockwellcollins.spear.translate.intermediate.SContextElement;
+import com.rockwellcollins.spear.translate.intermediate.SNode;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 import jkind.lustre.Ast;
@@ -23,13 +22,13 @@ import jkind.lustre.VarDecl;
 
 public class TranslateDecl extends SpearSwitch<Ast> {
 
-	public static Ast translate(EObject o, SContextElement context) {
+	public static Ast translate(EObject o, SNode context) {
 		return new TranslateDecl(context).doSwitch(o);
 	}
 	
-	private SContextElement context;
+	private SNode context;
 	
-	private TranslateDecl(SContextElement context) {
+	private TranslateDecl(SNode context) {
 		this.context=context;
 	}
 	

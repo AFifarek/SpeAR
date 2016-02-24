@@ -36,7 +36,14 @@ public class Naming {
 		map.put(renamed, original);
 	}
 	
-	public String getUniqueNameAndRegister(String original) {
+	public String getUniqueGlobalNameAndRegister(String specificationName, String original) {
+		String proposed = specificationName + "_" + original;
+		String renamed = getUniqueName(proposed);
+		register(original,renamed);
+		return renamed;
+	}
+	
+	public String getUniqueLocalNameAndRegister(String original) {
 		String renamed = getUniqueName(original);
 		register(original,renamed);
 		return renamed;

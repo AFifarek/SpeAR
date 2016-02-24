@@ -74,8 +74,8 @@ public class SConstraint extends SAst {
 
 	public SConstraint(Constraint c, SNode context) {
 		this.constraint = c;
-		this.name = context.scope.getUniqueNameAndRegister(c.getName());
-		this.propertyName = context.scope.getUniqueNameAndRegister(c.getName() + PROPERTY_SUFFIX);
+		this.name = context.scope.getUniqueLocalNameAndRegister(c.getName());
+		this.propertyName = context.scope.getUniqueLocalNameAndRegister(c.getName() + PROPERTY_SUFFIX);
 	}
 	
 	public VarDecl getVarDecl(SNode context) {

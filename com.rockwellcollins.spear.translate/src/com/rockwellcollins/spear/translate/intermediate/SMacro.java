@@ -45,7 +45,7 @@ public class SMacro extends SAst {
 
 	public SMacro(Macro m, SNode context) {
 		this.macro = m;
-		this.name = context.scope.getUniqueNameAndRegister(m.getName());
+		this.name = context.scope.getUniqueLocalNameAndRegister(m.getName());
 	}
 	
 	public VarDecl getVarDecl(SNode context) {
