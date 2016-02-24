@@ -50,7 +50,6 @@ public class SNode extends SContextElement {
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
 	
-	
 	public Map<NormalizedCall,SNode> calls = new HashMap<>();
 	public Map<NormalizedCall,List<SAddArg>> directCalledArgs = new HashMap<>();
 	public Map<NormalizedCall,List<SAddArg>> indirectCalledArgs = new HashMap<>();
@@ -67,8 +66,6 @@ public class SNode extends SContextElement {
 		
 		//process the global stuff first
 		//TODO: this does not account for duplicates
-		program.typedefs.addAll(STypeDef.convertList(s.getTypedefs(), program));
-		program.constants.addAll(SConstant.convertList(s.getConstants(), program));
 		
 		//set the local scope before processing local elements
 		scope = new Naming(program.scope);
