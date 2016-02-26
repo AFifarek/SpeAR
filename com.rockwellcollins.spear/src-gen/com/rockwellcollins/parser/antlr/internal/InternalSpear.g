@@ -598,7 +598,7 @@ rulePattern returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='Pattern' 
+(	otherlv_0='pattern' 
     {
     	newLeafNode(otherlv_0, grammarAccess.getPatternAccess().getPatternKeyword_0());
     }

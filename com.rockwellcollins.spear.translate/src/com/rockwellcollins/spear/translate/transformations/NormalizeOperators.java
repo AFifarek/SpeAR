@@ -3,7 +3,7 @@ package com.rockwellcollins.spear.translate.transformations;
 import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.BinaryExpr;
-import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.language.CreateExpr;
 
@@ -13,8 +13,12 @@ public class NormalizeOperators {
 		return s.replaceAll("\\s+", " ");
 	}
 	
-	public static Specification transform(Specification s) {
-		for(UnaryExpr ue : EcoreUtil2.getAllContentsOfType(s, UnaryExpr.class)) {
+	public static void transform(SpearDocument p) {
+		p.mapFiles(NormalizeOperators::transform);
+	}
+	
+	private static File transform(File f) {
+		for(UnaryExpr ue : EcoreUtil2.getAllContentsOfType(f, UnaryExpr.class)) {
 			String normalizedOp = normalize(ue.getOp());
 			
 			switch(normalizedOp) {
@@ -28,7 +32,7 @@ public class NormalizeOperators {
 			}
 		}
 		
-		for(BinaryExpr be : EcoreUtil2.getAllContentsOfType(s, BinaryExpr.class)) {
+		for(BinaryExpr be : EcoreUtil2.getAllContentsOfType(f, BinaryExpr.class)) {
 			String normalizedOp = normalize(be.getOp());
 			
 			switch(normalizedOp) {
@@ -70,6 +74,6 @@ public class NormalizeOperators {
 			}
 		}
 		
-		return s;
+		return f;
 	}
 }

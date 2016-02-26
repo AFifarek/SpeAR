@@ -31,7 +31,7 @@ Definitions:
 	('Patterns:' patterns+=Pattern*)?;
 
 Pattern:
-	'Pattern' (name=ID)
+	'pattern' (name=ID)
 	/*	
  *  'Inputs:' (inputs+=Variable) (',' inputs+=Variable)*
 	'Outputs:' (outputs+=Variable) (',' outputs+=Variable)*

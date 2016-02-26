@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalSpearParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'is a'", "'is an'", "'=>'", "'implies'", "'or'", "'xor'", "'T'", "'triggers'", "'S'", "'since'", "'O'", "'once'", "'H'", "'historically'", "'never'", "'before'", "'initially'", "'<'", "'<='", "'>'", "'>='", "'=='", "'<>'", "'+'", "'-'", "'*'", "'/'", "'not'", "'TRUE'", "'true'", "'FALSE'", "'false'", "'Specification'", "'Inputs:'", "'Outputs:'", "'DerivedRequirements:'", "'Imports:'", "'Units:'", "'Types:'", "'Constants:'", "'Patterns:'", "'State:'", "'Macros:'", "'Assumptions:'", "'Requirements:'", "'import'", "'Definitions'", "'Pattern'", "'('", "')'", "'record'", "'{'", "'}'", "','", "'['", "']'", "'enum'", "'int'", "'bool'", "'real'", "'='", "'text'", "'less'", "'than'", "'equal'", "'to'", "'greater'", "'previous'", "'with'", "'initial'", "'value'", "'.'", "':='", "'|'", "'if'", "'then'", "'else'", "'after'", "'until'", "'while'", "'new'", "'pattern'", "'spec'", "'#'", "'and'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'is a'", "'is an'", "'=>'", "'implies'", "'or'", "'xor'", "'T'", "'triggers'", "'S'", "'since'", "'O'", "'once'", "'H'", "'historically'", "'never'", "'before'", "'initially'", "'<'", "'<='", "'>'", "'>='", "'=='", "'<>'", "'+'", "'-'", "'*'", "'/'", "'not'", "'TRUE'", "'true'", "'FALSE'", "'false'", "'Specification'", "'Inputs:'", "'Outputs:'", "'DerivedRequirements:'", "'Imports:'", "'Units:'", "'Types:'", "'Constants:'", "'Patterns:'", "'State:'", "'Macros:'", "'Assumptions:'", "'Requirements:'", "'import'", "'Definitions'", "'pattern'", "'('", "')'", "'record'", "'{'", "'}'", "','", "'['", "']'", "'enum'", "'int'", "'bool'", "'real'", "'='", "'text'", "'less'", "'than'", "'equal'", "'to'", "'greater'", "'previous'", "'with'", "'initial'", "'value'", "'.'", "':='", "'|'", "'if'", "'then'", "'else'", "'after'", "'until'", "'while'", "'new'", "'spec'", "'#'", "'and'"
     };
     public static final int T__50=50;
     public static final int T__59=59;
@@ -83,7 +83,6 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     public static final int T__13=13;
     public static final int T__14=14;
     public static final int T__95=95;
-    public static final int T__96=96;
     public static final int T__26=26;
     public static final int T__27=27;
     public static final int T__28=28;
@@ -4455,7 +4454,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
                 if ( (LA7_1==72) ) {
                     int LA7_2 = input.LA(3);
 
-                    if ( ((LA7_2>=RULE_INT && LA7_2<=RULE_ID)||(LA7_2>=22 && LA7_2<=28)||LA7_2==36||(LA7_2>=39 && LA7_2<=43)||LA7_2==60||LA7_2==79||(LA7_2>=85 && LA7_2<=86)||LA7_2==89||(LA7_2>=91 && LA7_2<=95)) ) {
+                    if ( ((LA7_2>=RULE_INT && LA7_2<=RULE_ID)||(LA7_2>=22 && LA7_2<=28)||LA7_2==36||(LA7_2>=39 && LA7_2<=43)||(LA7_2>=59 && LA7_2<=60)||LA7_2==79||(LA7_2>=85 && LA7_2<=86)||LA7_2==89||(LA7_2>=91 && LA7_2<=94)) ) {
                         alt7=1;
                     }
                     else if ( (LA7_2==RULE_STRING) ) {
@@ -4882,7 +4881,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( ((LA12_0>=22 && LA12_0<=28)) ) {
                 alt12=1;
             }
-            else if ( ((LA12_0>=RULE_INT && LA12_0<=RULE_ID)||LA12_0==36||(LA12_0>=39 && LA12_0<=43)||LA12_0==60||LA12_0==79||(LA12_0>=85 && LA12_0<=86)||LA12_0==89||(LA12_0>=91 && LA12_0<=95)) ) {
+            else if ( ((LA12_0>=RULE_INT && LA12_0<=RULE_ID)||LA12_0==36||(LA12_0>=39 && LA12_0<=43)||(LA12_0>=59 && LA12_0<=60)||LA12_0==79||(LA12_0>=85 && LA12_0<=86)||LA12_0==89||(LA12_0>=91 && LA12_0<=94)) ) {
                 alt12=2;
             }
             else {
@@ -5669,6 +5668,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             case 41:
             case 42:
             case 43:
+            case 59:
             case 60:
             case 85:
             case 86:
@@ -5677,7 +5677,6 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             case 92:
             case 93:
             case 94:
-            case 95:
                 {
                 alt17=3;
                 }
@@ -6385,7 +6384,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( (LA21_0==RULE_INT) ) {
                 int LA21_1 = input.LA(2);
 
-                if ( (LA21_1==EOF||LA21_1==RULE_ID||(LA21_1>=14 && LA21_1<=21)||(LA21_1>=29 && LA21_1<=39)||LA21_1==45||LA21_1==47||LA21_1==52||(LA21_1>=55 && LA21_1<=56)||LA21_1==61||(LA21_1>=63 && LA21_1<=67)||(LA21_1>=73 && LA21_1<=74)||LA21_1==76||LA21_1==78||LA21_1==80||LA21_1==84||(LA21_1>=87 && LA21_1<=88)||LA21_1==90||LA21_1==96) ) {
+                if ( (LA21_1==EOF||LA21_1==RULE_ID||(LA21_1>=14 && LA21_1<=21)||(LA21_1>=29 && LA21_1<=39)||LA21_1==45||LA21_1==47||LA21_1==52||(LA21_1>=55 && LA21_1<=56)||LA21_1==61||(LA21_1>=63 && LA21_1<=67)||(LA21_1>=73 && LA21_1<=74)||LA21_1==76||LA21_1==78||LA21_1==80||LA21_1==84||(LA21_1>=87 && LA21_1<=88)||LA21_1==90||LA21_1==95) ) {
                     alt21=1;
                 }
                 else if ( (LA21_1==83) ) {
@@ -11515,17 +11514,17 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Pattern__Group__0__Impl"
-    // InternalSpear.g:3651:1: rule__Pattern__Group__0__Impl : ( 'Pattern' ) ;
+    // InternalSpear.g:3651:1: rule__Pattern__Group__0__Impl : ( 'pattern' ) ;
     public final void rule__Pattern__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // InternalSpear.g:3655:1: ( ( 'Pattern' ) )
-            // InternalSpear.g:3656:1: ( 'Pattern' )
+            // InternalSpear.g:3655:1: ( ( 'pattern' ) )
+            // InternalSpear.g:3656:1: ( 'pattern' )
             {
-            // InternalSpear.g:3656:1: ( 'Pattern' )
-            // InternalSpear.g:3657:1: 'Pattern'
+            // InternalSpear.g:3656:1: ( 'pattern' )
+            // InternalSpear.g:3657:1: 'pattern'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getPatternAccess().getPatternKeyword_0()); 
@@ -21499,7 +21498,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             int alt66=2;
             int LA66_0 = input.LA(1);
 
-            if ( (LA66_0==96) ) {
+            if ( (LA66_0==95) ) {
                 int LA66_1 = input.LA(2);
 
                 if ( (synpred99_InternalSpear()) ) {
@@ -33814,7 +33813,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:11979:1: ( rule__AtomicExpr__Group_8__0__Impl rule__AtomicExpr__Group_8__1 )
             // InternalSpear.g:11980:2: rule__AtomicExpr__Group_8__0__Impl rule__AtomicExpr__Group_8__1
             {
-            pushFollow(FOLLOW_70);
+            pushFollow(FOLLOW_11);
             rule__AtomicExpr__Group_8__0__Impl();
 
             state._fsp--;
@@ -33937,7 +33936,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getPatternKeyword_8_1()); 
             }
-            match(input,93,FOLLOW_2); if (state.failed) return ;
+            match(input,59,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAtomicExprAccess().getPatternKeyword_8_1()); 
             }
@@ -33972,7 +33971,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12041:1: ( rule__AtomicExpr__Group_8__2__Impl rule__AtomicExpr__Group_8__3 )
             // InternalSpear.g:12042:2: rule__AtomicExpr__Group_8__2__Impl rule__AtomicExpr__Group_8__3
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__AtomicExpr__Group_8__2__Impl();
 
             state._fsp--;
@@ -34140,7 +34139,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12101:1: ( rule__AtomicExpr__Group_8__4__Impl rule__AtomicExpr__Group_8__5 )
             // InternalSpear.g:12102:2: rule__AtomicExpr__Group_8__4__Impl rule__AtomicExpr__Group_8__5
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_71);
             rule__AtomicExpr__Group_8__4__Impl();
 
             state._fsp--;
@@ -34229,7 +34228,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12130:1: ( rule__AtomicExpr__Group_8__5__Impl rule__AtomicExpr__Group_8__6 )
             // InternalSpear.g:12131:2: rule__AtomicExpr__Group_8__5__Impl rule__AtomicExpr__Group_8__6
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_71);
             rule__AtomicExpr__Group_8__5__Impl();
 
             state._fsp--;
@@ -34573,7 +34572,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12266:1: ( rule__AtomicExpr__Group_9__0__Impl rule__AtomicExpr__Group_9__1 )
             // InternalSpear.g:12267:2: rule__AtomicExpr__Group_9__0__Impl rule__AtomicExpr__Group_9__1
             {
-            pushFollow(FOLLOW_73);
+            pushFollow(FOLLOW_72);
             rule__AtomicExpr__Group_9__0__Impl();
 
             state._fsp--;
@@ -34696,7 +34695,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAtomicExprAccess().getSpecKeyword_9_1()); 
             }
-            match(input,94,FOLLOW_2); if (state.failed) return ;
+            match(input,93,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAtomicExprAccess().getSpecKeyword_9_1()); 
             }
@@ -34731,7 +34730,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12328:1: ( rule__AtomicExpr__Group_9__2__Impl rule__AtomicExpr__Group_9__3 )
             // InternalSpear.g:12329:2: rule__AtomicExpr__Group_9__2__Impl rule__AtomicExpr__Group_9__3
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__AtomicExpr__Group_9__2__Impl();
 
             state._fsp--;
@@ -34899,7 +34898,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12388:1: ( rule__AtomicExpr__Group_9__4__Impl rule__AtomicExpr__Group_9__5 )
             // InternalSpear.g:12389:2: rule__AtomicExpr__Group_9__4__Impl rule__AtomicExpr__Group_9__5
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_71);
             rule__AtomicExpr__Group_9__4__Impl();
 
             state._fsp--;
@@ -34988,7 +34987,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12417:1: ( rule__AtomicExpr__Group_9__5__Impl rule__AtomicExpr__Group_9__6 )
             // InternalSpear.g:12418:2: rule__AtomicExpr__Group_9__5__Impl rule__AtomicExpr__Group_9__6
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_71);
             rule__AtomicExpr__Group_9__5__Impl();
 
             state._fsp--;
@@ -35782,7 +35781,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( (LA82_0==RULE_ID) ) {
                 int LA82_1 = input.LA(2);
 
-                if ( (LA82_1==EOF||LA82_1==RULE_ID||(LA82_1>=14 && LA82_1<=21)||(LA82_1>=29 && LA82_1<=39)||LA82_1==45||LA82_1==47||LA82_1==52||(LA82_1>=55 && LA82_1<=56)||LA82_1==61||(LA82_1>=63 && LA82_1<=67)||(LA82_1>=73 && LA82_1<=74)||LA82_1==76||LA82_1==78||LA82_1==80||(LA82_1>=83 && LA82_1<=84)||(LA82_1>=87 && LA82_1<=88)||LA82_1==90||LA82_1==96) ) {
+                if ( (LA82_1==EOF||LA82_1==RULE_ID||(LA82_1>=14 && LA82_1<=21)||(LA82_1>=29 && LA82_1<=39)||LA82_1==45||LA82_1==47||LA82_1==52||(LA82_1>=55 && LA82_1<=56)||LA82_1==61||(LA82_1>=63 && LA82_1<=67)||(LA82_1>=73 && LA82_1<=74)||LA82_1==76||LA82_1==78||LA82_1==80||(LA82_1>=83 && LA82_1<=84)||(LA82_1>=87 && LA82_1<=88)||LA82_1==90||LA82_1==95) ) {
                     alt82=1;
                 }
             }
@@ -35835,7 +35834,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12743:1: ( rule__LiteralExpr__Group_1__0__Impl rule__LiteralExpr__Group_1__1 )
             // InternalSpear.g:12744:2: rule__LiteralExpr__Group_1__0__Impl rule__LiteralExpr__Group_1__1
             {
-            pushFollow(FOLLOW_74);
+            pushFollow(FOLLOW_73);
             rule__LiteralExpr__Group_1__0__Impl();
 
             state._fsp--;
@@ -35998,7 +35997,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12806:1: ( rule__LiteralExpr__Group_2__0__Impl rule__LiteralExpr__Group_2__1 )
             // InternalSpear.g:12807:2: rule__LiteralExpr__Group_2__0__Impl rule__LiteralExpr__Group_2__1
             {
-            pushFollow(FOLLOW_75);
+            pushFollow(FOLLOW_74);
             rule__LiteralExpr__Group_2__0__Impl();
 
             state._fsp--;
@@ -36212,7 +36211,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( (LA83_0==RULE_ID) ) {
                 int LA83_1 = input.LA(2);
 
-                if ( (LA83_1==EOF||LA83_1==RULE_ID||(LA83_1>=14 && LA83_1<=21)||(LA83_1>=29 && LA83_1<=39)||LA83_1==45||LA83_1==47||LA83_1==52||(LA83_1>=55 && LA83_1<=56)||LA83_1==61||(LA83_1>=63 && LA83_1<=67)||(LA83_1>=73 && LA83_1<=74)||LA83_1==76||LA83_1==78||LA83_1==80||(LA83_1>=83 && LA83_1<=84)||(LA83_1>=87 && LA83_1<=88)||LA83_1==90||LA83_1==96) ) {
+                if ( (LA83_1==EOF||LA83_1==RULE_ID||(LA83_1>=14 && LA83_1<=21)||(LA83_1>=29 && LA83_1<=39)||LA83_1==45||LA83_1==47||LA83_1==52||(LA83_1>=55 && LA83_1<=56)||LA83_1==61||(LA83_1>=63 && LA83_1<=67)||(LA83_1>=73 && LA83_1<=74)||LA83_1==76||LA83_1==78||LA83_1==80||(LA83_1>=83 && LA83_1<=84)||(LA83_1>=87 && LA83_1<=88)||LA83_1==90||LA83_1==95) ) {
                     alt83=1;
                 }
             }
@@ -36388,7 +36387,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getNumberSignKeyword_1()); 
             }
-            match(input,95,FOLLOW_2); if (state.failed) return ;
+            match(input,94,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnusedExprAccess().getNumberSignKeyword_1()); 
             }
@@ -36423,7 +36422,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12962:1: ( rule__UnusedExpr__Group__2__Impl rule__UnusedExpr__Group__3 )
             // InternalSpear.g:12963:2: rule__UnusedExpr__Group__2__Impl rule__UnusedExpr__Group__3
             {
-            pushFollow(FOLLOW_76);
+            pushFollow(FOLLOW_75);
             rule__UnusedExpr__Group__2__Impl();
 
             state._fsp--;
@@ -36512,7 +36511,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:12991:1: ( rule__UnusedExpr__Group__3__Impl rule__UnusedExpr__Group__4 )
             // InternalSpear.g:12992:2: rule__UnusedExpr__Group__3__Impl rule__UnusedExpr__Group__4
             {
-            pushFollow(FOLLOW_76);
+            pushFollow(FOLLOW_75);
             rule__UnusedExpr__Group__3__Impl();
 
             state._fsp--;
@@ -36619,7 +36618,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:13020:1: ( rule__UnusedExpr__Group__4__Impl rule__UnusedExpr__Group__5 )
             // InternalSpear.g:13021:2: rule__UnusedExpr__Group__4__Impl rule__UnusedExpr__Group__5
             {
-            pushFollow(FOLLOW_77);
+            pushFollow(FOLLOW_76);
             rule__UnusedExpr__Group__4__Impl();
 
             state._fsp--;
@@ -36663,7 +36662,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getNumberSignKeyword_4()); 
             }
-            match(input,95,FOLLOW_2); if (state.failed) return ;
+            match(input,94,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnusedExprAccess().getNumberSignKeyword_4()); 
             }
@@ -36698,7 +36697,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:13051:1: ( rule__UnusedExpr__Group__5__Impl rule__UnusedExpr__Group__6 )
             // InternalSpear.g:13052:2: rule__UnusedExpr__Group__5__Impl rule__UnusedExpr__Group__6
             {
-            pushFollow(FOLLOW_73);
+            pushFollow(FOLLOW_72);
             rule__UnusedExpr__Group__5__Impl();
 
             state._fsp--;
@@ -36821,7 +36820,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getUnusedExprAccess().getSpecKeyword_6()); 
             }
-            match(input,94,FOLLOW_2); if (state.failed) return ;
+            match(input,93,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getUnusedExprAccess().getSpecKeyword_6()); 
             }
@@ -36856,7 +36855,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:13113:1: ( rule__UnusedExpr__Group__7__Impl rule__UnusedExpr__Group__8 )
             // InternalSpear.g:13114:2: rule__UnusedExpr__Group__7__Impl rule__UnusedExpr__Group__8
             {
-            pushFollow(FOLLOW_71);
+            pushFollow(FOLLOW_70);
             rule__UnusedExpr__Group__7__Impl();
 
             state._fsp--;
@@ -37024,7 +37023,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:13173:1: ( rule__UnusedExpr__Group__9__Impl rule__UnusedExpr__Group__10 )
             // InternalSpear.g:13174:2: rule__UnusedExpr__Group__9__Impl rule__UnusedExpr__Group__10
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_71);
             rule__UnusedExpr__Group__9__Impl();
 
             state._fsp--;
@@ -37113,7 +37112,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             // InternalSpear.g:13202:1: ( rule__UnusedExpr__Group__10__Impl rule__UnusedExpr__Group__11 )
             // InternalSpear.g:13203:2: rule__UnusedExpr__Group__10__Impl rule__UnusedExpr__Group__11
             {
-            pushFollow(FOLLOW_72);
+            pushFollow(FOLLOW_71);
             rule__UnusedExpr__Group__10__Impl();
 
             state._fsp--;
@@ -40997,7 +40996,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getAndExprAccess().getOpAndKeyword_1_0_0_1_0()); 
             }
-            match(input,96,FOLLOW_2); if (state.failed) return ;
+            match(input,95,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getAndExprAccess().getOpAndKeyword_1_0_0_1_0()); 
             }
@@ -44105,7 +44104,7 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     static final String dfa_8s = "\21\uffff";
     static final String dfa_9s = "\13\uffff\1\16\1\20\4\uffff";
     static final String dfa_10s = "\1\35\1\uffff\1\113\2\uffff\1\113\5\uffff\2\4\4\uffff";
-    static final String dfa_11s = "\1\116\1\uffff\1\113\2\uffff\1\113\5\uffff\2\137\4\uffff";
+    static final String dfa_11s = "\1\116\1\uffff\1\113\2\uffff\1\113\5\uffff\2\136\4\uffff";
     static final String dfa_12s = "\1\uffff\1\1\1\uffff\1\3\1\5\1\uffff\1\7\1\11\1\12\1\13\1\14\2\uffff\1\4\1\2\1\10\1\6";
     static final String dfa_13s = "\21\uffff}>";
     static final String[] dfa_14s = {
@@ -44120,8 +44119,8 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
             "",
             "",
             "",
-            "\2\16\12\uffff\1\15\23\uffff\1\16\2\uffff\5\16\20\uffff\1\16\22\uffff\1\16\5\uffff\2\16\2\uffff\1\16\1\uffff\5\16",
-            "\2\20\12\uffff\1\17\23\uffff\1\20\2\uffff\5\20\20\uffff\1\20\22\uffff\1\20\5\uffff\2\20\2\uffff\1\20\1\uffff\5\20",
+            "\2\16\12\uffff\1\15\23\uffff\1\16\2\uffff\5\16\17\uffff\2\16\22\uffff\1\16\5\uffff\2\16\2\uffff\1\16\1\uffff\4\16",
+            "\2\20\12\uffff\1\17\23\uffff\1\20\2\uffff\5\20\17\uffff\2\20\22\uffff\1\20\5\uffff\2\20\2\uffff\1\20\1\uffff\4\20",
             "",
             "",
             "",
@@ -44155,11 +44154,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     }
     static final String dfa_15s = "\17\uffff";
     static final String dfa_16s = "\1\4\6\uffff\1\5\4\uffff\1\77\2\uffff";
-    static final String dfa_17s = "\1\137\6\uffff\1\5\4\uffff\1\102\2\uffff";
+    static final String dfa_17s = "\1\136\6\uffff\1\5\4\uffff\1\102\2\uffff";
     static final String dfa_18s = "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\uffff\1\11\1\12\1\13\1\14\1\uffff\1\7\1\10";
     static final String dfa_19s = "\17\uffff}>";
     static final String[] dfa_20s = {
-            "\1\1\1\2\42\uffff\4\1\20\uffff\1\12\30\uffff\1\3\1\4\2\uffff\1\5\1\uffff\1\6\1\7\1\10\1\11\1\13",
+            "\1\1\1\2\42\uffff\4\1\17\uffff\1\10\1\12\30\uffff\1\3\1\4\2\uffff\1\5\1\uffff\1\6\1\7\1\11\1\13",
             "",
             "",
             "",
@@ -44202,11 +44201,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     }
     static final String dfa_21s = "\1\13\14\uffff";
     static final String dfa_22s = "\1\5\12\0\2\uffff";
-    static final String dfa_23s = "\1\140\12\0\2\uffff";
+    static final String dfa_23s = "\1\137\12\0\2\uffff";
     static final String dfa_24s = "\13\uffff\1\2\1\1";
     static final String dfa_25s = "\1\uffff\1\6\1\10\1\11\1\2\1\1\1\7\1\0\1\3\1\5\1\4\2\uffff}>";
     static final String[] dfa_26s = {
-            "\1\13\10\uffff\10\13\7\uffff\1\1\1\3\1\4\1\6\1\7\1\11\4\13\1\12\5\uffff\1\13\1\uffff\1\13\4\uffff\1\13\2\uffff\2\13\4\uffff\1\13\1\uffff\5\13\5\uffff\1\13\1\2\1\uffff\1\10\1\uffff\1\5\1\uffff\1\13\2\uffff\2\13\2\uffff\2\13\1\uffff\1\13\5\uffff\1\13",
+            "\1\13\10\uffff\10\13\7\uffff\1\1\1\3\1\4\1\6\1\7\1\11\4\13\1\12\5\uffff\1\13\1\uffff\1\13\4\uffff\1\13\2\uffff\2\13\4\uffff\1\13\1\uffff\5\13\5\uffff\1\13\1\2\1\uffff\1\10\1\uffff\1\5\1\uffff\1\13\2\uffff\2\13\2\uffff\2\13\1\uffff\1\13\4\uffff\1\13",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -44440,11 +44439,11 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
     public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x10000F901FC00030L,0x00000000FA608000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x18000F901FC00030L,0x000000007A608000L});
     public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
     public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x000000000000C000L});
     public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
     public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x00000000000C0000L});
     public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000000300000L});
     public static final BitSet FOLLOW_41 = new BitSet(new long[]{0x000000001FC00000L});
@@ -44476,13 +44475,12 @@ public class InternalSpearParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
     public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
     public static final BitSet FOLLOW_69 = new BitSet(new long[]{0x0000000000000000L,0x000000000000000AL});
-    public static final BitSet FOLLOW_70 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
-    public static final BitSet FOLLOW_71 = new BitSet(new long[]{0x1000000000000000L});
-    public static final BitSet FOLLOW_72 = new BitSet(new long[]{0x2000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_73 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000000L});
-    public static final BitSet FOLLOW_74 = new BitSet(new long[]{0x00000F0000000000L});
-    public static final BitSet FOLLOW_75 = new BitSet(new long[]{0x00000F0000000010L});
-    public static final BitSet FOLLOW_76 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000002L});
-    public static final BitSet FOLLOW_77 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_70 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_71 = new BitSet(new long[]{0x2000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_72 = new BitSet(new long[]{0x0000000000000000L,0x0000000020000000L});
+    public static final BitSet FOLLOW_73 = new BitSet(new long[]{0x00000F0000000000L});
+    public static final BitSet FOLLOW_74 = new BitSet(new long[]{0x00000F0000000010L});
+    public static final BitSet FOLLOW_75 = new BitSet(new long[]{0x0000000000000000L,0x0000000040000002L});
+    public static final BitSet FOLLOW_76 = new BitSet(new long[]{0x0000000200000000L});
 
 }

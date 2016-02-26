@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.rockwellcollins.spear.EnumTypeDef;
+import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.translate.lustre.TranslateDecl;
 
@@ -31,6 +33,13 @@ public class STypeDef extends SAst {
 	public STypeDef(TypeDef typedef, SNode context) {
 		this.typedef = typedef;
 		this.name = context.scope.getUniqueGlobalNameAndRegister(context.name,typedef.getName());
+		
+		if (typedef instanceof EnumTypeDef) {
+			EnumTypeDef etd = (EnumTypeDef) typedef;
+			for(EnumValue ev : etd.getValues()) {
+				context.scope.getUniqueGlobalNameAndRegister(context.name, ev.getName());	
+			}
+		}
 	}
 	
 	public jkind.lustre.TypeDef toLustre(SNode context) {

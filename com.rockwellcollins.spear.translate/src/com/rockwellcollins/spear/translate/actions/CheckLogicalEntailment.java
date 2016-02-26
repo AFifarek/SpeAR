@@ -1,16 +1,5 @@
 package com.rockwellcollins.spear.translate.actions;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -18,8 +7,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.XtextEditor;
@@ -33,18 +20,10 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.intermediate.SProgram;
-import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
-import com.rockwellcollins.spear.translate.views.SpearResultsView;
-import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
+import com.rockwellcollins.spear.translate.transformations.SpearDocument;
 import com.rockwellcollins.ui.internal.SpearActivator;
-
-import jkind.api.KindApi;
-import jkind.api.results.JKindResult;
-import jkind.lustre.Program;
-import jkind.results.layout.Layout;
 
 public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
@@ -90,41 +69,42 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
 				
-				Specification workingCopy = EcoreUtil2.copy(specification);
-				PerformTransforms.apply(workingCopy, state);
-
-				// translate to Lustre
-				SProgram sprogram = new SProgram(workingCopy);
-				Program p = sprogram.getLogicalEntailment();
-				URI lustreURI = createURI(state.getURI(), "", "lus");
-
-				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-				
-				if(SpearRuntimeOptions.printFinalLustre) {
-					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
-					printResource(finalResource, p.toString());
-				}
-
-				// refresh the workspace
-				root.refreshLocal(IResource.DEPTH_INFINITE, null);
-				KindApi api = PreferencesUtil.getKindApi();
-
-				JKindResult result = new JKindResult("Spear Result");
-				for (String prop : p.getMainNode().properties) {
-					result.addProperty(prop, false);
-				}
-
-				IProgressMonitor monitor = new NullProgressMonitor();
-				showView(result, new SpearLayout(workingCopy));
-
-				try {
-					api.execute(p, result, monitor);
-				} catch (Exception e) {
-					System.out.println(result.getText());
-					throw e;
-				}
+				SpearDocument workingCopy = new SpearDocument(specification);
+				PerformTransforms.apply(workingCopy);
 
 				return null;
+//				// translate to Lustre
+//				SProgram sprogram = new SProgram(workingCopy);
+//				Program p = sprogram.getLogicalEntailment();
+//				URI lustreURI = createURI(state.getURI(), "", "lus");
+//
+//				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+//				
+//				if(SpearRuntimeOptions.printFinalLustre) {
+//					IResource finalResource = root.getFile(new Path(lustreURI.toPlatformString(true)));
+//					printResource(finalResource, p.toString());
+//				}
+//
+//				// refresh the workspace
+//				root.refreshLocal(IResource.DEPTH_INFINITE, null);
+//				KindApi api = PreferencesUtil.getKindApi();
+//
+//				JKindResult result = new JKindResult("Spear Result");
+//				for (String prop : p.getMainNode().properties) {
+//					result.addProperty(prop, false);
+//				}
+//
+//				IProgressMonitor monitor = new NullProgressMonitor();
+//				showView(result, new SpearLayout(workingCopy));
+//
+//				try {
+//					api.execute(p, result, monitor);
+//				} catch (Exception e) {
+//					System.out.println(result.getText());
+//					throw e;
+//				}
+//
+//				return null;
 			}
 
 		});
@@ -142,33 +122,33 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 		return false;
 	}
 
-	private static URI createURI(URI baseURI, String suffix, String extension) {
-		String filename = baseURI.lastSegment();
-		baseURI = baseURI.trimSegments(1);
-		int i = filename.lastIndexOf(".");
-		baseURI = baseURI.appendSegment((filename.substring(0, i) + suffix + "." + extension));
-		return baseURI;
-	}
-
-	private void printResource(IResource res, String contents) throws IOException {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(res.getRawLocation().toFile()))) {
-			bw.write(contents);
-		}
-	}
-
-	private void showView(final JKindResult result, final Layout layout) {
-		window.getShell().getDisplay().syncExec(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					SpearResultsView page = (SpearResultsView) window.getActivePage().showView(SpearResultsView.ID);
-					page.setInput(result, layout);
-				} catch (PartInitException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	private static URI createURI(URI baseURI, String suffix, String extension) {
+//		String filename = baseURI.lastSegment();
+//		baseURI = baseURI.trimSegments(1);
+//		int i = filename.lastIndexOf(".");
+//		baseURI = baseURI.appendSegment((filename.substring(0, i) + suffix + "." + extension));
+//		return baseURI;
+//	}
+//
+//	private void printResource(IResource res, String contents) throws IOException {
+//		try (BufferedWriter bw = new BufferedWriter(new FileWriter(res.getRawLocation().toFile()))) {
+//			bw.write(contents);
+//		}
+//	}
+//
+//	private void showView(final JKindResult result, final Layout layout) {
+//		window.getShell().getDisplay().syncExec(new Runnable() {
+//			@Override
+//			public void run() {
+//				try {
+//					SpearResultsView page = (SpearResultsView) window.getActivePage().showView(SpearResultsView.ID);
+//					page.setInput(result, layout);
+//				} catch (PartInitException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	@Override
 	public void selectionChanged(IAction arg0, ISelection arg1) {

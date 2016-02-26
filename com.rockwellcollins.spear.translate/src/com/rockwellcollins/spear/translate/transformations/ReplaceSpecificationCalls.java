@@ -5,19 +5,23 @@ import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.SpearFactory;
-import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 
-	public static Specification replace(Specification s) {
-		Specification newS = (Specification) new ReplaceSpecificationCalls().doSwitch(s);
-		return newS;
+	public static void replace(SpearDocument p) {
+		p.mapFiles(ReplaceSpecificationCalls::replace);
+	}
+	
+	private static File replace(File f) {
+		File updated = (File) new ReplaceSpecificationCalls().doSwitch(f);
+		return updated;
 	}
 	
 	@Override

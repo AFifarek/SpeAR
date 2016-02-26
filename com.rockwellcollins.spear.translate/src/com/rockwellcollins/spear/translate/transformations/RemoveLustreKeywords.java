@@ -8,15 +8,20 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
-import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.translate.lustre.LustreUtilities;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class RemoveLustreKeywords extends SpearSwitch<EObject> {
 
-	public static Specification transform(Specification s) {
-		new RemoveLustreKeywords().doSwitch(s);
-		return s;
+	public static void transform(SpearDocument p) {
+		p.mapFiles(RemoveLustreKeywords::transform);
+	}
+
+	private static File transform(File f) {
+		new RemoveLustreKeywords().doSwitch(f);
+		return f;
 	}
 	
 	private final Set<String> keywords;
@@ -56,9 +61,12 @@ public class RemoveLustreKeywords extends SpearSwitch<EObject> {
 	}
 	
 	@Override
-	public Specification caseSpecification(Specification s) {
-		this.processNames(s);
-		return s;
+	public File caseFile(File f) {
+		this.processNames(f);
+		for(SpecificationCall sc : EcoreUtil2.getAllContentsOfType(f, SpecificationCall.class)) {
+			this.processNames(sc.getSpec());
+		}
+		return f;
 	}
 	
 	@Override

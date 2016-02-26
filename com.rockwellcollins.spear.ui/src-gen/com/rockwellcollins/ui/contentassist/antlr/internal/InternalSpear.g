@@ -3656,7 +3656,7 @@ rule__Pattern__Group__0__Impl
 (
 { before(grammarAccess.getPatternAccess().getPatternKeyword_0()); }
 
-	'Pattern' 
+	'pattern' 
 
 { after(grammarAccess.getPatternAccess().getPatternKeyword_0()); }
 )
