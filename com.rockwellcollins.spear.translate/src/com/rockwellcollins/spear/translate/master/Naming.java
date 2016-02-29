@@ -36,7 +36,7 @@ public class Naming {
 		map.put(renamed, original);
 	}
 	
-	public String getSpecificationBasedName(String specificationName, String original) {
+	public String getFileBasedName(String specificationName, String original) {
 		String proposed = specificationName + "_" + original;
 		String renamed = getUniqueName(proposed);
 		register(original,renamed);

@@ -21,6 +21,7 @@ import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
+import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.transformations.SpearDocument;
 import com.rockwellcollins.ui.internal.SpearActivator;
@@ -65,6 +66,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 //				Specification workingCopy = EcoreUtil2.copy(specification);
 				SpearDocument workingCopy = new SpearDocument(specification); 
 				PerformTransforms.apply(workingCopy);
+				SProgram program = SProgram.build(workingCopy);
 				
 				return null;
 //				// translate to Lustre
