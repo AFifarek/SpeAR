@@ -14,7 +14,9 @@ public class NormalizeOperators {
 	}
 	
 	public static void transform(SpearDocument p) {
-		p.mapFiles(NormalizeOperators::transform);
+		for(File f : p.files) {
+			transform(f);
+		}
 	}
 	
 	private static File transform(File f) {

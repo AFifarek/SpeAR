@@ -13,7 +13,9 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 public class RemoveSugar extends SpearSwitch<Void> {
 	
 	public static void transform(SpearDocument p) {
-		p.mapFiles(RemoveSugar::transform);
+		for(File f : p.files) {
+			transform(f);
+		}
 	}
 	
 	private static File transform(File f) {

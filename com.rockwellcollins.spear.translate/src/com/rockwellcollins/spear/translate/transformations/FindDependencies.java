@@ -1,7 +1,9 @@
 package com.rockwellcollins.spear.translate.transformations;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -24,10 +26,11 @@ public class FindDependencies extends SpearSwitch<Status> {
 	}
 	
 	public static enum Status { DONE };
-	private Set<File> set = new HashSet<>();
+	private Set<File> set = new LinkedHashSet<>();
 	
-	public Set<File> getCalledFiles() {
-		return new HashSet<>(EcoreUtil2.copyAll(set));
+	public List<File> getCalledFiles() {
+		List<File> files = new ArrayList<>(EcoreUtil2.copyAll(set));
+		return files;
 	}
 	
 	public Map<String,File> getMap() {

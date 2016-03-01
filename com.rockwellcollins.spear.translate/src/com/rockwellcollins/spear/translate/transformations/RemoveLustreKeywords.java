@@ -16,7 +16,9 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 public class RemoveLustreKeywords extends SpearSwitch<EObject> {
 
 	public static void transform(SpearDocument p) {
-		p.mapFiles(RemoveLustreKeywords::transform);
+		for(File f : p.files) {
+			transform(f);
+		}
 	}
 
 	private static File transform(File f) {

@@ -6,6 +6,6 @@ public class PerformTransforms {
 		RemoveLustreKeywords.transform(p);
 		NormalizeOperators.transform(p);
 		RemoveSugar.transform(p);
-		ReplaceSpecificationCalls.replace(p);
+		ReplaceSpecificationCalls.transform(p);
 	}
 }

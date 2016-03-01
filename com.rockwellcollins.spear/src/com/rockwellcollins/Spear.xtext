@@ -125,9 +125,9 @@ RelationalExpr returns Expr:
 
 	//This adds some english equivalents to the Relational Operators for a more english look and feel
 RelationalOp:
-	'<' | 'less' 'than'
+	   '<' | 'less' 'than'
 	| '<=' | 'less' 'than' 'or' 'equal' 'to'
-	| '>' | 'greater' 'than'
+	| '>'  | 'greater' 'than'
 	| '>=' | 'greater' 'than' 'or' 'equal' 'to'
 	| '==' | 'equal' 'to'
 	| '<>' | 'not' 'equal' 'to';

@@ -15,11 +15,13 @@ import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 
-	public static void replace(SpearDocument p) {
-		p.mapFiles(ReplaceSpecificationCalls::replace);
+	public static void transform(SpearDocument p) {
+		for(File f : p.files) {
+			transform(f);
+		}
 	}
 	
-	private static File replace(File f) {
+	private static File transform(File f) {
 		File updated = (File) new ReplaceSpecificationCalls().doSwitch(f);
 		return updated;
 	}

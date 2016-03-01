@@ -8,18 +8,19 @@ import org.eclipse.emf.ecore.EObject;
 import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class SFile {
 	
-	public static SFile build(File f, SProgram context) {
-		SFileBuilder builder = new SFileBuilder(context);
+	public static SFile build(File f, NameMap map) {
+		SFileBuilder builder = new SFileBuilder(map);
 		return builder.doSwitch(f);
 	}
 	
-	public static List<SFile> buildList(List<File> list, SProgram context) {
+	public static List<SFile> buildList(List<File> list, NameMap map) {
 		List<SFile> converted = new ArrayList<>();
-		SFileBuilder builder = new SFileBuilder(context);
+		SFileBuilder builder = new SFileBuilder(map);
 		for(File f : list) {
 			converted.add(builder.doSwitch(f));
 		}
@@ -27,23 +28,27 @@ public class SFile {
 	}
 	
 	public String name;
+	public List<STypeDef> typedefs = new ArrayList<>();
+	public List<SConstant> constants = new ArrayList<>();
+	public List<SPattern> patterns = new ArrayList<>();
+	
+	public NameMap map;
 
 	private static class SFileBuilder extends SpearSwitch<SFile> {
+		private NameMap map;
 		
-		private SProgram context;
-		
-		private SFileBuilder(SProgram context) {
-			this.context=context;
+		private SFileBuilder(NameMap map) {
+			this.map=map;
 		}
 		
 		@Override
 		public SFile caseSpecification(Specification s) {
-			return new SSpecification(s,context);
+			return new SSpecification(s,map);
 		}
 		
 		@Override
 		public SFile caseDefinitions(Definitions d) {
-			return new SDefinitions(d,context);
+			return new SDefinitions(d,map);
 		}
 		
 		@Override
