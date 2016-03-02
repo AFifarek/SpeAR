@@ -1,7 +1,6 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.rockwellcollins.spear.Type;

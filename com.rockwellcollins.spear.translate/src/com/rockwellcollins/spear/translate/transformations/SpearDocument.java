@@ -2,7 +2,6 @@ package com.rockwellcollins.spear.translate.transformations;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
@@ -17,5 +16,14 @@ public class SpearDocument {
 		for (File file : FindDependencies.instance(main).getCalledFiles()) {
 			files.add(file);
 		}
+	}
+	
+	public Specification getMain() {
+		for(File f : files) {
+			if(f.getName().equals(mainName)) {
+				return (Specification) f;
+			}
+		}
+		return null;
 	}
 }

@@ -64,7 +64,7 @@ public class FileMap {
 		String original = Utilities.getName(v);
 		String proposed = original + "_" + "_shadow";
 		String renamed = getUniqueName(proposed);
-		register(original,renamed);
+		register(proposed,renamed);
 		return renamed;
 	}
 	

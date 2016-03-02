@@ -38,10 +38,6 @@ public class SProgram {
 	
 	public Program getLogicalEntailment() {
 		ProgramBuilder program = new ProgramBuilder();
-	
-		program.addTypes(STypeDef.toLustre(main.typedefs, map));
-		program.addConstants(SConstant.toLustre(main.constants, map));
-		
 		for(SFile f : map.mapping.values()) {
 			program.addTypes(STypeDef.toLustre(f.typedefs, map));
 			program.addConstants(SConstant.toLustre(f.constants, map));
