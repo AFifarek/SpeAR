@@ -44,7 +44,7 @@ public class SConstant {
 	
 	public jkind.lustre.Constant toLustre(NameMap nameMap) {
 		jkind.lustre.Type type = TranslateType.translate(this.type, nameMap);
-		jkind.lustre.Expr expression = TranslateExpr.translate(this.expr, nameMap);
+		jkind.lustre.Expr expression = TranslateExpr.translate(this.expr,nameMap);
 		return new jkind.lustre.Constant(this.name,type,expression);
 	}
 }

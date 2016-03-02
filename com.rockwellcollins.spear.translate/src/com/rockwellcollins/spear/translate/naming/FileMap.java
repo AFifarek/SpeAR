@@ -4,7 +4,11 @@ import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.translate.lustre.PLTL;
 import com.rockwellcollins.spear.translate.master.Utilities;
+
+import jkind.lustre.Node;
 
 public class FileMap {
 	private File file;
@@ -12,6 +16,11 @@ public class FileMap {
 	
 	public FileMap(File file) {
 		this.file=file;
+		for(Node n : PLTL.getPLTL()) {
+			String original = n.id;
+			String renamed = getUniqueName(original);
+			register(original,renamed);
+		}
 	}
 	
 	private String getUniqueName(String proposed) {
@@ -46,6 +55,14 @@ public class FileMap {
 	public String getDefinitionsName(EObject o) {
 		String original = Utilities.getName(o);
 		String proposed = file.getName() + "_" + original + "_definition";
+		String renamed = getUniqueName(proposed);
+		register(original,renamed);
+		return renamed;
+	}
+	
+	public String getShadowName(Variable v) {
+		String original = Utilities.getName(v);
+		String proposed = original + "_" + "_shadow";
 		String renamed = getUniqueName(proposed);
 		register(original,renamed);
 		return renamed;

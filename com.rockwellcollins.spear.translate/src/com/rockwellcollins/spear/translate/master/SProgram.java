@@ -1,9 +1,7 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.translate.naming.NameMap;
@@ -19,8 +17,6 @@ public class SProgram {
 	}
 	
 	public SSpecification main;
-	public Map<String,SFile> deps = new HashMap<>();
-	
 	public NameMap map;
 	
 	public SProgram(SpearDocument document) {
@@ -36,9 +32,7 @@ public class SProgram {
 			SFile sfile = SFile.build(f, map);
 			if(f.getName().equals(document.mainName)) {
 				this.main = (SSpecification) sfile;
-			} else {
-				deps.put(sfile.name, sfile);	
-			}
+			}	
 		}
 	}
 	
@@ -48,15 +42,16 @@ public class SProgram {
 		program.addTypes(STypeDef.toLustre(main.typedefs, map));
 		program.addConstants(SConstant.toLustre(main.constants, map));
 		
-		for(SFile f : deps.values()) {
+		for(SFile f : map.mapping.values()) {
 			program.addTypes(STypeDef.toLustre(f.typedefs, map));
 			program.addConstants(SConstant.toLustre(f.constants, map));
 			
 			if (f instanceof SSpecification) {
 				SSpecification spec = (SSpecification) f;
-				program.addNode(spec.toBaseLustre(map));
+				program.addNode(spec.toBaseLustre(this, map));
 			}
 		}
+		program.setMain(main.name);
 		
 		return program.build();
 	}

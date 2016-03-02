@@ -10,8 +10,16 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
+import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.translate.master.SCall;
+import com.rockwellcollins.spear.translate.master.SDefinitions;
+import com.rockwellcollins.spear.translate.master.SFile;
+import com.rockwellcollins.spear.translate.master.SProgram;
+import com.rockwellcollins.spear.translate.master.SSpecification;
+import com.rockwellcollins.spear.translate.master.Utilities;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
@@ -32,13 +40,15 @@ import jkind.lustre.RealExpr;
 import jkind.lustre.RecordAccessExpr;
 import jkind.lustre.RecordExpr;
 import jkind.lustre.RecordUpdateExpr;
+import jkind.lustre.TupleExpr;
 import jkind.lustre.UnaryExpr;
 import jkind.lustre.UnaryOp;
+import jkind.lustre.VarDecl;
 
 public class TranslateExpr extends SpearSwitch<Expr> {
 
-	public static Expr translate(com.rockwellcollins.spear.Expr e, NameMap context) {
-		return new TranslateExpr(context).doSwitch(e);
+	public static Expr translate(com.rockwellcollins.spear.Expr e, NameMap map) {
+		return new TranslateExpr(map).doSwitch(e);
 	}
 
 	private NameMap map;
@@ -145,7 +155,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseIdExpr(com.rockwellcollins.spear.IdExpr ide) {
-		String id = map.lookup(ide);
+		String id = map.lookup(ide.getId());
 		if(id == null) {
 			throw new RuntimeException("Mapping did not contain the referenced variable: " + ide.getId().getName());
 		}
@@ -199,9 +209,31 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	@Override
 	public Expr caseNormalizedCall(com.rockwellcollins.spear.NormalizedCall nc) {
 		
+		SSpecification callingSpec = (SSpecification) map.mapping.get(Utilities.getRoot(nc));
 		
-		return null;
-//		SNode node_context = (SNode) context;
+		List<Expr> args = new ArrayList<>();
+		for(com.rockwellcollins.spear.Expr e : nc.getArgs()) {
+			args.add(this.doSwitch(e));
+		}
+		
+		SCall call = callingSpec.calls.get(nc);
+		for(VarDecl vd : call.getShadowVariablesForCall(map)) {
+			args.add(new IdExpr(vd.id));
+		}
+		
+		Expr RHS = new NodeCallExpr(call.called.name,args);
+		List<Expr> tuplelist = new ArrayList<>();
+		for(IdRef ref : nc.getIds()) {
+			tuplelist.add(this.doSwitch(ref));
+		}
+		
+		if(tuplelist.size() == 1) {
+			return new BinaryExpr(tuplelist.get(0), BinaryOp.EQUAL, RHS);
+		} else {
+			return new BinaryExpr(new TupleExpr(tuplelist), BinaryOp.EQUAL, RHS);
+		}
+
+		//		SNode node_context = (SNode) context;
 //		SNode called = node_context.calls.get(nc);
 //		List<Expr> nodeCallArgs = new ArrayList<>();
 //		for(com.rockwellcollins.spear.Expr arg : nc.getArgs()) {

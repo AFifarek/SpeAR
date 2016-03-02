@@ -1,59 +1,55 @@
 package com.rockwellcollins.spear.translate.naming;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.translate.master.SFile;
 import com.rockwellcollins.spear.translate.master.Utilities;
 
 public class NameMap {
 
-	public Map<File,FileMap> map;
+	public Map<File,FileMap> map = new LinkedHashMap<>();
+	public Map<File,SFile> mapping = new LinkedHashMap<>();
 	
-	private FileMap getFileMap(File file) {
-		if(map.containsKey(file)) {
-			return map.get(file);
-		} else {
-			return new FileMap(file);
-		}
-	}
-	
-	private void insertFileMap(File file, FileMap filemap) {
-		map.put(file, filemap);
-	}
-	
-	public NameMap() {
-		map = new HashMap<>();
-	}
-	
-	public NameMap(NameMap nameMap) {
-		map = new HashMap<>(nameMap.map);
+	public void addFile(File f, SFile sfile) {
+		mapping.put(f, sfile);
+		map.put(f, new FileMap(f));
 	}
 	
 	/* these three methods are used for getting unique names*/
 	public String getDefinitionsName(EObject o) {
 		File root = Utilities.getRoot(o);
-		FileMap fm = getFileMap(root);
+		FileMap fm = map.get(root);
 		String renamed = fm.getDefinitionsName(o);
-		insertFileMap(root,fm);
+		map.put(root,fm);
+		return renamed;
+	}
+	
+	public String getShadowName(Variable v) {
+		File root = Utilities.getRoot(v);
+		FileMap fm = map.get(root);
+		String renamed = fm.getShadowName(v);
+		map.put(root, fm);
 		return renamed;
 	}
 	
 	public String getName(EObject o) {
 		File root = Utilities.getRoot(o);
-		FileMap fm = getFileMap(root);
+		FileMap fm = map.get(root);
 		String renamed = fm.getName(o);
-		insertFileMap(root,fm);
+		map.put(root, fm);
 		return renamed;
 	}
 	
 	public String getFileBasedName(EObject o) {
 		File root = Utilities.getRoot(o);
-		FileMap fm = getFileMap(root);
+		FileMap fm = map.get(root);
 		String renamed = fm.getFileBasedName(o);
-		insertFileMap(root,fm);
+		map.put(root, fm);
 		return renamed;
 	}
 	
@@ -63,5 +59,4 @@ public class NameMap {
 		FileMap fm = map.get(root);
 		return fm.lookup(o);
 	}
-
 }

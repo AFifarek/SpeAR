@@ -7,8 +7,6 @@ import java.io.IOException;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -32,16 +30,13 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.layout.SpearLayout;
 import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.transformations.SpearDocument;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
-import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
-import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
 import jkind.lustre.Program;
 import jkind.results.layout.Layout;
@@ -101,22 +96,22 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				
-				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
-				api.setReduceSupport();
-				
-				JKindResult result = new JKindResult("result");
-				for(String prop : p.getMainNode().properties) {
-					result.addProperty(prop,true);
-				}
-				IProgressMonitor monitor = new NullProgressMonitor();
-				//showView(result, new SpearLayout(workingCopy.getMain()));
-
-				try {
-					api.execute(p, result, monitor);
-				} catch (Exception e) {
-					System.out.println(result.getText());
-					throw e;
-				}
+//				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
+//				api.setReduceSupport();
+//				
+//				JKindResult result = new JKindResult("result");
+//				for(String prop : p.getMainNode().properties) {
+//					result.addProperty(prop,true);
+//				}
+//				IProgressMonitor monitor = new NullProgressMonitor();
+//				//showView(result, new SpearLayout(workingCopy.getMain()));
+//
+//				try {
+//					api.execute(p, result, monitor);
+//				} catch (Exception e) {
+//					System.out.println(result.getText());
+//					throw e;
+//				}
 
 				return null;
 			}

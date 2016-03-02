@@ -6,6 +6,9 @@ import com.rockwellcollins.spear.translate.naming.NameMap;
 public class SDefinitions extends SFile {
 
 	public SDefinitions(Definitions d, NameMap map) {
+		//this will initialize the map to include a file map
+		map.addFile(d, this);
+		
 		//register the definitions name in the global scope
 		this.name = map.getName(d);
 		

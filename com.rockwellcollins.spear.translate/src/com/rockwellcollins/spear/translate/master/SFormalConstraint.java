@@ -2,7 +2,10 @@ package com.rockwellcollins.spear.translate.master;
 
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 import com.rockwellcollins.spear.translate.naming.NameMap;
+
+import jkind.lustre.NamedType;
 
 public class SFormalConstraint extends SConstraint {
 	
@@ -17,4 +20,15 @@ public class SFormalConstraint extends SConstraint {
 		this.expression = fc.getExpr();
 	}
 
+	@Override
+	public jkind.lustre.VarDecl toVarDecl(NameMap map) {
+		return new jkind.lustre.VarDecl(this.name, NamedType.BOOL);
+	}
+
+	@Override
+	public jkind.lustre.Equation toEquation(NameMap map) {
+		jkind.lustre.IdExpr lhs = new jkind.lustre.IdExpr(this.name);
+		jkind.lustre.Expr rhs = TranslateExpr.translate(this.expression, map);
+		return new jkind.lustre.Equation(lhs,rhs); 
+	}
 }
