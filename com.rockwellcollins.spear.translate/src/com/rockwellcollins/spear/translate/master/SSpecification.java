@@ -89,14 +89,16 @@ public class SSpecification extends SFile {
 		/*
 		 * We must add
 		 * 1. the true locals
+		 * 2. locals for the macros
 		 * 2. locals for the assumptions
 		 * 3. locals for the requirements
 		 * 4. locals for the behaviors */
 		builder.addLocals(SVariable.toVarDecl(state, map));
+		builder.addLocals(SMacro.toVarDecls(macros,map));
 		builder.addLocals(SConstraint.toVarDecl(assumptions,map));
 		builder.addLocals(SConstraint.toVarDecl(requirements, map));
 		builder.addLocals(SConstraint.toVarDecl(behaviors, map));
-		
+
 		/* We just add the true outputs  */
 		builder.addOutputs(SVariable.toVarDecl(outputs, map));
 
@@ -107,6 +109,7 @@ public class SSpecification extends SFile {
 		 */
 		builder.addEquations(SVariable.toShadowAssignmentEquations(outputs,map));
 		builder.addEquations(SVariable.toShadowAssignmentEquations(state,map));
+		builder.addEquations(SMacro.toEquations(macros,map));
 		builder.addEquations(SConstraint.toEquation(assumptions, map));
 		builder.addEquations(SConstraint.toEquation(requirements, map));
 		builder.addEquations(SConstraint.toEquation(behaviors, map));

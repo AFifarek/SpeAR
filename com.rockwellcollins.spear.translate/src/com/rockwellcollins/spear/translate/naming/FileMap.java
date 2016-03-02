@@ -56,7 +56,7 @@ public class FileMap {
 		String original = Utilities.getName(o);
 		String proposed = file.getName() + "_" + original + "_definition";
 		String renamed = getUniqueName(proposed);
-		register(original,renamed);
+		register(proposed,renamed);
 		return renamed;
 	}
 	

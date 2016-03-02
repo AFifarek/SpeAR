@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constraint;
+import com.rockwellcollins.spear.EnglishConstraint;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.util.SpearSwitch;
@@ -62,8 +63,13 @@ public abstract class SConstraint {
 		}
 		
 		@Override
+		public SConstraint caseEnglishConstraint(EnglishConstraint ec) {
+			return SEnglishConstraint.build(ec, map);
+		}
+		
+		@Override
 		public SConstraint defaultCase(EObject o) {
-			throw new RuntimeException("Expected a File object, received: " + o.toString());
+			throw new RuntimeException("Expected a Constraint object, received: " + o.toString());
 		}
 	}
 }

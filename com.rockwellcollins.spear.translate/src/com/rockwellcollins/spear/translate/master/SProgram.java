@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.translate.lustre.PLTL;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.translate.transformations.SpearDocument;
 
+import jkind.lustre.Node;
 import jkind.lustre.Program;
 import jkind.lustre.builders.ProgramBuilder;
 
@@ -38,6 +40,11 @@ public class SProgram {
 	
 	public Program getLogicalEntailment() {
 		ProgramBuilder program = new ProgramBuilder();
+		
+		for(Node n : PLTL.getPLTL()) {
+			program.addNode(n);
+		}
+		
 		for(SFile f : map.mapping.values()) {
 			program.addTypes(STypeDef.toLustre(f.typedefs, map));
 			program.addConstants(SConstant.toLustre(f.constants, map));

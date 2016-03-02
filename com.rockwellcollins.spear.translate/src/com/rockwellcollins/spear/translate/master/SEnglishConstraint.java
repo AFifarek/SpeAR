@@ -7,6 +7,10 @@ import jkind.lustre.NamedType;
 
 public class SEnglishConstraint extends SConstraint {
 
+	public static SEnglishConstraint build(EnglishConstraint ec, NameMap map) {
+		return new SEnglishConstraint(ec,map);
+	}
+	
 	public String text;
 	
 	public SEnglishConstraint(EnglishConstraint ec, NameMap map) {
