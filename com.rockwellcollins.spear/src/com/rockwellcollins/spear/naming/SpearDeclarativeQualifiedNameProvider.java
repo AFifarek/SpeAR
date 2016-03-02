@@ -5,7 +5,6 @@ import org.eclipse.xtext.naming.QualifiedName;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
-import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnitDef;

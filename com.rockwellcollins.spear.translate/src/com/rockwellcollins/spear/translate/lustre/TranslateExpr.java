@@ -10,14 +10,10 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
-import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.master.SCall;
-import com.rockwellcollins.spear.translate.master.SDefinitions;
-import com.rockwellcollins.spear.translate.master.SFile;
-import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.master.SSpecification;
 import com.rockwellcollins.spear.translate.master.Utilities;
 import com.rockwellcollins.spear.translate.naming.NameMap;
