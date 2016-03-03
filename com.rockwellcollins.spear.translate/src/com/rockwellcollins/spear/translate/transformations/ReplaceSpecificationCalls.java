@@ -25,35 +25,43 @@ public class ReplaceSpecificationCalls extends SpearSwitch<EObject> {
 		File updated = (File) new ReplaceSpecificationCalls().doSwitch(f);
 		return updated;
 	}
+
+	private NormalizedCall getReplacement(Expr ids, SpecificationCall call) {
+		NormalizedCall replacement = f.createNormalizedCall();
+		replacement.setSpec(call.getSpec());
+		replacement.getArgs().addAll(call.getArgs());
+		
+		if (ids instanceof MIdExpr) {
+			MIdExpr multipleIdExpr = (MIdExpr) ids;
+			replacement.getIds().addAll(multipleIdExpr.getIds());
+			return replacement;
+		}
+		
+		if (ids instanceof IdExpr) {
+			IdExpr idExpr = (IdExpr) ids;
+			replacement.getIds().add(idExpr.getId());
+			return replacement;
+		}
+		
+		return null;
+	}
 	
 	@Override
 	public Expr caseBinaryExpr(BinaryExpr be) {
 		Expr left = (Expr) this.doSwitch(be.getLeft());
 		Expr right = (Expr) this.doSwitch(be.getRight());
-		
+
+		//Validations should enforce the following two scenarios. ONE must be true.
 		if (right instanceof SpecificationCall) {
 			SpecificationCall specificationCall = (SpecificationCall) right;
 			this.doSwitch(specificationCall.getSpec());
-			
-			NormalizedCall replacement = f.createNormalizedCall();
-			replacement.setSpec(specificationCall.getSpec());
-			replacement.getArgs().addAll(specificationCall.getArgs());
-			
-			if (left instanceof MIdExpr) {
-				MIdExpr multipleIdExpr = (MIdExpr) left;
-				replacement.getIds().addAll(multipleIdExpr.getIds());
-				EcoreUtil2.replace(be, replacement);
-				return replacement;
-			}
-			
-			if (left instanceof IdExpr) {
-				IdExpr idExpr = (IdExpr) left;
-				replacement.getIds().add(idExpr.getId());
-				EcoreUtil2.replace(be, replacement);
-				return replacement;
-			}
-			
-			throw new RuntimeException("Unexpected pairing of SpecificationCall and IdExprs: " + be.toString());
+			EcoreUtil2.replace(be, getReplacement(left,specificationCall));
+		}
+		
+		if (left instanceof SpecificationCall) {
+			SpecificationCall specificationCall = (SpecificationCall) left;
+			this.doSwitch(specificationCall.getSpec());
+			EcoreUtil2.replace(be, getReplacement(right,specificationCall));
 		}
 		return be;
 	}
