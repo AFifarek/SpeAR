@@ -39,6 +39,10 @@ public class FileMap {
 	
 	public String getName(EObject o) {
 		String original = Utilities.getName(o);
+		return getName(original);
+	}
+	
+	public String getName(String original) {
 		String renamed = getUniqueName(original);
 		register(original,renamed);
 		return renamed;
@@ -68,7 +72,7 @@ public class FileMap {
 		return renamed;
 	}
 	
-	private String lookup(String key) {
+	public String lookup(String key) {
 		return this.filemap.inverseBidiMap().get(key);
 	}
 	

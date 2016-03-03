@@ -16,6 +16,7 @@ import jkind.lustre.VarDecl;
 
 public abstract class SConstraint {
 
+	public static final String PROPERTY_SUFFIX = "_property";
 	public static List<SConstraint> build(List<Constraint> list, NameMap map) {
 		List<SConstraint> built = new ArrayList<>();
 		for(Constraint c : list) {
@@ -40,6 +41,22 @@ public abstract class SConstraint {
 		return equations;
 	}
 	
+	public static List<Equation> toPropertyEquations(List<SConstraint> list, String name, NameMap map) {
+		List<Equation> equations = new ArrayList<>();
+		for(SConstraint sc : list) {
+			equations.add(sc.getPropertyEquation(name,map));
+		}
+		return equations;
+	}
+	
+	public static List<String> toPropertyIds(List<SConstraint> list, NameMap map) {
+		List<String> strings = new ArrayList<>();
+		for(SConstraint sc : list) {
+			strings.add(sc.name);
+		}
+		return strings;
+	}
+	
 	public static SConstraint build(Constraint c, NameMap map) {
 		SConstraintBuilder builder = new SConstraintBuilder(map);
 		return builder.doSwitch(c);
@@ -48,6 +65,7 @@ public abstract class SConstraint {
 	public String name;
 	public abstract jkind.lustre.VarDecl toVarDecl(NameMap map);
 	public abstract jkind.lustre.Equation toEquation(NameMap map);
+	public abstract jkind.lustre.Equation getPropertyEquation(String assertion,NameMap map);
 	
 	private static class SConstraintBuilder extends SpearSwitch<SConstraint> {
 		

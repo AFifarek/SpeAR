@@ -45,13 +45,13 @@ public class SProgram {
 			program.addNode(n);
 		}
 		
-		for(SFile f : map.mapping.values()) {
-			program.addTypes(STypeDef.toLustre(f.typedefs, map));
-			program.addConstants(SConstant.toLustre(f.constants, map));
+		for(SFile sf : map.mapping.values()) {
+			program.addTypes(STypeDef.toLustre(sf.typedefs, map));
+			program.addConstants(SConstant.toLustre(sf.constants, map));
 			
-			if (f instanceof SSpecification) {
-				SSpecification spec = (SSpecification) f;
-				program.addNode(spec.toBaseLustre(this, map));
+			if (sf instanceof SSpecification) {
+				SSpecification spec = (SSpecification) sf;
+				program.addNode(spec.toBaseLustre(map));
 			}
 		}
 		program.setMain(main.name);

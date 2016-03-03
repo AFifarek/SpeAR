@@ -45,6 +45,14 @@ public class NameMap {
 		return renamed;
 	}
 	
+	public String getName(File f, String name) {
+		FileMap fm = map.get(f);
+		String renamed = fm.getName(name);
+		map.put(f, fm);
+		return renamed;
+	}
+	
+	
 	public String getFileBasedName(EObject o) {
 		File root = Utilities.getRoot(o);
 		FileMap fm = map.get(root);
@@ -58,5 +66,10 @@ public class NameMap {
 		File root = Utilities.getRoot(o);
 		FileMap fm = map.get(root);
 		return fm.lookup(o);
+	}
+	
+	public String lookup(File f, String string) {
+		FileMap fm = map.get(f);
+		return fm.lookup(string);
 	}
 }

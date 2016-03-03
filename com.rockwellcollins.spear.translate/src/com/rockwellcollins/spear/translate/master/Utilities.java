@@ -1,10 +1,15 @@
 package com.rockwellcollins.spear.translate.master;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.File;
+
+import jkind.lustre.VarDecl;
 
 public class Utilities {
 
@@ -25,5 +30,13 @@ public class Utilities {
 		} else {
 			return name;
 		}
+	}
+
+	public static List<String> pullIdsOffVarDecls(List<VarDecl> decls) {
+		List<String> strings = new ArrayList<>();
+		for(VarDecl vd : decls) {
+			strings.add(vd.id);
+		}
+		return strings;
 	}
 }
