@@ -51,7 +51,7 @@ public class SProgram {
 			
 			if (sf instanceof SSpecification) {
 				SSpecification spec = (SSpecification) sf;
-				program.addNode(spec.toBaseLustre(map));
+				program.addNode(spec.getLogicalEntailment(map));
 			}
 		}
 		program.setMain(main.name);

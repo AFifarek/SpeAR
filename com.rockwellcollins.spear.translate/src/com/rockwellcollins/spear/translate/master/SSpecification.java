@@ -1,14 +1,9 @@
 package com.rockwellcollins.spear.translate.master;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.xtext.EcoreUtil2;
-
-import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.lustre.PLTL;
 import com.rockwellcollins.spear.translate.naming.NameMap;
@@ -36,8 +31,6 @@ public class SSpecification extends SFile {
 	public List<SConstraint> assumptions = new ArrayList<>();
 	public List<SConstraint> requirements = new ArrayList<>();
 	public List<SConstraint> behaviors = new ArrayList<>();
-	public Map<NormalizedCall, SCall> calls = new HashMap<>();
-
 
 	public SSpecification(Specification s, NameMap map) {
 		//this initializes the map to include an entry for this object
@@ -56,8 +49,6 @@ public class SSpecification extends SFile {
 		this.assumptions.addAll(SConstraint.build(s.getAssumptions(), map));
 		this.requirements.addAll(SConstraint.build(s.getRequirements(), map));
 		this.behaviors.addAll(SConstraint.build(s.getBehaviors(), map));
-		
-		this.calls.putAll(SCall.build(EcoreUtil2.getAllContentsOfType(s, NormalizedCall.class), map));
 		
 		this.assertionName = map.getName(s,ASSERTION);
 	}
@@ -87,7 +78,6 @@ public class SSpecification extends SFile {
 		builder.addLocals(SConstraint.toVarDecl(assumptions,map));
 		builder.addLocals(SConstraint.toVarDecl(requirements, map));
 		builder.addLocals(SConstraint.toVarDecl(behaviors, map));
-		
 		builder.addOutput(getAssertionVarDecl());
 		
 
@@ -99,6 +89,12 @@ public class SSpecification extends SFile {
 		builder.addEquations(SConstraint.toEquation(requirements, map));
 		builder.addEquations(SConstraint.toPropertyEquations(behaviors, assertionName, map));
 		builder.addEquation(getAssertionEquation());
+		
+		return builder.build();
+	}
+
+	public Node getLogicalEntailment(NameMap map) {
+		NodeBuilder builder = new NodeBuilder(this.toBaseLustre(map));
 		
 		/*
 		 * Add property ids

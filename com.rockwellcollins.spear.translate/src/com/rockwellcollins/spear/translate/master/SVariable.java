@@ -8,7 +8,6 @@ import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.lustre.TranslateType;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 
-import jkind.lustre.Equation;
 import jkind.lustre.VarDecl;
 
 public class SVariable {
