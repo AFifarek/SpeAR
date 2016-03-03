@@ -78,9 +78,12 @@ public class SSpecification extends SFile {
 		builder.addLocals(SConstraint.toVarDecl(assumptions,map));
 		builder.addLocals(SConstraint.toVarDecl(requirements, map));
 		builder.addLocals(SConstraint.toVarDecl(behaviors, map));
-		builder.addOutput(getAssertionVarDecl());
-		
 
+		/*
+		 *  The nodes have only a single output, the assertions to be passed up the chain.
+		 */
+		builder.addOutput(this.getAssertionVarDecl());
+		
 		/*
 		 * For now, we're not allowing Macros to contain specification calls
 		 */
@@ -88,18 +91,27 @@ public class SSpecification extends SFile {
 		builder.addEquations(SConstraint.toEquation(assumptions, map));
 		builder.addEquations(SConstraint.toEquation(requirements, map));
 		builder.addEquations(SConstraint.toPropertyEquations(behaviors, assertionName, map));
-		builder.addEquation(getAssertionEquation());
+		builder.addEquation(this.getAssertionEquation(requirements));
 		
 		return builder.build();
 	}
 
-	public Node getLogicalEntailment(NameMap map) {
+	public Node getLogicalEntailmentMain(NameMap map) {
 		NodeBuilder builder = new NodeBuilder(this.toBaseLustre(map));
 		
-		/*
-		 * Add property ids
-		 */
-		builder.addProperties(SConstraint.toPropertyIds(behaviors,map));
+		if(!assumptions.isEmpty()) {
+			builder.addAssertion(this.conjunctify(assumptions.iterator()));	
+		}
+
+		builder.addProperties(SConstraint.toPropertyIds(behaviors, map));
+		return builder.build();
+	}
+	
+	public Node getLogicalEntailmentCalled(NameMap map) {
+		NodeBuilder builder = new NodeBuilder(this.toBaseLustre(map));
+		
+		builder.addProperties(SConstraint.toPropertyIds(assumptions, map));
+		builder.addProperties(SConstraint.toPropertyIds(behaviors, map));
 		
 		return builder.build();
 	}
@@ -119,18 +131,13 @@ public class SSpecification extends SFile {
 		}
 	}
 	
-	private Equation getAssertionEquation() {
-		List<SConstraint> conjunct = new ArrayList<>();
-		conjunct.addAll(assumptions);
-		conjunct.addAll(requirements);
-		
+	private Equation getAssertionEquation(List<SConstraint> conjunct) {
 		Expr RHS;
 		if(conjunct.isEmpty()) {
 			RHS = new BoolExpr(true);
 		} else {
 			RHS = conjunctify(conjunct.iterator());
 		}
-		
 		return new Equation(new IdExpr(this.assertionName), new NodeCallExpr(PLTL.historically().id, RHS));
 	}
 	

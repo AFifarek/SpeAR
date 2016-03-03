@@ -51,7 +51,12 @@ public class SProgram {
 			
 			if (sf instanceof SSpecification) {
 				SSpecification spec = (SSpecification) sf;
-				program.addNode(spec.getLogicalEntailment(map));
+				
+				if(this.main.equals(spec)) {
+					program.addNode(spec.getLogicalEntailmentMain(map));	
+				} else {
+					program.addNode(spec.getLogicalEntailmentCalled(map));
+				}
 			}
 		}
 		program.setMain(main.name);
