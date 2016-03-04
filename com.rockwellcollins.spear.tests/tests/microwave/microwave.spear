@@ -2,6 +2,9 @@ Specification microwave
 
 Imports:
 	import "microwave_definitions.spear"
+	import "keypad_processing.spear"
+	import "compute_time.spear"
+	import "reverse_time.spear"
 	import "mode_logic.spear"
 
 Inputs:
@@ -14,7 +17,7 @@ Outputs:
 	right_digit : int
 
 State:
-	mode : mode_type
+	microwave_mode : mode_type
 	seconds_remaining : int
 
 Macros:
@@ -25,9 +28,17 @@ Macros:
 Assumptions:
 
 DerivedRequirements:
-	r0 = |mode,seconds_remaining| == spec mode_logic(clear, start, door_closed, seconds_to_cook)
+	r0 = |microwave_mode,seconds_remaining| == spec mode_logic(clear, start, door_closed, seconds_to_cook)
+	r2 = (microwave_mode == SETUP) implies |left_digit,middle_digit,right_digit| == spec keypad_processing(user_input)
+	r3 = (microwave_mode <> SETUP) implies |left_digit,middle_digit,right_digit| == spec reverse_time(seconds_remaining)
+	r4 = (microwave_mode == SETUP) implies seconds_to_cook == spec compute_time(left_digit,middle_digit,right_digit)
+	r5 = (microwave_mode <> SETUP) implies seconds_to_cook == previous seconds_to_cook with initial value 0
 
-Requirements:
-	p0 = mode == COOKING => door_closed
-	p1 = before start implies mode == SETUP
+Requirements: 
+	p_init = initially(microwave_mode == SETUP)
+	p0 = microwave_mode == COOKING => door_closed
+	p1 = before start implies microwave_mode == SETUP
+	p2 = 0 <= left_digit and left_digit <= 9
+	p3 = 0 <= middle_digit and middle_digit <= 9
+	p4 = 0 <= right_digit and right_digit <= 9
 	

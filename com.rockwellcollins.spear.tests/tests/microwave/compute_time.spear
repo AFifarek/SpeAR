@@ -1,23 +1,23 @@
 Specification compute_time
 
-Imports:
-	import "microwave_definitions.spear"
-
 Inputs:
-	left_digit : int
-	middle_digit : int
-	right_digit : int
-	
+	l : int
+	m : int
+	r : int
+
 Outputs:
-	seconds_to_cook : int
-	
+	time : int
+
 Assumptions:
-	a0 = left_digit greater than or equal to 0 and left_digit less than or equal to 9
-	a1 = middle_digit >= 0 and middle_digit <= 9
-	a2 = right_digit >= 0 and right_digit <= 9	
-	
+	al = 0 <= l and l <= 9
+	am = 0 <= m and m <= 9
+	ar = 0 <= r and r <= 9
+
+//this section is mandatory
 DerivedRequirements:
-	r0 = seconds_to_cook == (left_digit * 60) + (middle_digit * 10) + right_digit
-	
+	dr0 = time == (l * 60) + (m * 10) + r
+
+//this section is mandatory
 Requirements:
-	p0 = seconds_to_cook >= 0 and seconds_to_cook <= 699
+	p0 = 0 <= time and time <= 639
+

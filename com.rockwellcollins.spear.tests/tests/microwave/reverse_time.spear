@@ -1,0 +1,33 @@
+Specification reverse_time
+
+Inputs:
+	time : int
+
+Outputs:
+	l : int
+	m : int
+	r : int
+	
+Macros:
+	div_by_60 : int = time / 60
+	left : int = if div_by_60 > 9 then 9 else div_by_60
+	
+	div_by_10 : int = (time - (div_by_60 * 60)) / 10
+	middle : int = if div_by_10 > 9 then 9 else div_by_10
+	
+	remainder : int = (time - (div_by_60 * 60)) mod 10
+	right : int = remainder
+
+Assumptions:
+	a0 = 0 <= time and time <= 639
+
+DerivedRequirements:
+	dr0 = l == left
+	dr1 = m == middle
+	dr2 = r == right
+
+Requirements:
+	p0 = 0 <= l and l <= 9
+	p1 = 0 <= m and m <= 9
+	p2 = 0 <= r and r <= 9
+
