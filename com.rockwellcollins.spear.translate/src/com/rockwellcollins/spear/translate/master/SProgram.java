@@ -63,4 +63,30 @@ public class SProgram {
 		
 		return program.build();
 	}
+	
+	public Program getLogicalConsistency() {
+		ProgramBuilder program = new ProgramBuilder();
+		
+		for(Node n : PLTL.getPLTL()) {
+			program.addNode(n);
+		}
+		
+		for(SFile sf : map.mapping.values()) {
+			program.addTypes(STypeDef.toLustre(sf.typedefs, map));
+			program.addConstants(SConstant.toLustre(sf.constants, map));
+			
+			if (sf instanceof SSpecification) {
+				SSpecification spec = (SSpecification) sf;
+				
+				if(this.main.equals(spec)) {
+					program.addNode(spec.getLogicalConsistencyMain(map));	
+				} else {
+					program.addNode(spec.getLogicalConsistencyCalled(map));
+				}
+			}
+		}
+		program.setMain(main.name);
+		
+		return program.build();
+	}
 }
