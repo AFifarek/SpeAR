@@ -432,7 +432,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         (left=SinceExpr_BinaryExpr_1_0_0_0 (op='S' | op='since') right=SinceExpr) | 
 	 *         (left=RelationalExpr_BinaryExpr_1_0_0_0 op=RelationalOp right=RelationalExpr) | 
 	 *         (left=PlusExpr_BinaryExpr_1_0_0_0 (op='+' | op='-') right=PlusExpr) | 
-	 *         (left=MultiplyExpr_BinaryExpr_1_0_0_0 (op='*' | op='/') right=MultiplyExpr)
+	 *         (left=MultiplyExpr_BinaryExpr_1_0_0_0 (op='*' | op='/' | op='mod') right=MultiplyExpr)
 	 *     )
 	 */
 	protected void sequence_AndExpr_ImpliesExpr_MultiplyExpr_OrExpr_PlusExpr_RelationalExpr_SinceExpr_TriggersExpr(ISerializationContext context, BinaryExpr semanticObject) {

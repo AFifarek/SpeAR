@@ -212,6 +212,12 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 			}
 			break;
 
+		case "mod":
+			if (left == INT && right == INT) {
+				return INT;
+			}
+			break;
+			
 		case "==":
 		case "equal to":
 		case "<>":

@@ -3051,6 +3051,9 @@ ruleMultiplyExpr returns [EObject current=null]
     |			'/' 
  
 
+    |			'mod' 
+ 
+
 )
 
 )
@@ -3085,6 +3088,18 @@ ruleMultiplyExpr returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getMultiplyExprRule());
 	        }
        		setWithLastConsumed($current, "op", lv_op_2_2, null);
+	    }
+
+    |		lv_op_2_3=	'mod' 
+    {
+        newLeafNode(lv_op_2_3, grammarAccess.getMultiplyExprAccess().getOpModKeyword_1_0_0_1_0_2());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getMultiplyExprRule());
+	        }
+       		setWithLastConsumed($current, "op", lv_op_2_3, null);
 	    }
 
 )

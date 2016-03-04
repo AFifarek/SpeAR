@@ -1840,35 +1840,36 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cOpAlternatives_1_0_0_1_0 = (Alternatives)cOpAssignment_1_0_0_1.eContents().get(0);
 		private final Keyword cOpAsteriskKeyword_1_0_0_1_0_0 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(0);
 		private final Keyword cOpSolidusKeyword_1_0_0_1_0_1 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(1);
+		private final Keyword cOpModKeyword_1_0_0_1_0_2 = (Keyword)cOpAlternatives_1_0_0_1_0.eContents().get(2);
 		private final Assignment cRightAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cRightMultiplyExprParserRuleCall_1_1_0 = (RuleCall)cRightAssignment_1_1.eContents().get(0);
 		
 		//MultiplyExpr Expr:
-		//	PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/')) right=MultiplyExpr)?
+		//	PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
 		@Override public ParserRule getRule() { return rule; }
 
-		//PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/')) right=MultiplyExpr)?
+		//PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
 		public Group getGroup() { return cGroup; }
 
 		//PrefixExpr
 		public RuleCall getPrefixExprParserRuleCall_0() { return cPrefixExprParserRuleCall_0; }
 
-		//(=> ({BinaryExpr.left=current} op=('*' | '/')) right=MultiplyExpr)?
+		//(=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//=> ({BinaryExpr.left=current} op=('*' | '/'))
+		//=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod'))
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
-		//({BinaryExpr.left=current} op=('*' | '/'))
+		//({BinaryExpr.left=current} op=('*' | '/' | 'mod'))
 		public Group getGroup_1_0_0() { return cGroup_1_0_0; }
 
 		//{BinaryExpr.left=current}
 		public Action getBinaryExprLeftAction_1_0_0_0() { return cBinaryExprLeftAction_1_0_0_0; }
 
-		//op=('*' | '/')
+		//op=('*' | '/' | 'mod')
 		public Assignment getOpAssignment_1_0_0_1() { return cOpAssignment_1_0_0_1; }
 
-		//('*' | '/')
+		//('*' | '/' | 'mod')
 		public Alternatives getOpAlternatives_1_0_0_1_0() { return cOpAlternatives_1_0_0_1_0; }
 
 		//'*'
@@ -1876,6 +1877,9 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 
 		//'/'
 		public Keyword getOpSolidusKeyword_1_0_0_1_0_1() { return cOpSolidusKeyword_1_0_0_1_0_1; }
+
+		//'mod'
+		public Keyword getOpModKeyword_1_0_0_1_0_2() { return cOpModKeyword_1_0_0_1_0_2; }
 
 		//right=MultiplyExpr
 		public Assignment getRightAssignment_1_1() { return cRightAssignment_1_1; }
@@ -2277,19 +2281,19 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//	LiteralExpr | {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' | {IfThenElseExpr} 'if'
 		//	cond=Expr 'then' then=Expr (=> 'else' else=Expr)? | {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)? |
 		//	{WhileExpr} 'while' cond=Expr 'then' then=Expr | {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr
-		//	(',' fieldExprs+=FieldExpr)* '}' | {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (','
-		//	exprs+=Expr)* '}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall}
-		//	'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec' spec=[Specification]
-		//	'(' args+=Expr (',' args+=Expr)* ')' | '(' Expr ')' | UnusedExpr
+		//	(',' fieldExprs+=FieldExpr)* '}' / * this is just not going to work * / | {FieldlessRecordExpr} 'new'
+		//	type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr
+		//	(',' exprs+=Expr)* ']' | {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' |
+		//	{SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')' | '(' Expr ')' | UnusedExpr
 		@Override public ParserRule getRule() { return rule; }
 
 		//LiteralExpr | {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' | {IfThenElseExpr} 'if' cond=Expr
 		//'then' then=Expr (=> 'else' else=Expr)? | {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)? | {WhileExpr}
 		//'while' cond=Expr 'then' then=Expr | {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (','
-		//fieldExprs+=FieldExpr)* '}' | {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'
-		//| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall} 'pattern'
-		//pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec' spec=[Specification] '('
-		//args+=Expr (',' args+=Expr)* ')' | '(' Expr ')' | UnusedExpr
+		//fieldExprs+=FieldExpr)* '}' / * this is just not going to work * / | {FieldlessRecordExpr} 'new' type=[RecordTypeDef]
+		//'{' exprs+=Expr (',' exprs+=Expr)* '}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
+		//| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec'
+		//spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')' | '(' Expr ')' | UnusedExpr
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//LiteralExpr
@@ -3449,7 +3453,7 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MultiplyExpr Expr:
-	//	PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/')) right=MultiplyExpr)?
+	//	PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?
 	public MultiplyExprElements getMultiplyExprAccess() {
 		return pMultiplyExpr;
 	}
@@ -3488,10 +3492,10 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	//	LiteralExpr | {IdExpr} id=[IdRef] | {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' | {IfThenElseExpr} 'if'
 	//	cond=Expr 'then' then=Expr (=> 'else' else=Expr)? | {AfterUntilExpr} 'after' after=Expr (=> 'until' until=Expr)? |
 	//	{WhileExpr} 'while' cond=Expr 'then' then=Expr | {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr
-	//	(',' fieldExprs+=FieldExpr)* '}' | {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (','
-	//	exprs+=Expr)* '}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']' | {PatternCall}
-	//	'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' | {SpecificationCall} 'spec' spec=[Specification]
-	//	'(' args+=Expr (',' args+=Expr)* ')' | '(' Expr ')' | UnusedExpr
+	//	(',' fieldExprs+=FieldExpr)* '}' / * this is just not going to work * / | {FieldlessRecordExpr} 'new'
+	//	type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}' | {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr
+	//	(',' exprs+=Expr)* ']' | {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')' |
+	//	{SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')' | '(' Expr ')' | UnusedExpr
 	public AtomicExprElements getAtomicExprAccess() {
 		return pAtomicExpr;
 	}

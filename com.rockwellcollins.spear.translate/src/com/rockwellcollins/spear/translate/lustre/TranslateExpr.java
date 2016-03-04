@@ -65,6 +65,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			case "+":
 			case "-":
 			case "*":
+			case "mod":
 				BinaryOp op = BinaryOp.fromString(binary.getOp());
 				return new BinaryExpr(left, op, right);
 

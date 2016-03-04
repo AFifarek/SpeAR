@@ -1759,6 +1759,14 @@ rule__MultiplyExpr__OpAlternatives_1_0_0_1_0
 { after(grammarAccess.getMultiplyExprAccess().getOpSolidusKeyword_1_0_0_1_0_1()); }
 )
 
+    |(
+{ before(grammarAccess.getMultiplyExprAccess().getOpModKeyword_1_0_0_1_0_2()); }
+
+	'mod' 
+
+{ after(grammarAccess.getMultiplyExprAccess().getOpModKeyword_1_0_0_1_0_2()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);

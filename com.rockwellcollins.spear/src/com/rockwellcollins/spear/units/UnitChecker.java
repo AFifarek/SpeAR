@@ -250,6 +250,7 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 
 		case "*":
 		case "/":
+		case "mod":
 			if (left instanceof ComputedUnit) {
 				ComputedUnit leftUnit = (ComputedUnit) left;
 				if (right instanceof ComputedUnit) {
