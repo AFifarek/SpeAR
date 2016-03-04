@@ -9,7 +9,6 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 
 import com.rockwellcollins.spear.BinaryExpr;
-import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.PatternCall;
@@ -51,11 +50,11 @@ public class UnsupportedValidations extends AbstractSpearJavaValidator {
 		
 		if (container instanceof BinaryExpr) {
 			BinaryExpr be = (BinaryExpr) container;
-			EObject beContainer = be.eContainer();
-			
-			if(beContainer instanceof Expr) {
-				error("Specification calls may not be embedded within expressions.", call, null);
-			}
+
+//			EObject beContainer = be.eContainer();
+//			if(beContainer instanceof Expr) {
+//				error("Specification calls may not be embedded within expressions.", call, null);
+//			}
 			
 			Set<String> ops = new HashSet<>();
 			ops.add("==");
