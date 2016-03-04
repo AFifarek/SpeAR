@@ -22,6 +22,7 @@ import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldType;
+import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
@@ -394,6 +395,13 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass recordExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass fieldlessRecordExprEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1712,6 +1720,36 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getFieldlessRecordExpr()
+  {
+    return fieldlessRecordExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFieldlessRecordExpr_Type()
+  {
+    return (EReference)fieldlessRecordExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getFieldlessRecordExpr_Exprs()
+  {
+    return (EReference)fieldlessRecordExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getArrayExpr()
   {
     return arrayExprEClass;
@@ -2113,6 +2151,10 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(recordExprEClass, RECORD_EXPR__TYPE);
     createEReference(recordExprEClass, RECORD_EXPR__FIELD_EXPRS);
 
+    fieldlessRecordExprEClass = createEClass(FIELDLESS_RECORD_EXPR);
+    createEReference(fieldlessRecordExprEClass, FIELDLESS_RECORD_EXPR__TYPE);
+    createEReference(fieldlessRecordExprEClass, FIELDLESS_RECORD_EXPR__EXPRS);
+
     arrayExprEClass = createEClass(ARRAY_EXPR);
     createEReference(arrayExprEClass, ARRAY_EXPR__TYPE);
     createEReference(arrayExprEClass, ARRAY_EXPR__EXPRS);
@@ -2205,6 +2247,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     afterUntilExprEClass.getESuperTypes().add(this.getExpr());
     whileExprEClass.getESuperTypes().add(this.getExpr());
     recordExprEClass.getESuperTypes().add(this.getExpr());
+    fieldlessRecordExprEClass.getESuperTypes().add(this.getExpr());
     arrayExprEClass.getESuperTypes().add(this.getExpr());
     patternCallEClass.getESuperTypes().add(this.getExpr());
     specificationCallEClass.getESuperTypes().add(this.getExpr());
@@ -2379,6 +2422,10 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEClass(recordExprEClass, RecordExpr.class, "RecordExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordExpr_Type(), this.getRecordTypeDef(), null, "type", null, 0, 1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRecordExpr_FieldExprs(), this.getFieldExpr(), null, "fieldExprs", null, 0, -1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(fieldlessRecordExprEClass, FieldlessRecordExpr.class, "FieldlessRecordExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFieldlessRecordExpr_Type(), this.getRecordTypeDef(), null, "type", null, 0, 1, FieldlessRecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFieldlessRecordExpr_Exprs(), this.getExpr(), null, "exprs", null, 0, -1, FieldlessRecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(arrayExprEClass, ArrayExpr.class, "ArrayExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getArrayExpr_Type(), this.getArrayTypeDef(), null, "type", null, 0, 1, ArrayExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

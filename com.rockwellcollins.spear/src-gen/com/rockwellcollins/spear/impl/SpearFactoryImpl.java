@@ -110,6 +110,7 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.AFTER_UNTIL_EXPR: return createAfterUntilExpr();
       case SpearPackage.WHILE_EXPR: return createWhileExpr();
       case SpearPackage.RECORD_EXPR: return createRecordExpr();
+      case SpearPackage.FIELDLESS_RECORD_EXPR: return createFieldlessRecordExpr();
       case SpearPackage.ARRAY_EXPR: return createArrayExpr();
       case SpearPackage.PATTERN_CALL: return createPatternCall();
       case SpearPackage.SPECIFICATION_CALL: return createSpecificationCall();
@@ -626,6 +627,17 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     RecordExprImpl recordExpr = new RecordExprImpl();
     return recordExpr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FieldlessRecordExpr createFieldlessRecordExpr()
+  {
+    FieldlessRecordExprImpl fieldlessRecordExpr = new FieldlessRecordExprImpl();
+    return fieldlessRecordExpr;
   }
 
   /**

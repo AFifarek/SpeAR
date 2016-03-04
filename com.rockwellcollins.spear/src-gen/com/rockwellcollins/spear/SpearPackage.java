@@ -1795,6 +1795,43 @@ public interface SpearPackage extends EPackage
   int RECORD_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.FieldlessRecordExprImpl <em>Fieldless Record Expr</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.rockwellcollins.spear.impl.FieldlessRecordExprImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFieldlessRecordExpr()
+   * @generated
+   */
+  int FIELDLESS_RECORD_EXPR = 46;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FIELDLESS_RECORD_EXPR__TYPE = EXPR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Exprs</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FIELDLESS_RECORD_EXPR__EXPRS = EXPR_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Fieldless Record Expr</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FIELDLESS_RECORD_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.ArrayExprImpl <em>Array Expr</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1802,7 +1839,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayExpr()
    * @generated
    */
-  int ARRAY_EXPR = 46;
+  int ARRAY_EXPR = 47;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1839,7 +1876,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getPatternCall()
    * @generated
    */
-  int PATTERN_CALL = 47;
+  int PATTERN_CALL = 48;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' reference.
@@ -1876,7 +1913,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getSpecificationCall()
    * @generated
    */
-  int SPECIFICATION_CALL = 48;
+  int SPECIFICATION_CALL = 49;
 
   /**
    * The feature id for the '<em><b>Spec</b></em>' reference.
@@ -1913,7 +1950,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIntLiteral()
    * @generated
    */
-  int INT_LITERAL = 49;
+  int INT_LITERAL = 50;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1950,7 +1987,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getBoolLiteral()
    * @generated
    */
-  int BOOL_LITERAL = 50;
+  int BOOL_LITERAL = 51;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1978,7 +2015,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRealLiteral()
    * @generated
    */
-  int REAL_LITERAL = 51;
+  int REAL_LITERAL = 52;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2015,7 +2052,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getNormalizedCall()
    * @generated
    */
-  int NORMALIZED_CALL = 52;
+  int NORMALIZED_CALL = 53;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -3329,6 +3366,38 @@ public interface SpearPackage extends EPackage
   EReference getRecordExpr_FieldExprs();
 
   /**
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.FieldlessRecordExpr <em>Fieldless Record Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Fieldless Record Expr</em>'.
+   * @see com.rockwellcollins.spear.FieldlessRecordExpr
+   * @generated
+   */
+  EClass getFieldlessRecordExpr();
+
+  /**
+   * Returns the meta object for the reference '{@link com.rockwellcollins.spear.FieldlessRecordExpr#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Type</em>'.
+   * @see com.rockwellcollins.spear.FieldlessRecordExpr#getType()
+   * @see #getFieldlessRecordExpr()
+   * @generated
+   */
+  EReference getFieldlessRecordExpr_Type();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.FieldlessRecordExpr#getExprs <em>Exprs</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Exprs</em>'.
+   * @see com.rockwellcollins.spear.FieldlessRecordExpr#getExprs()
+   * @see #getFieldlessRecordExpr()
+   * @generated
+   */
+  EReference getFieldlessRecordExpr_Exprs();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.ArrayExpr <em>Array Expr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4626,6 +4695,32 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference RECORD_EXPR__FIELD_EXPRS = eINSTANCE.getRecordExpr_FieldExprs();
+
+    /**
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.FieldlessRecordExprImpl <em>Fieldless Record Expr</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.rockwellcollins.spear.impl.FieldlessRecordExprImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFieldlessRecordExpr()
+     * @generated
+     */
+    EClass FIELDLESS_RECORD_EXPR = eINSTANCE.getFieldlessRecordExpr();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FIELDLESS_RECORD_EXPR__TYPE = eINSTANCE.getFieldlessRecordExpr_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Exprs</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FIELDLESS_RECORD_EXPR__EXPRS = eINSTANCE.getFieldlessRecordExpr_Exprs();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.ArrayExprImpl <em>Array Expr</em>}' class.

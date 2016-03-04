@@ -25,6 +25,7 @@ import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldType;
+import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IdRef;
@@ -388,6 +389,17 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 			fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
 		}
 		
+		return new RecordUnit(re.getType().getName(),fields);
+	}
+	
+	@Override
+	public SpearUnit caseFieldlessRecordExpr(FieldlessRecordExpr re) {
+		Map<String,SpearUnit> fields = new HashMap<>();
+		int i=0;
+		for(Expr e : re.getExprs()) {
+			fields.put(re.getType().getFields().get(i).getName(), doSwitch(e));
+			i++;
+		}
 		return new RecordUnit(re.getType().getName(),fields);
 	}
 	

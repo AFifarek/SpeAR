@@ -26,6 +26,7 @@ import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldType;
+import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IdRef;
@@ -353,6 +354,35 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 			}
 		}
 
+		return result;
+	}
+	
+	@Override
+	public SpearType caseFieldlessRecordExpr(FieldlessRecordExpr re) {
+		Map<String,Expr> fields = new LinkedHashMap<>();
+		if(re.getExprs().size() == re.getType().getFields().size()) {
+			for(int i=0; i<re.getExprs().size(); i++) {
+				Expr actual = re.getExprs().get(i);
+				fields.put(re.getType().getFields().get(i).getName(), actual);
+			}
+		} else {
+			error("Record shorthand was " + re.getExprs().size() + " elements, expected " + re.getType().getFields().size(), re, null);
+			return ERROR;
+		}
+		
+		SpearType result = this.doSwitch(re.getType());
+		SpearRecordType expectedRecord = (SpearRecordType) result;
+		for (Entry<String, SpearType> entry : expectedRecord.fields.entrySet()) {
+			String expectedField = entry.getKey();
+			SpearType expectedType = entry.getValue();
+
+			if (!fields.containsKey(expectedField)) {
+				error("Missing field " + expectedField, re, SpearPackage.Literals.RECORD_EXPR__TYPE);
+			} else {
+				Expr actualExpr = fields.get(expectedField);
+				expectAssignableType(expectedType, actualExpr);
+			}
+		}
 		return result;
 	}
 

@@ -164,6 +164,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//RecordExpr/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//RecordExpr/fieldExprs"/>
     </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//FieldlessRecordExpr">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//FieldlessRecordExpr/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//FieldlessRecordExpr/exprs"/>
+    </genClasses>
     <genClasses ecoreClass="Spear.ecore#//ArrayExpr">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//ArrayExpr/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//ArrayExpr/exprs"/>

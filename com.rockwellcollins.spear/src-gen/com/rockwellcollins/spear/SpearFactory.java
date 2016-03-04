@@ -437,6 +437,15 @@ public interface SpearFactory extends EFactory
   RecordExpr createRecordExpr();
 
   /**
+   * Returns a new object of class '<em>Fieldless Record Expr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Fieldless Record Expr</em>'.
+   * @generated
+   */
+  FieldlessRecordExpr createFieldlessRecordExpr();
+
+  /**
    * Returns a new object of class '<em>Array Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

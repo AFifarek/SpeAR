@@ -428,6 +428,14 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.FIELDLESS_RECORD_EXPR:
+      {
+        FieldlessRecordExpr fieldlessRecordExpr = (FieldlessRecordExpr)theEObject;
+        T result = caseFieldlessRecordExpr(fieldlessRecordExpr);
+        if (result == null) result = caseExpr(fieldlessRecordExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.ARRAY_EXPR:
       {
         ArrayExpr arrayExpr = (ArrayExpr)theEObject;
@@ -1223,6 +1231,22 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRecordExpr(RecordExpr object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Fieldless Record Expr</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Fieldless Record Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFieldlessRecordExpr(FieldlessRecordExpr object)
   {
     return null;
   }

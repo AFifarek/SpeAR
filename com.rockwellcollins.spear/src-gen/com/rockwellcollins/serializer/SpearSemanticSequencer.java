@@ -23,6 +23,7 @@ import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.FieldExpr;
 import com.rockwellcollins.spear.FieldType;
+import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IfThenElseExpr;
@@ -128,6 +129,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SpearPackage.FIELD_TYPE:
 				sequence_FieldType(context, (FieldType) semanticObject); 
+				return; 
+			case SpearPackage.FIELDLESS_RECORD_EXPR:
+				sequence_AtomicExpr(context, (FieldlessRecordExpr) semanticObject); 
 				return; 
 			case SpearPackage.FORMAL_CONSTRAINT:
 				sequence_FormalConstraint(context, (FormalConstraint) semanticObject); 
@@ -502,6 +506,41 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     (type=[ArrayTypeDef|ID] exprs+=Expr exprs+=Expr*)
 	 */
 	protected void sequence_AtomicExpr(ISerializationContext context, ArrayExpr semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Expr returns FieldlessRecordExpr
+	 *     ImpliesExpr returns FieldlessRecordExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
+	 *     OrExpr returns FieldlessRecordExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
+	 *     AndExpr returns FieldlessRecordExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
+	 *     TriggersExpr returns FieldlessRecordExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
+	 *     SinceExpr returns FieldlessRecordExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
+	 *     TemporalPrefixExpr returns FieldlessRecordExpr
+	 *     RelationalExpr returns FieldlessRecordExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
+	 *     PlusExpr returns FieldlessRecordExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
+	 *     MultiplyExpr returns FieldlessRecordExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
+	 *     PrefixExpr returns FieldlessRecordExpr
+	 *     AccessExpr returns FieldlessRecordExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns FieldlessRecordExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns FieldlessRecordExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns FieldlessRecordExpr
+	 *     AtomicExpr returns FieldlessRecordExpr
+	 *
+	 * Constraint:
+	 *     (type=[RecordTypeDef|ID] exprs+=Expr exprs+=Expr*)
+	 */
+	protected void sequence_AtomicExpr(ISerializationContext context, FieldlessRecordExpr semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
