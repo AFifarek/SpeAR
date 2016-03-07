@@ -4,14 +4,17 @@
 package com.rockwellcollins.scoping;
 
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 
 import com.rockwellcollins.spear.Expr;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.RecordAccessExpr;
 import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
+import com.rockwellcollins.spear.Variable;
 
 /**
  * This class contains custom scoping description.
@@ -26,10 +29,6 @@ public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractD
 		return Scopes.scopeFor(re.getType().getFields());
 	}
 	
-//	IScope scope_RecordExpr_fieldExprs(RecordExpr e, EReference reference) {
-//		return Scopes.scopeFor(e.getType().getFields());
-//	}
-//	
 	IScope scope_RecordAccessExpr_field(RecordAccessExpr e, EReference reference) {
 		return getRecordScope(e.getRecord());
 	}
@@ -45,5 +44,18 @@ public class SpearScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractD
 		} else {
 			return IScope.NULLSCOPE;
 		}
+	}
+	
+	IScope scope_Variable(Pattern p, EReference reference) {
+		return getPatternScope(p);
+	}
+	
+	IScope scope_IdRef(Pattern p, EReference reference) {
+		return getPatternScope(p);
+	}
+
+	private IScope getPatternScope(Pattern p) {
+		IScope scope = Scopes.scopeFor(EcoreUtil2.getAllContentsOfType(p, Variable.class));
+		return scope;
 	}
 }

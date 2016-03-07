@@ -2,6 +2,8 @@
  */
 package com.rockwellcollins.spear;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,6 +16,10 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.Pattern#getName <em>Name</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Pattern#getInputs <em>Inputs</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Pattern#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Pattern#getLocals <em>Locals</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Pattern#getEquations <em>Equations</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getPattern()
@@ -47,5 +53,69 @@ public interface Pattern extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Inputs</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Variable}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Inputs</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Inputs</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getPattern_Inputs()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Variable> getInputs();
+
+  /**
+   * Returns the value of the '<em><b>Outputs</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Variable}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Outputs</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Outputs</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getPattern_Outputs()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Variable> getOutputs();
+
+  /**
+   * Returns the value of the '<em><b>Locals</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Variable}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Locals</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Locals</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getPattern_Locals()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Variable> getLocals();
+
+  /**
+   * Returns the value of the '<em><b>Equations</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.LustreEquation}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Equations</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Equations</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getPattern_Equations()
+   * @model containment="true"
+   * @generated
+   */
+  EList<LustreEquation> getEquations();
 
 } // Pattern

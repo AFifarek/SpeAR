@@ -68,6 +68,15 @@ public interface SpearFactory extends EFactory
   Pattern createPattern();
 
   /**
+   * Returns a new object of class '<em>Lustre Equation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lustre Equation</em>'.
+   * @generated
+   */
+  LustreEquation createLustreEquation();
+
+  /**
    * Returns a new object of class '<em>Unit Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

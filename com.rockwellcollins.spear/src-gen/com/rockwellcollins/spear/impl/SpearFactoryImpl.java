@@ -69,6 +69,7 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.IMPORT: return createImport();
       case SpearPackage.DEFINITIONS: return createDefinitions();
       case SpearPackage.PATTERN: return createPattern();
+      case SpearPackage.LUSTRE_EQUATION: return createLustreEquation();
       case SpearPackage.UNIT_DEF: return createUnitDef();
       case SpearPackage.UNIT_EXPR: return createUnitExpr();
       case SpearPackage.TYPE_DEF: return createTypeDef();
@@ -176,6 +177,17 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     PatternImpl pattern = new PatternImpl();
     return pattern;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LustreEquation createLustreEquation()
+  {
+    LustreEquationImpl lustreEquation = new LustreEquationImpl();
+    return lustreEquation;
   }
 
   /**

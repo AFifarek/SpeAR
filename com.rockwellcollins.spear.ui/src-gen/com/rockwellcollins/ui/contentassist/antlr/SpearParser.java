@@ -79,6 +79,10 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDefinitionsAccess().getGroup_4(), "rule__Definitions__Group_4__0");
 					put(grammarAccess.getDefinitionsAccess().getGroup_5(), "rule__Definitions__Group_5__0");
 					put(grammarAccess.getPatternAccess().getGroup(), "rule__Pattern__Group__0");
+					put(grammarAccess.getPatternAccess().getGroup_4(), "rule__Pattern__Group_4__0");
+					put(grammarAccess.getPatternAccess().getGroup_9(), "rule__Pattern__Group_9__0");
+					put(grammarAccess.getPatternAccess().getGroup_11(), "rule__Pattern__Group_11__0");
+					put(grammarAccess.getLustreEquationAccess().getGroup(), "rule__LustreEquation__Group__0");
 					put(grammarAccess.getUnitDefAccess().getGroup_0(), "rule__UnitDef__Group_0__0");
 					put(grammarAccess.getUnitDefAccess().getGroup_1(), "rule__UnitDef__Group_1__0");
 					put(grammarAccess.getProductUnitExprAccess().getGroup(), "rule__ProductUnitExpr__Group__0");
@@ -212,6 +216,14 @@ public class SpearParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDefinitionsAccess().getConstantsAssignment_4_1(), "rule__Definitions__ConstantsAssignment_4_1");
 					put(grammarAccess.getDefinitionsAccess().getPatternsAssignment_5_1(), "rule__Definitions__PatternsAssignment_5_1");
 					put(grammarAccess.getPatternAccess().getNameAssignment_1(), "rule__Pattern__NameAssignment_1");
+					put(grammarAccess.getPatternAccess().getInputsAssignment_3(), "rule__Pattern__InputsAssignment_3");
+					put(grammarAccess.getPatternAccess().getInputsAssignment_4_1(), "rule__Pattern__InputsAssignment_4_1");
+					put(grammarAccess.getPatternAccess().getOutputsAssignment_8(), "rule__Pattern__OutputsAssignment_8");
+					put(grammarAccess.getPatternAccess().getOutputsAssignment_9_1(), "rule__Pattern__OutputsAssignment_9_1");
+					put(grammarAccess.getPatternAccess().getLocalsAssignment_11_1(), "rule__Pattern__LocalsAssignment_11_1");
+					put(grammarAccess.getPatternAccess().getEquationsAssignment_13(), "rule__Pattern__EquationsAssignment_13");
+					put(grammarAccess.getLustreEquationAccess().getIdAssignment_0(), "rule__LustreEquation__IdAssignment_0");
+					put(grammarAccess.getLustreEquationAccess().getRhsAssignment_2(), "rule__LustreEquation__RhsAssignment_2");
 					put(grammarAccess.getUnitDefAccess().getNameAssignment_0_1(), "rule__UnitDef__NameAssignment_0_1");
 					put(grammarAccess.getUnitDefAccess().getDescriptionAssignment_0_2(), "rule__UnitDef__DescriptionAssignment_0_2");
 					put(grammarAccess.getUnitDefAccess().getNameAssignment_1_1(), "rule__UnitDef__NameAssignment_1_1");

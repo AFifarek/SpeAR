@@ -32,6 +32,7 @@ import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.LiteralExpr;
+import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -108,6 +109,13 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass patternEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass lustreEquationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -723,6 +731,76 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EAttribute getPattern_Name()
   {
     return (EAttribute)patternEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPattern_Inputs()
+  {
+    return (EReference)patternEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPattern_Outputs()
+  {
+    return (EReference)patternEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPattern_Locals()
+  {
+    return (EReference)patternEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPattern_Equations()
+  {
+    return (EReference)patternEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLustreEquation()
+  {
+    return lustreEquationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLustreEquation_Id()
+  {
+    return (EReference)lustreEquationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLustreEquation_Rhs()
+  {
+    return (EReference)lustreEquationEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2010,6 +2088,14 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     patternEClass = createEClass(PATTERN);
     createEAttribute(patternEClass, PATTERN__NAME);
+    createEReference(patternEClass, PATTERN__INPUTS);
+    createEReference(patternEClass, PATTERN__OUTPUTS);
+    createEReference(patternEClass, PATTERN__LOCALS);
+    createEReference(patternEClass, PATTERN__EQUATIONS);
+
+    lustreEquationEClass = createEClass(LUSTRE_EQUATION);
+    createEReference(lustreEquationEClass, LUSTRE_EQUATION__ID);
+    createEReference(lustreEquationEClass, LUSTRE_EQUATION__RHS);
 
     unitDefEClass = createEClass(UNIT_DEF);
     createEAttribute(unitDefEClass, UNIT_DEF__NAME);
@@ -2282,6 +2368,14 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
 
     initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPattern_Name(), ecorePackage.getEString(), "name", null, 0, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPattern_Inputs(), this.getVariable(), null, "inputs", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPattern_Outputs(), this.getVariable(), null, "outputs", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPattern_Locals(), this.getVariable(), null, "locals", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPattern_Equations(), this.getLustreEquation(), null, "equations", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(lustreEquationEClass, LustreEquation.class, "LustreEquation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLustreEquation_Id(), this.getVariable(), null, "id", null, 0, 1, LustreEquation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLustreEquation_Rhs(), this.getExpr(), null, "rhs", null, 0, 1, LustreEquation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unitDefEClass, UnitDef.class, "UnitDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnitDef_Name(), ecorePackage.getEString(), "name", null, 0, 1, UnitDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

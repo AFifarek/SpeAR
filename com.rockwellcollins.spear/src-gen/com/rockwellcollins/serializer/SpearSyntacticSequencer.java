@@ -28,6 +28,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_Definitions_PatternsKeyword_5_0_q;
 	protected AbstractElementAlias match_Definitions_TypesKeyword_3_0_q;
 	protected AbstractElementAlias match_Definitions_UnitsKeyword_2_0_q;
+	protected AbstractElementAlias match_Pattern_VarKeyword_11_0_q;
 	protected AbstractElementAlias match_Specification_AssumptionsKeyword_13_0_q;
 	protected AbstractElementAlias match_Specification_ConstantsKeyword_5_0_q;
 	protected AbstractElementAlias match_Specification_ImportsKeyword_2_0_q;
@@ -49,6 +50,7 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_Definitions_PatternsKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getPatternsKeyword_5_0());
 		match_Definitions_TypesKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getTypesKeyword_3_0());
 		match_Definitions_UnitsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getUnitsKeyword_2_0());
+		match_Pattern_VarKeyword_11_0_q = new TokenAlias(false, true, grammarAccess.getPatternAccess().getVarKeyword_11_0());
 		match_Specification_AssumptionsKeyword_13_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getAssumptionsKeyword_13_0());
 		match_Specification_ConstantsKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getConstantsKeyword_5_0());
 		match_Specification_ImportsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getImportsKeyword_2_0());
@@ -101,6 +103,8 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Definitions_TypesKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Definitions_UnitsKeyword_2_0_q.equals(syntax))
 				emit_Definitions_UnitsKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Pattern_VarKeyword_11_0_q.equals(syntax))
+				emit_Pattern_VarKeyword_11_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Specification_AssumptionsKeyword_13_0_q.equals(syntax))
 				emit_Specification_AssumptionsKeyword_13_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Specification_ConstantsKeyword_5_0_q.equals(syntax))
@@ -266,6 +270,18 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     name=ID (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? (rule end)
 	 */
 	protected void emit_Definitions_UnitsKeyword_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'var'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     outputs+=Variable ')' (ambiguity) 'let' 'tel' (rule end)
+	 *     outputs+=Variable ')' (ambiguity) 'let' equations+=LustreEquation
+	 */
+	protected void emit_Pattern_VarKeyword_11_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

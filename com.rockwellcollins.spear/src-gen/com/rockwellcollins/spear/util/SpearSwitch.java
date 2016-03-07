@@ -109,6 +109,13 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.LUSTRE_EQUATION:
+      {
+        LustreEquation lustreEquation = (LustreEquation)theEObject;
+        T result = caseLustreEquation(lustreEquation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.UNIT_DEF:
       {
         UnitDef unitDef = (UnitDef)theEObject;
@@ -575,6 +582,22 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePattern(Pattern object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Lustre Equation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Lustre Equation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLustreEquation(LustreEquation object)
   {
     return null;
   }

@@ -32,6 +32,14 @@
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Pattern">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//Pattern/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Pattern/inputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Pattern/outputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Pattern/locals"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Pattern/equations"/>
+    </genClasses>
+    <genClasses ecoreClass="Spear.ecore#//LustreEquation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//LustreEquation/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//LustreEquation/rhs"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//UnitDef">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//UnitDef/name"/>

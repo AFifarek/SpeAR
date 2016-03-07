@@ -100,6 +100,11 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createPatternAdapter();
       }
       @Override
+      public Adapter caseLustreEquation(LustreEquation object)
+      {
+        return createLustreEquationAdapter();
+      }
+      @Override
       public Adapter caseUnitDef(UnitDef object)
       {
         return createUnitDefAdapter();
@@ -437,6 +442,21 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPatternAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.LustreEquation <em>Lustre Equation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.LustreEquation
+   * @generated
+   */
+  public Adapter createLustreEquationAdapter()
   {
     return null;
   }

@@ -31,13 +31,17 @@ Definitions:
 	('Patterns:' patterns+=Pattern*)?;
 
 Pattern:
-	'pattern' (name=ID)
-	/*	
- *  'Inputs:' (inputs+=Variable) (',' inputs+=Variable)*
-	'Outputs:' (outputs+=Variable) (',' outputs+=Variable)*
-	'Lustre:' node=STRING
-	'English:' english=STRING
- */;
+	'pattern' (name=ID) '(' inputs+=Variable (',' inputs+=Variable)* ')' 'returns' '(' outputs+=Variable (',' outputs+=Variable)* ')'
+	 ('var' (locals+=Variable)* )?
+	 'let' 
+	 	(equations+=LustreEquation)*
+	 'tel'	 
+;
+
+LustreEquation:
+	id=[Variable] '=' rhs=Expr
+;
+
 
 UnitDef:
 	{BaseUnit} name=ID (description=STRING)?
@@ -123,7 +127,6 @@ TemporalPrefixExpr returns Expr:
 RelationalExpr returns Expr:
 	PlusExpr (=> ({BinaryExpr.left=current} op=RelationalOp) right=RelationalExpr)?;
 
-	//This adds some english equivalents to the Relational Operators for a more english look and feel
 RelationalOp:
 	   '<' | 'less' 'than'
 	| '<=' | 'less' 'than' 'or' 'equal' 'to'
@@ -138,8 +141,6 @@ PlusExpr returns Expr:
 MultiplyExpr returns Expr:
 	PrefixExpr (=> ({BinaryExpr.left=current} op=('*' | '/' | 'mod')) right=MultiplyExpr)?;
 
-	//the sugary Unary operators are never, before, after (the last three)
-// | 'O' | 'once' | 'H' | 'historically' | 'never' | 'before' | 'after'
 PrefixExpr returns Expr:
 	{UnaryExpr} op=('-' | 'not') expr=PrefixExpr
 	| {PreviousExpr} 'previous' var=PrefixExpr (=> 'with' 'initial' 'value' init=PrefixExpr)?
@@ -158,7 +159,6 @@ AtomicExpr returns Expr:
 	| {AfterUntilExpr} 'after' (after=Expr) (=> 'until' until=Expr)?
 	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
 	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
-	/* this is just not going to work */
 	| {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'
 	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'

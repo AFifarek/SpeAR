@@ -30,6 +30,7 @@ import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
+import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -150,6 +151,9 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				return; 
 			case SpearPackage.INT_TYPE:
 				sequence_Type(context, (IntType) semanticObject); 
+				return; 
+			case SpearPackage.LUSTRE_EQUATION:
+				sequence_LustreEquation(context, (LustreEquation) semanticObject); 
 				return; 
 			case SpearPackage.MID_EXPR:
 				sequence_AtomicExpr(context, (MIdExpr) semanticObject); 
@@ -1104,6 +1108,27 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     LustreEquation returns LustreEquation
+	 *
+	 * Constraint:
+	 *     (id=[Variable|ID] rhs=Expr)
+	 */
+	protected void sequence_LustreEquation(ISerializationContext context, LustreEquation semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.LUSTRE_EQUATION__ID) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.LUSTRE_EQUATION__ID));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.LUSTRE_EQUATION__RHS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.LUSTRE_EQUATION__RHS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLustreEquationAccess().getIdVariableIDTerminalRuleCall_0_0_1(), semanticObject.getId());
+		feeder.accept(grammarAccess.getLustreEquationAccess().getRhsExprParserRuleCall_2_0(), semanticObject.getRhs());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Macro returns Macro
 	 *     IdRef returns Macro
 	 *
@@ -1120,16 +1145,18 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Pattern returns Pattern
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     (
+	 *         name=ID 
+	 *         inputs+=Variable 
+	 *         inputs+=Variable* 
+	 *         outputs+=Variable 
+	 *         outputs+=Variable* 
+	 *         locals+=Variable* 
+	 *         equations+=LustreEquation*
+	 *     )
 	 */
 	protected void sequence_Pattern(ISerializationContext context, Pattern semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.PATTERN__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.PATTERN__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPatternAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
