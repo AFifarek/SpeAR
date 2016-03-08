@@ -12,6 +12,7 @@ import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
+import com.rockwellcollins.spear.CallToSpec;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.Constraint;
 import com.rockwellcollins.spear.Definitions;
@@ -33,11 +34,9 @@ import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.LiteralExpr;
 import com.rockwellcollins.spear.LustreEquation;
-import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
-import com.rockwellcollins.spear.NormalizedCall;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.PreviousExpr;
@@ -50,7 +49,6 @@ import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearFactory;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
@@ -374,13 +372,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass mIdExprEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass ifThenElseExprEClass = null;
 
   /**
@@ -430,7 +421,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass specificationCallEClass = null;
+  private EClass callToSpecEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -452,13 +443,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass realLiteralEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass normalizedCallEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -1648,26 +1632,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getMIdExpr()
-  {
-    return mIdExprEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getMIdExpr_Ids()
-  {
-    return (EReference)mIdExprEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getIfThenElseExpr()
   {
     return ifThenElseExprEClass;
@@ -1888,9 +1852,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getSpecificationCall()
+  public EClass getCallToSpec()
   {
-    return specificationCallEClass;
+    return callToSpecEClass;
   }
 
   /**
@@ -1898,9 +1862,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecificationCall_Spec()
+  public EReference getCallToSpec_Ids()
   {
-    return (EReference)specificationCallEClass.getEStructuralFeatures().get(0);
+    return (EReference)callToSpecEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1908,9 +1872,19 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSpecificationCall_Args()
+  public EReference getCallToSpec_Spec()
   {
-    return (EReference)specificationCallEClass.getEStructuralFeatures().get(1);
+    return (EReference)callToSpecEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getCallToSpec_Args()
+  {
+    return (EReference)callToSpecEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1991,46 +1965,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EReference getRealLiteral_Unit()
   {
     return (EReference)realLiteralEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getNormalizedCall()
-  {
-    return normalizedCallEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getNormalizedCall_Ids()
-  {
-    return (EReference)normalizedCallEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getNormalizedCall_Spec()
-  {
-    return (EReference)normalizedCallEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getNormalizedCall_Args()
-  {
-    return (EReference)normalizedCallEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2217,9 +2151,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     idExprEClass = createEClass(ID_EXPR);
     createEReference(idExprEClass, ID_EXPR__ID);
 
-    mIdExprEClass = createEClass(MID_EXPR);
-    createEReference(mIdExprEClass, MID_EXPR__IDS);
-
     ifThenElseExprEClass = createEClass(IF_THEN_ELSE_EXPR);
     createEReference(ifThenElseExprEClass, IF_THEN_ELSE_EXPR__COND);
     createEReference(ifThenElseExprEClass, IF_THEN_ELSE_EXPR__THEN);
@@ -2249,9 +2180,10 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(patternCallEClass, PATTERN_CALL__PATTERN);
     createEReference(patternCallEClass, PATTERN_CALL__ARGS);
 
-    specificationCallEClass = createEClass(SPECIFICATION_CALL);
-    createEReference(specificationCallEClass, SPECIFICATION_CALL__SPEC);
-    createEReference(specificationCallEClass, SPECIFICATION_CALL__ARGS);
+    callToSpecEClass = createEClass(CALL_TO_SPEC);
+    createEReference(callToSpecEClass, CALL_TO_SPEC__IDS);
+    createEReference(callToSpecEClass, CALL_TO_SPEC__SPEC);
+    createEReference(callToSpecEClass, CALL_TO_SPEC__ARGS);
 
     intLiteralEClass = createEClass(INT_LITERAL);
     createEAttribute(intLiteralEClass, INT_LITERAL__VALUE);
@@ -2263,11 +2195,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     realLiteralEClass = createEClass(REAL_LITERAL);
     createEAttribute(realLiteralEClass, REAL_LITERAL__VALUE);
     createEReference(realLiteralEClass, REAL_LITERAL__UNIT);
-
-    normalizedCallEClass = createEClass(NORMALIZED_CALL);
-    createEReference(normalizedCallEClass, NORMALIZED_CALL__IDS);
-    createEReference(normalizedCallEClass, NORMALIZED_CALL__SPEC);
-    createEReference(normalizedCallEClass, NORMALIZED_CALL__ARGS);
   }
 
   /**
@@ -2328,7 +2255,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     arrayAccessExprEClass.getESuperTypes().add(this.getExpr());
     arrayUpdateExprEClass.getESuperTypes().add(this.getExpr());
     idExprEClass.getESuperTypes().add(this.getExpr());
-    mIdExprEClass.getESuperTypes().add(this.getExpr());
     ifThenElseExprEClass.getESuperTypes().add(this.getExpr());
     afterUntilExprEClass.getESuperTypes().add(this.getExpr());
     whileExprEClass.getESuperTypes().add(this.getExpr());
@@ -2336,11 +2262,10 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     fieldlessRecordExprEClass.getESuperTypes().add(this.getExpr());
     arrayExprEClass.getESuperTypes().add(this.getExpr());
     patternCallEClass.getESuperTypes().add(this.getExpr());
-    specificationCallEClass.getESuperTypes().add(this.getExpr());
+    callToSpecEClass.getESuperTypes().add(this.getExpr());
     intLiteralEClass.getESuperTypes().add(this.getLiteralExpr());
     boolLiteralEClass.getESuperTypes().add(this.getLiteralExpr());
     realLiteralEClass.getESuperTypes().add(this.getLiteralExpr());
-    normalizedCallEClass.getESuperTypes().add(this.getExpr());
 
     // Initialize classes and features; add operations and parameters
     initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2497,9 +2422,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEClass(idExprEClass, IdExpr.class, "IdExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getIdExpr_Id(), this.getIdRef(), null, "id", null, 0, 1, IdExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(mIdExprEClass, MIdExpr.class, "MIdExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMIdExpr_Ids(), this.getIdRef(), null, "ids", null, 0, -1, MIdExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(ifThenElseExprEClass, IfThenElseExpr.class, "IfThenElseExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getIfThenElseExpr_Cond(), this.getExpr(), null, "cond", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfThenElseExpr_Then(), this.getExpr(), null, "then", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2529,9 +2451,10 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getPatternCall_Pattern(), this.getPattern(), null, "pattern", null, 0, 1, PatternCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPatternCall_Args(), this.getExpr(), null, "args", null, 0, -1, PatternCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(specificationCallEClass, SpecificationCall.class, "SpecificationCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSpecificationCall_Spec(), this.getSpecification(), null, "spec", null, 0, 1, SpecificationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSpecificationCall_Args(), this.getExpr(), null, "args", null, 0, -1, SpecificationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(callToSpecEClass, CallToSpec.class, "CallToSpec", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getCallToSpec_Ids(), this.getIdRef(), null, "ids", null, 0, -1, CallToSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCallToSpec_Spec(), this.getSpecification(), null, "spec", null, 0, 1, CallToSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCallToSpec_Args(), this.getExpr(), null, "args", null, 0, -1, CallToSpec.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(intLiteralEClass, IntLiteral.class, "IntLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIntLiteral_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2543,11 +2466,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEClass(realLiteralEClass, RealLiteral.class, "RealLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRealLiteral_Value(), ecorePackage.getEString(), "value", null, 0, 1, RealLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRealLiteral_Unit(), this.getUnitDef(), null, "unit", null, 0, 1, RealLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(normalizedCallEClass, NormalizedCall.class, "NormalizedCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNormalizedCall_Ids(), this.getIdRef(), null, "ids", null, 0, -1, NormalizedCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNormalizedCall_Spec(), this.getSpecification(), null, "spec", null, 0, 1, NormalizedCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getNormalizedCall_Args(), this.getExpr(), null, "args", null, 0, -1, NormalizedCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

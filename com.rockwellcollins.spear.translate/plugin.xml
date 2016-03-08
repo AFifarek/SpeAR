@@ -32,6 +32,15 @@
                toolbarPath="translateGroup"
                id="com.rockwellcollins.spear.translate.CheckLogicalEntailment">
          </action>
+         <action
+               label="&amp;Generate PDF"
+               icon="icons/document.png"
+               class="com.rockwellcollins.spear.translate.actions.GeneratePDF"
+               tooltip="Generate PDF"
+               menubarPath="translateMenu/translateGroup"
+               toolbarPath="translateGroup"
+               id="com.rockwellcollins.spear.translate.GeneratePDF">
+         </action>
       </actionSet>
    </extension>
     <extension point="org.eclipse.ui.views">

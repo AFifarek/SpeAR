@@ -8,7 +8,7 @@ import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
-import com.rockwellcollins.spear.units.UnitChecker;
+import com.rockwellcollins.spear.units.SpearUnitChecker;
 
 public class TypeCheckingValidator extends AbstractSpearJavaValidator {
 	
@@ -20,7 +20,7 @@ public class TypeCheckingValidator extends AbstractSpearJavaValidator {
 		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
 		SpearType type = tc.checkNamedType(nt);
 		if(type != SpearTypeChecker.ERROR) {
-			new UnitChecker(getMessageAcceptor()).checkNamedTypeDef(nt);			
+			new SpearUnitChecker(getMessageAcceptor()).checkNamedTypeDef(nt);			
 		}
 	}
 	
@@ -28,7 +28,7 @@ public class TypeCheckingValidator extends AbstractSpearJavaValidator {
 	public void typeCheckConstant(Constant c) {
 		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
 		if(tc.checkConstant(c)) {
-			new UnitChecker(getMessageAcceptor()).checkConstant(c);	
+			new SpearUnitChecker(getMessageAcceptor()).checkConstant(c);	
 		}
 	}
 	
@@ -36,15 +36,16 @@ public class TypeCheckingValidator extends AbstractSpearJavaValidator {
 	public void typeCheckMacro(Macro m) {
 		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
 		if(tc.checkMacro(m)) {
-			new UnitChecker(getMessageAcceptor()).checkMacro(m);	
+			new SpearUnitChecker(getMessageAcceptor()).checkMacro(m);	
 		}
 	}
 	
 	@Check
 	public void typeCheckFormalConstraint(FormalConstraint fc) {
 		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		if(tc.checkFormalConstraint(fc)) {
-			new UnitChecker(getMessageAcceptor()).checkFormalConstraint(fc);			
+		boolean checkUnits = tc.checkFormalConstraint(fc);
+		if(checkUnits) {
+			new SpearUnitChecker(getMessageAcceptor()).checkFormalConstraint(fc);			
 		}
 	}
 }

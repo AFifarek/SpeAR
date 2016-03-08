@@ -109,7 +109,7 @@ ImpliesExpr returns Expr:
 	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?;
 
 OrExpr returns Expr:
-	AndExpr (=> ({BinaryExpr.left=current} op=('or' | 'xor')) right=ImpliesExpr)?;
+	AndExpr (=> ({BinaryExpr.left=current} op=('or' | 'xor')) right=OrExpr)?;
 
 AndExpr returns Expr:
 	TriggersExpr (=> ({BinaryExpr.left=current} op='and') right=AndExpr)?;
@@ -154,7 +154,7 @@ AccessExpr returns Expr:
 AtomicExpr returns Expr:
 	LiteralExpr
 	| {IdExpr} id=[IdRef]
-	| {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
+//	| {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	| {AfterUntilExpr} 'after' (after=Expr) (=> 'until' until=Expr)?
 	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
@@ -162,18 +162,19 @@ AtomicExpr returns Expr:
 	| {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'
 	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
 	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
-	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
+//	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
+	| {CallToSpec} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
 	| '(' Expr ')'
-	| UnusedExpr;
+;
 
 LiteralExpr:
 	{IntLiteral} value=INT (unit=[UnitDef])?
 	| {BoolLiteral} value=BOOL
 	| {RealLiteral} value=REAL (unit=[UnitDef])?;
 
-	//this is a cute little hack to make processing easier on the translation to Lustre
-UnusedExpr returns Expr:
-	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')';
+//	//this is a cute little hack to make processing easier on the translation to Lustre
+//UnusedExpr returns Expr:
+//	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')';
 
 IdRef:
 	Variable

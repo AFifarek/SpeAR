@@ -18,6 +18,7 @@ import com.rockwellcollins.spear.BaseUnit;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
+import com.rockwellcollins.spear.CallToSpec;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.DerivedUnit;
 import com.rockwellcollins.spear.EnumTypeDef;
@@ -31,7 +32,6 @@ import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
-import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
@@ -43,7 +43,6 @@ import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
-import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
@@ -51,11 +50,11 @@ import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class UnitChecker extends SpearSwitch<SpearUnit> {
+public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 
 	final private ValidationMessageAcceptor messageAcceptor;
 
-	public UnitChecker(ValidationMessageAcceptor messageAcceptor) {
+	public SpearUnitChecker(ValidationMessageAcceptor messageAcceptor) {
 		this.messageAcceptor = messageAcceptor;
 	}
 
@@ -477,15 +476,6 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	@Override
-	public SpearUnit caseMIdExpr(MIdExpr mide) {
-		List<SpearUnit> units = new ArrayList<>();
-		for (IdRef idr : mide.getIds()) {
-			units.add(doSwitch(idr));
-		}
-		return compressTuple(new TupleUnit(units));
-	}
-
-	@Override
 	public SpearUnit casePreviousExpr(PreviousExpr prev) {
 		SpearUnit init = doSwitch(prev.getInit());
 		SpearUnit var = doSwitch(prev.getVar());
@@ -564,37 +554,42 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseSpecificationCall(SpecificationCall sc) {
-		List<SpearUnit> input_units = new ArrayList<>();
-		for (Variable v : sc.getSpec().getInputs()) {
-			input_units.add(doSwitch(v));
+	public SpearUnit caseCallToSpec(CallToSpec call) {
+		List<SpearUnit> ids = new ArrayList<>();
+		for(IdRef ref : call.getIds()) {
+			ids.add(this.doSwitch(ref));
 		}
-		TupleUnit inputs = new TupleUnit(input_units);
-
-		List<SpearUnit> arg_units = new ArrayList<>();
-		for (Expr e : sc.getArgs()) {
-			arg_units.add(doSwitch(e));
+		TupleUnit idType = new TupleUnit(ids);
+		
+		List<SpearUnit> args = new ArrayList<>();
+		for(Expr e : call.getArgs()) {
+			args.add(this.doSwitch(e));
 		}
-		TupleUnit args = new TupleUnit(arg_units);
-
-		if (inputs.units.size() != args.units.size()) {
-			error("Specification call arguments units " + args + " do not match specifications units " + inputs, sc,
-					SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
-		} else {
-			for (int i = 0; i < input_units.size(); i++) {
-				if (!inputs.units.get(i).equals(args.units.get(i))) {
-					error("Specification " + sc.getSpec().getName() + " requires units " + inputs.units.get(i)
-							+ ", but is provided " + args.units.get(i) + " for argument " + i + ".", sc,
-							SpearPackage.Literals.SPECIFICATION_CALL__ARGS, i);
-				}
-			}
+		TupleUnit argsType = new TupleUnit(args);
+		
+		List<SpearUnit> inputs = new ArrayList<>();
+		for(Variable v : call.getSpec().getInputs()) {
+			inputs.add(this.doSwitch(v));
 		}
-
-		List<SpearUnit> output_units = new ArrayList<>();
-		for (Variable v : sc.getSpec().getOutputs()) {
-			output_units.add(doSwitch(v));
+		TupleUnit inputsType = new TupleUnit(inputs);
+		
+		List<SpearUnit> outputs = new ArrayList<>();
+		for(Variable v : call.getSpec().getOutputs()) {
+			outputs.add(this.doSwitch(v));
 		}
-		return compressTuple(new TupleUnit(output_units));
+		TupleUnit outputsType = new TupleUnit(outputs);
+		
+		if(!idType.equals(outputsType)) {
+			error("Specification returns units " + outputsType + " , but receiving variables are of units " + idType + ".",call, null); 
+			return ERROR;
+		}
+		
+		if(!inputsType.equals(argsType)) {
+			error("Specification accepts units " + inputsType + " , but received arguments of units " + argsType + ".",call, SpearPackage.Literals.CALL_TO_SPEC__ARGS);
+			return ERROR;
+		}
+		
+		return SCALAR;
 	}
 	
 	@Override
@@ -654,13 +649,5 @@ public class UnitChecker extends SpearSwitch<SpearUnit> {
 
 	private void warning(String message, EObject e) {
 		messageAcceptor.acceptWarning(message, e, null, 0, null);
-	}
-
-	private SpearUnit compressTuple(TupleUnit tupleUnit) {
-		if (tupleUnit.units.size() == 1) {
-			return tupleUnit.units.get(0);
-		} else {
-			return tupleUnit;
-		}
 	}
 }

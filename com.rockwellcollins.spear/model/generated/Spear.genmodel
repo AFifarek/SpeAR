@@ -152,9 +152,6 @@
     <genClasses ecoreClass="Spear.ecore#//IdExpr">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//IdExpr/id"/>
     </genClasses>
-    <genClasses ecoreClass="Spear.ecore#//MIdExpr">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//MIdExpr/ids"/>
-    </genClasses>
     <genClasses ecoreClass="Spear.ecore#//IfThenElseExpr">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//IfThenElseExpr/cond"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//IfThenElseExpr/then"/>
@@ -184,9 +181,10 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//PatternCall/pattern"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//PatternCall/args"/>
     </genClasses>
-    <genClasses ecoreClass="Spear.ecore#//SpecificationCall">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//SpecificationCall/spec"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//SpecificationCall/args"/>
+    <genClasses ecoreClass="Spear.ecore#//CallToSpec">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//CallToSpec/ids"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//CallToSpec/spec"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//CallToSpec/args"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//IntLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//IntLiteral/value"/>
@@ -198,11 +196,6 @@
     <genClasses ecoreClass="Spear.ecore#//RealLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//RealLiteral/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//RealLiteral/unit"/>
-    </genClasses>
-    <genClasses ecoreClass="Spear.ecore#//NormalizedCall">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//NormalizedCall/ids"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Spear.ecore#//NormalizedCall/spec"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//NormalizedCall/args"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

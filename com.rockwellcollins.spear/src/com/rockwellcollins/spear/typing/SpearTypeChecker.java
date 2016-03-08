@@ -20,6 +20,7 @@ import com.rockwellcollins.spear.ArrayUpdateExpr;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BoolLiteral;
 import com.rockwellcollins.spear.BoolType;
+import com.rockwellcollins.spear.CallToSpec;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumTypeDef;
 import com.rockwellcollins.spear.EnumValue;
@@ -33,7 +34,6 @@ import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
-import com.rockwellcollins.spear.MIdExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.PatternCall;
@@ -45,7 +45,6 @@ import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
-import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
@@ -482,16 +481,6 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 	
 	@Override
-	public SpearType caseMIdExpr(MIdExpr mide) {
-		List<SpearType> types = new ArrayList<>();
-		for(IdRef idref : mide.getIds()) {
-			types.add(doSwitch(idref));
-		}
-		
-		return new SpearTupleType(types);
-	}
-	
-	@Override
 	public SpearType casePreviousExpr(PreviousExpr prev) {
 		SpearType var = doSwitch(prev.getVar());
 
@@ -576,27 +565,42 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 	
 	@Override
-	public SpearType caseSpecificationCall(SpecificationCall sc) {
-		List<SpearType> inputs = new ArrayList<>();
-		for(Variable in : sc.getSpec().getInputs()) {
-			inputs.add(doSwitch(in));
+	public SpearType caseCallToSpec(CallToSpec call) {
+		List<SpearType> ids = new ArrayList<>();
+		for(IdRef ref : call.getIds()) {
+			ids.add(this.doSwitch(ref));
 		}
+		SpearTupleType idType = new SpearTupleType(ids);
 		
-		if(inputs.size() != sc.getArgs().size()) {
-			error("Specification " + sc.getSpec().getName() + " requires " + inputs.size() + " arguments, but received " + sc.getArgs().size(), sc);
+		List<SpearType> args = new ArrayList<>();
+		for(Expr e : call.getArgs()) {
+			args.add(this.doSwitch(e));
+		}
+		SpearTupleType argsType = new SpearTupleType(args);
+		
+		List<SpearType> inputs = new ArrayList<>();
+		for(Variable v : call.getSpec().getInputs()) {
+			inputs.add(this.doSwitch(v));
+		}
+		SpearTupleType inputsType = new SpearTupleType(inputs);
+		
+		List<SpearType> outputs = new ArrayList<>();
+		for(Variable v : call.getSpec().getOutputs()) {
+			outputs.add(this.doSwitch(v));
+		}
+		SpearTupleType outputsType = new SpearTupleType(outputs);
+		
+		if(!idType.equals(outputsType)) {
+			error("Specification returns " + outputsType + ", but receiving variables are of type " + idType + ".",call, null);
 			return ERROR;
 		}
 		
-		for(int i=0; i<inputs.size(); i++) {
-			expectAssignableType(inputs.get(i),sc.getArgs().get(i));
+		if(!inputsType.equals(argsType)) {
+			error("Specification accepts " + inputsType + ", but received arguments of type " + argsType + ".", call, SpearPackage.Literals.CALL_TO_SPEC__ARGS);
+			return ERROR;
 		}
 		
-		
-		List<SpearType> outputs = new ArrayList<>();
-		for(Variable out : sc.getSpec().getOutputs()) {
-			outputs.add(doSwitch(out));
-		}
-		return compressType(new SpearTupleType(outputs));
+		return BOOL;
 	}
 
 	/***************************************************************************************************/
@@ -621,14 +625,6 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		}
 
 		return expected.equals(actual);
-	}
-
-	private SpearType compressType(SpearTupleType tuple) {
-		if(tuple.types.size() == 1) {
-			return tuple.types.get(0);
-		} else {
-			return tuple;
-		}
 	}
 	
 	private void error(String message, EObject e, EStructuralFeature feature) {

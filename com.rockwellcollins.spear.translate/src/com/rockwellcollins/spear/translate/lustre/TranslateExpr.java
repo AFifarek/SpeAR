@@ -199,16 +199,16 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	}
 	
 	@Override
-	public Expr caseNormalizedCall(com.rockwellcollins.spear.NormalizedCall nc) {
+	public Expr caseCallToSpec(com.rockwellcollins.spear.CallToSpec call) {
 		List<Expr> args = new ArrayList<>();
-		for(com.rockwellcollins.spear.Expr e : nc.getArgs()) {
+		for(com.rockwellcollins.spear.Expr e : call.getArgs()) {
 			args.add(TranslateExpr.translate(e, map));
 		}
 		
-		for(IdRef idr : nc.getIds()) {
+		for(IdRef idr : call.getIds()) {
 			args.add(this.doSwitch(idr));
 		}
-		String name = map.mapping.get(nc.getSpec()).name;
+		String name = map.mapping.get(call.getSpec()).name;
 		return new NodeCallExpr(name,args);
 	}
 

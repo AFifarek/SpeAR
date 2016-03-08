@@ -10,9 +10,9 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.EValidatorRegistrar;
 
+import com.rockwellcollins.spear.CallToSpec;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.utilities.CycleUtilities;
 
 import jkind.util.CycleFinder;
@@ -29,10 +29,10 @@ public class SpecificationsAcyclicValidator extends AbstractSpearJavaValidator {
 	}
 	
 	protected Map<String,Set<String>> getDependencies(Specification spec, Map<String,Set<String>> dependencies) {
-		for(SpecificationCall spe : EcoreUtil2.getAllContentsOfType(spec, SpecificationCall.class)) {
-			insert(dependencies,spec.getName(),spe.getSpec().getName());
-			if(!dependencies.containsKey(spe.getSpec().getName())) {
-				getDependencies(spe.getSpec(),dependencies);
+		for(CallToSpec call : EcoreUtil2.getAllContentsOfType(spec, CallToSpec.class)) {
+			insert(dependencies,spec.getName(),call.getSpec().getName());
+			if(!dependencies.containsKey(call.getSpec().getName())) {
+				getDependencies(call.getSpec(),dependencies);
 			}
 		}
 		return dependencies;
@@ -54,15 +54,13 @@ public class SpecificationsAcyclicValidator extends AbstractSpearJavaValidator {
 
 	protected void error(Specification spec, List<String> cycle) {
 		String message = "Cycle in specifications " + CycleUtilities.getCycleErrorMessage(cycle);
-		for(SpecificationCall specCall : EcoreUtil2.getAllContentsOfType(spec, SpecificationCall.class)) {
+		for(CallToSpec specCall : EcoreUtil2.getAllContentsOfType(spec, CallToSpec.class)) {
 			if(cycle.contains(specCall.getSpec().getName())) {
-				error(message, specCall, SpearPackage.Literals.SPECIFICATION_CALL__SPEC);
+				error(message, specCall, SpearPackage.Literals.CALL_TO_SPEC__SPEC);
 			}
 		}
 	}
 	
 	@Override
-	public void register(EValidatorRegistrar registrar) {
-		// this is intentionally empty to prevent the composed check from registering itself.
-	}
+	public void register(EValidatorRegistrar registrar) {}
 }

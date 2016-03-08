@@ -8,9 +8,11 @@ import org.eclipse.xtext.validation.Check;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.IdExpr;
+import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
@@ -22,72 +24,102 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	
 	@Check
 	public void checkSpecificationVariables(Specification s) {
-		Set<String> set = new HashSet<>();
+		Set<String> used = new HashSet<>();
 		for(IdExpr ide : EcoreUtil2.getAllContentsOfType(s, IdExpr.class)) {
-			set.add(ide.getId().getName());
+			used.add(ide.getId().getName());
 		}
 		
 		for(Constant c : s.getConstants()) {
-			if(!set.contains(c.getName())) {
+			if(!used.contains(c.getName())) {
 				warning("Constant " + c.getName() + " is defined, but never referenced.",c,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Macro m : s.getMacros()) {
-			if(!set.contains(m.getName())) {
-				warning("Macro " + m.getName() + " is defined, but never referenced.",m,SpearPackage.Literals.ID_REF__NAME);
+			if(!used.contains(m.getName())) {
+				warning(m.getName() + " is defined, but never referenced.",m,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getInputs()) {
-			if(!set.contains(v.getName())) {
-				warning("Input " + v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+			if(!used.contains(v.getName())) {
+				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getOutputs()) {
-			if(!set.contains(v.getName())) {
-				warning("Input " + v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+			if(!used.contains(v.getName())) {
+				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getState()) {
-			if(!set.contains(v.getName())) {
-				warning("Input " + v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+			if(!used.contains(v.getName())) {
+				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 	}
 	
 	@Check
 	public void checkSpecificationTypes(Specification s) {
-		Set<String> set = new HashSet<>();
+		Set<String> used = new HashSet<>();
 		for(UserType ut : EcoreUtil2.getAllContentsOfType(s, UserType.class)) {
-			set.add(ut.getDef().getName());
+			used.add(ut.getDef().getName());
 		}
 		
 		for(TypeDef td : s.getTypedefs()) {
-			if(!set.contains(td.getName())) {
-				warning("Type " + td.getName() + " is defined, but never referenced.",td,SpearPackage.Literals.TYPE_DEF__NAME);
+			if(!used.contains(td.getName())) {
+				warning(td.getName() + " is defined, but never referenced.",td,SpearPackage.Literals.TYPE_DEF__NAME);
 			}
 		}
 	}
 	
 	@Check
 	public void checkSpecificationUnits(Specification s) {
-		Set<String> set = new HashSet<>();
+		Set<String> used = new HashSet<>();
 		for(NamedTypeDef nt : EcoreUtil2.getAllContentsOfType(s, NamedTypeDef.class)) {
 			if(nt.getUnit() != null) {
-				set.add(nt.getUnit().getName());
+				used.add(nt.getUnit().getName());
 			}
 		}
 		
 		for(NamedUnitExpr nue : EcoreUtil2.getAllContentsOfType(s, NamedUnitExpr.class)) {
-			set.add(nue.getUnit().getName());
+			used.add(nue.getUnit().getName());
 		}
 		
 		for(UnitDef ud : s.getUnits()) {
-			if(!set.contains(ud.getName())) {
-				warning("Unit " + ud.getName() + " is defined, but never referenced.",ud,SpearPackage.Literals.UNIT_DEF__NAME);
+			if(!used.contains(ud.getName())) {
+				warning(ud.getName() + " is defined, but never referenced.",ud,SpearPackage.Literals.UNIT_DEF__NAME);
+			}
+		}
+	}
+	
+	@Check
+	public void checkPattern(Pattern p) {
+		Set<String> used = new HashSet<>();
+		for(IdExpr ide : EcoreUtil2.getAllContentsOfType(p, IdExpr.class)) {
+			used.add(ide.getId().getName());
+		}
+		
+		for(LustreEquation eq : EcoreUtil2.getAllContentsOfType(p, LustreEquation.class)) {
+			used.add(eq.getId().getName());
+		}
+		
+		for(Variable v : p.getInputs()) {
+			if(!used.contains(v.getName())) {
+				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+			}
+		}
+		
+		for(Variable v : p.getOutputs()) {
+			if(!used.contains(v.getName())) {
+				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+			}
+		}
+
+		for(Variable v : p.getLocals()) {
+			if(!used.contains(v.getName())) {
+				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 	}

@@ -106,7 +106,6 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.ARRAY_ACCESS_EXPR: return createArrayAccessExpr();
       case SpearPackage.ARRAY_UPDATE_EXPR: return createArrayUpdateExpr();
       case SpearPackage.ID_EXPR: return createIdExpr();
-      case SpearPackage.MID_EXPR: return createMIdExpr();
       case SpearPackage.IF_THEN_ELSE_EXPR: return createIfThenElseExpr();
       case SpearPackage.AFTER_UNTIL_EXPR: return createAfterUntilExpr();
       case SpearPackage.WHILE_EXPR: return createWhileExpr();
@@ -114,11 +113,10 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.FIELDLESS_RECORD_EXPR: return createFieldlessRecordExpr();
       case SpearPackage.ARRAY_EXPR: return createArrayExpr();
       case SpearPackage.PATTERN_CALL: return createPatternCall();
-      case SpearPackage.SPECIFICATION_CALL: return createSpecificationCall();
+      case SpearPackage.CALL_TO_SPEC: return createCallToSpec();
       case SpearPackage.INT_LITERAL: return createIntLiteral();
       case SpearPackage.BOOL_LITERAL: return createBoolLiteral();
       case SpearPackage.REAL_LITERAL: return createRealLiteral();
-      case SpearPackage.NORMALIZED_CALL: return createNormalizedCall();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -591,17 +589,6 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public MIdExpr createMIdExpr()
-  {
-    MIdExprImpl mIdExpr = new MIdExprImpl();
-    return mIdExpr;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public IfThenElseExpr createIfThenElseExpr()
   {
     IfThenElseExprImpl ifThenElseExpr = new IfThenElseExprImpl();
@@ -679,10 +666,10 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public SpecificationCall createSpecificationCall()
+  public CallToSpec createCallToSpec()
   {
-    SpecificationCallImpl specificationCall = new SpecificationCallImpl();
-    return specificationCall;
+    CallToSpecImpl callToSpec = new CallToSpecImpl();
+    return callToSpec;
   }
 
   /**
@@ -716,17 +703,6 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     RealLiteralImpl realLiteral = new RealLiteralImpl();
     return realLiteral;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NormalizedCall createNormalizedCall()
-  {
-    NormalizedCallImpl normalizedCall = new NormalizedCallImpl();
-    return normalizedCall;
   }
 
   /**

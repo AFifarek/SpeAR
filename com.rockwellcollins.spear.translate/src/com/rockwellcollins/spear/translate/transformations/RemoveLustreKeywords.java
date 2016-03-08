@@ -8,8 +8,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
+import com.rockwellcollins.spear.CallToSpec;
 import com.rockwellcollins.spear.File;
-import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.translate.lustre.LustreUtilities;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
@@ -65,7 +65,7 @@ public class RemoveLustreKeywords extends SpearSwitch<EObject> {
 	@Override
 	public File caseFile(File f) {
 		this.processNames(f);
-		for(SpecificationCall sc : EcoreUtil2.getAllContentsOfType(f, SpecificationCall.class)) {
+		for(CallToSpec sc : EcoreUtil2.getAllContentsOfType(f, CallToSpec.class)) {
 			this.processNames(sc.getSpec());
 		}
 		return f;
