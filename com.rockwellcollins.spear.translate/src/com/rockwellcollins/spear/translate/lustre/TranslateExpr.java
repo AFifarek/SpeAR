@@ -10,9 +10,12 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.EnumValue;
+import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.translate.master.Utilities;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
@@ -82,11 +85,6 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 			case "==":
 				return new BinaryExpr(left, BinaryOp.EQUAL, right);
 				
-			/*
-			 * Note: these are treated as reserved words in our translation. Conflicts are
-			 * actively renamed by RemoveLustreKeywords.
-			 */
-			//TODO : evaluate whether the PLTL node is actually available, now we just assume
 			case "since":
 			case "triggers":
 				List<Expr> args = new ArrayList<>();
@@ -102,17 +100,11 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	@Override
 	public Expr caseUnaryExpr(com.rockwellcollins.spear.UnaryExpr unary) {
 		Expr sub = doSwitch(unary.getExpr());
-		
 		switch (unary.getOp()) {
 			case "not":
 			case "-":
 				return new UnaryExpr(UnaryOp.fromString(unary.getOp()), sub);
-	
-			/*
-			 * Note: these are treated as reserved words in our translation. Conflicts are
-			 * actively renamed by RemoveLustreKeywords.
-			 */
-			//TODO : evaluate whether the PLTL node is actually available, now we just assume
+
 			case "once":
 			case "historically":
 			case "initially":
@@ -208,7 +200,18 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 		for(IdRef idr : call.getIds()) {
 			args.add(this.doSwitch(idr));
 		}
-		String name = map.mapping.get(call.getSpec()).name;
+		String name = map.fileMapping.get(call.getSpec()).name;
+		return new NodeCallExpr(name,args);
+	}
+	
+	@Override
+	public Expr casePatternCall(com.rockwellcollins.spear.PatternCall call) {
+		List<Expr> args = new ArrayList<>();
+		for(com.rockwellcollins.spear.Expr e : call.getArgs()) {
+			args.add(TranslateExpr.translate(e, map));
+		}
+		
+		String name = map.patternMapping.get(call.getPattern()).name;
 		return new NodeCallExpr(name,args);
 	}
 
@@ -224,7 +227,15 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseVariable(Variable v) {
-		return new IdExpr(map.lookup(v));
+		EObject container = Utilities.getTopContainer(v);
+		if(container instanceof File) {
+			return new IdExpr(map.lookup(v));	
+		} else if (container instanceof Pattern) {
+			Pattern p = (Pattern) container;
+			return new IdExpr(map.lookup(p, v.getName()));
+		} else {
+			throw new RuntimeException("Variable container was " + container);
+		}
 	}
 	
 	@Override

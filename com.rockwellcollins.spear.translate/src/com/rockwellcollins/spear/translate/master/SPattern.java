@@ -6,6 +6,9 @@ import java.util.List;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 
+import jkind.lustre.Node;
+import jkind.lustre.builders.NodeBuilder;
+
 public class SPattern {
 
 	public static List<SPattern> build(List<Pattern> list, NameMap map) {
@@ -16,13 +19,42 @@ public class SPattern {
 		return built;
 	}
 	
+	public static List<Node> toLustre(List<SPattern> list, NameMap map) {
+		List<Node> lustre = new ArrayList<>();
+		for(SPattern p : list) {
+			lustre.add(p.toLustre(map));
+		}
+		return lustre;
+	}
+	
 	public static SPattern build(Pattern p, NameMap map) {
 		return new SPattern(p,map);
 	}
 	
 	public String name;
+	private List<SPVariable> inputs;
+	private List<SPVariable> outputs;
+	private List<SPVariable> locals;
+	private List<SLustreEquation> equations;
 	
 	public SPattern(Pattern p, NameMap map) {
+		map.addPattern(p, this);
+		
 		this.name = map.getFileBasedName(p);
+		this.inputs = SPVariable.build(p.getInputs(), p, map);
+		this.outputs = SPVariable.build(p.getOutputs(), p, map);
+		this.locals = SPVariable.build(p.getLocals(), p, map);
+		this.equations = SLustreEquation.build(p.getEquations(), map);
+	}
+	
+	public Node toLustre(NameMap map) {
+		NodeBuilder builder = new NodeBuilder(this.name);
+		builder.addInputs(SPVariable.toVarDecl(this.inputs, map));
+		builder.addOutputs(SPVariable.toVarDecl(this.outputs, map));
+		builder.addLocals(SPVariable.toVarDecl(this.locals, map));
+		
+		builder.addEquations(SLustreEquation.toLustre(this.equations, map));
+		
+		return builder.build();
 	}
 }

@@ -12,7 +12,7 @@ import jkind.lustre.Node;
 
 public class FileMap {
 	private File file;
-	private DualHashBidiMap<String,String> filemap = new DualHashBidiMap<>();
+	private DualHashBidiMap<String,String> map = new DualHashBidiMap<>();
 	
 	public FileMap(File file) {
 		this.file=file;
@@ -26,7 +26,7 @@ public class FileMap {
 	private String getUniqueName(String proposed) {
 		Integer unique = 0;
 		String renamed = proposed;
-		while(filemap.containsKey(renamed)) {
+		while(map.containsKey(renamed)) {
 			renamed = proposed + "_" + unique;
 			unique++;
 		}
@@ -34,7 +34,7 @@ public class FileMap {
 	}
 	
 	private void register(String original, String renamed) {
-		filemap.put(renamed, original);
+		map.put(renamed, original);
 	}
 	
 	public String getName(EObject o) {
@@ -73,7 +73,7 @@ public class FileMap {
 	}
 	
 	public String lookup(String key) {
-		return this.filemap.inverseBidiMap().get(key);
+		return this.map.inverseBidiMap().get(key);
 	}
 	
 	public String lookup(EObject o) {

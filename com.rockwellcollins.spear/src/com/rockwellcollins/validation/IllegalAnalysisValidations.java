@@ -20,10 +20,10 @@ import com.rockwellcollins.spear.SpecificationCall;
  */
 public class IllegalAnalysisValidations extends AbstractSpearJavaValidator {
 
-	@Check
-	public void flagPatternCalls(PatternCall pc) {
-		warning("Pattern calls are not yet supported for analysis.", pc, null);
-	}
+//	@Check
+//	public void flagPatternCalls(PatternCall pc) {
+//		warning("Pattern calls are not yet supported for analysis.", pc, null);
+//	}
 	
 	@Check
 	public void flagIllegalExpressionsInPatterns(Pattern p) {

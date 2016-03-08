@@ -8,6 +8,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Pattern;
 
 import jkind.lustre.VarDecl;
 
@@ -21,6 +22,14 @@ public class Utilities {
 		} else {
 			throw new RuntimeException("Root of object: " + o + " should be a File construct.");
 		}
+	}
+	
+	public static EObject getTopContainer(EObject o) {
+		EObject container = o.eContainer();
+		if(container instanceof File || container instanceof Pattern) {
+			return container;
+		}
+		return getTopContainer(container);
 	}
 	
 	public static String getName(EObject o) {

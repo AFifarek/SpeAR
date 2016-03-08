@@ -6,70 +6,91 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.master.SFile;
+import com.rockwellcollins.spear.translate.master.SPattern;
 import com.rockwellcollins.spear.translate.master.Utilities;
 
 public class NameMap {
 
-	public Map<File,FileMap> map = new LinkedHashMap<>();
-	public Map<File,SFile> mapping = new LinkedHashMap<>();
+	public Map<File,FileMap> fileMap = new LinkedHashMap<>();
+	public Map<Pattern,PatternMap> patternMap = new LinkedHashMap<>();
 	
-	public void addFile(File f, SFile sfile) {
-		mapping.put(f, sfile);
-		map.put(f, new FileMap(f));
+	public Map<File,SFile> fileMapping = new LinkedHashMap<>();
+	public Map<Pattern,SPattern> patternMapping = new LinkedHashMap<>();
+	
+	public void addFile(File file, SFile sfile) {
+		fileMapping.put(file, sfile);
+		fileMap.put(file, new FileMap(file));
+	}
+	
+	public void addPattern(Pattern pattern, SPattern spattern) {
+		patternMapping.put(pattern, spattern);
+		patternMap.put(pattern,new PatternMap(pattern));
 	}
 	
 	/* these three methods are used for getting unique names*/
 	public String getDefinitionsName(EObject o) {
 		File root = Utilities.getRoot(o);
-		FileMap fm = map.get(root);
+		FileMap fm = fileMap.get(root);
 		String renamed = fm.getDefinitionsName(o);
-		map.put(root,fm);
+		fileMap.put(root,fm);
 		return renamed;
 	}
 	
 	public String getShadowName(Variable v) {
 		File root = Utilities.getRoot(v);
-		FileMap fm = map.get(root);
+		FileMap fm = fileMap.get(root);
 		String renamed = fm.getShadowName(v);
-		map.put(root, fm);
+		fileMap.put(root, fm);
 		return renamed;
 	}
 	
 	public String getName(EObject o) {
 		File root = Utilities.getRoot(o);
-		FileMap fm = map.get(root);
+		FileMap fm = fileMap.get(root);
 		String renamed = fm.getName(o);
-		map.put(root, fm);
+		fileMap.put(root, fm);
 		return renamed;
 	}
 	
 	public String getName(File f, String name) {
-		FileMap fm = map.get(f);
+		FileMap fm = fileMap.get(f);
 		String renamed = fm.getName(name);
-		map.put(f, fm);
+		fileMap.put(f, fm);
 		return renamed;
 	}
 	
+	public String getName(Pattern p, String name) {
+		PatternMap pm = patternMap.get(p);
+		String renamed = pm.getName(name);
+		patternMap.put(p, pm);
+		return renamed;
+	}
 	
 	public String getFileBasedName(EObject o) {
 		File root = Utilities.getRoot(o);
-		FileMap fm = map.get(root);
+		FileMap fm = fileMap.get(root);
 		String renamed = fm.getFileBasedName(o);
-		map.put(root, fm);
+		fileMap.put(root, fm);
 		return renamed;
 	}
 	
 	/* this method is used for looking up names */
 	public String lookup(EObject o) {
 		File root = Utilities.getRoot(o);
-		FileMap fm = map.get(root);
+		FileMap fm = fileMap.get(root);
 		return fm.lookup(o);
 	}
 	
 	public String lookup(File f, String string) {
-		FileMap fm = map.get(f);
+		FileMap fm = fileMap.get(f);
 		return fm.lookup(string);
+	}
+	
+	public String lookup(Pattern p, String string) {
+		PatternMap pm = patternMap.get(p);
+		return pm.lookup(string);
 	}
 }

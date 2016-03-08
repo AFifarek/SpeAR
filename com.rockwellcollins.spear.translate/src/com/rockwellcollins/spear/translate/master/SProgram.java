@@ -45,9 +45,10 @@ public class SProgram {
 			program.addNode(n);
 		}
 		
-		for(SFile sf : map.mapping.values()) {
+		for(SFile sf : map.fileMapping.values()) {
 			program.addTypes(STypeDef.toLustre(sf.typedefs, map));
 			program.addConstants(SConstant.toLustre(sf.constants, map));
+			program.addNodes(SPattern.toLustre(sf.patterns, map));
 			
 			if (sf instanceof SSpecification) {
 				SSpecification spec = (SSpecification) sf;
@@ -60,7 +61,6 @@ public class SProgram {
 			}
 		}
 		program.setMain(main.name);
-		
 		return program.build();
 	}
 	
@@ -71,7 +71,7 @@ public class SProgram {
 			program.addNode(n);
 		}
 		
-		for(SFile sf : map.mapping.values()) {
+		for(SFile sf : map.fileMapping.values()) {
 			program.addTypes(STypeDef.toLustre(sf.typedefs, map));
 			program.addConstants(SConstant.toLustre(sf.constants, map));
 			
@@ -86,7 +86,6 @@ public class SProgram {
 			}
 		}
 		program.setMain(main.name);
-		
 		return program.build();
 	}
 }
