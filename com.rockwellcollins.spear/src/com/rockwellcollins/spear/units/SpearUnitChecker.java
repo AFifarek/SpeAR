@@ -18,7 +18,6 @@ import com.rockwellcollins.spear.BaseUnit;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.BinaryUnitExpr;
 import com.rockwellcollins.spear.BoolLiteral;
-import com.rockwellcollins.spear.CallToSpec;
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.DerivedUnit;
 import com.rockwellcollins.spear.EnumTypeDef;
@@ -33,6 +32,7 @@ import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.Macro;
+import com.rockwellcollins.spear.MultipleIdExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.PatternCall;
@@ -43,6 +43,7 @@ import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.RecordTypeDef;
 import com.rockwellcollins.spear.RecordUpdateExpr;
 import com.rockwellcollins.spear.SpearPackage;
+import com.rockwellcollins.spear.SpecificationCall;
 import com.rockwellcollins.spear.Type;
 import com.rockwellcollins.spear.UnaryExpr;
 import com.rockwellcollins.spear.UserType;
@@ -554,42 +555,39 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseCallToSpec(CallToSpec call) {
-		List<SpearUnit> ids = new ArrayList<>();
-		for(IdRef ref : call.getIds()) {
-			ids.add(this.doSwitch(ref));
+	public SpearUnit caseMultipleIdExpr(MultipleIdExpr mide) {
+		List<SpearUnit> unitslist = new ArrayList<>();
+		for(IdRef idr : mide.getIds()) {
+			unitslist.add(this.doSwitch(idr));
 		}
-		TupleUnit idType = new TupleUnit(ids);
-		
-		List<SpearUnit> args = new ArrayList<>();
-		for(Expr e : call.getArgs()) {
-			args.add(this.doSwitch(e));
+		return new TupleUnit(unitslist);
+	}
+	
+	@Override
+	public SpearUnit caseSpecificationCall(SpecificationCall sc) {
+		//check the args match the spec's inputs
+		List<SpearUnit> argslist = new ArrayList<>();
+		for(Expr e : sc.getArgs()) {
+			argslist.add(this.doSwitch(e));
 		}
-		TupleUnit argsType = new TupleUnit(args);
+		TupleUnit argsType = new TupleUnit(argslist);
 		
-		List<SpearUnit> inputs = new ArrayList<>();
-		for(Variable v : call.getSpec().getInputs()) {
-			inputs.add(this.doSwitch(v));
+		List<SpearUnit> inputslist = new ArrayList<>();
+		for(Variable v : sc.getSpec().getInputs()) {
+			inputslist.add(this.doSwitch(v));
 		}
-		TupleUnit inputsType = new TupleUnit(inputs);
+		TupleUnit inputType = new TupleUnit(inputslist);
 		
-		List<SpearUnit> outputs = new ArrayList<>();
-		for(Variable v : call.getSpec().getOutputs()) {
-			outputs.add(this.doSwitch(v));
-		}
-		TupleUnit outputsType = new TupleUnit(outputs);
-		
-		if(!idType.equals(outputsType)) {
-			error("Specification returns units " + outputsType + " , but receiving variables are of units " + idType + ".",call, null); 
+		if(!argsType.equals(inputType)) {
+			error("Provided units of type " + argsType + ", but " + sc.getSpec().getName() + " expected units " + inputType + ".",sc,SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
 			return ERROR;
 		}
 		
-		if(!inputsType.equals(argsType)) {
-			error("Specification accepts units " + inputsType + " , but received arguments of units " + argsType + ".",call, SpearPackage.Literals.CALL_TO_SPEC__ARGS);
-			return ERROR;
+		List<SpearUnit> outputslist = new ArrayList<>();
+		for(Variable v : sc.getSpec().getOutputs()) {
+			outputslist.add(this.doSwitch(v));
 		}
-		
-		return SCALAR;
+		return new TupleUnit(outputslist);
 	}
 	
 	@Override

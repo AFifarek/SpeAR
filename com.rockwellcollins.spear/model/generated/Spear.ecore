@@ -176,6 +176,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="IdExpr" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="#//IdRef"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MultipleIdExpr" eSuperTypes="#//Expr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
+        eType="#//IdRef"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IfThenElseExpr" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="cond" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="then" eType="#//Expr" containment="true"/>
@@ -211,9 +215,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CallToSpec" eSuperTypes="#//Expr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
-        eType="#//IdRef"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SpecificationCall" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="spec" eType="#//Specification"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Expr"
         containment="true"/>
@@ -228,5 +230,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="RealLiteral" eSuperTypes="#//LiteralExpr">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="unit" eType="#//UnitDef"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NormalizedCall" eSuperTypes="#//Expr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
+        eType="#//IdRef"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="spec" eType="#//Specification"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="args" upperBound="-1" eType="#//Expr"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

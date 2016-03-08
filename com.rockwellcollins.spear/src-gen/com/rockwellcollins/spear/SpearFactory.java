@@ -401,6 +401,15 @@ public interface SpearFactory extends EFactory
   IdExpr createIdExpr();
 
   /**
+   * Returns a new object of class '<em>Multiple Id Expr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Multiple Id Expr</em>'.
+   * @generated
+   */
+  MultipleIdExpr createMultipleIdExpr();
+
+  /**
    * Returns a new object of class '<em>If Then Else Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -464,13 +473,13 @@ public interface SpearFactory extends EFactory
   PatternCall createPatternCall();
 
   /**
-   * Returns a new object of class '<em>Call To Spec</em>'.
+   * Returns a new object of class '<em>Specification Call</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Call To Spec</em>'.
+   * @return a new object of class '<em>Specification Call</em>'.
    * @generated
    */
-  CallToSpec createCallToSpec();
+  SpecificationCall createSpecificationCall();
 
   /**
    * Returns a new object of class '<em>Int Literal</em>'.
@@ -498,6 +507,15 @@ public interface SpearFactory extends EFactory
    * @generated
    */
   RealLiteral createRealLiteral();
+
+  /**
+   * Returns a new object of class '<em>Normalized Call</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Normalized Call</em>'.
+   * @generated
+   */
+  NormalizedCall createNormalizedCall();
 
   /**
    * Returns the package supported by this factory.

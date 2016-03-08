@@ -154,16 +154,16 @@ AccessExpr returns Expr:
 AtomicExpr returns Expr:
 	LiteralExpr
 	| {IdExpr} id=[IdRef]
-//	| {MIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
+	| {MultipleIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
 	| {AfterUntilExpr} 'after' (after=Expr) (=> 'until' until=Expr)?
 	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
 	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
 	| {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'
 	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'
-	| {PatternCall} 'pattern' pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
-//	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
-	| {CallToSpec} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
+	| {PatternCall} pattern=[Pattern] '(' args+=Expr (',' args+=Expr)* ')'
+	| {SpecificationCall} 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')'
+	| UnusedExpr
 	| '(' Expr ')'
 ;
 
@@ -173,8 +173,8 @@ LiteralExpr:
 	| {RealLiteral} value=REAL (unit=[UnitDef])?;
 
 //	//this is a cute little hack to make processing easier on the translation to Lustre
-//UnusedExpr returns Expr:
-//	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')';
+UnusedExpr returns Expr:
+	{NormalizedCall} '#' ids+=[IdRef] (',' ids+=[IdRef])* '#' '==' 'spec' spec=[Specification] '(' args+=Expr (',' args+=Expr)* ')';
 
 IdRef:
 	Variable

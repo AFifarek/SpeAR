@@ -7,6 +7,6 @@ public class PerformTransforms {
 		NormalizeOperators.transform(p);
 		ReplaceShortHandRecords.transform(p);
 		RemoveSugar.transform(p);
-//		ReplaceSpecificationCalls.transform(p);
+		ReplaceSpecificationCalls.transform(p);
 	}
 }

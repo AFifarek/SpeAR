@@ -285,6 +285,11 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createIdExprAdapter();
       }
       @Override
+      public Adapter caseMultipleIdExpr(MultipleIdExpr object)
+      {
+        return createMultipleIdExprAdapter();
+      }
+      @Override
       public Adapter caseIfThenElseExpr(IfThenElseExpr object)
       {
         return createIfThenElseExprAdapter();
@@ -320,9 +325,9 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createPatternCallAdapter();
       }
       @Override
-      public Adapter caseCallToSpec(CallToSpec object)
+      public Adapter caseSpecificationCall(SpecificationCall object)
       {
-        return createCallToSpecAdapter();
+        return createSpecificationCallAdapter();
       }
       @Override
       public Adapter caseIntLiteral(IntLiteral object)
@@ -338,6 +343,11 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
       public Adapter caseRealLiteral(RealLiteral object)
       {
         return createRealLiteralAdapter();
+      }
+      @Override
+      public Adapter caseNormalizedCall(NormalizedCall object)
+      {
+        return createNormalizedCallAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -992,6 +1002,21 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.MultipleIdExpr <em>Multiple Id Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.MultipleIdExpr
+   * @generated
+   */
+  public Adapter createMultipleIdExprAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.IfThenElseExpr <em>If Then Else Expr</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1097,16 +1122,16 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.CallToSpec <em>Call To Spec</em>}'.
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.SpecificationCall <em>Specification Call</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see com.rockwellcollins.spear.CallToSpec
+   * @see com.rockwellcollins.spear.SpecificationCall
    * @generated
    */
-  public Adapter createCallToSpecAdapter()
+  public Adapter createSpecificationCallAdapter()
   {
     return null;
   }
@@ -1152,6 +1177,21 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRealLiteralAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.NormalizedCall <em>Normalized Call</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.NormalizedCall
+   * @generated
+   */
+  public Adapter createNormalizedCallAdapter()
   {
     return null;
   }

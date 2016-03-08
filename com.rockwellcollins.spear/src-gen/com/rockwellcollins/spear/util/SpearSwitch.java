@@ -395,6 +395,14 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.MULTIPLE_ID_EXPR:
+      {
+        MultipleIdExpr multipleIdExpr = (MultipleIdExpr)theEObject;
+        T result = caseMultipleIdExpr(multipleIdExpr);
+        if (result == null) result = caseExpr(multipleIdExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.IF_THEN_ELSE_EXPR:
       {
         IfThenElseExpr ifThenElseExpr = (IfThenElseExpr)theEObject;
@@ -451,11 +459,11 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case SpearPackage.CALL_TO_SPEC:
+      case SpearPackage.SPECIFICATION_CALL:
       {
-        CallToSpec callToSpec = (CallToSpec)theEObject;
-        T result = caseCallToSpec(callToSpec);
-        if (result == null) result = caseExpr(callToSpec);
+        SpecificationCall specificationCall = (SpecificationCall)theEObject;
+        T result = caseSpecificationCall(specificationCall);
+        if (result == null) result = caseExpr(specificationCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -483,6 +491,14 @@ public class SpearSwitch<T> extends Switch<T>
         T result = caseRealLiteral(realLiteral);
         if (result == null) result = caseLiteralExpr(realLiteral);
         if (result == null) result = caseExpr(realLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.NORMALIZED_CALL:
+      {
+        NormalizedCall normalizedCall = (NormalizedCall)theEObject;
+        T result = caseNormalizedCall(normalizedCall);
+        if (result == null) result = caseExpr(normalizedCall);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1163,6 +1179,22 @@ public class SpearSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Multiple Id Expr</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Multiple Id Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMultipleIdExpr(MultipleIdExpr object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>If Then Else Expr</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1275,17 +1307,17 @@ public class SpearSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Call To Spec</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Specification Call</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Call To Spec</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Specification Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseCallToSpec(CallToSpec object)
+  public T caseSpecificationCall(SpecificationCall object)
   {
     return null;
   }
@@ -1334,6 +1366,22 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRealLiteral(RealLiteral object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Normalized Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Normalized Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNormalizedCall(NormalizedCall object)
   {
     return null;
   }

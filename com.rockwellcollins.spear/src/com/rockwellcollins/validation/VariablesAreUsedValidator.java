@@ -6,13 +6,18 @@ import java.util.Set;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 
+import com.rockwellcollins.spear.ArrayExpr;
 import com.rockwellcollins.spear.Constant;
+import com.rockwellcollins.spear.EnumTypeDef;
+import com.rockwellcollins.spear.EnumValue;
 import com.rockwellcollins.spear.IdExpr;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.NamedUnitExpr;
 import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.PatternCall;
+import com.rockwellcollins.spear.RecordExpr;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.TypeDef;
@@ -67,6 +72,22 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 			used.add(ut.getDef().getName());
 		}
 		
+		for(RecordExpr re : EcoreUtil2.getAllContentsOfType(s, RecordExpr.class)) {
+			used.add(re.getType().getName());
+		}
+		
+		for(ArrayExpr ae : EcoreUtil2.getAllContentsOfType(s, ArrayExpr.class)) {
+			used.add(ae.getType().getName());
+		}
+		
+		for(IdExpr ide : EcoreUtil2.getAllContentsOfType(s, IdExpr.class)) {
+			if (ide.getId() instanceof EnumValue) {
+				EnumValue ev = (EnumValue) ide.getId();
+				EnumTypeDef etd = (EnumTypeDef) ev.eContainer();
+				used.add(etd.getName());
+			}
+		}
+		
 		for(TypeDef td : s.getTypedefs()) {
 			if(!used.contains(td.getName())) {
 				warning(td.getName() + " is defined, but never referenced.",td,SpearPackage.Literals.TYPE_DEF__NAME);
@@ -95,7 +116,21 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 	}
 	
 	@Check
-	public void checkPattern(Pattern p) {
+	public void checkPatternsAreUsed(Specification s) {
+		Set<String> used = new HashSet<>();
+		for(PatternCall call : EcoreUtil2.getAllContentsOfType(s, PatternCall.class)) {
+			used.add(call.getPattern().getName());
+		}
+		
+		for(Pattern p : s.getPatterns()) {
+			if(!used.contains(p.getName())) {
+				warning("Pattern " + p.getName() + " is defined, but not used.",p,SpearPackage.Literals.PATTERN__NAME);
+			}
+		}
+	}
+	
+	@Check
+	public void checkPatternVariablesAreUsed(Pattern p) {
 		Set<String> used = new HashSet<>();
 		for(IdExpr ide : EcoreUtil2.getAllContentsOfType(p, IdExpr.class)) {
 			used.add(ide.getId().getName());

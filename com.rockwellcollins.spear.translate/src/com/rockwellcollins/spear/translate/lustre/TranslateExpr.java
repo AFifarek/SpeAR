@@ -199,7 +199,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	}
 	
 	@Override
-	public Expr caseCallToSpec(com.rockwellcollins.spear.CallToSpec call) {
+	public Expr caseNormalizedCall(com.rockwellcollins.spear.NormalizedCall call) {
 		List<Expr> args = new ArrayList<>();
 		for(com.rockwellcollins.spear.Expr e : call.getArgs()) {
 			args.add(TranslateExpr.translate(e, map));
