@@ -33,13 +33,12 @@ public class ReplaceShortHandRecords {
 				FieldType ft = fre.getType().getFields().get(i);
 				FieldExpr fe = factory.createFieldExpr();
 				fe.setField(ft);
-				fe.setExpr(e);
+				fe.setExpr(EcoreUtil2.copy(e));
 				legit.getFieldExprs().add(fe);
+				i++;
 			}
-			
 			EcoreUtil2.replace(fre, legit);
 		}
 		return f;
 	}
-
 }

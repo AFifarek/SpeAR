@@ -43,7 +43,7 @@ public class TypeCheckingValidator extends AbstractSpearJavaValidator {
 	@Check
 	public void typeCheckFormalConstraint(FormalConstraint fc) {
 		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-//		boolean checkUnits = tc.checkFormalConstraint(fc);
+		boolean checkUnits = tc.checkFormalConstraint(fc);
 //		if(checkUnits) {
 //			new SpearUnitChecker(getMessageAcceptor()).checkFormalConstraint(fc);			
 //		}
