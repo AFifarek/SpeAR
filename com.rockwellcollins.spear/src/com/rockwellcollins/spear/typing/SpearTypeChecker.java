@@ -563,35 +563,65 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 
 	@Override
 	public SpearType casePatternCall(PatternCall pce) {
-		// TODO: This needs to be updated when Patterns are implemented.
-		return ERROR;
+		List<SpearType> args = new ArrayList<>();
+		for (Expr e : pce.getArgs()) {
+			args.add(this.doSwitch(e));
+		}
+		SpearTupleType argsType = new SpearTupleType(args);
+
+		List<SpearType> inputs = new ArrayList<>();
+		for (Variable v : pce.getPattern().getInputs()) {
+			inputs.add(this.doSwitch(v));
+		}
+		SpearTupleType inputsType = new SpearTupleType(inputs);
+
+		if (!argsType.equals(inputsType)) {
+			error("Provided args of type " + argsType + ", but " + pce.getPattern().getName() + " expected type "
+					+ inputsType + ".", pce, SpearPackage.Literals.PATTERN_CALL__ARGS);
+			return ERROR;
+		}
+		
+		List<SpearType> outputs = new ArrayList<>();
+		for(Variable v : pce.getPattern().getOutputs()) {
+			outputs.add(this.doSwitch(v));
+		}
+		return compressTuple(new SpearTupleType(outputs));
 	}
 
 	@Override
 	public SpearType caseSpecificationCall(SpecificationCall sc) {
-		//check the args match the spec's inputs
+		// check the args match the spec's inputs
 		List<SpearType> argslist = new ArrayList<>();
-		for(Expr e : sc.getArgs()) {
+		for (Expr e : sc.getArgs()) {
 			argslist.add(this.doSwitch(e));
 		}
 		SpearTupleType argsType = new SpearTupleType(argslist);
-		
+
 		List<SpearType> inputslist = new ArrayList<>();
-		for(Variable v : sc.getSpec().getInputs()) {
+		for (Variable v : sc.getSpec().getInputs()) {
 			inputslist.add(this.doSwitch(v));
 		}
 		SpearTupleType inputType = new SpearTupleType(inputslist);
-		
-		if(!argsType.equals(inputType)) {
-			error("Provided args of type " + argsType + ", but " + sc.getSpec().getName() + " expected type " + inputType + ".",sc,SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
+
+		if (!argsType.equals(inputType)) {
+			error("Provided args of type " + argsType + ", but " + sc.getSpec().getName() + " expected type "
+					+ inputType + ".", sc, SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
 			return ERROR;
 		}
-		
+
 		List<SpearType> outputslist = new ArrayList<>();
-		for(Variable v : sc.getSpec().getOutputs()) {
+		for (Variable v : sc.getSpec().getOutputs()) {
 			outputslist.add(this.doSwitch(v));
 		}
-		return new SpearTupleType(outputslist);
+		return compressTuple(new SpearTupleType(outputslist));
+	}
+
+	private SpearType compressTuple(SpearTupleType tuple) {
+		if (tuple.types.size() == 1) {
+			return tuple.types.get(0);
+		} else {
+			return tuple;
+		}
 	}
 
 	@Override

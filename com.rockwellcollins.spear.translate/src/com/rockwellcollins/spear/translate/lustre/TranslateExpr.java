@@ -139,11 +139,19 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 	
 	@Override
 	public Expr caseIdExpr(com.rockwellcollins.spear.IdExpr ide) {
-		String id = map.lookup(ide.getId());
-		if(id == null) {
-			throw new RuntimeException("Mapping did not contain the referenced variable: " + ide.getId().getName());
+		EObject container = Utilities.getTopContainer(ide);
+		if(container instanceof File) {
+			String id = map.lookup(ide.getId());
+			return new IdExpr(id);
 		}
-		return new IdExpr(id);
+
+		if(container instanceof Pattern) {
+			Pattern p = (Pattern) container;
+			String id = map.lookup(p, ide.getId().getName());
+			return new IdExpr(id);
+		}
+
+		throw new RuntimeException(ide.getId().getName() + " not found in map structure.");
 	}
 	
 	@Override
