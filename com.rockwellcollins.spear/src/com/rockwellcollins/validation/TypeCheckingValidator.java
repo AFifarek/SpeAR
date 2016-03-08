@@ -4,11 +4,11 @@ import org.eclipse.xtext.validation.Check;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.FormalConstraint;
+import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
 import com.rockwellcollins.spear.typing.SpearType;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
-import com.rockwellcollins.spear.units.SpearUnitChecker;
 
 public class TypeCheckingValidator extends AbstractSpearJavaValidator {
 	
@@ -47,5 +47,11 @@ public class TypeCheckingValidator extends AbstractSpearJavaValidator {
 //		if(checkUnits) {
 //			new SpearUnitChecker(getMessageAcceptor()).checkFormalConstraint(fc);			
 //		}
+	}
+	
+	@Check
+	public void typeCheckLustreEquation(LustreEquation eq) {
+		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
+		tc.checkLustreEquation(eq);
 	}
 }

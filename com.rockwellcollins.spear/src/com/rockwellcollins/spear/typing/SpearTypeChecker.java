@@ -33,6 +33,7 @@ import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
+import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleIdExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -92,6 +93,10 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 
 	public boolean checkFormalConstraint(FormalConstraint fc) {
 		return expectAssignableType(BOOL, fc.getExpr());
+	}
+	
+	public boolean checkLustreEquation(LustreEquation eq) {
+		return expectAssignableType(doSwitch(eq.getId()), eq.getRhs());
 	}
 
 	/***************************************************************************************************/
@@ -562,33 +567,6 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType casePatternCall(PatternCall pce) {
-		List<SpearType> args = new ArrayList<>();
-		for (Expr e : pce.getArgs()) {
-			args.add(this.doSwitch(e));
-		}
-		SpearTupleType argsType = new SpearTupleType(args);
-
-		List<SpearType> inputs = new ArrayList<>();
-		for (Variable v : pce.getPattern().getInputs()) {
-			inputs.add(this.doSwitch(v));
-		}
-		SpearTupleType inputsType = new SpearTupleType(inputs);
-
-		if (!argsType.equals(inputsType)) {
-			error("Provided args of type " + argsType + ", but " + pce.getPattern().getName() + " expected type "
-					+ inputsType + ".", pce, SpearPackage.Literals.PATTERN_CALL__ARGS);
-			return ERROR;
-		}
-		
-		List<SpearType> outputs = new ArrayList<>();
-		for(Variable v : pce.getPattern().getOutputs()) {
-			outputs.add(this.doSwitch(v));
-		}
-		return compressTuple(new SpearTupleType(outputs));
-	}
-
-	@Override
 	public SpearType caseSpecificationCall(SpecificationCall sc) {
 		// check the args match the spec's inputs
 		List<SpearType> argslist = new ArrayList<>();
@@ -616,14 +594,6 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		return compressTuple(new SpearTupleType(outputslist));
 	}
 
-	private SpearType compressTuple(SpearTupleType tuple) {
-		if (tuple.types.size() == 1) {
-			return tuple.types.get(0);
-		} else {
-			return tuple;
-		}
-	}
-
 	@Override
 	public SpearType caseMultipleIdExpr(MultipleIdExpr mide) {
 		List<SpearType> typelist = new ArrayList<>();
@@ -632,10 +602,45 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		}
 		return new SpearTupleType(typelist);
 	}
+	
+	@Override
+	public SpearType casePatternCall(PatternCall pce) {
+		List<SpearType> args = new ArrayList<>();
+		for (Expr e : pce.getArgs()) {
+			args.add(this.doSwitch(e));
+		}
+		SpearTupleType argsType = new SpearTupleType(args);
 
+		List<SpearType> inputs = new ArrayList<>();
+		for (Variable v : pce.getPattern().getInputs()) {
+			inputs.add(this.doSwitch(v));
+		}
+		SpearTupleType inputsType = new SpearTupleType(inputs);
+
+		if (!argsType.equals(inputsType)) {
+			error("Provided args of type " + argsType + ", but " + pce.getPattern().getName() + " expected type "
+					+ inputsType + ".", pce, SpearPackage.Literals.PATTERN_CALL__ARGS);
+			return ERROR;
+		}
+		
+		List<SpearType> outputs = new ArrayList<>();
+		for(Variable v : pce.getPattern().getOutputs()) {
+			outputs.add(this.doSwitch(v));
+		}
+		return compressTuple(new SpearTupleType(outputs));
+	}
+	
 	/***************************************************************************************************/
 	// HELPER FUNCTIONS
 	/***************************************************************************************************/
+	private SpearType compressTuple(SpearTupleType tuple) {
+		if (tuple.types.size() == 1) {
+			return tuple.types.get(0);
+		} else {
+			return tuple;
+		}
+	}
+	
 	private boolean expectAssignableType(SpearType expected, EObject actual) {
 		return expectAssignableType(expected, doSwitch(actual), actual);
 	}

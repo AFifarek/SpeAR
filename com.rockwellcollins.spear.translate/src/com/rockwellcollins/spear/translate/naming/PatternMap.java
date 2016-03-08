@@ -3,17 +3,11 @@ package com.rockwellcollins.spear.translate.naming;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.eclipse.emf.ecore.EObject;
 
-import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.master.Utilities;
 
 public class PatternMap {
 
-	private Pattern pattern;
 	private DualHashBidiMap<String,String> map = new DualHashBidiMap<>();
-	
-	public PatternMap(Pattern pattern) {
-		this.pattern=pattern;
-	}
 	
 	private String getUniqueName(String proposed) {
 		Integer unique = 0;

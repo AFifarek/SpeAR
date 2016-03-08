@@ -74,6 +74,7 @@ public class SProgram {
 		for(SFile sf : map.fileMapping.values()) {
 			program.addTypes(STypeDef.toLustre(sf.typedefs, map));
 			program.addConstants(SConstant.toLustre(sf.constants, map));
+			program.addNodes(SPattern.toLustre(sf.patterns, map));
 			
 			if (sf instanceof SSpecification) {
 				SSpecification spec = (SSpecification) sf;

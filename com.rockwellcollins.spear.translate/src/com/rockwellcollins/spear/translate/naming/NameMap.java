@@ -27,7 +27,7 @@ public class NameMap {
 	
 	public void addPattern(Pattern pattern, SPattern spattern) {
 		patternMapping.put(pattern, spattern);
-		patternMap.put(pattern,new PatternMap(pattern));
+		patternMap.put(pattern,new PatternMap());
 	}
 	
 	/* these three methods are used for getting unique names*/
