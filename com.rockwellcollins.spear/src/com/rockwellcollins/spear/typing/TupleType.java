@@ -3,11 +3,11 @@ package com.rockwellcollins.spear.typing;
 import java.util.Iterator;
 import java.util.List;
 
-public class SpearTupleType extends SpearType {
+public class TupleType extends Type {
 
-	public final List<SpearType> types;
+	public final List<Type> types;
 	
-	public SpearTupleType(List<SpearType> types) {
+	public TupleType(List<Type> types) {
 		this.types=types;
 	}
 	
@@ -19,7 +19,7 @@ public class SpearTupleType extends SpearType {
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append("(");
-		Iterator<SpearType> iterator = types.iterator();
+		Iterator<Type> iterator = types.iterator();
 		sb.append(iterator.next());
 		while(iterator.hasNext()) {
 			sb.append(", ");
@@ -36,8 +36,8 @@ public class SpearTupleType extends SpearType {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof SpearTupleType) {
-			SpearTupleType other = (SpearTupleType) obj;
+		if (obj instanceof TupleType) {
+			TupleType other = (TupleType) obj;
 			return types.equals(other.types);
 		}
 		return false;

@@ -17,7 +17,7 @@ import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.master.Utilities;
 import com.rockwellcollins.spear.translate.naming.NameMap;
-import com.rockwellcollins.spear.typing.SpearType;
+import com.rockwellcollins.spear.typing.Type;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
@@ -73,7 +73,7 @@ public class TranslateExpr extends SpearSwitch<Expr> {
 				return new BinaryExpr(left, op, right);
 
 			case "/":
-				SpearType leftType = SpearTypeChecker.typeCheck(binary.getLeft());
+				Type leftType = SpearTypeChecker.typeCheck(binary.getLeft());
 				if(leftType.equals(SpearTypeChecker.INT)) {
 					return new BinaryExpr(left, BinaryOp.INT_DIVIDE, right);
 				}

@@ -1,9 +1,9 @@
 package com.rockwellcollins.spear.units;
 
-public class Scalar extends SpearUnit {
+public class ErrorUnit extends Unit {
 
 	@Override
 	public String toString() {
-		return "scalar";
+		return "ERROR";
 	}
 }

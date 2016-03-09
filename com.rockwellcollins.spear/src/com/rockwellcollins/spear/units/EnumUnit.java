@@ -1,6 +1,6 @@
 package com.rockwellcollins.spear.units;
 
-public class EnumUnit extends SpearUnit {
+public class EnumUnit extends Unit {
 
 	public String id;
 	

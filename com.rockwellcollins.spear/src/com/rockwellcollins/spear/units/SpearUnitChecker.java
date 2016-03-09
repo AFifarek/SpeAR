@@ -51,7 +51,7 @@ import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
+public class SpearUnitChecker extends SpearSwitch<Unit> {
 
 	final private ValidationMessageAcceptor messageAcceptor;
 
@@ -59,8 +59,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 		this.messageAcceptor = messageAcceptor;
 	}
 
-	private static final SpearUnit ERROR = new Error();
-	private static final SpearUnit SCALAR = new Scalar();
+	private static final Unit ERROR = new ErrorUnit();
+	private static final Unit SCALAR = new ScalarUnit();
 
 	/***************************************************************************************************/
 	// Checks
@@ -70,8 +70,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	public void checkConstant(Constant c) {
-		SpearUnit declared = doSwitch(c.getType());
-		SpearUnit expressed = doSwitch(c.getExpr());
+		Unit declared = doSwitch(c.getType());
+		Unit expressed = doSwitch(c.getExpr());
 
 		if (declared == ERROR || expressed == ERROR) {
 			return;
@@ -83,8 +83,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	public void checkMacro(Macro m) {
-		SpearUnit declared = doSwitch(m.getType());
-		SpearUnit expressed = doSwitch(m.getExpr());
+		Unit declared = doSwitch(m.getType());
+		Unit expressed = doSwitch(m.getExpr());
 
 		if (declared == ERROR || expressed == ERROR) {
 			return;
@@ -103,17 +103,17 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	// Declarations
 	/***************************************************************************************************/
 	@Override
-	public SpearUnit caseConstant(Constant c) {
+	public Unit caseConstant(Constant c) {
 		return doSwitch(c.getType());
 	}
 
 	@Override
-	public SpearUnit caseMacro(Macro m) {
+	public Unit caseMacro(Macro m) {
 		return doSwitch(m.getType());
 	}
 
 	@Override
-	public SpearUnit caseVariable(Variable v) {
+	public Unit caseVariable(Variable v) {
 		return doSwitch(v.getType());
 	}
 
@@ -121,14 +121,14 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	// UnitDefs
 	/***************************************************************************************************/
 	@Override
-	public SpearUnit caseBaseUnit(BaseUnit base) {
+	public Unit caseBaseUnit(BaseUnit base) {
 		Map<String, Integer> map = new HashMap<>();
 		map.put(base.getName(), 1);
 		return new ComputedUnit(map);
 	}
 
 	@Override
-	public SpearUnit caseDerivedUnit(DerivedUnit derived) {
+	public Unit caseDerivedUnit(DerivedUnit derived) {
 		return doSwitch(derived.getUnit());
 	}
 
@@ -136,9 +136,9 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	// UnitExprs
 	/***************************************************************************************************/
 	@Override
-	public SpearUnit caseBinaryUnitExpr(BinaryUnitExpr bue) {
-		SpearUnit left = doSwitch(bue.getLeft());
-		SpearUnit right = doSwitch(bue.getRight());
+	public Unit caseBinaryUnitExpr(BinaryUnitExpr bue) {
+		Unit left = doSwitch(bue.getLeft());
+		Unit right = doSwitch(bue.getRight());
 
 		if (left == ERROR || right == ERROR) {
 			return ERROR;
@@ -175,7 +175,7 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	@Override
-	public SpearUnit caseNamedUnitExpr(NamedUnitExpr nue) {
+	public Unit caseNamedUnitExpr(NamedUnitExpr nue) {
 		return doSwitch(nue.getUnit());
 	}
 
@@ -183,7 +183,7 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	// TypeDefs
 	/***************************************************************************************************/
 	@Override
-	public SpearUnit caseNamedTypeDef(NamedTypeDef nt) {
+	public Unit caseNamedTypeDef(NamedTypeDef nt) {
 		if (nt.getUnit() == null) {
 			return SCALAR;
 		} else {
@@ -192,8 +192,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	@Override
-	public SpearUnit caseRecordTypeDef(RecordTypeDef rt) {
-		Map<String,SpearUnit> fields = new HashMap<>();
+	public Unit caseRecordTypeDef(RecordTypeDef rt) {
+		Map<String,Unit> fields = new HashMap<>();
 		for(FieldType rtf : rt.getFields()) {
 			fields.put(rtf.getName(), doSwitch(rtf.getType()));
 		}
@@ -206,7 +206,7 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	@Override
-	public SpearUnit caseEnumTypeDef(EnumTypeDef enumtype) {
+	public Unit caseEnumTypeDef(EnumTypeDef enumtype) {
 		return new EnumUnit(enumtype.getName());
 	}
 
@@ -214,12 +214,12 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	// Types
 	/***************************************************************************************************/
 	@Override
-	public SpearUnit caseUserType(UserType ut) {
+	public Unit caseUserType(UserType ut) {
 		return doSwitch(ut.getDef());
 	}
 	
 	@Override
-	public SpearUnit caseType(Type t) {
+	public Unit caseType(Type t) {
 		return SCALAR;
 	}
 
@@ -228,9 +228,9 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	/***************************************************************************************************/
 
 	@Override
-	public SpearUnit caseBinaryExpr(BinaryExpr be) {
-		SpearUnit left = doSwitch(be.getLeft());
-		SpearUnit right = doSwitch(be.getRight());
+	public Unit caseBinaryExpr(BinaryExpr be) {
+		Unit left = doSwitch(be.getLeft());
+		Unit right = doSwitch(be.getRight());
 
 		if (left == ERROR || right == ERROR) {
 			return ERROR;
@@ -312,8 +312,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	@Override
-	public SpearUnit caseUnaryExpr(UnaryExpr ue) {
-		SpearUnit unit = doSwitch(ue.getExpr());
+	public Unit caseUnaryExpr(UnaryExpr ue) {
+		Unit unit = doSwitch(ue.getExpr());
 
 		if (unit == ERROR) {
 			return ERROR;
@@ -344,8 +344,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	@Override
-	public SpearUnit caseRecordAccessExpr(RecordAccessExpr rae) {
-		SpearUnit record = doSwitch(rae.getRecord());
+	public Unit caseRecordAccessExpr(RecordAccessExpr rae) {
+		Unit record = doSwitch(rae.getRecord());
 		if(record == ERROR) {
 			return ERROR;
 		}
@@ -360,9 +360,9 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseRecordUpdateExpr(RecordUpdateExpr rue) {
-		SpearUnit record = doSwitch(rue.getRecord());
-		SpearUnit value = doSwitch(rue.getValue());
+	public Unit caseRecordUpdateExpr(RecordUpdateExpr rue) {
+		Unit record = doSwitch(rue.getRecord());
+		Unit value = doSwitch(rue.getValue());
 		
 		if(record == ERROR || value == ERROR) {
 			return ERROR;
@@ -370,7 +370,7 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 		
 		if (record instanceof RecordUnit) {
 			RecordUnit recordUnit = (RecordUnit) record;
-			SpearUnit fieldUnit = recordUnit.fields.get(rue.getField().getName());
+			Unit fieldUnit = recordUnit.fields.get(rue.getField().getName());
 			if(!fieldUnit.equals(value)) {
 				error("RecordField expected unit " + fieldUnit + ", but received " + value, rue);
 				return ERROR;
@@ -384,8 +384,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseRecordExpr(RecordExpr re) {
-		Map<String,SpearUnit> fields = new HashMap<>();
+	public Unit caseRecordExpr(RecordExpr re) {
+		Map<String,Unit> fields = new HashMap<>();
 		for(FieldExpr fe : re.getFieldExprs()) {
 			fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
 		}
@@ -394,8 +394,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseFieldlessRecordExpr(FieldlessRecordExpr re) {
-		Map<String,SpearUnit> fields = new HashMap<>();
+	public Unit caseFieldlessRecordExpr(FieldlessRecordExpr re) {
+		Map<String,Unit> fields = new HashMap<>();
 		int i=0;
 		for(Expr e : re.getExprs()) {
 			fields.put(re.getType().getFields().get(i).getName(), doSwitch(e));
@@ -405,8 +405,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseArrayAccessExpr(ArrayAccessExpr aae) {
-		SpearUnit array = doSwitch(aae.getArray());
+	public Unit caseArrayAccessExpr(ArrayAccessExpr aae) {
+		Unit array = doSwitch(aae.getArray());
 		
 		if(array == ERROR) {
 			return ERROR;
@@ -422,9 +422,9 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseArrayUpdateExpr(ArrayUpdateExpr aue) {
-		SpearUnit array = doSwitch(aue.getAccess().getArray());
-		SpearUnit value = doSwitch(aue.getValue());
+	public Unit caseArrayUpdateExpr(ArrayUpdateExpr aue) {
+		Unit array = doSwitch(aue.getAccess().getArray());
+		Unit value = doSwitch(aue.getValue());
 		
 		if(array == ERROR || value == ERROR) {
 			return ERROR;
@@ -444,8 +444,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseArrayExpr(ArrayExpr array) {
-		SpearUnit expected = doSwitch(array.getType());
+	public Unit caseArrayExpr(ArrayExpr array) {
+		Unit expected = doSwitch(array.getType());
 		if(expected == ERROR) {
 			return ERROR;
 		}
@@ -454,7 +454,7 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 			ArrayUnit arrayUnit = (ArrayUnit) expected;
 			boolean error = false;
 			for(int i=0; i<array.getExprs().size(); i++) {
-				SpearUnit current = doSwitch(array.getExprs().get(i));
+				Unit current = doSwitch(array.getExprs().get(i));
 				if(!arrayUnit.base.equals(current)) {
 					error("Expected unit " + arrayUnit.base + ", but received " + current, array, SpearPackage.Literals.ARRAY_EXPR__EXPRS, i);
 					error=true;
@@ -472,14 +472,14 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseIdExpr(IdExpr ide) {
+	public Unit caseIdExpr(IdExpr ide) {
 		return doSwitch(ide.getId());
 	}
 
 	@Override
-	public SpearUnit casePreviousExpr(PreviousExpr prev) {
-		SpearUnit init = doSwitch(prev.getInit());
-		SpearUnit var = doSwitch(prev.getVar());
+	public Unit casePreviousExpr(PreviousExpr prev) {
+		Unit init = doSwitch(prev.getInit());
+		Unit var = doSwitch(prev.getVar());
 
 		if (init == ERROR || var == ERROR) {
 			return ERROR;
@@ -494,15 +494,15 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	@Override
-	public SpearUnit caseIfThenElseExpr(IfThenElseExpr ite) {
-		SpearUnit testUnit = doSwitch(ite.getCond());
-		SpearUnit thenUnit = doSwitch(ite.getThen());
+	public Unit caseIfThenElseExpr(IfThenElseExpr ite) {
+		Unit testUnit = doSwitch(ite.getCond());
+		Unit thenUnit = doSwitch(ite.getThen());
 		
 		if(ite.getElse() == null) {
 			return thenUnit;
 		}
 		
-		SpearUnit elseUnit = doSwitch(ite.getElse());
+		Unit elseUnit = doSwitch(ite.getElse());
 		
 		if(thenUnit == ERROR || elseUnit == ERROR) {
 			return ERROR;
@@ -521,14 +521,14 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseAfterUntilExpr(AfterUntilExpr afe) {
-		SpearUnit afterUnit = doSwitch(afe.getAfter());
+	public Unit caseAfterUntilExpr(AfterUntilExpr afe) {
+		Unit afterUnit = doSwitch(afe.getAfter());
 		if(afterUnit != SCALAR) {
 			error("After expressions must have scalar units.",afe.getAfter(),null);
 		}
 		
 		if(afe.getUntil() != null) {
-			SpearUnit untilUnit = doSwitch(afe.getUntil());
+			Unit untilUnit = doSwitch(afe.getUntil());
 			if(untilUnit != SCALAR) {
 				error("Until expressions must have scalar units.",afe.getUntil(),null);
 			}
@@ -537,9 +537,9 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseWhileExpr(WhileExpr wh) {
-		SpearUnit cond = doSwitch(wh.getCond());
-		SpearUnit then = doSwitch(wh.getThen());
+	public Unit caseWhileExpr(WhileExpr wh) {
+		Unit cond = doSwitch(wh.getCond());
+		Unit then = doSwitch(wh.getThen());
 		
 		if(cond != SCALAR) {
 			error("While expressions must have scalar units.", wh.getCond(), null);
@@ -555,8 +555,8 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseMultipleIdExpr(MultipleIdExpr mide) {
-		List<SpearUnit> unitslist = new ArrayList<>();
+	public Unit caseMultipleIdExpr(MultipleIdExpr mide) {
+		List<Unit> unitslist = new ArrayList<>();
 		for(IdRef idr : mide.getIds()) {
 			unitslist.add(this.doSwitch(idr));
 		}
@@ -564,15 +564,15 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseSpecificationCall(SpecificationCall sc) {
+	public Unit caseSpecificationCall(SpecificationCall sc) {
 		//check the args match the spec's inputs
-		List<SpearUnit> argslist = new ArrayList<>();
+		List<Unit> argslist = new ArrayList<>();
 		for(Expr e : sc.getArgs()) {
 			argslist.add(this.doSwitch(e));
 		}
 		TupleUnit argsType = new TupleUnit(argslist);
 		
-		List<SpearUnit> inputslist = new ArrayList<>();
+		List<Unit> inputslist = new ArrayList<>();
 		for(Variable v : sc.getSpec().getInputs()) {
 			inputslist.add(this.doSwitch(v));
 		}
@@ -583,7 +583,7 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 			return ERROR;
 		}
 		
-		List<SpearUnit> outputslist = new ArrayList<>();
+		List<Unit> outputslist = new ArrayList<>();
 		for(Variable v : sc.getSpec().getOutputs()) {
 			outputslist.add(this.doSwitch(v));
 		}
@@ -591,12 +591,12 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit casePatternCall(PatternCall pc) {
+	public Unit casePatternCall(PatternCall pc) {
 		return ERROR;
 	}
 
 	@Override
-	public SpearUnit caseRealLiteral(RealLiteral rle) {
+	public Unit caseRealLiteral(RealLiteral rle) {
 		if (rle.getUnit() != null) {
 			return doSwitch(rle.getUnit());
 		} else {
@@ -605,7 +605,7 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 
 	@Override
-	public SpearUnit caseIntLiteral(IntLiteral ile) {
+	public Unit caseIntLiteral(IntLiteral ile) {
 		if (ile.getUnit() != null) {
 			return doSwitch(ile.getUnit());
 		} else {
@@ -614,18 +614,18 @@ public class SpearUnitChecker extends SpearSwitch<SpearUnit> {
 	}
 	
 	@Override
-	public SpearUnit caseBoolLiteral(BoolLiteral ble) {
+	public Unit caseBoolLiteral(BoolLiteral ble) {
 		return SCALAR;
 	}
 
 	@Override
-	public SpearUnit caseEnumValue(EnumValue ev) {
+	public Unit caseEnumValue(EnumValue ev) {
 		return doSwitch(ev.eContainer());
 	}
 	
 	// TODO: remove this.
 	@Override
-	public SpearUnit caseExpr(Expr e) {
+	public Unit caseExpr(Expr e) {
 		warning("Unit Checker not implemented for " + e, e);
 		return SCALAR;
 	}

@@ -3,7 +3,7 @@ package com.rockwellcollins.spear.units;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ComputedUnit extends SpearUnit {
+public class ComputedUnit extends Unit {
 
 	public Map<String, Integer> map;
 

@@ -54,9 +54,9 @@ import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.WhileExpr;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
-public class SpearTypeChecker extends SpearSwitch<SpearType> {
+public class SpearTypeChecker extends SpearSwitch<Type> {
 
-	public static SpearType typeCheck(EObject o) {
+	public static Type typeCheck(EObject o) {
 		SpearTypeChecker typecheck = new SpearTypeChecker();
 		return typecheck.doSwitch(o);
 	}
@@ -71,15 +71,15 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		this.messageAcceptor = messageAcceptor;
 	}
 
-	public static final SpearType ERROR = SpearBuiltinType.ERROR;
-	public static final SpearType BOOL = SpearBuiltinType.BOOL;
-	public static final SpearType INT = SpearBuiltinType.INT;
-	public static final SpearType REAL = SpearBuiltinType.REAL;
+	public static final Type ERROR = PrimitiveType.ERROR;
+	public static final Type BOOL = PrimitiveType.BOOL;
+	public static final Type INT = PrimitiveType.INT;
+	public static final Type REAL = PrimitiveType.REAL;
 
 	/***************************************************************************************************/
 	// Checks
 	/***************************************************************************************************/
-	public SpearType checkNamedType(NamedTypeDef nt) {
+	public Type checkNamedType(NamedTypeDef nt) {
 		return doSwitch(nt);
 	}
 
@@ -104,34 +104,34 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	/***************************************************************************************************/
 
 	@Override
-	public SpearType caseNamedTypeDef(NamedTypeDef nt) {
+	public Type caseNamedTypeDef(NamedTypeDef nt) {
 		return doSwitch(nt.getType());
 	}
 
 	@Override
-	public SpearType caseRecordTypeDef(RecordTypeDef rt) {
+	public Type caseRecordTypeDef(RecordTypeDef rt) {
 		if (rt.getName() == null) {
 			return ERROR;
 		}
 
-		Map<String, SpearType> fields = new LinkedHashMap<>();
+		Map<String, Type> fields = new LinkedHashMap<>();
 		for (FieldType rtf : rt.getFields()) {
 			fields.put(rtf.getName(), doSwitch(rtf.getType()));
 		}
-		return new SpearRecordType(rt.getName(), fields);
+		return new RecordType(rt.getName(), fields);
 	}
 
 	@Override
-	public SpearType caseArrayTypeDef(ArrayTypeDef at) {
+	public Type caseArrayTypeDef(ArrayTypeDef at) {
 		if (at.getName() == null) {
 			return ERROR;
 		}
 
-		return new SpearArrayType(at.getName(), doSwitch(at.getBase()), at.getSize());
+		return new ArrayType(at.getName(), doSwitch(at.getBase()), at.getSize());
 	}
 
 	@Override
-	public SpearType caseEnumTypeDef(EnumTypeDef et) {
+	public Type caseEnumTypeDef(EnumTypeDef et) {
 		if (et.getName() == null) {
 			return ERROR;
 		}
@@ -140,35 +140,35 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		for (EnumValue ev : et.getValues()) {
 			values.add(ev.getName());
 		}
-		return new SpearEnumType(et.getName(), values);
+		return new EnumType(et.getName(), values);
 	}
 
 	public final Deque<TypeDef> stack = new ArrayDeque<>();
 
 	@Override
-	public SpearType caseUserType(UserType ut) {
+	public Type caseUserType(UserType ut) {
 		if (stack.contains(ut.getDef())) {
 			return ERROR;
 		}
 
 		stack.push(ut.getDef());
-		SpearType type = doSwitch(ut.getDef());
+		Type type = doSwitch(ut.getDef());
 		stack.pop();
 		return type;
 	}
 
 	@Override
-	public SpearType caseBoolType(BoolType bt) {
+	public Type caseBoolType(BoolType bt) {
 		return BOOL;
 	}
 
 	@Override
-	public SpearType caseRealType(RealType rt) {
+	public Type caseRealType(RealType rt) {
 		return REAL;
 	}
 
 	@Override
-	public SpearType caseIntType(IntType it) {
+	public Type caseIntType(IntType it) {
 		return INT;
 	}
 
@@ -176,17 +176,17 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	// DECLARATIONS
 	/***************************************************************************************************/
 	@Override
-	public SpearType caseVariable(Variable v) {
+	public Type caseVariable(Variable v) {
 		return doSwitch(v.getType());
 	}
 
 	@Override
-	public SpearType caseConstant(Constant c) {
+	public Type caseConstant(Constant c) {
 		return doSwitch(c.getType());
 	}
 
 	@Override
-	public SpearType caseMacro(Macro m) {
+	public Type caseMacro(Macro m) {
 		return doSwitch(m.getType());
 	}
 
@@ -195,9 +195,9 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	/***************************************************************************************************/
 
 	@Override
-	public SpearType caseBinaryExpr(BinaryExpr be) {
-		SpearType left = doSwitch(be.getLeft());
-		SpearType right = doSwitch(be.getRight());
+	public Type caseBinaryExpr(BinaryExpr be) {
+		Type left = doSwitch(be.getLeft());
+		Type right = doSwitch(be.getRight());
 
 		if (left == ERROR || right == ERROR) {
 			return ERROR;
@@ -269,8 +269,8 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseUnaryExpr(UnaryExpr ue) {
-		SpearType type = doSwitch(ue.getExpr());
+	public Type caseUnaryExpr(UnaryExpr ue) {
+		Type type = doSwitch(ue.getExpr());
 		if (type == ERROR) {
 			return ERROR;
 		}
@@ -306,14 +306,14 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseRecordAccessExpr(RecordAccessExpr rae) {
-		SpearType type = doSwitch(rae.getRecord());
+	public Type caseRecordAccessExpr(RecordAccessExpr rae) {
+		Type type = doSwitch(rae.getRecord());
 		if (type == ERROR) {
 			return ERROR;
 		}
 
-		if (type instanceof SpearRecordType) {
-			SpearRecordType recordType = (SpearRecordType) type;
+		if (type instanceof RecordType) {
+			RecordType recordType = (RecordType) type;
 			return recordType.fields.get(rae.getField().getName());
 		} else {
 			error("Expected record type, but found " + type, rae.getRecord());
@@ -322,16 +322,16 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseRecordUpdateExpr(RecordUpdateExpr rue) {
-		SpearType type = doSwitch(rue.getRecord());
+	public Type caseRecordUpdateExpr(RecordUpdateExpr rue) {
+		Type type = doSwitch(rue.getRecord());
 
 		if (type == ERROR) {
 			return ERROR;
 		}
 
-		if (type instanceof SpearRecordType) {
-			SpearRecordType recordType = (SpearRecordType) type;
-			SpearType fieldType = recordType.fields.get(rue.getField().getName());
+		if (type instanceof RecordType) {
+			RecordType recordType = (RecordType) type;
+			Type fieldType = recordType.fields.get(rue.getField().getName());
 			expectAssignableType(fieldType, rue.getValue());
 			return recordType;
 		} else {
@@ -341,21 +341,21 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseRecordExpr(RecordExpr re) {
+	public Type caseRecordExpr(RecordExpr re) {
 		Map<String, Expr> fields = new LinkedHashMap<>();
 		for (FieldExpr fe : re.getFieldExprs()) {
 			fields.put(fe.getField().getName(), fe.getExpr());
 		}
 
-		SpearType result = doSwitch(re.getType());
-		if (!(result instanceof SpearRecordType)) {
+		Type result = doSwitch(re.getType());
+		if (!(result instanceof RecordType)) {
 			return ERROR;
 		}
-		SpearRecordType expectedRecord = (SpearRecordType) result;
+		RecordType expectedRecord = (RecordType) result;
 
-		for (Entry<String, SpearType> entry : expectedRecord.fields.entrySet()) {
+		for (Entry<String, Type> entry : expectedRecord.fields.entrySet()) {
 			String expectedField = entry.getKey();
-			SpearType expectedType = entry.getValue();
+			Type expectedType = entry.getValue();
 
 			if (!fields.containsKey(expectedField)) {
 				error("Missing field " + expectedField, re, SpearPackage.Literals.RECORD_EXPR__TYPE);
@@ -369,7 +369,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseFieldlessRecordExpr(FieldlessRecordExpr re) {
+	public Type caseFieldlessRecordExpr(FieldlessRecordExpr re) {
 		Map<String, Expr> fields = new LinkedHashMap<>();
 		if (re.getExprs().size() == re.getType().getFields().size()) {
 			for (int i = 0; i < re.getExprs().size(); i++) {
@@ -382,11 +382,11 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 			return ERROR;
 		}
 
-		SpearType result = this.doSwitch(re.getType());
-		SpearRecordType expectedRecord = (SpearRecordType) result;
-		for (Entry<String, SpearType> entry : expectedRecord.fields.entrySet()) {
+		Type result = this.doSwitch(re.getType());
+		RecordType expectedRecord = (RecordType) result;
+		for (Entry<String, Type> entry : expectedRecord.fields.entrySet()) {
 			String expectedField = entry.getKey();
-			SpearType expectedType = entry.getValue();
+			Type expectedType = entry.getValue();
 
 			if (!fields.containsKey(expectedField)) {
 				error("Missing field " + expectedField, re, SpearPackage.Literals.RECORD_EXPR__TYPE);
@@ -399,19 +399,19 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseArrayAccessExpr(ArrayAccessExpr aae) {
-		SpearType type = doSwitch(aae.getArray());
+	public Type caseArrayAccessExpr(ArrayAccessExpr aae) {
+		Type type = doSwitch(aae.getArray());
 		if (type == ERROR) {
 			return ERROR;
 		}
 
-		SpearType indexType = doSwitch(aae.getIndex());
+		Type indexType = doSwitch(aae.getIndex());
 		if (indexType != INT) {
 			error("Expected type int, but found " + indexType, aae.getIndex());
 		}
 
-		if (type instanceof SpearArrayType) {
-			SpearArrayType arrayType = (SpearArrayType) type;
+		if (type instanceof ArrayType) {
+			ArrayType arrayType = (ArrayType) type;
 			return arrayType.base;
 		} else {
 			error("Expected array type, but found " + type, aae.getArray());
@@ -420,19 +420,19 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseArrayUpdateExpr(ArrayUpdateExpr aue) {
-		SpearType type = doSwitch(aue.getAccess().getArray());
+	public Type caseArrayUpdateExpr(ArrayUpdateExpr aue) {
+		Type type = doSwitch(aue.getAccess().getArray());
 		if (type == ERROR) {
 			return ERROR;
 		}
 
-		SpearType index = doSwitch(aue.getAccess().getIndex());
+		Type index = doSwitch(aue.getAccess().getIndex());
 		if (index != INT) {
 			error("Expected type int, but found " + index, aue.getAccess().getIndex());
 		}
 
-		if (type instanceof SpearArrayType) {
-			SpearArrayType arrayType = (SpearArrayType) type;
+		if (type instanceof ArrayType) {
+			ArrayType arrayType = (ArrayType) type;
 			expectAssignableType(arrayType.base, aue.getValue());
 			return arrayType;
 		} else {
@@ -442,15 +442,15 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseArrayExpr(ArrayExpr ae) {
-		SpearType type = doSwitch(ae.getType());
+	public Type caseArrayExpr(ArrayExpr ae) {
+		Type type = doSwitch(ae.getType());
 
 		if (type == ERROR) {
 			return ERROR;
 		}
 
-		if (type instanceof SpearArrayType) {
-			SpearArrayType arrayType = (SpearArrayType) type;
+		if (type instanceof ArrayType) {
+			ArrayType arrayType = (ArrayType) type;
 
 			if (arrayType.size != ae.getExprs().size()) {
 				error("Array expected " + arrayType.size + " elements, but received " + ae.getExprs().size()
@@ -469,35 +469,35 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseIntLiteral(IntLiteral ile) {
+	public Type caseIntLiteral(IntLiteral ile) {
 		return INT;
 	}
 
 	@Override
-	public SpearType caseBoolLiteral(BoolLiteral ble) {
+	public Type caseBoolLiteral(BoolLiteral ble) {
 		return BOOL;
 	}
 
 	@Override
-	public SpearType caseRealLiteral(RealLiteral rle) {
+	public Type caseRealLiteral(RealLiteral rle) {
 		return REAL;
 	}
 
 	@Override
-	public SpearType caseIdExpr(IdExpr ide) {
+	public Type caseIdExpr(IdExpr ide) {
 		return doSwitch(ide.getId());
 	}
 
 	@Override
-	public SpearType casePreviousExpr(PreviousExpr prev) {
-		SpearType var = doSwitch(prev.getVar());
+	public Type casePreviousExpr(PreviousExpr prev) {
+		Type var = doSwitch(prev.getVar());
 
 		if (var == ERROR) {
 			return ERROR;
 		}
 
 		if (prev.getInit() != null) {
-			SpearType init = doSwitch(prev.getInit());
+			Type init = doSwitch(prev.getInit());
 			if (init == ERROR) {
 				return ERROR;
 			}
@@ -512,9 +512,9 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseIfThenElseExpr(IfThenElseExpr ite) {
+	public Type caseIfThenElseExpr(IfThenElseExpr ite) {
 		expectAssignableType(BOOL, ite.getCond());
-		SpearType thenType = doSwitch(ite.getThen());
+		Type thenType = doSwitch(ite.getThen());
 
 		if (ite.getElse() == null) {
 			if (thenType != BOOL) {
@@ -524,7 +524,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 			return thenType;
 		}
 
-		SpearType elseType = doSwitch(ite.getElse());
+		Type elseType = doSwitch(ite.getElse());
 
 		if (thenType == ERROR || elseType == ERROR) {
 			return ERROR;
@@ -539,7 +539,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseAfterUntilExpr(AfterUntilExpr afe) {
+	public Type caseAfterUntilExpr(AfterUntilExpr afe) {
 		expectAssignableType(BOOL, afe.getAfter());
 		if (afe.getUntil() != null) {
 			if (!expectAssignableType(BOOL, afe.getUntil())) {
@@ -550,7 +550,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseWhileExpr(WhileExpr wh) {
+	public Type caseWhileExpr(WhileExpr wh) {
 		if (!expectAssignableType(BOOL, wh.getCond())) {
 			return ERROR;
 		}
@@ -562,24 +562,24 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 	}
 
 	@Override
-	public SpearType caseEnumValue(EnumValue ev) {
+	public Type caseEnumValue(EnumValue ev) {
 		return doSwitch(ev.eContainer());
 	}
 
 	@Override
-	public SpearType caseSpecificationCall(SpecificationCall sc) {
+	public Type caseSpecificationCall(SpecificationCall sc) {
 		// check the args match the spec's inputs
-		List<SpearType> argslist = new ArrayList<>();
+		List<Type> argslist = new ArrayList<>();
 		for (Expr e : sc.getArgs()) {
 			argslist.add(this.doSwitch(e));
 		}
-		SpearTupleType argsType = new SpearTupleType(argslist);
+		TupleType argsType = new TupleType(argslist);
 
-		List<SpearType> inputslist = new ArrayList<>();
+		List<Type> inputslist = new ArrayList<>();
 		for (Variable v : sc.getSpec().getInputs()) {
 			inputslist.add(this.doSwitch(v));
 		}
-		SpearTupleType inputType = new SpearTupleType(inputslist);
+		TupleType inputType = new TupleType(inputslist);
 
 		if (!argsType.equals(inputType)) {
 			error("Provided args of type " + argsType + ", but " + sc.getSpec().getName() + " expected type "
@@ -587,35 +587,35 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 			return ERROR;
 		}
 
-		List<SpearType> outputslist = new ArrayList<>();
+		List<Type> outputslist = new ArrayList<>();
 		for (Variable v : sc.getSpec().getOutputs()) {
 			outputslist.add(this.doSwitch(v));
 		}
-		return compressTuple(new SpearTupleType(outputslist));
+		return compressTuple(new TupleType(outputslist));
 	}
 
 	@Override
-	public SpearType caseMultipleIdExpr(MultipleIdExpr mide) {
-		List<SpearType> typelist = new ArrayList<>();
+	public Type caseMultipleIdExpr(MultipleIdExpr mide) {
+		List<Type> typelist = new ArrayList<>();
 		for (IdRef idr : mide.getIds()) {
 			typelist.add(this.doSwitch(idr));
 		}
-		return new SpearTupleType(typelist);
+		return new TupleType(typelist);
 	}
 	
 	@Override
-	public SpearType casePatternCall(PatternCall pce) {
-		List<SpearType> args = new ArrayList<>();
+	public Type casePatternCall(PatternCall pce) {
+		List<Type> args = new ArrayList<>();
 		for (Expr e : pce.getArgs()) {
 			args.add(this.doSwitch(e));
 		}
-		SpearTupleType argsType = new SpearTupleType(args);
+		TupleType argsType = new TupleType(args);
 
-		List<SpearType> inputs = new ArrayList<>();
+		List<Type> inputs = new ArrayList<>();
 		for (Variable v : pce.getPattern().getInputs()) {
 			inputs.add(this.doSwitch(v));
 		}
-		SpearTupleType inputsType = new SpearTupleType(inputs);
+		TupleType inputsType = new TupleType(inputs);
 
 		if (!argsType.equals(inputsType)) {
 			error("Provided args of type " + argsType + ", but " + pce.getPattern().getName() + " expected type "
@@ -623,17 +623,17 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 			return ERROR;
 		}
 		
-		List<SpearType> outputs = new ArrayList<>();
+		List<Type> outputs = new ArrayList<>();
 		for(Variable v : pce.getPattern().getOutputs()) {
 			outputs.add(this.doSwitch(v));
 		}
-		return compressTuple(new SpearTupleType(outputs));
+		return compressTuple(new TupleType(outputs));
 	}
 	
 	/***************************************************************************************************/
 	// HELPER FUNCTIONS
 	/***************************************************************************************************/
-	private SpearType compressTuple(SpearTupleType tuple) {
+	private Type compressTuple(TupleType tuple) {
 		if (tuple.types.size() == 1) {
 			return tuple.types.get(0);
 		} else {
@@ -641,11 +641,11 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		}
 	}
 	
-	private boolean expectAssignableType(SpearType expected, EObject actual) {
+	private boolean expectAssignableType(Type expected, EObject actual) {
 		return expectAssignableType(expected, doSwitch(actual), actual);
 	}
 
-	private boolean expectAssignableType(SpearType expected, SpearType actual, EObject source) {
+	private boolean expectAssignableType(Type expected, Type actual, EObject source) {
 		if (!isAssignable(expected, actual)) {
 			error("Expected type " + expected.toString() + ", but found type " + actual, source);
 			return false;
@@ -654,7 +654,7 @@ public class SpearTypeChecker extends SpearSwitch<SpearType> {
 		}
 	}
 
-	private boolean isAssignable(SpearType expected, SpearType actual) {
+	private boolean isAssignable(Type expected, Type actual) {
 		if (expected == ERROR || actual == ERROR || expected == null || actual == null) {
 			return true;
 		}

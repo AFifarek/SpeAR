@@ -3,11 +3,11 @@ package com.rockwellcollins.spear.units;
 import java.util.Iterator;
 import java.util.List;
 
-public class TupleUnit extends SpearUnit {
+public class TupleUnit extends Unit {
 
-	public List<SpearUnit> units;
+	public List<Unit> units;
 	
-	public TupleUnit(List<SpearUnit> units) {
+	public TupleUnit(List<Unit> units) {
 		this.units=units;
 	}
 	
@@ -15,7 +15,7 @@ public class TupleUnit extends SpearUnit {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("(");
-		Iterator<SpearUnit> unitsIterator = units.iterator();
+		Iterator<Unit> unitsIterator = units.iterator();
 		while(unitsIterator.hasNext()) {
 			sb.append(unitsIterator.next());
 			if(unitsIterator.hasNext()) {

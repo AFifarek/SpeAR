@@ -1,12 +1,12 @@
 package com.rockwellcollins.spear.typing;
 
-public class SpearArrayType extends SpearType {
+public class ArrayType extends Type {
 
 	public final String id;
-	public final SpearType base;
+	public final Type base;
 	public final int size;
 
-	public SpearArrayType(String id, SpearType base, int size) {
+	public ArrayType(String id, Type base, int size) {
 		this.id=id;
 		this.base=base;
 		this.size=size;
@@ -24,8 +24,8 @@ public class SpearArrayType extends SpearType {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof SpearArrayType) {
-			SpearArrayType other = (SpearArrayType) obj;
+		if (obj instanceof ArrayType) {
+			ArrayType other = (ArrayType) obj;
 			return size == other.size && base.equals(other.base);
 		}
 		return false;

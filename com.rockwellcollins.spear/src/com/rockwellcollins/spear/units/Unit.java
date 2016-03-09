@@ -1,5 +1,5 @@
 package com.rockwellcollins.spear.units;
 
-public class SpearUnit {
+public class Unit {
 
 }

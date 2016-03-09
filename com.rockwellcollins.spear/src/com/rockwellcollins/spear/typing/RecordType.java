@@ -4,12 +4,12 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class SpearRecordType extends SpearType {
+public class RecordType extends Type {
 
 	public final String id;
-	public final Map<String, SpearType> fields;
+	public final Map<String, Type> fields;
 	
-	public SpearRecordType(String id, Map<String, SpearType> fields) {
+	public RecordType(String id, Map<String, Type> fields) {
 		this.id=id;
 		this.fields=Collections.unmodifiableSortedMap(new TreeMap<>(fields));
 	}
@@ -26,8 +26,8 @@ public class SpearRecordType extends SpearType {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof SpearRecordType) {
-			SpearRecordType other = (SpearRecordType) obj;
+		if (obj instanceof RecordType) {
+			RecordType other = (RecordType) obj;
 			return id.equals(other.id);
 		}
 		return false;

@@ -7,7 +7,7 @@ import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.NamedTypeDef;
-import com.rockwellcollins.spear.typing.SpearType;
+import com.rockwellcollins.spear.typing.Type;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 
 public class TypeCheckingValidator extends AbstractSpearJavaValidator {
@@ -18,7 +18,7 @@ public class TypeCheckingValidator extends AbstractSpearJavaValidator {
 	@Check
 	public void typeCheckNamedTypeDef(NamedTypeDef nt) {
 		SpearTypeChecker tc = new SpearTypeChecker(getMessageAcceptor());
-		SpearType type = tc.checkNamedType(nt);
+		Type type = tc.checkNamedType(nt);
 //		if(type != SpearTypeChecker.ERROR) {
 //			new SpearUnitChecker(getMessageAcceptor()).checkNamedTypeDef(nt);			
 //		}

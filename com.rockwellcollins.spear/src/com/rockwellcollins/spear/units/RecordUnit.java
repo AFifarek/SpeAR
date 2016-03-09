@@ -3,12 +3,12 @@ package com.rockwellcollins.spear.units;
 import java.util.Iterator;
 import java.util.Map;
 
-public class RecordUnit extends SpearUnit {
+public class RecordUnit extends Unit {
 
 	public String name;
-	public Map<String,SpearUnit> fields;
+	public Map<String,Unit> fields;
 	
-	public RecordUnit(String name, Map<String,SpearUnit> fields) {
+	public RecordUnit(String name, Map<String,Unit> fields) {
 		this.name=name;
 		this.fields=fields;
 	}

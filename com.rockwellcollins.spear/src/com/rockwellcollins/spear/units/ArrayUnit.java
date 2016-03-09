@@ -1,12 +1,12 @@
 package com.rockwellcollins.spear.units;
 
-public class ArrayUnit extends SpearUnit {
+public class ArrayUnit extends Unit {
 
 	public String name;
-	public SpearUnit base;
+	public Unit base;
 	public int size;
 	
-	public ArrayUnit(String name, SpearUnit base, int size) {
+	public ArrayUnit(String name, Unit base, int size) {
 		this.name=name;
 		this.base=base;
 		this.size=size;
