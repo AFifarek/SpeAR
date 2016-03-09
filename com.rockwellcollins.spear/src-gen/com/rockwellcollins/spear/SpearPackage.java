@@ -395,13 +395,31 @@ public interface SpearPackage extends EPackage
   int PATTERN__EQUATIONS = 4;
 
   /**
+   * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN__PROPERTIES = 5;
+
+  /**
+   * The feature id for the '<em><b>Assertions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN__ASSERTIONS = 6;
+
+  /**
    * The number of structural features of the '<em>Pattern</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PATTERN_FEATURE_COUNT = 5;
+  int PATTERN_FEATURE_COUNT = 7;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.LustreEquationImpl <em>Lustre Equation</em>}' class.
@@ -414,13 +432,13 @@ public interface SpearPackage extends EPackage
   int LUSTRE_EQUATION = 5;
 
   /**
-   * The feature id for the '<em><b>Id</b></em>' reference.
+   * The feature id for the '<em><b>Ids</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LUSTRE_EQUATION__ID = 0;
+  int LUSTRE_EQUATION__IDS = 0;
 
   /**
    * The feature id for the '<em><b>Rhs</b></em>' containment reference.
@@ -441,6 +459,62 @@ public interface SpearPackage extends EPackage
   int LUSTRE_EQUATION_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.LustrePropertyImpl <em>Lustre Property</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.rockwellcollins.spear.impl.LustrePropertyImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getLustreProperty()
+   * @generated
+   */
+  int LUSTRE_PROPERTY = 6;
+
+  /**
+   * The feature id for the '<em><b>Property Id</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LUSTRE_PROPERTY__PROPERTY_ID = 0;
+
+  /**
+   * The number of structural features of the '<em>Lustre Property</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LUSTRE_PROPERTY_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.LustreAssertionImpl <em>Lustre Assertion</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.rockwellcollins.spear.impl.LustreAssertionImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getLustreAssertion()
+   * @generated
+   */
+  int LUSTRE_ASSERTION = 7;
+
+  /**
+   * The feature id for the '<em><b>Assertion Expr</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LUSTRE_ASSERTION__ASSERTION_EXPR = 0;
+
+  /**
+   * The number of structural features of the '<em>Lustre Assertion</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LUSTRE_ASSERTION_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.UnitDefImpl <em>Unit Def</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -448,7 +522,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getUnitDef()
    * @generated
    */
-  int UNIT_DEF = 6;
+  int UNIT_DEF = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -485,7 +559,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getUnitExpr()
    * @generated
    */
-  int UNIT_EXPR = 7;
+  int UNIT_EXPR = 9;
 
   /**
    * The number of structural features of the '<em>Unit Expr</em>' class.
@@ -504,7 +578,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getTypeDef()
    * @generated
    */
-  int TYPE_DEF = 8;
+  int TYPE_DEF = 10;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -532,7 +606,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFieldType()
    * @generated
    */
-  int FIELD_TYPE = 9;
+  int FIELD_TYPE = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -569,7 +643,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIdRef()
    * @generated
    */
-  int ID_REF = 20;
+  int ID_REF = 22;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -597,7 +671,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getEnumValue()
    * @generated
    */
-  int ENUM_VALUE = 10;
+  int ENUM_VALUE = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -625,7 +699,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getType()
    * @generated
    */
-  int TYPE = 11;
+  int TYPE = 13;
 
   /**
    * The number of structural features of the '<em>Type</em>' class.
@@ -644,7 +718,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getConstant()
    * @generated
    */
-  int CONSTANT = 12;
+  int CONSTANT = 14;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -699,7 +773,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getVariable()
    * @generated
    */
-  int VARIABLE = 13;
+  int VARIABLE = 15;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -736,7 +810,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getMacro()
    * @generated
    */
-  int MACRO = 14;
+  int MACRO = 16;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -791,7 +865,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 15;
+  int CONSTRAINT = 17;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -819,7 +893,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFormalConstraint()
    * @generated
    */
-  int FORMAL_CONSTRAINT = 16;
+  int FORMAL_CONSTRAINT = 18;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -865,7 +939,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getEnglishConstraint()
    * @generated
    */
-  int ENGLISH_CONSTRAINT = 17;
+  int ENGLISH_CONSTRAINT = 19;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -902,7 +976,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getExpr()
    * @generated
    */
-  int EXPR = 18;
+  int EXPR = 20;
 
   /**
    * The number of structural features of the '<em>Expr</em>' class.
@@ -921,7 +995,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getLiteralExpr()
    * @generated
    */
-  int LITERAL_EXPR = 19;
+  int LITERAL_EXPR = 21;
 
   /**
    * The number of structural features of the '<em>Literal Expr</em>' class.
@@ -940,7 +1014,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFieldExpr()
    * @generated
    */
-  int FIELD_EXPR = 21;
+  int FIELD_EXPR = 23;
 
   /**
    * The feature id for the '<em><b>Field</b></em>' reference.
@@ -977,7 +1051,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getBaseUnit()
    * @generated
    */
-  int BASE_UNIT = 22;
+  int BASE_UNIT = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1014,7 +1088,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getDerivedUnit()
    * @generated
    */
-  int DERIVED_UNIT = 23;
+  int DERIVED_UNIT = 25;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1060,7 +1134,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getBinaryUnitExpr()
    * @generated
    */
-  int BINARY_UNIT_EXPR = 24;
+  int BINARY_UNIT_EXPR = 26;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1106,7 +1180,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getNamedUnitExpr()
    * @generated
    */
-  int NAMED_UNIT_EXPR = 25;
+  int NAMED_UNIT_EXPR = 27;
 
   /**
    * The feature id for the '<em><b>Unit</b></em>' reference.
@@ -1134,7 +1208,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getNamedTypeDef()
    * @generated
    */
-  int NAMED_TYPE_DEF = 26;
+  int NAMED_TYPE_DEF = 28;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1180,7 +1254,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordTypeDef()
    * @generated
    */
-  int RECORD_TYPE_DEF = 27;
+  int RECORD_TYPE_DEF = 29;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1217,7 +1291,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayTypeDef()
    * @generated
    */
-  int ARRAY_TYPE_DEF = 28;
+  int ARRAY_TYPE_DEF = 30;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1263,7 +1337,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getEnumTypeDef()
    * @generated
    */
-  int ENUM_TYPE_DEF = 29;
+  int ENUM_TYPE_DEF = 31;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1300,7 +1374,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIntType()
    * @generated
    */
-  int INT_TYPE = 30;
+  int INT_TYPE = 32;
 
   /**
    * The number of structural features of the '<em>Int Type</em>' class.
@@ -1319,7 +1393,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getBoolType()
    * @generated
    */
-  int BOOL_TYPE = 31;
+  int BOOL_TYPE = 33;
 
   /**
    * The number of structural features of the '<em>Bool Type</em>' class.
@@ -1338,7 +1412,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRealType()
    * @generated
    */
-  int REAL_TYPE = 32;
+  int REAL_TYPE = 34;
 
   /**
    * The number of structural features of the '<em>Real Type</em>' class.
@@ -1357,7 +1431,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getUserType()
    * @generated
    */
-  int USER_TYPE = 33;
+  int USER_TYPE = 35;
 
   /**
    * The feature id for the '<em><b>Def</b></em>' reference.
@@ -1378,6 +1452,43 @@ public interface SpearPackage extends EPackage
   int USER_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.WhileExprImpl <em>While Expr</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.rockwellcollins.spear.impl.WhileExprImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getWhileExpr()
+   * @generated
+   */
+  int WHILE_EXPR = 36;
+
+  /**
+   * The feature id for the '<em><b>Cond</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WHILE_EXPR__COND = EXPR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Then</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WHILE_EXPR__THEN = EXPR_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>While Expr</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int WHILE_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.BinaryExprImpl <em>Binary Expr</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1385,7 +1496,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getBinaryExpr()
    * @generated
    */
-  int BINARY_EXPR = 34;
+  int BINARY_EXPR = 37;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -1424,6 +1535,43 @@ public interface SpearPackage extends EPackage
   int BINARY_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
 
   /**
+   * The meta object id for the '{@link com.rockwellcollins.spear.impl.AfterUntilExprImpl <em>After Until Expr</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see com.rockwellcollins.spear.impl.AfterUntilExprImpl
+   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getAfterUntilExpr()
+   * @generated
+   */
+  int AFTER_UNTIL_EXPR = 38;
+
+  /**
+   * The feature id for the '<em><b>After</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AFTER_UNTIL_EXPR__AFTER = EXPR_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Until</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AFTER_UNTIL_EXPR__UNTIL = EXPR_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>After Until Expr</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AFTER_UNTIL_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.UnaryExprImpl <em>Unary Expr</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1431,7 +1579,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getUnaryExpr()
    * @generated
    */
-  int UNARY_EXPR = 35;
+  int UNARY_EXPR = 39;
 
   /**
    * The feature id for the '<em><b>Op</b></em>' attribute.
@@ -1468,7 +1616,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getPreviousExpr()
    * @generated
    */
-  int PREVIOUS_EXPR = 36;
+  int PREVIOUS_EXPR = 40;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' containment reference.
@@ -1505,7 +1653,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordAccessExpr()
    * @generated
    */
-  int RECORD_ACCESS_EXPR = 37;
+  int RECORD_ACCESS_EXPR = 41;
 
   /**
    * The feature id for the '<em><b>Record</b></em>' containment reference.
@@ -1542,7 +1690,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordUpdateExpr()
    * @generated
    */
-  int RECORD_UPDATE_EXPR = 38;
+  int RECORD_UPDATE_EXPR = 42;
 
   /**
    * The feature id for the '<em><b>Record</b></em>' containment reference.
@@ -1588,7 +1736,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayAccessExpr()
    * @generated
    */
-  int ARRAY_ACCESS_EXPR = 39;
+  int ARRAY_ACCESS_EXPR = 43;
 
   /**
    * The feature id for the '<em><b>Array</b></em>' containment reference.
@@ -1625,7 +1773,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayUpdateExpr()
    * @generated
    */
-  int ARRAY_UPDATE_EXPR = 40;
+  int ARRAY_UPDATE_EXPR = 44;
 
   /**
    * The feature id for the '<em><b>Access</b></em>' containment reference.
@@ -1662,7 +1810,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIdExpr()
    * @generated
    */
-  int ID_EXPR = 41;
+  int ID_EXPR = 45;
 
   /**
    * The feature id for the '<em><b>Id</b></em>' reference.
@@ -1690,7 +1838,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getMultipleIdExpr()
    * @generated
    */
-  int MULTIPLE_ID_EXPR = 42;
+  int MULTIPLE_ID_EXPR = 46;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -1718,7 +1866,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIfThenElseExpr()
    * @generated
    */
-  int IF_THEN_ELSE_EXPR = 43;
+  int IF_THEN_ELSE_EXPR = 47;
 
   /**
    * The feature id for the '<em><b>Cond</b></em>' containment reference.
@@ -1757,80 +1905,6 @@ public interface SpearPackage extends EPackage
   int IF_THEN_ELSE_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 3;
 
   /**
-   * The meta object id for the '{@link com.rockwellcollins.spear.impl.AfterUntilExprImpl <em>After Until Expr</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see com.rockwellcollins.spear.impl.AfterUntilExprImpl
-   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getAfterUntilExpr()
-   * @generated
-   */
-  int AFTER_UNTIL_EXPR = 44;
-
-  /**
-   * The feature id for the '<em><b>After</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AFTER_UNTIL_EXPR__AFTER = EXPR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Until</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AFTER_UNTIL_EXPR__UNTIL = EXPR_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>After Until Expr</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AFTER_UNTIL_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
-
-  /**
-   * The meta object id for the '{@link com.rockwellcollins.spear.impl.WhileExprImpl <em>While Expr</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see com.rockwellcollins.spear.impl.WhileExprImpl
-   * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getWhileExpr()
-   * @generated
-   */
-  int WHILE_EXPR = 45;
-
-  /**
-   * The feature id for the '<em><b>Cond</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHILE_EXPR__COND = EXPR_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Then</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHILE_EXPR__THEN = EXPR_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>While Expr</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int WHILE_EXPR_FEATURE_COUNT = EXPR_FEATURE_COUNT + 2;
-
-  /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.RecordExprImpl <em>Record Expr</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1838,7 +1912,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRecordExpr()
    * @generated
    */
-  int RECORD_EXPR = 46;
+  int RECORD_EXPR = 48;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1875,7 +1949,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getFieldlessRecordExpr()
    * @generated
    */
-  int FIELDLESS_RECORD_EXPR = 47;
+  int FIELDLESS_RECORD_EXPR = 49;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1912,7 +1986,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getArrayExpr()
    * @generated
    */
-  int ARRAY_EXPR = 48;
+  int ARRAY_EXPR = 50;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1949,7 +2023,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getPatternCall()
    * @generated
    */
-  int PATTERN_CALL = 49;
+  int PATTERN_CALL = 51;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' reference.
@@ -1986,7 +2060,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getSpecificationCall()
    * @generated
    */
-  int SPECIFICATION_CALL = 50;
+  int SPECIFICATION_CALL = 52;
 
   /**
    * The feature id for the '<em><b>Spec</b></em>' reference.
@@ -2023,7 +2097,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getIntLiteral()
    * @generated
    */
-  int INT_LITERAL = 51;
+  int INT_LITERAL = 53;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2060,7 +2134,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getBoolLiteral()
    * @generated
    */
-  int BOOL_LITERAL = 52;
+  int BOOL_LITERAL = 54;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2088,7 +2162,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getRealLiteral()
    * @generated
    */
-  int REAL_LITERAL = 53;
+  int REAL_LITERAL = 55;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -2125,7 +2199,7 @@ public interface SpearPackage extends EPackage
    * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getNormalizedCall()
    * @generated
    */
-  int NORMALIZED_CALL = 54;
+  int NORMALIZED_CALL = 56;
 
   /**
    * The feature id for the '<em><b>Ids</b></em>' reference list.
@@ -2435,6 +2509,28 @@ public interface SpearPackage extends EPackage
   EReference getPattern_Equations();
 
   /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Pattern#getProperties <em>Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Properties</em>'.
+   * @see com.rockwellcollins.spear.Pattern#getProperties()
+   * @see #getPattern()
+   * @generated
+   */
+  EReference getPattern_Properties();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Pattern#getAssertions <em>Assertions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Assertions</em>'.
+   * @see com.rockwellcollins.spear.Pattern#getAssertions()
+   * @see #getPattern()
+   * @generated
+   */
+  EReference getPattern_Assertions();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.LustreEquation <em>Lustre Equation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2445,15 +2541,15 @@ public interface SpearPackage extends EPackage
   EClass getLustreEquation();
 
   /**
-   * Returns the meta object for the reference '{@link com.rockwellcollins.spear.LustreEquation#getId <em>Id</em>}'.
+   * Returns the meta object for the reference list '{@link com.rockwellcollins.spear.LustreEquation#getIds <em>Ids</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Id</em>'.
-   * @see com.rockwellcollins.spear.LustreEquation#getId()
+   * @return the meta object for the reference list '<em>Ids</em>'.
+   * @see com.rockwellcollins.spear.LustreEquation#getIds()
    * @see #getLustreEquation()
    * @generated
    */
-  EReference getLustreEquation_Id();
+  EReference getLustreEquation_Ids();
 
   /**
    * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.LustreEquation#getRhs <em>Rhs</em>}'.
@@ -2465,6 +2561,48 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EReference getLustreEquation_Rhs();
+
+  /**
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.LustreProperty <em>Lustre Property</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Lustre Property</em>'.
+   * @see com.rockwellcollins.spear.LustreProperty
+   * @generated
+   */
+  EClass getLustreProperty();
+
+  /**
+   * Returns the meta object for the reference '{@link com.rockwellcollins.spear.LustreProperty#getPropertyId <em>Property Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Property Id</em>'.
+   * @see com.rockwellcollins.spear.LustreProperty#getPropertyId()
+   * @see #getLustreProperty()
+   * @generated
+   */
+  EReference getLustreProperty_PropertyId();
+
+  /**
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.LustreAssertion <em>Lustre Assertion</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Lustre Assertion</em>'.
+   * @see com.rockwellcollins.spear.LustreAssertion
+   * @generated
+   */
+  EClass getLustreAssertion();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.LustreAssertion#getAssertionExpr <em>Assertion Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Assertion Expr</em>'.
+   * @see com.rockwellcollins.spear.LustreAssertion#getAssertionExpr()
+   * @see #getLustreAssertion()
+   * @generated
+   */
+  EReference getLustreAssertion_AssertionExpr();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.UnitDef <em>Unit Def</em>}'.
@@ -3088,6 +3226,38 @@ public interface SpearPackage extends EPackage
   EReference getUserType_Def();
 
   /**
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.WhileExpr <em>While Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>While Expr</em>'.
+   * @see com.rockwellcollins.spear.WhileExpr
+   * @generated
+   */
+  EClass getWhileExpr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.WhileExpr#getCond <em>Cond</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Cond</em>'.
+   * @see com.rockwellcollins.spear.WhileExpr#getCond()
+   * @see #getWhileExpr()
+   * @generated
+   */
+  EReference getWhileExpr_Cond();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.WhileExpr#getThen <em>Then</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Then</em>'.
+   * @see com.rockwellcollins.spear.WhileExpr#getThen()
+   * @see #getWhileExpr()
+   * @generated
+   */
+  EReference getWhileExpr_Then();
+
+  /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.BinaryExpr <em>Binary Expr</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3129,6 +3299,38 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EReference getBinaryExpr_Right();
+
+  /**
+   * Returns the meta object for class '{@link com.rockwellcollins.spear.AfterUntilExpr <em>After Until Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>After Until Expr</em>'.
+   * @see com.rockwellcollins.spear.AfterUntilExpr
+   * @generated
+   */
+  EClass getAfterUntilExpr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.AfterUntilExpr#getAfter <em>After</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>After</em>'.
+   * @see com.rockwellcollins.spear.AfterUntilExpr#getAfter()
+   * @see #getAfterUntilExpr()
+   * @generated
+   */
+  EReference getAfterUntilExpr_After();
+
+  /**
+   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.AfterUntilExpr#getUntil <em>Until</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Until</em>'.
+   * @see com.rockwellcollins.spear.AfterUntilExpr#getUntil()
+   * @see #getAfterUntilExpr()
+   * @generated
+   */
+  EReference getAfterUntilExpr_Until();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.UnaryExpr <em>Unary Expr</em>}'.
@@ -3417,70 +3619,6 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EReference getIfThenElseExpr_Else();
-
-  /**
-   * Returns the meta object for class '{@link com.rockwellcollins.spear.AfterUntilExpr <em>After Until Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>After Until Expr</em>'.
-   * @see com.rockwellcollins.spear.AfterUntilExpr
-   * @generated
-   */
-  EClass getAfterUntilExpr();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.AfterUntilExpr#getAfter <em>After</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>After</em>'.
-   * @see com.rockwellcollins.spear.AfterUntilExpr#getAfter()
-   * @see #getAfterUntilExpr()
-   * @generated
-   */
-  EReference getAfterUntilExpr_After();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.AfterUntilExpr#getUntil <em>Until</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Until</em>'.
-   * @see com.rockwellcollins.spear.AfterUntilExpr#getUntil()
-   * @see #getAfterUntilExpr()
-   * @generated
-   */
-  EReference getAfterUntilExpr_Until();
-
-  /**
-   * Returns the meta object for class '{@link com.rockwellcollins.spear.WhileExpr <em>While Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>While Expr</em>'.
-   * @see com.rockwellcollins.spear.WhileExpr
-   * @generated
-   */
-  EClass getWhileExpr();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.WhileExpr#getCond <em>Cond</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Cond</em>'.
-   * @see com.rockwellcollins.spear.WhileExpr#getCond()
-   * @see #getWhileExpr()
-   * @generated
-   */
-  EReference getWhileExpr_Cond();
-
-  /**
-   * Returns the meta object for the containment reference '{@link com.rockwellcollins.spear.WhileExpr#getThen <em>Then</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Then</em>'.
-   * @see com.rockwellcollins.spear.WhileExpr#getThen()
-   * @see #getWhileExpr()
-   * @generated
-   */
-  EReference getWhileExpr_Then();
 
   /**
    * Returns the meta object for class '{@link com.rockwellcollins.spear.RecordExpr <em>Record Expr</em>}'.
@@ -4004,6 +4142,22 @@ public interface SpearPackage extends EPackage
     EReference PATTERN__EQUATIONS = eINSTANCE.getPattern_Equations();
 
     /**
+     * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN__PROPERTIES = eINSTANCE.getPattern_Properties();
+
+    /**
+     * The meta object literal for the '<em><b>Assertions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PATTERN__ASSERTIONS = eINSTANCE.getPattern_Assertions();
+
+    /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.LustreEquationImpl <em>Lustre Equation</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4014,12 +4168,12 @@ public interface SpearPackage extends EPackage
     EClass LUSTRE_EQUATION = eINSTANCE.getLustreEquation();
 
     /**
-     * The meta object literal for the '<em><b>Id</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Ids</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference LUSTRE_EQUATION__ID = eINSTANCE.getLustreEquation_Id();
+    EReference LUSTRE_EQUATION__IDS = eINSTANCE.getLustreEquation_Ids();
 
     /**
      * The meta object literal for the '<em><b>Rhs</b></em>' containment reference feature.
@@ -4028,6 +4182,42 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference LUSTRE_EQUATION__RHS = eINSTANCE.getLustreEquation_Rhs();
+
+    /**
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.LustrePropertyImpl <em>Lustre Property</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.rockwellcollins.spear.impl.LustrePropertyImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getLustreProperty()
+     * @generated
+     */
+    EClass LUSTRE_PROPERTY = eINSTANCE.getLustreProperty();
+
+    /**
+     * The meta object literal for the '<em><b>Property Id</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LUSTRE_PROPERTY__PROPERTY_ID = eINSTANCE.getLustreProperty_PropertyId();
+
+    /**
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.LustreAssertionImpl <em>Lustre Assertion</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.rockwellcollins.spear.impl.LustreAssertionImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getLustreAssertion()
+     * @generated
+     */
+    EClass LUSTRE_ASSERTION = eINSTANCE.getLustreAssertion();
+
+    /**
+     * The meta object literal for the '<em><b>Assertion Expr</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LUSTRE_ASSERTION__ASSERTION_EXPR = eINSTANCE.getLustreAssertion_AssertionExpr();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.UnitDefImpl <em>Unit Def</em>}' class.
@@ -4558,6 +4748,32 @@ public interface SpearPackage extends EPackage
     EReference USER_TYPE__DEF = eINSTANCE.getUserType_Def();
 
     /**
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.WhileExprImpl <em>While Expr</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.rockwellcollins.spear.impl.WhileExprImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getWhileExpr()
+     * @generated
+     */
+    EClass WHILE_EXPR = eINSTANCE.getWhileExpr();
+
+    /**
+     * The meta object literal for the '<em><b>Cond</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference WHILE_EXPR__COND = eINSTANCE.getWhileExpr_Cond();
+
+    /**
+     * The meta object literal for the '<em><b>Then</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference WHILE_EXPR__THEN = eINSTANCE.getWhileExpr_Then();
+
+    /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.BinaryExprImpl <em>Binary Expr</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -4590,6 +4806,32 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference BINARY_EXPR__RIGHT = eINSTANCE.getBinaryExpr_Right();
+
+    /**
+     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.AfterUntilExprImpl <em>After Until Expr</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see com.rockwellcollins.spear.impl.AfterUntilExprImpl
+     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getAfterUntilExpr()
+     * @generated
+     */
+    EClass AFTER_UNTIL_EXPR = eINSTANCE.getAfterUntilExpr();
+
+    /**
+     * The meta object literal for the '<em><b>After</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AFTER_UNTIL_EXPR__AFTER = eINSTANCE.getAfterUntilExpr_After();
+
+    /**
+     * The meta object literal for the '<em><b>Until</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AFTER_UNTIL_EXPR__UNTIL = eINSTANCE.getAfterUntilExpr_Until();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.UnaryExprImpl <em>Unary Expr</em>}' class.
@@ -4824,58 +5066,6 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EReference IF_THEN_ELSE_EXPR__ELSE = eINSTANCE.getIfThenElseExpr_Else();
-
-    /**
-     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.AfterUntilExprImpl <em>After Until Expr</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see com.rockwellcollins.spear.impl.AfterUntilExprImpl
-     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getAfterUntilExpr()
-     * @generated
-     */
-    EClass AFTER_UNTIL_EXPR = eINSTANCE.getAfterUntilExpr();
-
-    /**
-     * The meta object literal for the '<em><b>After</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AFTER_UNTIL_EXPR__AFTER = eINSTANCE.getAfterUntilExpr_After();
-
-    /**
-     * The meta object literal for the '<em><b>Until</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AFTER_UNTIL_EXPR__UNTIL = eINSTANCE.getAfterUntilExpr_Until();
-
-    /**
-     * The meta object literal for the '{@link com.rockwellcollins.spear.impl.WhileExprImpl <em>While Expr</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see com.rockwellcollins.spear.impl.WhileExprImpl
-     * @see com.rockwellcollins.spear.impl.SpearPackageImpl#getWhileExpr()
-     * @generated
-     */
-    EClass WHILE_EXPR = eINSTANCE.getWhileExpr();
-
-    /**
-     * The meta object literal for the '<em><b>Cond</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference WHILE_EXPR__COND = eINSTANCE.getWhileExpr_Cond();
-
-    /**
-     * The meta object literal for the '<em><b>Then</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference WHILE_EXPR__THEN = eINSTANCE.getWhileExpr_Then();
 
     /**
      * The meta object literal for the '{@link com.rockwellcollins.spear.impl.RecordExprImpl <em>Record Expr</em>}' class.

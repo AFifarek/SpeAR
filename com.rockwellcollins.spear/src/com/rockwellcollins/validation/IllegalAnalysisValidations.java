@@ -10,7 +10,6 @@ import org.eclipse.xtext.validation.Check;
 import com.rockwellcollins.spear.BinaryExpr;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.PatternCall;
 import com.rockwellcollins.spear.SpecificationCall;
 
 /**
@@ -20,19 +19,10 @@ import com.rockwellcollins.spear.SpecificationCall;
  */
 public class IllegalAnalysisValidations extends AbstractSpearJavaValidator {
 
-//	@Check
-//	public void flagPatternCalls(PatternCall pc) {
-//		warning("Pattern calls are not yet supported for analysis.", pc, null);
-//	}
-	
 	@Check
 	public void flagIllegalExpressionsInPatterns(Pattern p) {
 		for(SpecificationCall call : EcoreUtil2.getAllContentsOfType(p, SpecificationCall.class)) {
 			error("Specification calls are unsupported inside of patterns.", call, null);
-		}
-		
-		for(PatternCall call : EcoreUtil2.getAllContentsOfType(p, PatternCall.class)) {
-			error("Pattern calls are unsupported inside of patterns.", call, null);
 		}
 	}
 	

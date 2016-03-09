@@ -34,12 +34,24 @@ Pattern:
 	'pattern' (name=ID) '(' inputs+=Variable (',' inputs+=Variable)* ')' 'returns' '(' outputs+=Variable (',' outputs+=Variable)* ')'
 	 ('var' (locals+=Variable)* )?
 	 'let' 
-	 	(equations+=LustreEquation)*
-	 'tel'	 
+	 	( equations+=LustreEquation
+	 	| properties+=LustreProperty
+	 	| assertions+=LustreAssertion
+	 	)*
+	 'tel'
 ;
 
 LustreEquation:
-	id=[Variable] '=' rhs=Expr
+	'|' ids+=[Variable] (',' ids+=[Variable])* '|' '=' rhs=Expr
+|	ids+=[Variable] '=' rhs=Expr
+;
+
+LustreProperty:
+	'--%PROPERTY' propertyId=[Variable]
+;
+
+LustreAssertion:
+	'assert' assertionExpr=Expr
 ;
 
 UnitDef:
@@ -102,7 +114,12 @@ EnglishConstraint:
 
 /* Begin Expr Language */
 Expr:
-	ImpliesExpr;
+	WhileExpr;
+
+WhileExpr returns Expr:
+	{WhileExpr} 'while' cond=Expr 'then' then=Expr
+|	 ImpliesExpr
+;
 
 ImpliesExpr returns Expr:
 	OrExpr (=> ({BinaryExpr.left=current} op=('=>' | 'implies')) right=ImpliesExpr)?;
@@ -111,7 +128,12 @@ OrExpr returns Expr:
 	AndExpr (=> ({BinaryExpr.left=current} op=('or' | 'xor')) right=OrExpr)?;
 
 AndExpr returns Expr:
-	TriggersExpr (=> ({BinaryExpr.left=current} op='and') right=AndExpr)?;
+	AfterUntilExpr (=> ({BinaryExpr.left=current} op='and') right=AndExpr)?;
+
+AfterUntilExpr returns Expr:
+	{AfterUntilExpr} 'after' (after=TriggersExpr) (=> 'until' until=TriggersExpr)?
+|	TriggersExpr
+;
 
 TriggersExpr returns Expr:
 	SinceExpr (=> ({BinaryExpr.left=current} op=('T' | 'triggers')) right=TriggersExpr)?;
@@ -155,8 +177,6 @@ AtomicExpr returns Expr:
 	| {IdExpr} id=[IdRef]
 	| {MultipleIdExpr} '|' ids+=[IdRef] (',' ids+=[IdRef])* '|'
 	| {IfThenElseExpr} 'if' cond=Expr 'then' then=Expr (=> 'else' else=Expr)?
-	| {AfterUntilExpr} 'after' (after=Expr) (=> 'until' until=Expr)?
-	| {WhileExpr} 'while' cond=Expr 'then' then=Expr
 	| {RecordExpr} 'new' type=[RecordTypeDef] '{' fieldExprs+=FieldExpr (',' fieldExprs+=FieldExpr)* '}'
 	| {FieldlessRecordExpr} 'new' type=[RecordTypeDef] '{' exprs+=Expr (',' exprs+=Expr)* '}'
 	| {ArrayExpr} 'new' type=[ArrayTypeDef] '[' exprs+=Expr (',' exprs+=Expr)* ']'

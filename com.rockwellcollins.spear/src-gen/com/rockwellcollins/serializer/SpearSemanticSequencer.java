@@ -30,7 +30,9 @@ import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
+import com.rockwellcollins.spear.LustreAssertion;
 import com.rockwellcollins.spear.LustreEquation;
+import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleIdExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -78,7 +80,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		if (epackage == SpearPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
 			case SpearPackage.AFTER_UNTIL_EXPR:
-				sequence_AtomicExpr(context, (AfterUntilExpr) semanticObject); 
+				sequence_AfterUntilExpr(context, (AfterUntilExpr) semanticObject); 
 				return; 
 			case SpearPackage.ARRAY_ACCESS_EXPR:
 				sequence_AccessExpr(context, (ArrayAccessExpr) semanticObject); 
@@ -152,8 +154,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 			case SpearPackage.INT_TYPE:
 				sequence_Type(context, (IntType) semanticObject); 
 				return; 
+			case SpearPackage.LUSTRE_ASSERTION:
+				sequence_LustreAssertion(context, (LustreAssertion) semanticObject); 
+				return; 
 			case SpearPackage.LUSTRE_EQUATION:
 				sequence_LustreEquation(context, (LustreEquation) semanticObject); 
+				return; 
+			case SpearPackage.LUSTRE_PROPERTY:
+				sequence_LustreProperty(context, (LustreProperty) semanticObject); 
 				return; 
 			case SpearPackage.MACRO:
 				sequence_Macro(context, (Macro) semanticObject); 
@@ -213,7 +221,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 				sequence_Variable(context, (Variable) semanticObject); 
 				return; 
 			case SpearPackage.WHILE_EXPR:
-				sequence_AtomicExpr(context, (WhileExpr) semanticObject); 
+				sequence_WhileExpr(context, (WhileExpr) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -223,12 +231,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns ArrayAccessExpr
+	 *     WhileExpr returns ArrayAccessExpr
 	 *     ImpliesExpr returns ArrayAccessExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
 	 *     OrExpr returns ArrayAccessExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
 	 *     AndExpr returns ArrayAccessExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
+	 *     AfterUntilExpr returns ArrayAccessExpr
 	 *     TriggersExpr returns ArrayAccessExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns ArrayAccessExpr
 	 *     SinceExpr returns ArrayAccessExpr
@@ -268,12 +278,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns ArrayUpdateExpr
+	 *     WhileExpr returns ArrayUpdateExpr
 	 *     ImpliesExpr returns ArrayUpdateExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
 	 *     OrExpr returns ArrayUpdateExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
 	 *     AndExpr returns ArrayUpdateExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
+	 *     AfterUntilExpr returns ArrayUpdateExpr
 	 *     TriggersExpr returns ArrayUpdateExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns ArrayUpdateExpr
 	 *     SinceExpr returns ArrayUpdateExpr
@@ -312,12 +324,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns RecordAccessExpr
+	 *     WhileExpr returns RecordAccessExpr
 	 *     ImpliesExpr returns RecordAccessExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
 	 *     OrExpr returns RecordAccessExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
 	 *     AndExpr returns RecordAccessExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
+	 *     AfterUntilExpr returns RecordAccessExpr
 	 *     TriggersExpr returns RecordAccessExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RecordAccessExpr
 	 *     SinceExpr returns RecordAccessExpr
@@ -356,12 +370,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns RecordUpdateExpr
+	 *     WhileExpr returns RecordUpdateExpr
 	 *     ImpliesExpr returns RecordUpdateExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
 	 *     OrExpr returns RecordUpdateExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
 	 *     AndExpr returns RecordUpdateExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
+	 *     AfterUntilExpr returns RecordUpdateExpr
 	 *     TriggersExpr returns RecordUpdateExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RecordUpdateExpr
 	 *     SinceExpr returns RecordUpdateExpr
@@ -402,13 +418,52 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     Expr returns AfterUntilExpr
+	 *     WhileExpr returns AfterUntilExpr
+	 *     ImpliesExpr returns AfterUntilExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     OrExpr returns AfterUntilExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     AndExpr returns AfterUntilExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     AfterUntilExpr returns AfterUntilExpr
+	 *     TriggersExpr returns AfterUntilExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     SinceExpr returns AfterUntilExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     TemporalPrefixExpr returns AfterUntilExpr
+	 *     RelationalExpr returns AfterUntilExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     PlusExpr returns AfterUntilExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     MultiplyExpr returns AfterUntilExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
+	 *     PrefixExpr returns AfterUntilExpr
+	 *     AccessExpr returns AfterUntilExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns AfterUntilExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns AfterUntilExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns AfterUntilExpr
+	 *     AtomicExpr returns AfterUntilExpr
+	 *
+	 * Constraint:
+	 *     (after=TriggersExpr until=TriggersExpr?)
+	 */
+	protected void sequence_AfterUntilExpr(ISerializationContext context, AfterUntilExpr semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Expr returns BinaryExpr
+	 *     WhileExpr returns BinaryExpr
 	 *     ImpliesExpr returns BinaryExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
 	 *     OrExpr returns BinaryExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
 	 *     AndExpr returns BinaryExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
+	 *     AfterUntilExpr returns BinaryExpr
 	 *     TriggersExpr returns BinaryExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns BinaryExpr
 	 *     SinceExpr returns BinaryExpr
@@ -446,48 +501,15 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
-	 *     Expr returns AfterUntilExpr
-	 *     ImpliesExpr returns AfterUntilExpr
-	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
-	 *     OrExpr returns AfterUntilExpr
-	 *     OrExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
-	 *     AndExpr returns AfterUntilExpr
-	 *     AndExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
-	 *     TriggersExpr returns AfterUntilExpr
-	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
-	 *     SinceExpr returns AfterUntilExpr
-	 *     SinceExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
-	 *     TemporalPrefixExpr returns AfterUntilExpr
-	 *     RelationalExpr returns AfterUntilExpr
-	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
-	 *     PlusExpr returns AfterUntilExpr
-	 *     PlusExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
-	 *     MultiplyExpr returns AfterUntilExpr
-	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns AfterUntilExpr
-	 *     PrefixExpr returns AfterUntilExpr
-	 *     AccessExpr returns AfterUntilExpr
-	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns AfterUntilExpr
-	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns AfterUntilExpr
-	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns AfterUntilExpr
-	 *     AtomicExpr returns AfterUntilExpr
-	 *
-	 * Constraint:
-	 *     (after=Expr until=Expr?)
-	 */
-	protected void sequence_AtomicExpr(ISerializationContext context, AfterUntilExpr semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Expr returns ArrayExpr
+	 *     WhileExpr returns ArrayExpr
 	 *     ImpliesExpr returns ArrayExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
 	 *     OrExpr returns ArrayExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
 	 *     AndExpr returns ArrayExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
+	 *     AfterUntilExpr returns ArrayExpr
 	 *     TriggersExpr returns ArrayExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns ArrayExpr
 	 *     SinceExpr returns ArrayExpr
@@ -517,12 +539,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns FieldlessRecordExpr
+	 *     WhileExpr returns FieldlessRecordExpr
 	 *     ImpliesExpr returns FieldlessRecordExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
 	 *     OrExpr returns FieldlessRecordExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
 	 *     AndExpr returns FieldlessRecordExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
+	 *     AfterUntilExpr returns FieldlessRecordExpr
 	 *     TriggersExpr returns FieldlessRecordExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns FieldlessRecordExpr
 	 *     SinceExpr returns FieldlessRecordExpr
@@ -552,12 +576,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns IdExpr
+	 *     WhileExpr returns IdExpr
 	 *     ImpliesExpr returns IdExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns IdExpr
 	 *     OrExpr returns IdExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns IdExpr
 	 *     AndExpr returns IdExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns IdExpr
+	 *     AfterUntilExpr returns IdExpr
 	 *     TriggersExpr returns IdExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns IdExpr
 	 *     SinceExpr returns IdExpr
@@ -593,12 +619,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns IfThenElseExpr
+	 *     WhileExpr returns IfThenElseExpr
 	 *     ImpliesExpr returns IfThenElseExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
 	 *     OrExpr returns IfThenElseExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
 	 *     AndExpr returns IfThenElseExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
+	 *     AfterUntilExpr returns IfThenElseExpr
 	 *     TriggersExpr returns IfThenElseExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns IfThenElseExpr
 	 *     SinceExpr returns IfThenElseExpr
@@ -628,12 +656,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns MultipleIdExpr
+	 *     WhileExpr returns MultipleIdExpr
 	 *     ImpliesExpr returns MultipleIdExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns MultipleIdExpr
 	 *     OrExpr returns MultipleIdExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns MultipleIdExpr
 	 *     AndExpr returns MultipleIdExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns MultipleIdExpr
+	 *     AfterUntilExpr returns MultipleIdExpr
 	 *     TriggersExpr returns MultipleIdExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns MultipleIdExpr
 	 *     SinceExpr returns MultipleIdExpr
@@ -663,12 +693,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns PatternCall
+	 *     WhileExpr returns PatternCall
 	 *     ImpliesExpr returns PatternCall
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns PatternCall
 	 *     OrExpr returns PatternCall
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns PatternCall
 	 *     AndExpr returns PatternCall
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns PatternCall
+	 *     AfterUntilExpr returns PatternCall
 	 *     TriggersExpr returns PatternCall
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns PatternCall
 	 *     SinceExpr returns PatternCall
@@ -698,12 +730,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns RecordExpr
+	 *     WhileExpr returns RecordExpr
 	 *     ImpliesExpr returns RecordExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns RecordExpr
 	 *     OrExpr returns RecordExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns RecordExpr
 	 *     AndExpr returns RecordExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns RecordExpr
+	 *     AfterUntilExpr returns RecordExpr
 	 *     TriggersExpr returns RecordExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RecordExpr
 	 *     SinceExpr returns RecordExpr
@@ -733,12 +767,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns SpecificationCall
+	 *     WhileExpr returns SpecificationCall
 	 *     ImpliesExpr returns SpecificationCall
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
 	 *     OrExpr returns SpecificationCall
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
 	 *     AndExpr returns SpecificationCall
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
+	 *     AfterUntilExpr returns SpecificationCall
 	 *     TriggersExpr returns SpecificationCall
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns SpecificationCall
 	 *     SinceExpr returns SpecificationCall
@@ -762,50 +798,6 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 */
 	protected void sequence_AtomicExpr(ISerializationContext context, SpecificationCall semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Contexts:
-	 *     Expr returns WhileExpr
-	 *     ImpliesExpr returns WhileExpr
-	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns WhileExpr
-	 *     OrExpr returns WhileExpr
-	 *     OrExpr.BinaryExpr_1_0_0_0 returns WhileExpr
-	 *     AndExpr returns WhileExpr
-	 *     AndExpr.BinaryExpr_1_0_0_0 returns WhileExpr
-	 *     TriggersExpr returns WhileExpr
-	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns WhileExpr
-	 *     SinceExpr returns WhileExpr
-	 *     SinceExpr.BinaryExpr_1_0_0_0 returns WhileExpr
-	 *     TemporalPrefixExpr returns WhileExpr
-	 *     RelationalExpr returns WhileExpr
-	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns WhileExpr
-	 *     PlusExpr returns WhileExpr
-	 *     PlusExpr.BinaryExpr_1_0_0_0 returns WhileExpr
-	 *     MultiplyExpr returns WhileExpr
-	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns WhileExpr
-	 *     PrefixExpr returns WhileExpr
-	 *     AccessExpr returns WhileExpr
-	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns WhileExpr
-	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns WhileExpr
-	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns WhileExpr
-	 *     AtomicExpr returns WhileExpr
-	 *
-	 * Constraint:
-	 *     (cond=Expr then=Expr)
-	 */
-	protected void sequence_AtomicExpr(ISerializationContext context, WhileExpr semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.WHILE_EXPR__COND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.WHILE_EXPR__COND));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.WHILE_EXPR__THEN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.WHILE_EXPR__THEN));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAtomicExprAccess().getCondExprParserRuleCall_5_2_0(), semanticObject.getCond());
-		feeder.accept(grammarAccess.getAtomicExprAccess().getThenExprParserRuleCall_5_4_0(), semanticObject.getThen());
-		feeder.finish();
 	}
 	
 	
@@ -995,12 +987,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns BoolLiteral
+	 *     WhileExpr returns BoolLiteral
 	 *     ImpliesExpr returns BoolLiteral
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
 	 *     OrExpr returns BoolLiteral
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
 	 *     AndExpr returns BoolLiteral
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
+	 *     AfterUntilExpr returns BoolLiteral
 	 *     TriggersExpr returns BoolLiteral
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns BoolLiteral
 	 *     SinceExpr returns BoolLiteral
@@ -1037,12 +1031,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns IntLiteral
+	 *     WhileExpr returns IntLiteral
 	 *     ImpliesExpr returns IntLiteral
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns IntLiteral
 	 *     OrExpr returns IntLiteral
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns IntLiteral
 	 *     AndExpr returns IntLiteral
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns IntLiteral
+	 *     AfterUntilExpr returns IntLiteral
 	 *     TriggersExpr returns IntLiteral
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns IntLiteral
 	 *     SinceExpr returns IntLiteral
@@ -1073,12 +1069,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns RealLiteral
+	 *     WhileExpr returns RealLiteral
 	 *     ImpliesExpr returns RealLiteral
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns RealLiteral
 	 *     OrExpr returns RealLiteral
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns RealLiteral
 	 *     AndExpr returns RealLiteral
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns RealLiteral
+	 *     AfterUntilExpr returns RealLiteral
 	 *     TriggersExpr returns RealLiteral
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns RealLiteral
 	 *     SinceExpr returns RealLiteral
@@ -1108,21 +1106,48 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	
 	/**
 	 * Contexts:
+	 *     LustreAssertion returns LustreAssertion
+	 *
+	 * Constraint:
+	 *     assertionExpr=Expr
+	 */
+	protected void sequence_LustreAssertion(ISerializationContext context, LustreAssertion semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.LUSTRE_ASSERTION__ASSERTION_EXPR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.LUSTRE_ASSERTION__ASSERTION_EXPR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLustreAssertionAccess().getAssertionExprExprParserRuleCall_1_0(), semanticObject.getAssertionExpr());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     LustreEquation returns LustreEquation
 	 *
 	 * Constraint:
-	 *     (id=[Variable|ID] rhs=Expr)
+	 *     ((ids+=[Variable|ID] ids+=[Variable|ID]* rhs=Expr) | (ids+=[Variable|ID] rhs=Expr))
 	 */
 	protected void sequence_LustreEquation(ISerializationContext context, LustreEquation semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     LustreProperty returns LustreProperty
+	 *
+	 * Constraint:
+	 *     propertyId=[Variable|ID]
+	 */
+	protected void sequence_LustreProperty(ISerializationContext context, LustreProperty semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.LUSTRE_EQUATION__ID) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.LUSTRE_EQUATION__ID));
-			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.LUSTRE_EQUATION__RHS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.LUSTRE_EQUATION__RHS));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.LUSTRE_PROPERTY__PROPERTY_ID) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.LUSTRE_PROPERTY__PROPERTY_ID));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getLustreEquationAccess().getIdVariableIDTerminalRuleCall_0_0_1(), semanticObject.getId());
-		feeder.accept(grammarAccess.getLustreEquationAccess().getRhsExprParserRuleCall_2_0(), semanticObject.getRhs());
+		feeder.accept(grammarAccess.getLustrePropertyAccess().getPropertyIdVariableIDTerminalRuleCall_1_0_1(), semanticObject.getPropertyId());
 		feeder.finish();
 	}
 	
@@ -1152,7 +1177,7 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *         outputs+=Variable 
 	 *         outputs+=Variable* 
 	 *         locals+=Variable* 
-	 *         equations+=LustreEquation*
+	 *         (equations+=LustreEquation | properties+=LustreProperty | assertions+=LustreAssertion)*
 	 *     )
 	 */
 	protected void sequence_Pattern(ISerializationContext context, Pattern semanticObject) {
@@ -1163,12 +1188,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns PreviousExpr
+	 *     WhileExpr returns PreviousExpr
 	 *     ImpliesExpr returns PreviousExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
 	 *     OrExpr returns PreviousExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
 	 *     AndExpr returns PreviousExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
+	 *     AfterUntilExpr returns PreviousExpr
 	 *     TriggersExpr returns PreviousExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns PreviousExpr
 	 *     SinceExpr returns PreviousExpr
@@ -1198,12 +1225,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns UnaryExpr
+	 *     WhileExpr returns UnaryExpr
 	 *     ImpliesExpr returns UnaryExpr
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
 	 *     OrExpr returns UnaryExpr
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
 	 *     AndExpr returns UnaryExpr
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
+	 *     AfterUntilExpr returns UnaryExpr
 	 *     TriggersExpr returns UnaryExpr
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns UnaryExpr
 	 *     SinceExpr returns UnaryExpr
@@ -1412,12 +1441,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	/**
 	 * Contexts:
 	 *     Expr returns NormalizedCall
+	 *     WhileExpr returns NormalizedCall
 	 *     ImpliesExpr returns NormalizedCall
 	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
 	 *     OrExpr returns NormalizedCall
 	 *     OrExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
 	 *     AndExpr returns NormalizedCall
 	 *     AndExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
+	 *     AfterUntilExpr returns NormalizedCall
 	 *     TriggersExpr returns NormalizedCall
 	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns NormalizedCall
 	 *     SinceExpr returns NormalizedCall
@@ -1463,6 +1494,52 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getVariableAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getVariableAccess().getTypeTypeParserRuleCall_2_0(), semanticObject.getType());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Expr returns WhileExpr
+	 *     WhileExpr returns WhileExpr
+	 *     ImpliesExpr returns WhileExpr
+	 *     ImpliesExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     OrExpr returns WhileExpr
+	 *     OrExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     AndExpr returns WhileExpr
+	 *     AndExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     AfterUntilExpr returns WhileExpr
+	 *     TriggersExpr returns WhileExpr
+	 *     TriggersExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     SinceExpr returns WhileExpr
+	 *     SinceExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     TemporalPrefixExpr returns WhileExpr
+	 *     RelationalExpr returns WhileExpr
+	 *     RelationalExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     PlusExpr returns WhileExpr
+	 *     PlusExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     MultiplyExpr returns WhileExpr
+	 *     MultiplyExpr.BinaryExpr_1_0_0_0 returns WhileExpr
+	 *     PrefixExpr returns WhileExpr
+	 *     AccessExpr returns WhileExpr
+	 *     AccessExpr.RecordAccessExpr_1_0_0_0_0 returns WhileExpr
+	 *     AccessExpr.RecordUpdateExpr_1_1_0_0_0 returns WhileExpr
+	 *     AccessExpr.ArrayAccessExpr_1_2_0_0_0 returns WhileExpr
+	 *     AtomicExpr returns WhileExpr
+	 *
+	 * Constraint:
+	 *     (cond=Expr then=Expr)
+	 */
+	protected void sequence_WhileExpr(ISerializationContext context, WhileExpr semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.WHILE_EXPR__COND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.WHILE_EXPR__COND));
+			if (transientValues.isValueTransient(semanticObject, SpearPackage.Literals.WHILE_EXPR__THEN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, SpearPackage.Literals.WHILE_EXPR__THEN));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getWhileExprAccess().getCondExprParserRuleCall_0_2_0(), semanticObject.getCond());
+		feeder.accept(grammarAccess.getWhileExprAccess().getThenExprParserRuleCall_0_4_0(), semanticObject.getThen());
 		feeder.finish();
 	}
 	

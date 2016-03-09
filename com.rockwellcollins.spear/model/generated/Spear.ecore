@@ -47,10 +47,22 @@
         eType="#//Variable" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="equations" upperBound="-1"
         eType="#//LustreEquation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
+        eType="#//LustreProperty" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assertions" upperBound="-1"
+        eType="#//LustreAssertion" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LustreEquation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="id" eType="#//Variable"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ids" unique="false" upperBound="-1"
+        eType="#//Variable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//Expr" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LustreProperty">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="propertyId" eType="#//Variable"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LustreAssertion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assertionExpr" eType="#//Expr"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnitDef">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -135,10 +147,20 @@
   <eClassifiers xsi:type="ecore:EClass" name="UserType" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="def" eType="#//TypeDef"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WhileExpr" eSuperTypes="#//Expr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cond" eType="#//Expr" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="then" eType="#//Expr" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BinaryExpr" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Expr"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AfterUntilExpr" eSuperTypes="#//Expr">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="after" eType="#//Expr"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="until" eType="#//Expr"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnaryExpr" eSuperTypes="#//Expr">
@@ -184,16 +206,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="cond" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="then" eType="#//Expr" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="else" eType="#//Expr" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AfterUntilExpr" eSuperTypes="#//Expr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="after" eType="#//Expr"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="until" eType="#//Expr"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="WhileExpr" eSuperTypes="#//Expr">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="cond" eType="#//Expr" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="then" eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RecordExpr" eSuperTypes="#//Expr">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//RecordTypeDef"/>

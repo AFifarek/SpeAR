@@ -105,6 +105,16 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createLustreEquationAdapter();
       }
       @Override
+      public Adapter caseLustreProperty(LustreProperty object)
+      {
+        return createLustrePropertyAdapter();
+      }
+      @Override
+      public Adapter caseLustreAssertion(LustreAssertion object)
+      {
+        return createLustreAssertionAdapter();
+      }
+      @Override
       public Adapter caseUnitDef(UnitDef object)
       {
         return createUnitDefAdapter();
@@ -245,9 +255,19 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
         return createUserTypeAdapter();
       }
       @Override
+      public Adapter caseWhileExpr(WhileExpr object)
+      {
+        return createWhileExprAdapter();
+      }
+      @Override
       public Adapter caseBinaryExpr(BinaryExpr object)
       {
         return createBinaryExprAdapter();
+      }
+      @Override
+      public Adapter caseAfterUntilExpr(AfterUntilExpr object)
+      {
+        return createAfterUntilExprAdapter();
       }
       @Override
       public Adapter caseUnaryExpr(UnaryExpr object)
@@ -293,16 +313,6 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
       public Adapter caseIfThenElseExpr(IfThenElseExpr object)
       {
         return createIfThenElseExprAdapter();
-      }
-      @Override
-      public Adapter caseAfterUntilExpr(AfterUntilExpr object)
-      {
-        return createAfterUntilExprAdapter();
-      }
-      @Override
-      public Adapter caseWhileExpr(WhileExpr object)
-      {
-        return createWhileExprAdapter();
       }
       @Override
       public Adapter caseRecordExpr(RecordExpr object)
@@ -457,6 +467,36 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createLustreEquationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.LustreProperty <em>Lustre Property</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.LustreProperty
+   * @generated
+   */
+  public Adapter createLustrePropertyAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.LustreAssertion <em>Lustre Assertion</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.LustreAssertion
+   * @generated
+   */
+  public Adapter createLustreAssertionAdapter()
   {
     return null;
   }
@@ -882,6 +922,21 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.WhileExpr <em>While Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.WhileExpr
+   * @generated
+   */
+  public Adapter createWhileExprAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.BinaryExpr <em>Binary Expr</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -892,6 +947,21 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createBinaryExprAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.AfterUntilExpr <em>After Until Expr</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see com.rockwellcollins.spear.AfterUntilExpr
+   * @generated
+   */
+  public Adapter createAfterUntilExprAdapter()
   {
     return null;
   }
@@ -1027,36 +1097,6 @@ public class SpearAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createIfThenElseExprAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.AfterUntilExpr <em>After Until Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.rockwellcollins.spear.AfterUntilExpr
-   * @generated
-   */
-  public Adapter createAfterUntilExprAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link com.rockwellcollins.spear.WhileExpr <em>While Expr</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see com.rockwellcollins.spear.WhileExpr
-   * @generated
-   */
-  public Adapter createWhileExprAdapter()
   {
     return null;
   }

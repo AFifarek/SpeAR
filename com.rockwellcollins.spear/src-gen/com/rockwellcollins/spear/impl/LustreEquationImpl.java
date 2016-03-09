@@ -7,14 +7,20 @@ import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Variable;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +30,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.rockwellcollins.spear.impl.LustreEquationImpl#getId <em>Id</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.LustreEquationImpl#getIds <em>Ids</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.LustreEquationImpl#getRhs <em>Rhs</em>}</li>
  * </ul>
  *
@@ -33,14 +39,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class LustreEquationImpl extends MinimalEObjectImpl.Container implements LustreEquation
 {
   /**
-   * The cached value of the '{@link #getId() <em>Id</em>}' reference.
+   * The cached value of the '{@link #getIds() <em>Ids</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getId()
+   * @see #getIds()
    * @generated
    * @ordered
    */
-  protected Variable id;
+  protected EList<Variable> ids;
 
   /**
    * The cached value of the '{@link #getRhs() <em>Rhs</em>}' containment reference.
@@ -78,42 +84,13 @@ public class LustreEquationImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public Variable getId()
+  public EList<Variable> getIds()
   {
-    if (id != null && id.eIsProxy())
+    if (ids == null)
     {
-      InternalEObject oldId = (InternalEObject)id;
-      id = (Variable)eResolveProxy(oldId);
-      if (id != oldId)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, SpearPackage.LUSTRE_EQUATION__ID, oldId, id));
-      }
+      ids = new EObjectResolvingEList<Variable>(Variable.class, this, SpearPackage.LUSTRE_EQUATION__IDS);
     }
-    return id;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Variable basicGetId()
-  {
-    return id;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setId(Variable newId)
-  {
-    Variable oldId = id;
-    id = newId;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, SpearPackage.LUSTRE_EQUATION__ID, oldId, id));
+    return ids;
   }
 
   /**
@@ -190,9 +167,8 @@ public class LustreEquationImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case SpearPackage.LUSTRE_EQUATION__ID:
-        if (resolve) return getId();
-        return basicGetId();
+      case SpearPackage.LUSTRE_EQUATION__IDS:
+        return getIds();
       case SpearPackage.LUSTRE_EQUATION__RHS:
         return getRhs();
     }
@@ -204,13 +180,15 @@ public class LustreEquationImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case SpearPackage.LUSTRE_EQUATION__ID:
-        setId((Variable)newValue);
+      case SpearPackage.LUSTRE_EQUATION__IDS:
+        getIds().clear();
+        getIds().addAll((Collection<? extends Variable>)newValue);
         return;
       case SpearPackage.LUSTRE_EQUATION__RHS:
         setRhs((Expr)newValue);
@@ -229,8 +207,8 @@ public class LustreEquationImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case SpearPackage.LUSTRE_EQUATION__ID:
-        setId((Variable)null);
+      case SpearPackage.LUSTRE_EQUATION__IDS:
+        getIds().clear();
         return;
       case SpearPackage.LUSTRE_EQUATION__RHS:
         setRhs((Expr)null);
@@ -249,8 +227,8 @@ public class LustreEquationImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case SpearPackage.LUSTRE_EQUATION__ID:
-        return id != null;
+      case SpearPackage.LUSTRE_EQUATION__IDS:
+        return ids != null && !ids.isEmpty();
       case SpearPackage.LUSTRE_EQUATION__RHS:
         return rhs != null;
     }

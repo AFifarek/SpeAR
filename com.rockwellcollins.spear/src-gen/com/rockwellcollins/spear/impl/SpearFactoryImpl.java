@@ -70,6 +70,8 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.DEFINITIONS: return createDefinitions();
       case SpearPackage.PATTERN: return createPattern();
       case SpearPackage.LUSTRE_EQUATION: return createLustreEquation();
+      case SpearPackage.LUSTRE_PROPERTY: return createLustreProperty();
+      case SpearPackage.LUSTRE_ASSERTION: return createLustreAssertion();
       case SpearPackage.UNIT_DEF: return createUnitDef();
       case SpearPackage.UNIT_EXPR: return createUnitExpr();
       case SpearPackage.TYPE_DEF: return createTypeDef();
@@ -98,7 +100,9 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.BOOL_TYPE: return createBoolType();
       case SpearPackage.REAL_TYPE: return createRealType();
       case SpearPackage.USER_TYPE: return createUserType();
+      case SpearPackage.WHILE_EXPR: return createWhileExpr();
       case SpearPackage.BINARY_EXPR: return createBinaryExpr();
+      case SpearPackage.AFTER_UNTIL_EXPR: return createAfterUntilExpr();
       case SpearPackage.UNARY_EXPR: return createUnaryExpr();
       case SpearPackage.PREVIOUS_EXPR: return createPreviousExpr();
       case SpearPackage.RECORD_ACCESS_EXPR: return createRecordAccessExpr();
@@ -108,8 +112,6 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
       case SpearPackage.ID_EXPR: return createIdExpr();
       case SpearPackage.MULTIPLE_ID_EXPR: return createMultipleIdExpr();
       case SpearPackage.IF_THEN_ELSE_EXPR: return createIfThenElseExpr();
-      case SpearPackage.AFTER_UNTIL_EXPR: return createAfterUntilExpr();
-      case SpearPackage.WHILE_EXPR: return createWhileExpr();
       case SpearPackage.RECORD_EXPR: return createRecordExpr();
       case SpearPackage.FIELDLESS_RECORD_EXPR: return createFieldlessRecordExpr();
       case SpearPackage.ARRAY_EXPR: return createArrayExpr();
@@ -188,6 +190,28 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     LustreEquationImpl lustreEquation = new LustreEquationImpl();
     return lustreEquation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LustreProperty createLustreProperty()
+  {
+    LustrePropertyImpl lustreProperty = new LustrePropertyImpl();
+    return lustreProperty;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LustreAssertion createLustreAssertion()
+  {
+    LustreAssertionImpl lustreAssertion = new LustreAssertionImpl();
+    return lustreAssertion;
   }
 
   /**
@@ -503,10 +527,32 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public WhileExpr createWhileExpr()
+  {
+    WhileExprImpl whileExpr = new WhileExprImpl();
+    return whileExpr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public BinaryExpr createBinaryExpr()
   {
     BinaryExprImpl binaryExpr = new BinaryExprImpl();
     return binaryExpr;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AfterUntilExpr createAfterUntilExpr()
+  {
+    AfterUntilExprImpl afterUntilExpr = new AfterUntilExprImpl();
+    return afterUntilExpr;
   }
 
   /**
@@ -606,28 +652,6 @@ public class SpearFactoryImpl extends EFactoryImpl implements SpearFactory
   {
     IfThenElseExprImpl ifThenElseExpr = new IfThenElseExprImpl();
     return ifThenElseExpr;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AfterUntilExpr createAfterUntilExpr()
-  {
-    AfterUntilExprImpl afterUntilExpr = new AfterUntilExprImpl();
-    return afterUntilExpr;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public WhileExpr createWhileExpr()
-  {
-    WhileExprImpl whileExpr = new WhileExprImpl();
-    return whileExpr;
   }
 
   /**

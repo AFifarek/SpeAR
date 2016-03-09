@@ -77,6 +77,24 @@ public interface SpearFactory extends EFactory
   LustreEquation createLustreEquation();
 
   /**
+   * Returns a new object of class '<em>Lustre Property</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lustre Property</em>'.
+   * @generated
+   */
+  LustreProperty createLustreProperty();
+
+  /**
+   * Returns a new object of class '<em>Lustre Assertion</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lustre Assertion</em>'.
+   * @generated
+   */
+  LustreAssertion createLustreAssertion();
+
+  /**
    * Returns a new object of class '<em>Unit Def</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -329,6 +347,15 @@ public interface SpearFactory extends EFactory
   UserType createUserType();
 
   /**
+   * Returns a new object of class '<em>While Expr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>While Expr</em>'.
+   * @generated
+   */
+  WhileExpr createWhileExpr();
+
+  /**
    * Returns a new object of class '<em>Binary Expr</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -336,6 +363,15 @@ public interface SpearFactory extends EFactory
    * @generated
    */
   BinaryExpr createBinaryExpr();
+
+  /**
+   * Returns a new object of class '<em>After Until Expr</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>After Until Expr</em>'.
+   * @generated
+   */
+  AfterUntilExpr createAfterUntilExpr();
 
   /**
    * Returns a new object of class '<em>Unary Expr</em>'.
@@ -417,24 +453,6 @@ public interface SpearFactory extends EFactory
    * @generated
    */
   IfThenElseExpr createIfThenElseExpr();
-
-  /**
-   * Returns a new object of class '<em>After Until Expr</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>After Until Expr</em>'.
-   * @generated
-   */
-  AfterUntilExpr createAfterUntilExpr();
-
-  /**
-   * Returns a new object of class '<em>While Expr</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>While Expr</em>'.
-   * @generated
-   */
-  WhileExpr createWhileExpr();
 
   /**
    * Returns a new object of class '<em>Record Expr</em>'.

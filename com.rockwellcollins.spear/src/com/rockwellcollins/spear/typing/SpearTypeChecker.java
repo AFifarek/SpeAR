@@ -95,7 +95,8 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	}
 
 	public boolean checkLustreEquation(LustreEquation eq) {
-		return expectAssignableType(doSwitch(eq.getId()), eq.getRhs());
+		TupleType tuple = this.processList(new ArrayList<>(eq.getIds()));
+		return expectAssignableType(this.compressTuple(tuple), eq.getRhs());
 	}
 
 	/***************************************************************************************************/

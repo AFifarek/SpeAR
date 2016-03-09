@@ -2,7 +2,9 @@
  */
 package com.rockwellcollins.spear.impl;
 
+import com.rockwellcollins.spear.LustreAssertion;
 import com.rockwellcollins.spear.LustreEquation;
+import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Variable;
@@ -36,6 +38,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link com.rockwellcollins.spear.impl.PatternImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.PatternImpl#getLocals <em>Locals</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.PatternImpl#getEquations <em>Equations</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.PatternImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.PatternImpl#getAssertions <em>Assertions</em>}</li>
  * </ul>
  *
  * @generated
@@ -101,6 +105,26 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
    * @ordered
    */
   protected EList<LustreEquation> equations;
+
+  /**
+   * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getProperties()
+   * @generated
+   * @ordered
+   */
+  protected EList<LustreProperty> properties;
+
+  /**
+   * The cached value of the '{@link #getAssertions() <em>Assertions</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAssertions()
+   * @generated
+   * @ordered
+   */
+  protected EList<LustreAssertion> assertions;
 
   /**
    * <!-- begin-user-doc -->
@@ -207,6 +231,34 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<LustreProperty> getProperties()
+  {
+    if (properties == null)
+    {
+      properties = new EObjectContainmentEList<LustreProperty>(LustreProperty.class, this, SpearPackage.PATTERN__PROPERTIES);
+    }
+    return properties;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<LustreAssertion> getAssertions()
+  {
+    if (assertions == null)
+    {
+      assertions = new EObjectContainmentEList<LustreAssertion>(LustreAssertion.class, this, SpearPackage.PATTERN__ASSERTIONS);
+    }
+    return assertions;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -220,6 +272,10 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
         return ((InternalEList<?>)getLocals()).basicRemove(otherEnd, msgs);
       case SpearPackage.PATTERN__EQUATIONS:
         return ((InternalEList<?>)getEquations()).basicRemove(otherEnd, msgs);
+      case SpearPackage.PATTERN__PROPERTIES:
+        return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+      case SpearPackage.PATTERN__ASSERTIONS:
+        return ((InternalEList<?>)getAssertions()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -244,6 +300,10 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
         return getLocals();
       case SpearPackage.PATTERN__EQUATIONS:
         return getEquations();
+      case SpearPackage.PATTERN__PROPERTIES:
+        return getProperties();
+      case SpearPackage.PATTERN__ASSERTIONS:
+        return getAssertions();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -278,6 +338,14 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
         getEquations().clear();
         getEquations().addAll((Collection<? extends LustreEquation>)newValue);
         return;
+      case SpearPackage.PATTERN__PROPERTIES:
+        getProperties().clear();
+        getProperties().addAll((Collection<? extends LustreProperty>)newValue);
+        return;
+      case SpearPackage.PATTERN__ASSERTIONS:
+        getAssertions().clear();
+        getAssertions().addAll((Collection<? extends LustreAssertion>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -307,6 +375,12 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
       case SpearPackage.PATTERN__EQUATIONS:
         getEquations().clear();
         return;
+      case SpearPackage.PATTERN__PROPERTIES:
+        getProperties().clear();
+        return;
+      case SpearPackage.PATTERN__ASSERTIONS:
+        getAssertions().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -331,6 +405,10 @@ public class PatternImpl extends MinimalEObjectImpl.Container implements Pattern
         return locals != null && !locals.isEmpty();
       case SpearPackage.PATTERN__EQUATIONS:
         return equations != null && !equations.isEmpty();
+      case SpearPackage.PATTERN__PROPERTIES:
+        return properties != null && !properties.isEmpty();
+      case SpearPackage.PATTERN__ASSERTIONS:
+        return assertions != null && !assertions.isEmpty();
     }
     return super.eIsSet(featureID);
   }

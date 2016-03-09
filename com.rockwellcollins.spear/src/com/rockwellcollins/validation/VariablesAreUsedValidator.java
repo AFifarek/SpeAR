@@ -137,7 +137,9 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		}
 		
 		for(LustreEquation eq : EcoreUtil2.getAllContentsOfType(p, LustreEquation.class)) {
-			used.add(eq.getId().getName());
+			for(Variable v : eq.getIds()) {
+				used.add(v.getName());
+			}
 		}
 		
 		for(Variable v : p.getInputs()) {

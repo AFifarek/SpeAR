@@ -116,6 +116,20 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.LUSTRE_PROPERTY:
+      {
+        LustreProperty lustreProperty = (LustreProperty)theEObject;
+        T result = caseLustreProperty(lustreProperty);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.LUSTRE_ASSERTION:
+      {
+        LustreAssertion lustreAssertion = (LustreAssertion)theEObject;
+        T result = caseLustreAssertion(lustreAssertion);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.UNIT_DEF:
       {
         UnitDef unitDef = (UnitDef)theEObject;
@@ -331,11 +345,27 @@ public class SpearSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case SpearPackage.WHILE_EXPR:
+      {
+        WhileExpr whileExpr = (WhileExpr)theEObject;
+        T result = caseWhileExpr(whileExpr);
+        if (result == null) result = caseExpr(whileExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case SpearPackage.BINARY_EXPR:
       {
         BinaryExpr binaryExpr = (BinaryExpr)theEObject;
         T result = caseBinaryExpr(binaryExpr);
         if (result == null) result = caseExpr(binaryExpr);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case SpearPackage.AFTER_UNTIL_EXPR:
+      {
+        AfterUntilExpr afterUntilExpr = (AfterUntilExpr)theEObject;
+        T result = caseAfterUntilExpr(afterUntilExpr);
+        if (result == null) result = caseExpr(afterUntilExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -408,22 +438,6 @@ public class SpearSwitch<T> extends Switch<T>
         IfThenElseExpr ifThenElseExpr = (IfThenElseExpr)theEObject;
         T result = caseIfThenElseExpr(ifThenElseExpr);
         if (result == null) result = caseExpr(ifThenElseExpr);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case SpearPackage.AFTER_UNTIL_EXPR:
-      {
-        AfterUntilExpr afterUntilExpr = (AfterUntilExpr)theEObject;
-        T result = caseAfterUntilExpr(afterUntilExpr);
-        if (result == null) result = caseExpr(afterUntilExpr);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case SpearPackage.WHILE_EXPR:
-      {
-        WhileExpr whileExpr = (WhileExpr)theEObject;
-        T result = caseWhileExpr(whileExpr);
-        if (result == null) result = caseExpr(whileExpr);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -598,6 +612,38 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseLustreEquation(LustreEquation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Lustre Property</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Lustre Property</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLustreProperty(LustreProperty object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Lustre Assertion</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Lustre Assertion</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLustreAssertion(LustreAssertion object)
   {
     return null;
   }
@@ -1051,6 +1097,22 @@ public class SpearSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>While Expr</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>While Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseWhileExpr(WhileExpr object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Binary Expr</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1062,6 +1124,22 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseBinaryExpr(BinaryExpr object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>After Until Expr</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>After Until Expr</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAfterUntilExpr(AfterUntilExpr object)
   {
     return null;
   }
@@ -1206,38 +1284,6 @@ public class SpearSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseIfThenElseExpr(IfThenElseExpr object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>After Until Expr</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>After Until Expr</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAfterUntilExpr(AfterUntilExpr object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>While Expr</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>While Expr</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseWhileExpr(WhileExpr object)
   {
     return null;
   }

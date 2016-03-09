@@ -6,6 +6,7 @@ import java.util.List;
 import com.rockwellcollins.spear.Expr;
 import com.rockwellcollins.spear.LustreEquation;
 import com.rockwellcollins.spear.Pattern;
+import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.lustre.TranslateExpr;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 
@@ -34,17 +35,22 @@ public class SLustreEquation {
 		return new SLustreEquation(eq,map);
 	}
 	
-	public String id;
+	public List<String> ids = new ArrayList<>();
 	public Expr expression;
 
 	public SLustreEquation(LustreEquation eq, NameMap map) {
 		Pattern p = (Pattern) Utilities.getTopContainer(eq);
-		this.id = map.lookup(p, eq.getId().getName());
+		for(Variable v : eq.getIds()) {
+			this.ids.add(map.lookup(p, v.getName()));
+		}
 		this.expression = eq.getRhs();
 	}
 	
 	public Equation toLustre(NameMap map) {
-		IdExpr lhs = new IdExpr(this.id);
+		List<IdExpr> lhs = new ArrayList<>();
+		for(String id : ids) {
+			lhs.add(new IdExpr(id));
+		}
 		jkind.lustre.Expr rhs = TranslateExpr.translate(expression, map);
 		return new Equation(lhs,rhs);
 	}

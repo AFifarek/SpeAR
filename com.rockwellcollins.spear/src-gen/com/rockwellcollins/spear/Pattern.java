@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link com.rockwellcollins.spear.Pattern#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Pattern#getLocals <em>Locals</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Pattern#getEquations <em>Equations</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Pattern#getProperties <em>Properties</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.Pattern#getAssertions <em>Assertions</em>}</li>
  * </ul>
  *
  * @see com.rockwellcollins.spear.SpearPackage#getPattern()
@@ -117,5 +119,37 @@ public interface Pattern extends EObject
    * @generated
    */
   EList<LustreEquation> getEquations();
+
+  /**
+   * Returns the value of the '<em><b>Properties</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.LustreProperty}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Properties</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Properties</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getPattern_Properties()
+   * @model containment="true"
+   * @generated
+   */
+  EList<LustreProperty> getProperties();
+
+  /**
+   * Returns the value of the '<em><b>Assertions</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.LustreAssertion}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Assertions</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Assertions</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getPattern_Assertions()
+   * @model containment="true"
+   * @generated
+   */
+  EList<LustreAssertion> getAssertions();
 
 } // Pattern

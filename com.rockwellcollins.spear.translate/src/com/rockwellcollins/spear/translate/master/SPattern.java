@@ -36,6 +36,8 @@ public class SPattern {
 	private List<SPVariable> outputs;
 	private List<SPVariable> locals;
 	private List<SLustreEquation> equations;
+	private List<SLustreProperty> properties;
+	private List<SLustreAssertion> assertions;
 	
 	public SPattern(Pattern p, NameMap map) {
 		map.addPattern(p, this);
@@ -45,7 +47,10 @@ public class SPattern {
 		this.outputs = SPVariable.build(p.getOutputs(), p, map);
 		this.locals = SPVariable.build(p.getLocals(), p, map);
 		this.equations = SLustreEquation.build(p.getEquations(), map);
+		this.properties = SLustreProperty.build(p.getProperties(), map);
+		this.assertions = SLustreAssertion.build(p.getAssertions());
 	}
+	
 	
 	public Node toLustre(NameMap map) {
 		NodeBuilder builder = new NodeBuilder(this.name);
@@ -54,7 +59,8 @@ public class SPattern {
 		builder.addLocals(SPVariable.toVarDecl(this.locals, map));
 		
 		builder.addEquations(SLustreEquation.toLustre(this.equations, map));
-		
+		builder.addProperties(SLustreProperty.toLustre(this.properties));
+		builder.addAssertions(SLustreAssertion.toLustre(this.assertions,map));
 		return builder.build();
 	}
 }

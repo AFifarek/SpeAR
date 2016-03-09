@@ -2,6 +2,8 @@
  */
 package com.rockwellcollins.spear;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.rockwellcollins.spear.LustreEquation#getId <em>Id</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.LustreEquation#getIds <em>Ids</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.LustreEquation#getRhs <em>Rhs</em>}</li>
  * </ul>
  *
@@ -24,30 +26,20 @@ import org.eclipse.emf.ecore.EObject;
 public interface LustreEquation extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Id</b></em>' reference.
+   * Returns the value of the '<em><b>Ids</b></em>' reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Variable}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Id</em>' reference isn't clear,
+   * If the meaning of the '<em>Ids</em>' reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Id</em>' reference.
-   * @see #setId(Variable)
-   * @see com.rockwellcollins.spear.SpearPackage#getLustreEquation_Id()
+   * @return the value of the '<em>Ids</em>' reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getLustreEquation_Ids()
    * @model
    * @generated
    */
-  Variable getId();
-
-  /**
-   * Sets the value of the '{@link com.rockwellcollins.spear.LustreEquation#getId <em>Id</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Id</em>' reference.
-   * @see #getId()
-   * @generated
-   */
-  void setId(Variable value);
+  EList<Variable> getIds();
 
   /**
    * Returns the value of the '<em><b>Rhs</b></em>' containment reference.

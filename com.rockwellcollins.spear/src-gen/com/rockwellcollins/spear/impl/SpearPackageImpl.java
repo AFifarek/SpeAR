@@ -32,7 +32,9 @@ import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
 import com.rockwellcollins.spear.LiteralExpr;
+import com.rockwellcollins.spear.LustreAssertion;
 import com.rockwellcollins.spear.LustreEquation;
+import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.MultipleIdExpr;
 import com.rockwellcollins.spear.NamedTypeDef;
@@ -116,6 +118,20 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass lustreEquationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass lustrePropertyEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass lustreAssertionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -318,7 +334,21 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass whileExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass binaryExprEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass afterUntilExprEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -382,20 +412,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * @generated
    */
   private EClass ifThenElseExprEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass afterUntilExprEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass whileExprEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -778,6 +794,26 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getPattern_Properties()
+  {
+    return (EReference)patternEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPattern_Assertions()
+  {
+    return (EReference)patternEClass.getEStructuralFeatures().get(6);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getLustreEquation()
   {
     return lustreEquationEClass;
@@ -788,7 +824,7 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getLustreEquation_Id()
+  public EReference getLustreEquation_Ids()
   {
     return (EReference)lustreEquationEClass.getEStructuralFeatures().get(0);
   }
@@ -801,6 +837,46 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EReference getLustreEquation_Rhs()
   {
     return (EReference)lustreEquationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLustreProperty()
+  {
+    return lustrePropertyEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLustreProperty_PropertyId()
+  {
+    return (EReference)lustrePropertyEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLustreAssertion()
+  {
+    return lustreAssertionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLustreAssertion_AssertionExpr()
+  {
+    return (EReference)lustreAssertionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1398,6 +1474,36 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getWhileExpr()
+  {
+    return whileExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getWhileExpr_Cond()
+  {
+    return (EReference)whileExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getWhileExpr_Then()
+  {
+    return (EReference)whileExprEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBinaryExpr()
   {
     return binaryExprEClass;
@@ -1431,6 +1537,36 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EReference getBinaryExpr_Right()
   {
     return (EReference)binaryExprEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getAfterUntilExpr()
+  {
+    return afterUntilExprEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAfterUntilExpr_After()
+  {
+    return (EReference)afterUntilExprEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAfterUntilExpr_Until()
+  {
+    return (EReference)afterUntilExprEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1701,66 +1837,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
   public EReference getIfThenElseExpr_Else()
   {
     return (EReference)ifThenElseExprEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getAfterUntilExpr()
-  {
-    return afterUntilExprEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAfterUntilExpr_After()
-  {
-    return (EReference)afterUntilExprEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAfterUntilExpr_Until()
-  {
-    return (EReference)afterUntilExprEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getWhileExpr()
-  {
-    return whileExprEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getWhileExpr_Cond()
-  {
-    return (EReference)whileExprEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getWhileExpr_Then()
-  {
-    return (EReference)whileExprEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2092,10 +2168,18 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(patternEClass, PATTERN__OUTPUTS);
     createEReference(patternEClass, PATTERN__LOCALS);
     createEReference(patternEClass, PATTERN__EQUATIONS);
+    createEReference(patternEClass, PATTERN__PROPERTIES);
+    createEReference(patternEClass, PATTERN__ASSERTIONS);
 
     lustreEquationEClass = createEClass(LUSTRE_EQUATION);
-    createEReference(lustreEquationEClass, LUSTRE_EQUATION__ID);
+    createEReference(lustreEquationEClass, LUSTRE_EQUATION__IDS);
     createEReference(lustreEquationEClass, LUSTRE_EQUATION__RHS);
+
+    lustrePropertyEClass = createEClass(LUSTRE_PROPERTY);
+    createEReference(lustrePropertyEClass, LUSTRE_PROPERTY__PROPERTY_ID);
+
+    lustreAssertionEClass = createEClass(LUSTRE_ASSERTION);
+    createEReference(lustreAssertionEClass, LUSTRE_ASSERTION__ASSERTION_EXPR);
 
     unitDefEClass = createEClass(UNIT_DEF);
     createEAttribute(unitDefEClass, UNIT_DEF__NAME);
@@ -2184,10 +2268,18 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     userTypeEClass = createEClass(USER_TYPE);
     createEReference(userTypeEClass, USER_TYPE__DEF);
 
+    whileExprEClass = createEClass(WHILE_EXPR);
+    createEReference(whileExprEClass, WHILE_EXPR__COND);
+    createEReference(whileExprEClass, WHILE_EXPR__THEN);
+
     binaryExprEClass = createEClass(BINARY_EXPR);
     createEReference(binaryExprEClass, BINARY_EXPR__LEFT);
     createEAttribute(binaryExprEClass, BINARY_EXPR__OP);
     createEReference(binaryExprEClass, BINARY_EXPR__RIGHT);
+
+    afterUntilExprEClass = createEClass(AFTER_UNTIL_EXPR);
+    createEReference(afterUntilExprEClass, AFTER_UNTIL_EXPR__AFTER);
+    createEReference(afterUntilExprEClass, AFTER_UNTIL_EXPR__UNTIL);
 
     unaryExprEClass = createEClass(UNARY_EXPR);
     createEAttribute(unaryExprEClass, UNARY_EXPR__OP);
@@ -2224,14 +2316,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     createEReference(ifThenElseExprEClass, IF_THEN_ELSE_EXPR__COND);
     createEReference(ifThenElseExprEClass, IF_THEN_ELSE_EXPR__THEN);
     createEReference(ifThenElseExprEClass, IF_THEN_ELSE_EXPR__ELSE);
-
-    afterUntilExprEClass = createEClass(AFTER_UNTIL_EXPR);
-    createEReference(afterUntilExprEClass, AFTER_UNTIL_EXPR__AFTER);
-    createEReference(afterUntilExprEClass, AFTER_UNTIL_EXPR__UNTIL);
-
-    whileExprEClass = createEClass(WHILE_EXPR);
-    createEReference(whileExprEClass, WHILE_EXPR__COND);
-    createEReference(whileExprEClass, WHILE_EXPR__THEN);
 
     recordExprEClass = createEClass(RECORD_EXPR);
     createEReference(recordExprEClass, RECORD_EXPR__TYPE);
@@ -2320,7 +2404,9 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     boolTypeEClass.getESuperTypes().add(this.getType());
     realTypeEClass.getESuperTypes().add(this.getType());
     userTypeEClass.getESuperTypes().add(this.getType());
+    whileExprEClass.getESuperTypes().add(this.getExpr());
     binaryExprEClass.getESuperTypes().add(this.getExpr());
+    afterUntilExprEClass.getESuperTypes().add(this.getExpr());
     unaryExprEClass.getESuperTypes().add(this.getExpr());
     previousExprEClass.getESuperTypes().add(this.getExpr());
     recordAccessExprEClass.getESuperTypes().add(this.getExpr());
@@ -2330,8 +2416,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     idExprEClass.getESuperTypes().add(this.getExpr());
     multipleIdExprEClass.getESuperTypes().add(this.getExpr());
     ifThenElseExprEClass.getESuperTypes().add(this.getExpr());
-    afterUntilExprEClass.getESuperTypes().add(this.getExpr());
-    whileExprEClass.getESuperTypes().add(this.getExpr());
     recordExprEClass.getESuperTypes().add(this.getExpr());
     fieldlessRecordExprEClass.getESuperTypes().add(this.getExpr());
     arrayExprEClass.getESuperTypes().add(this.getExpr());
@@ -2372,10 +2456,18 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getPattern_Outputs(), this.getVariable(), null, "outputs", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPattern_Locals(), this.getVariable(), null, "locals", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPattern_Equations(), this.getLustreEquation(), null, "equations", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPattern_Properties(), this.getLustreProperty(), null, "properties", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPattern_Assertions(), this.getLustreAssertion(), null, "assertions", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(lustreEquationEClass, LustreEquation.class, "LustreEquation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getLustreEquation_Id(), this.getVariable(), null, "id", null, 0, 1, LustreEquation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLustreEquation_Ids(), this.getVariable(), null, "ids", null, 0, -1, LustreEquation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLustreEquation_Rhs(), this.getExpr(), null, "rhs", null, 0, 1, LustreEquation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(lustrePropertyEClass, LustreProperty.class, "LustreProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLustreProperty_PropertyId(), this.getVariable(), null, "propertyId", null, 0, 1, LustreProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(lustreAssertionEClass, LustreAssertion.class, "LustreAssertion", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLustreAssertion_AssertionExpr(), this.getExpr(), null, "assertionExpr", null, 0, 1, LustreAssertion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unitDefEClass, UnitDef.class, "UnitDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnitDef_Name(), ecorePackage.getEString(), "name", null, 0, 1, UnitDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2464,10 +2556,18 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEClass(userTypeEClass, UserType.class, "UserType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getUserType_Def(), this.getTypeDef(), null, "def", null, 0, 1, UserType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(whileExprEClass, WhileExpr.class, "WhileExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getWhileExpr_Cond(), this.getExpr(), null, "cond", null, 0, 1, WhileExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getWhileExpr_Then(), this.getExpr(), null, "then", null, 0, 1, WhileExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(binaryExprEClass, BinaryExpr.class, "BinaryExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getBinaryExpr_Left(), this.getExpr(), null, "left", null, 0, 1, BinaryExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBinaryExpr_Op(), ecorePackage.getEString(), "op", null, 0, 1, BinaryExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBinaryExpr_Right(), this.getExpr(), null, "right", null, 0, 1, BinaryExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(afterUntilExprEClass, AfterUntilExpr.class, "AfterUntilExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAfterUntilExpr_After(), this.getExpr(), null, "after", null, 0, 1, AfterUntilExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAfterUntilExpr_Until(), this.getExpr(), null, "until", null, 0, 1, AfterUntilExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(unaryExprEClass, UnaryExpr.class, "UnaryExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getUnaryExpr_Op(), ecorePackage.getEString(), "op", null, 0, 1, UnaryExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2504,14 +2604,6 @@ public class SpearPackageImpl extends EPackageImpl implements SpearPackage
     initEReference(getIfThenElseExpr_Cond(), this.getExpr(), null, "cond", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfThenElseExpr_Then(), this.getExpr(), null, "then", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getIfThenElseExpr_Else(), this.getExpr(), null, "else", null, 0, 1, IfThenElseExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(afterUntilExprEClass, AfterUntilExpr.class, "AfterUntilExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAfterUntilExpr_After(), this.getExpr(), null, "after", null, 0, 1, AfterUntilExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAfterUntilExpr_Until(), this.getExpr(), null, "until", null, 0, 1, AfterUntilExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(whileExprEClass, WhileExpr.class, "WhileExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getWhileExpr_Cond(), this.getExpr(), null, "cond", null, 0, 1, WhileExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getWhileExpr_Then(), this.getExpr(), null, "then", null, 0, 1, WhileExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(recordExprEClass, RecordExpr.class, "RecordExpr", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRecordExpr_Type(), this.getRecordTypeDef(), null, "type", null, 0, 1, RecordExpr.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
