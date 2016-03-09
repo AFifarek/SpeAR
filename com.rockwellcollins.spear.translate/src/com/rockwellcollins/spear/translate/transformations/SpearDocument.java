@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.actions.FindDependencies;
 
 public class SpearDocument {
 

@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.transformations;
+package com.rockwellcollins.spear.translate.actions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import org.eclipse.xtext.EcoreUtil2;
 
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
-import com.rockwellcollins.spear.translate.transformations.FindDependencies.Status;
+import com.rockwellcollins.spear.translate.actions.FindDependencies.Status;
 import com.rockwellcollins.spear.util.SpearSwitch;
 
 public class FindDependencies extends SpearSwitch<Status> {

@@ -61,5 +61,39 @@
               id="com.rockwellcollins.spear.translate.views.SpearCounterexampleView"
               name="Counterexample"/>              
    </extension>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="SpeAR Commands"
+            id="com.rockwellcollins.spear.translate.commands">
+      </category>
+     <command categoryId="com.rockwellcollins.spear.translate.commands"
+           description="Translate a Pattern to Lustre and Analyze"
+           id="com.rockwellcollins.spear.translate.commands.analyzePattern"
+           name="Analyze SpeAR Pattern">
+     </command>    
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:#TextEditorContext?after=additions">
+          <command
+                commandId="com.rockwellcollins.spear.translate.commands.analyzePattern"
+                icon="icons/logical_entailment.png"
+                id="com.rockwellcollins.spear.translate.commands.analyzePattern"
+                style="push">
+          </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="com.rockwellcollins.spear.translate.commands.analyzePattern"
+            class="com.rockwellcollins.spear.translate.handlers.AnalyzePattern">
+      </handler>
+   </extension>
+   
 
 </plugin>

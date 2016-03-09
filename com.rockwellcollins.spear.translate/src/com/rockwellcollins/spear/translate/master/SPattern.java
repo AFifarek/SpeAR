@@ -57,7 +57,6 @@ public class SPattern {
 		builder.addInputs(SPVariable.toVarDecl(this.inputs, map));
 		builder.addOutputs(SPVariable.toVarDecl(this.outputs, map));
 		builder.addLocals(SPVariable.toVarDecl(this.locals, map));
-		
 		builder.addEquations(SLustreEquation.toLustre(this.equations, map));
 		builder.addProperties(SLustreProperty.toLustre(this.properties));
 		builder.addAssertions(SLustreAssertion.toLustre(this.assertions,map));
