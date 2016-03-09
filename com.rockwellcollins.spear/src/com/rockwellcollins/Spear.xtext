@@ -42,7 +42,6 @@ LustreEquation:
 	id=[Variable] '=' rhs=Expr
 ;
 
-
 UnitDef:
 	{BaseUnit} name=ID (description=STRING)?
 	| {DerivedUnit} name=ID IdTypeDelimiter unit=UnitExpr (description=STRING)?;
