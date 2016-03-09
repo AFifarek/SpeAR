@@ -28,7 +28,6 @@ import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
-import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.Macro;
@@ -193,16 +192,16 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 
 	@Override
 	public Unit caseRecordTypeDef(RecordTypeDef rt) {
-		Map<String,Unit> fields = new HashMap<>();
-		for(FieldType rtf : rt.getFields()) {
+		Map<String, Unit> fields = new HashMap<>();
+		for (FieldType rtf : rt.getFields()) {
 			fields.put(rtf.getName(), doSwitch(rtf.getType()));
 		}
-		return new RecordUnit(rt.getName(),fields);
+		return new RecordUnit(rt.getName(), fields);
 	}
-	
+
 	@Override
 	public ArrayUnit caseArrayTypeDef(ArrayTypeDef at) {
-		return new ArrayUnit(at.getName(),doSwitch(at.getBase()),at.getSize());
+		return new ArrayUnit(at.getName(), doSwitch(at.getBase()), at.getSize());
 	}
 
 	@Override
@@ -217,7 +216,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	public Unit caseUserType(UserType ut) {
 		return doSwitch(ut.getDef());
 	}
-	
+
 	@Override
 	public Unit caseType(Type t) {
 		return SCALAR;
@@ -330,7 +329,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		case "historically":
 		case "H":
 		case "initially":
-		//the following ops are syntactic sugar
+			// the following ops are syntactic sugar
 		case "never":
 		case "before":
 			if (unit == SCALAR) {
@@ -346,32 +345,32 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	@Override
 	public Unit caseRecordAccessExpr(RecordAccessExpr rae) {
 		Unit record = doSwitch(rae.getRecord());
-		if(record == ERROR) {
+		if (record == ERROR) {
 			return ERROR;
 		}
-		
+
 		if (record instanceof RecordUnit) {
 			RecordUnit recordUnit = (RecordUnit) record;
 			return recordUnit.fields.get(rae.getField().getName());
 		}
-		
-		error("Expected record unit but found " + record,rae.getRecord());
+
+		error("Expected record unit but found " + record, rae.getRecord());
 		return ERROR;
 	}
-	
+
 	@Override
 	public Unit caseRecordUpdateExpr(RecordUpdateExpr rue) {
 		Unit record = doSwitch(rue.getRecord());
 		Unit value = doSwitch(rue.getValue());
-		
-		if(record == ERROR || value == ERROR) {
+
+		if (record == ERROR || value == ERROR) {
 			return ERROR;
 		}
-		
+
 		if (record instanceof RecordUnit) {
 			RecordUnit recordUnit = (RecordUnit) record;
 			Unit fieldUnit = recordUnit.fields.get(rue.getField().getName());
-			if(!fieldUnit.equals(value)) {
+			if (!fieldUnit.equals(value)) {
 				error("RecordField expected unit " + fieldUnit + ", but received " + value, rue);
 				return ERROR;
 			} else {
@@ -382,58 +381,58 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			return ERROR;
 		}
 	}
-	
+
 	@Override
 	public Unit caseRecordExpr(RecordExpr re) {
-		Map<String,Unit> fields = new HashMap<>();
-		for(FieldExpr fe : re.getFieldExprs()) {
+		Map<String, Unit> fields = new HashMap<>();
+		for (FieldExpr fe : re.getFieldExprs()) {
 			fields.put(fe.getField().getName(), doSwitch(fe.getExpr()));
 		}
-		
-		return new RecordUnit(re.getType().getName(),fields);
+		return new RecordUnit(re.getType().getName(), fields);
 	}
-	
+
 	@Override
 	public Unit caseFieldlessRecordExpr(FieldlessRecordExpr re) {
-		Map<String,Unit> fields = new HashMap<>();
-		int i=0;
-		for(Expr e : re.getExprs()) {
+		Map<String, Unit> fields = new HashMap<>();
+		int i = 0;
+		for (Expr e : re.getExprs()) {
 			fields.put(re.getType().getFields().get(i).getName(), doSwitch(e));
 			i++;
 		}
-		return new RecordUnit(re.getType().getName(),fields);
+		return new RecordUnit(re.getType().getName(), fields);
 	}
-	
+
 	@Override
 	public Unit caseArrayAccessExpr(ArrayAccessExpr aae) {
 		Unit array = doSwitch(aae.getArray());
-		
-		if(array == ERROR) {
+
+		if (array == ERROR) {
 			return ERROR;
 		}
-		
+
 		if (array instanceof ArrayUnit) {
 			ArrayUnit arrayUnit = (ArrayUnit) array;
 			return arrayUnit.base;
 		}
-		
+
 		error("Expected array of units but " + array + " was provided instead", aae.getArray(), null);
 		return ERROR;
 	}
-	
+
 	@Override
 	public Unit caseArrayUpdateExpr(ArrayUpdateExpr aue) {
 		Unit array = doSwitch(aue.getAccess().getArray());
 		Unit value = doSwitch(aue.getValue());
-		
-		if(array == ERROR || value == ERROR) {
+
+		if (array == ERROR || value == ERROR) {
 			return ERROR;
 		}
-		
+
 		if (array instanceof ArrayUnit) {
 			ArrayUnit arrayUnit = (ArrayUnit) array;
-			if(!arrayUnit.base.equals(value)) {
-				error("Array update unit is " + value + ", but array expects " + arrayUnit.base, aue, SpearPackage.Literals.ARRAY_UPDATE_EXPR__VALUE);
+			if (!arrayUnit.base.equals(value)) {
+				error("Array update unit is " + value + ", but array expects " + arrayUnit.base, aue,
+						SpearPackage.Literals.ARRAY_UPDATE_EXPR__VALUE);
 				return ERROR;
 			} else {
 				return array;
@@ -442,35 +441,36 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 		error("Expected array, but received " + array, aue, null);
 		return ERROR;
 	}
-	
+
 	@Override
 	public Unit caseArrayExpr(ArrayExpr array) {
 		Unit expected = doSwitch(array.getType());
-		if(expected == ERROR) {
+		if (expected == ERROR) {
 			return ERROR;
 		}
-		
+
 		if (expected instanceof ArrayUnit) {
 			ArrayUnit arrayUnit = (ArrayUnit) expected;
 			boolean error = false;
-			for(int i=0; i<array.getExprs().size(); i++) {
+			for (int i = 0; i < array.getExprs().size(); i++) {
 				Unit current = doSwitch(array.getExprs().get(i));
-				if(!arrayUnit.base.equals(current)) {
-					error("Expected unit " + arrayUnit.base + ", but received " + current, array, SpearPackage.Literals.ARRAY_EXPR__EXPRS, i);
-					error=true;
+				if (!arrayUnit.base.equals(current)) {
+					error("Expected unit " + arrayUnit.base + ", but received " + current, array,
+							SpearPackage.Literals.ARRAY_EXPR__EXPRS, i);
+					error = true;
 				}
 			}
-			if(error) {
+			if (error) {
 				return ERROR;
 			} else {
-				return arrayUnit;				
+				return arrayUnit;
 			}
 		}
-		
+
 		error("Expected an array of units but received " + expected, array);
 		return ERROR;
 	}
-	
+
 	@Override
 	public Unit caseIdExpr(IdExpr ide) {
 		return doSwitch(ide.getId());
@@ -497,102 +497,92 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	public Unit caseIfThenElseExpr(IfThenElseExpr ite) {
 		Unit testUnit = doSwitch(ite.getCond());
 		Unit thenUnit = doSwitch(ite.getThen());
-		
-		if(ite.getElse() == null) {
+
+		if (ite.getElse() == null) {
 			return thenUnit;
 		}
-		
+
 		Unit elseUnit = doSwitch(ite.getElse());
-		
-		if(thenUnit == ERROR || elseUnit == ERROR) {
+
+		if (thenUnit == ERROR || elseUnit == ERROR) {
 			return ERROR;
 		}
-		
-		if(testUnit != SCALAR) {
-			error("Condition of If-Then-Else must be scalar.",ite,SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND);
+
+		if (testUnit != SCALAR) {
+			error("Condition of If-Then-Else must be scalar.", ite, SpearPackage.Literals.IF_THEN_ELSE_EXPR__COND);
 		}
-		
-		if(thenUnit.equals(elseUnit)) {
+
+		if (thenUnit.equals(elseUnit)) {
 			return thenUnit;
 		}
-		
-		error("Then branch of If-Then-Else has units " + thenUnit + ", but else branch has units " + elseUnit, ite, null);
+
+		error("Then branch of If-Then-Else has units " + thenUnit + ", but else branch has units " + elseUnit, ite,
+				null);
 		return ERROR;
 	}
-	
+
 	@Override
 	public Unit caseAfterUntilExpr(AfterUntilExpr afe) {
 		Unit afterUnit = doSwitch(afe.getAfter());
-		if(afterUnit != SCALAR) {
-			error("After expressions must have scalar units.",afe.getAfter(),null);
+		if (afterUnit != SCALAR) {
+			error("After expressions must have scalar units.", afe.getAfter(), null);
 		}
-		
-		if(afe.getUntil() != null) {
+
+		if (afe.getUntil() != null) {
 			Unit untilUnit = doSwitch(afe.getUntil());
-			if(untilUnit != SCALAR) {
-				error("Until expressions must have scalar units.",afe.getUntil(),null);
+			if (untilUnit != SCALAR) {
+				error("Until expressions must have scalar units.", afe.getUntil(), null);
 			}
 		}
 		return SCALAR;
 	}
-	
+
 	@Override
 	public Unit caseWhileExpr(WhileExpr wh) {
 		Unit cond = doSwitch(wh.getCond());
 		Unit then = doSwitch(wh.getThen());
-		
-		if(cond != SCALAR) {
+
+		if (cond != SCALAR) {
 			error("While expressions must have scalar units.", wh.getCond(), null);
 			return ERROR;
 		}
-		
-		if(then != SCALAR) {
+
+		if (then != SCALAR) {
 			error("Then expression smust have scalar units.", wh.getThen(), null);
 			return ERROR;
 		}
-		
 		return SCALAR;
 	}
-	
+
 	@Override
 	public Unit caseMultipleIdExpr(MultipleIdExpr mide) {
-		List<Unit> unitslist = new ArrayList<>();
-		for(IdRef idr : mide.getIds()) {
-			unitslist.add(this.doSwitch(idr));
-		}
-		return new TupleUnit(unitslist);
+		return this.processList(new ArrayList<>(mide.getIds()));
 	}
-	
+
 	@Override
 	public Unit caseSpecificationCall(SpecificationCall sc) {
-		//check the args match the spec's inputs
-		List<Unit> argslist = new ArrayList<>();
-		for(Expr e : sc.getArgs()) {
-			argslist.add(this.doSwitch(e));
-		}
-		TupleUnit argsType = new TupleUnit(argslist);
-		
-		List<Unit> inputslist = new ArrayList<>();
-		for(Variable v : sc.getSpec().getInputs()) {
-			inputslist.add(this.doSwitch(v));
-		}
-		TupleUnit inputType = new TupleUnit(inputslist);
-		
-		if(!argsType.equals(inputType)) {
-			error("Provided units of type " + argsType + ", but " + sc.getSpec().getName() + " expected units " + inputType + ".",sc,SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
+		TupleUnit args = this.processList(new ArrayList<>(sc.getArgs()));
+		TupleUnit inputs = this.processList(new ArrayList<>(sc.getSpec().getInputs()));
+
+		if (!args.equals(inputs)) {
+			error("Provided units of type " + args + ", but " + sc.getSpec().getName() + " expected units "
+					+ inputs + ".", sc, SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
 			return ERROR;
 		}
-		
-		List<Unit> outputslist = new ArrayList<>();
-		for(Variable v : sc.getSpec().getOutputs()) {
-			outputslist.add(this.doSwitch(v));
-		}
-		return new TupleUnit(outputslist);
+		return compressTuple(this.processList(new ArrayList<>(sc.getSpec().getOutputs())));
 	}
-	
+
 	@Override
 	public Unit casePatternCall(PatternCall pc) {
-		return ERROR;
+		TupleUnit args = this.processList(new ArrayList<>(pc.getArgs()));
+		TupleUnit inputs = this.processList(new ArrayList<>(pc.getPattern().getInputs()));
+
+		if (!args.equals(inputs)) {
+			error("Provided units of type " + args + ", but " + pc.getPattern().getName() + " expected units " + inputs
+					+ ".", pc, SpearPackage.Literals.PATTERN_CALL__ARGS);
+		}
+
+		return compressTuple(this.processList(new ArrayList<>(pc.getPattern().getOutputs())));
 	}
 
 	@Override
@@ -612,7 +602,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 			return SCALAR;
 		}
 	}
-	
+
 	@Override
 	public Unit caseBoolLiteral(BoolLiteral ble) {
 		return SCALAR;
@@ -622,8 +612,7 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	public Unit caseEnumValue(EnumValue ev) {
 		return doSwitch(ev.eContainer());
 	}
-	
-	// TODO: remove this.
+
 	@Override
 	public Unit caseExpr(Expr e) {
 		warning("Unit Checker not implemented for " + e, e);
@@ -633,6 +622,22 @@ public class SpearUnitChecker extends SpearSwitch<Unit> {
 	/***************************************************************************************************/
 	// Error Functions
 	/***************************************************************************************************/
+	private TupleUnit processList(List<EObject> elements) {
+		List<Unit> list = new ArrayList<>();
+		for (EObject o : elements) {
+			list.add(this.doSwitch(o));
+		}
+		return new TupleUnit(list);
+	}
+
+	private Unit compressTuple(TupleUnit tupleUnit) {
+		if (tupleUnit.units.size() == 1) {
+			return tupleUnit.units.get(0);
+		} else {
+			return tupleUnit;
+		}
+	}
+
 	private void error(String message, EObject e, EStructuralFeature feature) {
 		messageAcceptor.acceptError(message, e, feature, 0, null);
 	}

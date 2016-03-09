@@ -29,7 +29,6 @@ import com.rockwellcollins.spear.FieldType;
 import com.rockwellcollins.spear.FieldlessRecordExpr;
 import com.rockwellcollins.spear.FormalConstraint;
 import com.rockwellcollins.spear.IdExpr;
-import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.IfThenElseExpr;
 import com.rockwellcollins.spear.IntLiteral;
 import com.rockwellcollins.spear.IntType;
@@ -94,7 +93,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	public boolean checkFormalConstraint(FormalConstraint fc) {
 		return expectAssignableType(BOOL, fc.getExpr());
 	}
-	
+
 	public boolean checkLustreEquation(LustreEquation eq) {
 		return expectAssignableType(doSwitch(eq.getId()), eq.getRhs());
 	}
@@ -567,72 +566,50 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 	}
 
 	@Override
-	public Type caseSpecificationCall(SpecificationCall sc) {
-		// check the args match the spec's inputs
-		List<Type> argslist = new ArrayList<>();
-		for (Expr e : sc.getArgs()) {
-			argslist.add(this.doSwitch(e));
-		}
-		TupleType argsType = new TupleType(argslist);
+	public Type caseSpecificationCall(SpecificationCall call) {
+		TupleType args = this.processList(new ArrayList<>(call.getArgs()));
+		TupleType inputs = this.processList(new ArrayList<>(call.getSpec().getInputs()));
 
-		List<Type> inputslist = new ArrayList<>();
-		for (Variable v : sc.getSpec().getInputs()) {
-			inputslist.add(this.doSwitch(v));
-		}
-		TupleType inputType = new TupleType(inputslist);
-
-		if (!argsType.equals(inputType)) {
-			error("Provided args of type " + argsType + ", but " + sc.getSpec().getName() + " expected type "
-					+ inputType + ".", sc, SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
+		if (!args.equals(inputs)) {
+			error("Provided args of type " + args + ", but " + call.getSpec().getName() + " expected type " + inputs
+					+ ".", call, SpearPackage.Literals.SPECIFICATION_CALL__ARGS);
 			return ERROR;
 		}
 
-		List<Type> outputslist = new ArrayList<>();
-		for (Variable v : sc.getSpec().getOutputs()) {
-			outputslist.add(this.doSwitch(v));
-		}
-		return compressTuple(new TupleType(outputslist));
+		TupleType outputs = this.processList(new ArrayList<>(call.getSpec().getOutputs()));
+		return compressTuple(outputs);
 	}
 
 	@Override
 	public Type caseMultipleIdExpr(MultipleIdExpr mide) {
-		List<Type> typelist = new ArrayList<>();
-		for (IdRef idr : mide.getIds()) {
-			typelist.add(this.doSwitch(idr));
-		}
-		return new TupleType(typelist);
+		return this.processList(new ArrayList<>(mide.getIds()));
 	}
-	
+
 	@Override
-	public Type casePatternCall(PatternCall pce) {
-		List<Type> args = new ArrayList<>();
-		for (Expr e : pce.getArgs()) {
-			args.add(this.doSwitch(e));
-		}
-		TupleType argsType = new TupleType(args);
+	public Type casePatternCall(PatternCall call) {
+		TupleType args = this.processList(new ArrayList<>(call.getArgs()));
+		TupleType inputs = this.processList(new ArrayList<>(call.getPattern().getInputs()));
 
-		List<Type> inputs = new ArrayList<>();
-		for (Variable v : pce.getPattern().getInputs()) {
-			inputs.add(this.doSwitch(v));
-		}
-		TupleType inputsType = new TupleType(inputs);
-
-		if (!argsType.equals(inputsType)) {
-			error("Provided args of type " + argsType + ", but " + pce.getPattern().getName() + " expected type "
-					+ inputsType + ".", pce, SpearPackage.Literals.PATTERN_CALL__ARGS);
+		if (!args.equals(inputs)) {
+			error("Provided args of type " + args + ", but " + call.getPattern().getName() + " expected type " + inputs
+					+ ".", call, SpearPackage.Literals.PATTERN_CALL__ARGS);
 			return ERROR;
 		}
-		
-		List<Type> outputs = new ArrayList<>();
-		for(Variable v : pce.getPattern().getOutputs()) {
-			outputs.add(this.doSwitch(v));
-		}
-		return compressTuple(new TupleType(outputs));
+
+		return compressTuple(this.processList(new ArrayList<>(call.getPattern().getOutputs())));
 	}
-	
+
 	/***************************************************************************************************/
 	// HELPER FUNCTIONS
 	/***************************************************************************************************/
+	private TupleType processList(List<EObject> list) {
+		List<Type> types = new ArrayList<>();
+		for (EObject o : list) {
+			types.add(this.doSwitch(o));
+		}
+		return new TupleType(types);
+	}
+
 	private Type compressTuple(TupleType tuple) {
 		if (tuple.types.size() == 1) {
 			return tuple.types.get(0);
@@ -640,7 +617,7 @@ public class SpearTypeChecker extends SpearSwitch<Type> {
 			return tuple;
 		}
 	}
-	
+
 	private boolean expectAssignableType(Type expected, EObject actual) {
 		return expectAssignableType(expected, doSwitch(actual), actual);
 	}
