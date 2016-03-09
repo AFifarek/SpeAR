@@ -25,6 +25,7 @@ Import:
 
 Definitions:
 	'Definitions' (name=ID)
+	('Imports:' imports+=Import*)?
 	('Units:' unitdefs+=UnitDef*)?
 	('Types:' typedefs+=TypeDef*)?
 	('Constants:' constants+=Constant*)?

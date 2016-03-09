@@ -15,11 +15,11 @@ import com.rockwellcollins.spear.IdRef;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Variable;
-import com.rockwellcollins.spear.translate.master.Utilities;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.typing.Type;
 import com.rockwellcollins.spear.typing.SpearTypeChecker;
 import com.rockwellcollins.spear.util.SpearSwitch;
+import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.ArrayAccessExpr;
 import jkind.lustre.ArrayExpr;

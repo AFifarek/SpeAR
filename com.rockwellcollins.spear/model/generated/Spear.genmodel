@@ -9,12 +9,12 @@
       fileExtensions="spear" ecorePackage="Spear.ecore#/">
     <genClasses ecoreClass="Spear.ecore#//File">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Spear.ecore#//File/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//File/imports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//File/typedefs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//File/constants"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//File/patterns"/>
     </genClasses>
     <genClasses ecoreClass="Spear.ecore#//Specification">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/imports"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/units"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/inputs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Spear.ecore#//Specification/outputs"/>

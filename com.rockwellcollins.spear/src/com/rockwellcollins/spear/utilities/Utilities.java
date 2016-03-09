@@ -1,4 +1,4 @@
-package com.rockwellcollins.spear.translate.master;
+package com.rockwellcollins.spear.utilities;
 
 import java.util.ArrayList;
 import java.util.List;

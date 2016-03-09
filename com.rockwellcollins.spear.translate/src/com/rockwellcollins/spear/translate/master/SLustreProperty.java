@@ -6,6 +6,7 @@ import java.util.List;
 import com.rockwellcollins.spear.LustreProperty;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.naming.NameMap;
+import com.rockwellcollins.spear.utilities.Utilities;
 
 public class SLustreProperty {
 

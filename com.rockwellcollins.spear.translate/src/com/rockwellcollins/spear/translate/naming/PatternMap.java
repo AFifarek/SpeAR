@@ -3,7 +3,7 @@ package com.rockwellcollins.spear.translate.naming;
 import org.apache.commons.collections4.bidimap.DualHashBidiMap;
 import org.eclipse.emf.ecore.EObject;
 
-import com.rockwellcollins.spear.translate.master.Utilities;
+import com.rockwellcollins.spear.utilities.Utilities;
 
 public class PatternMap {
 

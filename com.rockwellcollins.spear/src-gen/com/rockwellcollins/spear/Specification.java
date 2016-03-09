@@ -13,7 +13,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link com.rockwellcollins.spear.Specification#getImports <em>Imports</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Specification#getUnits <em>Units</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Specification#getInputs <em>Inputs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.Specification#getOutputs <em>Outputs</em>}</li>
@@ -30,22 +29,6 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Specification extends File
 {
-  /**
-   * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
-   * The list contents are of type {@link com.rockwellcollins.spear.Import}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Imports</em>' containment reference list.
-   * @see com.rockwellcollins.spear.SpearPackage#getSpecification_Imports()
-   * @model containment="true"
-   * @generated
-   */
-  EList<Import> getImports();
-
   /**
    * Returns the value of the '<em><b>Units</b></em>' containment reference list.
    * The list contents are of type {@link com.rockwellcollins.spear.UnitDef}.

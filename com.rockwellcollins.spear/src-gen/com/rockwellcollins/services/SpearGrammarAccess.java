@@ -281,29 +281,33 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cUnitsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cUnitdefsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cUnitdefsUnitDefParserRuleCall_2_1_0 = (RuleCall)cUnitdefsAssignment_2_1.eContents().get(0);
+		private final Keyword cImportsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cImportsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cImportsImportParserRuleCall_2_1_0 = (RuleCall)cImportsAssignment_2_1.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final Keyword cTypesKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cTypedefsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cTypedefsTypeDefParserRuleCall_3_1_0 = (RuleCall)cTypedefsAssignment_3_1.eContents().get(0);
+		private final Keyword cUnitsKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cUnitdefsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cUnitdefsUnitDefParserRuleCall_3_1_0 = (RuleCall)cUnitdefsAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cConstantsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cConstantsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cConstantsConstantParserRuleCall_4_1_0 = (RuleCall)cConstantsAssignment_4_1.eContents().get(0);
+		private final Keyword cTypesKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cTypedefsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cTypedefsTypeDefParserRuleCall_4_1_0 = (RuleCall)cTypedefsAssignment_4_1.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cPatternsKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cPatternsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cPatternsPatternParserRuleCall_5_1_0 = (RuleCall)cPatternsAssignment_5_1.eContents().get(0);
+		private final Keyword cConstantsKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cConstantsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cConstantsConstantParserRuleCall_5_1_0 = (RuleCall)cConstantsAssignment_5_1.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cPatternsKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cPatternsAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cPatternsPatternParserRuleCall_6_1_0 = (RuleCall)cPatternsAssignment_6_1.eContents().get(0);
 		
 		//Definitions:
-		//	'Definitions' name=ID ('Units:' unitdefs+=UnitDef*)? ('Types:' typedefs+=TypeDef*)? ('Constants:'
-		//	constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?;
+		//	'Definitions' name=ID ('Imports:' imports+=Import*)? ('Units:' unitdefs+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
+		//	('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?;
 		@Override public ParserRule getRule() { return rule; }
 
-		//'Definitions' name=ID ('Units:' unitdefs+=UnitDef*)? ('Types:' typedefs+=TypeDef*)? ('Constants:' constants+=Constant*)?
-		//('Patterns:' patterns+=Pattern*)?
+		//'Definitions' name=ID ('Imports:' imports+=Import*)? ('Units:' unitdefs+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
+		//('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?
 		public Group getGroup() { return cGroup; }
 
 		//'Definitions'
@@ -315,53 +319,65 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
 
-		//('Units:' unitdefs+=UnitDef*)?
+		//('Imports:' imports+=Import*)?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//'Units:'
-		public Keyword getUnitsKeyword_2_0() { return cUnitsKeyword_2_0; }
+		//'Imports:'
+		public Keyword getImportsKeyword_2_0() { return cImportsKeyword_2_0; }
 
-		//unitdefs+=UnitDef*
-		public Assignment getUnitdefsAssignment_2_1() { return cUnitdefsAssignment_2_1; }
+		//imports+=Import*
+		public Assignment getImportsAssignment_2_1() { return cImportsAssignment_2_1; }
 
-		//UnitDef
-		public RuleCall getUnitdefsUnitDefParserRuleCall_2_1_0() { return cUnitdefsUnitDefParserRuleCall_2_1_0; }
+		//Import
+		public RuleCall getImportsImportParserRuleCall_2_1_0() { return cImportsImportParserRuleCall_2_1_0; }
 
-		//('Types:' typedefs+=TypeDef*)?
+		//('Units:' unitdefs+=UnitDef*)?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//'Types:'
-		public Keyword getTypesKeyword_3_0() { return cTypesKeyword_3_0; }
+		//'Units:'
+		public Keyword getUnitsKeyword_3_0() { return cUnitsKeyword_3_0; }
 
-		//typedefs+=TypeDef*
-		public Assignment getTypedefsAssignment_3_1() { return cTypedefsAssignment_3_1; }
+		//unitdefs+=UnitDef*
+		public Assignment getUnitdefsAssignment_3_1() { return cUnitdefsAssignment_3_1; }
 
-		//TypeDef
-		public RuleCall getTypedefsTypeDefParserRuleCall_3_1_0() { return cTypedefsTypeDefParserRuleCall_3_1_0; }
+		//UnitDef
+		public RuleCall getUnitdefsUnitDefParserRuleCall_3_1_0() { return cUnitdefsUnitDefParserRuleCall_3_1_0; }
 
-		//('Constants:' constants+=Constant*)?
+		//('Types:' typedefs+=TypeDef*)?
 		public Group getGroup_4() { return cGroup_4; }
 
-		//'Constants:'
-		public Keyword getConstantsKeyword_4_0() { return cConstantsKeyword_4_0; }
+		//'Types:'
+		public Keyword getTypesKeyword_4_0() { return cTypesKeyword_4_0; }
 
-		//constants+=Constant*
-		public Assignment getConstantsAssignment_4_1() { return cConstantsAssignment_4_1; }
+		//typedefs+=TypeDef*
+		public Assignment getTypedefsAssignment_4_1() { return cTypedefsAssignment_4_1; }
 
-		//Constant
-		public RuleCall getConstantsConstantParserRuleCall_4_1_0() { return cConstantsConstantParserRuleCall_4_1_0; }
+		//TypeDef
+		public RuleCall getTypedefsTypeDefParserRuleCall_4_1_0() { return cTypedefsTypeDefParserRuleCall_4_1_0; }
 
-		//('Patterns:' patterns+=Pattern*)?
+		//('Constants:' constants+=Constant*)?
 		public Group getGroup_5() { return cGroup_5; }
 
+		//'Constants:'
+		public Keyword getConstantsKeyword_5_0() { return cConstantsKeyword_5_0; }
+
+		//constants+=Constant*
+		public Assignment getConstantsAssignment_5_1() { return cConstantsAssignment_5_1; }
+
+		//Constant
+		public RuleCall getConstantsConstantParserRuleCall_5_1_0() { return cConstantsConstantParserRuleCall_5_1_0; }
+
+		//('Patterns:' patterns+=Pattern*)?
+		public Group getGroup_6() { return cGroup_6; }
+
 		//'Patterns:'
-		public Keyword getPatternsKeyword_5_0() { return cPatternsKeyword_5_0; }
+		public Keyword getPatternsKeyword_6_0() { return cPatternsKeyword_6_0; }
 
 		//patterns+=Pattern*
-		public Assignment getPatternsAssignment_5_1() { return cPatternsAssignment_5_1; }
+		public Assignment getPatternsAssignment_6_1() { return cPatternsAssignment_6_1; }
 
 		//Pattern
-		public RuleCall getPatternsPatternParserRuleCall_5_1_0() { return cPatternsPatternParserRuleCall_5_1_0; }
+		public RuleCall getPatternsPatternParserRuleCall_6_1_0() { return cPatternsPatternParserRuleCall_6_1_0; }
 	}
 
 	public class PatternElements extends AbstractParserRuleElementFinder {
@@ -3500,8 +3516,8 @@ public class SpearGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Definitions:
-	//	'Definitions' name=ID ('Units:' unitdefs+=UnitDef*)? ('Types:' typedefs+=TypeDef*)? ('Constants:'
-	//	constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?;
+	//	'Definitions' name=ID ('Imports:' imports+=Import*)? ('Units:' unitdefs+=UnitDef*)? ('Types:' typedefs+=TypeDef*)?
+	//	('Constants:' constants+=Constant*)? ('Patterns:' patterns+=Pattern*)?;
 	public DefinitionsElements getDefinitionsAccess() {
 		return pDefinitions;
 	}

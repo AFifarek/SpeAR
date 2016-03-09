@@ -3,7 +3,6 @@
 package com.rockwellcollins.spear.impl;
 
 import com.rockwellcollins.spear.Constraint;
-import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Macro;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.Specification;
@@ -30,7 +29,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getUnits <em>Units</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.SpecificationImpl#getOutputs <em>Outputs</em>}</li>
@@ -45,16 +43,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SpecificationImpl extends FileImpl implements Specification
 {
-  /**
-   * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getImports()
-   * @generated
-   * @ordered
-   */
-  protected EList<Import> imports;
-
   /**
    * The cached value of the '{@link #getUnits() <em>Units</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -154,20 +142,6 @@ public class SpecificationImpl extends FileImpl implements Specification
   protected EClass eStaticClass()
   {
     return SpearPackage.Literals.SPECIFICATION;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Import> getImports()
-  {
-    if (imports == null)
-    {
-      imports = new EObjectContainmentEList<Import>(Import.class, this, SpearPackage.SPECIFICATION__IMPORTS);
-    }
-    return imports;
   }
 
   /**
@@ -292,8 +266,6 @@ public class SpecificationImpl extends FileImpl implements Specification
   {
     switch (featureID)
     {
-      case SpearPackage.SPECIFICATION__IMPORTS:
-        return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
       case SpearPackage.SPECIFICATION__UNITS:
         return ((InternalEList<?>)getUnits()).basicRemove(otherEnd, msgs);
       case SpearPackage.SPECIFICATION__INPUTS:
@@ -324,8 +296,6 @@ public class SpecificationImpl extends FileImpl implements Specification
   {
     switch (featureID)
     {
-      case SpearPackage.SPECIFICATION__IMPORTS:
-        return getImports();
       case SpearPackage.SPECIFICATION__UNITS:
         return getUnits();
       case SpearPackage.SPECIFICATION__INPUTS:
@@ -357,10 +327,6 @@ public class SpecificationImpl extends FileImpl implements Specification
   {
     switch (featureID)
     {
-      case SpearPackage.SPECIFICATION__IMPORTS:
-        getImports().clear();
-        getImports().addAll((Collection<? extends Import>)newValue);
-        return;
       case SpearPackage.SPECIFICATION__UNITS:
         getUnits().clear();
         getUnits().addAll((Collection<? extends UnitDef>)newValue);
@@ -407,9 +373,6 @@ public class SpecificationImpl extends FileImpl implements Specification
   {
     switch (featureID)
     {
-      case SpearPackage.SPECIFICATION__IMPORTS:
-        getImports().clear();
-        return;
       case SpearPackage.SPECIFICATION__UNITS:
         getUnits().clear();
         return;
@@ -448,8 +411,6 @@ public class SpecificationImpl extends FileImpl implements Specification
   {
     switch (featureID)
     {
-      case SpearPackage.SPECIFICATION__IMPORTS:
-        return imports != null && !imports.isEmpty();
       case SpearPackage.SPECIFICATION__UNITS:
         return units != null && !units.isEmpty();
       case SpearPackage.SPECIFICATION__INPUTS:

@@ -101,6 +101,13 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 		}
 	}
 	
+//	@Check
+//	public void checkDefinitionsDoNotImportSpecifications(Definitions d) {
+//		for(Import i : d.getImports()) {
+//			System.out.println(i);
+//		}
+//	}
+	
 	/*
 	 * It is desired that patterns not appear inside of Specifications.
 	 */

@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.lustre.PLTL;
-import com.rockwellcollins.spear.translate.master.Utilities;
+import com.rockwellcollins.spear.utilities.Utilities;
 
 import jkind.lustre.Node;
 

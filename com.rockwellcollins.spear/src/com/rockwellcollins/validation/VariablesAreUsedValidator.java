@@ -3,6 +3,7 @@ package com.rockwellcollins.validation;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.Check;
 
@@ -24,8 +25,14 @@ import com.rockwellcollins.spear.TypeDef;
 import com.rockwellcollins.spear.UnitDef;
 import com.rockwellcollins.spear.UserType;
 import com.rockwellcollins.spear.Variable;
+import com.rockwellcollins.spear.utilities.Utilities;
 
 public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
+	
+	private String errorMessage(EObject o) {
+		String name = Utilities.getName(o);
+		return name + " is defined, but never referenced.";
+	}
 	
 	@Check
 	public void checkSpecificationVariables(Specification s) {
@@ -36,31 +43,31 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		
 		for(Constant c : s.getConstants()) {
 			if(!used.contains(c.getName())) {
-				warning("Constant " + c.getName() + " is defined, but never referenced.",c,SpearPackage.Literals.ID_REF__NAME);
+				warning(errorMessage(c),c,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Macro m : s.getMacros()) {
 			if(!used.contains(m.getName())) {
-				warning(m.getName() + " is defined, but never referenced.",m,SpearPackage.Literals.ID_REF__NAME);
+				warning(errorMessage(m),m,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getInputs()) {
 			if(!used.contains(v.getName())) {
-				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getOutputs()) {
 			if(!used.contains(v.getName())) {
-				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : s.getState()) {
 			if(!used.contains(v.getName())) {
-				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 	}
@@ -90,7 +97,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		
 		for(TypeDef td : s.getTypedefs()) {
 			if(!used.contains(td.getName())) {
-				warning(td.getName() + " is defined, but never referenced.",td,SpearPackage.Literals.TYPE_DEF__NAME);
+				warning(errorMessage(td),td,SpearPackage.Literals.TYPE_DEF__NAME);
 			}
 		}
 	}
@@ -110,7 +117,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		
 		for(UnitDef ud : s.getUnits()) {
 			if(!used.contains(ud.getName())) {
-				warning(ud.getName() + " is defined, but never referenced.",ud,SpearPackage.Literals.UNIT_DEF__NAME);
+				warning(errorMessage(ud),ud,SpearPackage.Literals.UNIT_DEF__NAME);
 			}
 		}
 	}
@@ -124,7 +131,7 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		
 		for(Pattern p : s.getPatterns()) {
 			if(!used.contains(p.getName())) {
-				warning("Pattern " + p.getName() + " is defined, but not used.",p,SpearPackage.Literals.PATTERN__NAME);
+				warning(errorMessage(p),p,SpearPackage.Literals.PATTERN__NAME);
 			}
 		}
 	}
@@ -144,19 +151,19 @@ public class VariablesAreUsedValidator extends AbstractSpearJavaValidator {
 		
 		for(Variable v : p.getInputs()) {
 			if(!used.contains(v.getName())) {
-				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 		
 		for(Variable v : p.getOutputs()) {
 			if(!used.contains(v.getName())) {
-				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 
 		for(Variable v : p.getLocals()) {
 			if(!used.contains(v.getName())) {
-				warning(v.getName() + " is defined, but never referenced.",v,SpearPackage.Literals.ID_REF__NAME);
+				warning(errorMessage(v),v,SpearPackage.Literals.ID_REF__NAME);
 			}
 		}
 	}

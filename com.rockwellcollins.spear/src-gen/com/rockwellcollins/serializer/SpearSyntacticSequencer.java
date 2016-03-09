@@ -24,10 +24,11 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_AtomicExpr_LeftParenthesisKeyword_10_0_p;
 	protected AbstractElementAlias match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a;
 	protected AbstractElementAlias match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p;
-	protected AbstractElementAlias match_Definitions_ConstantsKeyword_4_0_q;
-	protected AbstractElementAlias match_Definitions_PatternsKeyword_5_0_q;
-	protected AbstractElementAlias match_Definitions_TypesKeyword_3_0_q;
-	protected AbstractElementAlias match_Definitions_UnitsKeyword_2_0_q;
+	protected AbstractElementAlias match_Definitions_ConstantsKeyword_5_0_q;
+	protected AbstractElementAlias match_Definitions_ImportsKeyword_2_0_q;
+	protected AbstractElementAlias match_Definitions_PatternsKeyword_6_0_q;
+	protected AbstractElementAlias match_Definitions_TypesKeyword_4_0_q;
+	protected AbstractElementAlias match_Definitions_UnitsKeyword_3_0_q;
 	protected AbstractElementAlias match_Pattern_VarKeyword_11_0_q;
 	protected AbstractElementAlias match_Specification_AssumptionsKeyword_13_0_q;
 	protected AbstractElementAlias match_Specification_ConstantsKeyword_5_0_q;
@@ -46,10 +47,11 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_AtomicExpr_LeftParenthesisKeyword_10_0_p = new TokenAlias(true, false, grammarAccess.getAtomicExprAccess().getLeftParenthesisKeyword_10_0());
 		match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a = new TokenAlias(true, true, grammarAccess.getAtomicUnitExprAccess().getLeftParenthesisKeyword_1_0());
 		match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p = new TokenAlias(true, false, grammarAccess.getAtomicUnitExprAccess().getLeftParenthesisKeyword_1_0());
-		match_Definitions_ConstantsKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getConstantsKeyword_4_0());
-		match_Definitions_PatternsKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getPatternsKeyword_5_0());
-		match_Definitions_TypesKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getTypesKeyword_3_0());
-		match_Definitions_UnitsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getUnitsKeyword_2_0());
+		match_Definitions_ConstantsKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getConstantsKeyword_5_0());
+		match_Definitions_ImportsKeyword_2_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getImportsKeyword_2_0());
+		match_Definitions_PatternsKeyword_6_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getPatternsKeyword_6_0());
+		match_Definitions_TypesKeyword_4_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getTypesKeyword_4_0());
+		match_Definitions_UnitsKeyword_3_0_q = new TokenAlias(false, true, grammarAccess.getDefinitionsAccess().getUnitsKeyword_3_0());
 		match_Pattern_VarKeyword_11_0_q = new TokenAlias(false, true, grammarAccess.getPatternAccess().getVarKeyword_11_0());
 		match_Specification_AssumptionsKeyword_13_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getAssumptionsKeyword_13_0());
 		match_Specification_ConstantsKeyword_5_0_q = new TokenAlias(false, true, grammarAccess.getSpecificationAccess().getConstantsKeyword_5_0());
@@ -95,14 +97,16 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_AtomicUnitExpr_LeftParenthesisKeyword_1_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p.equals(syntax))
 				emit_AtomicUnitExpr_LeftParenthesisKeyword_1_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Definitions_ConstantsKeyword_4_0_q.equals(syntax))
-				emit_Definitions_ConstantsKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Definitions_PatternsKeyword_5_0_q.equals(syntax))
-				emit_Definitions_PatternsKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Definitions_TypesKeyword_3_0_q.equals(syntax))
-				emit_Definitions_TypesKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Definitions_UnitsKeyword_2_0_q.equals(syntax))
-				emit_Definitions_UnitsKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Definitions_ConstantsKeyword_5_0_q.equals(syntax))
+				emit_Definitions_ConstantsKeyword_5_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Definitions_ImportsKeyword_2_0_q.equals(syntax))
+				emit_Definitions_ImportsKeyword_2_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Definitions_PatternsKeyword_6_0_q.equals(syntax))
+				emit_Definitions_PatternsKeyword_6_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Definitions_TypesKeyword_4_0_q.equals(syntax))
+				emit_Definitions_TypesKeyword_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Definitions_UnitsKeyword_3_0_q.equals(syntax))
+				emit_Definitions_UnitsKeyword_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Pattern_VarKeyword_11_0_q.equals(syntax))
 				emit_Pattern_VarKeyword_11_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Specification_AssumptionsKeyword_13_0_q.equals(syntax))
@@ -220,14 +224,31 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'Constants:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name=ID 'Units:'? 'Types:'? (ambiguity) 'Patterns:' patterns+=Pattern
-	 *     name=ID 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? (rule end)
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:' patterns+=Pattern
+	 *     imports+=Import 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? (rule end)
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:' patterns+=Pattern
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? (ambiguity) 'Patterns:'? (rule end)
 	 *     typedefs+=TypeDef (ambiguity) 'Patterns:' patterns+=Pattern
 	 *     typedefs+=TypeDef (ambiguity) 'Patterns:'? (rule end)
 	 *     unitdefs+=UnitDef 'Types:'? (ambiguity) 'Patterns:' patterns+=Pattern
 	 *     unitdefs+=UnitDef 'Types:'? (ambiguity) 'Patterns:'? (rule end)
 	 */
-	protected void emit_Definitions_ConstantsKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Definitions_ConstantsKeyword_5_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     'Imports:'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     name=ID (ambiguity) 'Units:' unitdefs+=UnitDef
+	 *     name=ID (ambiguity) 'Units:'? 'Types:' typedefs+=TypeDef
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:' constants+=Constant
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     name=ID (ambiguity) 'Units:'? 'Types:'? 'Constants:'? 'Patterns:'? (rule end)
+	 */
+	protected void emit_Definitions_ImportsKeyword_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -237,11 +258,12 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     constants+=Constant (ambiguity) (rule end)
-	 *     name=ID 'Units:'? 'Types:'? 'Constants:'? (ambiguity) (rule end)
+	 *     imports+=Import 'Units:'? 'Types:'? 'Constants:'? (ambiguity) (rule end)
+	 *     name=ID 'Imports:'? 'Units:'? 'Types:'? 'Constants:'? (ambiguity) (rule end)
 	 *     typedefs+=TypeDef 'Constants:'? (ambiguity) (rule end)
 	 *     unitdefs+=UnitDef 'Types:'? 'Constants:'? (ambiguity) (rule end)
 	 */
-	protected void emit_Definitions_PatternsKeyword_5_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Definitions_PatternsKeyword_6_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -250,14 +272,17 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'Types:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name=ID 'Units:'? (ambiguity) 'Constants:' constants+=Constant
-	 *     name=ID 'Units:'? (ambiguity) 'Constants:'? 'Patterns:' patterns+=Pattern
-	 *     name=ID 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? (rule end)
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:' constants+=Constant
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     imports+=Import 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? (rule end)
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:' constants+=Constant
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     name=ID 'Imports:'? 'Units:'? (ambiguity) 'Constants:'? 'Patterns:'? (rule end)
 	 *     unitdefs+=UnitDef (ambiguity) 'Constants:' constants+=Constant
 	 *     unitdefs+=UnitDef (ambiguity) 'Constants:'? 'Patterns:' patterns+=Pattern
 	 *     unitdefs+=UnitDef (ambiguity) 'Constants:'? 'Patterns:'? (rule end)
 	 */
-	protected void emit_Definitions_TypesKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Definitions_TypesKeyword_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -266,12 +291,16 @@ public class SpearSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'Units:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     name=ID (ambiguity) 'Types:' typedefs+=TypeDef
-	 *     name=ID (ambiguity) 'Types:'? 'Constants:' constants+=Constant
-	 *     name=ID (ambiguity) 'Types:'? 'Constants:'? 'Patterns:' patterns+=Pattern
-	 *     name=ID (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? (rule end)
+	 *     imports+=Import (ambiguity) 'Types:' typedefs+=TypeDef
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:' constants+=Constant
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     imports+=Import (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? (rule end)
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:' typedefs+=TypeDef
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:' constants+=Constant
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:' patterns+=Pattern
+	 *     name=ID 'Imports:'? (ambiguity) 'Types:'? 'Constants:'? 'Patterns:'? (rule end)
 	 */
-	protected void emit_Definitions_UnitsKeyword_2_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Definitions_UnitsKeyword_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

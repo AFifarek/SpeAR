@@ -52,6 +52,7 @@ Export-Package: com.rockwellcollins;uses:="com.google.inject,org.eclipse.xtext,o
    org.eclipse.emf.common.notify,
    org.eclipse.emf.common.notify.impl,
    org.eclipse.emf.ecore.util",
+ com.rockwellcollins.spear.utilities,
  com.rockwellcollins.validation;uses:="org.eclipse.xtext.validation",
  javax.xml.bind;
   uses:="javax.xml.validation,

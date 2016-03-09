@@ -20,8 +20,7 @@ public class FindDependencies extends SpearSwitch<Status> {
 	public static FindDependencies instance(Specification main) {
 		FindDependencies findDeps = new FindDependencies();
 		findDeps.set.add(main);
-		findDeps.doSwitch(main);
-		
+		findDeps.doSwitch(main);	
 		return findDeps;
 	}
 	

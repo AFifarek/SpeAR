@@ -76,13 +76,22 @@ public interface SpearPackage extends EPackage
   int FILE__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Imports</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FILE__IMPORTS = 1;
+
+  /**
    * The feature id for the '<em><b>Typedefs</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FILE__TYPEDEFS = 1;
+  int FILE__TYPEDEFS = 2;
 
   /**
    * The feature id for the '<em><b>Constants</b></em>' containment reference list.
@@ -91,7 +100,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FILE__CONSTANTS = 2;
+  int FILE__CONSTANTS = 3;
 
   /**
    * The feature id for the '<em><b>Patterns</b></em>' containment reference list.
@@ -100,7 +109,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FILE__PATTERNS = 3;
+  int FILE__PATTERNS = 4;
 
   /**
    * The number of structural features of the '<em>File</em>' class.
@@ -109,7 +118,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FILE_FEATURE_COUNT = 4;
+  int FILE_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.SpecificationImpl <em>Specification</em>}' class.
@@ -129,6 +138,15 @@ public interface SpearPackage extends EPackage
    * @ordered
    */
   int SPECIFICATION__NAME = FILE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Imports</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPECIFICATION__IMPORTS = FILE__IMPORTS;
 
   /**
    * The feature id for the '<em><b>Typedefs</b></em>' containment reference list.
@@ -158,22 +176,13 @@ public interface SpearPackage extends EPackage
   int SPECIFICATION__PATTERNS = FILE__PATTERNS;
 
   /**
-   * The feature id for the '<em><b>Imports</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SPECIFICATION__IMPORTS = FILE_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Units</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPECIFICATION__UNITS = FILE_FEATURE_COUNT + 1;
+  int SPECIFICATION__UNITS = FILE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -182,7 +191,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__INPUTS = FILE_FEATURE_COUNT + 2;
+  int SPECIFICATION__INPUTS = FILE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -191,7 +200,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__OUTPUTS = FILE_FEATURE_COUNT + 3;
+  int SPECIFICATION__OUTPUTS = FILE_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>State</b></em>' containment reference list.
@@ -200,7 +209,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__STATE = FILE_FEATURE_COUNT + 4;
+  int SPECIFICATION__STATE = FILE_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Macros</b></em>' containment reference list.
@@ -209,7 +218,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__MACROS = FILE_FEATURE_COUNT + 5;
+  int SPECIFICATION__MACROS = FILE_FEATURE_COUNT + 4;
 
   /**
    * The feature id for the '<em><b>Assumptions</b></em>' containment reference list.
@@ -218,7 +227,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__ASSUMPTIONS = FILE_FEATURE_COUNT + 6;
+  int SPECIFICATION__ASSUMPTIONS = FILE_FEATURE_COUNT + 5;
 
   /**
    * The feature id for the '<em><b>Requirements</b></em>' containment reference list.
@@ -227,7 +236,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__REQUIREMENTS = FILE_FEATURE_COUNT + 7;
+  int SPECIFICATION__REQUIREMENTS = FILE_FEATURE_COUNT + 6;
 
   /**
    * The feature id for the '<em><b>Behaviors</b></em>' containment reference list.
@@ -236,7 +245,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION__BEHAVIORS = FILE_FEATURE_COUNT + 8;
+  int SPECIFICATION__BEHAVIORS = FILE_FEATURE_COUNT + 7;
 
   /**
    * The number of structural features of the '<em>Specification</em>' class.
@@ -245,7 +254,7 @@ public interface SpearPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPECIFICATION_FEATURE_COUNT = FILE_FEATURE_COUNT + 9;
+  int SPECIFICATION_FEATURE_COUNT = FILE_FEATURE_COUNT + 8;
 
   /**
    * The meta object id for the '{@link com.rockwellcollins.spear.impl.ImportImpl <em>Import</em>}' class.
@@ -293,6 +302,15 @@ public interface SpearPackage extends EPackage
    * @ordered
    */
   int DEFINITIONS__NAME = FILE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Imports</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEFINITIONS__IMPORTS = FILE__IMPORTS;
 
   /**
    * The feature id for the '<em><b>Typedefs</b></em>' containment reference list.
@@ -2260,6 +2278,17 @@ public interface SpearPackage extends EPackage
   EAttribute getFile_Name();
 
   /**
+   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.File#getImports <em>Imports</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Imports</em>'.
+   * @see com.rockwellcollins.spear.File#getImports()
+   * @see #getFile()
+   * @generated
+   */
+  EReference getFile_Imports();
+
+  /**
    * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.File#getTypedefs <em>Typedefs</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2301,17 +2330,6 @@ public interface SpearPackage extends EPackage
    * @generated
    */
   EClass getSpecification();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Specification#getImports <em>Imports</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Imports</em>'.
-   * @see com.rockwellcollins.spear.Specification#getImports()
-   * @see #getSpecification()
-   * @generated
-   */
-  EReference getSpecification_Imports();
 
   /**
    * Returns the meta object for the containment reference list '{@link com.rockwellcollins.spear.Specification#getUnits <em>Units</em>}'.
@@ -3950,6 +3968,14 @@ public interface SpearPackage extends EPackage
     EAttribute FILE__NAME = eINSTANCE.getFile_Name();
 
     /**
+     * The meta object literal for the '<em><b>Imports</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FILE__IMPORTS = eINSTANCE.getFile_Imports();
+
+    /**
      * The meta object literal for the '<em><b>Typedefs</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3982,14 +4008,6 @@ public interface SpearPackage extends EPackage
      * @generated
      */
     EClass SPECIFICATION = eINSTANCE.getSpecification();
-
-    /**
-     * The meta object literal for the '<em><b>Imports</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SPECIFICATION__IMPORTS = eINSTANCE.getSpecification_Imports();
 
     /**
      * The meta object literal for the '<em><b>Units</b></em>' containment reference list feature.

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.File#getName <em>Name</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.File#getImports <em>Imports</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.File#getTypedefs <em>Typedefs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.File#getConstants <em>Constants</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.File#getPatterns <em>Patterns</em>}</li>
@@ -52,6 +53,22 @@ public interface File extends EObject
    * @generated
    */
   void setName(String value);
+
+  /**
+   * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
+   * The list contents are of type {@link com.rockwellcollins.spear.Import}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Imports</em>' containment reference list.
+   * @see com.rockwellcollins.spear.SpearPackage#getFile_Imports()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Import> getImports();
 
   /**
    * Returns the value of the '<em><b>Typedefs</b></em>' containment reference list.

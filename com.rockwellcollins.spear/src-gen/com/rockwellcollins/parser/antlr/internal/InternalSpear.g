@@ -489,89 +489,111 @@ ruleDefinitions returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_2='Units:' 
+)(	otherlv_2='Imports:' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getDefinitionsAccess().getUnitsKeyword_2_0());
+    	newLeafNode(otherlv_2, grammarAccess.getDefinitionsAccess().getImportsKeyword_2_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDefinitionsAccess().getUnitdefsUnitDefParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getDefinitionsAccess().getImportsImportParserRuleCall_2_1_0()); 
 	    }
-		lv_unitdefs_3_0=ruleUnitDef		{
+		lv_imports_3_0=ruleImport		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDefinitionsRule());
+	        }
+       		add(
+       			$current, 
+       			"imports",
+        		lv_imports_3_0, 
+        		"com.rockwellcollins.Spear.Import");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*)?(	otherlv_4='Units:' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getDefinitionsAccess().getUnitsKeyword_3_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDefinitionsAccess().getUnitdefsUnitDefParserRuleCall_3_1_0()); 
+	    }
+		lv_unitdefs_5_0=ruleUnitDef		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDefinitionsRule());
 	        }
        		add(
        			$current, 
        			"unitdefs",
-        		lv_unitdefs_3_0, 
+        		lv_unitdefs_5_0, 
         		"com.rockwellcollins.Spear.UnitDef");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*)?(	otherlv_4='Types:' 
+)*)?(	otherlv_6='Types:' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getDefinitionsAccess().getTypesKeyword_3_0());
+    	newLeafNode(otherlv_6, grammarAccess.getDefinitionsAccess().getTypesKeyword_4_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDefinitionsAccess().getTypedefsTypeDefParserRuleCall_3_1_0()); 
+	        newCompositeNode(grammarAccess.getDefinitionsAccess().getTypedefsTypeDefParserRuleCall_4_1_0()); 
 	    }
-		lv_typedefs_5_0=ruleTypeDef		{
+		lv_typedefs_7_0=ruleTypeDef		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDefinitionsRule());
 	        }
        		add(
        			$current, 
        			"typedefs",
-        		lv_typedefs_5_0, 
+        		lv_typedefs_7_0, 
         		"com.rockwellcollins.Spear.TypeDef");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*)?(	otherlv_6='Constants:' 
+)*)?(	otherlv_8='Constants:' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getDefinitionsAccess().getConstantsKeyword_4_0());
+    	newLeafNode(otherlv_8, grammarAccess.getDefinitionsAccess().getConstantsKeyword_5_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDefinitionsAccess().getConstantsConstantParserRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getDefinitionsAccess().getConstantsConstantParserRuleCall_5_1_0()); 
 	    }
-		lv_constants_7_0=ruleConstant		{
+		lv_constants_9_0=ruleConstant		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDefinitionsRule());
 	        }
        		add(
        			$current, 
        			"constants",
-        		lv_constants_7_0, 
+        		lv_constants_9_0, 
         		"com.rockwellcollins.Spear.Constant");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*)?(	otherlv_8='Patterns:' 
+)*)?(	otherlv_10='Patterns:' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getDefinitionsAccess().getPatternsKeyword_5_0());
+    	newLeafNode(otherlv_10, grammarAccess.getDefinitionsAccess().getPatternsKeyword_6_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getDefinitionsAccess().getPatternsPatternParserRuleCall_5_1_0()); 
+	        newCompositeNode(grammarAccess.getDefinitionsAccess().getPatternsPatternParserRuleCall_6_1_0()); 
 	    }
-		lv_patterns_9_0=rulePattern		{
+		lv_patterns_11_0=rulePattern		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getDefinitionsRule());
 	        }
        		add(
        			$current, 
        			"patterns",
-        		lv_patterns_9_0, 
+        		lv_patterns_11_0, 
         		"com.rockwellcollins.Spear.Pattern");
 	        afterParserOrEnumRuleCall();
 	    }

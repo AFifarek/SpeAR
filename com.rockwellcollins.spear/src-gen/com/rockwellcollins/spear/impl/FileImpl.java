@@ -4,6 +4,7 @@ package com.rockwellcollins.spear.impl;
 
 import com.rockwellcollins.spear.Constant;
 import com.rockwellcollins.spear.File;
+import com.rockwellcollins.spear.Import;
 import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.SpearPackage;
 import com.rockwellcollins.spear.TypeDef;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link com.rockwellcollins.spear.impl.FileImpl#getName <em>Name</em>}</li>
+ *   <li>{@link com.rockwellcollins.spear.impl.FileImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.FileImpl#getTypedefs <em>Typedefs</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.FileImpl#getConstants <em>Constants</em>}</li>
  *   <li>{@link com.rockwellcollins.spear.impl.FileImpl#getPatterns <em>Patterns</em>}</li>
@@ -61,6 +63,16 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getImports()
+   * @generated
+   * @ordered
+   */
+  protected EList<Import> imports;
 
   /**
    * The cached value of the '{@link #getTypedefs() <em>Typedefs</em>}' containment reference list.
@@ -141,6 +153,20 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Import> getImports()
+  {
+    if (imports == null)
+    {
+      imports = new EObjectContainmentEList<Import>(Import.class, this, SpearPackage.FILE__IMPORTS);
+    }
+    return imports;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<TypeDef> getTypedefs()
   {
     if (typedefs == null)
@@ -188,6 +214,8 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
   {
     switch (featureID)
     {
+      case SpearPackage.FILE__IMPORTS:
+        return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
       case SpearPackage.FILE__TYPEDEFS:
         return ((InternalEList<?>)getTypedefs()).basicRemove(otherEnd, msgs);
       case SpearPackage.FILE__CONSTANTS:
@@ -210,6 +238,8 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
     {
       case SpearPackage.FILE__NAME:
         return getName();
+      case SpearPackage.FILE__IMPORTS:
+        return getImports();
       case SpearPackage.FILE__TYPEDEFS:
         return getTypedefs();
       case SpearPackage.FILE__CONSTANTS:
@@ -233,6 +263,10 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
     {
       case SpearPackage.FILE__NAME:
         setName((String)newValue);
+        return;
+      case SpearPackage.FILE__IMPORTS:
+        getImports().clear();
+        getImports().addAll((Collection<? extends Import>)newValue);
         return;
       case SpearPackage.FILE__TYPEDEFS:
         getTypedefs().clear();
@@ -263,6 +297,9 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
       case SpearPackage.FILE__NAME:
         setName(NAME_EDEFAULT);
         return;
+      case SpearPackage.FILE__IMPORTS:
+        getImports().clear();
+        return;
       case SpearPackage.FILE__TYPEDEFS:
         getTypedefs().clear();
         return;
@@ -288,6 +325,8 @@ public class FileImpl extends MinimalEObjectImpl.Container implements File
     {
       case SpearPackage.FILE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case SpearPackage.FILE__IMPORTS:
+        return imports != null && !imports.isEmpty();
       case SpearPackage.FILE__TYPEDEFS:
         return typedefs != null && !typedefs.isEmpty();
       case SpearPackage.FILE__CONSTANTS:

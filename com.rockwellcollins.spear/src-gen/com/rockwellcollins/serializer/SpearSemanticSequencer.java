@@ -843,7 +843,14 @@ public class SpearSemanticSequencer extends AbstractDelegatingSemanticSequencer 
 	 *     Definitions returns Definitions
 	 *
 	 * Constraint:
-	 *     (name=ID unitdefs+=UnitDef* typedefs+=TypeDef* constants+=Constant* patterns+=Pattern*)
+	 *     (
+	 *         name=ID 
+	 *         imports+=Import* 
+	 *         unitdefs+=UnitDef* 
+	 *         typedefs+=TypeDef* 
+	 *         constants+=Constant* 
+	 *         patterns+=Pattern*
+	 *     )
 	 */
 	protected void sequence_Definitions(ISerializationContext context, Definitions semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

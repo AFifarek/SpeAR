@@ -10,7 +10,7 @@ import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.Variable;
 import com.rockwellcollins.spear.translate.master.SFile;
 import com.rockwellcollins.spear.translate.master.SPattern;
-import com.rockwellcollins.spear.translate.master.Utilities;
+import com.rockwellcollins.spear.utilities.Utilities;
 
 public class NameMap {
 
