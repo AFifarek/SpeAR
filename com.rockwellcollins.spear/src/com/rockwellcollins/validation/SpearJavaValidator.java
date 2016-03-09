@@ -100,4 +100,14 @@ public class SpearJavaValidator extends com.rockwellcollins.validation.AbstractS
 			error("The initial value must be specified for previous expressions.",pe,null);
 		}
 	}
+	
+	/*
+	 * It is desired that patterns not appear inside of Specifications.
+	 */
+//	@Check
+//	public void checkSpecificationContainsPatterns(Specification s) {
+//		if(s.getPatterns().size() > 0) {
+//			error("Specification should not define patterns.",s,SpearPackage.Literals.FILE__PATTERNS);
+//		}
+//	}
 }
