@@ -1,0 +1,47 @@
+Specification test_patterns
+
+Patterns:
+	pattern gt (a : int, b : int) returns (x : bool)
+	let
+		x = a > b
+	tel
+	
+	pattern gt_0 (a : int) returns (x : bool)
+	let
+		x = gt(a,0)
+	tel
+	
+	pattern gteq0 (a : int) returns (x : bool)
+	var
+		p1 : bool
+		p2 : bool
+	let
+		x = gt_0(a) or (a == 0)
+		
+		p1 = x implies not (a < 0) 
+		p2 = not (a < 0)
+		
+		--%PROPERTY p1
+		--%PROPERTY p2
+	tel	
+
+Inputs:
+	a : int
+	b : int
+
+Outputs:
+	x : int
+	y : int
+
+Assumptions:
+	a0 = gteq0(a)
+	a1 = gt_0(b)
+
+DerivedRequirements:
+	dr0 = x >= a + 1
+	dr1 = y >= b + 1
+
+Requirements:
+	p0 = x >= 1
+	p1 = y > 1
+

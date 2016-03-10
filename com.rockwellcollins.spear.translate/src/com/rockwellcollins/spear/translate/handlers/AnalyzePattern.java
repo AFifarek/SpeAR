@@ -2,7 +2,6 @@ package com.rockwellcollins.spear.translate.handlers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -24,6 +23,7 @@ import com.rockwellcollins.spear.translate.lustre.PLTL;
 import com.rockwellcollins.spear.translate.master.SConstant;
 import com.rockwellcollins.spear.translate.master.SFile;
 import com.rockwellcollins.spear.translate.master.SPattern;
+import com.rockwellcollins.spear.translate.master.SPatternProgram;
 import com.rockwellcollins.spear.translate.master.STypeDef;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
@@ -62,26 +62,8 @@ public class AnalyzePattern extends AbstractHandler {
 	}
 
 	private void analyzePattern(Pattern p) {
-		NameMap map = new NameMap();
-		
-		//need to handle typedefs and constants yet
-		PatternDeps deps = new PatternDeps(p);
-
-		List<SFile> files = SFile.build(new ArrayList<>(deps.files), map);
-		List<STypeDef> typedefs = STypeDef.build(new ArrayList<>(deps.typedefs), map);
-		List<SConstant> constants = SConstant.build(new ArrayList<>(deps.constants), map);
-		List<SPattern> spatterns = SPattern.build(new ArrayList<>(deps.patterns), map);
-		
-		ProgramBuilder programBuilder = new ProgramBuilder();
-		programBuilder.addTypes(STypeDef.toLustre(typedefs, map));
-		programBuilder.addConstants(SConstant.toLustre(constants, map));
-		programBuilder.addNodes(PLTL.getPLTL());
-		programBuilder.addNodes(SPattern.toLustre(spatterns, map));
-		
-		String mainName = map.lookup(p);
-		programBuilder.setMain(mainName);
-
-		Program program = programBuilder.build();
+		SPatternProgram patternProg = new SPatternProgram(p);
+		Program program = patternProg.toLustre();
 		
 		JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
 		JKindResult result = new JKindResult("result");

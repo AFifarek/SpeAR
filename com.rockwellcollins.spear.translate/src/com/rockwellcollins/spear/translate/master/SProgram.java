@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rockwellcollins.spear.File;
-import com.rockwellcollins.spear.Pattern;
 import com.rockwellcollins.spear.translate.lustre.PLTL;
 import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.translate.transformations.SpearDocument;
@@ -19,7 +18,7 @@ public class SProgram {
 		return new SProgram(doc);
 	}
 	
-	public SSpecification main;
+	public SFile main;
 	public NameMap map;
 	
 	public SProgram(SpearDocument document) {
@@ -34,7 +33,7 @@ public class SProgram {
 			File f = files.get(i);
 			SFile sfile = SFile.build(f, map);
 			if(f.getName().equals(document.mainName)) {
-				this.main = (SSpecification) sfile;
+				this.main = sfile;
 			}	
 		}
 	}
