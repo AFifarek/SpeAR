@@ -18,7 +18,7 @@ public class SFile {
 		return builder.doSwitch(f);
 	}
 	
-	public static List<SFile> buildList(List<File> list, SProgram top, NameMap map) {
+	public static List<SFile> build(List<File> list, NameMap map) {
 		List<SFile> converted = new ArrayList<>();
 		SFileBuilder builder = new SFileBuilder(map);
 		for(File f : list) {

@@ -24,6 +24,13 @@ public class FindDependencies extends SpearSwitch<Status> {
 		return findDeps;
 	}
 	
+	public static FindDependencies instance(File main) {
+		FindDependencies findDeps = new FindDependencies();
+		findDeps.set.add(main);
+		findDeps.doSwitch(main);	
+		return findDeps;
+	}
+	
 	public static enum Status { DONE };
 	private Set<File> set = new LinkedHashSet<>();
 	

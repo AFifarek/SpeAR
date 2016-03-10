@@ -32,8 +32,13 @@ public class SpearResultsView extends ViewPart {
 		table.getControl().setFocus();
 	}
 
-	public void setInput(JKindResult result, Layout layout) {
+	public void setInput(JKindResult result, Layout layout, String title) {
 		table.setInput(result);
 		menuListener.setLayout(layout);
+		if(title != null) {
+			setPartName(title);			
+		} else {
+			setPartName("Analysis Results");
+		}
 	}
 }

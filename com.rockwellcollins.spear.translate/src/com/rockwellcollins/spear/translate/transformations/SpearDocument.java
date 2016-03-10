@@ -3,6 +3,7 @@ package com.rockwellcollins.spear.translate.transformations;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rockwellcollins.spear.Definitions;
 import com.rockwellcollins.spear.File;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.actions.FindDependencies;
@@ -13,6 +14,13 @@ public class SpearDocument {
 	public List<File> files = new ArrayList<>();
 
 	public SpearDocument(Specification main) {
+		this.mainName = main.getName();
+		for (File file : FindDependencies.instance(main).getCalledFiles()) {
+			files.add(file);
+		}
+	}
+	
+	public SpearDocument(File main) {
 		this.mainName = main.getName();
 		for (File file : FindDependencies.instance(main).getCalledFiles()) {
 			files.add(file);

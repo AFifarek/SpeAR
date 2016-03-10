@@ -162,7 +162,7 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 			public void run() {
 				try {
 					SpearResultsView page = (SpearResultsView) window.getActivePage().showView(SpearResultsView.ID);
-					page.setInput(result, layout);
+					page.setInput(result, layout, null);
 				} catch (PartInitException e) {
 					e.printStackTrace();
 				}

@@ -14,6 +14,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 
 import jkind.api.results.PropertyResult;
+import jkind.api.ui.results.AnalysisResultColumnViewer;
 import jkind.api.ui.results.AnalysisResultTable;
 import jkind.results.Counterexample;
 import jkind.results.InvalidProperty;
@@ -26,13 +27,13 @@ import jkind.results.layout.Layout;
  * JKindMenuListener is a class necessary to display the Analysis pulldown menu.
  */
 public class SpearMenuListener implements IMenuListener {
-	private final AnalysisResultTable table;
+	private final AnalysisResultColumnViewer columnViewer;
 	private Layout layout;
 	private IWorkbenchWindow window;
 
-	public SpearMenuListener(IWorkbenchWindow window, AnalysisResultTable table) {
+	public SpearMenuListener(IWorkbenchWindow window, AnalysisResultTable columnViewer) {
 		this.window = window;
-		this.table = table;
+		this.columnViewer = columnViewer;
 	}
 
 	public void setLayout(Layout layout) {
@@ -41,7 +42,7 @@ public class SpearMenuListener implements IMenuListener {
 	
 	@Override
 	public void menuAboutToShow(IMenuManager manager) {
-		IStructuredSelection selection = (IStructuredSelection) table.getViewer().getSelection();
+		IStructuredSelection selection = (IStructuredSelection) columnViewer.getViewer().getSelection();
 		if (!selection.isEmpty()) {
 			PropertyResult result = (PropertyResult) selection.getFirstElement();
 			addLinkedMenus(manager, result);
@@ -107,7 +108,7 @@ public class SpearMenuListener implements IMenuListener {
 			cex.toExcel(file, layout);
 			Program.launch(file.toString());
 		} catch (IOException e) {
-			MessageDialog.openError(table.getControl().getShell(), "Error opening spreadsheet",
+			MessageDialog.openError(columnViewer.getControl().getShell(), "Error opening spreadsheet",
 					e.getMessage());
 			e.printStackTrace();
 		}
