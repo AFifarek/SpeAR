@@ -69,6 +69,7 @@ State:
 Macros:
 	no_valve_flow is a bool = valve_flow == 0.0 m3_per_second
 	reset_is_pressed is a bool = reset == PRESSED
+	out2_mod_5 : int = out2 mod 5
 
 //Assumptions are stated in terms of input variables only (not outputs or state)
 Assumptions: 
@@ -150,6 +151,7 @@ DerivedRequirements:
 	
 	//Record Expression
 	r_rec_expr = 		inputRecord1 == new myRecord{field1 = 2.0, field2 = 3}
+	r_rec_expr_fl = 	inputRecord1 == new myRecord{2.0,3}
 		
 	//Array Access
 	r_array_access = 	inputArray1[2] less than 25
