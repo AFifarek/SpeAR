@@ -1,8 +1,5 @@
 package com.rockwellcollins.spear.translate.handlers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -19,20 +16,13 @@ import org.eclipse.xtext.ui.editor.XtextEditor;
 import org.eclipse.xtext.ui.editor.utils.EditorUtils;
 
 import com.rockwellcollins.spear.Pattern;
-import com.rockwellcollins.spear.translate.lustre.PLTL;
-import com.rockwellcollins.spear.translate.master.SConstant;
-import com.rockwellcollins.spear.translate.master.SFile;
-import com.rockwellcollins.spear.translate.master.SPattern;
 import com.rockwellcollins.spear.translate.master.SPatternProgram;
-import com.rockwellcollins.spear.translate.master.STypeDef;
-import com.rockwellcollins.spear.translate.naming.NameMap;
 import com.rockwellcollins.spear.translate.views.SpearResultsView;
 import com.rockwellcollins.spear.ui.preferences.PreferencesUtil;
 
 import jkind.api.JKindApi;
 import jkind.api.results.JKindResult;
 import jkind.lustre.Program;
-import jkind.lustre.builders.ProgramBuilder;
 import jkind.results.layout.Layout;
 import jkind.results.layout.NodeLayout;
 

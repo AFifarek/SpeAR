@@ -2,6 +2,9 @@ Specification demo_module
 
 Imports:
 	import "demo_definitions.spear"
+	
+Types:
+	english_length is a real ft	
 
 Inputs:
 	in1 : english_length
