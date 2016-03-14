@@ -35,7 +35,7 @@
          <action
                label="&amp;Generate PDF"
                icon="icons/document.png"
-               class="com.rockwellcollins.spear.translate.actions.GeneratePDF"
+               class="com.rockwellcollins.spear.translate.actions.GenerateDocumentation"
                tooltip="Generate PDF"
                menubarPath="translateMenu/translateGroup"
                toolbarPath="translateGroup"

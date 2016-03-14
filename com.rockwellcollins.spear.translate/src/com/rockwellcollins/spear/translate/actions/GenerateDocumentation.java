@@ -26,6 +26,7 @@ import org.eclipse.xtext.validation.Issue;
 import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
+import com.rockwellcollins.spear.translate.pdf.MakePDF;
 import com.rockwellcollins.ui.internal.SpearActivator;
 
 public class GenerateDocumentation implements IWorkbenchWindowActionDelegate {
@@ -62,8 +63,8 @@ public class GenerateDocumentation implements IWorkbenchWindowActionDelegate {
 				
 				IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 				IResource pdfResource = root.getFile(new Path(pdfURI.toPlatformString(true)));
-//
-//				PDDocument document = MakePDF.generate(workingCopy,pdfResource.getLocation().toFile());
+
+				MakePDF.toPDF(workingCopy,pdfResource.getLocation().toFile());
 
 				// refresh the workspace
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);

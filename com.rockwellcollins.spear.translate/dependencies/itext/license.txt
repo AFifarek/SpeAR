@@ -1,0 +1,3 @@
+Licensing information for IText 5.5.8 is found at:
+
+http://itextpdf.com/AGPL
