@@ -49,12 +49,13 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 
 	private StringFieldEditor remoteUrlFieldEditor;
 
-	private static final String[][] SOLVERS = { { PreferenceConstants.SOLVER_YICES, PreferenceConstants.SOLVER_YICES },
+	private static final String[][] SOLVERS =  
+		   {{ PreferenceConstants.SOLVER_SMTINTERPOL, PreferenceConstants.SOLVER_SMTINTERPOL },
+			{ PreferenceConstants.SOLVER_YICES, PreferenceConstants.SOLVER_YICES },
 			{ PreferenceConstants.SOLVER_Z3, PreferenceConstants.SOLVER_Z3 },
 			{ PreferenceConstants.SOLVER_CVC4, PreferenceConstants.SOLVER_CVC4 },
 			{ PreferenceConstants.SOLVER_YICES2, PreferenceConstants.SOLVER_YICES2 },
-			{ PreferenceConstants.SOLVER_MATHSAT, PreferenceConstants.SOLVER_MATHSAT },
-			{ PreferenceConstants.SOLVER_SMTINTERPOL, PreferenceConstants.SOLVER_SMTINTERPOL } };
+			{ PreferenceConstants.SOLVER_MATHSAT, PreferenceConstants.SOLVER_MATHSAT }};
 
 	private ComboFieldEditor solverFieldEditor;
 	private String selectedSolver;
@@ -109,7 +110,7 @@ public class SpearPreferencePage extends FieldEditorPreferencePage implements IW
 				"Generate inductive counterexamples", getFieldEditorParent());
 		addField(inductCexFieldEditor);
 
-		reduceSupportFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_REDUCE_SUPPORT,
+		reduceSupportFieldEditor = new BooleanFieldEditor(PreferenceConstants.PREF_REDUCE_IVC,
 				"Reduce support (expensive)", getFieldEditorParent());
 		addField(reduceSupportFieldEditor);
 

@@ -122,7 +122,7 @@ public class SpearMenuListener implements IMenuListener {
 		Property prop = result.getProperty();
 		if (prop instanceof ValidProperty) {
 			ValidProperty valid = (ValidProperty) prop;
-			return valid.getSupport();
+			return valid.getIvc();
 		}
 		return null;
 	}

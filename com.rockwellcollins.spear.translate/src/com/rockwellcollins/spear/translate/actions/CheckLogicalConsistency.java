@@ -33,7 +33,6 @@ import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
-import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.transformations.SpearDocument;
@@ -75,11 +74,6 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 					return null;
 				}
 
-				if (CheckForUnsupported.check(specification)) {
-					MessageDialog.openError(window.getShell(), "Unsupported Specification elements.",
-							"Specification contains at least one unsupported element.");
-					return null;
-				}
 				//Set the runtime options
 				SpearRuntimeOptions.setRuntimeOptions();
 				
@@ -102,7 +96,7 @@ public class CheckLogicalConsistency implements IWorkbenchWindowActionDelegate {
 				root.refreshLocal(IResource.DEPTH_INFINITE, null);
 				
 				JKindApi api = (JKindApi) PreferencesUtil.getKindApi();
-				api.setReduceSupport();
+				api.setIvcReduction();
 				
 				JKindResult result = new JKindResult("result");
 				for(String prop : p.getMainNode().properties) {

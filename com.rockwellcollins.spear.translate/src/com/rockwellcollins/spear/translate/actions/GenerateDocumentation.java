@@ -48,7 +48,6 @@ public class GenerateDocumentation implements IWorkbenchWindowActionDelegate {
 
 		doc.readOnly(new IUnitOfWork<Void, XtextResource>() {
 
-			@SuppressWarnings("unused")
 			@Override
 			public java.lang.Void exec(XtextResource state) throws Exception {
 				Specification specification = (Specification) state.getContents().get(0);

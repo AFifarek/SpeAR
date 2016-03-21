@@ -145,7 +145,7 @@ public class SSpecification extends SFile {
 		List<SConstraint> list = new ArrayList<>();
 		list.addAll(assumptions);
 		list.addAll(requirements);
-		builder.addSupports(SConstraint.toPropertyIds(list, map));
+		builder.addIvcs(SConstraint.toPropertyIds(list, map));
 		
 		return builder.build();
 	}

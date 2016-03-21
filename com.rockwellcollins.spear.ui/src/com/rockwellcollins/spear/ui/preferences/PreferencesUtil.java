@@ -1,9 +1,16 @@
 package com.rockwellcollins.spear.ui.preferences;
 
+import java.io.File;
+import java.net.URL;
+
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.osgi.framework.Bundle;
 
 import com.rockwellcollins.ui.internal.SpearActivator;
 
+import jkind.JKindException;
 import jkind.SolverOption;
 import jkind.api.JKindApi;
 import jkind.api.Kind2Api;
@@ -54,6 +61,7 @@ public class PreferencesUtil {
 	private static JKindApi getJKindApi() {
 		IPreferenceStore prefs = getPreferenceStore();
 		JKindApi api = new JKindApi();
+		api.setJKindJar(getJKindJar());
 
 		String solverString = prefs.getString(PreferenceConstants.PREF_SOLVER).toUpperCase()
 				.replaceAll(" ", "");
@@ -73,8 +81,8 @@ public class PreferencesUtil {
 		if (prefs.getBoolean(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES)) {
 			api.setInductiveCounterexamples();
 		}
-		if (prefs.getBoolean(PreferenceConstants.PREF_REDUCE_SUPPORT)) {
-			api.setReduceSupport();
+		if (prefs.getBoolean(PreferenceConstants.PREF_REDUCE_IVC)) {
+			api.setIvcReduction();
 		}
 		if (prefs.getBoolean(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES)
 				&& solver == SolverOption.YICES) {
@@ -90,6 +98,17 @@ public class PreferencesUtil {
 		api.setN(prefs.getInt(PreferenceConstants.PREF_DEPTH));
 		api.setTimeout(prefs.getInt(PreferenceConstants.PREF_TIMEOUT));
 		return api;
+	}
+
+	public static String getJKindJar() {
+		Bundle bundle = Platform.getBundle("com.rockwellcollins.spear");
+		URL url = bundle.getEntry("dependencies/jkind.jar");
+		try {
+			URL fileUrl = FileLocator.toFileURL(url);
+			return new File(fileUrl.getPath()).toString();
+		} catch (Exception e) {
+			throw new JKindException("Unable to extract jkind.jar from plug-in", e);
+		}
 	}
 
 	private static Kind2Api getKind2Api() {

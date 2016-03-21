@@ -14,7 +14,7 @@ public class PreferenceConstants {
 	public static final String PREF_INVARIANT_GENERATION = "invariantGeneration";
 	public static final String PREF_PDR_MAX = "pdrMax";
 	public static final String PREF_INDUCTIVE_COUNTEREXAMPLES = "inductiveCounterexamples";
-	public static final String PREF_REDUCE_SUPPORT = "reduceSupport";
+	public static final String PREF_REDUCE_IVC = "reduceIVC";
 	public static final String PREF_SMOOTH_COUNTEREXAMPLES = "smoothCounterexamples";
 	public static final String PREF_INTERVAL_GENERALIZATION = "intervalGeneralization";
 	public static final String PREF_DEBUG = "apiDebug";

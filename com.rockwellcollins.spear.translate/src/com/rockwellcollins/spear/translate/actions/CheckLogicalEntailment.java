@@ -34,7 +34,6 @@ import com.google.inject.Injector;
 import com.rockwellcollins.SpearInjectorUtil;
 import com.rockwellcollins.spear.Specification;
 import com.rockwellcollins.spear.translate.layout.SpearLayout;
-import com.rockwellcollins.spear.translate.lustre.CheckForUnsupported;
 import com.rockwellcollins.spear.translate.master.SProgram;
 import com.rockwellcollins.spear.translate.transformations.PerformTransforms;
 import com.rockwellcollins.spear.translate.transformations.SpearDocument;
@@ -73,12 +72,6 @@ public class CheckLogicalEntailment implements IWorkbenchWindowActionDelegate {
 
 				if (hasErrors(specification.eResource())) {
 					MessageDialog.openError(window.getShell(), "Error", "Specification contains errors.");
-					return null;
-				}
-
-				if (CheckForUnsupported.check(specification)) {
-					MessageDialog.openError(window.getShell(), "Unsupported Specification elements.",
-							"Specification contains at least one unsupported element.");
 					return null;
 				}
 

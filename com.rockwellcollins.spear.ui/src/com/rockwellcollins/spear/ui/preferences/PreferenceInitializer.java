@@ -13,13 +13,13 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer {
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = SpearActivator.getInstance().getPreferenceStore();
 		store.setDefault(PreferenceConstants.PREF_MODEL_CHECKER,PreferenceConstants.MODEL_CHECKER_JKIND);
-		store.setDefault(PreferenceConstants.PREF_SOLVER, PreferenceConstants.SOLVER_YICES);
+		store.setDefault(PreferenceConstants.PREF_SOLVER, PreferenceConstants.SOLVER_SMTINTERPOL);
 		store.setDefault(PreferenceConstants.PREF_BOUNDED_MODEL_CHECKING, true);
 		store.setDefault(PreferenceConstants.PREF_K_INDUCTION, true);
 		store.setDefault(PreferenceConstants.PREF_INVARIANT_GENERATION, true);
 		store.setDefault(PreferenceConstants.PREF_PDR_MAX, 2);
 		store.setDefault(PreferenceConstants.PREF_INDUCTIVE_COUNTEREXAMPLES, true);
-		store.setDefault(PreferenceConstants.PREF_REDUCE_SUPPORT, false);
+		store.setDefault(PreferenceConstants.PREF_REDUCE_IVC, false);
 		store.setDefault(PreferenceConstants.PREF_SMOOTH_COUNTEREXAMPLES, false);
 		store.setDefault(PreferenceConstants.PREF_INTERVAL_GENERALIZATION, false);
 		store.setDefault(PreferenceConstants.PREF_DEBUG, false);

@@ -63,8 +63,7 @@ public class TypesAcyclicValidator extends AbstractSpearJavaValidator {
 		return table;
 	}
 	
+	// this is intentionally empty to prevent the composed check from registering itself.
 	@Override
-	public void register(EValidatorRegistrar registrar) {
-		// this is intentionally empty to prevent the composed check from registering itself.
-	}
+	public void register(EValidatorRegistrar registrar) {}
 }
